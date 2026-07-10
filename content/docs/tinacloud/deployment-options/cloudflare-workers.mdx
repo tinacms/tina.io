@@ -6,57 +6,59 @@ next: content/docs/tinacloud/deployment-options/alibaba-cloud.mdx
 previous: content/docs/tinacloud/deployment-options/cloudflare-pages.mdx
 ---
 
-Deploy to Cloudflare Workers when your site needs a server at request time: SSR, API routes, redirects, or the Astro starter's visual-editing route. Every push to your production branch rebuilds and redeploys.
+Deploy to Cloudflare Workers when your site needs a server at request time: SSR, API routes, redirects, or the Tina visual-editing route. Every push to your production branch rebuilds and redeploys.
 
-<WarningCallout
-  body={<>
-  </>}
-/>
+## Astro
 
-## Astro (the `tina-astro-starter`)
+Get an Astro and TinaCMS site onto Workers. Push your project to GitHub first.
 
-Push your project to GitHub, then deploy it with Cloudflare's git-based builds or straight from your machine. Both use the config the starter already ships.
+### Add the Cloudflare adapter
 
-### What the starter already sets up
+```sh
+npx astro add cloudflare
+```
 
-* `astro.config.mjs` picks the adapter from the host. Cloudflare's builds set `WORKERS_CI`, which selects `@astrojs/cloudflare`, so you never run `npx astro add cloudflare` or edit the config.
-* A root `wrangler.jsonc` turns on `nodejs_compat`, which the visual-editing route needs for `node:async_hooks`:
+This installs `@astrojs/cloudflare` and sets `adapter: cloudflare()` in `astro.config.mjs`.
+
+> **Using the [tina-astro-starter](https://github.com/tinacms/tina-astro-starter)?** Skip this. It ships the adapter and picks it from the host automatically (Cloudflare's builds set `WORKERS_CI`, which selects `@astrojs/cloudflare`), so you never run `astro add` or edit the config.
+
+### Enable nodejs_compat
+
+Tina's visual-editing route uses `node:async_hooks`, so add a root `wrangler.jsonc` that turns on `nodejs_compat`:
 
 ```jsonc
 {
-  "name": "tina-astro-starter",
+  "name": "your-worker-name",
   "compatibility_date": "2026-06-01",
   "compatibility_flags": ["nodejs_compat"]
 }
 ```
 
-> Adding TinaCMS to an existing Astro site? Run `npx astro add cloudflare`, then add a root `wrangler.jsonc` with `compatibility_flags: ["nodejs_compat"]` and a recent `compatibility_date`.
+> **Using the starter?** This file is already there.
 
 ### Deploy with git-based builds
 
 In the Cloudflare dashboard, go to **Workers & Pages** | **Create** | **Workers** | **Import a repository**, connect GitHub, and pick your repo. Set:
 
-* **Build command:** `pnpm run build` (the starter's script runs `tinacms build --content=local -c "astro build"`)
+* **Build command:** `pnpm run build`
 * **Deploy command:** `npx wrangler deploy`
 
-There's no build-output field to set. A Worker gets its static assets from the adapter's generated config, not a dashboard directory, and Cloudflare authenticates the deploy for you.
-
-### Or deploy from your machine
+### Or deploy from the Wrangler CLI
 
 Put your TinaCloud credentials in a local `.env` (see below), then build and deploy:
 
 ```sh
-DEPLOY_ADAPTER=cloudflare pnpm run build
+pnpm run build
 npx wrangler deploy
 ```
 
-`DEPLOY_ADAPTER=cloudflare` is the part people miss. Cloudflare's builds set `WORKERS_CI` so the adapter is chosen for you, but on your own machine nothing sets it and the build falls back to a Node server Wrangler can't deploy.
+> **Using the starter?** It auto-detects the host, so nothing selects the Cloudflare adapter on your own machine. Force it for a local deploy: `DEPLOY_ADAPTER=cloudflare pnpm run build`.
 
 ### Environment variables
 
-`tinacms build` needs your TinaCloud credentials at build time. Add them wherever you build: for git-based builds, under the Worker's **Settings** | **Build** | **Variables and Secrets**; for a CLI deploy, in your local `.env`. Grab both credentials from your [TinaCloud project](https://app.tina.io).
+`tinacms build` needs your TinaCloud credentials at build time. Add them where you build: for git-based builds, under the Worker's **Settings** | **Build** | **Variables and Secrets**; for a CLI deploy, in your local `.env`. Grab both credentials from your [TinaCloud project](https://app.tina.io).
 
-* `PUBLIC_TINA_CLIENT_ID` is your client ID. Astro uses the `PUBLIC_` prefix, not Next.js's `NEXT_PUBLIC_`.
+* `PUBLIC_TINA_CLIENT_ID` is your client ID.
 * `TINA_TOKEN` is a content token.
 * `SITE_URL` is your production URL, e.g. `https://your-worker.your-account.workers.dev`. Workers injects no deploy URL, so without it your sitemap, RSS, and OpenGraph tags fall back to `localhost`.
 
@@ -64,7 +66,7 @@ These are build-time only. `tinacms build` bakes the client ID and token into th
 
 ### Editing branch
 
-TinaCMS reads and writes content on the branch resolved in `tina/config.ts`, which comes from the host's git environment variable. On Cloudflare that's `WORKERS_CI_BRANCH` (Workers Builds) or `CF_PAGES_BRANCH` (Pages). The current starter reads both. If your `config.ts` predates that, add them to the chain:
+TinaCMS reads and writes content on the branch resolved in `tina/config.ts`, which comes from the host's git environment variable. On Cloudflare that's `WORKERS_CI_BRANCH` (Workers Builds) or `CF_PAGES_BRANCH` (Pages):
 
 ```ts
 const branch =
@@ -76,27 +78,27 @@ const branch =
   "main";
 ```
 
-Without them the branch falls back to `main`, so a preview or non-`main` deploy would edit `main` while the site builds from your branch.
+Without the Cloudflare vars the branch falls back to `main`, so a preview or non-`main` deploy would edit `main` while the site builds from your branch.
+
+> **Using the starter?** Its `config.ts` already reads both.
 
 ### Pin the SESSION KV namespace
 
-The `@astrojs/cloudflare` adapter adds a `SESSION` KV binding (Astro's session store) even when your site doesn't use sessions. Your first deploy creates the namespace automatically, but Cloudflare doesn't write its ID back to your repo, so the next git-based deploy tries to create it again and fails:
+`@astrojs/cloudflare` gives every Worker a `SESSION` KV binding for [Astro's session store](https://docs.astro.build/en/guides/sessions/), whether or not your site uses sessions. Your first deploy creates the namespace automatically, but Cloudflare doesn't write its ID back to your repo, so the next git-based deploy tries to create it again and fails:
 
 ```
 ✘ a namespace with this account ID and title already exists [code: 10014]
 ```
 
-Editor saves trigger a redeploy, so you would hit this on your second save. Pin the namespace ID in your root `wrangler.jsonc` so every deploy reuses it. Create one with:
+Editor saves trigger a redeploy, so you would hit this on your second save. Create the namespace once and pin its ID in `wrangler.jsonc` so every deploy reuses the same one:
 
 ```sh
 npx wrangler kv namespace create SESSION
 ```
 
-or copy the ID your first deploy already made from **Workers & Pages** | **KV**. Then add it to the config:
-
 ```jsonc
 {
-  "name": "tina-astro-starter",
+  "name": "your-worker-name",
   "compatibility_date": "2026-06-01",
   "compatibility_flags": ["nodejs_compat"],
   "kv_namespaces": [{ "binding": "SESSION", "id": "<your-namespace-id>" }]
