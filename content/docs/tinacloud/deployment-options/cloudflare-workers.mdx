@@ -10,21 +10,12 @@ Deploy to Cloudflare Workers when your site needs a server at request time: SSR,
 
 ## Astro
 
-Get an Astro and TinaCMS site onto Workers. Push your project to GitHub first.
+Push your project to GitHub, then deploy it with Cloudflare's git-based builds or straight from your machine.
 
-### Add the Cloudflare adapter
+### Configure for Cloudflare
 
-```sh
-npx astro add cloudflare
-```
-
-This installs `@astrojs/cloudflare` and sets `adapter: cloudflare()` in `astro.config.mjs`.
-
-> **Using the [tina-astro-starter](https://github.com/tinacms/tina-astro-starter)?** Skip this. It ships the adapter and picks it from the host automatically (Cloudflare's builds set `WORKERS_CI`, which selects `@astrojs/cloudflare`), so you never run `astro add` or edit the config.
-
-### Enable nodejs_compat
-
-Tina's visual-editing route uses `node:async_hooks`, so add a root `wrangler.jsonc` that turns on `nodejs_compat`:
+* Add the Cloudflare adapter with `npx astro add cloudflare`. It installs `@astrojs/cloudflare` and sets `adapter: cloudflare()` in `astro.config.mjs`.
+* Add a root `wrangler.jsonc` that turns on `nodejs_compat`, which the visual-editing route needs for `node:async_hooks`:
 
 ```jsonc
 {
@@ -34,7 +25,7 @@ Tina's visual-editing route uses `node:async_hooks`, so add a root `wrangler.jso
 }
 ```
 
-> **Using the starter?** This file is already there.
+> **Using the [tina-astro-starter](https://github.com/tinacms/tina-astro-starter)?** Both are already done. Its `astro.config.mjs` picks the adapter from the host (Cloudflare's builds set `WORKERS_CI`, which selects `@astrojs/cloudflare` among the supported adapters), and the `wrangler.jsonc` ships in the repo, so you never run `astro add` or edit the config.
 
 ### Deploy with git-based builds
 
@@ -43,22 +34,24 @@ In the Cloudflare dashboard, go to **Workers & Pages** | **Create** | **Workers*
 * **Build command:** `pnpm run build`
 * **Deploy command:** `npx wrangler deploy`
 
-### Or deploy from the Wrangler CLI
+There's no build-output field to set. A Worker gets its static assets from the adapter's generated config, not a dashboard directory, and Cloudflare authenticates the deploy for you.
 
-Put your TinaCloud credentials in a local `.env` (see below), then build and deploy:
+### Deploy from the Wrangler CLI
+
+Put your TinaCloud credentials in a local `.env`, then build and deploy:
 
 ```sh
 pnpm run build
 npx wrangler deploy
 ```
 
-> **Using the starter?** It auto-detects the host, so nothing selects the Cloudflare adapter on your own machine. Force it for a local deploy: `DEPLOY_ADAPTER=cloudflare pnpm run build`.
+> **Using the starter?** Its config auto-detects the host, so nothing selects the Cloudflare adapter on your own machine. Force it for a local build: `DEPLOY_ADAPTER=cloudflare pnpm run build`.
 
 ### Environment variables
 
-`tinacms build` needs your TinaCloud credentials at build time. Add them where you build: for git-based builds, under the Worker's **Settings** | **Build** | **Variables and Secrets**; for a CLI deploy, in your local `.env`. Grab both credentials from your [TinaCloud project](https://app.tina.io).
+`tinacms build` needs your TinaCloud credentials at build time. Add them wherever you build: for git-based builds, under the Worker's **Settings** | **Build** | **Variables and Secrets**; for a CLI deploy, in your local `.env`. Grab both credentials from your [TinaCloud project](https://app.tina.io).
 
-* `PUBLIC_TINA_CLIENT_ID` is your client ID.
+* `PUBLIC_TINA_CLIENT_ID` is your client ID. Astro uses the `PUBLIC_` prefix, not Next.js's `NEXT_PUBLIC_`.
 * `TINA_TOKEN` is a content token.
 * `SITE_URL` is your production URL, e.g. `https://your-worker.your-account.workers.dev`. Workers injects no deploy URL, so without it your sitemap, RSS, and OpenGraph tags fall back to `localhost`.
 
@@ -66,7 +59,7 @@ These are build-time only. `tinacms build` bakes the client ID and token into th
 
 ### Editing branch
 
-TinaCMS reads and writes content on the branch resolved in `tina/config.ts`, which comes from the host's git environment variable. On Cloudflare that's `WORKERS_CI_BRANCH` (Workers Builds) or `CF_PAGES_BRANCH` (Pages):
+TinaCMS reads and writes content on the branch resolved in `tina/config.ts`, which comes from the host's git environment variable. On Cloudflare that's `WORKERS_CI_BRANCH` (Workers Builds) or `CF_PAGES_BRANCH` (Pages). Add them to the chain:
 
 ```ts
 const branch =
@@ -78,23 +71,25 @@ const branch =
   "main";
 ```
 
-Without the Cloudflare vars the branch falls back to `main`, so a preview or non-`main` deploy would edit `main` while the site builds from your branch.
+Without them the branch falls back to `main`, so a preview or non-`main` deploy would edit `main` while the site builds from your branch.
 
 > **Using the starter?** Its `config.ts` already reads both.
 
 ### Pin the SESSION KV namespace
 
-`@astrojs/cloudflare` gives every Worker a `SESSION` KV binding for [Astro's session store](https://docs.astro.build/en/guides/sessions/), whether or not your site uses sessions. Your first deploy creates the namespace automatically, but Cloudflare doesn't write its ID back to your repo, so the next git-based deploy tries to create it again and fails:
+The `@astrojs/cloudflare` adapter adds a `SESSION` KV binding (Astro's session store) even when your site doesn't use sessions. Your first deploy creates the namespace automatically, but Cloudflare doesn't write its ID back to your repo, so the next git-based deploy tries to create it again and fails:
 
 ```
 ✘ a namespace with this account ID and title already exists [code: 10014]
 ```
 
-Editor saves trigger a redeploy, so you would hit this on your second save. Create the namespace once and pin its ID in `wrangler.jsonc` so every deploy reuses the same one:
+Editor saves trigger a redeploy, so you would hit this on your second save. Pin the namespace ID in your root `wrangler.jsonc` so every deploy reuses it. Create one with:
 
 ```sh
 npx wrangler kv namespace create SESSION
 ```
+
+or copy the ID your first deploy already made from **Workers & Pages** | **KV**. Then add it to the config:
 
 ```jsonc
 {
