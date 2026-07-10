@@ -63,6 +63,22 @@ npx wrangler deploy
 
 These are build-time only. `tinacms build` bakes the client ID and token into the generated client, so there's nothing to add again as a runtime variable.
 
+### Editing branch
+
+TinaCMS reads and writes content on the branch resolved in `tina/config.ts`, which comes from the host's git environment variable. On Cloudflare that's `WORKERS_CI_BRANCH` (Workers Builds) or `CF_PAGES_BRANCH` (Pages). The current starter reads both. If your `config.ts` predates that, add them to the chain:
+
+```ts
+const branch =
+  process.env.GITHUB_BRANCH ||
+  process.env.VERCEL_GIT_COMMIT_REF ||
+  process.env.WORKERS_CI_BRANCH ||
+  process.env.CF_PAGES_BRANCH ||
+  process.env.HEAD ||
+  "main";
+```
+
+Without them the branch falls back to `main`, so a preview or non-`main` deploy would edit `main` while the site builds from your branch.
+
 ### Pin the SESSION KV namespace
 
 The `@astrojs/cloudflare` adapter adds a `SESSION` KV binding (Astro's session store) even when your site doesn't use sessions. Your first deploy creates the namespace automatically, but Cloudflare doesn't write its ID back to your repo, so the next git-based deploy tries to create it again and fails:
