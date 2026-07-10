@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default async function ConferencePage() {
   const vars = {
-    relativePath: 'TinaCon2025.mdx',
+    relativePath: 'TinaCon2026.mdx',
   };
 
   const { data, query } = await fetchConference();
@@ -20,7 +20,7 @@ export default async function ConferencePage() {
 
 const fetchConference = async () => {
   const res = await client.queries.conference({
-    relativePath: 'TinaCon2025.mdx',
+    relativePath: 'TinaCon2026.mdx',
   });
   return {
     data: res.data,

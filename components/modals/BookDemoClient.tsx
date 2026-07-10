@@ -53,7 +53,7 @@ export function DemoFormClient({
                     <Image
                       src={person.image}
                       alt={`${person.name} Portrait`}
-                      className="hidden md:block w-18 h-18 rounded-full lg:mr-4 md:mr-4"
+                      className="hidden md:block w-18 h-18 aspect-square object-cover rounded-full lg:mr-4 md:mr-4"
                       width={72}
                       height={72}
                     />
