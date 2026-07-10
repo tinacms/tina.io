@@ -127,11 +127,21 @@ When uploading files to TinaCloud, the maximum allowed file size is 100 MiB.
 
 ## How does this work with Branching?
 
-Repo-based media is designed to be used around a single-branch workflow. If your project is using [multiple branches](/docs/tinacloud/branching/) or [Editorial Workflow](/docs/drafts/editorial-workflow/), there are some known caveats to be aware of.
+By default, repo-based media is scoped to a single media branch (your repository's default branch), and every editing branch reads and writes its assets there.
 
-* Images cannot be altered. Once uploaded, any subsequent changes to an asset will not be reflected.
-* If you only have a single branch with media enabled, the media store will source/upload images to/from that branch.
-* If you have multiple branches with media enabled, then all media will be sourced/uploaded to/from the repository's default branch.
+When your project has [Editorial Workflow](/docs/tinacloud/editorial-workflow/) enabled, media becomes **branch-aware** and goes through the same review process as your content:
+
+* Each branch has its own view of your media, so uploads and deletes on one branch do not affect other branches until they are merged.
+* When you upload or delete media while editing a **protected** branch, TinaCMS does not write straight to it. Instead it prompts you to create a working branch, saves the asset to that branch, and opens a pull request, just like saving content. You are switched onto the new branch and can keep working, and the change reaches the protected branch only once the pull request is merged.
+* You can choose **Save to protected branch** in the prompt to bypass the workflow and write directly.
+
+See [Media in the Editorial Workflow](/docs/tinacloud/editorial-workflow/#media-in-the-editorial-workflow) for the full flow.
+
+### Caveats
+
+* The media workflow only triggers when the branch you are currently editing is itself protected. On a non-protected working branch, uploads and deletes are saved directly to that branch.
+* Each media upload or delete creates its own working branch and pull request.
+* Images cannot be altered in place. Once uploaded, subsequent changes to an asset are not reflected, so upload a new file instead.
 
 If you are configuring Tina on a non-default branch (and the Tina config has not yet been merged to your default branch), the automatic media sync on project creation may not be able to locate your media configuration. In this case, the **Media** tab in your TinaCloud project dashboard will show that media has not yet been synced. Once your Tina config has been merged to the default branch, you can trigger a sync manually from that tab.
 
