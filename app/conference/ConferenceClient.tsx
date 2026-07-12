@@ -36,13 +36,17 @@ const HeaderBanner = ({
         </div>
         <div className="flex gap-2 items-center">
           <FaRegMap />{' '}
-          <Link
-            href="https://www.ssw.com.au/offices/sydney"
-            target="_blank"
-            className="underline"
-          >
-            {tinaData.location}
-          </Link>
+          {tinaData.locationLink ? (
+            <Link
+              href={tinaData.locationLink}
+              target="_blank"
+              className="underline"
+            >
+              {tinaData.location}
+            </Link>
+          ) : (
+            <span>{tinaData.location}</span>
+          )}
         </div>
       </div>
       <div className="flex flex-row gap-4">
