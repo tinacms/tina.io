@@ -45,7 +45,7 @@ pnpm run build
 npx wrangler deploy
 ```
 
-> **Using the starter?** Its config auto-detects the host, so nothing selects the Cloudflare adapter on your own machine. Force it for a local build: `DEPLOY_ADAPTER=cloudflare pnpm run build`.
+> **Using the starter?** On your own machine no CI variable is set, so the build falls back to the Node adapter. Force Cloudflare: `DEPLOY_ADAPTER=cloudflare pnpm run build`.
 
 ### Environment variables
 
