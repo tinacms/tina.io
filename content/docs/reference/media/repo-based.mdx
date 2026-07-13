@@ -140,7 +140,7 @@ See [Media in the Editorial Workflow](/docs/tinacloud/editorial-workflow/#media-
 ### Caveats
 
 * The media workflow only triggers when the branch you are currently editing is itself protected. On a non-protected working branch, uploads and deletes are saved directly to that branch.
-* Each media upload or delete creates its own working branch and pull request.
+* Each media upload or delete on a protected branch creates its own working branch and pull request. All subsequent media operations on that branch will be appended to the created pull request"
 * Images cannot be altered in place. Once uploaded, subsequent changes to an asset are not reflected, so upload a new file instead.
 
 If you are configuring Tina on a non-default branch (and the Tina config has not yet been merged to your default branch), the automatic media sync on project creation may not be able to locate your media configuration. In this case, the **Media** tab in your TinaCloud project dashboard will show that media has not yet been synced. Once your Tina config has been merged to the default branch, you can trigger a sync manually from that tab.
