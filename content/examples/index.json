@@ -7,10 +7,10 @@
       "link": "https://github.com/tinacms/tina-cloud-starter"
     },
     {
-      "label": "Barebones Starter",
+      "label": "React Starter",
       "description": "A simple TinaCMS starter that uses Next.js with no styling, and minimal content.\n",
       "image": "/img/tina_qoie8s.png",
-      "link": "https://github.com/tinacms/tina-barebones-starter"
+      "link": "https://github.com/tinacms/tina-react-starter"
     },
     {
       "label": "Tina Self Hosted Demo",
