@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { FaRegCalendar, FaRegMap, FaRegStar } from 'react-icons/fa';
-import { FaArrowLeftLong, FaRegClock } from 'react-icons/fa6';
+import { FaArrowRightLong, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
@@ -465,13 +465,6 @@ function ConferencePage({
 
   return (
     <div className="mt-6">
-      <div className="px-6 md:px-10 mb-4">
-        <Link href="/events">
-          <Button color="ghost" size="small">
-            <FaArrowLeftLong className="mr-2" /> See all events
-          </Button>
-        </Link>
-      </div>
       {/* <TopBanner tinaData={tinaData.data?.conference?.banner} /> */}
       <HeaderBanner
         tinaData={tinaData.data?.conference?.banner}
@@ -496,6 +489,15 @@ function ConferencePage({
           />
         )}
         <Agenda filteredSessions={filteredSessions} agendaRef={agendaRef} />
+        <Link
+          href="/events"
+          className="mt-16 font-bold flex items-center w-fit gap-2 group underline hover:no-underline transition-all duration-300"
+        >
+          <span className="text-black group-hover:text-blue-600">
+            SEE ALL EVENTS
+          </span>
+          <FaArrowRightLong className="text-black group-hover:text-blue-600" />
+        </Link>
       </div>
     </div>
   );
