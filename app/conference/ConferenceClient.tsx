@@ -18,6 +18,13 @@ const HeaderBanner = ({
   tinaData: any;
   scrollToAgenda: () => void;
 }) => {
+  // Derive the SSW office link from the venue name (avoids a per-event CMS field).
+  const officeCity = tinaData.location
+    ?.toLowerCase()
+    .match(/sydney|melbourne/)?.[0];
+  const officeUrl = officeCity
+    ? `https://www.ssw.com.au/offices/${officeCity}`
+    : undefined;
   return (
     <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br from-seafoam-100 to-seafoam-200 text-black">
       <h1 className="font-ibm-plex text-4xl pb-4 text-orange-500">
@@ -36,12 +43,8 @@ const HeaderBanner = ({
         </div>
         <div className="flex gap-2 items-center">
           <FaRegMap />{' '}
-          {tinaData.locationLink ? (
-            <Link
-              href={tinaData.locationLink}
-              target="_blank"
-              className="underline"
-            >
+          {officeUrl ? (
+            <Link href={officeUrl} target="_blank" className="underline">
               {tinaData.location}
             </Link>
           ) : (
