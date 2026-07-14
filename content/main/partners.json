@@ -5,14 +5,17 @@
   },
   "blocks": [
     {
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "headline": "Build with a TinaCMS partner.",
       "text": "Find a vetted agency, or become one.",
       "buttons": [
         {
           "label": "Find a partner",
           "icon": true,
-          "variant": "blue",
           "shape": "pill",
+          "variant": "blue",
           "size": "medium",
           "url": "#find-a-partner-section",
           "_template": "actions"
@@ -27,9 +30,6 @@
           "_template": "modalButton"
         }
       ],
-      "blockSettings": {
-        "isHeadingOne": true
-      },
       "_template": "hero"
     },
     {
@@ -68,7 +68,7 @@
               "icon": "AiOutlineSafetyCertificate"
             },
             {
-              "name": "Free TinaCMS licence for your own website",
+              "name": "Free TinaCloud licence for your own website",
               "icon": "AiOutlineCrown"
             },
             {
@@ -90,7 +90,11 @@
           "tier": "Premier",
           "location": "Sydney, Australia",
           "description": "Full-service consultancy delivering enterprise web apps and content-driven sites with TinaCMS, Next.js and Astro.",
-          "services": ["Next.js", "Enterprise", "Migrations"],
+          "services": [
+            "Next.js",
+            "Enterprise",
+            "Migrations"
+          ],
           "website": "https://www.ssw.com.au"
         },
         {
@@ -99,7 +103,11 @@
           "tier": "Gold",
           "location": "Remote, EU",
           "description": "Digital studio crafting brand and marketing sites with a focus on editor-friendly visual editing.",
-          "services": ["Marketing sites", "Branding", "Astro"],
+          "services": [
+            "Marketing sites",
+            "Branding",
+            "Astro"
+          ],
           "website": "https://www.comediadesign.com"
         },
         {
@@ -108,7 +116,11 @@
           "tier": "Certified",
           "location": "London, UK",
           "description": "Boutique agency building fast, content-rich websites for media and publishing clients.",
-          "services": ["Publishing", "Performance", "Hugo"],
+          "services": [
+            "Publishing",
+            "Performance",
+            "Hugo"
+          ],
           "website": "https://shadowlion.com"
         }
       ],
