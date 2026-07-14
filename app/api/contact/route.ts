@@ -9,6 +9,8 @@ export async function POST(request: NextRequest) {
       lastName,
       email,
       company,
+      partnerType,
+      tinaExperience,
       referralSource,
       message,
       inquiryType,
@@ -46,6 +48,10 @@ export async function POST(request: NextRequest) {
         `Name: ${fullName}`,
         `Email: ${email}`,
         `Company: ${company || 'N/A'}`,
+        ...(partnerType ? [`Sole developer or agency: ${partnerType}`] : []),
+        ...(tinaExperience
+          ? [`TinaCMS experience: ${tinaExperience}`]
+          : []),
         `How did you hear about us: ${referralSource || 'N/A'}`,
         '',
         `Message:`,

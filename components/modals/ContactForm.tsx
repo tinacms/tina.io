@@ -24,10 +24,14 @@ interface FormData {
   email: string;
   phone: string;
   company: string;
+  partnerType: string;
+  tinaExperience: string;
   referralSource: string;
   message: string;
   subscribeNewsletter: boolean;
 }
+
+const partnerTypeOptions = ['Sole developer', 'Agency'];
 
 type ContactVariant = 'contact' | 'partner';
 
@@ -81,6 +85,8 @@ const initialFormData: FormData = {
   email: '',
   phone: '',
   company: '',
+  partnerType: '',
+  tinaExperience: '',
   referralSource: '',
   message: '',
   subscribeNewsletter: false,
@@ -90,6 +96,9 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
   const config = VARIANTS[variant];
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+  const partnerFieldsComplete =
+    variant !== 'partner' ||
+    (Boolean(formData.partnerType) && Boolean(formData.tinaExperience));
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
@@ -256,6 +265,38 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         disabled={isProcessing}
         className="w-full"
       />
+      {variant === 'partner' && (
+        <>
+          <Select
+            value={formData.partnerType}
+            onValueChange={(value) =>
+              setFormData((prev) => ({ ...prev, partnerType: value }))
+            }
+            disabled={isProcessing}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Are you a sole developer or an agency? *" />
+            </SelectTrigger>
+            <SelectContent>
+              {partnerTypeOptions.map((option) => (
+                <SelectItem key={option} value={option}>
+                  {option}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Textarea
+            placeholder="How much have you worked with TinaCMS before? *"
+            name="tinaExperience"
+            rows={3}
+            value={formData.tinaExperience}
+            onChange={handleInputChange}
+            disabled={isProcessing}
+            required
+            className="w-full resize-y"
+          />
+        </>
+      )}
       <Select
         value={formData.referralSource}
         onValueChange={(value) =>
@@ -307,7 +348,12 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         <Button
           type="submit"
           color="orange"
-          disabled={isProcessing || !isValidEmail || !formData.message}
+          disabled={
+            isProcessing ||
+            !isValidEmail ||
+            !formData.message ||
+            !partnerFieldsComplete
+          }
           className="px-6 py-2.5"
         >
           {isProcessing ? 'Sending...' : config.submitLabel}

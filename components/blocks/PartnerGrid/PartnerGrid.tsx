@@ -13,9 +13,17 @@ const PartnerCard = ({ data }) => {
     data.website && !data.website.match(/^https?:\/\//)
       ? `https://${data.website}`
       : data.website;
+  // Show the bare domain (no protocol / trailing slash) as the link text.
+  const websiteLabel = website?.replace(/^https?:\/\//, '').replace(/\/+$/, '');
+
+  const isPremier = data.tier === 'Premier';
 
   return (
-    <div className="flex h-full flex-col gap-4 rounded-lg bg-white p-6 shadow-lg md:p-8">
+    <div
+      className={`flex h-full flex-col gap-4 rounded-lg bg-white p-6 shadow-lg md:p-8 ${
+        isPremier ? 'ring-2 ring-amber-300/70' : ''
+      }`}
+    >
       <div className="flex items-start justify-between gap-4">
         <div className="relative h-12 w-40">
           {data.logo ? (
@@ -37,7 +45,11 @@ const PartnerCard = ({ data }) => {
         </div>
         {data.tier && (
           <span
-            className="shrink-0 rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700"
+            className={`shrink-0 rounded-full px-3 py-1 text-sm font-medium ${
+              isPremier
+                ? 'bg-linear-to-r from-amber-200 via-yellow-300 to-amber-400 text-amber-900 shadow-sm ring-1 ring-amber-300/60'
+                : 'bg-blue-50 text-blue-700'
+            }`}
             data-tina-field={tinaField(data, 'tier')}
           >
             {data.tier}
@@ -82,8 +94,9 @@ const PartnerCard = ({ data }) => {
           target="_blank"
           rel="noopener noreferrer"
           className="mt-auto inline-flex items-center gap-1 font-medium text-blue-500 hover:text-blue-700"
+          data-tina-field={tinaField(data, 'website')}
         >
-          Visit website
+          {websiteLabel}
           <span aria-hidden="true">&rarr;</span>
         </a>
       )}

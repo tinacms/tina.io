@@ -37,7 +37,7 @@ export const partnerGridTemplate: Template = {
           name: 'tier',
           label: 'Tier',
           type: 'string',
-          options: ['Certified', 'Gold', 'Premier'],
+          options: ['Certified', 'Premier'],
         },
         { name: 'location', label: 'Location', type: 'string' },
         {
