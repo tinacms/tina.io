@@ -5,7 +5,7 @@ title: 在Nextjs中查询Tina内容
 
 ## 在NextJS中查询Tina内容
 
-在NextJS中，可以在构建时静态查询内容，也可以在运行时动态查询内容（使用[SSR](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props)或[CSR](https://nextjs.org/docs/basic-features/data-fetching/client-side)）。
+在NextJS中，内容可以在构建时静态查询，也可以在运行时动态查询（使用[SSR](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props)或[CSR](https://nextjs.org/docs/basic-features/data-fetching/client-side)）。
 
 ### 为静态页面获取内容
 
@@ -49,9 +49,9 @@ export const getStaticPaths = async () => {
 
 #### Next.js `fallback: "blocking"`
 
-在Next.js中，可以指定[`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking)，这允许`getStaticProps`在请求时在服务器端运行，当用户访问`getStaticPaths`中未指定的页面时。这允许文档创建与Tina一起工作，以及高级的NextJS功能如ISR。
+在Next.js中，可以指定[`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking)，这允许`getStaticProps`在请求时在服务器端运行，当用户访问`getStaticPaths`中未指定的页面时。这使得文档创建可以与Tina一起工作，以及高级的NextJS功能如ISR。
 
-有关Tina + NextJS的完整工作示例，请查看我们的["Barebones Starter"](https://github.com/tinacms/tina-barebones-starter)。
+有关Tina + NextJS的完整工作示例，请[查看我们的“React Starter”](https://github.com/tinacms/tina-react-starter)。
 
 ### 为SSR页面获取内容
 

@@ -43,6 +43,23 @@ Once you enter the new branch name, the following actions will occur:
 
 When you are ready to publish your content, merge the draft pull request into the protected branch (e.g., main) through GitHub. After the pull request is successfully merged, the updated content will be available on the protected branch.
 
+## Media in the Editorial Workflow
+
+Media follows the same review process as your content. When you upload or delete an image while editing a protected branch, TinaCMS routes the change through a branch and pull request instead of writing to the protected branch directly.
+
+When you upload or delete media on a protected branch, a prompt appears to create a new branch. Once you confirm:
+
+* A new branch is created for the media change.
+* The asset is saved to that branch, not to the protected branch.
+* A pull request is created.
+* You are switched onto the new branch so you can keep editing.
+
+To publish the media change, merge its pull request into the protected branch, the same as you would for content.
+
+> Prefer to skip the workflow for a one-off change? Choose **Save to protected branch** in the prompt to write the media directly to the protected branch.
+
+For how media storage and branching fit together, see [Repo-based Media](/docs/reference/media/repo-based/#how-does-this-work-with-branching).
+
 ## GitHub Pull Request links
 
 In the branch list modal, you can click on the dropdown and click "View Pull Request" to view the pull request on GitHub. This will open a new tab in your browser. This link will only aprear of the pull request has been created with TinaCMS and not if it was created manually.

@@ -192,7 +192,7 @@
       },
       {
         "label": "Discord",
-        "href": "https://discord.com/invite/zumN63Ybpf",
+        "href": "https://tina.io/discord",
         "image": "/icon_clyde_white_RGB.svg",
         "_template": "socialLink"
       },
@@ -222,13 +222,19 @@
       {
         "label": "Bluesky",
         "href": "https://bsky.app/profile/tina.io",
-        "image": "/svg/bluesky-logo-white.svg",
+        "image": "/svg/bluesky-logo.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/tinacms_/",
+        "image": "/svg/instagram-logo.svg",
         "_template": "socialLink"
       },
       {
         "label": "Threads",
         "href": "https://www.threads.com/@tinacms_",
-        "image": "/svg/threads-logo-white.svg",
+        "image": "/svg/threads-logo.svg",
         "_template": "socialLink"
       },
       {
