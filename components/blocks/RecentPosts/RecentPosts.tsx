@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { tinaField } from 'tinacms/dist/react';
 import Container from '@/component/util/Container';
-import { YouTubeModal } from '../VideoEmbed/YouTubeModal';
+import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
 import { FeaturedPost } from './FeaturedPost';
 
 // Shared so the "Recent Videos" and "Blog Posts" headings stay the same size (~36px). See AC #5.
@@ -44,7 +44,7 @@ const VideoCard = ({
 }: VideoCardProps) => {
   return (
     <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2">
-      <YouTubeModal src={embedUrl} title={title} />
+      <YouTubeEmbed src={embedUrl} />
       <span className="text-neutral-text-secondary text-sm">
         {formatDate(dateReleased)}
       </span>
