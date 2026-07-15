@@ -68,8 +68,8 @@ const VARIANTS: Record<
   partner: {
     heading: 'Become a Partner',
     intro:
-      "Tell us about your agency and the work you do. We'll be in touch about joining the TinaCMS partner program.",
-    messagePlaceholder: 'Tell us about your agency *',
+      "Tell us about yourself and the work you do. We'll be in touch about joining the TinaCMS partner program.",
+    messagePlaceholder: 'Tell us about your work *',
     submitLabel: 'Apply',
     inquiryType: 'Partner application',
     showNewsletter: false,
@@ -106,6 +106,15 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const isAgency = formData.partnerType === 'Agency';
   const isSoleDeveloper = formData.partnerType === 'Sole developer';
+  const companyPlaceholder =
+    variant === 'partner'
+      ? isAgency
+        ? 'Agency name'
+        : 'Company (optional)'
+      : 'Company';
+  const messagePlaceholder = isAgency
+    ? 'Tell us about your agency *'
+    : config.messagePlaceholder;
   const partnerFieldsComplete =
     variant !== 'partner' ||
     (Boolean(formData.partnerType) &&
@@ -271,7 +280,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         className="w-full"
       />
       <Input
-        placeholder="Company"
+        placeholder={companyPlaceholder}
         name="company"
         type="text"
         value={formData.company}
@@ -401,7 +410,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         </SelectContent>
       </Select>
       <Textarea
-        placeholder={config.messagePlaceholder}
+        placeholder={messagePlaceholder}
         name="message"
         rows={4}
         value={formData.message}
