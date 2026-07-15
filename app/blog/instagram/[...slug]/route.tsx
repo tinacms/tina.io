@@ -1,7 +1,3 @@
-// Dynamic 4:5 Instagram image for a blog post, as a Route Handler. See
-// app/blog/og/[...slug] for why this is a route handler (force-static so the
-// fonts/photos under public/ are readable via fs at build time).
-
 import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { renderBlogInstagramImage } from 'utils/og/blogInstagramImage';
