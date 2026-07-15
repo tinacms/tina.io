@@ -2,11 +2,17 @@
 id: /docs/tinacloud/deployment-options/cloudflare-pages
 title: Deploying to Cloudflare Pages
 last_edited: '2026-05-15T07:24:35.115Z'
-next: content/docs/tinacloud/deployment-options/alibaba-cloud.mdx
+next: content/docs/tinacloud/deployment-options/cloudflare-workers.mdx
 previous: content/docs/tinacloud/deployment-options/github-pages.mdx
 ---
 
-TinaCMS works well with Cloudflare Pages when your site is deployed as a **static export**: content is rendered at build time, while visual editing remains fully live in the browser via Tina's client-side data layer.
+TinaCMS works well with Cloudflare Pages when your site is deployed as a **static export**: content is rendered at build time, while visual editing remains fully live in the browser via Tina's client-side data layer. This page covers a **Next.js** static export.
+
+<WarningCallout
+  body={<>
+    **Using Astro?** Deploy the Astro starter to [Cloudflare Workers](/docs/tinacloud/deployment-options/cloudflare-workers), not Pages. The `@astrojs/cloudflare` adapter no longer supports Cloudflare Pages, and the starter's visual-editing route is server-rendered — a static-only Pages deploy would break click-to-edit at request time.
+  </>}
+/>
 
 ## Why static export works well with Tina
 
