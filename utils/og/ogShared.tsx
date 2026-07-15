@@ -1,16 +1,9 @@
-// Shared helpers for the dynamic blog images (landscape OpenGraph + 4:5
-// Instagram): the orange S-curve panel builders, plus title fitting and layout
-// types. Pure (no filesystem) so it's unit-testable — font and image loading
-// lives in ./ogAssets.
-
 export function svgDataUri(svg: string): string {
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
 }
 
-/** Bottom-right placement of the subject (author/llama) on the orange panel. */
 export type SubjectLayout = { width: number; bottom: number; right: number };
 
-/** First matching `[maxLen, size]` tier (largest-first), else `fallback`. */
 export function pickFontSize(
   len: number,
   tiers: ReadonlyArray<[number, number]>,
@@ -24,8 +17,6 @@ export function pickFontSize(
   return fallback;
 }
 
-/** Truncate beyond `cap` chars at a word boundary, with a trailing ellipsis, so
- *  a long title ends cleanly instead of being hard-cut mid-phrase. */
 export function truncateTitle(title: string, cap: number): string {
   if (title.length <= cap) {
     return title;
@@ -35,11 +26,6 @@ export function truncateTitle(title: string, cap: number): string {
   return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
 }
 
-// The S-curve dividing the dark side from the orange panel.
-//   edge = nominal divider x · amp = how far the curve swings either side.
-// The panel and the dark clip overlay reuse the same body so their edges line
-// up exactly. The vertical control points are fractions of H, so the same
-// shape scales to any canvas (landscape or portrait).
 export interface CurveSpec {
   W: number;
   H: number;
@@ -56,8 +42,6 @@ export function buildCurve({ H, edge, amp }: CurveSpec) {
   return { topX, botX, body };
 }
 
-/** Orange brand-gradient panel from the curve to the right edge, with a faint
- *  highlight tracing the curve. */
 export function orangePanelUri(spec: CurveSpec): string {
   const { W, H, edge, amp } = spec;
   const { topX, botX, body } = buildCurve(spec);
@@ -78,8 +62,6 @@ export function orangePanelUri(spec: CurveSpec): string {
   );
 }
 
-/** Dark clip overlay from the left edge to the curve, painted over the subject
- *  so anything overflowing past the curve is hidden. */
 export function darkOverlayUri(spec: CurveSpec): string {
   const { W, H } = spec;
   const { topX, body } = buildCurve(spec);
@@ -95,7 +77,6 @@ export function darkOverlayUri(spec: CurveSpec): string {
   );
 }
 
-/** Faint dot texture for the dark side (stops short of maxX / maxY). */
 export function dotGridUri({
   W,
   H,
@@ -122,22 +103,16 @@ export function dotGridUri({
   );
 }
 
-// Horizontal sweep dividing the portrait image top/bottom: a gentle organic S
-// at ~cy that dips slightly on the left and rises on the right.
 export interface SweepSpec {
   W: number;
   H: number;
   cy: number;
 }
 
-// Cubic segment of the sweep, from its left point (0, cy+70) to the right
-// point (W, cy-55) — shared by the fill and the rim so they line up.
 function sweepCurve({ W, cy }: SweepSpec): string {
   return `C ${W * 0.3} ${cy + 100}, ${W * 0.52} ${cy - 130}, ${W} ${cy - 55}`;
 }
 
-/** Orange brand-gradient panel filling below the horizontal sweep, with a faint
- *  rim light tracing the sweep edge. */
 export function orangeSweepUri(spec: SweepSpec): string {
   const { W, H, cy } = spec;
   const curve = sweepCurve(spec);
