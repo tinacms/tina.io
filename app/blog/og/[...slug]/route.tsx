@@ -32,9 +32,13 @@ export async function GET(
 ) {
   const slugPath = params.slug.join('/');
   const { post } = await getBlogPost('en', slugPath);
+  if (!post) {
+    // Unknown slug: 404 rather than render + ISR-cache a generic fallback image.
+    return new Response(null, { status: 404 });
+  }
   return renderBlogOgImage({
-    title: post?.title ?? 'TinaCMS Blog',
-    author: post?.author,
+    title: post.title,
+    author: post.author,
     seed: slugPath,
   });
 }

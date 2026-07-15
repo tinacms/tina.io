@@ -23,9 +23,10 @@ const ASSET_HOST =
   process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL || null;
 const RUNTIME_ORIGIN = ASSET_HOST ? `https://${ASSET_HOST}` : null;
 
-// Memoize per asset: fonts/logo are identical for every image and a warm
-// function serves many renders, so this avoids re-reading/re-fetching them each
-// time. A miss (null) is cached too — a new deployment resets the module.
+// Memoize successful loads per asset: fonts/logo are identical for every image
+// and a warm function serves many renders, so this avoids re-reading/re-fetching
+// them each time. Misses are evicted (see loadPublic) so a transient failure
+// isn't pinned for the life of the instance.
 const assetCache = new Map<string, Promise<Buffer | null>>();
 
 async function fetchPublic(webPath: string): Promise<Buffer | null> {
@@ -55,6 +56,14 @@ function loadPublic(webPath: string): Promise<Buffer | null> {
   if (!cached) {
     cached = fetchPublic(webPath);
     assetCache.set(webPath, cached);
+    // Only successful buffers stay cached. Evict a miss so a transient fetch
+    // failure can't poison the warm instance (it would otherwise strip that
+    // font/image from every later render); the next render retries.
+    cached.then((buf) => {
+      if (!buf) {
+        assetCache.delete(webPath);
+      }
+    });
   }
   return cached;
 }
@@ -79,41 +88,23 @@ export async function logoDataUri(): Promise<string | null> {
 
 /** Font set shared by both renderers: IBM Plex Sans headings, Inter body. */
 export async function ogFonts() {
-  const [ibm, interMedium, interRegular] = await Promise.all([
-    loadPublic('/fonts/IBMPlexSans-SemiBold.ttf'),
-    loadPublic('/fonts/Inter-Medium.woff'),
-    loadPublic('/fonts/Inter-Regular.woff'),
-  ]);
-
-  const fonts: {
-    name: string;
-    data: Buffer;
-    weight: 400 | 500 | 600;
-    style: 'normal';
-  }[] = [];
-  if (ibm) {
-    fonts.push({
+  const specs = [
+    {
       name: 'IBM Plex Sans',
-      data: ibm,
+      path: '/fonts/IBMPlexSans-SemiBold.ttf',
       weight: 600,
-      style: 'normal',
-    });
-  }
-  if (interMedium) {
-    fonts.push({
-      name: 'Inter',
-      data: interMedium,
-      weight: 500,
-      style: 'normal',
-    });
-  }
-  if (interRegular) {
-    fonts.push({
-      name: 'Inter',
-      data: interRegular,
-      weight: 400,
-      style: 'normal',
-    });
-  }
-  return fonts;
+    },
+    { name: 'Inter', path: '/fonts/Inter-Medium.woff', weight: 500 },
+    { name: 'Inter', path: '/fonts/Inter-Regular.woff', weight: 400 },
+  ] as const;
+
+  const bufs = await Promise.all(specs.map((s) => loadPublic(s.path)));
+  // flatMap drops any font that failed to load (satori renders with whatever's
+  // present) without tripping filter()'s type-narrowing on the buffer.
+  return specs.flatMap((s, i) => {
+    const data = bufs[i];
+    return data
+      ? [{ name: s.name, data, weight: s.weight, style: 'normal' as const }]
+      : [];
+  });
 }
