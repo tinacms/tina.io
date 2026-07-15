@@ -16,6 +16,14 @@
       "_template": "hero"
     },
     {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "### Why TinaCMS?\n\nHave you ever spotted incorrect content on a website and wondered who changed it?\n\nWith GitHub, every change is tracked, so you can instantly see who made it, when they made it, and why.\n\nTinaCMS combines the power of GitHub with a beautiful, user-friendly Markdown editor, making it easy for anyone to update a website. Your content editors don't need to know they're using GitHub, but they still get all of its version control and collaboration benefits.\n\nPeople love TinaCMS because:\n\n* Content is written in Markdown instead of HTML and CSS, making it much easier to maintain\n* There is no database to manage—content lives in simple .md files alongside your code\n* Anyone can suggest improvements by submitting a GitHub pull request, which you can review and approve with a click\n* The [Editorial Workflow](https://tina.io/editorial-workflow) simplifies GitHub's powerful review and approval process for non-technical users\n* GitHub's contribution graph rewards contributors with green squares as they make improvements to your site\n",
+      "_template": "content"
+    },
+    {
       "isVideoOnLeft": false,
       "body": "## Editing with Tina\n\nTo see a few ways you can edit your content, check out this video by Landon (3 minutes)\n",
       "mediaColumnItem": [
