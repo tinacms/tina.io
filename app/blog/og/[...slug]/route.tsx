@@ -9,8 +9,9 @@
 // Rendered on-demand and cached (ISR): the first request for a post's image
 // renders it, then it's served from cache. A static export (output: 'export')
 // can't generate on-demand, so it must prebuild every image instead — gated on
-// the same EXPORT_MODE switch next.config.js uses. Fonts/photos load via
-// import.meta.url (see utils/og/ogAssets), so they resolve at build or runtime.
+// the same EXPORT_MODE switch next.config.js uses. Fonts/photos load from
+// public/ on disk with a live production-host fallback (see utils/og/ogAssets),
+// so they resolve at build and at on-demand runtime.
 
 import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';

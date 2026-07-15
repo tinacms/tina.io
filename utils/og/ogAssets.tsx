@@ -14,16 +14,21 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { svgDataUri } from './ogShared';
 
-// The deployment's own origin, used to fetch public/ assets when they aren't on
-// the function filesystem. VERCEL_URL is the current deployment host at runtime
-// (unset locally / at build, where the disk read below is used instead).
-const RUNTIME_ORIGIN = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : null;
+// Origin used to fetch public/ assets when they aren't on the function
+// filesystem. Prefer the stable production host: it's a public alias that's
+// never deployment-protected, so the self-fetch below can't 401 (the
+// per-deployment VERCEL_URL can be gated by Vercel Deployment Protection).
+// Fall back to VERCEL_URL, then null (local/build, where the disk read is used).
+const ASSET_HOST =
+  process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL || null;
+const RUNTIME_ORIGIN = ASSET_HOST ? `https://${ASSET_HOST}` : null;
 
-/** Read a public/ asset by its web path ("/fonts/x.ttf"): disk first, then the
- *  live deployment. Returns null if neither has it (e.g. an unmapped author). */
-async function loadPublic(webPath: string): Promise<Buffer | null> {
+// Memoize per asset: fonts/logo are identical for every image and a warm
+// function serves many renders, so this avoids re-reading/re-fetching them each
+// time. A miss (null) is cached too — a new deployment resets the module.
+const assetCache = new Map<string, Promise<Buffer | null>>();
+
+async function fetchPublic(webPath: string): Promise<Buffer | null> {
   const rel = webPath.replace(/^\//, '');
   try {
     return fs.readFileSync(path.join(process.cwd(), 'public', rel));
@@ -41,6 +46,17 @@ async function loadPublic(webPath: string): Promise<Buffer | null> {
     }
   }
   return null;
+}
+
+/** Read a public/ asset by its web path ("/fonts/x.ttf"): disk first, then the
+ *  production host. Returns null if neither has it (e.g. an unmapped author). */
+function loadPublic(webPath: string): Promise<Buffer | null> {
+  let cached = assetCache.get(webPath);
+  if (!cached) {
+    cached = fetchPublic(webPath);
+    assetCache.set(webPath, cached);
+  }
+  return cached;
 }
 
 /** Base64 PNG data URI for a public path (llama or author cutout), or null. */
