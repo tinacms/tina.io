@@ -1,0 +1,21 @@
+{
+  "versionNumber": "3.10.1",
+  "dateReleased": "2026-07-12T23:41:07Z",
+  "changesObject": [
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/mdx@2.1.10",
+          "commit_hash": "4b4e139",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4b4e139"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.22",
+          "commit_hash": "4b4e139",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4b4e139"
+        }
+      ]
+    }
+  ]
+}

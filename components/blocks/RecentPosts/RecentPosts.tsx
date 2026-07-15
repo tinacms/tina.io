@@ -1,16 +1,26 @@
+'use client';
+
 import { RichTextWrapper } from 'components/layout/RichTextWrapper';
 import { DynamicLink } from 'components/ui';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { tinaField } from 'tinacms/dist/react';
 import {
   BLOCK_HEADINGS_SIZE,
   SECTION_HEADINGS_SIZE,
 } from '@/component/styles/typography';
+import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import Container from '@/component/util/Container';
 import { extractYouTubeId } from '../VideoEmbed/utils';
 import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
 import { FeaturedPost } from './FeaturedPost';
+
+const RECENT_VIDEO_COUNT = 2;
+const VIDEO_SKELETON_KEYS = [
+  'recent-video-skeleton-1',
+  'recent-video-skeleton-2',
+];
 
 const getPostHref = (path) => {
   let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');
@@ -46,7 +56,7 @@ const VideoCard = ({
 }: VideoCardProps) => {
   const videoId = extractYouTubeId(embedUrl);
   return (
-    <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2">
+    <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2 animate-row-in">
       <YouTubeEmbed src={embedUrl} />
       <span className="text-neutral-text-secondary text-sm">
         {formatDate(dateReleased)}
@@ -73,8 +83,53 @@ const VideoCard = ({
   );
 };
 
+const VideoCardSkeleton = () => (
+  <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2">
+    <div className="relative w-full aspect-h-9 aspect-w-16">
+      <span className="absolute inset-0 rounded-lg animate-shimmer bg-skeleton-shimmer bg-skeleton" />
+    </div>
+    <SkeletonBar width="w-24" />
+    <SkeletonBar width="w-full" />
+    <SkeletonBar width="w-32" />
+  </div>
+);
+
 export const RecentPostsBlock = ({ data, index, recentPosts }) => {
   const featuredPost = data?.featuredPost;
+  const curatedVideos: VideoCardProps[] = data?.youtubeVideos ?? [];
+
+  const [fetchedVideos, setFetchedVideos] = useState<VideoCardProps[] | null>(
+    null,
+  );
+  const [fetchFailed, setFetchFailed] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/recent-videos')
+      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+      .then((videos) => {
+        if (active) {
+          setFetchedVideos(Array.isArray(videos) ? videos : []);
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setFetchFailed(true);
+        }
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const isLoading = fetchedVideos === null && !fetchFailed;
+
+  const featuredId = extractYouTubeId(featuredPost?.url);
+  const liveVideos = (fetchedVideos ?? [])
+    .filter((video) => extractYouTubeId(video.embedUrl) !== featuredId)
+    .slice(0, RECENT_VIDEO_COUNT);
+
+  const videos = liveVideos.length > 0 ? liveVideos : curatedVideos;
 
   return (
     <Container size="medium" className="grid grid-cols-3 gap-16 py-16">
@@ -86,17 +141,19 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
         >
           {data?.title || 'Recent Posts'}
         </h2>
-        <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-4 max-w-4xl">
-          {data?.youtubeVideos?.map((video: VideoCardProps) => (
-            <VideoCard
-              key={video.embedUrl}
-              authorName={video.authorName}
-              authorUrl={video.authorUrl}
-              dateReleased={video.dateReleased}
-              embedUrl={video.embedUrl}
-              title={video.title}
-            />
-          ))}
+        <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-4 w-full max-w-4xl">
+          {isLoading
+            ? VIDEO_SKELETON_KEYS.map((key) => <VideoCardSkeleton key={key} />)
+            : videos?.map((video: VideoCardProps) => (
+                <VideoCard
+                  key={video.embedUrl}
+                  authorName={video.authorName}
+                  authorUrl={video.authorUrl}
+                  dateReleased={video.dateReleased}
+                  embedUrl={video.embedUrl}
+                  title={video.title}
+                />
+              ))}
         </div>
       </section>
       <section
