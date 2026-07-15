@@ -1,0 +1,51 @@
+{
+  "versionNumber": "2026.04.4",
+  "dateReleased": "2026-04-27T23:25:46Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🤖 add aria-labels to icon-only dashboard controls",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Added skill to set up F5 experience for TinaCloud",
+          "gitHubName": "Marxoz",
+          "gitHubLink": "https://github.com/Marxoz"
+        },
+        {
+          "changesDescription": "feat(media-manager): guard against staging delete",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "fix: bootstrap multi-repo apps in onAppCreated and onDatabaseReset (#3436)",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat: server-side search index rebuild for multi-repo content pushes (#3403)",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Update Email Subject and Bodies for User invites",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Extract BranchAwareMedia and harden token-missing path",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: bound content-api DDB retries; align Lambda timeout to API Gateway",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

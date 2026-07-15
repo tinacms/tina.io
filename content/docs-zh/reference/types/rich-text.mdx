@@ -1,11 +1,11 @@
 ---
 title: 富文本字段
-last_edited: '2025-03-26T06:28:07.274Z'
+last_edited: '2026-03-05T00:28:02.011Z'
 next: ''
 previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 ---
 
-富文本字段通过WYSIWYG界面存储**Markdown内容**，支持文本格式、链接、媒体和自定义元素（如果与mdx一起使用）。
+富文本字段通过WYSIWYG界面存储**Markdown内容**，支持文本格式化、链接、媒体和自定义元素（如果与mdx一起使用）。
 
 ## 类型定义
 
@@ -16,7 +16,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
     {
       name: "type",
       type: "string",
-      description: '将此设置为 `"rich-text"` 以使用富文本字段。\n',
+      description: '设置为 `"rich-text"` 以使用富文本字段。\n',
       required: true
     },
     {
@@ -26,20 +26,37 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
       required: true
     },
     {
-      name: "overrides",
-      description: "工具栏覆盖和自定义选项。\n",
-      type: "ToolbarOverrides"
-    },
-    {
       name: "templates",
       description:
         'MDX支持。在编辑器中使用"embed"选项注入自定义React组件。\n',
       type: "Template[]"
+    },
+    {
+      name: "toolbar",
+      description:
+        "选择显示哪些工具栏选项。支持以下选项：\n\n\\['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']。\n",
+      type: "ToolbarOverrideType[]",
+      groupName: "overrides"
+    },
+    {
+      description:
+        "是否启用或禁用富文本浮动工具栏。\n",
+      groupName: "overrides",
+      name: "showFloatingToolbar",
+      type: "boolean",
+      default: "true"
+    },
+    {
+      description:
+        "限制编辑器UI中提供的标题级别。接受 `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']` 的任何子集。省略时，所有级别均可用。\n",
+      groupName: "overrides",
+      name: "headingLevels",
+      type: "HeadingLevel[]"
     }
   ]}
 />
 
-> `templates`属性用于`mdx`支持。
+> `templates` 属性用于 `mdx` 支持。
 
 <WarningCallout
   body={<>
@@ -47,45 +64,100 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
   </>}
 />
 
-## 自定义
+<WarningCallout
+  body={<>
+    `mark` 是内部用于**高亮**功能的保留组件名称。如果您创建了一个名为mark的自定义MDX组件，它将与高亮功能冲突，并导致编辑器中的意外行为。
+  </>}
+/>
 
-`overrides`属性控制对富文本编辑器的一系列覆盖和自定义。
+属性控制对富文本编辑器的一系列覆盖和自定义。
 
 <apiReference
   property={[
     {
       name: "toolbar",
       type: "ToolbarOverrideType[]",
-      description: "选择显示哪些工具栏选项。支持以下选项：`['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']`。\n",
+      description:
+        "选择显示哪些工具栏选项。支持以下选项：`['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']`。\n"
     },
     {
       name: "showFloatingToolbar",
-      description: "是否启用或禁用富文本浮动工具栏。\n",
-      type: "boolean",
+      description:
+        "是否启用或禁用富文本浮动工具栏。\n",
+      type: "boolean"
     },
+    {
+      name: "headingLevels",
+      description:
+        "限制编辑器UI中提供的标题级别。接受 `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']` 的任何子集。省略时，所有级别均可用。\n",
+      type: "HeadingLevel[]"
+    }
   ]}
 />
 
 ## 换行
 
-要在TinaCMS富文本中插入空行换行：
+要在TinaCMS富文本中插入可见的换行（例如，在引用中），请在您希望换行的地方按下 **Shift + Enter**（软回车）。
 
-* 按Shift + Enter创建换行
-* 如果换行后没有跟随文本行，它将在最终输出中呈现为\。\
-  可以通过删除并重新创建该行来修复\
-  确保换行前有文本内容以避免此问题
+保存后，检查Markdown。保留的换行显示为独立的 `\` 行：
 
-> 此行为不是标准Markdown规范的一部分，而是TinaCMS富文本实现的特定行为。
+```markdown
+> 引用文本…
+> \
+> 作者姓名
+```
+
+> 此行为不是标准Markdown规范的一部分，而是TinaCMS富文本实现的特定功能。
 
 ## 表格
 
-查看此视频以了解如何在富文本编辑器中使用表格：
+查看此视频，了解如何在富文本编辑器中使用表格：
 
 <Youtube embedSrc="https://www.youtube.com/embed/DnNTaS7lYZY?si=OoLw1D-to5qiHVNF" />
 
 > 不支持多行单元格，因为内容被序列化为Markdown。表格仅支持单行行和单元格。如果需要表示多行内容，请使用列表或单独的字段。
 
 ***
+
+### 列对齐
+
+> 可视化编辑器当前不支持通过工具栏设置列对齐。如果需要在表格列中对齐内容，可以切换到原始Markdown模式并编辑表头分隔行中的对齐语法。
+
+示例 — 居中第二和第三列：
+
+```
+| 对齐方式   |  分隔符  |    示例 |
+| :---        |   :---:     |       ---: |
+| 左对齐        |   `:---`    |       左对齐 |
+| 居中      |   `:---:`   |     居中 |
+| 右对齐       |   `---:`    |      右对齐 |
+```
+
+要了解更多关于对齐语法的信息，请参考[Markdown扩展语法](https://www.markdownguide.org/extended-syntax/#alignment)
+
+## 高亮
+
+### 自定义高亮颜色
+
+您可以在富文本字段中启用文本高亮，并通过添加 `highlightColors` 数组来定义编辑器可用的高亮颜色。
+
+```ts
+export const heroBlockSchema = {
+  fields: [
+    {
+      label: "文本",
+      name: "text",
+      type: "rich-text",
+      overrides: {
+        highlightColors: [
+          { label: "紫色", value: "rgba(142, 132, 255, 0.55)" },
+          { label: "蓝色", value: "rgba(132, 255, 255, 0.55)" }
+        ],
+      },
+    },
+  ],
+}
+```
 
 ## 示例
 
@@ -95,38 +167,61 @@ Tina将根据提供的配置生成适当的组件。
 
 ```javascript
 {
-  label: "Body",
+  label: "正文",
   name: "body",
   isBody: true,
   type: "rich-text",
 }
 ```
 
-![](/img/docs/reference/rtf.png)
+![](/docs/rich-text-simple.png)
 
 ### 带工具栏覆盖的简单字段
 
-更改要显示的内容及其在编辑器中的显示顺序
+更改您希望在编辑器中显示的内容及其顺序
 
 ```javascript
 {
-  label: "Body",
-  name: "body",
-  isBody: true,
-  type: "rich-text",
-  toolbarOverride: ["heading","bold", "italic"],
+		type: "rich-text",
+		name: "body",
+		label: "正文",
+		isBody: true,
+		overrides: {
+			toolbar: ["heading", "bold", "italic"],
+			showFloatingToolbar: false,
+		},
 }
 ```
 
-![](/img/docs/reference/blog-post.png)
+![](/docs/rich-text-override.png)
+
+### 限制可用的标题级别
+
+使用 `headingLevels` 控制编辑器可以选择的标题。传递 `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']` 的任何子集，以任何顺序——该值应用于标题下拉菜单、“转换为”菜单、斜杠菜单和Markdown自动格式化快捷方式（例如，输入 `## ` 以获得h2）。省略时，所有六个级别均可用。
+
+```js
+{
+  type: 'rich-text',
+  label: '摘要',
+  name: 'excerpt',
+  overrides: {
+    toolbar: ['heading', 'bold', 'italic', 'link'],
+    headingLevels: ['h2'],
+  },
+}
+```
+
+> `headingLevels` 在 **tinacms@3.8.4** 中发布。更新您的包以使用它。
+
+此选项仅限于UI——它限制了编辑器可以插入的内容。现有内容中已经使用的不允许级别仍然按原样呈现。传递一个空数组（`headingLevels: []`）将从编辑器中移除所有标题级别。
 
 ### 带自定义组件的字段（`mdx`）
 
-可以在富文本块中嵌入自定义组件。
+自定义组件可以嵌入到富文本块中。
 
 ```ts
 {
-  label: "Body",
+  label: "正文",
   name: "body",
   isBody: true,
   type: "rich-text",
@@ -136,7 +231,7 @@ Tina将根据提供的配置生成适当的组件。
       label: "Cta",
       fields: [{
         name: "heading",
-        label: "Heading",
+        label: "标题",
         type: "string"
       }
     ]}
@@ -144,7 +239,7 @@ Tina将根据提供的配置生成适当的组件。
 }
 ```
 
-![](/img/docs/reference/custom-template.png)
+![](/docs/custom-template.png)
 
 <GraphQLCodeBlock
   query="This#is#some#text
@@ -185,18 +280,18 @@ Tina将根据提供的配置生成适当的组件。
 
 要为富文本字段设置默认值，应指定整个AST树，如下例所示。
 
-> 推荐的方法是填写您的数据，然后`console.log`相关字段的CMS API返回值。\
+> 推荐的方法是填写您的数据，然后 `console.log` CMS API返回的相关字段值。\
 > \
-> 然后将其复制到集合的`defaultItem`属性中。
+> 然后将其复制到集合的 `defaultItem` 属性中。
 
 ```javascript
 {
-  label: 'Blog Posts',
+  label: '博客文章',
   name: 'post',
   path: 'content/posts',
   defaultItem: () => {
     return {
-      title: 'My New Post',
+      title: '我的新文章',
       body: {
         type: 'root',
         children: [
@@ -205,7 +300,7 @@ Tina将根据提供的配置生成适当的组件。
             children: [
               {
                 type: 'text',
-                text: 'Default Text',
+                text: '默认文本',
               },
             ],
           },
@@ -216,12 +311,12 @@ Tina将根据提供的配置生成适当的组件。
   fields: [
     {
       type: 'string',
-      label: 'Title',
+      label: '标题',
       name: 'title',
     },
     {
       type: 'string',
-      label: 'Post Body',
+      label: '文章正文',
       name: 'body',
       isBody: true,
     },

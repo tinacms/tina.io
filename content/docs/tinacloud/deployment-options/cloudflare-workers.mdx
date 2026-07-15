@@ -1,0 +1,97 @@
+---
+id: /docs/tinacloud/deployment-options/cloudflare-workers
+title: Deploying to Cloudflare Workers
+last_edited: '2026-07-09T00:00:00.000Z'
+next: content/docs/tinacloud/deployment-options/alibaba-cloud.mdx
+previous: content/docs/tinacloud/deployment-options/cloudflare-pages.mdx
+---
+
+TinaCMS works with Cloudflare Workers using git-connected builds. Every push to your production branch runs the build (including the `tinacms build` step) and deploys the result to the Workers runtime.
+
+Workers is the right target whenever your site needs a server at request time: SSR routes, API endpoints, redirects, and — for the Astro starter — the on-demand route that powers click-to-edit visual editing.
+
+<WarningCallout
+  body={<>
+    **Astro users:** deploy to Workers, not [Cloudflare Pages](/docs/tinacloud/deployment-options/cloudflare-pages). The `@astrojs/cloudflare` adapter [no longer supports Cloudflare Pages](https://docs.astro.build/en/guides/integrations-guide/cloudflare/) — it targets Workers. The starter's visual-editing route (`src/pages/tina-island/[name].ts`) is server-rendered (`prerender = false`), so a static-only Pages upload would break click-to-edit at request time.
+  </>}
+/>
+
+## Astro (the `tina-astro-starter`)
+
+This walks the [Astro starter](https://github.com/tinacms/tina-astro-starter) from a clean checkout to a live Workers deploy. Push your project to a GitHub repository first.
+
+### 1. Adapter and `wrangler.jsonc` (already in the starter)
+
+Nothing to configure — the starter ships this for you:
+
+* `astro.config.mjs` **auto-detects the host**. In Cloudflare's git-based Workers Builds, the `WORKERS_CI` environment variable is set automatically, which selects the `@astrojs/cloudflare` adapter. You don't run `npx astro add cloudflare`, and you don't edit the config.
+* A root **`wrangler.jsonc`** enables `nodejs_compat`. The visual-editing route uses `node:async_hooks` (`AsyncLocalStorage`); without this flag the island route fails at runtime:
+
+```jsonc
+{
+  "name": "tina-astro-starter",
+  "compatibility_date": "2026-06-01",
+  "compatibility_flags": ["nodejs_compat"]
+}
+```
+
+That minimal config is all Wrangler needs — the adapter wires up the Worker entrypoint and the static-assets binding at build time.
+
+> **Adding TinaCMS to an existing Astro site?** Run `npx astro add cloudflare`, then create a `wrangler.jsonc` at the repo root with `compatibility_flags: ["nodejs_compat"]` and a recent `compatibility_date`.
+
+### 2. Create the Worker
+
+In the Cloudflare dashboard go to **Workers & Pages** | **Create** | **Workers** | **Import a repository**, connect your GitHub account, and select your repo.
+
+Set the build under **Build configuration**:
+
+* **Build command:** `pnpm build` — the starter's `build` script is `tinacms build --content=local -c "astro build"`, which indexes your committed content, then runs `astro build`.
+* **Deploy command:** `npx wrangler deploy`
+* **Build output:** `dist` (Astro's default; you don't need to change this).
+
+`DEPLOY_ADAPTER` is **not** needed here — `WORKERS_CI` is detected automatically. You only set `DEPLOY_ADAPTER=cloudflare` for a manual deploy where no host env var applies (e.g. running `npx wrangler deploy` from your own machine).
+
+### 3. Environment variables
+
+`tinacms build` needs your TinaCloud credentials at build time. Add these under the Worker's **Settings** | **Build** | **Variables and Secrets** (grab both credentials from your [TinaCloud project](https://app.tina.io)):
+
+* `PUBLIC_TINA_CLIENT_ID` — your TinaCloud client ID. **Astro uses the `PUBLIC_` prefix**, not Next.js's `NEXT_PUBLIC_`.
+* `TINA_TOKEN` — a content token from TinaCloud.
+* `SITE_URL` — your production URL (e.g. `https://your-worker.your-account.workers.dev`, or your custom domain). Cloudflare Workers injects no deploy-URL variable, so without `SITE_URL` your sitemap, RSS, and OpenGraph tags fall back to `localhost`.
+
+<WarningCallout
+  body={<>
+    Workers keep **build** variables and **runtime** variables separate. The island route reads your TinaCloud client ID and token at request time, so add `PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` again under **Settings** | **Variables and Secrets** (not just the build section). `SITE_URL` is only used at build time.
+  </>}
+/>
+
+### 4. Verify visual editing works at request time
+
+After the first deploy:
+
+1. Open `/admin` on your Worker's URL, edit a post, and save. The save commits to GitHub, which triggers a rebuild and redeploy.
+2. Open a content page and confirm **click-to-edit** works: clicking an editable region highlights it and opens its form in the sidebar. This exercises the on-demand `/tina-island/*` route running inside the Worker — if it errors, check that `nodejs_compat` is set and that your runtime variables are present.
+
+## Next.js
+
+Use the [OpenNext Cloudflare adapter](https://opennext.js.org/cloudflare) and follow its setup to generate `open-next.config.ts` and `wrangler.jsonc`.
+
+In the dashboard (**Workers & Pages** | **Create** | **Workers** | **Import a repository**), set:
+
+* **Build command:** `npx opennextjs-cloudflare build`
+* **Deploy command:** `npx opennextjs-cloudflare deploy`
+
+Add your build-time credentials under **Settings** | **Build** | **Variables and Secrets**:
+
+* `NEXT_PUBLIC_TINA_CLIENT_ID` — your TinaCloud client ID.
+* `TINA_TOKEN` — a content token from TinaCloud.
+
+As with Astro, Workers keep build and runtime variables separate — if your OpenNext SSR reads these at request time, add them again under **Settings** | **Variables and Secrets**.
+
+## Finalising TinaCloud setup
+
+Your first deployment gives you a default domain like `https://<worker-name>.<account-name>.workers.dev`. Set this (or your custom domain) as the **Site URL** in your TinaCloud project's configuration so the editor loads against the right origin.
+
+## Troubleshooting
+
+**"JavaScript heap out of memory" during the build.** The TinaCloud indexing step can exceed Node's default heap. Raise it with a build-time environment variable `NODE_OPTIONS` set to `--max-old-space-size=4096`.

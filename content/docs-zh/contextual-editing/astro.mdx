@@ -1,0 +1,362 @@
+---
+id: /docs/contextual-editing/astro
+seo:
+  title: Astro的可视化编辑设置
+  description: >-
+    将TinaCMS可视化编辑集成到没有React的Astro站点中。涵盖@tinacms/astro集成、TinaIsland包装器、requestWithMetadata、每个岛屿的刷新端点、点击编辑标记和自定义MDX嵌入。
+title: 可视化编辑设置 (Astro)
+alias: visual-editing-astro
+last_edited: '2026-05-26T00:00:00.000Z'
+next: content/docs-zh/contextual-editing/tinafield.mdx
+previous: content/docs-zh/contextual-editing/react.mdx
+---
+
+Astro的可视化编辑路径不使用`useTina()`；该钩子是React特有的。相反，Astro站点使用`@tinacms/astro`，这是一个原生Astro渲染器加上一个小的postMessage桥，仅在编辑器iframe内加载。
+
+流程：
+
+1. `tina()`集成的请求范围中间件缓冲每个HTML响应，并在编辑模式请求时，将桥接引导和每个页面消耗的Tina查询的一个`<div data-tina-form>`负载拼接到`<head>`中。
+2. 桥接器（从`/admin/bridge.js`加载）读取这些负载，向父管理窗口发送`open`消息，并在内存数据存储中播种。
+3. 当编辑器输入时，管理端将`updateData`发回iframe。桥接器存储它。
+4. 页面中的每个可编辑区域都被包裹在`<TinaIsland>`中，它发出一个`<… data-tina-island="/tina-island/<name>?<params>">`标记。在每次存储更新时，桥接器将当前覆盖POST到该端点。
+5. 端点根据覆盖数据重新渲染匹配的Astro组件并返回一个HTML片段。桥接器将其替换到实时DOM中。
+
+在生产环境中（没有管理父级），中间件不注入任何内容，`init()`立即退出——生产HTML与无Tina的Astro应用字节相同。（例外：使用`<TinaIsland>`的页面携带一行内联引导，因此当页面静态构建时，编辑仍然有效。）
+
+<WarningCallout
+  body={<>
+    **您需要一个SSR适配器。** 每个岛屿的刷新端点（`/tina-island/[name]`）
+    在每次按键时运行。将`adapter`设置在`astro.config.mjs`中为
+    `@astrojs/node`、`@astrojs/vercel`、`@astrojs/netlify`或`@astrojs/cloudflare`。
+    `output: 'server'`是最简单的选择；`output: 'static'`也可以，只要您将可编辑区域包裹在[`<TinaIsland>`](#static-site-editing)中。
+  </>}
+/>
+
+## 安装
+
+```bash
+pnpm add @tinacms/astro tinacms
+pnpm add -D @tinacms/cli
+pnpm add @astrojs/node          # 或 @astrojs/vercel / netlify / cloudflare
+```
+
+如果您的集合使用MDX主体，请添加`@astrojs/mdx`。如果您是自托管（没有TinaCloud），请添加`@tinacms/datalayer`。
+
+## 连接集成
+
+在`astro.config.mjs`中添加一次`tina()`。这一次调用连接了中间件（解析`Astro.locals.tinaEdit`并在编辑模式响应中注入桥接线）并将原生JS桥接作为静态资产放置在`/admin/bridge.js`。
+
+```js
+// astro.config.mjs
+import { defineConfig } from 'astro/config';
+import tina from '@tinacms/astro/integration';
+import { tinaAdminDevRedirect } from '@tinacms/astro/vite';
+import node from '@astrojs/node';
+import mdx from '@astrojs/mdx';
+
+export default defineConfig({
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
+  integrations: [mdx(), tina()],
+  vite: {
+    plugins: [tinaAdminDevRedirect()],
+  },
+});
+```
+
+`tinaAdminDevRedirect()`是一个仅用于开发的Vite插件，将`/admin`和`/admin/`重定向到`/admin/index.html`，以便在`astro dev`期间可以从裸URL访问管理SPA。
+
+没有共享的`<head>`连接组件，没有需要传递的`forms`属性，没有手动`init()`调用。集成处理所有这些。
+
+## 数据加载器——用`requestWithMetadata`包装每个查询
+
+每个路由的数据加载器调用生成的Tina客户端，并通过`requestWithMetadata()`传递结果。这个单一调用：
+
+- 将`{ query, variables }`哈希化为桥接器用于定位表单的稳定形式ID。
+- 从请求范围存储中读取桥接器的覆盖，并在页面在管理iframe内渲染时将`data`替换为未保存的覆盖。
+- 使用`click-to-focus`所需的元数据标记结果。
+- 记录中间件将在编辑模式请求中拼接到`<head>`的表单负载。
+
+```ts
+// src/lib/data.ts
+import { requestWithMetadata } from '@tinacms/astro/data';
+import client from '../../tina/__generated__/client';
+
+export const getConfig = () =>
+  requestWithMetadata(client.queries.config({ relativePath: 'config.json' }));
+
+export const getPage = (slug: string) =>
+  requestWithMetadata(
+    client.queries.page({ relativePath: `${slug}.mdx` }),
+    { priority: 'primary' },
+  );
+
+export const getBlog = (slug: string) =>
+  requestWithMetadata(
+    client.queries.blog({ relativePath: `${slug}.mdx` }),
+    { priority: 'primary' },
+  );
+```
+
+`priority: 'primary'`将表单标记为页面的主要文档，因此编辑器在加载时打开它，而不是落在布局级别的全局（例如页眉/页脚配置）上。它反映了`useTina()`的`experimental___selectFormByFormId`。在SSR页面上，第一个`requestWithMetadata()`调用自动被视为主要；当您想要覆盖时，请显式传递它。
+
+返回的对象具有`{ data, query, variables, id }`——`data`是您渲染的内容，哈希化的`id`是桥接器用于将覆盖匹配回表单的。
+
+## 岛屿注册表
+
+一个小型注册表将每个可编辑区域映射到一个获取器、一个组件、一个外部包装器和一个`propsFromData`投影。添加一个新的可编辑区域在这里是一个条目；动态路由会自动拾取它。
+
+```ts
+// src/lib/islands.ts
+import type { IslandRegistry } from '@tinacms/astro/experimental';
+import type { QueryResult } from '@tinacms/astro/data';
+import type { BlogQuery, ConfigQuery, PageQuery } from '../../tina/__generated__/types';
+import PageBody from '../components/islands/PageBody.astro';
+import BlogBody from '../components/islands/BlogBody.astro';
+import Header from '../components/Header.astro';
+import { getBlog, getConfig, getPage } from './data';
+
+export const islands: IslandRegistry = {
+  page: {
+    fetch: (_request, params) => getPage(params.get('slug') ?? 'home'),
+    component: PageBody,
+    wrapper: { tag: 'main' },
+    propsFromData: (data) => ({
+      data: (data as QueryResult<PageQuery>).data?.page,
+    }),
+  },
+  blog: {
+    fetch: (_request, params) => getBlog(params.get('slug') ?? ''),
+    component: BlogBody,
+    wrapper: { tag: 'article' },
+    propsFromData: (data) => ({
+      data: (data as QueryResult<BlogQuery>).data?.blog,
+    }),
+  },
+  global: {
+    fetch: () => getConfig(),
+    component: Header,
+    wrapper: { tag: 'div' },
+    propsFromData: (data) => ({
+      config: (data as QueryResult<ConfigQuery>).data?.config,
+    }),
+  },
+};
+```
+
+## 每个岛屿的端点——一个通用路由
+
+桥接器在每次按键时POST到`/tina-island/<name>`。一个动态路由，加上`experimental_createIslandRoute()`，处理注册表中的每个条目：
+
+```ts
+// src/pages/tina-island/[name].ts
+import type { APIRoute } from 'astro';
+import { experimental_createIslandRoute } from '@tinacms/astro/experimental';
+import { islands } from '../../lib/islands';
+
+export const prerender = false;
+export const ALL: APIRoute = experimental_createIslandRoute(islands);
+```
+
+这是桥接器需要的唯一文件。助手强制同源POST使用Tina-preview内容类型，通过Astro的容器API渲染注册的组件，并将输出包装在注册的包装元素中——匹配页面侧的`<TinaIsland>`，以便桥接器可以将其替换。
+
+## 在页面中使用可编辑区域
+
+将每个可编辑区域包裹在`<TinaIsland>`中。`wrapper`属性必须匹配注册表条目的包装器（桥接器替换整个元素）。标记页面的主要区域为`primary`，以便管理在加载时打开该表单。
+
+```astro
+---
+// src/pages/[...slug].astro
+import Base from '../layouts/Base.astro';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import PageBody from '../components/islands/PageBody.astro';
+import { getPage } from '../lib/data';
+import { islands } from '../lib/islands';
+
+const slug = (Astro.params.slug ?? '').toString();
+const page = await getPage(slug);
+const data = page.data?.page;
+if (!data) return new Response('Not Found', { status: 404 });
+---
+<Base title={data.seoTitle ?? ''} description="">
+  <TinaIsland name="page" wrapper={islands.page.wrapper} params={{ slug }} primary>
+    <PageBody data={data} />
+  </TinaIsland>
+</Base>
+```
+
+## 添加字段级点击编辑
+
+`tinaField()`返回一个字符串，用于标识DOM元素对应的表单字段。将其标记在您希望在编辑器中可点击的任何元素上：
+
+```astro
+---
+import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
+import { tinaField } from '@tinacms/astro/tina-field';
+import type { PageQuery } from '../../tina/__generated__/types';
+
+interface Props { data?: PageQuery['page'] | null; }
+const { data } = Astro.props;
+---
+{data && (
+  <>
+    <h1 data-tina-field={tinaField(data, 'seoTitle')}>{data.seoTitle}</h1>
+    {data.body && (
+      <div data-tina-field={tinaField(data, 'body')}>
+        <TinaMarkdown content={data.body} />
+      </div>
+    )}
+  </>
+)}
+```
+
+<WarningCallout
+  body={<>
+    从`@tinacms/astro/TinaMarkdown.astro`（子路径）导入`TinaMarkdown`，
+    而不是从裸`@tinacms/astro`导入。Astro的类型检查器通过子路径直接读取`.astro`文件；
+    裸包默认通过`types`条件解析为Astro不识别为可渲染组件的占位符。
+  </>}
+/>
+
+粗粒度标记（整个`body`）通常是正确的；点击内部的任何富文本节点都会将编辑器聚焦到该字段。有关完整的助手参考，请参见[点击编辑API](/docs/contextual-editing/tinafield/)。
+
+## 自定义MDX嵌入
+
+要在富文本主体中渲染自定义组件（例如，`YouTubeEmbed`），请编写两个文件：一个描述编辑器UI的模式`Template`，以及一个与模板同名的Astro渲染器。
+
+**1. 模式`Template`:**
+
+```ts
+// src/components/mdx/YouTubeEmbed.template.ts
+import type { Template } from 'tinacms';
+
+export const youTubeEmbedTemplate: Template = {
+  name: 'YouTubeEmbed',
+  label: 'YouTube Embed',
+  fields: [
+    { name: 'videoId', label: 'YouTube视频ID', type: 'string', required: true },
+  ],
+};
+```
+
+**2. Astro渲染器:**
+
+```astro
+---
+// src/components/mdx/YouTubeEmbed.astro
+const { videoId } = Astro.props;
+---
+<iframe
+  src={`https://www.youtube.com/embed/${videoId}`}
+  title="YouTube视频播放器"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+  allowfullscreen
+/>
+```
+
+在富文本字段的`templates`数组中注册模板：
+
+```ts
+// tina/collections/page.ts
+import { youTubeEmbedTemplate } from '../../src/components/mdx/YouTubeEmbed.template';
+
+export const PageCollection = {
+  // ...
+  fields: [
+    {
+      name: 'body',
+      type: 'rich-text',
+      isBody: true,
+      templates: [youTubeEmbedTemplate],
+    },
+  ],
+};
+```
+
+并在`<TinaMarkdown components={…}>`映射中注册渲染器：
+
+```astro
+---
+import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
+import type { CustomComponentsMap } from '@tinacms/astro/types';
+import YouTubeEmbed from '../mdx/YouTubeEmbed.astro';
+
+const { data } = Astro.props;
+const components: CustomComponentsMap = { YouTubeEmbed };
+---
+<TinaMarkdown content={data.body} components={components} />
+```
+
+> **两个`name`字符串必须匹配。** 模板的`name: 'YouTubeEmbed'`和组件映射键`YouTubeEmbed`是渲染器从富文本AST中调度`mdxJsxFlowElement`节点的方式。不匹配会将嵌入渲染为可见的占位符，以便您在开发过程中发现缺失的注册。
+
+## 默认标签覆盖
+
+相同的`components`映射可以覆盖任何富文本节点的默认HTML标签，方便在不分叉渲染器的情况下进行样式化：
+
+```ts
+const components: CustomComponentsMap = {
+  // 自定义MDX组件
+  YouTubeEmbed,
+  // 默认标签覆盖
+  p: Paragraph,
+  h1: Heading1,
+  blockquote: BlockquoteTag,
+  code_block: CodeBlock,
+  a: Anchor,
+  img: Img,
+};
+```
+
+支持的覆盖键：`p`、`h1`–`h6`、`ul`、`ol`、`li`、`blockquote`、`lic`、`a`、`img`、`code_block`、`hr`、`break`。请参阅[`@tinacms/astro` README](https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/astro/README.md)以获取完整的节点参考。
+
+CMS提供的`a`和`img`节点中的URL通过`sanitizeHref` / `sanitizeImageSrc`，阻止`javascript:`、`data:`、`vbscript:`和协议相对URL。两个助手都在`@tinacms/astro/sanitize`上公开，以便在您自己的组件中使用。
+
+## 静态站点编辑
+
+支持`output: 'static'`。上述中间件仅在按需渲染的路由上运行，因此在预渲染页面上，它从不注入任何内容——相反，**`<TinaIsland>`发出一个小的iframe内引导脚本**，仅在页面在管理iframe内打开时加载`/admin/bridge.js`。启动时，桥接器获取每个岛屿的`/tina-island/[name]`端点（仍然是`prerender = false`，因此适配器按需渲染它）以获取页面的表单负载，之后编辑工作与在SSR项目中完全相同。
+
+静态编辑的要求：
+
+- 将每个可编辑区域包裹在具有注册岛屿的`<TinaIsland>`中——这既是桥接器重新渲染区域的方式，也是引导程序进入页面的方式。
+- 在页面的主要`<TinaIsland>`上传递`primary`。在静态页面上，桥接器无法自动判断哪个岛屿是“页面”，因此没有这个，编辑器可能会落在多文档选择器上。
+- 保持`export const prerender = false`在`src/pages/tina-island/[name].ts`上。
+
+权衡：使用`<TinaIsland>`的页面在生产HTML中携带那一行内联引导——它不再与无Tina的Astro应用字节相同。不使用`<TinaIsland>`的页面保持不变。
+
+## 跨域管理
+
+如果您的管理在不同的域（Codespaces，独立域自托管）上，请在您的`.env`中设置：
+
+```
+PUBLIC_TINA_ADMIN_ORIGIN=https://admin.example.com
+```
+
+用逗号分隔以允许多个（预览+生产）。中间件内嵌它，以便桥接器验证入站postMessages。
+
+## 子包导出
+
+您需要的一切都在`@tinacms/astro`下：
+
+| 子路径 | 提供的内容 |
+|---------|-------------------|
+| `@tinacms/astro` | `requestWithMetadata`、`tinaField`、`QueryResult`和富文本类型 |
+| `@tinacms/astro/TinaMarkdown.astro` | `<TinaMarkdown content components />` — 富文本渲染器。请从此子路径导入，以便Astro的检查看到一个真实的`.astro`组件。 |
+| `@tinacms/astro/TinaIsland.astro` | `<TinaIsland name wrapper params [primary] />` — 可编辑区域的标记包装器 |
+| `@tinacms/astro/integration` | `tina()`集成 — 自动连接中间件并放置`/admin/bridge.js` |
+| `@tinacms/astro/middleware` | 集成自动连接的中间件 — 导出以防您需要手动组合它 |
+| `@tinacms/astro/data` | `requestWithMetadata`、`QueryResult` |
+| `@tinacms/astro/tina-field` | `tinaField()`助手用于`data-tina-field`标记 |
+| `@tinacms/astro/experimental` | `experimental_createIslandRoute()`、`IslandRegistry`、`IslandConfig` |
+| `@tinacms/astro/is-edit-mode` | `isEditMode(request)` — 服务器端管理iframe检测 |
+| `@tinacms/astro/types` | `TinaRichTextContent`、`CustomComponentsMap`、`TinaRichTextNode`、`MdxElement`、`TextElement` |
+| `@tinacms/astro/sanitize` | `sanitizeHref` / `sanitizeImageSrc`用于CMS提供的URL |
+| `@tinacms/astro/bridge` | `init`、`refreshForms`和`@tinacms/bridge`的其余部分 |
+| `@tinacms/astro/vite` | `tinaAdminDevRedirect()` — 仅用于开发的重定向，从`/admin`到`/admin/index.html` |
+
+## 另见
+
+* [Astro入门模板](https://github.com/tinacms/tina-astro-starter)：包含上述所有内容的参考实现
+* [部署到Cloudflare Workers](/docs/tinacloud/deployment-options/cloudflare-workers)：发布站点并在请求时保持此按需岛屿路由工作
+* [点击编辑API](/docs/contextual-editing/tinafield/)：`tinaField()`语义
+* [可视化编辑路由器](/docs/contextual-editing/router/)：将深度链接管理URL连接到您的路由
+* [从基于React的可视化编辑迁移](/docs/migrations/astro-react-free-visual-editing/)

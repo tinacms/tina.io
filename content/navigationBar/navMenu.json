@@ -23,6 +23,10 @@
         {
           "label": "What's New in TinaCMS",
           "href": "/whats-new/tinacms"
+        },
+        {
+          "label": "Versions",
+          "href": "/versions"
         }
       ],
       "_template": "groupOfStringItems"
@@ -57,7 +61,7 @@
           "href": "https://app.tina.io/quickstart"
         },
         {
-          "label": "Whats New in TinaCloud",
+          "label": "What's New in TinaCloud",
           "href": "/whats-new/tinacloud"
         }
       ],

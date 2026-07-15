@@ -2,7 +2,7 @@
 id: /docs/extending-tina/custom-field-components
 title: React Components
 alias: custom-fields-react
-last_edited: '2025-11-03T22:58:44.784Z'
+last_edited: '2026-03-27T00:22:04.627Z'
 next: content/docs/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
@@ -10,6 +10,34 @@ previous: ''
 A custom component can be passed and rendered by setting the ui.component property on a field.
 
 This component completely overrides the original component, providing the user with the ability to fully customize the field.
+
+## Environment Variables in Custom Components
+
+Custom field components run inside the Tina admin, which is built as a **static SPA** separately from your site. Environment variables are embedded into the admin JavaScript at build time — they are not read at runtime. This means two things must be true for a variable to be available:
+
+1. **It must use an allowed prefix.** For security reasons, only these variables are included:
+   - `TINA_PUBLIC_*`
+   - `NEXT_PUBLIC_*`
+   - `NODE_ENV`
+   - `HEAD`
+
+2. **It must be set when `tinacms build` (or `tinacms dev`) runs.** If the variable isn't in the environment during the build, it won't exist in the admin regardless of its name.
+
+Any other environment variables (e.g. `process.env.MY_SECRET_KEY`) will be `undefined` in custom components.
+
+```tsx
+// This works — correct prefix AND set during build
+const apiKey = process.env.TINA_PUBLIC_MY_API_KEY
+
+// This will be undefined — no allowed prefix
+const secret = process.env.MY_API_KEY
+```
+
+<WarningCallout
+  body={<>
+    If your custom component relies on an environment variable and it's always `undefined`, check that: (1) the variable name starts with `TINA_PUBLIC_` or `NEXT_PUBLIC_`, and (2) the variable is defined in your `.env` file or CI environment when `tinacms build` runs. Note that Tina only loads `.env` files — not `.env.local` or `.env.development`. See the [config reference](/docs/reference/config#environment-variables) and [security advisory](/blog/2023-02-security-update) for details.
+  </>}
+/>
 
 ## The `ui.component` Property
 
@@ -247,3 +275,11 @@ const Image = (props)=>{
   </div>
 }
 ```
+
+### Building Custom Components with AI
+
+In the video below, a vibe coding approach to building custom components is explored. This demonstrates how to quickly iterate on complex UI logic and styling to create personalized field experiences through the use of AI.
+
+<Youtube embedSrc="https://www.youtube.com/embed/TE72AZQODaw?si=Sa_FKuv3qo4Nz5bS" />
+
+Video: Vibe Coding TinaCMS Custom Components (7 min)

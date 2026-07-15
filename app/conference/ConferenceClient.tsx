@@ -37,7 +37,7 @@ const HeaderBanner = ({
         <div className="flex gap-2 items-center">
           <FaRegMap />{' '}
           <Link
-            href="https://www.ssw.com.au/offices/melbourne "
+            href="https://www.ssw.com.au/offices/sydney"
             target="_blank"
             className="underline"
           >
@@ -49,11 +49,13 @@ const HeaderBanner = ({
         <Button color="white" size="medium" onClick={scrollToAgenda}>
           <span className="mr-2">{tinaData.actionButton.title}</span>
         </Button>
-        <Link href={tinaData?.rightButton?.link} target="_blank">
-          <Button color="blue" size="medium">
-            <span className="mr-2">{tinaData?.rightButton?.title}</span>
-          </Button>
-        </Link>
+        {tinaData?.rightButton?.link && (
+          <Link href={tinaData.rightButton.link} target="_blank">
+            <Button color="blue" size="medium">
+              <span className="mr-2">{tinaData?.rightButton?.title}</span>
+            </Button>
+          </Link>
+        )}
       </div>
     </div>
   );
@@ -229,6 +231,22 @@ function Agenda({
   const timeSlots = Object.values(sessionsByTime).sort(
     (a, b) => a.timeStart - b.timeStart,
   );
+
+  if (timeSlots.length === 0) {
+    return (
+      <div className="flex flex-col items-center" ref={agendaRef}>
+        <h2
+          id="agenda"
+          className="text-3xl font-bold pt-16 pb-8 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
+        >
+          Agenda
+        </h2>
+        <p className="text-lg text-gray-600 pb-16">
+          The full agenda is coming soon.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center" ref={agendaRef}>
@@ -461,9 +479,11 @@ function ConferencePage({
         <KeyHighlights
           highlights={tinaData.data?.conference?.about?.keyHighlights}
         />
-        <OpenSourceExpertSpeakers
-          speakers={tinaData.data?.conference?.speakers || []}
-        />
+        {tinaData.data?.conference?.speakers?.length > 0 && (
+          <OpenSourceExpertSpeakers
+            speakers={tinaData.data?.conference?.speakers || []}
+          />
+        )}
         <Agenda filteredSessions={filteredSessions} agendaRef={agendaRef} />
       </div>
     </div>

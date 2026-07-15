@@ -382,6 +382,51 @@ export default defineConfig({
 });
 ```
 
+### Environment Variables
+
+TinaCMS uses environment variables in two contexts: the **site build** (your Next.js/SSG app) and the **admin build** (the TinaCMS editor at `/admin`). These have different scoping rules.
+
+#### Build-Time Embedding
+
+The Tina admin is a **statically built SPA**. Environment variables are embedded into the admin's JavaScript at build time (during `tinacms build` or `tinacms dev`). They are not read at runtime. This means a variable must be present in the environment when the build runs — setting it afterwards has no effect.
+
+#### `.env` File Support
+
+Tina's build process only picks up variables from `.env` files. Variables defined in `.env.local`, `.env.development`, or other dotenv variants are **not** loaded by the TinaCMS build. If you're deploying to a hosting provider (Vercel, Netlify, etc.), make sure the variables are also configured in that provider's environment settings.
+
+#### Admin-Exposed Variables
+
+For security, only a subset of environment variables are included in the admin build. This prevents sensitive credentials from leaking into the publicly served admin `index.js`.
+
+The allowed variables are:
+
+| Pattern | Description |
+|---------|-------------|
+| `TINA_PUBLIC_*` | TinaCMS-specific public variables |
+| `NEXT_PUBLIC_*` | Next.js public variables |
+| `NODE_ENV` | The current environment (`development`, `production`, etc.) |
+| `HEAD` | The current branch (used by Netlify) |
+
+Any other environment variable accessed via `process.env` inside the admin — including [custom field components](/docs/extending-tina/custom-field-components), `beforeSubmit` hooks, or other admin-side code — will be `undefined`.
+
+<WarningCallout
+  body={<>
+    For an environment variable to work in the admin, it must: (1) use the `TINA_PUBLIC_` or `NEXT_PUBLIC_` prefix, and (2) be set in the environment when `tinacms build` or `tinacms dev` runs. For example, rename `MY_API_KEY` to `TINA_PUBLIC_MY_API_KEY` and ensure it's in your `.env` file or CI/hosting environment variables.
+  </>}
+/>
+
+#### Common Environment Variables
+
+| Variable | Context | Description |
+|----------|---------|-------------|
+| `NEXT_PUBLIC_TINA_CLIENT_ID` | Site + Admin | Your TinaCloud project client ID |
+| `TINA_TOKEN` | Site build only | Read-only token for TinaCloud (not exposed in admin) |
+| `TINA_PUBLIC_IS_LOCAL` | Site + Admin | Toggle between local and production backends in self-hosted setups |
+| `NEXT_PUBLIC_TINA_BRANCH` | Site + Admin | Override the branch for content fetching |
+| `TINA_SEARCH_TOKEN` | Site build only | Token for TinaCloud search indexing |
+
+> For more on deploying with environment variables, see [Going to Production with TinaCloud](/docs/tinacloud/overview). For the security background on admin variable scoping, see the [February 2023 security advisory](/blog/2023-02-security-update).
+
 ### Imports with Typescript Path Aliases
 
 TinaCMS supports TypeScript path aliases in the `tina/config.{ts,js,tsx}` file and collections.

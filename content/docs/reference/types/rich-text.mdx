@@ -45,6 +45,13 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
       name: "showFloatingToolbar",
       type: "boolean",
       default: "true"
+    },
+    {
+      description:
+        "Restricts which heading levels are offered in the editor UI. Accepts any subset of `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']`. When omitted, all levels are available.\n",
+      groupName: "overrides",
+      name: "headingLevels",
+      type: "HeadingLevel[]"
     }
   ]}
 />
@@ -55,6 +62,12 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
   body={<>
     `"children"` should not be used as the `name` for rich-text fields, as it
     conflicts with other parts of the application.
+  </>}
+/>
+
+<WarningCallout
+  body={<>
+    `mark` is a reserved component name used internally for the **highlight** feature. If you create a custom MDX component named mark, it will conflict with the highlight functionality and cause unexpected behavior in the editor.
   </>}
 />
 
@@ -74,13 +87,19 @@ the rich-text editor.
       description:
         "Whether the rich-text Floating Toolbar is enabled or disabled.\n",
       type: "boolean"
+    },
+    {
+      name: "headingLevels",
+      description:
+        "Restricts which heading levels are offered in the editor UI. Accepts any subset of `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']`. When omitted, all levels are available.\n",
+      type: "HeadingLevel[]"
     }
   ]}
 />
 
 ## Line Breaks
 
-To insert a visible line break in TinaCMS Rich Text (for example, inside a quote), press **Shift + Enter **(soft return) where you want the break.
+To insert a visible line break in TinaCMS Rich Text (for example, inside a quote), press \*\*Shift + Enter \*\*(soft return) where you want the break.
 
 After saving, check the Markdown. A preserved line break shows up as a standalone `\` line:
 
@@ -118,6 +137,30 @@ Example — centering the second and third columns:
 
 To learn more about the alignment syntax, refer to the [Markdown Extended Syntax](https://www.markdownguide.org/extended-syntax/#alignment)
 
+## Highlight
+
+### Customize highlight colors
+
+You can enable text highlighting in a rich-text field and define which highlight colors are available to editors by adding a `highlightColors` array to the field’s `overrides`.
+
+```ts
+export const heroBlockSchema = {
+  fields: [
+    {
+      label: "Text",
+      name: "text",
+      type: "rich-text",
+      overrides: {
+        highlightColors: [
+          { label: "Purple", value: "rgba(142, 132, 255, 0.55)" },
+          { label: "Blue", value: "rgba(132, 255, 255, 0.55)" }
+        ],
+      },
+    },
+  ],
+}
+```
+
 ## Examples
 
 Tina will generate the appropriate component depending on the
@@ -154,6 +197,26 @@ Change what you want to display and the order it is displayed in the editor
 ```
 
 ![](/docs/rich-text-override.png)
+
+### Limit the available heading levels
+
+Use `headingLevels` to control which headings editors can choose. Pass any subset of `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']`, in any order — the value is applied to the headings dropdown, the "Turn into" menu, the slash menu, and the markdown autoformat shortcuts (for example, typing `## ` for an h2). When omitted, all six levels are available.
+
+```js
+{
+  type: 'rich-text',
+  label: 'Excerpt',
+  name: 'excerpt',
+  overrides: {
+    toolbar: ['heading', 'bold', 'italic', 'link'],
+    headingLevels: ['h2'],
+  },
+}
+```
+
+> `headingLevels` was released in **tinacms@3.8.4**. Update your packages to use it.
+
+This option is UI-only — it limits what editors can insert going forward. Existing content that already uses a disallowed level is still rendered as-is. Passing an empty array (`headingLevels: []`) removes every heading level from the editor.
 
 ### Field with custom component (`mdx`)
 

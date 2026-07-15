@@ -1,0 +1,79 @@
+---
+seo:
+  title: Improving Editorial Workflow Reliability in TinaCMS
+  description: 'Explore the latest improvements to TinaCMS editorial workflow, including autofilled branches, clearer feedback, and safeguards that prevent lost pull requests.'
+title: Improving Editorial Workflow Reliability in TinaCMS
+date: '2025-12-10T21:59:36.678Z'
+last_edited: '2025-12-10T22:12:53.074Z'
+author: TinaCMS Team
+prev: ''
+next: ''
+---
+
+The editorial workflow in TinaCMS is one of its most powerful features, enabling structured content updates through branches and pull requests. While feedback on the feature has been largely positive, one recurring issue stood out: users were unintentionally losing their pull requests due to gaps in the user experience.
+
+This update focuses on making the workflow more resilient, more intuitive, and easier to follow from start to finish.
+
+## The Problem: Interrupted Workflows and Lost PRs
+
+In the previous version of TinaCMS, the editorial workflow required users to:
+
+* Edit content
+* Click save
+* Manually enter a branch name
+* Trigger the workflow process
+
+Once initiated, users would see a status screen indicating progress as Tina created a branch, indexed content, and opened a pull request. This process could take up to a couple of minutes.
+
+The issue was what happened next.
+
+Many users, expecting to continue working, would navigate away from the status screen to edit other content. Doing so unintentionally canceled the workflow in progress. The result was a frustrating experience where pull requests were never completed, and work appeared to be lost.
+
+The core problem was a lack of clear feedback and insufficient protection around an in-progress workflow.
+
+## The Solution: A Guided, Resilient Workflow Experience
+
+The updated editorial workflow introduces several key improvements designed to prevent interruptions and provide clearer guidance.
+
+### 1. Autofilled Branch Names
+
+The new create branch modal now suggests a branch name automatically. This removes friction and speeds up the process, especially for users who may not be familiar with naming conventions.
+
+### 2. Improved Visual Design
+
+The modal and workflow UI have been refreshed with clearer styling and stronger Tina branding. This includes updated buttons and visual cues that make actions more obvious and the interface easier to navigate.
+
+### 3. Immediate and Clear Feedback
+
+Once a user saves to a new branch, the system immediately displays a status modal that walks through each step of the workflow:
+
+* Creating the branch
+* Updating content
+* Opening the pull request
+* This step-by-step feedback makes it clear that the process is actively running.
+
+### 4. Locked Workflow State
+
+To prevent accidental interruptions, users are now kept within the workflow while it runs. The interface no longer allows navigation that would cancel the process.
+
+Even if a user closes the browser tab, the workflow continues in the background. This ensures that progress is not lost due to accidental actions.
+
+### 5. Direct Access to the Pull Request
+
+Once the workflow completes, users are presented with a direct link to their newly created pull request. This creates a clear and satisfying endpoint to the process and makes it easy to continue with review and collaboration.
+
+## What This Means for Teams
+
+These improvements make the editorial workflow more reliable and predictable. Users are guided through each step, given clear feedback, and protected from actions that could interrupt their work.
+
+For teams, this means:
+
+* Fewer failed or lost pull requests
+* A smoother editing experience for content creators
+* More confidence in the workflow process
+
+## Looking Ahead
+
+This update is focused on tightening the core experience of editorial workflows in TinaCMS. By addressing real user pain points, the workflow is now more robust and easier to use.
+
+As always, feedback continues to shape these improvements, and further refinements will build on this foundation to make content collaboration even more seamless.

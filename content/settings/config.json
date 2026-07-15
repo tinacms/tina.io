@@ -737,6 +737,16 @@
       "source": "/docs/introduction/faq",
       "destination": "/docs/faq",
       "permanent": true
+    },
+    {
+      "source": "/docs/search",
+      "destination": "/docs/reference/search/overview",
+      "permanent": false
+    },
+    {
+      "source": "/blog/astro-is-the-default-tinacms-starter",
+      "destination": "/blog/astro-is-becoming-the-default-tinacms-starter",
+      "permanent": true
     }
   ]
 }

@@ -1,15 +1,10 @@
-/** biome-ignore-all lint/performance/noImgElement: <TODO> */
-/** biome-ignore-all lint/a11y/noRedundantAlt: <TODO> */
-/** biome-ignore-all lint/correctness/useExhaustiveDependencies: <TODO> */
-/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <TODO> */
-/** biome-ignore-all lint/suspicious/noArrayIndexKey: <TODO> */
 import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
 import { ChevronRight, Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
@@ -17,6 +12,7 @@ import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { Prism } from '../styles/Prism';
+import { AccordionBlock } from './templateComponents/accordionBlock';
 
 // Dynamic import for Mermaid - reduces initial bundle by ~150KB
 const MermaidElement = dynamic(() => import('./mermaid'), {
@@ -70,9 +66,16 @@ export const docAndBlogComponents: Components<{
   WideImage: { alt: string; src: string };
   // biome-ignore lint/complexity/noBannedTypes: <TODO>
   CustomFieldComponentDemo: {};
-  CloudinaryVideo: { src: string };
   Button: { link: string; label: string };
   ImageAndText: { docText: string; image: string; heading?: string };
+  accordionBlock: {
+    fullWidth?: boolean;
+    accordionItems: {
+      heading?: string;
+      docText: string;
+      image?: string;
+    }[];
+  };
   Summary: { heading: string; text: string };
   recipeBlock: {
     title?: string;
@@ -164,7 +167,7 @@ export const docAndBlogComponents: Components<{
             <div className="p-4">
               <img
                 src={props?.image}
-                alt="image"
+                alt={props.heading || ''}
                 className="w-full rounded-lg"
               />
             </div>
@@ -173,9 +176,12 @@ export const docAndBlogComponents: Components<{
       </div>
     );
   },
+  accordionBlock: (props) => (
+    <AccordionBlock {...props} components={docAndBlogComponents} />
+  ),
   code: (props) => (
     <code
-      className="px-1 text-orange-500 py-0.5 border-y-stone-600 bg-white/50 rounded font-source-code-pro"
+      className="px-1 text-orange-500 p-0.5  bg-orange-500/5 rounded font-source-code-pro"
       {...props}
     />
   ),
@@ -363,7 +369,7 @@ export const docAndBlogComponents: Components<{
             <div className="px-4">
               {groupProperties.map((property, index) => {
                 return (
-                  <div key={`property-${index}`}>
+                  <div key={property.name}>
                     {index !== 0 && (
                       <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg -my-0.5" />
                     )}
@@ -422,7 +428,7 @@ export const docAndBlogComponents: Components<{
 
               // Add the individual property
               result.push(
-                <React.Fragment key={`ind-${index}`}>
+                <React.Fragment key={property.name}>
                   {propertyItem(property)}
                 </React.Fragment>,
               );
@@ -492,6 +498,7 @@ export const docAndBlogComponents: Components<{
 
               return (
                 <tr
+                  // biome-ignore lint/suspicious/noArrayIndexKey: static table parsed from markdown; rows never reorder, so positional identity is correct
                   key={`row-${rowIndex}`}
                   className={
                     rowIndex % 2 === 0 ? 'bg-white/5' : 'bg-blue-500/5'
@@ -500,6 +507,7 @@ export const docAndBlogComponents: Components<{
                   {cells.map((cell, cellIndex) => {
                     return (
                       <CellComponent
+                        // biome-ignore lint/suspicious/noArrayIndexKey: static table parsed from markdown; cells never reorder, so positional identity is correct
                         key={`cell-${rowIndex}-${cellIndex}`}
                         className={`border border-orange-100 px-4 py-2 ${
                           rowIndex === 0
@@ -634,6 +642,7 @@ export const docAndBlogComponents: Components<{
         <a href={url} className="calloutButton">
           {buttonText}
           <svg
+            aria-hidden="true"
             stroke="currentColor"
             fill="currentColor"
             stroke-width="0"
@@ -696,8 +705,14 @@ export const docAndBlogComponents: Components<{
   code_block: ({ value, lang, children }) => {
     const [hasCopied, setHasCopied] = React.useState(false);
 
+    const source = children || value || '';
+
+    if (lang === 'mermaid') {
+      return <MermaidElement value={source} />;
+    }
+
     const handleCopy = () => {
-      navigator.clipboard.writeText(children || value || '');
+      navigator.clipboard.writeText(source);
       setHasCopied(true);
       setTimeout(() => setHasCopied(false), 2000);
     };
@@ -716,11 +731,7 @@ export const docAndBlogComponents: Components<{
           )}
           <span className="sr-only">Copy</span>
         </button>
-        <Prism
-          value={children || value || ''}
-          lang={lang || 'jsx'}
-          theme="nightOwl"
-        />
+        <Prism value={source} lang={lang || 'jsx'} theme="nightOwl" />
       </div>
     );
   },
@@ -762,12 +773,6 @@ export const docAndBlogComponents: Components<{
       <a href="https://codepen.io">CodePen</a>.
     </iframe>
   ),
-  CloudinaryVideo: ({ src }) => (
-    <video className="video my-6" autoPlay loop muted playsInline>
-      <source src={`${src}.webm`} type="video/webm" />
-      <source src={`${src}.mp4`} type="video/mp4" />
-    </video>
-  ),
   Button: ({ link, label }) => (
     <div className="w-full flex justify-start my-6">
       <a
@@ -787,14 +792,10 @@ function FormatHeaders({ children, level }) {
     children.props?.content.map((content) => content.text).join('') ?? children,
   );
 
-  const [currentUrl, setCurrentUrl] = useState(
-    typeof window !== 'undefined' ? window.location.pathname : '',
-  );
+  const [currentUrl, setCurrentUrl] = useState('');
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setCurrentUrl(window.location.pathname);
-    }
+    setCurrentUrl(window.location.pathname);
   }, []);
 
   const linkHref = `${currentUrl}#${id}`;
@@ -823,7 +824,7 @@ function FormatHeaders({ children, level }) {
     window.history.pushState(null, '', linkHref);
   };
 
-  const scrollToElement = (elementId) => {
+  const scrollToElement = useCallback((elementId) => {
     const element = document.getElementById(elementId);
     if (element) {
       const offset = 130; //offset in pixels
@@ -836,7 +837,7 @@ function FormatHeaders({ children, level }) {
         behavior: 'smooth',
       });
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (window.location.hash) {

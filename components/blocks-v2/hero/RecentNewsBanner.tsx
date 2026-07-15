@@ -103,7 +103,7 @@ export const RecentNewsBanner = ({
               <Badge
                 color={recentNewsBanner.badge?.color as BadgeColor}
                 size="medium"
-                className="uppercase text-xs self-center flex items-center gap-1"
+                className="uppercase text-xs self-stretch flex items-center gap-1"
                 dataTinaField={tinaField(recentNewsBanner?.badge, 'text')}
               >
                 {BadgeIconComponent && (
@@ -130,7 +130,7 @@ export const RecentNewsBanner = ({
               getTextColorClass(recentNewsBanner.backgroundColor as BadgeColor),
             )}
           >
-            <span className="inline-flex gap-2 text-nowrap items-center">
+            <span className="inline-flex gap-2 md:text-nowrap items-center">
               {BadgeIconComponent && !recentNewsBanner.badge?.text && (
                 <BadgeIconComponent className="size-5" />
               )}

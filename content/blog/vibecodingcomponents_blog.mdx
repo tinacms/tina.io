@@ -1,0 +1,101 @@
+---
+title: 'Vibe Coding TinaCMS Custom Components '
+date: '2026-02-16T02:36:01.122Z'
+last_edited: '2026-02-16T02:36:10.592Z'
+author: TinaCMS Team
+prev: ''
+next: ''
+---
+
+Custom field components are one of the most powerful ways to extend TinaCMS. They allow you to tailor the editing experience to match your content and workflows.
+
+Traditionally, building these components requires writing React code and wiring it into your schema. But with modern AI tools, that process can be dramatically simplified.
+
+In this walkthrough, we explore how to create and refine a custom field component using AI, starting from a basic idea and iterating toward a polished editing experience.
+
+## Starting with a TinaCMS Project
+
+The process begins with a standard TinaCMS setup using a Next.js starter template.
+
+Out of the box, the project includes a few predefined blocks such as:
+
+* A hero block
+* A content block
+
+From here, the goal is to extend the page builder with a new custom block that mimics a terminal interface, complete with theming support.
+
+## Generating a New Block with AI
+
+Instead of manually building the component, the first step is to describe the desired functionality in a prompt:
+
+* A terminal-style block
+* A title bar and text content
+* Support for multiple themes
+
+Using an AI coding assistant, this prompt is enough to generate the initial implementation. The result is a new block added to the TinaCMS editor, available alongside existing sections.
+
+Once added to the page, the block renders immediately and includes basic editing controls, including a theme selector.
+
+## Iterating on the Editing Experience
+
+The initial version works, but the editing experience can be improved.
+
+Instead of a standard dropdown for theme selection, a more visual interface makes the feature easier to use. The next step is to generate a custom field component that replaces the dropdown with preview-based theme selection.
+
+By prompting the AI again and providing relevant TinaCMS documentation for context, the system generates:
+
+* A custom theme picker component
+* Integration with the existing terminal block
+* A visual preview for each theme option
+
+This transforms the editing experience from a simple form input into an interactive UI.
+
+##
+
+## Refining with Feedback
+
+AI-generated code is rarely perfect on the first attempt.
+
+In this case, a visual issue appears where the selected theme reduces text readability. Instead of manually debugging, a follow-up prompt describes the problem and suggests a fix.
+
+The result is a quick adjustment to the styling logic, switching from a full background highlight to a border-based indicator. This improves clarity while preserving the visual feedback.
+
+This iterative loop is key:
+
+1. Generate
+2. Test
+3. Refine with targeted prompts
+
+## Filling in Missing Details
+
+One final improvement is adding a preview image for the new block within the TinaCMS block selector.
+
+When the block is first created, it appears without a thumbnail. A simple prompt instructs the AI to add a preview image, and after applying the change, the block is fully integrated into the editor experience.
+
+## What This Unlocks
+
+This workflow demonstrates a different way of building with TinaCMS.
+
+Instead of starting from code, you can:
+
+* Describe components in plain language
+* Generate working implementations 
+* Iterate quickly based on real feedback
+
+For developers, this reduces setup time and lowers the barrier to experimenting with custom editing experiences.
+
+## When to Use This Approach
+
+AI-assisted component generation works especially well for:
+
+* Prototyping new blocks
+* Customizing editorial interfaces
+* Rapid experimentation with UI patterns
+
+For production use, you may still want to review and refine the generated code, but the initial lift is significantly reduced.
+
+## Closing Thoughts
+
+Custom field components are a key part of making TinaCMS feel tailored to your project. With AI tools, creating those components is faster and more accessible than ever.
+
+By combining Tina’s flexible architecture with prompt-driven development, you can go from idea to working editor UI in minutes and iterate as your needs evolve.

@@ -1,43 +1,15 @@
+import BlogPageClient from 'components/blog/BlogPageClient';
 import { notFound } from 'next/navigation';
-import client from 'tina/__generated__/client';
-import type { TinaMarkdownContent } from 'tinacms/dist/rich-text';
+import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
+import { getBlogPost } from 'utils/blog/getBlogPost';
 import { getExcerpt } from 'utils/getExcerpt';
 import settings from '@/content/settings/config.json';
 import { getSeo } from '@/utils/metadata/getSeo';
-import BlogPageClient from './BlogPageClient';
-import type { BlogPost } from './BlogType';
 
 export const dynamicParams = false;
 
-export async function generateStaticParams() {
-  let allPosts = [];
-  let hasNextPage = true;
-  let after: string | null = null;
-
-  while (hasNextPage) {
-    try {
-      const postsResponse = await client.queries.postConnection({ after });
-
-      const edges = postsResponse?.data?.postConnection?.edges || [];
-      const pageInfo = postsResponse?.data?.postConnection?.pageInfo || {
-        hasNextPage: false,
-        endCursor: null,
-      };
-
-      allPosts = allPosts.concat(
-        edges.map((post) => ({
-          slug: [post?.node?._sys?.filename],
-        })),
-      );
-
-      hasNextPage = pageInfo.hasNextPage;
-      after = pageInfo.endCursor;
-    } catch (error) {
-      console.error('Error during static params generation:', error);
-      notFound();
-    }
-  }
-  return allPosts;
+export function generateStaticParams() {
+  return generateBlogStaticParams('en');
 }
 
 export async function generateMetadata({
@@ -46,19 +18,19 @@ export async function generateMetadata({
   params: { slug: string[] };
 }) {
   const slugPath = params.slug.join('/');
-  const vars = { relativePath: `${slugPath}.mdx` };
-
-  const { data } = await client.queries.getExpandedPostDocument(vars);
-  const excerpt = getExcerpt(data.post.body, 140);
-
-  if (!data?.post) {
+  const { post } = await getBlogPost('en', slugPath);
+  if (!post) {
     console.warn(`No metadata found for slug: ${slugPath}`);
     return notFound();
   }
+  // ~120 chars keeps og:description under the ~125 social-preview cutoff
+  const excerpt = getExcerpt(post.body, 120);
   return getSeo({
-    title: `${data.post.title} | TinaCMS Blog`,
+    title: `${post.title} | TinaCMS Blog`,
     description: excerpt,
     canonicalUrl: `${settings.siteUrl}/blog/${slugPath}`,
+    // dynamic per-post OG image (app/blog/og/[...slug]/route.tsx)
+    ogImage: `/blog/og/${slugPath}`,
   });
 }
 
@@ -68,49 +40,19 @@ export default async function BlogPage({
   params: { slug: string[] };
 }) {
   const slugPath = params.slug.join('/');
-  const vars = { relativePath: `${slugPath}.mdx` };
-
   try {
-    const res = await client.queries.getExpandedPostDocument(vars);
-
-    const variables = res.variables;
-    const query = res.query;
-
-    if (!res.data?.post) {
+    const { post, query, variables } = await getBlogPost('en', slugPath);
+    if (!post) {
       console.warn(`No post found for slug: ${slugPath}`);
       return notFound();
     }
-
-    const fetchedPost = res.data.post;
-
-    const post: BlogPost = {
-      _sys: fetchedPost._sys,
-      id: fetchedPost.id,
-      title: fetchedPost.title,
-      date: fetchedPost.date || '',
-      last_edited: fetchedPost.last_edited ?? null,
-      author: fetchedPost.author || '',
-      seo: fetchedPost.seo
-        ? {
-            title: fetchedPost.seo.title || 'Default SEO Title',
-            description:
-              fetchedPost.seo.description || 'Default SEO Description',
-          }
-        : null,
-      prev: fetchedPost.prev ?? null,
-      next: fetchedPost.next ?? null,
-      body: fetchedPost.body as TinaMarkdownContent,
-      giscusProps: {
-        giscusRepo: `${process.env.GISCUS_ORG}/${process.env.GISCUS_REPO_NAME}`,
-        giscusRepoId: process.env.GISCUS_REPO_ID,
-        giscusCategory: process.env.GISCUS_CATEGORY,
-        giscusCategoryId: process.env.GISCUS_CATEGORY_ID,
-        giscusThemeUrl: process.env.GISCUS_THEME_URL,
-      },
-    };
-
     return (
-      <BlogPageClient data={{ post }} variables={variables} query={query} />
+      <BlogPageClient
+        data={{ post }}
+        variables={variables}
+        query={query}
+        locale="en"
+      />
     );
   } catch (error) {
     console.error(`Error fetching post for slug: ${slugPath}`, error);

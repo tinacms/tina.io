@@ -1,0 +1,97 @@
+---
+id: /docs/tinacloud/deployment-options/cloudflare-workers
+title: 部署到 Cloudflare Workers
+last_edited: '2026-07-09T00:00:00.000Z'
+next: content/docs-zh/tinacloud/deployment-options/alibaba-cloud.mdx
+previous: content/docs-zh/tinacloud/deployment-options/cloudflare-pages.mdx
+---
+
+TinaCMS 通过与 Git 连接的构建与 Cloudflare Workers 一起工作。每次推送到你的生产分支都会运行构建（包括 `tinacms build` 步骤）并将结果部署到 Workers 运行时。
+
+当你的网站需要在请求时有一个服务器时，Workers 是合适的目标：SSR 路由、API 端点、重定向，以及 — 对于 Astro 启动器 — 支持点击编辑可视化编辑的按需路由。
+
+<WarningCallout
+  body={<>
+    **Astro 用户：** 部署到 Workers，而不是 [Cloudflare Pages](/docs/tinacloud/deployment-options/cloudflare-pages)。`@astrojs/cloudflare` 适配器 [不再支持 Cloudflare Pages](https://docs.astro.build/en/guides/integrations-guide/cloudflare/) — 它的目标是 Workers。启动器的可视化编辑路由（`src/pages/tina-island/[name].ts`）是服务器渲染的（`prerender = false`），因此仅静态的 Pages 上传会在请求时破坏点击编辑功能。
+  </>}
+/>
+
+## Astro (`tina-astro-starter`)
+
+这将从一个干净的检出开始，指导 [Astro 启动器](https://github.com/tinacms/tina-astro-starter) 到一个实时的 Workers 部署。首先将你的项目推送到 GitHub 仓库。
+
+### 1. 适配器和 `wrangler.jsonc`（已在启动器中）
+
+无需配置 — 启动器为你提供了这些：
+
+* `astro.config.mjs` **自动检测主机**。在 Cloudflare 的基于 Git 的 Workers 构建中，`WORKERS_CI` 环境变量会自动设置，这会选择 `@astrojs/cloudflare` 适配器。你不需要运行 `npx astro add cloudflare`，也不需要编辑配置。
+* 根目录的 **`wrangler.jsonc`** 启用了 `nodejs_compat`。可视化编辑路由使用 `node:async_hooks` (`AsyncLocalStorage`); 没有这个标志，岛屿路由在运行时会失败：
+
+```jsonc
+{
+  "name": "tina-astro-starter",
+  "compatibility_date": "2026-06-01",
+  "compatibility_flags": ["nodejs_compat"]
+}
+```
+
+这个最小配置就是 Wrangler 所需的全部 — 适配器在构建时连接 Worker 入口点和静态资产绑定。
+
+> **将 TinaCMS 添加到现有的 Astro 站点？** 运行 `npx astro add cloudflare`，然后在仓库根目录创建一个 `wrangler.jsonc`，其中包含 `compatibility_flags: ["nodejs_compat"]` 和一个最近的 `compatibility_date`。
+
+### 2. 创建 Worker
+
+在 Cloudflare 仪表板中，转到 **Workers & Pages** | **Create** | **Workers** | **Import a repository**，连接你的 GitHub 账户，并选择你的仓库。
+
+在 **Build configuration** 下设置构建：
+
+* **Build command:** `pnpm build` — 启动器的 `build` 脚本是 `tinacms build --content=local -c "astro build"`，它会索引你提交的内容，然后运行 `astro build`。
+* **Deploy command:** `npx wrangler deploy`
+* **Build output:** `dist`（Astro 的默认值；你不需要更改这个）。
+
+这里 **不需要** `DEPLOY_ADAPTER` — `WORKERS_CI` 会自动检测。你只在没有主机环境变量适用的手动部署中设置 `DEPLOY_ADAPTER=cloudflare`（例如从你自己的机器运行 `npx wrangler deploy`）。
+
+### 3. 环境变量
+
+`tinacms build` 在构建时需要你的 TinaCloud 凭证。在 Worker's **Settings** | **Build** | **Variables and Secrets** 下添加这些（从你的 [TinaCloud 项目](https://app.tina.io) 获取两个凭证）：
+
+* `PUBLIC_TINA_CLIENT_ID` — 你的 TinaCloud 客户端 ID。**Astro 使用 `PUBLIC_` 前缀**，而不是 Next.js 的 `NEXT_PUBLIC_`。
+* `TINA_TOKEN` — 来自 TinaCloud 的内容令牌。
+* `SITE_URL` — 你的生产 URL（例如 `https://your-worker.your-account.workers.dev`，或你的自定义域名）。Cloudflare Workers 不注入部署 URL 变量，因此没有 `SITE_URL`，你的站点地图、RSS 和 OpenGraph 标签会回退到 `localhost`。
+
+<WarningCallout
+  body={<>
+    Workers 将 **构建** 变量和 **运行时** 变量分开。岛屿路由在请求时读取你的 TinaCloud 客户端 ID 和令牌，因此在 **Settings** | **Variables and Secrets** 下再次添加 `PUBLIC_TINA_CLIENT_ID` 和 `TINA_TOKEN`（不仅仅是构建部分）。`SITE_URL` 仅在构建时使用。
+  </>}
+/>
+
+### 4. 验证可视化编辑在请求时是否有效
+
+首次部署后：
+
+1. 在你的 Worker 的 URL 上打开 `/admin`，编辑一篇文章并保存。保存会提交到 GitHub，从而触发重建和重新部署。
+2. 打开一个内容页面并确认 **点击编辑** 是否有效：点击一个可编辑区域会高亮显示并在侧边栏打开其表单。这会测试在 Worker 内运行的按需 `/tina-island/*` 路由 — 如果出错，请检查 `nodejs_compat` 是否已设置以及你的运行时变量是否存在。
+
+## Next.js
+
+使用 [OpenNext Cloudflare 适配器](https://opennext.js.org/cloudflare) 并按照其设置生成 `open-next.config.ts` 和 `wrangler.jsonc`。
+
+在仪表板中（**Workers & Pages** | **Create** | **Workers** | **Import a repository**），设置：
+
+* **Build command:** `npx opennextjs-cloudflare build`
+* **Deploy command:** `npx opennextjs-cloudflare deploy`
+
+在 **Settings** | **Build** | **Variables and Secrets** 下添加你的构建时凭证：
+
+* `NEXT_PUBLIC_TINA_CLIENT_ID` — 你的 TinaCloud 客户端 ID。
+* `TINA_TOKEN` — 来自 TinaCloud 的内容令牌。
+
+与 Astro 一样，Workers 将构建和运行时变量分开 — 如果你的 OpenNext SSR 在请求时读取这些变量，请在 **Settings** | **Variables and Secrets** 下再次添加它们。
+
+## 完成 TinaCloud 设置
+
+你的首次部署会给你一个默认域名，如 `https://<worker-name>.<account-name>.workers.dev`。在你的 TinaCloud 项目的配置中将此（或你的自定义域名）设置为 **Site URL**，以便编辑器在正确的来源加载。
+
+## 故障排除
+
+**构建期间 "JavaScript heap out of memory"。** TinaCloud 索引步骤可能会超过 Node 的默认堆。通过设置构建时环境变量 `NODE_OPTIONS` 为 `--max-old-space-size=4096` 来提高它。

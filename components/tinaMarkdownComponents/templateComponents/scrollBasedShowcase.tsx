@@ -210,8 +210,9 @@ export default function ScrollBasedShowcase(data: {
                   <div
                     id={itemId}
                     className="pointer-events-none"
-                    // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
-                    ref={(el) => (headingRefs.current[index] = el)}
+                    ref={(el) => {
+                      headingRefs.current[index] = el;
+                    }}
                   >
                     <div
                       className={`bg-linear-to-br bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 ${
@@ -227,8 +228,9 @@ export default function ScrollBasedShowcase(data: {
                   <div
                     id={itemId}
                     className="pointer-events-none"
-                    // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
-                    ref={(el) => (headingRefs.current[index] = el)}
+                    ref={(el) => {
+                      headingRefs.current[index] = el;
+                    }}
                   >
                     <h2
                       className={`bg-linear-to-br  bg-clip-text text-transparent text-3xl mt-4 mb-3 ${

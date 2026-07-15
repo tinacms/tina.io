@@ -38,15 +38,15 @@ NPM, PNPM and Yarn package managers are all supported.
 
 | Node Version |                                          |
 | ------------ | ---------------------------------------- |
-| v25.x        | ℹ️ Not supported - current but not LTS   |
+| v26.x        | ℹ️ Not supported - current but not LTS   |
 | v24.x LTS    | ✅ Supported - recommended for production |
 | v23.x        | ❌ EoL                                    |
 | v22.x LTS    | ✅ Supported - good for production        |
 | v21.x        | ❌ EoL                                    |
-| v20.x LTS    | ℹ️ Not supported - recommended to update |
+| v20.x        | ❌ EoL                                    |
 | v19.x        | ❌ EoL                                    |
 
-Table updated February 2026
+Table updated May 2026
 
 ## 5. What is Tina's tech stack?
 
@@ -58,7 +58,7 @@ Table updated February 2026
 
 ### TinaCMS
 
-* CMS - **React 18**
+* CMS - **React 18 / React 19**
 
 ## 6. What features are unavailable in self-hosted Tina compared to TinaCloud?
 
@@ -210,7 +210,7 @@ Markdown gives Large Language Models (LLMs) clear advantages:
 * Semantic meaning – formatting adds clarity and context
 * Prompt-friendly – consistent markup reduces ambiguity
 * Readable for humans & machines – raw Markdown works well for both
-* Aligned with LLM trends – Markdown fits naturally with the shift toward LLM-optimized content, as highlighted in [SEO is Dead, Long Live LLMO](https://jina.ai/news/seo-is-dead-long-live-llmo)
+* Aligned with LLM trends – Markdown fits naturally with the shift toward LLM-optimized content, as highlighted in [SEO is Dead, Long Live LLMO](https://web.archive.org/web/2024/https://jina.ai/news/seo-is-dead-long-live-llmo)
 
 ## 18. Do you support Git LFS?
 
@@ -254,3 +254,13 @@ As a workaround, you can rename media files by making the changes directly in Gi
 4. Wait for the addition to sync back to TinaCloud
 
 For more details, see [Renaming Media Files](/docs/reference/media/repo-based/#renaming-media-files).
+
+## 22. Why does my npm build fail with "Missing field `tsconfigPaths`" (or Vite version errors)?
+
+This happens under **npm** when two major versions of Vite end up in the dependency tree — for example, Vite 8 pulled in by `@tailwindcss/vite` alongside the Vite 7 that Astro uses. The mismatched rolldown bindings crash the build.
+
+We recommend **pnpm**, which resolves to a single Vite version automatically and avoids this class of issue. If you must use npm, delete `node_modules` and `package-lock.json`, reinstall, and pin Vite with an `overrides` block in `package.json`:
+
+```json
+"overrides": { "vite": "^7" }
+```

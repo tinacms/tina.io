@@ -100,7 +100,7 @@
               "icon": "CgCrown"
             },
             {
-              "name": "AI Features (Beta)",
+              "name": "AI Features (Coming Soon)",
               "icon": "HiOutlineSparkles"
             }
           ],
@@ -148,7 +148,7 @@
               "icon": "CgCrown"
             },
             {
-              "name": "AI Features (Beta)",
+              "name": "AI Features (Coming Soon)",
               "icon": "HiOutlineSparkles"
             },
             {
@@ -198,7 +198,7 @@
               "icon": "CgCrown"
             },
             {
-              "name": "AI Features (Beta)",
+              "name": "AI Features (Coming Soon)",
               "icon": "HiOutlineSparkles"
             },
             {
@@ -217,11 +217,12 @@
           "buttons": [
             {
               "label": "Contact Sales",
-              "icon": false,
-              "variant": "orangeWithBorder",
+              "icon": true,
+              "shape": "pill",
+              "color": "orangeWithBorder",
               "size": "medium",
-              "url": "mailto:info@tina.io",
-              "_template": "actions"
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
             }
           ]
         }
@@ -521,7 +522,7 @@
       "features": [
         {
           "headline": "Skip the Drama,\n\nChat with a Llama 🦙",
-          "text": "Not sure if TinaCMS is the right fit?\n\nLet’s figure it out together. Book a call with our team.",
+          "text": "Not sure if TinaCMS is the right fit?\n\nLet’s figure it out together. Book a call with our team.\n",
           "buttons": [
             {
               "label": "Book a Chat",

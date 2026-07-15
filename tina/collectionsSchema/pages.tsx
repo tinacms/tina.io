@@ -4,6 +4,7 @@ import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.tem
 import { featureCardTemplate } from '@/component/blocks-v2/featureCard/featureCard.template';
 import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
 import { mapTemplate } from '@/component/blocks-v2/map/map.template';
+import { markdownFeatureTemplate } from '@/component/blocks-v2/markdownFeature/markdownFeature.template';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
 import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
 import {
@@ -36,6 +37,7 @@ import { testimonialsTemplate } from '../../components/blocks/Testimonial/Testim
 import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/TextAndMediaColumn/TextAndMediaColumns.template';
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { tripleBoxTemplate } from '../../components/blocks/TripleBox/TripleBox.template';
+import { versionsTemplate } from '../../components/blocks/Versions/Versions.template';
 import { DocsEditLinks } from '../customTinaFormFields/docsEditLinks';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
@@ -87,10 +89,12 @@ const templates = [
   videoEmbedTemplate as Template,
   herov2Template as Template,
   featureCardTemplate as Template,
+  markdownFeatureTemplate as Template,
   callToActionTemplate as Template,
   mapTemplate as Template,
   tripleBoxTemplate as Template,
   professionalServicesTemplate as Template,
+  versionsTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {

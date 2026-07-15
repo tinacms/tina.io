@@ -19,6 +19,11 @@ module.exports = {
     '/github/*',
     '/rss.xml',
     '/blog/page/*',
+    // Generated per-post social images — not crawlable pages
+    '/blog/og/*',
+    '/blog/instagram/*',
+    '/zh/blog/og/*',
+    '/zh/blog/instagram/*',
     // Deprecated/orphaned docs - not in main navigation
     '/docs/beginner-tutorials/*',
     '/docs/forestry/*',

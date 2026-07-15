@@ -1,6 +1,6 @@
 {
   "notFound": {
-    "title": "抱歉，朋友。",
+    "title": "404 - 抱歉，朋友。",
     "description": "我们找不到您要查找的内容。",
     "buttons": {
       "documentation": "文档",
