@@ -25,6 +25,9 @@ interface FormData {
   phone: string;
   company: string;
   partnerType: string;
+  portfolioUrl: string;
+  agencySize: string;
+  availability: string;
   tinaExperience: string;
   referralSource: string;
   message: string;
@@ -32,6 +35,8 @@ interface FormData {
 }
 
 const partnerTypeOptions = ['Sole developer', 'Agency'];
+const agencySizeOptions = ['1–5', '6–20', '21–50', '50+'];
+const availabilityOptions = ['Full-time', 'Part-time', 'Project-based'];
 
 type ContactVariant = 'contact' | 'partner';
 
@@ -86,6 +91,9 @@ const initialFormData: FormData = {
   phone: '',
   company: '',
   partnerType: '',
+  portfolioUrl: '',
+  agencySize: '',
+  availability: '',
   tinaExperience: '',
   referralSource: '',
   message: '',
@@ -96,9 +104,15 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
   const config = VARIANTS[variant];
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+  const isAgency = formData.partnerType === 'Agency';
+  const isSoleDeveloper = formData.partnerType === 'Sole developer';
   const partnerFieldsComplete =
     variant !== 'partner' ||
-    (Boolean(formData.partnerType) && Boolean(formData.tinaExperience));
+    (Boolean(formData.partnerType) &&
+      Boolean(formData.tinaExperience) &&
+      Boolean(formData.portfolioUrl) &&
+      (isAgency ? Boolean(formData.agencySize) : true) &&
+      (isSoleDeveloper ? Boolean(formData.availability) : true));
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
@@ -270,7 +284,14 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
           <Select
             value={formData.partnerType}
             onValueChange={(value) =>
-              setFormData((prev) => ({ ...prev, partnerType: value }))
+              // Reset the type-specific answers when switching so hidden fields
+              // don't get submitted with stale values.
+              setFormData((prev) => ({
+                ...prev,
+                partnerType: value,
+                agencySize: '',
+                availability: '',
+              }))
             }
             disabled={isProcessing}
           >
@@ -285,6 +306,70 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
               ))}
             </SelectContent>
           </Select>
+          {isAgency && (
+            <>
+              <Input
+                placeholder="Agency website *"
+                name="portfolioUrl"
+                type="url"
+                value={formData.portfolioUrl}
+                onChange={handleInputChange}
+                disabled={isProcessing}
+                required
+                className="w-full"
+              />
+              <Select
+                value={formData.agencySize}
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, agencySize: value }))
+                }
+                disabled={isProcessing}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="How many developers on your team? *" />
+                </SelectTrigger>
+                <SelectContent>
+                  {agencySizeOptions.map((option) => (
+                    <SelectItem key={option} value={option}>
+                      {option}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </>
+          )}
+          {isSoleDeveloper && (
+            <>
+              <Input
+                placeholder="Portfolio, GitHub, or website *"
+                name="portfolioUrl"
+                type="url"
+                value={formData.portfolioUrl}
+                onChange={handleInputChange}
+                disabled={isProcessing}
+                required
+                className="w-full"
+              />
+              <Select
+                value={formData.availability}
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, availability: value }))
+                }
+                disabled={isProcessing}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="What's your availability? *" />
+                </SelectTrigger>
+                <SelectContent>
+                  {availabilityOptions.map((option) => (
+                    <SelectItem key={option} value={option}>
+                      {option}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </>
+          )}
           <Textarea
             placeholder="How much have you worked with TinaCMS before? *"
             name="tinaExperience"

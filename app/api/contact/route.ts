@@ -10,6 +10,9 @@ export async function POST(request: NextRequest) {
       email,
       company,
       partnerType,
+      portfolioUrl,
+      agencySize,
+      availability,
       tinaExperience,
       referralSource,
       message,
@@ -49,6 +52,13 @@ export async function POST(request: NextRequest) {
         `Email: ${email}`,
         `Company: ${company || 'N/A'}`,
         ...(partnerType ? [`Sole developer or agency: ${partnerType}`] : []),
+        ...(portfolioUrl
+          ? [
+              `${partnerType === 'Agency' ? 'Agency website' : 'Portfolio/website'}: ${portfolioUrl}`,
+            ]
+          : []),
+        ...(agencySize ? [`Team size: ${agencySize}`] : []),
+        ...(availability ? [`Availability: ${availability}`] : []),
         ...(tinaExperience ? [`TinaCMS experience: ${tinaExperience}`] : []),
         `How did you hear about us: ${referralSource || 'N/A'}`,
         '',
