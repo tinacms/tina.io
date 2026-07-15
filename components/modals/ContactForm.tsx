@@ -35,7 +35,7 @@ interface FormData {
 }
 
 const partnerTypeOptions = ['Sole developer', 'Agency'];
-const agencySizeOptions = ['1–5', '6–20', '21–50', '50+'];
+const agencySizeOptions = ['1-5', '6-20', '21-50', '50+'];
 const availabilityOptions = ['Full-time', 'Part-time', 'Project-based'];
 
 type ContactVariant = 'contact' | 'partner';
@@ -103,7 +103,6 @@ const initialFormData: FormData = {
 export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
   const config = VARIANTS[variant];
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const isAgency = formData.partnerType === 'Agency';
   const isSoleDeveloper = formData.partnerType === 'Sole developer';
   const companyPlaceholder =
@@ -115,13 +114,6 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
   const messagePlaceholder = isAgency
     ? 'Tell us about your agency *'
     : config.messagePlaceholder;
-  const partnerFieldsComplete =
-    variant !== 'partner' ||
-    (Boolean(formData.partnerType) &&
-      Boolean(formData.tinaExperience) &&
-      Boolean(formData.portfolioUrl) &&
-      (isAgency ? Boolean(formData.agencySize) : true) &&
-      (isSoleDeveloper ? Boolean(formData.availability) : true));
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
@@ -291,6 +283,8 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
       {variant === 'partner' && (
         <>
           <Select
+            name="partnerType"
+            required
             value={formData.partnerType}
             onValueChange={(value) =>
               // Reset the type-specific answers when switching so hidden fields
@@ -328,6 +322,8 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
                 className="w-full"
               />
               <Select
+                name="agencySize"
+                required
                 value={formData.agencySize}
                 onValueChange={(value) =>
                   setFormData((prev) => ({ ...prev, agencySize: value }))
@@ -360,6 +356,8 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
                 className="w-full"
               />
               <Select
+                name="availability"
+                required
                 value={formData.availability}
                 onValueChange={(value) =>
                   setFormData((prev) => ({ ...prev, availability: value }))
@@ -442,12 +440,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         <Button
           type="submit"
           color="orange"
-          disabled={
-            isProcessing ||
-            !isValidEmail ||
-            !formData.message ||
-            !partnerFieldsComplete
-          }
+          disabled={isProcessing}
           className="px-6 py-2.5"
         >
           {isProcessing ? 'Sending...' : config.submitLabel}

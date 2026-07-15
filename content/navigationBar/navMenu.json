@@ -80,6 +80,10 @@
           "href": "/events"
         },
         {
+          "label": "Partners",
+          "href": "/partners"
+        },
+        {
           "label": "Certifications",
           "href": "/certifications"
         },
