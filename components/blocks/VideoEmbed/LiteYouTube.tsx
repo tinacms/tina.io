@@ -7,12 +7,15 @@ interface LiteYouTubeProps {
   id: string;
   title?: string;
   className?: string;
+  /** When provided, clicking the thumbnail calls this instead of loading the inline iframe (e.g. to open a modal player). */
+  onActivate?: () => void;
 }
 
 export const LiteYouTube = ({
   id,
   title = 'YouTube video',
   className,
+  onActivate,
 }: LiteYouTubeProps) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -22,7 +25,7 @@ export const LiteYouTube = ({
         <button
           type="button"
           aria-label={`Play ${title}`}
-          onClick={() => setLoaded(true)}
+          onClick={() => (onActivate ? onActivate() : setLoaded(true))}
           className="absolute inset-0 w-full h-full border-0 cursor-pointer bg-cover bg-center bg-no-repeat rounded-lg shadow-lg"
           style={{
             backgroundImage: `url(https://i.ytimg.com/vi/${id}/maxresdefault.jpg)`,

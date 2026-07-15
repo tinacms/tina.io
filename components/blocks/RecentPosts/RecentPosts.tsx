@@ -3,10 +3,12 @@ import { DynamicLink } from 'components/ui';
 import Link from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { tinaField } from 'tinacms/dist/react';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
-import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
+import { YouTubeModal } from '../VideoEmbed/YouTubeModal';
 import { FeaturedPost } from './FeaturedPost';
+
+// Shared so the "Recent Videos" and "Blog Posts" headings stay the same size (~36px). See AC #5.
+const SECTION_HEADING_SIZE = 'text-3xl md:text-4xl';
 
 const getPostHref = (path) => {
   let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');
@@ -42,7 +44,7 @@ const VideoCard = ({
 }: VideoCardProps) => {
   return (
     <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2">
-      <YouTubeEmbed src={embedUrl} />
+      <YouTubeModal src={embedUrl} title={title} />
       <span className="text-neutral-text-secondary text-sm">
         {formatDate(dateReleased)}
       </span>
@@ -68,7 +70,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
       <section className="col-span-3 text-3xl lg:col-span-2 flex flex-col gap-8 items-center md:items-start">
         {featuredPost && <FeaturedPost featuredPost={featuredPost} />}
         <h2
-          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex lg:leading-tight col-span-3 text-black text-balance`}
+          className={`${SECTION_HEADING_SIZE} font-ibm-plex lg:leading-tight col-span-3 text-black text-balance`}
           data-tina-field={tinaField(data, 'title')}
         >
           {data?.title || 'Recent Posts'}
@@ -91,7 +93,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
         className={'relative z-10 col-span-3 lg:col-span-1'}
       >
         <h2
-          className={`block text-center md:text-left ${BLOCK_HEADINGS_SIZE} font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
+          className={`block text-center md:text-left ${SECTION_HEADING_SIZE} font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
         >
           Blog Posts
         </h2>
