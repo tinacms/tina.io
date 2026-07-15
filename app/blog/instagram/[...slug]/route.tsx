@@ -19,7 +19,18 @@ export async function GET(
   { params }: { params: { slug: string[] } },
 ) {
   const slugPath = params.slug.join('/');
-  const { post } = await getBlogPost('en', slugPath);
+  // Tina's client defaults to errorPolicy: 'throw', so an unknown slug throws
+  // rather than returning { post: null } (same convention as app/blog/[...slug]).
+  let post: Awaited<ReturnType<typeof getBlogPost>>['post'];
+  try {
+    ({ post } = await getBlogPost('en', slugPath));
+  } catch (error) {
+    console.error(
+      `Error fetching post for Instagram image: ${slugPath}`,
+      error,
+    );
+    post = null;
+  }
   if (!post) {
     // Unknown slug: 404 rather than render + ISR-cache a generic fallback image.
     return new Response(null, { status: 404 });

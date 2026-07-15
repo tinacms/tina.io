@@ -36,34 +36,47 @@ async function fetchPublic(webPath: string): Promise<Buffer | null> {
   } catch {
     // Not on the function fs — fall through to an origin fetch.
   }
-  if (RUNTIME_ORIGIN) {
-    try {
-      const res = await fetch(`${RUNTIME_ORIGIN}/${rel}`);
-      if (res.ok) {
-        return Buffer.from(await res.arrayBuffer());
-      }
-    } catch {
-      // fall through
-    }
+  if (!RUNTIME_ORIGIN) {
+    return null;
   }
-  return null;
+  // Bound the self-fetch: a hung production host would otherwise stall the
+  // render to the function's max duration. A timeout rejects, which the caller
+  // treats as a transient failure (below) — 500, not cached, retried.
+  const res = await fetch(`${RUNTIME_ORIGIN}/${rel}`, {
+    signal: AbortSignal.timeout(5000),
+  });
+  if (res.ok) {
+    return Buffer.from(await res.arrayBuffer());
+  }
+  if (res.status === 404) {
+    // Genuinely absent (e.g. an unmapped author) — the caller falls back.
+    return null;
+  }
+  // Any other status — or a network error, which rejects fetch — is a transient
+  // failure. Throw so the render 500s and is NOT ISR-cached, rather than silently
+  // shipping a degraded image (dropped font, llama-substituted author) that would
+  // otherwise stick for the life of the deployment.
+  throw new Error(`OG asset fetch failed: /${rel} (${res.status})`);
 }
 
 /** Read a public/ asset by its web path ("/fonts/x.ttf"): disk first, then the
- *  production host. Returns null if neither has it (e.g. an unmapped author). */
+ *  production host. Returns null when the asset is genuinely absent (404, e.g. an
+ *  unmapped author); rejects on a transient load failure (see fetchPublic). */
 function loadPublic(webPath: string): Promise<Buffer | null> {
   let cached = assetCache.get(webPath);
   if (!cached) {
     cached = fetchPublic(webPath);
     assetCache.set(webPath, cached);
-    // Only successful buffers stay cached. Evict a miss so a transient fetch
-    // failure can't poison the warm instance (it would otherwise strip that
-    // font/image from every later render); the next render retries.
-    cached.then((buf) => {
-      if (!buf) {
-        assetCache.delete(webPath);
-      }
-    });
+    // Only successful buffers stay cached. Evict a miss (null) or a rejection so
+    // a transient failure can't poison the warm instance (a pinned rejected
+    // promise would re-throw for every later render); the next render retries.
+    cached
+      .then((buf) => {
+        if (!buf) {
+          assetCache.delete(webPath);
+        }
+      })
+      .catch(() => assetCache.delete(webPath));
   }
   return cached;
 }
@@ -99,12 +112,15 @@ export async function ogFonts() {
   ] as const;
 
   const bufs = await Promise.all(specs.map((s) => loadPublic(s.path)));
-  // flatMap drops any font that failed to load (satori renders with whatever's
-  // present) without tripping filter()'s type-narrowing on the buffer.
-  return specs.flatMap((s, i) => {
+  // Fonts are required assets. satori only throws when ZERO fonts load, so a
+  // silently-dropped font would ship a valid-but-wrong-typography 200 that ISR
+  // then caches for the deploy's life. Throw instead: 500s aren't cached, so the
+  // next request retries.
+  return specs.map((s, i) => {
     const data = bufs[i];
-    return data
-      ? [{ name: s.name, data, weight: s.weight, style: 'normal' as const }]
-      : [];
+    if (!data) {
+      throw new Error(`OG font failed to load: ${s.path}`);
+    }
+    return { name: s.name, data, weight: s.weight, style: 'normal' as const };
   });
 }
