@@ -67,6 +67,8 @@ export const recentPostsTemplate = {
     {
       name: 'youtubeVideos',
       label: 'YouTube Videos',
+      description:
+        "Fallback only. The block normally shows the latest uploads from the TinaCMS YouTube channel automatically; these curated videos are used only if that live feed can't be loaded.",
       type: 'object',
       list: true,
       ui: {

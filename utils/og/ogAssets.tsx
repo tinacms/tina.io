@@ -1,8 +1,3 @@
-// Build-time asset loading shared by the dynamic blog images. Fonts must be
-// ttf/otf/woff — satori (next/og) does not support woff2; images must be
-// base64 data URIs. Kept separate from ./ogShared so the pure SVG builders
-// there stay testable without a filesystem.
-
 import fs from 'node:fs';
 import path from 'node:path';
 import { svgDataUri } from './ogShared';
@@ -26,7 +21,6 @@ export function pngDataUri(publicPath: string): string | null {
   return fileToDataUri(fromPublic(publicPath.replace(/^\//, '')), 'image/png');
 }
 
-/** The official TinaCMS logo (orange llama + "tinacms"), as an SVG data URI. */
 export function logoDataUri(): string | null {
   try {
     const svg = fs.readFileSync(
@@ -39,7 +33,6 @@ export function logoDataUri(): string | null {
   }
 }
 
-/** Font set shared by both renderers: IBM Plex Sans headings, Inter body. */
 export function ogFonts() {
   return [
     {
