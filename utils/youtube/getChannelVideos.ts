@@ -11,6 +11,9 @@
 export const TINACMS_YOUTUBE_CHANNEL_ID = 'UCUvqCjr8Xq_IRMDcuJrqIXA';
 const TINACMS_YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@TinaCMS';
 
+// Default number of videos to return when the caller doesn't specify.
+const DEFAULT_CHANNEL_VIDEO_COUNT = 2;
+
 export interface ChannelVideo {
   embedUrl: string;
   title: string;
@@ -47,7 +50,7 @@ const splitTitleAndAuthor = (title: string): [string, string] => {
 };
 
 export async function getChannelVideos(
-  count = 2,
+  count = DEFAULT_CHANNEL_VIDEO_COUNT,
   channelId: string = TINACMS_YOUTUBE_CHANNEL_ID,
   excludeVideoIds: string[] = [],
 ): Promise<ChannelVideo[]> {
