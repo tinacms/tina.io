@@ -6,11 +6,13 @@ import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { renderBlogInstagramImage } from 'utils/og/blogInstagramImage';
 
+const IS_EXPORT = process.env.EXPORT_MODE === 'static';
+
 export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const dynamicParams = !IS_EXPORT;
 
 export function generateStaticParams() {
-  return generateBlogStaticParams('zh');
+  return IS_EXPORT ? generateBlogStaticParams('zh') : [];
 }
 
 export async function GET(

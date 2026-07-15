@@ -6,18 +6,23 @@
 // So we serve the image from a distinct prefix (/blog/og/<slug>) and point
 // `openGraph.images` at it from the post's generateMetadata.
 //
-// force-static + generateStaticParams pre-renders one image per post at build
-// (where the fonts/photos under public/ are readable via fs).
+// Rendered on-demand and cached (ISR): the first request for a post's image
+// renders it, then it's served from cache. A static export (output: 'export')
+// can't generate on-demand, so it must prebuild every image instead — gated on
+// the same EXPORT_MODE switch next.config.js uses. Fonts/photos load via
+// import.meta.url (see utils/og/ogAssets), so they resolve at build or runtime.
 
 import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { renderBlogOgImage } from 'utils/og/blogOgImage';
 
+const IS_EXPORT = process.env.EXPORT_MODE === 'static';
+
 export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const dynamicParams = !IS_EXPORT;
 
 export function generateStaticParams() {
-  return generateBlogStaticParams('en');
+  return IS_EXPORT ? generateBlogStaticParams('en') : [];
 }
 
 export async function GET(

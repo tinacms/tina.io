@@ -1,16 +1,17 @@
 // Dynamic 4:5 Instagram image for a blog post, as a Route Handler. See
-// app/blog/og/[...slug] for why this is a route handler (force-static so the
-// fonts/photos under public/ are readable via fs at build time).
+// app/blog/og/[...slug] for the on-demand-ISR / static-export split.
 
 import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { renderBlogInstagramImage } from 'utils/og/blogInstagramImage';
 
+const IS_EXPORT = process.env.EXPORT_MODE === 'static';
+
 export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const dynamicParams = !IS_EXPORT;
 
 export function generateStaticParams() {
-  return generateBlogStaticParams('en');
+  return IS_EXPORT ? generateBlogStaticParams('en') : [];
 }
 
 export async function GET(
