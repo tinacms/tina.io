@@ -17,7 +17,6 @@ import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
 import { FeaturedPost } from './FeaturedPost';
 
 const RECENT_VIDEO_COUNT = 2;
-// Stable keys so the skeleton placeholders don't rely on array indexes.
 const VIDEO_SKELETON_KEYS = [
   'recent-video-skeleton-1',
   'recent-video-skeleton-2',
@@ -86,7 +85,6 @@ const VideoCard = ({
 
 const VideoCardSkeleton = () => (
   <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2">
-    {/* Mirror the embed's aspect wrapper so the placeholder matches its size. */}
     <div className="relative w-full aspect-h-9 aspect-w-16">
       <span className="absolute inset-0 rounded-lg animate-shimmer bg-skeleton-shimmer bg-skeleton" />
     </div>
@@ -100,8 +98,6 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
   const featuredPost = data?.featuredPost;
   const curatedVideos: VideoCardProps[] = data?.youtubeVideos ?? [];
 
-  // Fetch the latest uploads client-side via our proxy route so the YouTube
-  // dependency never blocks the homepage's first paint.
   const [fetchedVideos, setFetchedVideos] = useState<VideoCardProps[] | null>(
     null,
   );
@@ -128,14 +124,11 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
 
   const isLoading = fetchedVideos === null && !fetchFailed;
 
-  // Drop the editorially chosen featured video so it never appears twice.
   const featuredId = extractYouTubeId(featuredPost?.url);
   const liveVideos = (fetchedVideos ?? [])
     .filter((video) => extractYouTubeId(video.embedUrl) !== featuredId)
     .slice(0, RECENT_VIDEO_COUNT);
 
-  // Prefer the live feed; fall back to the curated videos in content when the
-  // feed is empty or couldn't be fetched.
   const videos = liveVideos.length > 0 ? liveVideos : curatedVideos;
 
   return (
