@@ -1,0 +1,90 @@
+{
+  "versionNumber": "3.11.0",
+  "dateReleased": "2026-07-16T02:13:18Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "Editorial-workflow saves (Save draft / Save to a new branch, and the media create-branch flow) now run a single branch-list lookup instead of two sequential ones, roughly halving the delay before the progress modal appears.",
+          "pull_request_number": "7235",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7235",
+          "commit_hash": "908fe7d",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/908fe7ddc1c01a2c091f1e4f3c1b00f3696577b4",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "`Button` now renders the shared loading-dots indicator automatically when `busy`, so every busy button gets a consistent spinner instead of each call site wiring its own (and some, like the account password form, were missing it entirely). The dots inherit the button text color so they stay visible across variants.",
+          "pull_request_number": "7194",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7194",
+          "commit_hash": "711ba30",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/711ba30f6e8955bbcea134fd22a5b498b7734325",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Keep folder collection views open when they only contain one document.",
+          "pull_request_number": "7161",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7161",
+          "commit_hash": "566af78",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/566af78ded66891edeb6fdf928b6543d45ac76fd",
+          "gitHubName": "ahfoysal",
+          "gitHubLink": "https://github.com/ahfoysal"
+        },
+        {
+          "changesDescription": "Fix the rich-text link popover not appearing when adding or editing a link.",
+          "pull_request_number": "7251",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7251",
+          "commit_hash": "b8df6ee",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b8df6eeee85b603406d204042a5ef95d49e8a9cf",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Show a clear error when repo-based media is used with a self-hosted site, instead of a misleading \"Bad Route\" message.",
+          "pull_request_number": "7204",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7204",
+          "commit_hash": "59efccc",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/59efcccd3f1713870e40ebd9db25659cd6357237",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Publish internal package references as ranges instead of exact versions.",
+          "pull_request_number": "7213",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7213",
+          "commit_hash": "056ffc2",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/056ffc22dc87b0040281054f4140c6260c22ea1f",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/bridge@0.3.1",
+          "commit_hash": "cdbf469",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/cdbf469"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.1.11",
+          "commit_hash": "cdbf469",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/cdbf469"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.23",
+          "commit_hash": "cdbf469",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/cdbf469"
+        }
+      ]
+    }
+  ]
+}
