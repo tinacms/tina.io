@@ -53,6 +53,11 @@ export const conferenceTinaCMSCollection = {
           type: 'string',
         },
         {
+          name: 'locationLink',
+          label: 'Location Link',
+          type: 'string',
+        },
+        {
           name: 'actionButton',
           label: 'Left Button',
           type: 'object',

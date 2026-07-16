@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { FaRegCalendar, FaRegMap, FaRegStar } from 'react-icons/fa';
-import { FaRegClock } from 'react-icons/fa6';
+import { FaArrowRightLong, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
@@ -36,13 +36,17 @@ const HeaderBanner = ({
         </div>
         <div className="flex gap-2 items-center">
           <FaRegMap />{' '}
-          <Link
-            href="https://www.ssw.com.au/offices/sydney"
-            target="_blank"
-            className="underline"
-          >
-            {tinaData.location}
-          </Link>
+          {tinaData.locationLink ? (
+            <Link
+              href={tinaData.locationLink}
+              target="_blank"
+              className="underline"
+            >
+              {tinaData.location}
+            </Link>
+          ) : (
+            <span>{tinaData.location}</span>
+          )}
         </div>
       </div>
       <div className="flex flex-row gap-4">
@@ -485,6 +489,15 @@ function ConferencePage({
           />
         )}
         <Agenda filteredSessions={filteredSessions} agendaRef={agendaRef} />
+        <Link
+          href="/events"
+          className="mt-16 font-bold flex items-center w-fit gap-2 group underline hover:no-underline transition-all duration-300"
+        >
+          <span className="text-black group-hover:text-blue-600">
+            SEE ALL EVENTS
+          </span>
+          <FaArrowRightLong className="text-black group-hover:text-blue-600" />
+        </Link>
       </div>
     </div>
   );
