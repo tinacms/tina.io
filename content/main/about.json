@@ -11,7 +11,7 @@
       },
       "headline": "Meet Tina",
       "text": " TinaCMS is a developer-friendly, open-source CMS powered by Git and Markdown. Enjoy live previews, real-time editing, and seamless integration for devs - all while keeping content creators in control. No databases, no hassle.",
-      "margin": " lg:pb-24",
+      "margin": " lg:pb-16",
       "spacing": "",
       "_template": "hero"
     },
@@ -83,7 +83,7 @@
     },
     {
       "isVideoOnLeft": true,
-      "body": "## Best CMS on GitHub\n\nDiscover why developers and content editors love TinaCMS, from its real-time updates and Markdown simplicity to its unbeatable version control powered by GitHub. Plus, learn about Tina's exciting future with SSW!\n",
+      "body": "## Best CMS on GitHub\n\nEver wondered who changed the content on a website?\n\nTinaCMS combines GitHub's powerful version control with a simple Markdown editor, making it easy for anyone to update content.\n\nPeople ❤️ Tina because:\n\n* Content is written in Markdown instead of HTML and CSS, making it much easier to maintain\n* There is no database to manage, the content lives in simple .md files alongside your code\n* Anyone can suggest improvements by submitting a GitHub pull request, which you can review and approve with a click\n* Tina's Editorial Workflow simplifies GitHub's powerful review and approval process for non-technical users\n* GitHub's contribution graph rewards contributors with green squares as they make improvements to your site\n",
       "mediaColumnItem": [
         {
           "embedUrl": "https://www.youtube.com/embed/SjDsLgpuaJI?si=6bSk_qhwLycGd5ka",
