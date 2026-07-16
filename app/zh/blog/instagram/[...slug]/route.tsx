@@ -1,7 +1,3 @@
-// Dynamic 4:5 Instagram image (zh) for a blog post, as a Route Handler. See
-// app/blog/og/[...slug] for why this is a route handler rather than the
-// opengraph-image convention.
-
 import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { renderBlogInstagramImage } from 'utils/og/blogInstagramImage';

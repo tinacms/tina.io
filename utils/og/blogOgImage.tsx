@@ -1,10 +1,3 @@
-// Renders the dynamic OpenGraph image for a blog post (served by the route
-// handlers under app/blog/og and app/zh/blog/og).
-//
-// Design: a dark charcoal left side (title, "By {author}", tinacms logo, "New
-// Post" pill) and an orange S-curve panel on the right holding the author's
-// cutout — or a llama mascot when there's no photo.
-
 import { ImageResponse } from 'next/og';
 import { authorImagePath, type LlamaSrc, pickLlama } from './authorImages';
 import { logoDataUri, ogFonts, pngDataUri } from './ogAssets';
@@ -22,17 +15,13 @@ export const OG_SIZE = { width: 1200, height: 630 };
 const W = OG_SIZE.width;
 const H = OG_SIZE.height;
 
-// Orange panel occupies ~42% on the right; its left edge is a vertical S-curve.
-// EDGE = nominal divider x; the curve swings AMP px either side as it descends.
-const EDGE = Math.round(W * 0.58); // ~696
+const EDGE = Math.round(W * 0.58);
 const AMP = 70;
 
 const ORANGE_PANEL_URI = orangePanelUri({ W, H, edge: EDGE, amp: AMP });
 const DARK_OVERLAY_URI = darkOverlayUri({ W, H, edge: EDGE, amp: AMP });
 const DOT_GRID_URI = dotGridUri({ W, H, maxX: EDGE - 130 });
 
-// Bottom-right placement on the orange panel, tuned per subject (silhouettes
-// differ a lot). The dark overlay clips anything that overflows past the curve.
 const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
   '/ai-llamas/Relax-Llama.png': { width: 352, bottom: 0, right: 46 },
   '/ai-llamas/tina-llama-working-laptop-table.png': {
@@ -42,15 +31,9 @@ const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
   },
 };
 
-// Author cutouts are trimmed to the person, then fit to a fixed HEIGHT and
-// centred in this panel area, bottom-anchored — so every author is sized and
-// placed identically, never cropped (no straight edges) and never clipping.
 const AUTHOR_AREA = { width: 540, right: 0, height: H };
-const AUTHOR_HEIGHT = 552; // leaves ~78px headroom above the head
+const AUTHOR_HEIGHT = 552;
 
-// Font shrinks by length so each tier's longest title still fits ~4 lines in
-// the title column (satori doesn't honour line-clamp, so we size to fit), then
-// truncates beyond TITLE_CAP. Tiers are [maxLength, fontSize], largest-first.
 const TITLE_TIERS: ReadonlyArray<[number, number]> = [
   [40, 64],
   [62, 54],
@@ -62,7 +45,6 @@ const TITLE_CAP = 86;
 export interface BlogOgInput {
   title: string;
   author?: string | null;
-  /** Stable seed for the llama fallback (use the post slug). */
   seed: string;
 }
 
@@ -71,9 +53,6 @@ export async function renderBlogOgImage({
   author,
   seed,
 }: BlogOgInput): Promise<ImageResponse> {
-  // Right-hand subject: the author's trimmed cutout if we have one, otherwise a
-  // llama mascot. Authors fit-to-height + centre in the panel; the llama
-  // mascots are scene illustrations placed by their own per-llama layout.
   const mappedAvatar = authorImagePath(author);
   const avatarUri = mappedAvatar ? await pngDataUri(mappedAvatar) : null;
   const llamaSrc = pickLlama(seed);
@@ -88,8 +67,6 @@ export async function renderBlogOgImage({
     TITLE_FONT_MIN,
   );
 
-  // Author display: keep the full credited string, but the avatar reflects the
-  // first author only.
   const authorLabel = author?.trim() || 'The TinaCMS Team';
 
   return new ImageResponse(
@@ -105,7 +82,6 @@ export async function renderBlogOgImage({
           'linear-gradient(135deg, #1b1a1f 0%, #0a0a0b 55%, #050505 100%)',
       }}
     >
-      {/* Orange S-curve panel */}
       {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
       {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
       <img
@@ -115,8 +91,6 @@ export async function renderBlogOgImage({
         style={{ position: 'absolute', top: 0, left: 0 }}
       />
 
-      {/* AUTHOR — trimmed cutout, fit to a fixed height and centred in the
-          panel area, bottom-anchored. Same treatment for every author. */}
       {avatarUri ? (
         <div
           style={{
@@ -136,7 +110,6 @@ export async function renderBlogOgImage({
         </div>
       ) : null}
 
-      {/* LLAMA fallback — scene illustration placed by its own layout */}
       {llamaUri ? (
         // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
         // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
@@ -152,8 +125,6 @@ export async function renderBlogOgImage({
         />
       ) : null}
 
-      {/* DARK CLIP OVERLAY — repaints the dark side over any overflow,
-          clipping the subject exactly along the curve */}
       {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
       {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
       <img
@@ -163,7 +134,6 @@ export async function renderBlogOgImage({
         style={{ position: 'absolute', top: 0, left: 0 }}
       />
 
-      {/* faint dot texture on the dark side */}
       {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
       {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
       <img
@@ -173,7 +143,6 @@ export async function renderBlogOgImage({
         style={{ position: 'absolute', top: 0, left: 0 }}
       />
 
-      {/* LEFT COLUMN (dark charcoal side) */}
       <div
         style={{
           display: 'flex',
@@ -185,7 +154,6 @@ export async function renderBlogOgImage({
           position: 'relative',
         }}
       >
-        {/* New Post pill (white on dark, orange dot) */}
         <div style={{ display: 'flex' }}>
           <div
             style={{
@@ -215,7 +183,6 @@ export async function renderBlogOgImage({
           </div>
         </div>
 
-        {/* Title (vertically centred so it never collides with the row below) */}
         <div
           style={{
             display: 'flex',
@@ -241,7 +208,6 @@ export async function renderBlogOgImage({
           </div>
         </div>
 
-        {/* Author + official Tina logo */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div
             style={{

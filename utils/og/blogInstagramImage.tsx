@@ -1,13 +1,3 @@
-// Renders the 4:5 portrait Instagram image for a blog post (served by the route
-// handlers under app/blog/instagram and app/zh/blog/instagram).
-//
-// Layout: a dark top zone carries the full-width headline, "New Post" pill, "By
-// {author}" and the tinacms logo; an orange brand-gradient panel sweeps across
-// the bottom with the author's cutout (or a llama) standing on it and rising up
-// into the dark above the curve. Same brand language as the landscape OG image
-// (utils/og/blogOgImage), re-composed top/bottom for portrait — so text lives
-// entirely on the dark side and never crosses the curve.
-
 import { ImageResponse } from 'next/og';
 import { authorImagePath, type LlamaSrc, pickLlama } from './authorImages';
 import { logoDataUri, ogFonts, pngDataUri } from './ogAssets';
@@ -23,23 +13,16 @@ export const IG_SIZE = { width: 1080, height: 1350 };
 const W = IG_SIZE.width;
 const H = IG_SIZE.height;
 
-// The orange panel sweeps across the bottom; CY is the nominal y of its top
-// edge — low enough that the subject overlaps up into the dark zone above it.
 const CY = 700;
 const ORANGE_PANEL_URI = orangeSweepUri({ W, H, cy: CY });
 const DOT_GRID_URI = dotGridUri({ W, H, maxX: W - 44, maxY: CY });
 
-// Subject: centred and bottom-anchored. Author cutouts fit to a fixed height;
-// the llamas are scene illustrations sized by width.
 const AUTHOR_HEIGHT = 770;
 const LLAMA_WIDTH: Record<LlamaSrc, number> = {
   '/ai-llamas/Relax-Llama.png': 520,
   '/ai-llamas/tina-llama-working-laptop-table.png': 600,
 };
 
-// Full-width headline on the dark top zone. Font shrinks by length ([maxLength,
-// fontSize], largest-first) then truncates beyond TITLE_CAP; TITLE_MAX_H caps
-// the block so a long headline stays clear of the subject below.
 const TITLE_TIERS: ReadonlyArray<[number, number]> = [
   [42, 82],
   [82, 66],
@@ -52,7 +35,6 @@ const TITLE_MAX_H = 240;
 export interface BlogInstagramInput {
   title: string;
   author?: string | null;
-  /** Stable seed for the llama fallback (use the post slug). */
   seed: string;
 }
 
@@ -74,8 +56,6 @@ export async function renderBlogInstagramImage({
     TITLE_TIERS,
     TITLE_FONT_MIN,
   );
-  // Credit the first author (also the featured photo); avoids overflowing a
-  // long multi-author line.
   const firstAuthor = author?.split(/&|,| and /i)[0]?.trim();
   const authorLabel = firstAuthor || 'The TinaCMS Team';
 
@@ -92,7 +72,6 @@ export async function renderBlogInstagramImage({
           'linear-gradient(160deg, #1b1a1f 0%, #0a0a0b 55%, #050505 100%)',
       }}
     >
-      {/* faint dot texture on the dark top zone */}
       {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
       {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
       <img
@@ -102,7 +81,6 @@ export async function renderBlogInstagramImage({
         style={{ position: 'absolute', top: 0, left: 0 }}
       />
 
-      {/* orange brand panel sweeping across the bottom */}
       {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
       {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
       <img
@@ -112,7 +90,6 @@ export async function renderBlogInstagramImage({
         style={{ position: 'absolute', top: 0, left: 0 }}
       />
 
-      {/* SUBJECT — centred, bottom-anchored; rises into the dark above the curve */}
       <div
         style={{
           position: 'absolute',
@@ -136,7 +113,6 @@ export async function renderBlogInstagramImage({
         ) : null}
       </div>
 
-      {/* TEXT — dark top zone, all white on one background */}
       <div
         style={{
           position: 'absolute',
