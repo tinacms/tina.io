@@ -96,6 +96,8 @@ http://localhost:4321/admin/index.html
 
 You should see the TinaCMS admin, be able to select a post, save, and watch changes persist to your local content files.
 
+> **Astro 6+ for live content refresh:** when you create a new entry, its page appears in the running dev site without a restart. This needs **Astro 6 or newer**. On Astro 5 a newly created entry can 404 until you restart `pnpm dev`; the integration prints a reminder in your terminal when it detects Astro 5.
+
 ![TinaCMS Admin](/img/hugo-tina-admin-screenshot.png)
 
 ## Enabling Visual Editing
