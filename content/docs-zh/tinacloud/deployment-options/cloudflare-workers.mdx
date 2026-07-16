@@ -1,97 +1,127 @@
 ---
 id: /docs/tinacloud/deployment-options/cloudflare-workers
 title: 部署到 Cloudflare Workers
-last_edited: '2026-07-09T00:00:00.000Z'
+last_edited: '2026-07-10T00:00:00.000Z'
 next: content/docs-zh/tinacloud/deployment-options/alibaba-cloud.mdx
 previous: content/docs-zh/tinacloud/deployment-options/cloudflare-pages.mdx
 ---
 
-TinaCMS 通过与 Git 连接的构建与 Cloudflare Workers 一起工作。每次推送到你的生产分支都会运行构建（包括 `tinacms build` 步骤）并将结果部署到 Workers 运行时。
+当您的网站在请求时需要服务器时，可以部署到 Cloudflare Workers：SSR、API 路由、重定向或 Tina 可视化编辑路由。每次推送到您的生产分支都会重新构建和重新部署。
 
-当你的网站需要在请求时有一个服务器时，Workers 是合适的目标：SSR 路由、API 端点、重定向，以及 — 对于 Astro 启动器 — 支持点击编辑可视化编辑的按需路由。
+## Astro
 
-<WarningCallout
-  body={<>
-    **Astro 用户：** 部署到 Workers，而不是 [Cloudflare Pages](/docs/tinacloud/deployment-options/cloudflare-pages)。`@astrojs/cloudflare` 适配器 [不再支持 Cloudflare Pages](https://docs.astro.build/en/guides/integrations-guide/cloudflare/) — 它的目标是 Workers。启动器的可视化编辑路由（`src/pages/tina-island/[name].ts`）是服务器渲染的（`prerender = false`），因此仅静态的 Pages 上传会在请求时破坏点击编辑功能。
-  </>}
-/>
+将您的项目推送到 GitHub，然后使用 Cloudflare 的基于 git 的构建或直接从您的机器进行部署。
 
-## Astro (`tina-astro-starter`)
+### 为 Cloudflare 配置
 
-这将从一个干净的检出开始，指导 [Astro 启动器](https://github.com/tinacms/tina-astro-starter) 到一个实时的 Workers 部署。首先将你的项目推送到 GitHub 仓库。
-
-### 1. 适配器和 `wrangler.jsonc`（已在启动器中）
-
-无需配置 — 启动器为你提供了这些：
-
-* `astro.config.mjs` **自动检测主机**。在 Cloudflare 的基于 Git 的 Workers 构建中，`WORKERS_CI` 环境变量会自动设置，这会选择 `@astrojs/cloudflare` 适配器。你不需要运行 `npx astro add cloudflare`，也不需要编辑配置。
-* 根目录的 **`wrangler.jsonc`** 启用了 `nodejs_compat`。可视化编辑路由使用 `node:async_hooks` (`AsyncLocalStorage`); 没有这个标志，岛屿路由在运行时会失败：
+* 使用 `npx astro add cloudflare` 添加 Cloudflare 适配器。它会安装 `@astrojs/cloudflare` 并在 `astro.config.mjs` 中设置 `adapter: cloudflare()`。
+* 添加一个根 `wrangler.jsonc`，开启 `nodejs_compat`，可视化编辑路由需要它来支持 `node:async_hooks`：
 
 ```jsonc
 {
-  "name": "tina-astro-starter",
+  "name": "your-worker-name",
   "compatibility_date": "2026-06-01",
   "compatibility_flags": ["nodejs_compat"]
 }
 ```
 
-这个最小配置就是 Wrangler 所需的全部 — 适配器在构建时连接 Worker 入口点和静态资产绑定。
+> **使用 [tina-astro-starter](https://github.com/tinacms/tina-astro-starter) 吗？** 这两步已经完成。它的 `astro.config.mjs` 从主机中选择适配器（Cloudflare 的构建设置 `WORKERS_CI`，在支持的适配器中选择 `@astrojs/cloudflare`），并且 `wrangler.jsonc` 已在仓库中，因此您无需运行 `astro add` 或编辑配置。
 
-> **将 TinaCMS 添加到现有的 Astro 站点？** 运行 `npx astro add cloudflare`，然后在仓库根目录创建一个 `wrangler.jsonc`，其中包含 `compatibility_flags: ["nodejs_compat"]` 和一个最近的 `compatibility_date`。
+### 使用基于 git 的构建进行部署
 
-### 2. 创建 Worker
+在 Cloudflare 仪表板中，转到 **Workers & Pages** | **Create** | **Workers** | **Import a repository**，连接 GitHub，并选择您的仓库。设置：
 
-在 Cloudflare 仪表板中，转到 **Workers & Pages** | **Create** | **Workers** | **Import a repository**，连接你的 GitHub 账户，并选择你的仓库。
-
-在 **Build configuration** 下设置构建：
-
-* **Build command:** `pnpm build` — 启动器的 `build` 脚本是 `tinacms build --content=local -c "astro build"`，它会索引你提交的内容，然后运行 `astro build`。
+* **Build command:** `pnpm run build`
 * **Deploy command:** `npx wrangler deploy`
-* **Build output:** `dist`（Astro 的默认值；你不需要更改这个）。
 
-这里 **不需要** `DEPLOY_ADAPTER` — `WORKERS_CI` 会自动检测。你只在没有主机环境变量适用的手动部署中设置 `DEPLOY_ADAPTER=cloudflare`（例如从你自己的机器运行 `npx wrangler deploy`）。
+没有需要设置的构建输出字段。Worker 从适配器生成的配置中获取静态资产，而不是仪表板目录，Cloudflare 为您进行身份验证部署。
 
-### 3. 环境变量
+### 从 Wrangler CLI 部署
 
-`tinacms build` 在构建时需要你的 TinaCloud 凭证。在 Worker's **Settings** | **Build** | **Variables and Secrets** 下添加这些（从你的 [TinaCloud 项目](https://app.tina.io) 获取两个凭证）：
+将您的 TinaCloud 凭据放在本地 `.env` 中，然后构建和部署：
 
-* `PUBLIC_TINA_CLIENT_ID` — 你的 TinaCloud 客户端 ID。**Astro 使用 `PUBLIC_` 前缀**，而不是 Next.js 的 `NEXT_PUBLIC_`。
-* `TINA_TOKEN` — 来自 TinaCloud 的内容令牌。
-* `SITE_URL` — 你的生产 URL（例如 `https://your-worker.your-account.workers.dev`，或你的自定义域名）。Cloudflare Workers 不注入部署 URL 变量，因此没有 `SITE_URL`，你的站点地图、RSS 和 OpenGraph 标签会回退到 `localhost`。
+```sh
+pnpm run build
+npx wrangler deploy
+```
 
-<WarningCallout
-  body={<>
-    Workers 将 **构建** 变量和 **运行时** 变量分开。岛屿路由在请求时读取你的 TinaCloud 客户端 ID 和令牌，因此在 **Settings** | **Variables and Secrets** 下再次添加 `PUBLIC_TINA_CLIENT_ID` 和 `TINA_TOKEN`（不仅仅是构建部分）。`SITE_URL` 仅在构建时使用。
-  </>}
-/>
+> **使用 starter 吗？** 在您自己的机器上没有设置 CI 变量，因此构建会回退到 Node 适配器。强制使用 Cloudflare：`DEPLOY_ADAPTER=cloudflare pnpm run build`。
 
-### 4. 验证可视化编辑在请求时是否有效
+### 环境变量
 
-首次部署后：
+`tinacms build` 在构建时需要您的 TinaCloud 凭据。无论您在哪里构建都要添加它们：对于基于 git 的构建，在 Worker's **Settings** | **Build** | **Variables and Secrets** 下；对于 CLI 部署，在本地 `.env` 中。从您的 [TinaCloud 项目](https://app.tina.io) 获取这两个凭据。
 
-1. 在你的 Worker 的 URL 上打开 `/admin`，编辑一篇文章并保存。保存会提交到 GitHub，从而触发重建和重新部署。
-2. 打开一个内容页面并确认 **点击编辑** 是否有效：点击一个可编辑区域会高亮显示并在侧边栏打开其表单。这会测试在 Worker 内运行的按需 `/tina-island/*` 路由 — 如果出错，请检查 `nodejs_compat` 是否已设置以及你的运行时变量是否存在。
+* `PUBLIC_TINA_CLIENT_ID` 是您的客户端 ID。Astro 使用 `PUBLIC_` 前缀，而不是 Next.js 的 `NEXT_PUBLIC_`。
+* `TINA_TOKEN` 是内容令牌。
+* `SITE_URL` 是您的生产 URL，例如 `https://your-worker.your-account.workers.dev`。Workers 不会注入部署 URL，因此没有它，您的站点地图、RSS 和 OpenGraph 标签将回退到 `localhost`。
+
+这些仅在构建时使用。`tinacms build` 将客户端 ID 和令牌嵌入到生成的客户端中，因此无需再次添加为运行时变量。
+
+### 编辑分支
+
+TinaCMS 在 `tina/config.ts` 中解析的分支上读取和写入内容，该分支来自主机的 git 环境变量。在 Cloudflare 上是 `WORKERS_CI_BRANCH`（Workers Builds）或 `CF_PAGES_BRANCH`（Pages）。将它们添加到链中：
+
+```ts
+const branch =
+  process.env.GITHUB_BRANCH ||
+  process.env.VERCEL_GIT_COMMIT_REF ||
+  process.env.WORKERS_CI_BRANCH ||
+  process.env.CF_PAGES_BRANCH ||
+  process.env.HEAD ||
+  "main";
+```
+
+没有它们，分支将回退到 `main`，因此预览或非 `main` 部署将编辑 `main`，而站点从您的分支构建。
+
+> **使用 starter 吗？** 它的 `config.ts` 已经读取了这两个变量。
+
+### 固定 SESSION KV 命名空间
+
+即使您的站点不使用会话，`@astrojs/cloudflare` 适配器也会添加一个 `SESSION` KV 绑定（Astro 的会话存储）。您的第一次部署会自动创建命名空间，但 Cloudflare 不会将其 ID 写回到您的仓库，因此下一次基于 git 的部署会尝试再次创建它并失败：
+
+```
+✘ a namespace with this account ID and title already exists [code: 10014]
+```
+
+编辑器保存会触发重新部署，因此您将在第二次保存时遇到此问题。在您的根 `wrangler.jsonc` 中固定命名空间 ID，以便每次部署重用它。创建一个：
+
+```sh
+npx wrangler kv namespace create SESSION
+```
+
+或者从 **Workers & Pages** | **KV** 中复制您的第一次部署已经创建的 ID。然后将其添加到配置中：
+
+```jsonc
+{
+  "name": "your-worker-name",
+  "compatibility_date": "2026-06-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "kv_namespaces": [{ "binding": "SESSION", "id": "<your-namespace-id>" }]
+}
+```
+
+### 检查可视化编辑
+
+部署后，在您的 Worker 的 URL 上打开 `/admin`，编辑一篇文章并保存。保存提交到 GitHub，触发重新部署。然后打开一个内容页面并点击一个可编辑区域：它应该高亮并在侧边栏中打开其表单。这会测试在 Worker 内运行的按需 `/tina-island/*` 路由。如果出现错误，请确认 `nodejs_compat` 已设置。
 
 ## Next.js
 
-使用 [OpenNext Cloudflare 适配器](https://opennext.js.org/cloudflare) 并按照其设置生成 `open-next.config.ts` 和 `wrangler.jsonc`。
-
-在仪表板中（**Workers & Pages** | **Create** | **Workers** | **Import a repository**），设置：
+使用 [OpenNext Cloudflare 适配器](https://opennext.js.org/cloudflare) 生成 `open-next.config.ts` 和 `wrangler.jsonc`。在仪表板中（**Workers & Pages** | **Create** | **Workers** | **Import a repository**），设置：
 
 * **Build command:** `npx opennextjs-cloudflare build`
 * **Deploy command:** `npx opennextjs-cloudflare deploy`
 
-在 **Settings** | **Build** | **Variables and Secrets** 下添加你的构建时凭证：
+在 **Settings** | **Build** | **Variables and Secrets** 下添加您的构建时凭据：
 
-* `NEXT_PUBLIC_TINA_CLIENT_ID` — 你的 TinaCloud 客户端 ID。
-* `TINA_TOKEN` — 来自 TinaCloud 的内容令牌。
+* `NEXT_PUBLIC_TINA_CLIENT_ID` 是您的客户端 ID。
+* `TINA_TOKEN` 是内容令牌。
 
-与 Astro 一样，Workers 将构建和运行时变量分开 — 如果你的 OpenNext SSR 在请求时读取这些变量，请在 **Settings** | **Variables and Secrets** 下再次添加它们。
+如果您的 OpenNext SSR 在请求时读取这些内容，请在 **Settings** | **Variables and Secrets** 下也添加它们。
 
 ## 完成 TinaCloud 设置
 
-你的首次部署会给你一个默认域名，如 `https://<worker-name>.<account-name>.workers.dev`。在你的 TinaCloud 项目的配置中将此（或你的自定义域名）设置为 **Site URL**，以便编辑器在正确的来源加载。
+您的第一次部署会为您提供一个域名，例如 `https://<worker-name>.<account-name>.workers.dev`。将其（或您的自定义域）设置为您的 TinaCloud 项目的 **Site URL**，以便编辑器在正确的源上加载。
 
 ## 故障排除
 
-**构建期间 "JavaScript heap out of memory"。** TinaCloud 索引步骤可能会超过 Node 的默认堆。通过设置构建时环境变量 `NODE_OPTIONS` 为 `--max-old-space-size=4096` 来提高它。
+**构建期间“JavaScript 堆内存不足”。** TinaCloud 索引可能会超过 Node 的默认堆。设置一个构建时 `NODE_OPTIONS` 变量为 `--max-old-space-size=4096`。
