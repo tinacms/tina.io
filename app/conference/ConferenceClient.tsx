@@ -128,6 +128,9 @@ const conferenceMarkdownComponents = {
       {children}
     </Link>
   ),
+  p: ({ children }: { children: React.ReactNode }) => (
+    <p className="mb-4 last:mb-0">{children}</p>
+  ),
 };
 
 interface Speaker {
