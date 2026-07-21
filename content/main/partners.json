@@ -96,32 +96,6 @@
             "Migrations"
           ],
           "website": "https://www.ssw.com.au"
-        },
-        {
-          "name": "Comedia",
-          "logo": "/svg/logos/comedia.svg",
-          "tier": "Certified",
-          "location": "Remote, EU",
-          "description": "Digital studio crafting brand and marketing sites with a focus on editor-friendly visual editing.",
-          "services": [
-            "Marketing sites",
-            "Branding",
-            "Astro"
-          ],
-          "website": "https://www.comediadesign.com"
-        },
-        {
-          "name": "Shadow Lion",
-          "logo": "/svg/logos/shadowlion.svg",
-          "tier": "Certified",
-          "location": "London, UK",
-          "description": "Boutique agency building fast, content-rich websites for media and publishing clients.",
-          "services": [
-            "Publishing",
-            "Performance",
-            "Hugo"
-          ],
-          "website": "https://shadowlion.com"
         }
       ],
       "_template": "partnerGrid"

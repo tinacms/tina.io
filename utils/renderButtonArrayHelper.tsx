@@ -6,11 +6,7 @@ const RenderButton = ({ button, className = '' }) => {
   if (button.__typename.includes('Actions')) {
     return <Actions items={[button]} className={className} />;
   } else if (button.__typename.includes('ModalButton')) {
-    return (
-      <div className="lg:-mt-0.5">
-        <ModalB items={[button]} className={className} />
-      </div>
-    );
+    return <ModalB items={[button]} className={className} />;
   } else if (button.__typename.includes('CodeButton')) {
     return (
       <div>
