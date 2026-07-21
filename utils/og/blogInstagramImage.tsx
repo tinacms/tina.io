@@ -44,12 +44,12 @@ export async function renderBlogInstagramImage({
   seed,
 }: BlogInstagramInput): Promise<ImageResponse> {
   const mappedAvatar = authorImagePath(author);
-  const avatarUri = mappedAvatar ? pngDataUri(mappedAvatar) : null;
+  const avatarUri = mappedAvatar ? await pngDataUri(mappedAvatar) : null;
   const llamaSrc = pickLlama(seed);
-  const llamaUri = avatarUri ? null : pngDataUri(llamaSrc);
+  const llamaUri = avatarUri ? null : await pngDataUri(llamaSrc);
   const llamaWidth = LLAMA_WIDTH[llamaSrc];
 
-  const logo = logoDataUri();
+  const logo = await logoDataUri();
   const displayTitle = truncateTitle(title.trim() || 'TinaCMS Blog', TITLE_CAP);
   const fontSize = pickFontSize(
     displayTitle.length,
@@ -203,7 +203,7 @@ export async function renderBlogInstagramImage({
     </div>,
     {
       ...IG_SIZE,
-      fonts: ogFonts(),
+      fonts: await ogFonts(),
     },
   );
 }
