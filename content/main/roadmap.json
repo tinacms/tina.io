@@ -73,6 +73,20 @@
         },
         {
           "icon": "FaRegCheckCircle",
+          "heading": "TinaCMS - Telemetry (powered by PostHog)\n",
+          "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
+          "actions": [
+            {
+              "label": "PostHog ",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://posthog.com/"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
           "heading": "GitHub Enterprise Support\n",
           "status": "",
           "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n",
@@ -254,20 +268,6 @@
               "variant": "default",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/discussions/6782"
-            }
-          ]
-        },
-        {
-          "icon": "FaHourglassHalf",
-          "heading": "TinaCMS - Telemetry (powered by PostHog)\n",
-          "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
-          "actions": [
-            {
-              "label": "PostHog 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
-              "url": "https://posthog.com/"
             }
           ]
         },
