@@ -38,6 +38,43 @@ const partnerTypeOptions = ['Sole developer', 'Agency'];
 const agencySizeOptions = ['1-5', '6-20', '21-50', '50+'];
 const availabilityOptions = ['Full-time', 'Part-time', 'Project-based'];
 
+const FormSelect = ({
+  name,
+  placeholder,
+  options,
+  value,
+  onValueChange,
+  required,
+  disabled,
+}: {
+  name?: string;
+  placeholder: string;
+  options: string[];
+  value: string;
+  onValueChange: (value: string) => void;
+  required?: boolean;
+  disabled?: boolean;
+}) => (
+  <Select
+    name={name}
+    required={required}
+    value={value}
+    onValueChange={onValueChange}
+    disabled={disabled}
+  >
+    <SelectTrigger className="w-full">
+      <SelectValue placeholder={placeholder} />
+    </SelectTrigger>
+    <SelectContent>
+      {options.map((option) => (
+        <SelectItem key={option} value={option}>
+          {option}
+        </SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+);
+
 type ContactVariant = 'contact' | 'partner';
 
 interface ContactFormProps {
@@ -114,6 +151,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
   const messagePlaceholder = isAgency
     ? 'Tell us about your agency *'
     : config.messagePlaceholder;
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
@@ -151,7 +189,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         setFormData(initialFormData);
       } else {
         setMessage({
-          text: 'error',
+          text: '',
           type: 'error',
         });
       }
@@ -282,9 +320,11 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
       />
       {variant === 'partner' && (
         <>
-          <Select
+          <FormSelect
             name="partnerType"
             required
+            placeholder="Are you a sole developer or an agency? *"
+            options={partnerTypeOptions}
             value={formData.partnerType}
             onValueChange={(value) =>
               // Reset the type-specific answers when switching so hidden fields
@@ -297,18 +337,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
               }))
             }
             disabled={isProcessing}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Are you a sole developer or an agency? *" />
-            </SelectTrigger>
-            <SelectContent>
-              {partnerTypeOptions.map((option) => (
-                <SelectItem key={option} value={option}>
-                  {option}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          />
           {isAgency && (
             <>
               <Input
@@ -321,26 +350,17 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
                 required
                 className="w-full"
               />
-              <Select
+              <FormSelect
                 name="agencySize"
                 required
+                placeholder="How many developers on your team? *"
+                options={agencySizeOptions}
                 value={formData.agencySize}
                 onValueChange={(value) =>
                   setFormData((prev) => ({ ...prev, agencySize: value }))
                 }
                 disabled={isProcessing}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="How many developers on your team? *" />
-                </SelectTrigger>
-                <SelectContent>
-                  {agencySizeOptions.map((option) => (
-                    <SelectItem key={option} value={option}>
-                      {option}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              />
             </>
           )}
           {isSoleDeveloper && (
@@ -355,26 +375,17 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
                 required
                 className="w-full"
               />
-              <Select
+              <FormSelect
                 name="availability"
                 required
+                placeholder="What's your availability? *"
+                options={availabilityOptions}
                 value={formData.availability}
                 onValueChange={(value) =>
                   setFormData((prev) => ({ ...prev, availability: value }))
                 }
                 disabled={isProcessing}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="What's your availability? *" />
-                </SelectTrigger>
-                <SelectContent>
-                  {availabilityOptions.map((option) => (
-                    <SelectItem key={option} value={option}>
-                      {option}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              />
             </>
           )}
           <Textarea
@@ -389,24 +400,15 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
           />
         </>
       )}
-      <Select
+      <FormSelect
+        placeholder="How did you hear about us?"
+        options={referralOptions}
         value={formData.referralSource}
         onValueChange={(value) =>
           setFormData((prev) => ({ ...prev, referralSource: value }))
         }
         disabled={isProcessing}
-      >
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="How did you hear about us?" />
-        </SelectTrigger>
-        <SelectContent>
-          {referralOptions.map((option) => (
-            <SelectItem key={option} value={option}>
-              {option}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      />
       <Textarea
         placeholder={messagePlaceholder}
         name="message"
@@ -440,7 +442,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         <Button
           type="submit"
           color="orange"
-          disabled={isProcessing}
+          disabled={isProcessing || !isValidEmail}
           className="px-6 py-2.5"
         >
           {isProcessing ? 'Sending...' : config.submitLabel}

@@ -19,7 +19,9 @@ const RenderButton = ({ button, className = '' }) => {
     </CodeButton>
   ) : null;
 
-  if (!inner) return null;
+  if (!inner) {
+    return null;
+  }
 
   // Uniform cell for every button type: centered and with the child's own
   // vertical margins cancelled (e.g. ModalB's -mb-2), so mixed rows of action

@@ -8,6 +8,7 @@ export async function POST(request: NextRequest) {
       firstName,
       lastName,
       email,
+      phone,
       company,
       partnerType,
       portfolioUrl,
@@ -50,6 +51,7 @@ export async function POST(request: NextRequest) {
         ...(inquiryType ? [`Type: ${inquiryType}`, ''] : []),
         `Name: ${fullName}`,
         `Email: ${email}`,
+        `Phone: ${phone || 'N/A'}`,
         `Company: ${company || 'N/A'}`,
         ...(partnerType ? [`Sole developer or agency: ${partnerType}`] : []),
         ...(portfolioUrl

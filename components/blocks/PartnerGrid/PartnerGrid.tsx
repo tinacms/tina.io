@@ -104,7 +104,29 @@ const PartnerCard = ({ data }) => {
   );
 };
 
+// Shown alongside a lone partner so the row isn't a single card, and to give
+// visitors a path when no listed partner fits — we match them ourselves.
+const GetInContactCard = () => (
+  <div className="flex h-full flex-col gap-4 rounded-lg border-2 border-dashed border-blue-200 bg-blue-50/40 p-6 md:p-8">
+    <h3 className="text-xl font-ibm-plex text-blue-1000">Not sure who fits?</h3>
+    <p className="grow text-neutral-text-secondary">
+      If you want to know about other certified partners, send us an email at{' '}
+      <a
+        href="mailto:info@tina.io"
+        className="font-medium text-blue-500 hover:text-blue-700"
+      >
+        info@tina.io
+      </a>{' '}
+      and we'll send the full list.
+    </p>
+  </div>
+);
+
 export function PartnerGridBlock({ data, index }) {
+  // A single partner under "Vetted agencies... reach out to them directly"
+  // reads oddly — hide the heading/subtext so the lone card stands on its own.
+  const isSingle = data.items?.length === 1;
+
   // Suffix with `-section` so the anchor can't collide with an Actions/Modal
   // button whose label slugifies to the same value (e.g. a "Find a partner"
   // CTA that links here) — a duplicate id would make the browser jump to the
@@ -121,6 +143,7 @@ export function PartnerGridBlock({ data, index }) {
     >
       <Container width="wide">
         {data.title &&
+          !isSingle &&
           (data.blockSettings?.isHeadingOne ? (
             <h1
               className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
@@ -134,16 +157,25 @@ export function PartnerGridBlock({ data, index }) {
               {data.title}
             </h2>
           ))}
-        {data.subText && (
+        {data.subText && !isSingle && (
           <p className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center mx-auto py-4">
             {data.subText}
           </p>
         )}
-        <div className="grid grid-cols-1 gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
-          {data.items?.map((item) => (
-            <PartnerCard key={item.name} data={item} />
-          ))}
-        </div>
+        {isSingle ? (
+          <div className="flex flex-col items-center pt-8">
+            <div className="grid w-full max-w-3xl grid-cols-1 gap-8 sm:grid-cols-2">
+              <PartnerCard data={data.items[0]} />
+              <GetInContactCard />
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
+            {data.items?.map((item, i) => (
+              <PartnerCard key={`${item.name}-${i}`} data={item} />
+            ))}
+          </div>
+        )}
       </Container>
     </section>
   );

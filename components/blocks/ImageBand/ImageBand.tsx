@@ -13,10 +13,10 @@ export function ImageBandBlock({ data, index }) {
     <section key={`image-band-${index}`} className="w-full">
       <Container width="wide">
         <figure className="w-full">
-          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl shadow-lg md:aspect-[16/9]">
+          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl shadow-lg md:aspect-video">
             <Image
               src={data.image}
-              alt={data.alt || 'TinaCMS'}
+              alt={data.alt || data.caption || ''}
               fill
               sizes="(max-width: 1024px) 100vw, 1500px"
               className="object-cover"
