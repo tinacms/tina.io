@@ -747,6 +747,16 @@
       "source": "/blog/astro-is-the-default-tinacms-starter",
       "destination": "/blog/astro-is-becoming-the-default-tinacms-starter",
       "permanent": true
+    },
+    {
+      "source": "/blog/customblog_tinacmsai",
+      "destination": "/blog/vibe-blogging-with-tinacms",
+      "permanent": true
+    },
+    {
+      "source": "/zh/blog/customblog_tinacmsai",
+      "destination": "/zh/blog/vibe-blogging-with-tinacms",
+      "permanent": true
     }
   ]
 }
