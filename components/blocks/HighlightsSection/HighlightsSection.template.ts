@@ -11,7 +11,8 @@ export const highlightsSectionTemplate: Template = {
     {
       name: 'brandColorIcons',
       label: 'Use Brand Color Icons',
-      description: 'Render the highlight icons in the Tina brand color instead of black.',
+      description:
+        'Render the highlight icons in the Tina brand color instead of black.',
       type: 'boolean',
     },
     {
