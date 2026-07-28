@@ -1,14 +1,14 @@
 ---
 seo:
   description: >-
-    使用Next.js Pages Router设置TinaCMS。了解配置步骤、最佳实践以及如何实现流畅的编辑体验。
-title: Next.js Pages Router
+    使用Next.js页面路由设置TinaCMS。了解配置步骤、最佳实践以及如何实现流畅的编辑体验。
+title: Next.js 页面路由
 last_edited: '2025-10-21T09:40:45.384Z'
-next: content/docs-zh/frameworks/astro.mdx
+next: content/docs-zh/frameworks/hugo.mdx
 previous: content/docs-zh/frameworks/next/app-router.mdx
 ---
 
-> ☝️ 本指南假设您正在使用 **Next.js pages router**。
+> ☝️ 本指南假设您正在使用 **Next.js 页面路由**。
 
 ## 视频指南
 
@@ -22,7 +22,7 @@ previous: content/docs-zh/frameworks/next/app-router.mdx
 npx @tinacms/cli@latest init
 ```
 
-这将询问您一些设置问题。当提示输入 **public assets directory** 时，输入：**public**。
+这将询问您一些设置问题。当提示输入**公共资产目录**时，输入：**public**。
 
 ## 更新构建脚本
 
@@ -48,15 +48,15 @@ pnpm dev
 
 **我们推荐使用pnpm。**
 
-在TinaCMS运行时，导航到 `http://localhost:3000/admin/index.html`。
+在TinaCMS运行后，导航到 `http://localhost:3000/admin/index.html`。
 
-> ❓ 提示：如果运行此命令时出现错误，请查看 [常见错误](/docs/forestry/common-errors) 页面。
+> ❓ 提示：如果运行此命令时出现错误，请查看[常见错误](/docs/forestry/common-errors)页面。
 
-此时，您应该能够看到Tina管理页面，选择一个帖子，保存更改，并看到更改已持久化到本地的markdown文件中。
+此时，您应该能够看到Tina管理界面，选择一个帖子，保存更改，并看到更改持久化到本地的markdown文件中。
 
-![TinaCMS管理截图](/img/hugo-tina-admin-screenshot.png)
+![TinaCMS 管理界面截图](/img/hugo-tina-admin-screenshot.png)
 
-## TinaCMS配置文件
+## TinaCMS 配置文件
 
 运行 `tina init` 命令后，创建了一些文件以帮助您快速入门。其中之一是 `tina/config.ts` 文件。这是一个必需的配置文件，定义了所有的tina模式。
 
@@ -75,9 +75,9 @@ const branch =
 export default defineConfig({
   branch,
 
-  // 从tina.io获取
+  // 从 tina.io 获取
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  // 从tina.io获取
+  // 从 tina.io 获取
   token: process.env.TINA_TOKEN,
 
   build: {
@@ -261,3 +261,9 @@ export const getStaticProps = async (ctx) => {
 * [查看内容建模文档](/docs/schema/)
 * [了解如何查询您的内容](/docs/features/data-fetching/)
 * [部署您的网站](/docs/tinacloud)
+
+## 另请参阅
+
+* [Next.js 应用路由设置](/docs/frameworks/next/app-router/) - 使用React服务器组件的现代路由
+* [可视化编辑设置](/docs/contextual-editing/overview/) - 启用实时预览编辑
+* [其他框架指南](/docs/frameworks/astro/) - Astro、Hugo、Gatsby等
