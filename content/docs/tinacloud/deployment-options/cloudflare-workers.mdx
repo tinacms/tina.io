@@ -1,59 +1,127 @@
 ---
-title: Cloudflare Workers
-last_edited: '2026-06-10T00:46:42.475Z'
-next: ''
-previous: ''
+id: /docs/tinacloud/deployment-options/cloudflare-workers
+title: Deploying to Cloudflare Workers
+last_edited: '2026-07-10T00:00:00.000Z'
+next: content/docs/tinacloud/deployment-options/alibaba-cloud.mdx
+previous: content/docs/tinacloud/deployment-options/cloudflare-pages.mdx
 ---
 
-TinaCMS works with Cloudflare Workers when using git-connected builds. Every push to your production branch builds the site, including the `tinacms build` step, and deploys it to the Workers runtime.
+Deploy to Cloudflare Workers when your site needs a server at request time: SSR, API routes, redirects, or the Tina visual-editing route. Every push to your production branch rebuilds and redeploys.
 
-If your site is a fully static export, [Cloudflare Pages](/docs/tinacloud/deployment-options/cloudflare-pages) is the simpler option. Use Workers when your framework needs a server runtime (SSR routes, API endpoints, redirects,  etc.).
+## Astro
 
-## Add the Cloudflare Adapter
+Push your project to GitHub, then deploy it with Cloudflare's git-based builds or straight from your machine.
 
-Your starter needs to build for the Workers runtime
+### Configure for Cloudflare
 
-**Astro:**
+* Add the Cloudflare adapter with `npx astro add cloudflare`. It installs `@astrojs/cloudflare` and sets `adapter: cloudflare()` in `astro.config.mjs`.
+* Add a root `wrangler.jsonc` that turns on `nodejs_compat`, which the visual-editing route needs for `node:async_hooks`:
+
+```jsonc
+{
+  "name": "your-worker-name",
+  "compatibility_date": "2026-06-01",
+  "compatibility_flags": ["nodejs_compat"]
+}
+```
+
+> **Using the [tina-astro-starter](https://github.com/tinacms/tina-astro-starter)?** Both are already done. Its `astro.config.mjs` picks the adapter from the host (Cloudflare's builds set `WORKERS_CI`, which selects `@astrojs/cloudflare` among the supported adapters), and the `wrangler.jsonc` ships in the repo, so you never run `astro add` or edit the config.
+
+### Deploy with git-based builds
+
+In the Cloudflare dashboard, go to **Workers & Pages** | **Create** | **Workers** | **Import a repository**, connect GitHub, and pick your repo. Set:
+
+* **Build command:** `pnpm run build`
+* **Deploy command:** `npx wrangler deploy`
+
+There's no build-output field to set. A Worker gets its static assets from the adapter's generated config, not a dashboard directory, and Cloudflare authenticates the deploy for you.
+
+### Deploy from the Wrangler CLI
+
+Put your TinaCloud credentials in a local `.env`, then build and deploy:
+
+```sh
+pnpm run build
+npx wrangler deploy
+```
+
+> **Using the starter?** On your own machine no CI variable is set, so the build falls back to the Node adapter. Force Cloudflare: `DEPLOY_ADAPTER=cloudflare pnpm run build`.
+
+### Environment variables
+
+`tinacms build` needs your TinaCloud credentials at build time. Add them wherever you build: for git-based builds, under the Worker's **Settings** | **Build** | **Variables and Secrets**; for a CLI deploy, in your local `.env`. Grab both credentials from your [TinaCloud project](https://app.tina.io).
+
+* `PUBLIC_TINA_CLIENT_ID` is your client ID. Astro uses the `PUBLIC_` prefix, not Next.js's `NEXT_PUBLIC_`.
+* `TINA_TOKEN` is a content token.
+* `SITE_URL` is your production URL, e.g. `https://your-worker.your-account.workers.dev`. Workers injects no deploy URL, so without it your sitemap, RSS, and OpenGraph tags fall back to `localhost`.
+
+These are build-time only. `tinacms build` bakes the client ID and token into the generated client, so there's nothing to add again as a runtime variable.
+
+### Editing branch
+
+TinaCMS reads and writes content on the branch resolved in `tina/config.ts`, which comes from the host's git environment variable. On Cloudflare that's `WORKERS_CI_BRANCH` (Workers Builds) or `CF_PAGES_BRANCH` (Pages). Add them to the chain:
+
+```ts
+const branch =
+  process.env.GITHUB_BRANCH ||
+  process.env.VERCEL_GIT_COMMIT_REF ||
+  process.env.WORKERS_CI_BRANCH ||
+  process.env.CF_PAGES_BRANCH ||
+  process.env.HEAD ||
+  "main";
+```
+
+Without them the branch falls back to `main`, so a preview or non-`main` deploy would edit `main` while the site builds from your branch.
+
+> **Using the starter?** Its `config.ts` already reads both.
+
+### Pin the SESSION KV namespace
+
+The `@astrojs/cloudflare` adapter adds a `SESSION` KV binding (Astro's session store) even when your site doesn't use sessions. Your first deploy creates the namespace automatically, but Cloudflare doesn't write its ID back to your repo, so the next git-based deploy tries to create it again and fails:
 
 ```
-npx astro add cloudflare
+✘ a namespace with this account ID and title already exists [code: 10014]
 ```
 
-Then make sure a `wrangler.jsonc` exists at the repo root and points at the build
+Editor saves trigger a redeploy, so you would hit this on your second save. Pin the namespace ID in your root `wrangler.jsonc` so every deploy reuses it. Create one with:
 
-**Next.js**
+```sh
+npx wrangler kv namespace create SESSION
+```
 
-Use the [OpenNext Cloudflare adapter](https://opennext.js.org/cloudflare) and follow its setup to generate the `open-next.config.ts` and `wrangler.jsonc`.
+or copy the ID your first deploy already made from **Workers & Pages** | **KV**. Then add it to the config:
 
-## Create the Worker
+```jsonc
+{
+  "name": "your-worker-name",
+  "compatibility_date": "2026-06-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "kv_namespaces": [{ "binding": "SESSION", "id": "<your-namespace-id>" }]
+}
+```
 
-In the Cloudflare dashboard, go to **Workers & pages** | **Create** | **Workers** | **Import** **a repository**, connect your GitHub account and select your repo.
+### Check visual editing
 
-### Build Configuration
+After a deploy, open `/admin` on your Worker's URL, edit a post, and save. The save commits to GitHub, which triggers a redeploy. Then open a content page and click an editable region: it should highlight and open its form in the sidebar. That exercises the on-demand `/tina-island/*` route running inside the Worker. If it errors, confirm `nodejs_compat` is set.
 
-Build command: `pnpm run build` (Astro) or `npx opennextjs-cloudflare build` (Next.js)
+## Next.js
 
-Deploy command: `npx wrangler deploy` (Astro) or `npx opennextjs-cloudflare deploy` (Next.js)
+Use the [OpenNext Cloudflare adapter](https://opennext.js.org/cloudflare) to generate `open-next.config.ts` and `wrangler.jsonc`. In the dashboard (**Workers & Pages** | **Create** | **Workers** | **Import a repository**), set:
 
-### Environment Variables
+* **Build command:** `npx opennextjs-cloudflare build`
+* **Deploy command:** `npx opennextjs-cloudflare deploy`
 
-`tinacms build` requires your TinaCloud credentials at build time. Add the following in your Workers, **Settings **| **Build** | **Variables and Secrets**:
+Add your build-time credentials under **Settings** | **Build** | **Variables and Secrets**:
 
-* `PUBLIC_TINA_CLIENT_ID` (Astro) OR `NEXT_PUBLIC_TINA_CLIENT_ID` (Next.js) - Your TinaCloud client ID
-* `TINA_TOKEN` - The content token from TinaCloud | Tokens
+* `NEXT_PUBLIC_TINA_CLIENT_ID` is your client ID.
+* `TINA_TOKEN` is a content token.
 
-<WarningCallout
-  body={<>
-    Workers keep build variables and runtime variables separate. If your site reads any of the mentioned variables during runtime, add them again under **Settings** | **Variables and Secrets**
-  </>}
-/>
+If your OpenNext SSR reads these at request time, add them under **Settings** | **Variables and Secrets** too.
 
-## Finalising TinaCloud Setup
+## Finish TinaCloud setup
 
-Once you have your first deployment, Cloudflare will give you a default domain URL like `https://<site-name>.<account-name>.workers.dev`, make sure to set this as a Site URL inside your TinaCloud project's configuration!
+Your first deploy gives you a domain like `https://<worker-name>.<account-name>.workers.dev`. Set it (or your custom domain) as the **Site URL** in your TinaCloud project so the editor loads against the right origin.
 
 ## Troubleshooting
 
-1. “JavaScript heap out of memory” during the build
-
-The TinaCloud indexing step can exceed Node's default 2GB heap. Raise the limit by prefixing your build command or setting a build time environment variable `NODE_OPTIONS = —max-old-space-size=4096`
+**"JavaScript heap out of memory" during the build.** TinaCloud indexing can exceed Node's default heap. Set a build-time `NODE_OPTIONS` variable to `--max-old-space-size=4096`.

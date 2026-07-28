@@ -2,19 +2,25 @@
 id: /docs/tinacloud/deployment-options/cloudflare-pages
 title: 部署到 Cloudflare Pages
 last_edited: '2026-05-15T07:24:35.115Z'
-next: content/docs-zh/tinacloud/deployment-options/alibaba-cloud.mdx
+next: content/docs-zh/tinacloud/deployment-options/cloudflare-workers.mdx
 previous: content/docs-zh/tinacloud/deployment-options/github-pages.mdx
 ---
 
-当您的网站以**静态导出**的形式部署时，TinaCMS 可以很好地与 Cloudflare Pages 配合使用：内容在构建时渲染，而通过 Tina 的客户端数据层，视觉编辑在浏览器中保持完全实时。
+当您的网站作为**静态导出**部署时，TinaCMS 可以很好地与 Cloudflare Pages 配合使用：内容在构建时渲染，而通过 Tina 的客户端数据层，视觉编辑在浏览器中保持完全实时。本页面涵盖了 **Next.js** 的静态导出。
+
+<WarningCallout
+  body={<>
+    **使用 Astro？** 将 Astro 启动器部署到 [Cloudflare Workers](/docs/tinacloud/deployment-options/cloudflare-workers)，而不是 Pages。`@astrojs/cloudflare` 适配器不再支持 Cloudflare Pages，并且启动器的视觉编辑路由是服务器渲染的，因此仅静态的 Pages 部署会在请求时破坏点击编辑功能。
+  </>}
+/>
 
 ## 为什么静态导出与 Tina 配合良好
 
-Tina 的实时编辑体验是客户端的。页面在构建时预渲染，您的客户端组件中的 `useTina()` 钩子会使用构建时的数据为访问者提供数据。
+Tina 的实时编辑体验是客户端的。页面在构建时预渲染，您的客户端组件中的 `useTina()` 钩子会为访问者提供构建时的数据。
 
 当您打开 `/admin` 并编辑页面时，Tina 将实时数据替换到 React 树中，无需服务器。保存提交到 GitHub，这会触发新的 Cloudflare 构建，从而部署更新的静态站点。
 
-## 配置您的项目以进行静态导出
+## 配置项目以进行静态导出
 
 在您的 `next.config.ts`（或 `next.config.js`）中，添加 `output: 'export'` 并禁用图像优化（静态导出不能使用 Next.js 图像优化器）：
 
@@ -40,7 +46,7 @@ export default nextConfig
 
 ## 移除仅服务器路由选项
 
-静态导出没有服务器，因此每个路由选项如 `export const revalidate`（ISR）或 `export const dynamic = 'force-dynamic'` 无效，应从您的路由段中移除。重建本身即作为您的“重新验证”。
+静态导出没有服务器，因此每个路由的选项如 `export const revalidate`（ISR）或 `export const dynamic = 'force-dynamic'` 无效，应从您的路由段中移除。重建本身即为您的“重新验证”。
 
 ## Cloudflare Pages 构建设置
 
@@ -51,7 +57,7 @@ export default nextConfig
 * **框架预设：** Next.js（静态 HTML 导出），或“无”
 * **构建命令：** `pnpm build`（或您的包管理器）
 * **构建输出目录：** `out`
-* **根目录：** 除非您的项目在子目录中，否则保持为空
+* **根目录：** 除非您的项目在子目录中，否则留空
 
 Cloudflare 会自动从您的 `pnpm-lock.yaml` 中检测到 pnpm。如果没有检测到，请添加环境变量 `PACKAGE_MANAGER=pnpm`。
 
@@ -67,7 +73,7 @@ Cloudflare 会自动从您的 `pnpm-lock.yaml` 中检测到 pnpm。如果没有�
 
 ## 环境变量
 
-`tinacms build` 在构建时需要您的 TinaCloud 凭证。在您的 Cloudflare Pages 项目中，添加以下内容到 **Settings** > **Environment variables**：
+`tinacms build` 在构建时需要您的 TinaCloud 凭证。在您的 Cloudflare Pages 项目中，将以下内容添加到 **Settings** > **Environment variables**：
 
 * `NEXT_PUBLIC_TINA_CLIENT_ID`：您的 TinaCloud 客户端 ID
 * `TINA_TOKEN`：来自 TinaCloud 的内容令牌

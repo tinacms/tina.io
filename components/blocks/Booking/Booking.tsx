@@ -24,7 +24,7 @@ const BookingCard = ({ cardItem }) => {
           <Image
             src={cardItem.image}
             alt={`${cardItem.name} Portrait`}
-            className="hidden md:block w-24 h-24 rounded-full mr-4"
+            className="hidden md:block w-24 h-24 aspect-square object-cover rounded-full mr-4"
             width={96}
             height={96}
           />

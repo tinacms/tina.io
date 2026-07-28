@@ -86,7 +86,7 @@ const routeConfig: Record<string, RouteInfo> = {
       });
     },
     getRedirectPath: () => '/conference',
-    getRelativePath: () => 'TinaCon2025.mdx',
+    getRelativePath: () => 'TinaCon2026.mdx',
     fileExtension: '.mdx',
     checkExists: responseCheckers.conference,
   },

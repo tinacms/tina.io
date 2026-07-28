@@ -11,11 +11,11 @@ previous: content/docs-zh/drafts/drafts-fields.mdx
 
 > 注意：编辑工作流程功能仅在某些付费计划中可用。
 
-如果您的内容编辑需要在多个分支上工作，您可以利用编辑工作流程功能。与其将内容直接保存到受保护的分支（例如，`main`），不如创建一个新分支。会生成一个草稿拉取请求，所有后续编辑都在这个新分支上进行。当您的内容准备好发布时，可以通过 GitHub 将其合并回受保护的分支（例如，`main`）。
+如果您的内容编辑需要在多个分支上工作，您可以利用编辑工作流程功能。与其将内容直接保存到受保护的分支（例如，`main`），不如创建一个新分支。会生成一个草稿拉取请求，所有后续编辑都在这个新分支上进行。当您的内容准备好发布时，可以通过GitHub将其合并回受保护的分支（例如，`main`）。
 
 ## 设置
 
-可以在 TinaCloud 中启用编辑工作流程。
+可以在TinaCloud中启用编辑工作流程。
 
 ![编辑工作流程设置](/img/blog/editorial-workflow/enable-editorial-workflow.png)
 
@@ -26,28 +26,45 @@ previous: content/docs-zh/drafts/drafts-fields.mdx
 3. 输入您想要保护的分支名称。
 4. 设置受保护的分支后，刷新页面以确保更改生效。
 
-## 访问 CMS 并保存到受保护的分支
+## 访问CMS并保存到受保护的分支
 
-完成设置后，您可以访问 CMS，顶部会出现一个新的分支切换按钮。当您在受保护的分支上并点击“保存”时，会弹出一个模态框，提示您输入要保存的新分支名称。
+完成设置后，您可以访问CMS，顶部会出现一个新的分支切换按钮。当您在受保护的分支上并点击“保存”时，会弹出一个模态框，提示您输入要保存到的新分支的名称。
 
 ![编辑工作流程保存](/img/blog/introducing-editorial-workflow-features-for-your-team/create-branch_bgpgwn.png)
 
-输入新分支名称后，将发生以下操作：
+一旦您输入新分支名称，将会发生以下操作：
 
-* 将创建新分支。
+* 新分支将被创建。
 * 新分支的内容将被索引（此过程可能需要几分钟）。
-* 更改将保存到新分支。
+* 更改将被保存到新分支。
 * 将创建一个草稿拉取请求。
 
 ## 发布内容
 
-当您准备好发布内容时，通过 GitHub 将草稿拉取请求合并到受保护的分支（例如，main）。拉取请求成功合并后，更新的内容将在受保护的分支上可用。
+当您准备好发布内容时，通过GitHub将草稿拉取请求合并到受保护的分支（例如，main）。拉取请求成功合并后，更新的内容将在受保护的分支上可用。
 
-## GitHub 拉取请求链接
+## 编辑工作流程中的媒体
 
-在分支列表模态框中，您可以点击下拉菜单并点击“查看拉取请求”以在 GitHub 上查看拉取请求。这将在您的浏览器中打开一个新标签页。此链接仅在拉取请求是通过 TinaCMS 创建的情况下出现，而不是手动创建的。
+媒体遵循与内容相同的审核流程。当您在编辑受保护的分支时上传或删除图像时，TinaCMS会通过分支和拉取请求路由更改，而不是直接写入受保护的分支。
 
-![PR 链接](/img/docs/editorial-workflow/preview-link.png)
+当您在受保护的分支上上传或删除媒体时，会出现提示以创建新分支。一旦您确认：
+
+* 将为媒体更改创建一个新分支。
+* 资产将保存到该分支，而不是受保护的分支。
+* 将创建一个拉取请求。
+* 您将切换到新分支，以便继续编辑。
+
+要发布媒体更改，请将其拉取请求合并到受保护的分支，就像处理内容一样。
+
+> 想要跳过工作流程进行一次性更改？在提示中选择**保存到受保护的分支**，将媒体直接写入受保护的分支。
+
+有关媒体存储和分支如何结合的更多信息，请参阅[基于仓库的媒体](/docs/reference/media/repo-based/#how-does-this-work-with-branching)。
+
+## GitHub拉取请求链接
+
+在分支列表模态框中，您可以点击下拉菜单并点击“查看拉取请求”以在GitHub上查看拉取请求。这将在您的浏览器中打开一个新标签页。此链接仅在拉取请求是通过TinaCMS创建的情况下出现，而不是手动创建的。
+
+![PR链接](/img/docs/editorial-workflow/preview-link.png)
 
 ## 预览链接
 
@@ -55,7 +72,7 @@ previous: content/docs-zh/drafts/drafts-fields.mdx
 
 ![编辑工作流程保存](/img/blog/editorial-workflow/share-btn_xvmxii.png)
 
-这将允许您在将更改合并到受保护的分支之前预览您的内容更改。要设置预览链接，在您的配置文件中向 `ui` 对象添加一个 `previewUrl` 函数。此函数将接收分支名称作为参数，并应返回该分支的预览 URL。例如：
+这将允许您在将更改合并到受保护的分支之前预览内容更改。要设置预览链接，在您的配置文件中将`previewUrl`函数添加到`ui`对象中。此函数将接收分支名称作为参数，并应返回该分支的预览URL。例如：
 
 ```js
 // tina/config.{ts,tsx,js}
@@ -63,7 +80,7 @@ previous: content/docs-zh/drafts/drafts-fields.mdx
 export default defineConfig({
   // ...
   ui: {
-    // 例如，如果您正在部署到 Vercel，并且您的仓库名称是 'my-app'，Vercel 的预览 URL 将基于分支：
+    // 例如，如果您部署到Vercel，并且您的仓库名称是'my-app'，Vercel的预览URL将基于分支：
     previewUrl: (context) => {
       const repoName = 'my-app';
       // `https://<project-name>-git-<branch-name>.vercel.app`

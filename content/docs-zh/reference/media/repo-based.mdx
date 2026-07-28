@@ -2,24 +2,24 @@
 cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts'
 title: 基于仓库的媒体
 alias: repo-based-media
-last_edited: '2025-09-18T23:25:44.757Z'
+last_edited: '2026-07-12T23:58:57.199Z'
 next: ''
 previous: ''
 ---
 
-TinaCMS 提供了**内置的基于仓库（git）的媒体存储选项**。或者，你可以将你的CMS连接到外部媒体存储提供商。
+TinaCMS 提供了**内置的基于仓库（git）的媒体存储选项**。或者，您可以将您的CMS连接到外部媒体存储提供商。
 
-> 基于仓库的媒体将你的资产与内容放在一起，这意味着你可以**跟踪代码和媒体的更改并回滚版本**。
+> 基于仓库的媒体将您的资产与内容放在一起，这意味着您可以**跟踪更改并回滚代码和媒体的版本**。
 
 这还有其他好处，比如减少对外部API的依赖，并保持本地开发和预览环境的同步。
 
 <Youtube embedSrc="https://www.youtube.com/embed/x0ACBQeNcts?start=388&end=469" />
 
-> 看不到你的媒体？对于新创建的项目，初始媒体同步会自动触发，可能仍在进行中。如果你的媒体仍未出现，你可以从 TinaCloud 项目仪表板的**媒体**选项卡手动触发同步。
+> 看不到您的媒体？对于新创建的项目，初始媒体同步会自动触发，并可能仍在进行中。如果您的媒体仍未出现，您可以从 TinaCloud 项目仪表板中的**媒体**选项卡手动触发同步。
 
 ## 配置
 
-要在你的项目中配置基于仓库的媒体，请在 `tina/config.{ts,js}` 中的架构定义中添加以下内容：
+要在您的项目中配置基于仓库的媒体，请在 `tina/config.{ts,js}` 中的架构定义中添加以下内容：
 
 ```javascript
 //tina/config.{ts,js}
@@ -38,21 +38,21 @@ export default defineConfig({
 
 ### 资产存储路径
 
-将 `publicFolder` 设置为你网站的“公共”文件夹的路径。此路径是相对于你项目的根目录的。
+将 `publicFolder` 设置为您网站的“公共”文件夹的路径。此路径是相对于您项目的根目录的。
 
 > 对于任何 Next.js 网站（例如我们的 [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/tree/main/public)），此值应为 `"public"`。
 
 ### 媒体存储路径
 
-媒体文件夹的路径，相对于 `publicFolder` 的值。
+媒体文件夹的路径，相对于 `publicFolder` 值。
 
-如果你希望你的媒体上传到 `publicFolder` 的根目录，请将其设置为 `""`。
+如果您希望将媒体上传到 `publicFolder` 的根目录，请将其设置为 `""`。
 
-> 此目录中的任何内容都将与 TinaCloud 的媒体服务器同步，并且图像将公开可访问。
+> 此目录中的任何内容都将与 TinaCloud 的媒体服务器同步，图像将公开可访问。
 
 ### 媒体权限
 
-`static` 属性决定了媒体文件是否可以通过编辑器直接上传、编辑或删除。
+`static` 属性决定是否可以通过编辑器直接上传、编辑或删除媒体文件。
 
 * **`static: true`**：编辑者不能上传/删除媒体（静态资产）
 * **`static: false`**（默认）：编辑者可以上传/删除媒体（动态资产）。
@@ -68,7 +68,7 @@ export default defineConfig({
 | 二进制文件                    | `application/octet-stream`                                                | .bin                   |
 | Filmbox                       | `model/fbx`                                                               | .fbx                   |
 | GL 传输格式 (JSON)            | `model/gltf+json`                                                         | .gltf                  |
-| 图像                          | `image/*`                                                                 | .jpg, .png, .gif 等    |
+| 图像                          | `image/*`                                                                 | .jpg, .png, .gif, 等等 |
 | JSON                          | `application/json`                                                        | .json                  |
 | JSON-LD                       | `application/ld+json`                                                     | .jsonld                |
 | 材料交换格式                  | `application/mxf`                                                         | .mxf                   |
@@ -79,13 +79,13 @@ export default defineConfig({
 | MPEG-DASH                     | `application/dash+xml`                                                    | .mpd                   |
 | PDF                           | `application/pdf`                                                         | .pdf                   |
 | 多边形文件格式                | `model/ply`                                                               | .ply                   |
-| PostScript                    | `application/postscript`                                                  | .ps, .eps 等           |
-| 文本文件                      | `text/*`                                                                  | .txt, .md 等           |
+| PostScript                    | `application/postscript`                                                  | .ps, .eps, 等等        |
+| 文本文件                      | `text/*`                                                                  | .txt, .md, 等等        |
 | U3D 网格                      | `model/u3d+mesh`                                                          | .u3d                   |
 | USDZ 压缩包                   | `model/vnd.usdz+zip`                                                      | .usdz                  |
-| 视频                          | `video/*`                                                                 | .mp4, .avi, .mkv 等    |
+| 视频                          | `video/*`                                                                 | .mp4, .avi, .mkv, 等等 |
 
-如果你想指定自己的允许文件类型，请在 **`media`** 属性中添加以下内容：
+如果您想指定自己的允许文件类型，请在 **`media`** 属性中添加以下内容：
 
 ```javascript
 //tina/config.{ts,js}
@@ -103,7 +103,7 @@ export default defineConfig({
 
 ### NextJS 图像
 
-如果你正在使用 Next.js 图像，你需要在 `next.config.js` 文件中添加类似以下内容，以允许访问外部图像。
+如果您使用 Next.js 图像，您需要在 `next.config.js` 文件中添加类似以下内容，以允许访问外部图像。
 
 ```javascript
 module.exports = {
@@ -125,35 +125,45 @@ module.exports = {
 
 上传文件到 TinaCloud 时，允许的最大文件大小为 100 MiB。
 
-## 这如何与分支协作？
+## 这如何与编辑工作流一起工作？
 
-基于仓库的媒体设计用于围绕单一分支工作流。如果你的项目正在使用[多个分支](/docs/tinacloud/branching/)或[编辑工作流](/docs/drafts/editorial-workflow/)，需要注意一些已知的注意事项。
+默认情况下，基于仓库的媒体限定在单个媒体分支（您仓库的默认分支），每个编辑分支在此处读取和写入其资产。
 
-* 图像不能被更改。一旦上传，任何后续对资产的更改都不会反映出来。
-* 如果你只有一个启用媒体的分支，媒体存储将从该分支获取/上传图像。
-* 如果你有多个启用媒体的分支，那么所有媒体将从/上传到仓库的默认分支。
+当您的项目启用了[编辑工作流](/docs/tinacloud/editorial-workflow/)时，媒体变得**分支感知**，并与您的内容一起经过相同的审核流程：
 
-如果你在非默认分支上配置 Tina（并且 Tina 配置尚未合并到你的默认分支），项目创建时的自动媒体同步可能无法找到你的媒体配置。在这种情况下，TinaCloud 项目仪表板中的**媒体**选项卡将显示媒体尚未同步。一旦你的 Tina 配置合并到默认分支，你可以从该选项卡手动触发同步。
+* 每个分支都有自己的媒体视图，因此在一个分支上上传和删除不会影响其他分支，直到它们被合并。
+* 当您在编辑**受保护**的分支时上传或删除媒体，TinaCMS 不会直接写入它。相反，它会提示您创建一个工作分支，将资产保存到该分支，并打开一个拉取请求，就像保存内容一样。您会被切换到新分支并可以继续工作，只有在拉取请求合并后更改才会到达受保护的分支。
+* 您可以在提示中选择**保存到受保护分支**以绕过工作流并直接写入。
+
+查看[编辑工作流中的媒体](/docs/tinacloud/editorial-workflow/#media-in-the-editorial-workflow)以了解完整流程。
+
+### 注意事项
+
+* 媒体工作流仅在您当前编辑的分支本身受保护时触发。在非受保护的工作分支上，上传和删除会直接保存到该分支。
+* 在受保护分支上的每次媒体上传或删除都会创建自己的工作分支和拉取请求。该分支上的所有后续媒体操作将附加到创建的拉取请求中。
+* 图像不能就地更改。一旦上传，后续对资产的更改不会反映，因此请上传新文件。
+
+如果您在非默认分支上配置 Tina（且 Tina 配置尚未合并到您的默认分支），项目创建时的自动媒体同步可能无法找到您的媒体配置。在这种情况下，您的 TinaCloud 项目仪表板中的**媒体**选项卡将显示媒体尚未同步。一旦您的 Tina 配置合并到默认分支，您可以从该选项卡手动触发同步。
 
 ## 重命名媒体文件
 
-基于仓库的媒体不支持通过媒体管理器重命名文件——目前UI没有重命名操作。要重命名文件，你需要通过媒体库删除并重新上传，或直接在 GitHub 中进行更改。
+基于仓库的媒体不支持通过媒体管理器重命名文件——UI 目前没有重命名操作。要重命名文件，您需要通过媒体库删除并重新上传，或直接在 GitHub 中进行更改。
 
-> **预防措施：**避免使用带有空格、重音或特殊字符的文件名。使用小写 ASCII 和连字符（例如 `my-image.jpg`）是最安全的选择——带有特殊字符的文件名可能会破坏下游构建（例如 Astro）。上传时的文件名消毒功能正在 [tinacms#6359](https://github.com/tinacms/tinacms/issues/6359) 中跟踪。
+> **预防措施：**避免使用带有空格、重音或特殊字符的文件名。使用连字符的小写 ASCII（例如 `my-image.jpg`）是最安全的选择——带有特殊字符的文件名可能会破坏下游构建（例如 Astro）。上传时的一级文件名清理正在 [tinacms#6359](https://github.com/tinacms/tinacms/issues/6359) 中跟踪。
 
-**解决方案 1 — 通过媒体库删除并重新上传：**
+**解决方法 1 — 通过媒体库删除并重新上传：**
 
 1. 从 TinaCMS 的媒体库中删除文件
 2. 使用新文件名重新上传文件
 
-**解决方案 2 — 直接在 GitHub 中重命名：**
+**解决方法 2 — 直接在 GitHub 中重命名：**
 
-1. 在 GitHub 上导航到你的仓库，并在你的媒体目录中找到媒体文件（例如 `public/uploads/`）
+1. 导航到 GitHub 上的仓库，并在您的媒体目录中找到媒体文件（例如 `public/uploads/`）
 2. 直接在 GitHub 中删除旧文件
 3. 等待删除同步回 TinaCloud
 4. 直接在 GitHub 中添加新名称的文件
 5. 等待新文件同步回 TinaCloud
 
-> 如果跟踪的分支启用了分支保护规则，尝试通过媒体库上传将文件保存到媒体存储（S3），但更改将**不会**提交到受保护的分支。在这种设置中，请使用解决方案 2。
+> 如果跟踪的分支启用了分支保护规则，尝试通过媒体库上传将文件保存到媒体存储（S3），但更改将**不会**提交到受保护的分支。在这种设置中，请使用解决方法 2。
 
-> 媒体库中的一流重命名支持正在 [tinacms#6722](https://github.com/tinacms/tinacms/issues/6722) 中跟踪。
+> 媒体库中的一级重命名支持正在 [tinacms#6722](https://github.com/tinacms/tinacms/issues/6722) 中跟踪。
