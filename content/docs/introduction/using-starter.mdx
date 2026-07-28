@@ -1,8 +1,8 @@
 ---
 id: /docs/introduction/using-starter/
 title: Tina Starter - CLI
-last_edited: '2025-12-07T21:20:13.520Z'
-next: content/docs/frameworks/next/app-router.mdx
+last_edited: '2026-07-28T00:00:00.000Z'
+next: content/docs/frameworks/astro.mdx
 previous: content/docs/vibe-coding.mdx
 ---
 
@@ -29,3 +29,15 @@ Once your local starter has been created, to run the starter, follow the instruc
 ```
 pnpm run dev
 ```
+
+## Which starter should I pick?
+
+**Astro is our default starter.** It is the one we recommend for new projects, and the one we build and test against first. It ships with [React-free visual editing](/docs/contextual-editing/astro/), so editors get a live preview while visitors get plain static HTML. See the [Astro + TinaCMS setup guide](/docs/frameworks/astro/) for what is inside it.
+
+To skip the prompt and scaffold the Astro starter directly:
+
+```bash
+npx create-tina-app@latest --template tina-astro-starter
+```
+
+The other starters are still available and still supported. Pick one of those if you are already committed to a framework, for example the Next.js starter if you are building on [Next.js](/docs/frameworks/next/app-router/).
