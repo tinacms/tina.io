@@ -19,7 +19,6 @@ module.exports = {
     '/github/*',
     '/rss.xml',
     '/blog/page/*',
-    // Generated per-post social images — not crawlable pages
     '/blog/og/*',
     '/blog/instagram/*',
     '/zh/blog/og/*',

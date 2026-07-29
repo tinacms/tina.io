@@ -38,7 +38,7 @@ previous: content/docs-zh/reference/schema.mdx
       groupName: "",
       name: "path",
       type: "string",
-      description: "确定此集合中文档存储的位置。\n",
+      description: "确定此集合中文档的存储位置。\n",
       required: true
     },
     {
@@ -58,13 +58,13 @@ previous: content/docs-zh/reference/schema.mdx
       groupName: "",
       name: "fields",
       type: "Field[]",
-      description: "一个[字段](/docs/reference/fields/)数组。\n"
+      description: "一个[字段](/docs/reference/fields/)的数组。\n"
     },
     {
       groupName: "",
       name: "templates",
       type: "Template[]",
-      description: "一个[模板](/docs/reference/templates/)数组。\n"
+      description: "一个[模板](/docs/reference/templates/)的数组。\n"
     },
     {
       groupName: "",
@@ -246,7 +246,7 @@ previous: content/docs-zh/reference/schema.mdx
 
 ### match.exclude
 
-这与`match.include`的工作方式相同，但会排除与模式匹配的任何文件。排除您不想编辑的文件，或属于不同集合的文件。
+这与`match.include`的工作方式相同，但会排除与模式匹配的任何文件。排除您不希望编辑的文件，或属于不同集合的文件。
 
 最终排除的文件集由`!(<path>/<match.exclude>.<format>)`定义。
 
@@ -286,7 +286,9 @@ defaultItem: () => {
 
 ## 全局集合
 
-设置`ui.global: true`以使集合**全局化**。全局集合包含一个单一的、站点范围的设置文档——例如页眉和页脚内容、导航、主题选项或SEO默认值——而不是多个文档的列表。
+> 全局集合需要tinacms: 3.9.4或更高版本。在旧版本中，集合仍然可以工作，但它出现在常规集合列表中，而不是在**站点**下。
+
+设置`ui.global: true`以使集合成为**全局**。全局集合包含一个单一的、站点范围的设置文档——例如页眉和页脚内容、导航、主题选项或SEO默认值——而不是多个文档的列表。
 
 在编辑器中，全局集合的呈现方式与常规集合不同：
 
@@ -371,7 +373,7 @@ export default defineConfig({
 });
 ```
 
-### 带有默认标题的Markdown集合
+### 具有默认标题的Markdown集合
 
 ```js
 export default defineConfig({
@@ -384,7 +386,7 @@ export default defineConfig({
         path: 'content/posts',
         defaultItem: () => {
           return {
-            // 当创建新文章时，标题字段将被设置为“新文章”
+            // 当创建新文章时，标题字段将设置为“新文章”
             title: '新文章',
           };
         },

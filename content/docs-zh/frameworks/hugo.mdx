@@ -3,7 +3,7 @@ id: /docs/frameworks/hugo
 title: Hugo + TinaCMS 设置指南
 last_edited: '2025-10-21T09:36:06.358Z'
 next: content/docs-zh/frameworks/gatsby.mdx
-previous: content/docs-zh/frameworks/astro.mdx
+previous: content/docs-zh/frameworks/next/pages-router.mdx
 ---
 
 ## 介绍
@@ -30,11 +30,11 @@ TinaCMS 可以本地添加到您的 Hugo 网站。在本文档中，我们将指
 
 要在 Tina 中编辑您网站的内容，您可以在 tina/config.ts 文件中建模您的内容。
 
-在[这里](/docs/schema/)了解更多关于内容建模的信息。
+了解更多关于[内容建模](/docs/schema/)的信息
 
 ## 启动 TinaCMS
 
-您可以通过以下命令启动 TinaCMS：
+您可以通过以下方式启动 TinaCMS：
 
 ```bash
 npx tinacms dev -c "hugo server -D -p 1313"
@@ -48,7 +48,7 @@ npx tinacms dev -c "hugo server -D -p 1313"
 
 > 提示：如果运行此命令时出现错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
 
-此时，您应该能够看到 Tina 管理界面，选择一个帖子，保存更改，并看到更改已持久化到您的本地 markdown 文件中。
+此时，您应该能够看到 Tina 管理界面，选择一个帖子，保存更改，并看到更改持久化到您的本地 markdown 文件中。
 
 ![](/img/hugo-tina-admin-screenshot.png)
 
@@ -57,3 +57,9 @@ npx tinacms dev -c "hugo server -D -p 1313"
 * [查看内容建模文档](/docs/schema/)
 * [了解如何查询您的内容](/docs/features/data-fetching/)
 * [部署您的网站](/docs/tinacloud)
+
+## 另请参阅
+
+* [Next.js 设置指南](/docs/frameworks/next/app-router/) - 在 Next.js 中使用 Tina
+* [Astro 设置指南](/docs/frameworks/astro/) - 在 Astro 中使用 Tina
+* [Gatsby 设置指南](/docs/frameworks/gatsby/) - 在 Gatsby 中使用 Tina

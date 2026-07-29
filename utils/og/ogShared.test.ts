@@ -10,8 +10,8 @@ import {
 describe('buildCurve', () => {
   it('swings the curve symmetrically either side of the divider', () => {
     const { topX, botX } = buildCurve({ W: 1200, H: 630, edge: 696, amp: 70 });
-    expect(topX).toBeGreaterThan(696); // top starts right of the divider
-    expect(botX).toBeLessThan(696); // bottom ends left of it
+    expect(topX).toBeGreaterThan(696);
+    expect(botX).toBeLessThan(696);
     expect(topX - 696).toBeCloseTo(696 - botX);
   });
 
@@ -42,8 +42,8 @@ describe('orangeSweepUri', () => {
       'base64',
     ).toString();
     expect(svg).toContain('#FF724B');
-    expect(svg).toContain('stroke'); // rim light along the sweep
-    expect(svg).toContain('C '); // cubic sweep segment
+    expect(svg).toContain('stroke');
+    expect(svg).toContain('C ');
   });
 });
 
@@ -56,7 +56,7 @@ describe('pickFontSize', () => {
 
   it('returns the first tier whose maxLength the title fits', () => {
     expect(pickFontSize(10, tiers, 42)).toBe(88);
-    expect(pickFontSize(30, tiers, 42)).toBe(88); // inclusive boundary
+    expect(pickFontSize(30, tiers, 42)).toBe(88);
     expect(pickFontSize(31, tiers, 42)).toBe(76);
     expect(pickFontSize(78, tiers, 42)).toBe(58);
   });

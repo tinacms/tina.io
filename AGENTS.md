@@ -93,7 +93,7 @@ Two locales: English (`en`, default) and Chinese (`zh`). Middleware handles loca
 
 ## Important Workflow Notes
 
-- **After switching branches or changing TinaCMS schema files** (`tina/` directory), run `pnpm dev` to regenerate `tina-lock.json`. This is faster than a full build and keeps the TinaCMS schema in sync.
+- **After switching branches or changing any TinaCMS schema** — not just files under `tina/`, but also the block/collection templates imported into it (e.g. `components/blocks/**/*.template.ts`) — run `pnpm dev` to regenerate `tina-lock.json`, then commit it. This is faster than a full build and keeps the TinaCMS schema in sync. Note: some schema edits (e.g. adding a field `description`) don't change `tina-lock.json` but still alter the schema TinaCloud validates. Because TinaCloud only re-indexes a branch when `tina-lock.json` changes, such an edit makes the build fail with `ERR_CLOUD_CHECK_FAILED` ("local Tina schema doesn't match the remote") and it won't self-resolve. Force a re-index by making a whitespace change to `tina/tina-lock.json` (e.g. add a trailing newline), committing, and pushing — [per the TinaCloud troubleshooting docs](https://tina.io/docs/tinacloud/troubleshooting).
 - **After editing any `.ts`, `.tsx`, `.js`, or `.jsx` files**, run `pnpm lint:fix` to auto-fix formatting and lint issues before committing.
 
 ## Coding Standards

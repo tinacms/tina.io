@@ -1,35 +1,35 @@
 ---
 alias: tina-init
 cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/src/cmds/init/printFinalMessage.ts"
-title: 将Tina添加到现有网站
+title: 将 Tina 添加到现有站点
 id: /docs/introduction/tina-init/
 last_edited: '2022-02-04T15:51:56.737Z'
 ---
 
-> 注意：本文档假设您已经有一个正在运行的网站。如果没有，您可以快速使用我们的[NextJS入门](/docs/introduction/using-starter/)之一开始。
+> 注意：本文档假设您已有一个可运行的站点。如果没有，您可以快速开始使用我们的默认 [Astro 启动器](/docs/frameworks/astro/)或 CLI 中的[其他启动器](/docs/introduction/using-starter/)之一。
 
-## 添加Tina
+## 添加 Tina
 
-我们创建了一种快速启动Tina应用程序的方法，以展示可视化编辑的强大功能；在终端中输入以下命令：
+我们创建了一种快速引导 Tina 应用程序的方法，以展示可视化编辑的强大功能；在终端中输入以下命令：
 
 ```bash
 npx @tinacms/cli@latest init
 ```
 
-_有关非NextJS网站的提示帮助，请参阅[本指南](/docs/frameworks/other/)。_
+_有关非 NextJS 站点的提示帮助，请参阅[本指南](/docs/frameworks/other/)。_
 
-此命令将询问您几个问题，并在您的应用程序中设置Tina样板：
+此命令将询问您几个问题，并在您的应用程序中设置 Tina 样板：
 
-1. 安装Tina所需的所有依赖项。
-2. 在`tina`目录中定义一个基本内容架构。
-3. 在demo目录中创建示例内容。
-4. **（仅限NextJS）**：编辑`package.json`以使`dev`、`build`和`start`脚本运行tina GraphQL API。
+1. 安装 Tina 所需的所有依赖项。
+2. 在 `tina` 目录中定义基本内容架构。
+3. 在 demo 目录中创建示例内容。
+4. **（仅限 NextJS）**：编辑 `package.json` 以使 `dev`、`build` 和 `start` 脚本运行 tina GraphQL API。
 
 ### 更新您的构建脚本
 
-根据您的框架，`tina init`可能会尝试更新您的`package.json`脚本。
+根据您的框架，`tina init` 可能会尝试更新您的 `package.json` 脚本。
 
-#### NextJS示例
+#### NextJS 示例
 
 ```json
   "scripts": {
@@ -39,7 +39,7 @@ _有关非NextJS网站的提示帮助，请参阅[本指南](/docs/frameworks/ot
   }
 ```
 
-#### Hugo示例
+#### Hugo 示例
 
 ```json
   "scripts": {
@@ -48,29 +48,29 @@ _有关非NextJS网站的提示帮助，请参阅[本指南](/docs/frameworks/ot
   }
 ```
 
-如果CLI没有设置这些，您需要手动应用。
+如果 CLI 没有设置这些，您需要手动应用。
 
 ### 快速测试
 
-现在我们已经设置了一个基本的Tina样板，您可以使用以下命令启动您的应用程序：
+现在我们已经设置了基本的 Tina 样板，您可以使用以下命令启动您的应用程序：
 
 ```bash
 yarn dev
 ```
 
-当Tina在NextJS网站上初始化时，会创建一个"/admin/index.html"页面，允许编辑者登录并开始进行内容更改。
+当 Tina 在 NextJS 站点上初始化时，会创建一个 "/admin/index.html" 页面，允许编辑者登录并开始进行内容更改。
 
-现在，如果您导航到`http://localhost:3000/admin/index.html`（假设您的网站运行在端口3000），您应该会看到一个新的CMS登录页面已添加到您的网站！
+现在，如果您导航到 `http://localhost:3000/admin/index.html`（假设您的站点运行在端口 3000 上），您应该会看到一个新的 CMS 登陆页面已添加到您的站点！
 
-### 提交tina-lock.json文件
+### 提交 tina-lock.json 文件
 
 <WarningCallout
   body={<>
-    <strong>重要：</strong>运行<code>tinacms dev</code>（或<code>yarn dev</code>如果您的开发脚本包含它）会生成一个<code>tina/tina-lock.json</code>文件。这个文件<strong>必须提交并推送到您的仓库</strong>，以便TinaCloud索引您的内容和分支。没有它，TinaCloud将无法检测到您的架构，您的分支将保持未索引状态。
+    <strong>重要：</strong>运行 <code>tinacms dev</code>（或 <code>yarn dev</code> 如果您的开发脚本包含它）会生成一个 <code>tina/tina-lock.json</code> 文件。此文件<strong>必须提交并推送到您的存储库</strong>，以便 TinaCloud 索引您的内容和分支。没有它，TinaCloud 将无法检测到您的架构，您的分支将保持未索引状态。
   </>}
 />
 
-首次运行您的开发命令后，请确保提交并推送生成的`tina/tina-lock.json`：
+首次运行开发命令后，请确保提交并推送生成的 `tina/tina-lock.json`：
 
 ```bash
 git add tina/tina-lock.json
@@ -78,8 +78,8 @@ git commit -m "Add tina-lock.json"
 git push
 ```
 
-> 注意，许多框架提供了一种将`/admin/index.html`重定向到`/admin`的方法。
+> 注意，许多框架提供了一种将 `/admin/index.html` 重定向到 `/admin` 的方法。
 
-![Tina登录页面](/img/tina-login.png)
+![Tina 登录页面](/img/tina-login.png)
 
-接下来，我们将向您展示如何使用CMS并开始编辑一些内容！
+接下来，我们将向您展示如何使用 CMS 并开始编辑一些内容！
