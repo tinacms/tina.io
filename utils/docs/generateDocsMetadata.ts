@@ -12,16 +12,14 @@ export async function generateDocsMetadata(locale: Locale, slug: string) {
     slug === 'index' ? '' : `/${slug}`
   }`;
 
-  if (!document.seo) {
-    document.seo = {
-      __typename: locale === 'zh' ? 'DocZhSeo' : 'DocSeo',
-      canonicalUrl,
-    };
-  } else if (!document.seo.canonicalUrl) {
-    document.seo.canonicalUrl = canonicalUrl;
-  }
+  const seo = document.seo
+    ? {
+        ...document.seo,
+        canonicalUrl: document.seo.canonicalUrl || canonicalUrl,
+      }
+    : { __typename: locale === 'zh' ? 'DocZhSeo' : 'DocSeo', canonicalUrl };
 
-  return getSeo(document.seo, {
+  return getSeo(seo, {
     pageTitle: document.title,
     body: document.body,
   });
