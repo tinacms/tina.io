@@ -286,6 +286,7 @@ export const docAndBlogComponents: Components<{
           height={`${height}px`}
           src={iframeSrc}
           title="Iframe"
+          referrerPolicy="strict-origin-when-cross-origin"
         />
       </div>
     );
@@ -558,6 +559,7 @@ export const docAndBlogComponents: Components<{
           className="absolute top-0 left-0 w-full h-full rounded-md"
           src={embedSrc}
           title="YouTube video player"
+          referrerPolicy="strict-origin-when-cross-origin"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen={true}
         ></iframe>

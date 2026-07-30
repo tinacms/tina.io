@@ -16,6 +16,7 @@ const VideoGridComponent = ({ data }) => {
             src={media.embedUrl}
             title="YouTube video player"
             className="object-cover rounded-lg"
+            referrerPolicy="strict-origin-when-cross-origin"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
