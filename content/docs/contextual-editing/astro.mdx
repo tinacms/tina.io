@@ -255,6 +255,7 @@ const { videoId } = Astro.props;
 <iframe
   src={`https://www.youtube.com/embed/${videoId}`}
   title="YouTube video player"
+  referrerpolicy="strict-origin-when-cross-origin"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
   allowfullscreen
 />
