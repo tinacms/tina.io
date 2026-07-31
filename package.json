@@ -65,7 +65,7 @@
     "embla-carousel-class-names": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "fast-glob": "^3.3.3",
-    "framer-motion": "^12.23.5",
+    "framer-motion": "^12.40.0",
     "github-slugger": "^1.5.0",
     "graphql": "^15.10.1",
     "gray-matter": "^4.0.3",
