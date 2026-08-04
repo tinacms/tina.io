@@ -39,16 +39,63 @@ const agencySizeOptions = ['1-5', '6-20', '21-50', '50+'];
 const availabilityOptions = ['Full-time', 'Part-time', 'Project-based'];
 
 // Radix's Select renders a hidden native select that browsers won't report
-// validity on, so `required` here is documentation only — emptiness is checked
-// on submit and surfaced via `error`.
-// https://github.com/radix-ui/primitives/issues/1592
+// validity on, so this form can't use native constraint validation for the
+// selects (https://github.com/radix-ui/primitives/issues/1592). Rather than
+// have selects look different to every other field, the form is `noValidate`
+// and every field is validated here — one look, one behaviour, every browser.
+const ERROR_RING = 'ring-2 ring-red-500';
+
+const FieldError = ({ id, error }: { id: string; error?: string }) =>
+  error ? (
+    <p id={id} className="mt-1 text-sm text-red-500">
+      {error}
+    </p>
+  ) : null;
+
+const FormInput = ({
+  name,
+  error,
+  ...props
+}: React.ComponentProps<typeof Input> & { name: string; error?: string }) => (
+  <div className="w-full">
+    <Input
+      {...props}
+      name={name}
+      className={`w-full ${error ? ERROR_RING : ''}`}
+      aria-invalid={error ? true : undefined}
+      aria-describedby={error ? `${name}-error` : undefined}
+    />
+    <FieldError id={`${name}-error`} error={error} />
+  </div>
+);
+
+const FormTextarea = ({
+  name,
+  error,
+  className = '',
+  ...props
+}: React.ComponentProps<typeof Textarea> & {
+  name: string;
+  error?: string;
+}) => (
+  <div className="w-full">
+    <Textarea
+      {...props}
+      name={name}
+      className={`w-full ${className} ${error ? ERROR_RING : ''}`}
+      aria-invalid={error ? true : undefined}
+      aria-describedby={error ? `${name}-error` : undefined}
+    />
+    <FieldError id={`${name}-error`} error={error} />
+  </div>
+);
+
 const FormSelect = ({
   name,
   placeholder,
   options,
   value,
   onValueChange,
-  required,
   disabled,
   error,
 }: {
@@ -57,21 +104,20 @@ const FormSelect = ({
   options: string[];
   value: string;
   onValueChange: (value: string) => void;
-  required?: boolean;
   disabled?: boolean;
   error?: string;
 }) => (
   <div className="w-full">
     <Select
       name={name}
-      required={required}
       value={value}
       onValueChange={onValueChange}
       disabled={disabled}
     >
       <SelectTrigger
-        className={error ? 'w-full ring-2 ring-red-500' : 'w-full'}
+        className={`w-full ${error ? ERROR_RING : ''}`}
         aria-invalid={error ? true : undefined}
+        aria-describedby={error && name ? `${name}-error` : undefined}
       >
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
@@ -83,7 +129,7 @@ const FormSelect = ({
         ))}
       </SelectContent>
     </Select>
-    {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+    <FieldError id={`${name}-error`} error={error} />
   </div>
 );
 
@@ -166,21 +212,45 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
-  const [showSelectErrors, setShowSelectErrors] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Only the partner variant has required selects, and which ones are required
-  // depends on the partner type currently chosen.
-  const requiredSelectValues =
+  // depends on the partner type currently chosen. Everything else is left to
+  // the browser's own constraint validation, read back in `collectErrors`.
+  const requiredSelects =
     variant === 'partner'
       ? [
-          formData.partnerType,
-          ...(isAgency ? [formData.agencySize] : []),
-          ...(isSoleDeveloper ? [formData.availability] : []),
+          { name: 'partnerType', value: formData.partnerType },
+          ...(isAgency
+            ? [{ name: 'agencySize', value: formData.agencySize }]
+            : []),
+          ...(isSoleDeveloper
+            ? [{ name: 'availability', value: formData.availability }]
+            : []),
         ]
       : [];
-  const hasMissingSelect = requiredSelectValues.some((value) => !value);
-  const selectError = (value: string) =>
-    showSelectErrors && !value ? 'Please select an option' : undefined;
+
+  const collectErrors = (form: HTMLFormElement) => {
+    const found: Record<string, string> = {};
+    for (const el of Array.from(form.elements)) {
+      const field = el as HTMLInputElement | HTMLTextAreaElement;
+      if (!field.name || field.validity?.valid !== false) {
+        continue;
+      }
+      // For format failures the browser says "Please match the requested
+      // format", which tells the user nothing — prefer the field's own title.
+      const badFormat =
+        field.validity.patternMismatch || field.validity.typeMismatch;
+      found[field.name] =
+        badFormat && field.title ? field.title : field.validationMessage;
+    }
+    for (const { name, value } of requiredSelects) {
+      if (!value) {
+        found[name] = 'Please select an option';
+      }
+    }
+    return found;
+  };
 
   const copyEmail = () => {
     navigator.clipboard.writeText('info@tina.io');
@@ -190,11 +260,11 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (hasMissingSelect) {
-      setShowSelectErrors(true);
+    const found = collectErrors(e.currentTarget);
+    setErrors(found);
+    if (Object.keys(found).length > 0) {
       return;
     }
-    setShowSelectErrors(false);
     setIsProcessing(true);
     setMessage({ text: '', type: '' });
 
@@ -218,6 +288,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
           type: 'success',
         });
         setFormData(initialFormData);
+        setErrors({});
       } else {
         setMessage({
           text: '',
@@ -243,12 +314,28 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
       ...prev,
       [name]: value,
     }));
+    clearError(name);
   };
+
+  // Once a field has been flagged, drop its error as soon as it's touched
+  // rather than leaving stale red text under a field being corrected.
+  function clearError(name: string) {
+    setErrors((prev) => {
+      if (!prev[name]) {
+        return prev;
+      }
+      const { [name]: _removed, ...rest } = prev;
+      return rest;
+    });
+  }
 
   return (
     <form
       id="contact-form"
       onSubmit={handleSubmit}
+      // The browser still computes validity from the attributes below; only
+      // its popup bubbles are suppressed, so every field reports inline.
+      noValidate
       className="flex flex-col justify-center px-6 pt-6 pb-8 sm:px-8 sm:pt-8 sm:pb-10 gap-4"
     >
       <div className="flex items-center gap-3">
@@ -300,7 +387,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         </div>
       )}
       <div className="flex flex-col gap-4 md:flex-row w-full">
-        <Input
+        <FormInput
           placeholder="First name *"
           name="firstName"
           type="text"
@@ -308,9 +395,9 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
           onChange={handleInputChange}
           disabled={isProcessing}
           required
-          className="w-full"
+          error={errors.firstName}
         />
-        <Input
+        <FormInput
           placeholder="Last name *"
           name="lastName"
           type="text"
@@ -318,50 +405,49 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
           onChange={handleInputChange}
           disabled={isProcessing}
           required
-          className="w-full"
+          error={errors.lastName}
         />
       </div>
-      <Input
+      <FormInput
         placeholder="Email *"
         name="email"
         type="email"
         // type="email" alone accepts "a@b"; the pattern keeps the stricter
-        // domain.tld rule while letting the browser report it on the field.
+        // domain.tld rule. `title` becomes the message the browser reports.
         pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
         title="Enter a valid email address, e.g. name@example.com"
         value={formData.email}
         onChange={handleInputChange}
         disabled={isProcessing}
         required
-        className="w-full"
+        error={errors.email}
       />
-      <Input
+      <FormInput
         placeholder="Phone number"
         name="phone"
         type="tel"
         value={formData.phone}
         onChange={handleInputChange}
         disabled={isProcessing}
-        className="w-full"
+        error={errors.phone}
       />
-      <Input
+      <FormInput
         placeholder={companyPlaceholder}
         name="company"
         type="text"
         value={formData.company}
         onChange={handleInputChange}
         disabled={isProcessing}
-        className="w-full"
+        error={errors.company}
       />
       {variant === 'partner' && (
         <>
           <FormSelect
             name="partnerType"
-            required
             placeholder="Are you a sole developer or an agency? *"
             options={partnerTypeOptions}
             value={formData.partnerType}
-            onValueChange={(value) =>
+            onValueChange={(value) => {
               // Reset the type-specific answers when switching so hidden fields
               // don't get submitted with stale values.
               setFormData((prev) => ({
@@ -369,64 +455,67 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
                 partnerType: value,
                 agencySize: '',
                 availability: '',
-              }))
-            }
+              }));
+              clearError('partnerType');
+            }}
             disabled={isProcessing}
-            error={selectError(formData.partnerType)}
+            error={errors.partnerType}
           />
           {isAgency && (
             <>
-              <Input
+              <FormInput
                 placeholder="Agency website *"
                 name="portfolioUrl"
                 type="url"
+                title="Enter a full URL, e.g. https://example.com"
                 value={formData.portfolioUrl}
                 onChange={handleInputChange}
                 disabled={isProcessing}
                 required
-                className="w-full"
+                error={errors.portfolioUrl}
               />
               <FormSelect
                 name="agencySize"
-                required
                 placeholder="How many developers on your team? *"
                 options={agencySizeOptions}
                 value={formData.agencySize}
-                onValueChange={(value) =>
-                  setFormData((prev) => ({ ...prev, agencySize: value }))
-                }
+                onValueChange={(value) => {
+                  setFormData((prev) => ({ ...prev, agencySize: value }));
+                  clearError('agencySize');
+                }}
                 disabled={isProcessing}
-                error={selectError(formData.agencySize)}
+                error={errors.agencySize}
               />
             </>
           )}
           {isSoleDeveloper && (
             <>
-              <Input
+              <FormInput
                 placeholder="Portfolio, GitHub, or website *"
                 name="portfolioUrl"
                 type="url"
+                title="Enter a full URL, e.g. https://example.com"
                 value={formData.portfolioUrl}
                 onChange={handleInputChange}
                 disabled={isProcessing}
                 required
-                className="w-full"
+                error={errors.portfolioUrl}
               />
               <FormSelect
                 name="availability"
-                required
                 placeholder="What's your availability? *"
                 options={availabilityOptions}
                 value={formData.availability}
-                onValueChange={(value) =>
-                  setFormData((prev) => ({ ...prev, availability: value }))
-                }
+                onValueChange={(value) => {
+                  setFormData((prev) => ({ ...prev, availability: value }));
+                  clearError('availability');
+                }}
                 disabled={isProcessing}
-                error={selectError(formData.availability)}
+                error={errors.availability}
               />
             </>
           )}
-          <Textarea
+          <FormTextarea
             placeholder="How much have you worked with TinaCMS before? *"
             name="tinaExperience"
             rows={3}
@@ -434,7 +523,8 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
             onChange={handleInputChange}
             disabled={isProcessing}
             required
-            className="w-full resize-y"
+            className="resize-y"
+            error={errors.tinaExperience}
           />
         </>
       )}
@@ -447,7 +537,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         }
         disabled={isProcessing}
       />
-      <Textarea
+      <FormTextarea
         placeholder={messagePlaceholder}
         name="message"
         rows={4}
@@ -455,7 +545,8 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         onChange={handleInputChange}
         disabled={isProcessing}
         required
-        className="w-full min-h-[100px] resize-y"
+        className="min-h-[100px] resize-y"
+        error={errors.message}
       />
       {config.showNewsletter && (
         <label className="flex items-center gap-2 cursor-pointer select-none">
