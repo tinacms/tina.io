@@ -77,18 +77,18 @@ const HighlightsSection = ({ data }) => {
             return (
               <div
                 className="text-start grid grid-cols-1 my-16 md:my-0"
-                key={`iconColumn-${item.id}`}
+                key={`iconColumn-${item.heading}`}
               >
                 <h4 className="font-ibm-plex text-2xl md:text-3xl mb-4 text-black">
                   {item.heading}
                 </h4>
                 {Array.isArray(item.highlights) &&
-                  item.highlights.map((iconItem, iconIndex) => {
+                  item.highlights.map((iconItem) => {
                     const Icon = icons[iconItem.icon];
                     return (
                       <div
                         className="flex mb-4"
-                        key={`iconColumns-${item.id}-${iconIndex}`}
+                        key={`iconColumns-${item.heading}-${iconItem.name}`}
                       >
                         {Icon && (
                           <Icon
