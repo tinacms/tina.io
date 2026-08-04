@@ -20,7 +20,7 @@ const MainDocsBodyHeader = ({
         ></DocsMobileHeader>
       </div>
       <h1
-        className={`pt-4 font-ibm-plex text-4xl bg-linear-to-r from-orange-500 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
+        className={`pt-2 font-ibm-plex text-4xl leading-[1.3] bg-linear-to-r from-orange-500 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
       >
         {DocumentTitle}
       </h1>
