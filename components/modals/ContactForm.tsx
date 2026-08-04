@@ -38,6 +38,10 @@ const partnerTypeOptions = ['Sole developer', 'Agency'];
 const agencySizeOptions = ['1-5', '6-20', '21-50', '50+'];
 const availabilityOptions = ['Full-time', 'Part-time', 'Project-based'];
 
+// Radix's Select renders a hidden native select that browsers won't report
+// validity on, so `required` here is documentation only — emptiness is checked
+// on submit and surfaced via `error`.
+// https://github.com/radix-ui/primitives/issues/1592
 const FormSelect = ({
   name,
   placeholder,
@@ -46,6 +50,7 @@ const FormSelect = ({
   onValueChange,
   required,
   disabled,
+  error,
 }: {
   name?: string;
   placeholder: string;
@@ -54,25 +59,32 @@ const FormSelect = ({
   onValueChange: (value: string) => void;
   required?: boolean;
   disabled?: boolean;
+  error?: string;
 }) => (
-  <Select
-    name={name}
-    required={required}
-    value={value}
-    onValueChange={onValueChange}
-    disabled={disabled}
-  >
-    <SelectTrigger className="w-full">
-      <SelectValue placeholder={placeholder} />
-    </SelectTrigger>
-    <SelectContent>
-      {options.map((option) => (
-        <SelectItem key={option} value={option}>
-          {option}
-        </SelectItem>
-      ))}
-    </SelectContent>
-  </Select>
+  <div className="w-full">
+    <Select
+      name={name}
+      required={required}
+      value={value}
+      onValueChange={onValueChange}
+      disabled={disabled}
+    >
+      <SelectTrigger
+        className={error ? 'w-full ring-2 ring-red-500' : 'w-full'}
+        aria-invalid={error ? true : undefined}
+      >
+        <SelectValue placeholder={placeholder} />
+      </SelectTrigger>
+      <SelectContent>
+        {options.map((option) => (
+          <SelectItem key={option} value={option}>
+            {option}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+    {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+  </div>
 );
 
 type ContactVariant = 'contact' | 'partner';
@@ -151,10 +163,24 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
   const messagePlaceholder = isAgency
     ? 'Tell us about your agency *'
     : config.messagePlaceholder;
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
+  const [showSelectErrors, setShowSelectErrors] = useState(false);
+
+  // Only the partner variant has required selects, and which ones are required
+  // depends on the partner type currently chosen.
+  const requiredSelectValues =
+    variant === 'partner'
+      ? [
+          formData.partnerType,
+          ...(isAgency ? [formData.agencySize] : []),
+          ...(isSoleDeveloper ? [formData.availability] : []),
+        ]
+      : [];
+  const hasMissingSelect = requiredSelectValues.some((value) => !value);
+  const selectError = (value: string) =>
+    showSelectErrors && !value ? 'Please select an option' : undefined;
 
   const copyEmail = () => {
     navigator.clipboard.writeText('info@tina.io');
@@ -164,6 +190,11 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (hasMissingSelect) {
+      setShowSelectErrors(true);
+      return;
+    }
+    setShowSelectErrors(false);
     setIsProcessing(true);
     setMessage({ text: '', type: '' });
 
@@ -196,7 +227,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
     } catch (error) {
       console.error('Error submitting contact form:', error);
       setMessage({
-        text: 'error',
+        text: '',
         type: 'error',
       });
     } finally {
@@ -233,7 +264,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         </h2>
       </div>
       <p className="text-left w-full">{config.intro}</p>
-      {message.text && (
+      {message.type && (
         <div
           className={`font-ibm-plex text-sm flex items-center gap-2 ${
             message.type === 'success'
@@ -294,6 +325,10 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         placeholder="Email *"
         name="email"
         type="email"
+        // type="email" alone accepts "a@b"; the pattern keeps the stricter
+        // domain.tld rule while letting the browser report it on the field.
+        pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+        title="Enter a valid email address, e.g. name@example.com"
         value={formData.email}
         onChange={handleInputChange}
         disabled={isProcessing}
@@ -337,6 +372,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
               }))
             }
             disabled={isProcessing}
+            error={selectError(formData.partnerType)}
           />
           {isAgency && (
             <>
@@ -360,6 +396,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
                   setFormData((prev) => ({ ...prev, agencySize: value }))
                 }
                 disabled={isProcessing}
+                error={selectError(formData.agencySize)}
               />
             </>
           )}
@@ -385,6 +422,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
                   setFormData((prev) => ({ ...prev, availability: value }))
                 }
                 disabled={isProcessing}
+                error={selectError(formData.availability)}
               />
             </>
           )}
@@ -442,7 +480,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         <Button
           type="submit"
           color="orange"
-          disabled={isProcessing || !isValidEmail}
+          disabled={isProcessing}
           className="px-6 py-2.5"
         >
           {isProcessing ? 'Sending...' : config.submitLabel}

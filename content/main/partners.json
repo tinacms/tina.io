@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "TinaCMS Partners – Find an Agency or Become One",
-    "description": "Work with a vetted TinaCMS agency partner to build fast, Git-backed websites with a best-in-class editing experience – or join the program to grow your agency."
+    "description": "Work with a vetted TinaCMS agency partner to build fast, Git-backed websites with a best-in-class editing experience or join the program to grow your agency."
   },
   "blocks": [
     {
@@ -9,7 +9,7 @@
         "isHeadingOne": true
       },
       "headline": "Build with a TinaCMS partner.",
-      "text": "Find a vetted agency or freelance developer – or become one.",
+      "text": "Find a vetted agency or freelance developer or become one.",
       "buttons": [
         {
           "label": "Find a partner",
