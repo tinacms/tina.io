@@ -14,16 +14,18 @@ Tina的默认“基本编辑器”适用于多种框架。它读取/写入基于
 
 ![基本编辑器](/img/docs/basic-editor.png)
 
-> Tina还支持["可视化编辑"](/docs/contextual-editing/overview/)，编辑者可以在进行更改时实时查看页面的更新。可视化编辑目前仅限于基于React的框架（NextJS, React等）。
+> **Astro是我们的默认入门框架。** 如果你正在启动一个新网站并且没有框架偏好，[从这里开始](/docs/frameworks/astro/)。下面的每个框架仍然受到支持。
+
+> Tina还支持["可视化编辑"](/docs/contextual-editing/overview/)，这样编辑者可以在进行更改时实时查看他们的页面更新。可视化编辑在基于React的框架（NextJS, React等）以及在没有任何React页面树的[Astro](/docs/contextual-editing/astro/)中可用。
 
 ## 为每个框架配置Tina
 
-在配置Tina时，系统会提示您在tina配置中提供一个`publicFolder`。以下是一些常见框架的默认值：
+在配置Tina时，你将被提示在你的tina配置中提供一个`publicFolder`。以下是一些常见框架的默认值：
 
 | **框架**                     | **公共资源目录**           |
 | ---------------------------- | --------------------------- |
-| NextJS                       | public                      |
 | Astro                        | public                      |
+| NextJS                       | public                      |
 | Create React App             | public                      |
 | Hugo                         | static                      |
 | Jekyll                       | ./                          |
@@ -33,4 +35,4 @@ Tina的默认“基本编辑器”适用于多种框架。它读取/写入基于
 | Remix                        | public                      |
 | Vue                          | public                      |
 | Eleventy                     | 每个项目配置                |
-| 纯HTML站点（使用JSON）       | ./                          |
+| 纯HTML网站（使用JSON）       | ./                          |
