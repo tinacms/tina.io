@@ -13,7 +13,9 @@ export function ImageBandBlock({ data, index }) {
     <section key={`image-band-${index}`} className="w-full">
       <Container width="wide">
         <figure className="w-full">
-          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl shadow-lg md:aspect-video">
+          {/* Both ratios arbitrary so the `md:` variant reliably wins; mixing
+              in the named `aspect-video` lost the cascade and never applied. */}
+          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl shadow-lg md:aspect-[16/9]">
             <Image
               src={data.image}
               alt={data.alt || data.caption || ''}

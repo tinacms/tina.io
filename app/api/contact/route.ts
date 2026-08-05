@@ -1,6 +1,10 @@
 import sgMail from '@sendgrid/mail';
 import { type NextRequest, NextResponse } from 'next/server';
 
+// The endpoint is unauthenticated, so anything that lands in the subject line
+// has to come off a known list rather than straight from the request body.
+const INQUIRY_TYPES = ['Partner application'];
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -41,14 +45,17 @@ export async function POST(request: NextRequest) {
     sgMail.setApiKey(SENDGRID_API_KEY);
 
     const fullName = [firstName, lastName].filter(Boolean).join(' ') || 'N/A';
+    const safeInquiryType = INQUIRY_TYPES.includes(inquiryType)
+      ? inquiryType
+      : null;
 
     await sgMail.send({
       from: SENDGRID_FROM_EMAIL,
       to: CONTACT_FORM_TO,
       replyTo: email,
-      subject: `TinaCMS ${inquiryType || 'Contact Form'}: ${fullName}`,
+      subject: `TinaCMS ${safeInquiryType || 'Contact Form'}: ${fullName}`,
       text: [
-        ...(inquiryType ? [`Type: ${inquiryType}`, ''] : []),
+        ...(safeInquiryType ? [`Type: ${safeInquiryType}`, ''] : []),
         `Name: ${fullName}`,
         `Email: ${email}`,
         `Phone: ${phone || 'N/A'}`,

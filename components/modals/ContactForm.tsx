@@ -154,7 +154,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
   const companyPlaceholder =
     variant === 'partner'
       ? isAgency
-        ? 'Agency name'
+        ? 'Agency name *'
         : 'Company (optional)'
       : 'Company';
   const messagePlaceholder = isAgency
@@ -221,6 +221,20 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  // `type="url"` rejects a bare domain, which is what people type into a
+  // "portfolio or website" box. Add the scheme for them rather than blocking.
+  const handleUrlBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const trimmed = value.trim();
+    if (!trimmed || /^[a-z][a-z0-9+.-]*:\/\//i.test(trimmed)) {
+      return;
+    }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: `https://${trimmed}`,
     }));
   };
 
@@ -330,6 +344,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         value={formData.company}
         onChange={handleInputChange}
         disabled={isProcessing}
+        required={isAgency}
         className="w-full"
       />
       {variant === 'partner' && (
@@ -360,6 +375,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
                 type="url"
                 value={formData.portfolioUrl}
                 onChange={handleInputChange}
+                onBlur={handleUrlBlur}
                 disabled={isProcessing}
                 required
                 className="w-full"
@@ -383,6 +399,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
                 type="url"
                 value={formData.portfolioUrl}
                 onChange={handleInputChange}
+                onBlur={handleUrlBlur}
                 disabled={isProcessing}
                 required
                 className="w-full"

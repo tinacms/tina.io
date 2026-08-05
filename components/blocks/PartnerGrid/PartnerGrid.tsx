@@ -104,46 +104,61 @@ const PartnerCard = ({ data }) => {
   );
 };
 
-// Shown alongside a lone partner so the row isn't a single card, and to give
-// visitors a path when no listed partner fits — we match them ourselves.
-const GetInContactCard = () => (
+// Always the last card: the directory only lists partners who opted in, so a
+// visitor who sees no fit still needs a path to the ones who aren't listed.
+const GetInContactCard = ({ data }) => (
   <div className="flex h-full flex-col gap-4 rounded-lg border-2 border-dashed border-blue-200 bg-blue-50/40 p-6 md:p-8">
-    <h3 className="text-xl font-ibm-plex text-blue-1000">Not sure who fits?</h3>
-    <p className="grow text-neutral-text-secondary">
-      If you want to know about other certified partners, send us an email at{' '}
-      <a
-        href="mailto:info@tina.io"
-        className="font-medium text-blue-500 hover:text-blue-700"
+    {data.contactCardTitle && (
+      <h3
+        className="text-xl font-ibm-plex text-blue-1000"
+        data-tina-field={tinaField(data, 'contactCardTitle')}
       >
-        info@tina.io
-      </a>{' '}
-      and we'll send the full list.
-    </p>
+        {data.contactCardTitle}
+      </h3>
+    )}
+    {data.contactCardText && (
+      <p
+        className="grow text-neutral-text-secondary"
+        data-tina-field={tinaField(data, 'contactCardText')}
+      >
+        {data.contactCardText}
+      </p>
+    )}
+    {data.contactCardEmail && (
+      <a
+        href={`mailto:${data.contactCardEmail}`}
+        className="mt-auto font-medium text-blue-500 hover:text-blue-700"
+        data-tina-field={tinaField(data, 'contactCardEmail')}
+      >
+        {data.contactCardEmail}
+      </a>
+    )}
   </div>
 );
 
+// The title-derived fallback breaks inbound links when an editor renames the
+// block, hence `anchorId`. `-section` keeps it off the CTA button's own id,
+// which slugifies from the same words.
+const sectionId = (data, index) => {
+  if (data.anchorId) {
+    return data.anchorId;
+  }
+  const slug = data.title
+    ?.toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return slug ? `${slug}-section` : `partner-grid-${index}`;
+};
+
 export function PartnerGridBlock({ data, index }) {
-  // A single partner under "Vetted agencies... reach out to them directly"
-  // reads oddly — hide the heading/subtext so the lone card stands on its own.
-  const isSingle = data.items?.length === 1;
-
-  // Suffix with `-section` so the anchor can't collide with an Actions/Modal
-  // button whose label slugifies to the same value (e.g. a "Find a partner"
-  // CTA that links here) — a duplicate id would make the browser jump to the
-  // button instead of this section.
-  const id = data.title
-    ? `${data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-section`
-    : `partner-grid-${index}`;
-
   return (
     <section
-      id={id}
+      id={sectionId(data, index)}
       key={`partner-grid-${index}`}
       className="w-full scroll-mt-24"
     >
       <Container width="wide">
         {data.title &&
-          !isSingle &&
           (data.blockSettings?.isHeadingOne ? (
             <h1
               className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
@@ -157,25 +172,17 @@ export function PartnerGridBlock({ data, index }) {
               {data.title}
             </h2>
           ))}
-        {data.subText && !isSingle && (
+        {data.subText && (
           <p className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center mx-auto py-4">
             {data.subText}
           </p>
         )}
-        {isSingle ? (
-          <div className="flex flex-col items-center pt-8">
-            <div className="grid w-full max-w-3xl grid-cols-1 gap-8 sm:grid-cols-2">
-              <PartnerCard data={data.items[0]} />
-              <GetInContactCard />
-            </div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
-            {data.items?.map((item, i) => (
-              <PartnerCard key={`${item.name}-${i}`} data={item} />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
+          {data.items?.map((item, i) => (
+            <PartnerCard key={`${item.name}-${i}`} data={item} />
+          ))}
+          <GetInContactCard data={data} />
+        </div>
       </Container>
     </section>
   );

@@ -1,6 +1,6 @@
 {
   "seo": {
-    "title": "TinaCMS Partners – Find an Agency or Become One",
+    "title": "TinaCMS Partners | Find an Agency or Become One",
     "description": "Work with a vetted TinaCMS agency partner to build fast, Git-backed websites with a best-in-class editing experience or join the program to grow your agency."
   },
   "blocks": [
@@ -47,7 +47,7 @@
               "icon": "AiOutlineStar"
             },
             {
-              "name": "No lock-in – Git-backed & open source",
+              "name": "No lock-in, Git-backed & open source",
               "icon": "AiOutlineBranches"
             },
             {
@@ -83,6 +83,10 @@
     {
       "title": "Find a partner",
       "subText": "Vetted agencies ready to build your next TinaCMS project. Reach out to them directly.",
+      "anchorId": "find-a-partner-section",
+      "contactCardTitle": "Not sure who fits?",
+      "contactCardText": "If you want to know about other certified partners, send us an email and we'll send you the full list.",
+      "contactCardEmail": "info@tina.io",
       "items": [
         {
           "name": "SSW",

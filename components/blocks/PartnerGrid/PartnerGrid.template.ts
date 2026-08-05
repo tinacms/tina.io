@@ -21,6 +21,34 @@ export const partnerGridTemplate: Template = {
       },
     },
     {
+      name: 'anchorId',
+      label: 'Anchor ID',
+      type: 'string',
+      description:
+        'Target for #links from elsewhere on the page, e.g. find-a-partner-section. Falls back to a slug of the title, which changes if the title is renamed.',
+    },
+    {
+      name: 'contactCardTitle',
+      label: 'Contact Card Title',
+      type: 'string',
+      description:
+        'Heading on the card shown after the partner list, for visitors who need a partner that is not listed.',
+    },
+    {
+      name: 'contactCardText',
+      label: 'Contact Card Text',
+      type: 'string',
+      ui: {
+        component: 'textarea',
+      },
+    },
+    {
+      name: 'contactCardEmail',
+      label: 'Contact Card Email',
+      type: 'string',
+      description: 'Shown as a mailto link under the contact card text.',
+    },
+    {
       name: 'items',
       label: 'Partners',
       type: 'object',

@@ -79,9 +79,12 @@ const HighlightsSection = ({ data }) => {
                 className="text-start grid grid-cols-1 my-16 md:my-0"
                 key={`iconColumn-${item.heading}`}
               >
-                <h4 className="font-ibm-plex text-2xl md:text-3xl mb-4 text-black">
+                {/* h2, not h4 — these are top-level section headings and the
+                    skip broke heading order. Size is class-driven, so nothing
+                    moves visually. */}
+                <h2 className="font-ibm-plex text-2xl md:text-3xl mb-4 text-black">
                   {item.heading}
-                </h4>
+                </h2>
                 {Array.isArray(item.highlights) &&
                   item.highlights.map((iconItem) => {
                     const Icon = icons[iconItem.icon];
