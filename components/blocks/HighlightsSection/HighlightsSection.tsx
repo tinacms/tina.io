@@ -1,6 +1,17 @@
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
-import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai';
+import {
+  AiOutlineApi,
+  AiOutlineBranches,
+  AiOutlineClockCircle,
+  AiOutlineCrown,
+  AiOutlineCustomerService,
+  AiOutlineSafetyCertificate,
+  AiOutlineShareAlt,
+  AiOutlineStar,
+  AiOutlineUser,
+  AiOutlineUsergroupAdd,
+} from 'react-icons/ai';
 import { BiBadge, BiSupport } from 'react-icons/bi';
 import { CgCrown } from 'react-icons/cg';
 import {
@@ -24,6 +35,14 @@ import { TbPlugConnected } from 'react-icons/tb';
 
 const icons = {
   FaClock,
+  AiOutlineApi,
+  AiOutlineBranches,
+  AiOutlineClockCircle,
+  AiOutlineCrown,
+  AiOutlineCustomerService,
+  AiOutlineSafetyCertificate,
+  AiOutlineShareAlt,
+  AiOutlineStar,
   FaUnlock,
   FaCodeBranch,
   FaCloudDownloadAlt,
@@ -47,31 +66,37 @@ const icons = {
 };
 
 const HighlightsSection = ({ data }) => {
-  const { highlightColumn } = data || {};
+  const { highlightColumn, brandColorIcons } = data || {};
+  const iconColorClass = brandColorIcons ? 'text-brand-primary' : 'text-black';
 
   return (
-    <div className="h-fit lg:py-16 md:py-8 bg-linear-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center w-screen">
+    <div className="h-fit lg:py-16 md:py-8 bg-linear-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center w-full">
       <div className="md:flex justify-center lg:gap-36 md:gap-16 w-fit md:w-full mx-auto md:mx-0">
         {Array.isArray(highlightColumn) &&
           highlightColumn.map((item) => {
             return (
               <div
                 className="text-start grid grid-cols-1 my-16 md:my-0"
-                key={`iconColumn-${item.id}`}
+                key={`iconColumn-${item.heading}`}
               >
-                <h4 className="font-ibm-plex text-2xl md:text-3xl mb-4 text-black">
+                {/* h2, not h4 — these are top-level section headings and the
+                    skip broke heading order. Size is class-driven, so nothing
+                    moves visually. */}
+                <h2 className="font-ibm-plex text-2xl md:text-3xl mb-4 text-black">
                   {item.heading}
-                </h4>
+                </h2>
                 {Array.isArray(item.highlights) &&
-                  item.highlights.map((iconItem, iconIndex) => {
+                  item.highlights.map((iconItem) => {
                     const Icon = icons[iconItem.icon];
                     return (
                       <div
                         className="flex mb-4"
-                        key={`iconColumns-${item.id}-${iconIndex}`}
+                        key={`iconColumns-${item.heading}-${iconItem.name}`}
                       >
                         {Icon && (
-                          <Icon className="text-3xl mr-2 text-black inline" />
+                          <Icon
+                            className={`text-3xl mr-2 ${iconColorClass} inline`}
+                          />
                         )}
                         <span className="font-inter text-lg md:text-xl text-black">
                           {iconItem.name}
