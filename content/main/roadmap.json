@@ -26,6 +26,25 @@
       "headline": "Done",
       "items": [
         {
+          "icon": "FaRegClock",
+          "heading": "TinaCloud - Project Insights\n",
+          "content": "We’re adding new analytics to the TinaCloud portal to help teams understand how their content is evolving. These insights show who is making changes, which files are being updated, and how activity trends over time — giving teams clearer visibility into their content workflows.\n"
+        },
+        {
+          "icon": "FaHourglassHalf",
+          "heading": "TinaCMS - Telemetry (powered by PostHog)\n",
+          "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
+          "actions": [
+            {
+              "label": "PostHog 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://posthog.com/"
+            }
+          ]
+        },
+        {
           "icon": "FaRegCheckCircle",
           "heading": "TinaCloud Separate Content Repo Support\n",
           "status": "",
@@ -259,20 +278,6 @@
         },
         {
           "icon": "FaHourglassHalf",
-          "heading": "TinaCMS - Telemetry (powered by PostHog)\n",
-          "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
-          "actions": [
-            {
-              "label": "PostHog 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
-              "url": "https://posthog.com/"
-            }
-          ]
-        },
-        {
-          "icon": "FaHourglassHalf",
           "heading": "TinaCloud - CLI\n",
           "content": "A first-party TinaCloud CLI lets developers manage projects, repos, branches, and more from the terminal.\n",
           "actions": [
@@ -283,6 +288,21 @@
               "variant": "default",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/discussions/7000"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegClock",
+          "heading": "Swapping auth from AWS Cognito to WorkOS\n",
+          "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/7001"
             }
           ]
         }
@@ -340,11 +360,6 @@
         },
         {
           "icon": "FaRegClock",
-          "heading": "TinaCloud - Project Insights\n",
-          "content": "We’re adding new analytics to the TinaCloud portal to help teams understand how their content is evolving. These insights show who is making changes, which files are being updated, and how activity trends over time — giving teams clearer visibility into their content workflows.\n"
-        },
-        {
-          "icon": "FaRegClock",
           "heading": "MCP Server\n",
           "status": "",
           "content": "We're working on some ways to leverage AI in the content creation process.\n",
@@ -355,21 +370,6 @@
               "variant": "default",
               "size": "medium",
               "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
-            }
-          ]
-        },
-        {
-          "icon": "FaRegClock",
-          "heading": "Swapping auth from AWS Cognito to WorkOS\n",
-          "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access.\n",
-          "actions": [
-            {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/discussions/7001"
             }
           ]
         }
