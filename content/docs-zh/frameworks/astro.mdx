@@ -1,24 +1,26 @@
 ---
 id: /docs/frameworks/astro
 title: Astro + TinaCMS 设置指南
-last_edited: '2026-06-12T00:00:00.000Z'
-next: content/docs-zh/frameworks/hugo.mdx
-previous: content/docs-zh/frameworks/next/pages-router.mdx
+last_edited: '2026-07-28T00:00:00.000Z'
+next: content/docs-zh/frameworks/next/app-router.mdx
+previous: content/docs-zh/introduction/using-starter.mdx
 ---
 
 \
-TinaCMS 与 Astro 并肩运行，提供**无需在页面树中使用 React 的一流可视化编辑**。它作为 `@tinacms/astro` 提供，一个原生 Astro 富文本渲染器加上一行集成。
+TinaCMS 与 Astro 并行运行，具有**无需在页面树中使用 React 的一流可视化编辑功能**。它作为 `@tinacms/astro` 提供，一个原生 Astro 富文本渲染器加上一行集成。
+
+> **Astro 是我们的默认启动器。** 我们推荐它用于新项目，并且我们首先针对它进行构建和测试。[其他启动器](/docs/introduction/using-starter/)仍然可用并受到支持。
 
 ## 入门
 
 有两种方式可以在 Astro 中设置 TinaCMS。
 
-* **选项 1：从入门模板搭建**（适合新项目）。
+* **选项 1：从启动模板搭建**（适合新项目，也是默认启动器）。
 * **选项 2：将 TinaCMS 添加到现有的 Astro 站点**，使用 `tinacms init`。
 
-> 示例使用 **pnpm**。在 npm 或 yarn 中，替换命令：`pnpm dev` 变为 `npm run dev` 或 `yarn dev`；`pnpm add x` 变为 `npm install x` 或 `yarn add x`。
+> 示例使用 **pnpm**。在 npm 或 yarn 上，替换命令：`pnpm dev` 变为 `npm run dev` 或 `yarn dev`；`pnpm add x` 变为 `npm install x` 或 `yarn add x`。
 
-### 选项 1：从入门模板搭建
+### 选项 1：从启动模板搭建
 
 ```bash
 npx create-tina-app@latest --template tina-astro-starter
@@ -27,15 +29,15 @@ npx create-tina-app@latest --template tina-astro-starter
 在提示时输入项目名称。然后进入该文件夹并启动开发服务器：
 
 ```bash
-cd your-project-name      # 你刚创建的文件夹
+cd your-project-name      # 刚创建的文件夹
 pnpm dev
 ```
 
-让开发服务器保持运行。打开 **[http://localhost:4321/admin/index.html](http://localhost:4321/admin/index.html)**，选择一篇文章并编辑。可视化编辑已经连接，无需其他操作。*（`4321` 是 Astro 的默认端口；使用终端打印的端口。）*
+保持开发服务器运行。打开 **[http://localhost:4321/admin/index.html](http://localhost:4321/admin/index.html)**，选择一篇文章并进行编辑。可视化编辑已经连接，无需其他操作。*（`4321` 是 Astro 的默认端口；使用终端打印的端口。）*
 
 ### 选项 2：将 TinaCMS 添加到现有的 Astro 站点
 
-从你站点的根目录：
+从你的网站根目录开始：
 
 ```bash
 cd your-astro-site       # 你的现有站点
@@ -47,12 +49,12 @@ npx @tinacms/cli@latest init
 | 提示 | 回答 |
 |---|---|
 | 你的现有站点是用哪个框架构建的？ | **Astro** |
-| 选择你的包管理器 | *你的站点使用的那个* |
-| 你想为 Tina 配置使用 TypeScript 吗？ | **是** |
+| 选择你的包管理器 | *你的网站使用的那个* |
+| 你想使用 TypeScript 来配置 Tina 吗？ | **是** |
 
 > `init` 将 TinaCMS 添加到一个**现有**站点。在空文件夹中运行它会停止并指向选项 1。
 
-`init` 安装 `@tinacms/astro` + 一个 SSR 适配器，包装你的 `dev` / `build` 脚本，并添加新文件：一个准备编辑的演示位于 **`/tinacms-demo`**，你的 `tina/` 配置和一个示例集合。它不会覆盖你的内容，并且会保留自定义的 `astro.config`（空或默认配置会得到 Tina 的连接）。
+`init` 安装 `@tinacms/astro` + 一个 SSR 适配器，包装你的 `dev` / `build` 脚本，并添加新文件：一个准备编辑的演示在 **`/tinacms-demo`**，你的 `tina/` 配置和一个示例集合。它不会覆盖你的内容，并且会保留自定义的 `astro.config`（空或默认配置会得到 Tina 的连接）。
 
 启动开发服务器：
 
@@ -60,17 +62,17 @@ npx @tinacms/cli@latest init
 pnpm dev
 ```
 
-让它运行。在浏览器中打开：
+保持运行。在浏览器中打开：
 
 * **http://localhost:4321/tinacms-demo** 显示演示英雄。*（终端中不同的端口？使用那个。）*
-* **http://localhost:4321/admin/index.html#/~/tinacms-demo** 打开编辑器。粘贴整个 URL（包括 `#/~/`）。点击标题或按钮：它应该高亮并在侧边栏打开一个表单以进行实时编辑。
+* **http://localhost:4321/admin/index.html#/~/tinacms-demo** 打开编辑器。粘贴完整的 URL（包括 `#/~/`）。点击标题或按钮：它应该高亮并在侧边栏打开一个表单以进行实时编辑。
 
 ![实时编辑演示](/gif/blocks.gif)
 
 #### 点击后是否打开了可编辑字段？
 
-* ✅ **是**（字段高亮并打开了一个表单）。`init` 为你连接了配置。演示可以正常工作，也可以按原样构建和部署。接下来：[使你的现有页面可编辑](#make-your-existing-astro-pages-editable)（目前只有 `/tinacms-demo` 是可编辑的）。
-* ❌ **否**（页面显示但点击无反应，或稍后 `pnpm build` 失败并显示 `[NoAdapterInstalled]`）。你的 `astro.config` 已经有内容，所以 `init` 没有修改它。**打开 `astro.config.mjs`：如果 `integrations` 中没有 `tina()`，这就是原因。** 在下面的 [启用可视化编辑](#enabling-visual-editing) 中连接它，然后重启。
+* ✅ **是**（字段高亮并打开了一个表单）。`init` 为你连接了配置。演示可以正常工作并可以按原样构建和部署。接下来：[使你的现有页面可编辑](#make-your-existing-astro-pages-editable)（目前只有 `/tinacms-demo` 是可编辑的）。
+* ❌ **否**（页面显示但点击无效，或稍后 `pnpm build` 失败并显示 `[NoAdapterInstalled]`）。你的 `astro.config` 已经有内容，所以 `init` 没有修改它。**打开 `astro.config.mjs`：如果 `integrations` 没有 `tina()`，这就是原因。** 在下面的[启用可视化编辑](#enabling-visual-editing)中连接它，然后重启。
 
 ## 建模你的内容
 
@@ -92,15 +94,17 @@ http://localhost:4321/admin/index.html
 ```
 
 > **自定义端口：** 运行 `pnpm exec tinacms dev -c "astro dev --port 8080"`，然后在管理 URL 中使用该端口。
-> **错误？** 请参阅 [常见错误](/docs/forestry/common-errors)。
+> **错误？** 请参阅[常见错误](/docs/forestry/common-errors)。
 
-你应该能看到 TinaCMS 管理界面，能够选择一篇文章，保存，并观察更改持久化到你的本地内容文件。
+你应该看到 TinaCMS 管理界面，能够选择一篇文章，保存，并观察更改持久化到本地内容文件。
+
+> **Astro 6+ 支持实时内容刷新：** 当你创建新条目时，其页面会在运行的开发站点中出现，无需重启。这需要 **Astro 6 或更新版本**。在 Astro 5 上，新创建的条目可能会 404，直到你重启 `pnpm dev`；当检测到 Astro 5 时，集成会在你的终端中打印提醒。
 
 ![TinaCMS 管理界面](/img/hugo-tina-admin-screenshot.png)
 
 ## 启用可视化编辑
 
-**仅适用于现有 Astro 站点。** 如果你是从入门模板搭建的（选项 1，`tina-astro-starter`），请跳过此步骤：可视化编辑已经连接。你只需要在**`init` 未修改你的现有 `astro.config`**（上面的 ❌ 情况）或你手动连接现有站点时。
+**仅适用于现有 Astro 站点。** 如果你是从启动器搭建的（选项 1，`tina-astro-starter`），请跳过此步骤：可视化编辑已经连接。只有当 **`init` 没有修改你现有的 `astro.config`**（上面的 ❌ 情况）或你手动连接现有站点时才需要。
 
 从你现有站点的根目录，安装包和一个 SSR 适配器：
 
@@ -113,7 +117,7 @@ pnpm add @astrojs/node          # 或 @astrojs/vercel / netlify / cloudflare
 
 `@astrojs/node` 是本地编辑的安全默认选项。部署时与主机（Vercel、Netlify、Cloudflare）匹配。
 
-将 Tina 集成和一个 SSR 适配器添加到 `astro.config.mjs`。如果你已经有一个 `integrations` 数组或一个适配器，**保留它们**，只需追加 `tina()`。
+将 Tina 集成和一个 SSR 适配器添加到 `astro.config.mjs`。如果你已经有一个 `integrations` 数组或适配器，**保留它们**并仅追加 `tina()`。
 
 > **不确定如何合并？** 复制 `init` 在你的终端中打印的版本，或者将你的文件与下面的代码片段进行比较，并保留你现有的集成和适配器。
 
@@ -126,7 +130,7 @@ import node from '@astrojs/node';
 export default defineConfig({
   output: 'server',
   adapter: node({ mode: 'standalone' }),       // 或你的现有适配器（Vercel、Netlify，...）
-  integrations: [tina()],                      // 将 tina() 追加到你现有的数组中
+  integrations: [tina()],                      // 将 tina() 追加到你现有的数组
   vite: {
     plugins: [tinaAdminDevRedirect()], // 让 /admin 在开发中工作
     // 可选：仅在 SSR 构建中需要，不适用于完全静态站点。
@@ -142,44 +146,44 @@ export default defineConfig({
 pnpm dev
 ```
 
-> **为什么 `output: 'server'` 和一个适配器？** 编辑器从按需路由重新获取每个区域。`output: 'server'` 是最简单的；如果每个可编辑区域都包裹在 `<TinaIsland>` 中，`output: 'static'` 也可以工作。参见 [静态站点编辑](/docs/contextual-editing/astro/#static-site-editing)。
+> **为什么使用 `output: 'server'` 和一个适配器？** 编辑器从按需路由重新获取每个区域。`output: 'server'` 是最简单的；如果每个可编辑区域都包裹在 `<TinaIsland>` 中，`output: 'static'` 也可以工作。请参阅[静态站点编辑](/docs/contextual-editing/astro/#static-site-editing)。
 
 ## 使你的现有 Astro 页面可编辑
 
-在 `init` 之后，**`/tinacms-demo` 是唯一为 Tina 编辑连接的页面**。它是你站点其他部分的工作模板：将相同的模式复制到你现有的页面和组件中。（一个*岛屿*只是页面的一个可编辑部分。）每个可编辑页面连接这五个部分，所有这些都为演示搭建：
+在 `init` 之后，**`/tinacms-demo` 是唯一为 Tina 编辑连接的页面**。它是你网站其他部分的工作模板：将相同的模式复制到你现有的页面和组件中。（一个*岛*只是页面的一个可编辑部分。）每个可编辑页面连接这五个部分，所有这些都为演示搭建：
 
 1. **你的架构中的一个字段**（`tina/config.ts`）：你想编辑的内容。
 2. **一个数据加载器**：将查询包装在 `requestWithMetadata()` 中。
-3. **一个岛屿注册表**条目。
-4. **每个岛屿的端点**：`src/pages/tina-island/[name].ts`（处理每个区域；保留其 `export const prerender = false`）。
-5. **`<TinaIsland>` 和 `tinaField()`**：包裹区域并标记可点击元素。*（从 `@tinacms/astro/TinaMarkdown.astro` 导入 `TinaMarkdown`，子路径，否则 Astro 不会编译它。）*
+3. **一个岛注册表**条目。
+4. **每个岛的端点**：`src/pages/tina-island/[name].ts`（处理每个区域；保留其 `export const prerender = false`）。
+5. **`<TinaIsland>` 和 `tinaField()`**：包裹区域并标记可点击元素。*（从 `@tinacms/astro/TinaMarkdown.astro` 子路径导入 `TinaMarkdown`，否则 Astro 不会编译它。）*
 
 完整的代码演练：**[可视化编辑设置 → Astro](/docs/contextual-editing/astro/)**。它有从演示到真实页面时要遵循的确切文件名和模式。
 
 ## 项目结构
 
-`init`（和入门模板）围绕这些文件组织可视化编辑：
+`init`（和启动器）围绕这些文件组织可视化编辑：
 
 * **`tina/config.ts`**：你的集合（架构）；生成类型化客户端。
-* **`src/lib/tina/data.ts`**：每个集合的获取器，每个都通过 `requestWithMetadata()`。
+* **`src/lib/tina/data.ts`**：每个集合的获取器，每个通过 `requestWithMetadata()` 处理。
 * **`src/lib/tina/islands.ts`**：可编辑区域的注册表。
 * **`src/pages/tina-island/[name].ts`**：桥接重新获取的按需端点，通过 `experimental_createIslandRoute(islands)`。
 * **`src/components/tina/*.astro`**：使用 `<TinaMarkdown>` 和 `tinaField()` 的 Astro 渲染器。
 * **`astro.config.mjs`**：注册 `tina()`；中间件自动注入桥接。
 
-参见 [可视化编辑设置 → Astro](/docs/contextual-editing/astro/) 了解完整架构。
+请参阅[可视化编辑设置 → Astro](/docs/contextual-editing/astro/)以获取完整架构。
 
 ## 下一步
 
-* [可视化编辑设置 → Astro](/docs/contextual-editing/astro/): 集成、每个岛屿的重新获取和自定义 MDX 嵌入
-* [部署到 Cloudflare Workers](/docs/tinacloud/deployment-options/cloudflare-workers): 入门模板自动检测主机并在请求时保持可视化编辑工作
-* [从基于 React 的可视化编辑迁移](/docs/migrations/astro-react-free-visual-editing/): 旧 `client:tina` 路径上的现有站点
-* [内容建模](/docs/schema/) · [数据获取](/docs/features/data-fetching/) · [部署你的站点](/docs/tinacloud)
+* [可视化编辑设置 → Astro](/docs/contextual-editing/astro/)：集成、每个岛的重新获取和自定义 MDX 嵌入
+* [部署到 Cloudflare Workers](/docs/tinacloud/deployment-options/cloudflare-workers)：启动器自动检测主机并在请求时保持可视化编辑工作
+* [从基于 React 的可视化编辑迁移](/docs/migrations/astro-react-free-visual-editing/)：旧 `client:tina` 路径上的现有站点
+* [内容建模](/docs/schema/) · [数据获取](/docs/features/data-fetching/) · [部署你的网站](/docs/tinacloud)
 
 有问题吗？加入 [TinaCMS Discord](https://discord.gg/suurtdwX)。
 
 ## 另请参阅
 
-* [Next.js 设置指南](/docs/frameworks/next/app-router/): 使用 TinaCMS 与 Next.js
-* [Hugo 设置指南](/docs/frameworks/hugo/): 使用 TinaCMS 与 Hugo
-* [自托管选项](/docs/self-hosted/overview/): 在你自己的基础设施上托管 TinaCMS
+* [Next.js 设置指南](/docs/frameworks/next/app-router/)：在 Next.js 中使用 TinaCMS
+* [Hugo 设置指南](/docs/frameworks/hugo/)：在 Hugo 中使用 TinaCMS
+* [自托管选项](/docs/self-hosted/overview/)：在你自己的基础设施上托管 TinaCMS
