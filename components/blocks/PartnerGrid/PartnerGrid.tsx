@@ -151,6 +151,11 @@ const sectionId = (data, index) => {
 };
 
 export function PartnerGridBlock({ data, index }) {
+  // With a single partner the full grid + "Vetted agencies..." heading reads as
+  // if partners are missing; drop the heading and center the lone card next to
+  // the contact card instead.
+  const isSingle = data.items?.length === 1;
+
   return (
     <section
       id={sectionId(data, index)}
@@ -159,6 +164,7 @@ export function PartnerGridBlock({ data, index }) {
     >
       <Container width="wide">
         {data.title &&
+          !isSingle &&
           (data.blockSettings?.isHeadingOne ? (
             <h1
               className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
@@ -172,17 +178,28 @@ export function PartnerGridBlock({ data, index }) {
               {data.title}
             </h2>
           ))}
-        {data.subText && (
+        {data.subText && !isSingle && (
           <p className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center mx-auto py-4">
             {data.subText}
           </p>
         )}
-        <div className="grid grid-cols-1 gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
-          {data.items?.map((item, i) => (
-            <PartnerCard key={`${item.name}-${i}`} data={item} />
-          ))}
-          <GetInContactCard data={data} />
-        </div>
+        {isSingle ? (
+          <div className="flex justify-center pt-8">
+            <div className="grid w-full max-w-3xl grid-cols-1 gap-8 sm:grid-cols-2">
+              {data.items.map((item, i) => (
+                <PartnerCard key={`${item.name}-${i}`} data={item} />
+              ))}
+              <GetInContactCard data={data} />
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
+            {data.items?.map((item, i) => (
+              <PartnerCard key={`${item.name}-${i}`} data={item} />
+            ))}
+            <GetInContactCard data={data} />
+          </div>
+        )}
       </Container>
     </section>
   );
