@@ -9,7 +9,7 @@ const isStatic = process.env.EXPORT_MODE === 'static';
 const TINA_DOCS_URL = 'https://tina-docs-zeta-one.vercel.app';
 const TINA_DOCS_LANDING_URL = 'https://tina-docs-landing.vercel.app';
 const GEO_URL =
-  process.env.GEO_URL || 'https://tinacms-geo-lead-capture.vercel.app';
+  process.env.GEO_URL || 'https://tinacms-geo-lead-capture-xi.vercel.app';
 
 /**
  * @type {import('next').NextConfig}
