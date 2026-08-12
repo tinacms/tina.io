@@ -19,6 +19,76 @@ type BeforeSubmitFunction = (args: {
 }) => Promise<void | Record<string, unknown>>
 ```
 
+## Querying content
+
+Content can be queried from within `beforeSubmit` using the `cms` argument. The generated client is not available in the config, so queries are made by passing a raw GraphQL query string to `cms.api.tina.request()`.
+
+```js
+// tina/config.{ts,js}
+
+const slugCheckQuery = `#graphql
+  query ($filter: PageFilter) {
+    pageConnection(filter: $filter) {
+      edges {
+        node {
+          ... on Document {
+            _sys {
+              path
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+export default defineConfig({
+  schema: {
+    collections: [
+      {
+        ui: {
+          beforeSubmit: async ({
+            form,
+            cms,
+            values,
+          }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
+            const slug = (values.slug ?? '').toString().trim().toLowerCase()
+            if (!slug) return values
+
+            const tinaAPI = (cms as TinaCMS).api?.tina
+
+            const { data } = await tinaAPI?.request(slugCheckQuery, {
+              variables: { filter: { slug: { eq: slug } } },
+            })
+
+            const currentId = form.id
+            const conflict = data?.pageConnection?.edges?.find(
+              (edge) => edge?.node?._sys?.path !== currentId
+            )
+
+            if (conflict) {
+              throw new Error(
+                `The slug "${slug}" is already used by another page.`
+              )
+            }
+
+            return values
+          },
+          //...
+        },
+        //...
+      },
+      //...
+    ],
+  },
+  //...
+})
+```
+
 ## Examples
 
 ### Adding a last updated field
