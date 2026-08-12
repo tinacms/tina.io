@@ -11,7 +11,7 @@ previous: content/docs-zh/reference/schema.mdx
 
 每个集合都是一个独特的内容结构。在TinaCMS中创建内容文档是基于每个集合进行的，以便：
 
-* 内容结构与集合定义相匹配。
+* 内容结构与集合定义匹配。
 * 文档存在于该集合下。
 
 ![](/img/docs/schema/SCR-20250312-nnbi.png)
@@ -58,13 +58,13 @@ previous: content/docs-zh/reference/schema.mdx
       groupName: "",
       name: "fields",
       type: "Field[]",
-      description: "一个[字段](/docs/reference/fields/)的数组。\n"
+      description: "[字段](/docs/reference/fields/)的数组。\n"
     },
     {
       groupName: "",
       name: "templates",
       type: "Template[]",
-      description: "一个[模板](/docs/reference/templates/)的数组。\n"
+      description: "[模板](/docs/reference/templates/)的数组。\n"
     },
     {
       groupName: "",
@@ -106,7 +106,7 @@ previous: content/docs-zh/reference/schema.mdx
       name: "beforeSubmit",
       type: "(values, cms, form) => { values }",
       description:
-        "在表单提交之前调用的函数。任何返回值将替换表单提交值。\n"
+        "在表单提交之前调用的函数。任何返回值将替换表单提交值。要在此函数中查询内容，请使用`cms`参数。参见[提交前函数](/docs/extending-tina/before-submit)。\n"
     },
     {
       groupName: "ui",
@@ -166,7 +166,7 @@ previous: content/docs-zh/reference/schema.mdx
 
 <WarningCallout
   body={<>
-    必须仅提供字段或模板之一。
+    必须仅提供fields或templates之一。
   </>}
 />
 
@@ -196,7 +196,7 @@ previous: content/docs-zh/reference/schema.mdx
 
 <WarningCallout
   body={<>
-    在**本地模式**下，当更改**`path`**时，您需要运行`tinacms dev`。这确保生成的文件包含新路径。
+    在**本地模式**下，当更改**`path`**时，你需要运行`tinacms dev`。这确保生成的文件包含新路径。
   </>}
 />
 
@@ -246,7 +246,7 @@ previous: content/docs-zh/reference/schema.mdx
 
 ### match.exclude
 
-这与`match.include`的工作方式相同，但会排除与模式匹配的任何文件。排除您不希望编辑的文件，或属于不同集合的文件。
+这与`match.include`的工作方式相同，但会排除与模式匹配的任何文件。排除你不想编辑的文件，或属于不同集合的文件。
 
 最终排除的文件集由`!(<path>/<match.exclude>.<format>)`定义。
 
@@ -282,18 +282,18 @@ defaultItem: () => {
 
 ### 富文本的默认值
 
-要为[富文本字段](/docs/reference/types/rich-text/)设置默认值，您必须提供一个抽象语法树（AST）。更多信息请参见此处。
+要为[富文本字段](/docs/reference/types/rich-text/)设置默认值，你必须提供一个抽象语法树（AST）。更多信息请参见此处。
 
 ## 全局集合
 
-> 全局集合需要tinacms: 3.9.4或更高版本。在旧版本中，集合仍然可以工作，但它出现在常规集合列表中，而不是在**站点**下。
+> 全局集合需要tinacms: 3.9.4或更高版本。在旧版本中，集合仍然可以工作，但它会出现在常规集合列表中，而不是在**站点**下。
 
-设置`ui.global: true`以使集合成为**全局**。全局集合包含一个单一的、站点范围的设置文档——例如页眉和页脚内容、导航、主题选项或SEO默认值——而不是多个文档的列表。
+设置`ui.global: true`以使集合成为**全局**。全局集合包含一个单一的、站点范围的设置文档——例如页眉和页脚内容、导航、主题选项或SEO默认值——而不是许多文档的列表。
 
 在编辑器中，全局集合的呈现方式与常规集合不同：
 
 * 它在侧边栏的**站点**标题下出现一次（带有地球图标），而不是在主集合列表中。
-* 打开它直接进入文档的表单——没有文档列表需要浏览，因为全局集合旨在包含单个文档。
+* 打开它直接进入文档的表单——没有文档列表需要浏览，因为全局集合旨在包含单一文档。
 
 ![在TinaCMS侧边栏的站点标题下列出的全局集合（Global, SEO Defaults, Announcement Bar），每个都有一个地球图标，与上面的常规集合列表分开。](/img/docs/reference/global-collections.png)
 
@@ -314,7 +314,7 @@ defaultItem: () => {
 
 <WarningCallout
   body={<>
-    全局集合旨在包含单个文档。如果它包含零个或多个文档，编辑器将回退到常规列表视图。
+    全局集合旨在包含单一文档。如果它包含零个或多个文档，编辑器将回退到常规列表视图。
   </>}
 />
 
@@ -386,7 +386,7 @@ export default defineConfig({
         path: 'content/posts',
         defaultItem: () => {
           return {
-            // 当创建新文章时，标题字段将设置为“新文章”
+            // 当创建新文章时，标题字段将被设置为“新文章”
             title: '新文章',
           };
         },
