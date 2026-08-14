@@ -82,7 +82,7 @@
     "next": "14.2.35",
     "next-seo": "^4.29.0",
     "next-svgr": "0.0.2",
-    "postcss": "^8.5.1",
+    "postcss": "^8.5.23",
     "prism-react-renderer": "^2.4.1",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.30.0",
