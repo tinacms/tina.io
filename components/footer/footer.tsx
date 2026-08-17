@@ -258,7 +258,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           rel="noopener noreferrer"
           className="relative z-10 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 px-4 text-center text-white text-sm md:text-base font-bold no-underline hover:no-underline"
         >
-          TinaCMS is maintained by
+          TinaCMS is actively developed by
           <svg
             viewBox="0 0 90 60"
             fill="white"
