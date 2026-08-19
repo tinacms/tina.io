@@ -117,6 +117,17 @@ export default (req, res) => {
 
 > For more info see [Backend Host](/docs/reference/self-hosted/tina-backend/nextjs)
 
+### Hosting it outside Next.js
+
+The sample above is a Next.js API route, but `TinaNodeBackend` itself is not tied to Next. It is a plain Node `(req, res)` handler that expects an already-parsed `req.body`, so any host that hands it that shape works.
+
+Frameworks whose routes use the web `Request` / `Response` API instead, Astro and SvelteKit among them, cannot mount it directly. Host it as a standalone serverless function beside your site:
+
+* [Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/)
+* [Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/)
+
+[tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo) is a working example of that shape: a static site with the Tina backend as its own function.
+
 ## 5. Update the TinaCMS config
 
 Update the TinaCMS config to use the GraphQL API you created in the previous step.
