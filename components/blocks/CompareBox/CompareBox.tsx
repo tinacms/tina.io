@@ -72,7 +72,7 @@ const CriteriaCard = ({ criteriaItems }) => {
         >
           <h3
             data-tina-field={tinaField(item, 'criteria')}
-            className="sm:leading-[10px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs flex items-center"
+            className="sm:leading-[18px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs flex items-center"
           >
             <span>{item.criteria}</span>
           </h3>
