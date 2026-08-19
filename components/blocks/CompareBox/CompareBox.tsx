@@ -308,8 +308,12 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
         <h2
           className={`${BLOCK_HEADINGS_SIZE} pl-3 font-ibm-plex flex items-center text-center justify-center lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8`}
         >
-          Why Tina?
+          Why TinaCMS Over Traditional CMSs?
         </h2>
+
+        <p className="text-center text-gray-600 text-sm font-semibold md:text-base -mt-4 mb-8">
+          Choose up to 3 CMSs to see how they compare with TinaCMS.
+        </p>
         <div
           className="items-center w-full"
           style={{ justifyContent: 'center' }}
