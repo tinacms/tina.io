@@ -72,11 +72,12 @@ const CriteriaCard = ({ criteriaItems }) => {
         >
           <h3
             data-tina-field={tinaField(item, 'criteria')}
-            className="sm:leading-[18px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs flex items-center"
+            className="min-w-0 flex-1 flex items-center sm:leading-[18px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs"
           >
-            <span>{item.criteria}</span>
+            <span className="min-w-0">{item.criteria}</span>
           </h3>
-          <div className="relative content-center ml-auto lg:ml-0">
+
+          <div className="relative flex-shrink-0 flex items-center ml-1">
             <IoMdInformationCircleOutline
               className="ml-1 text-orange-500 text-xl"
               onMouseEnter={() => setHoveredItem(_idx)}
