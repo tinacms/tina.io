@@ -11,45 +11,43 @@ prev: content/blog-zh/tinacloud-separate-content-repos.mdx
 next: ''
 ---
 
-我们通过博客和新闻通讯带回了定期更新。
+ 开发者团队一直非常忙碌。我们为 🦙 TinaCMS 和 TinaCloud 推出了大量更新。
 
-这将是对TinaCMS和TinaCloud发布内容的简短回顾，发布在博客上并以新闻通讯的形式发送。
+## 新动态
 
-## 有什么新内容
+在5月和6月，团队合并了70多个PR到TinaCMS，并为TinaCloud推出了一系列更新。以下是亮点：
 
-在5月和6月，团队合并了70多个PR到TinaCMS，并向TinaCloud发布了一系列更新。以下是亮点：
+### ⭐️ TinaCMS 在 Astro 新闻中
 
-### ⭐️ TinaCMS在Astro新闻中
+TinaCMS 在 [Astro的“五月新动态”文章](https://astro.build/blog/whats-new-may-2026) 中被提及。我们在自己的项目中尝试了Astro，对他们团队的成果印象深刻！
 
-TinaCMS在[Astro的“五月新动态”文章](https://astro.build/blog/whats-new-may-2026)中得到了提及。我们在自己的项目中尝试了Astro，并对他们团队的成果印象深刻！
-
-### 🧩 全力支持Astro
+### 🧩 全力支持 Astro
 
 **这对我们来说是一个重大变化。**
 
-TinaCMS的可视化编辑不再需要React。
+TinaCMS 的可视化编辑不再需要 React。
 
-一个约2 KB的原生JS桥接现在可以支持实时编辑，并且现在也可以在静态构建的页面上工作，支持Astro 6，并且启动器已重建为无React。
+一个约2 KB的原生JS桥接现在可以支持实时编辑，并且它现在也适用于静态构建的页面，支持Astro 6，并且启动器已重建为无React。
 
-我们这样做是因为Astro在用户兴趣方面表现出色——我们一直在收集一些统计数据。在此更新之后，Astro在我们的CMS启动项目中，启动克隆率跃升至**Next.js的6倍**！
+我们这样做是因为Astro在用户兴趣方面表现出色——我们收集了一些关于这方面的统计数据。在此更新后，Astro在我们的CMS启动项目中，启动克隆率跃升至 **Next.js 的6倍**！
 
-我们也在不断完善Astro的开发体验。新页面现在会在您编写内容时显示，而无需重新启动开发服务器。
+我们也在不断完善Astro的开发体验。新页面现在会在您编写内容时显示，而无需重启开发服务器。
 
-### 🚀 宣布Tina V4
+### 🚀 宣布 Tina V4
 
-我们正式宣布了[Tina V4](/blog/tinacms-v4-is-coming)。七个史诗般的基础工作在Sprint 109中启动，身份验证正前往WorkOS AuthKit。
+我们正式宣布了 [Tina V4](/blog/tinacms-v4-is-coming)。七个史诗般的基础工作在Sprint 109中启动，认证正在转向WorkOS AuthKit。
 
-这已经在进行中！我们已经搭建了新的核心包，并发布了V4字段插件的第一个（字符串、布尔和数字）。
+这已经在进行中！我们已经搭建了新的核心包，并发布了V4字段插件的第一个版本（字符串、布尔和数字）。
 
 ### 🩺 医生现在可以见您了
 
-为了顺利过渡到V4，我们进行了两项更改：新的`tinacms doctor`命令会标记任何过时的Tina包与npm上的最新版本不符，并且旧的`.tina/`文件夹现在会显示弃用警告。我们希望这能使使用TinaCMS的维护故事更加引人注目。
+为了顺利过渡到V4，我们做了两项更改：新的 `tinacms doctor` 命令会标记任何过时的Tina包与npm上的最新版本相比，旧的 `.tina/` 文件夹现在会显示弃用警告。我们希望这能让使用TinaCMS的维护故事更加吸引人。
 
 ### 🔒 安全加固
 
 我们对代码库进行了集中的安全检查，并发布了我们发现和修复的问题的建议：
 
-* `postMessage`处理程序具有来源验证
+* `postMessage` 处理程序具有来源验证
 * 富文本链接和图像URL的清理
 * 开发服务器拒绝跨域媒体上传
 * 生产媒体适配器被锁定以防止任意写入和删除
@@ -57,13 +55,13 @@ TinaCMS的可视化编辑不再需要React。
 
 我们还加强了供应链，采用最低权限的CI权限和锁定的发布管道。
 
-您无需做任何事情，这一切只是让Tina默认更安全。
+您无需做任何事情，这一切都使Tina默认更安全。
 
 ### ✨ 用户体验改进
 
-为编辑者提供了一些生活质量的升级：编辑工作流现在有一个保存选项下拉菜单，可以选择草稿和准备审核，管理编辑页面有一个返回集合的面包屑，使移动更快。
+为编辑者提供了一些生活质量的升级：编辑工作流现在有一个保存选项下拉菜单，可以在草稿和准备审核之间进行选择，管理编辑页面有一个返回到集合的面包屑，使移动更快。
 
-`create-tina-app`在搭建时也会显示实时安装活动，因此您不会只是盯着一个静止的旋转器。
+`create-tina-app` 还在搭建时显示实时安装活动，因此您不会只是看着一个静止的旋转器。
 
 ### 🧪 更多测试
 
@@ -71,7 +69,7 @@ TinaCMS的可视化编辑不再需要React。
 
 ### 📦 下载量
 
-5月份的包下载量超过**200,000**。
+5月份超过 **200,000** 次包下载。
 
 ### ☁️ TinaCloud 改进
 
@@ -81,13 +79,13 @@ TinaCMS的可视化编辑不再需要React。
 * 大型仓库的搜索重建不再因GitHub速率限制而失败。
 * 速率限制现在可以阻止失控的流量导致API宕机。
 
-我们还发布了**单独的内容仓库**：您现在可以将两个GitHub仓库绑定到一个TinaCloud项目。更多信息请参见[单独的内容仓库现已推出TinaCloud](/blog/tinacloud-separate-content-repos)。
+我们还推出了 **独立内容仓库**：您现在可以将两个GitHub仓库绑定到一个TinaCloud项目。更多信息请参见 [TinaCloud的独立内容仓库已上线](/blog/tinacloud-separate-content-repos)。
 
-## 跟上社交媒体
+## 跟进社交媒体
 
-我们的社交渠道已经沉寂了一段时间……开发工作并没有停止，我们希望让每个人都了解最新情况。
+我们的社交渠道已经安静了一段时间……开发工作并没有停止，我们希望让每个人都了解最新情况。
 
-所以我们将恢复定期发布，提供产品更新、视频和教程内容以及相关新闻。
+所以我们恢复了定期发布，提供产品更新、视频和教程内容以及相关新闻。
 
 关注我们的商业账户以保持更新：
 
@@ -99,16 +97,16 @@ TinaCMS的可视化编辑不再需要React。
 * **Facebook**: [TinaCMS](https://www.facebook.com/tinacms/)
 * **Threads**: [@tinacms\_](https://www.threads.com/@tinacms_)
 
-团队中的两位开发人员，**Brook**和**Isaac**，将直接发布和回复评论，因此当您回复时，您将与团队中的真实人员交流。
+团队中的两位开发者，**Brook** 和 **Isaac**，将直接发布和回复评论，所以当您回复时，您将与团队中的真实人员交流。
 
 来打个招呼吧。
 
-## 这就是最新动态
+## 这是最新动态
 
 我们大约每两个月发送一次这些更新。
 
-* 再次，关注我们在[X](https://x.com/tinacms)、[LinkedIn](https://www.linkedin.com/company/tinacms)、[YouTube](https://www.youtube.com/@TinaCMS)、[Bluesky](https://bsky.app/profile/tina.io)和[Threads](https://www.threads.com/@tinacms_)上的账号。
-* 在[Discord](https://discord.com/invite/zumN63Ybpf)上与我们聊天。
-* 如果您希望将此发送到您的收件箱，请[订阅博客](/rss.xml)。
+* 再次，关注我们在 [X](https://x.com/tinacms), [LinkedIn](https://www.linkedin.com/company/tinacms), [YouTube](https://www.youtube.com/@TinaCMS), [Bluesky](https://bsky.app/profile/tina.io), 和 [Threads](https://www.threads.com/@tinacms_) 上的动态。
+* 在 [Discord](https://discord.com/invite/zumN63Ybpf) 上与我们聊天。
+* 如果您希望将此发送到您的收件箱，请 [订阅博客](/rss.xml)。
 
 下次见 👋🦙

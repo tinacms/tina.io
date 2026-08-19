@@ -61,14 +61,15 @@ export const HeroFeature = ({ item, spacing, children }) => {
         </p>
       )}
       <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-start lg:items-center gap-10 pb-10">
+        {/* Tina's button objects have no `id`, so key on the label. */}
         {item.buttons?.map((button, index) => (
           <div
-            key={button.id}
+            key={`heroButton-${button.label}`}
             className={`flex items-start lg:items-center ${
               index === 2 ? 'md:col-span-2 md:justify-center' : ''
             }`}
           >
-            <RenderButton button={button} key={button.id || index} />
+            <RenderButton button={button} />
           </div>
         ))}
       </div>

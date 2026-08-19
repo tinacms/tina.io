@@ -87,7 +87,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
 function BlogPageTitle({ title }: { title: string }) {
   const blogTitleStyling =
     'leading-[1.3] max-w-3xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 ' +
-    'text-transparent bg-clip-text font-ibm-plex mx-auto text-4xl md:text-5xl lg:text-6xl';
+    'text-transparent bg-clip-text font-ibm-plex mx-auto text-4xl md:text-5xl';
 
   return (
     <header className="relative z-10 overflow-visible text-center px-8 pt-12 pb-4">

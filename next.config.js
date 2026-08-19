@@ -166,9 +166,18 @@ const config = {
     ];
   },
 
-  webpack(config) {
+  webpack(config, { dev }) {
     config.module.rules.push({ test: /\.md$/, use: 'raw-loader' });
     config.resolve.fallback = { ...config.resolve.fallback, fs: 'empty' };
+
+    // Opt-in escape hatch for low-RAM machines. Disabling webpack's persistent
+    // cache drops the dev server's peak memory on a cold homepage compile from
+    // ~8.7GB to ~7.6GB, at the cost of ~13s on each dev-server restart (the
+    // cache is no longer reused). Cold compile time is unchanged.
+    // Off by default; set LOW_MEMORY=true in your local .env to enable.
+    if (dev && process.env.LOW_MEMORY === 'true') {
+      config.cache = false;
+    }
 
     config.plugins.push(
       new MonacoWebpackPlugin({

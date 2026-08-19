@@ -1,19 +1,21 @@
 ---
 id: /docs/frameworks/astro
 title: Astro + TinaCMS Setup Guide
-last_edited: '2026-06-12T00:00:00.000Z'
-next: content/docs/frameworks/hugo.mdx
-previous: content/docs/frameworks/next/pages-router.mdx
+last_edited: '2026-07-28T00:00:00.000Z'
+next: content/docs/frameworks/next/app-router.mdx
+previous: content/docs/introduction/using-starter.mdx
 ---
 
 \
 TinaCMS runs side-by-side with Astro, with **first-class visual editing that needs no React in your page tree**. It ships as `@tinacms/astro`, a vanilla-Astro rich-text renderer plus a one-line integration.
 
+> **Astro is our default starter.** It is the starter we recommend for new projects and the one we build and test against first. The [other starters](/docs/introduction/using-starter/) are still available and still supported.
+
 ## Getting Started
 
 There are 2 ways to set up TinaCMS with Astro.
 
-* **Option 1: Scaffold from the starter template** (best for new projects).
+* **Option 1: Scaffold from the starter template** (best for new projects, and the default starter).
 * **Option 2: Add TinaCMS to an existing Astro site** with `tinacms init`.
 
 > Examples use **pnpm**. On npm or yarn, swap the commands: `pnpm dev` becomes `npm run dev` or `yarn dev`; `pnpm add x` becomes `npm install x` or `yarn add x`.
@@ -95,6 +97,8 @@ http://localhost:4321/admin/index.html
 > **Errors?** See [Common Errors](/docs/forestry/common-errors).
 
 You should see the TinaCMS admin, be able to select a post, save, and watch changes persist to your local content files.
+
+> **Astro 6+ for live content refresh:** when you create a new entry, its page appears in the running dev site without a restart. This needs **Astro 6 or newer**. On Astro 5 a newly created entry can 404 until you restart `pnpm dev`; the integration prints a reminder in your terminal when it detects Astro 5.
 
 ![TinaCMS Admin](/img/hugo-tina-admin-screenshot.png)
 

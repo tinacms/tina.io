@@ -1,0 +1,130 @@
+{
+  "seo": {
+    "title": "TinaCMS Partners | Find an Agency or Become One",
+    "description": "Work with a vetted TinaCMS agency partner to build fast, Git-backed websites with a best-in-class editing experience or join the program to grow your agency."
+  },
+  "blocks": [
+    {
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "headline": "Build with a TinaCMS partner.",
+      "text": "Find a vetted agency or freelance developer or become one.",
+      "buttons": [
+        {
+          "label": "Find a partner",
+          "icon": true,
+          "shape": "pill",
+          "variant": "blue",
+          "size": "medium",
+          "url": "#find-a-partner-section",
+          "_template": "actions"
+        },
+        {
+          "label": "Become a partner",
+          "icon": false,
+          "shape": "pill",
+          "color": "blueOutline",
+          "size": "medium",
+          "modal": "BecomePartner.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "hero"
+    },
+    {
+      "brandColorIcons": true,
+      "highlightColumn": [
+        {
+          "heading": "Why choose a partner?",
+          "highlights": [
+            {
+              "name": "Direct access to the development team",
+              "icon": "AiOutlineCustomerService"
+            },
+            {
+              "name": "Guaranteed TinaCMS development experience",
+              "icon": "AiOutlineStar"
+            },
+            {
+              "name": "No lock-in, Git-backed & open source",
+              "icon": "AiOutlineBranches"
+            },
+            {
+              "name": "Ongoing support & maintenance",
+              "icon": "AiOutlineClockCircle"
+            }
+          ]
+        },
+        {
+          "heading": "Why become a partner?",
+          "highlights": [
+            {
+              "name": "Co-marketing opportunities",
+              "icon": "AiOutlineShareAlt"
+            },
+            {
+              "name": "A Certified Partner badge",
+              "icon": "AiOutlineSafetyCertificate"
+            },
+            {
+              "name": "Free TinaCloud licence for your own website",
+              "icon": "AiOutlineCrown"
+            },
+            {
+              "name": "Technical assistance and priority feature requests",
+              "icon": "AiOutlineApi"
+            }
+          ]
+        }
+      ],
+      "_template": "highlightsSection"
+    },
+    {
+      "title": "Find a partner",
+      "subText": "Vetted agencies ready to build your next TinaCMS project. Reach out to them directly.",
+      "anchorId": "find-a-partner-section",
+      "contactCardTitle": "Not sure who fits?",
+      "contactCardText": "If you want to know about other certified partners, send us an email and we'll send you the full list.",
+      "contactCardEmail": "info@tina.io",
+      "items": [
+        {
+          "name": "SSW",
+          "logo": "/svg/logos/ssw.svg",
+          "tier": "Premier",
+          "location": "Sydney, Australia",
+          "description": "Full-service consultancy delivering enterprise web apps and content-driven sites with TinaCMS, Next.js and Astro.",
+          "services": [
+            "Next.js",
+            "Enterprise",
+            "Migrations"
+          ],
+          "website": "https://www.ssw.com.au"
+        }
+      ],
+      "_template": "partnerGrid"
+    },
+    {
+      "image": "/img/partners/tina-team.jpg",
+      "alt": "The TinaCMS team holding plush alpacas in front of a tina.io banner at a conference",
+      "caption": "Join the herd. Build with TinaCMS.",
+      "_template": "imageBand"
+    },
+    {
+      "title": "Ready to partner with Tina?",
+      "description": "Tell us about your agency and the work you do. We'll be in touch about joining the TinaCMS partner program.",
+      "buttons": [
+        {
+          "label": "Apply to become a partner",
+          "icon": true,
+          "shape": "square",
+          "color": "orange",
+          "size": "medium",
+          "modal": "BecomePartner.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "callToAction"
+    }
+  ]
+}

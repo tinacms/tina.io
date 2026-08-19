@@ -106,7 +106,7 @@ The `format` property can be set to control the filetype of content created in t
       name: "beforeSubmit",
       type: "(values, cms, form) => { values }",
       description:
-        "A function called before the form is submitted. Any return value will replace the form submit value.\n"
+        "A function called before the form is submitted. Any return value will replace the form submit value. To query content inside this function use the `cms` argument. See [Before Submit Function](/docs/extending-tina/before-submit).\n"
     },
     {
       groupName: "ui",

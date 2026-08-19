@@ -5,7 +5,7 @@ title: 提交前函数
 previous: content/docs-zh/extending-tina/filename-customization.mdx
 ---
 
-提交前函数允许你在表单提交到后端之前在前端运行一个函数，并可以选择性地修改文档的值。
+提交前函数允许你在表单提交到后端之前在前端运行一个函数，并可选择性地修改文档的值。
 
 ## 定义
 
@@ -17,6 +17,76 @@ type BeforeSubmitFunction = (args: {
   cms: TinaCMS
   form: Form
 }) => Promise<void | Record<string, unknown>>
+```
+
+## 查询内容
+
+可以使用 `cms` 参数在 `beforeSubmit` 中查询内容。生成的客户端在配置中不可用，因此通过将原始的 GraphQL 查询字符串传递给 `cms.api.tina.request()` 来进行查询。
+
+```js
+// tina/config.{ts,js}
+
+const slugCheckQuery = `#graphql
+  query ($filter: PageFilter) {
+    pageConnection(filter: $filter) {
+      edges {
+        node {
+          ... on Document {
+            _sys {
+              path
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+export default defineConfig({
+  schema: {
+    collections: [
+      {
+        ui: {
+          beforeSubmit: async ({
+            form,
+            cms,
+            values,
+          }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
+            const slug = (values.slug ?? '').toString().trim().toLowerCase()
+            if (!slug) return values
+
+            const tinaAPI = (cms as TinaCMS).api?.tina
+
+            const { data } = await tinaAPI?.request(slugCheckQuery, {
+              variables: { filter: { slug: { eq: slug } } },
+            })
+
+            const currentId = form.id
+            const conflict = data?.pageConnection?.edges?.find(
+              (edge) => edge?.node?._sys?.path !== currentId
+            )
+
+            if (conflict) {
+              throw new Error(
+                `Slug "${slug}" 已被另一个页面使用。`
+              )
+            }
+
+            return values
+          },
+          //...
+        },
+        //...
+      },
+      //...
+    ],
+  },
+  //...
+})
 ```
 
 ## 示例
@@ -31,7 +101,7 @@ export default defineConfig({
     collections: [
       {
         ui: {
-          // 提交前的示例
+          // 提交前示例
           beforeSubmit: async ({
             form,
             cms,
@@ -92,7 +162,7 @@ export default defineConfig({
 })
 ```
 
-### 添加slug字段
+### 添加 slug 字段
 
 ```js
 export default defineConfig({
