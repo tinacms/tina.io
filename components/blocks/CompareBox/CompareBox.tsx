@@ -189,19 +189,21 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
     }
 
     let currentIndex = 1;
+
     const interval = setInterval(() => {
       setCompanies((prevCompanies) => {
-        const newCompanies = prevCompanies?.map((company, idx) => ({
+        const newCompanies = prevCompanies.map((company, idx) => ({
           ...company,
-          active: idx === 0 ? true : idx === currentIndex,
+          active: idx === 0 || idx === currentIndex,
         }));
+
         if (sliderRef.current) {
-          sliderRef.current.slickGoTo(currentIndex - 1);
+          sliderRef.current.slickGoTo(currentIndex);
         }
-        currentIndex = (currentIndex + 1) % (prevCompanies?.length ?? 1);
-        if (currentIndex === 0) {
-          currentIndex = 1;
-        }
+
+        currentIndex =
+          currentIndex + 1 >= prevCompanies.length ? 1 : currentIndex + 1;
+
         return newCompanies;
       });
     }, 3000);
