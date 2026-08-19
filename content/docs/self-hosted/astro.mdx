@@ -1,0 +1,50 @@
+---
+id: /docs/self-hosted/astro
+title: Self-Hosting on Astro
+next: content/docs/self-hosted/migrating-from-tinacloud.mdx
+previous: content/docs/self-hosted/manual-setup.mdx
+---
+
+Astro works with a self-hosted Tina backend. Nothing in `@tinacms/astro` is tied to TinaCloud: `requestWithMetadata()` wraps whatever `{ data, query, variables }` your client hands it, so visual editing, `<TinaMarkdown>` and the island endpoint behave the same against your own backend.
+
+Start with [Manual Setup](/docs/self-hosted/manual-setup/), which covers the parts that are identical on every framework: choosing a Git provider, database adapter and auth provider, creating `tina/database.ts`, and setting `contentApiUrlOverride` plus an `authProvider` in `tina/config.ts`.
+
+This page covers what is different on Astro.
+
+## The starter ships wired to TinaCloud
+
+[`tina-astro-starter`](https://github.com/tinacms/tina-astro-starter) and `tinacms init` both set up TinaCloud, and the starter's `.env.example` lists only `PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN`. Moving to your own backend is a deliberate swap rather than a config flag.
+
+## Point your loaders at the database client
+
+The generated data loaders import the TinaCloud client. Self-hosted, they need the database client instead.
+
+In `src/lib/data.ts` (starter) or `src/lib/tina/data.ts` (`init`):
+
+```diff
+-import client from '../../tina/__generated__/client';
++import client from '../../tina/__generated__/databaseClient';
+```
+
+The island registry and your `<TinaIsland>` regions are unaffected, since they consume the loaders rather than the client directly.
+
+## Host the backend as its own function
+
+`TinaNodeBackend` is a Node `(req, res)` handler that reads an already-parsed `req.body`. An Astro `APIRoute` receives a web `Request` and returns a `Response`, so the handler will not mount under `src/pages/api/` as-is.
+
+Deploy it beside your Astro output instead:
+
+* [Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/)
+* [Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/)
+
+[tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo) is a working example of that shape: a static site with the Tina backend running as a standalone function.
+
+## The init CLI does not cover Astro
+
+`tinacms init backend` supports Next.js only. Choose Astro and it stops with an error pointing at the [Next.js CLI guide](/docs/self-hosted/existing-site/). Follow [Manual Setup](/docs/self-hosted/manual-setup/) instead.
+
+## See Also
+
+* [Astro setup guide](/docs/frameworks/astro/) - setting up TinaCMS with Astro
+* [Manual Setup](/docs/self-hosted/manual-setup/) - the framework-agnostic self-hosting steps
+* [Self-hosting overview](/docs/self-hosted/overview/) - how the backend, database adapter and auth provider fit together
