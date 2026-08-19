@@ -158,6 +158,13 @@ export const heroTemplate: Template = {
       ],
     },
     {
+      name: 'anchorId',
+      label: 'Anchor ID',
+      type: 'string',
+      description:
+        'Target for #links from elsewhere on the page, e.g. become-a-partner-section.',
+    },
+    {
       name: 'margin',
       description: 'Default is px-8 py-12 lg:py-16',
       label: 'Custom Margin',

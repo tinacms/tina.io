@@ -7,6 +7,7 @@ import {
   H1_HEADINGS_SIZE,
 } from '@/component/styles/typography';
 import { Container } from '../Container';
+import { ModalB } from '../ModalButton/ModalButton';
 
 const PartnerCard = ({ data }) => {
   const website =
@@ -104,6 +105,14 @@ const PartnerCard = ({ data }) => {
   );
 };
 
+// Same modal the navbar's "Contact Us" opens — there is no /contact route.
+const CONTACT_BUTTON = {
+  label: 'Contact us',
+  modal: 'ContactForm.tsx',
+  color: 'blueOutline',
+  shape: 'pill',
+};
+
 // Always the last card: the directory only lists partners who opted in, so a
 // visitor who sees no fit still needs a path to the ones who aren't listed.
 const GetInContactCard = ({ data }) => (
@@ -124,15 +133,9 @@ const GetInContactCard = ({ data }) => (
         {data.contactCardText}
       </p>
     )}
-    {data.contactCardEmail && (
-      <a
-        href={`mailto:${data.contactCardEmail}`}
-        className="mt-auto font-medium text-blue-500 hover:text-blue-700"
-        data-tina-field={tinaField(data, 'contactCardEmail')}
-      >
-        {data.contactCardEmail}
-      </a>
-    )}
+    <div className="mt-auto">
+      <ModalB items={[CONTACT_BUTTON]} />
+    </div>
   </div>
 );
 
@@ -151,9 +154,9 @@ const sectionId = (data, index) => {
 };
 
 export function PartnerGridBlock({ data, index }) {
-  // With a single partner the full grid + "Vetted agencies..." heading reads as
-  // if partners are missing; drop the heading and center the lone card next to
-  // the contact card instead.
+  // With a single partner the full-width grid reads as if partners are missing;
+  // center the lone card next to the contact card instead. The heading stays —
+  // it's what tells visitors this section is the partner list.
   const isSingle = data.items?.length === 1;
 
   return (
@@ -164,7 +167,6 @@ export function PartnerGridBlock({ data, index }) {
     >
       <Container width="wide">
         {data.title &&
-          !isSingle &&
           (data.blockSettings?.isHeadingOne ? (
             <h1
               className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
@@ -178,7 +180,7 @@ export function PartnerGridBlock({ data, index }) {
               {data.title}
             </h2>
           ))}
-        {data.subText && !isSingle && (
+        {data.subText && (
           <p className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center mx-auto py-4">
             {data.subText}
           </p>

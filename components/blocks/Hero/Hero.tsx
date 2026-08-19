@@ -11,7 +11,8 @@ export function HeroBlock({ data, index }) {
   return (
     <section
       key={index}
-      className={`relative overflow-visible z-10 text-center ${
+      id={data.anchorId || undefined}
+      className={`relative overflow-visible z-10 text-center scroll-mt-24 ${
         data.margin ? data.margin : 'px-8 pt-8 lg:pt-32'
       }`}
     >
@@ -60,19 +61,23 @@ export const HeroFeature = ({ item, spacing, children }) => {
           {item.text}
         </p>
       )}
-      <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-start lg:items-center gap-10 pb-10">
-        {/* Tina's button objects have no `id`, so key on the label. */}
-        {item.buttons?.map((button, index) => (
-          <div
-            key={`heroButton-${button.label}`}
-            className={`flex items-start lg:items-center ${
-              index === 2 ? 'md:col-span-2 md:justify-center' : ''
-            }`}
-          >
-            <RenderButton button={button} />
-          </div>
-        ))}
-      </div>
+      {/* Skipped entirely when there are no buttons — the row's own pb-10 would
+          otherwise leave a dead gap under a text-only hero. */}
+      {item.buttons?.length > 0 && (
+        <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-start lg:items-center gap-10 pb-10">
+          {/* Tina's button objects have no `id`, so key on the label. */}
+          {item.buttons.map((button, index) => (
+            <div
+              key={`heroButton-${button.label}`}
+              className={`flex items-start lg:items-center ${
+                index === 2 ? 'md:col-span-2 md:justify-center' : ''
+              }`}
+            >
+              <RenderButton button={button} />
+            </div>
+          ))}
+        </div>
+      )}
       {children}
     </div>
   );

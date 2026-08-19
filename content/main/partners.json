@@ -9,7 +9,7 @@
         "isHeadingOne": true
       },
       "headline": "Build with a TinaCMS partner.",
-      "text": "Find a vetted agency or freelance developer or become one.",
+      "text": "Work with a vetted agency or freelance developer who knows TinaCMS inside out.",
       "buttons": [
         {
           "label": "Find a partner",
@@ -24,10 +24,10 @@
           "label": "Become a partner",
           "icon": false,
           "shape": "pill",
-          "color": "blueOutline",
+          "variant": "blueOutline",
           "size": "medium",
-          "modal": "BecomePartner.tsx",
-          "_template": "modalButton"
+          "url": "#become-a-partner-section",
+          "_template": "actions"
         }
       ],
       "_template": "hero"
@@ -36,7 +36,7 @@
       "brandColorIcons": true,
       "highlightColumn": [
         {
-          "heading": "Why choose a partner?",
+          "heading": "Why work with a partner?",
           "highlights": [
             {
               "name": "Direct access to the development team",
@@ -55,7 +55,43 @@
               "icon": "AiOutlineClockCircle"
             }
           ]
-        },
+        }
+      ],
+      "_template": "highlightsSection"
+    },
+    {
+      "title": "Our TinaCMS partners",
+      "subText": "Vetted agencies ready to build your next TinaCMS project. Reach out to them directly.",
+      "anchorId": "find-a-partner-section",
+      "contactCardTitle": "Not sure who fits?",
+      "contactCardText": "If you want to know about other certified partners, get in touch and we'll send you the full list.",
+      "items": [
+        {
+          "name": "SSW",
+          "logo": "/svg/logos/ssw.svg",
+          "tier": "Premier",
+          "location": "Sydney, Australia",
+          "description": "Full-service consultancy delivering enterprise web apps and content-driven sites with TinaCMS, Next.js and Astro.",
+          "services": [
+            "Next.js",
+            "Enterprise",
+            "Migrations"
+          ],
+          "website": "https://www.ssw.com.au"
+        }
+      ],
+      "_template": "partnerGrid"
+    },
+    {
+      "anchorId": "become-a-partner-section",
+      "margin": "px-8 pt-8",
+      "headline": "Become a TinaCMS partner.",
+      "text": "Building TinaCMS sites for your clients? Join the partner program and get listed on this page.",
+      "_template": "hero"
+    },
+    {
+      "brandColorIcons": true,
+      "highlightColumn": [
         {
           "heading": "Why become a partner?",
           "highlights": [
@@ -79,30 +115,6 @@
         }
       ],
       "_template": "highlightsSection"
-    },
-    {
-      "title": "Find a partner",
-      "subText": "Vetted agencies ready to build your next TinaCMS project. Reach out to them directly.",
-      "anchorId": "find-a-partner-section",
-      "contactCardTitle": "Not sure who fits?",
-      "contactCardText": "If you want to know about other certified partners, send us an email and we'll send you the full list.",
-      "contactCardEmail": "info@tina.io",
-      "items": [
-        {
-          "name": "SSW",
-          "logo": "/svg/logos/ssw.svg",
-          "tier": "Premier",
-          "location": "Sydney, Australia",
-          "description": "Full-service consultancy delivering enterprise web apps and content-driven sites with TinaCMS, Next.js and Astro.",
-          "services": [
-            "Next.js",
-            "Enterprise",
-            "Migrations"
-          ],
-          "website": "https://www.ssw.com.au"
-        }
-      ],
-      "_template": "partnerGrid"
     },
     {
       "image": "/img/partners/tina-team.jpg",
