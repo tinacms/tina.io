@@ -266,56 +266,6 @@
       "_template": "CompareBox"
     },
     {
-      "title": "See How Tina Stacks Up",
-      "testimonials": [
-        {
-          "name": " Contentful",
-          "username": "",
-          "rhsImage": true,
-          "avatar": "/svg/logos/Contentful-clr.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/tinacms-contentful-comparison"
-        },
-        {
-          "name": "StoryBlok",
-          "username": "",
-          "rhsImage": true,
-          "avatar": "/svg/logos/Storyblok-clr.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/tinacms-storyblok-comparison"
-        },
-        {
-          "name": "Sanity",
-          "rhsImage": true,
-          "avatar": "/svg/logos/Sanity-clr-v2.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/sanity-tina-comparison"
-        },
-        {
-          "name": "DecapCMS",
-          "rhsImage": true,
-          "avatar": "/svg/logos/Decap-clr.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/tinacms-netlifycms-comparison"
-        },
-        {
-          "name": "Builder.io",
-          "rhsImage": true,
-          "avatar": "/svg/logos/builderio-mono.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/tinacms-builder-comparison"
-        },
-        {
-          "name": "Strapi",
-          "rhsImage": true,
-          "avatar": "/svg/logos/Strapi.monogram.logo.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/tinacms-strapi-comparison"
-        }
-      ],
-      "_template": "testimonials"
-    },
-    {
       "headline": "Discover the power of TinaCMS",
       "text": "Experience a new standard of content management with TinaCMS.\n\n",
       "buttons": [
