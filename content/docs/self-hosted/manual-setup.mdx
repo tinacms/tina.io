@@ -119,14 +119,12 @@ export default (req, res) => {
 
 ### Hosting it outside Next.js
 
-The sample above is a Next.js API route, but `TinaNodeBackend` itself is not tied to Next. It is a plain Node `(req, res)` handler that expects an already-parsed `req.body`, so any host that hands it that shape works.
+The sample above is a Next.js API route, but `TinaNodeBackend` itself is not tied to Next. It is a plain Node `(req, res)` handler that expects an already-parsed `req.body`, so anything able to hand it that pair will serve it.
 
-Frameworks whose routes use the web `Request` / `Response` API instead, Astro and SvelteKit among them, cannot mount it directly. Host it as a standalone serverless function beside your site:
+What it cannot do is mount directly in a route whose signature is the web `Request` / `Response` API, which is what Astro's `APIRoute` and SvelteKit's `+server.ts` give you. Two shapes work instead:
 
-* [Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/)
-* [Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/)
-
-[tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo) is a working example of that shape: a static site with the Tina backend as its own function.
+* **Mount it in a Node server.** Frameworks that can build to Connect/Express middleware, such as Astro via `@astrojs/node` in `mode: 'middleware'`, let one server handle `/api/tina/*` with `TinaNodeBackend` and pass everything else to the framework. Put a body parser such as `express.json()` in front so `req.body` is populated.
+* **Deploy it as a standalone serverless function** beside your site: [Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/) or [Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/). [tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo) is a working example of a static site with the backend as its own function.
 
 ## 5. Update the TinaCMS config
 
