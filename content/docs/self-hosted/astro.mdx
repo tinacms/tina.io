@@ -28,16 +28,16 @@ In `src/lib/data.ts` (starter) or `src/lib/tina/data.ts` (`init`):
 
 The island registry and your `<TinaIsland>` regions are unaffected, since they consume the loaders rather than the client directly.
 
-## Host the backend as its own function
+## Give the backend a Node request and response
 
-`TinaNodeBackend` is a Node `(req, res)` handler that reads an already-parsed `req.body`. An Astro `APIRoute` receives a web `Request` and returns a `Response`, so the handler will not mount under `src/pages/api/` as-is.
+`TinaNodeBackend` is a Node `(req, res)` handler that reads an already-parsed `req.body`. An Astro `APIRoute` receives a web `Request` and returns a `Response`, so the handler does not mount under `src/pages/api/` as-is.
 
-Deploy it beside your Astro output instead:
+That is a constraint on the route signature, not on Astro. Two shapes work:
 
-* [Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/)
-* [Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/)
+* **One Node server.** Build with `@astrojs/node` in `mode: 'middleware'` and Astro becomes a Connect/Express middleware. Run a server that mounts `TinaNodeBackend` on `/api/tina/*` behind a body parser such as `express.json()`, and passes everything else to Astro. This suits a VPS or container, where you already have a long-running process.
+* **A standalone serverless function** beside your static output, which is what the existing backend host pages cover: [Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/) and [Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/). [tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo) is a working example of that shape.
 
-[tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo) is a working example of that shape: a static site with the Tina backend running as a standalone function.
+The starter's `astro.config.mjs` defaults to the Node adapter in `standalone` mode, so the first option means switching that to `middleware` and supplying your own server entry.
 
 ## The init CLI does not cover Astro
 
