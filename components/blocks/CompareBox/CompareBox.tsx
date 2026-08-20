@@ -152,7 +152,6 @@ const CompanyCard = ({ company, criteria }) => {
                   />
                 )}
               </div>
-
               <div
                 className="w-full"
                 style={{
@@ -189,7 +188,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    setCompanies(data.companies);
+    setCompanies(data.companies ?? []);
   }, [data]);
 
   useEffect(() => {
@@ -201,7 +200,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
 
     const interval = setInterval(() => {
       setCompanies((prevCompanies) => {
-        const newCompanies = prevCompanies.map((company, idx) => ({
+        const newCompanies = prevCompanies?.map((company, idx) => ({
           ...company,
           active: idx === 0 || idx === currentIndex,
         }));
@@ -211,9 +210,11 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
         }
 
         currentIndex =
-          currentIndex + 1 >= prevCompanies.length ? 1 : currentIndex + 1;
+          currentIndex + 1 >= (prevCompanies?.length ?? 0)
+            ? 1
+            : currentIndex + 1;
 
-        return newCompanies;
+        return newCompanies ?? prevCompanies;
       });
     }, 3000);
 
