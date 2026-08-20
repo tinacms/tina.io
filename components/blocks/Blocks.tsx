@@ -67,7 +67,7 @@ const blockByType = (
     case 'PageBlocksFeatures':
       return <FeaturesBlock data={block} index={index} />;
     case 'PageBlocksCompareBox':
-      return <CompareBoxBlock data={block} index={index} />;
+      return <CompareBoxBlock data={block} />;
     case 'PageBlocksFlying':
       return <FlyingBlock data={block} index={index} />;
     case 'PageBlocksEvents':
