@@ -318,13 +318,16 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
     <div className="md:px-10 lg:px-10 rounded-lg w-full">
       <div className="px-8 py-8 md:px-8 bg-linear-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
         <h2
+          data-tina-field={tinaField(data, 'heading')}
           className={`${BLOCK_HEADINGS_SIZE} pl-3 font-ibm-plex flex items-center text-center justify-center lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8`}
         >
-          TinaCMS vs other CMSs at a glance
+          {data.heading}
         </h2>
 
-        <p className="text-center text-gray-600 text-sm font-semibold md:text-base -mt-4 mb-8">
-          Choose up to 3 CMSs to see how they compare with TinaCMS.
+        <p 
+          data-tina-field={tinaField(data, 'subheading')}
+          className="text-center text-gray-600 text-sm font-semibold md:text-base -mt-4 mb-8">
+          {data.subheading}
         </p>
         <div
           className="items-center w-full"

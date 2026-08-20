@@ -133,6 +133,17 @@ export const compareBoxTemplate: Template = {
   },
   fields: [
     {
+      name: 'heading',
+      label: 'Heading',
+      type: 'string',
+    },
+    {
+      name: 'subheading',
+      label: 'Subheading',
+      type: 'string',
+      ui: { component: 'textarea' },
+    },
+    {
       name: 'criteriaItems',
       label: 'Criteria',
       type: 'object',

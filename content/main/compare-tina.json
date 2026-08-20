@@ -13,6 +13,8 @@
       "_template": "hero"
     },
     {
+      "heading": "TinaCMS vs other CMSs at a glance",
+      "subheading": "Choose up to 3 CMSs to see how they compare with TinaCMS",
       "criteriaItems": [
         {
           "criteria": "Repo-based Media",
