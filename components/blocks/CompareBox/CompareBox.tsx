@@ -58,8 +58,6 @@ const CompanyItem = ({ company, onClick }) => {
 };
 
 const CriteriaCard = ({ criteriaItems }) => {
-  const [hoveredItem, setHoveredItem] = useState(null);
-
   return (
     <div className="criteria-card rounded-lg relative">
       <div key={0} className="py-3 flex" style={commonHeightStyle} />
@@ -76,18 +74,15 @@ const CriteriaCard = ({ criteriaItems }) => {
             <span className="min-w-0">{item.criteria}</span>
           </h3>
 
-          <div className="relative flex-shrink-0 flex items-center ml-1">
-            <IoMdInformationCircleOutline
-              className="ml-1 text-orange-500 text-xl"
-              onMouseEnter={() => setHoveredItem(_idx)}
-              onMouseLeave={() => setHoveredItem(null)}
-            />
-            {hoveredItem === _idx && (
-              <div className="ml-0.5 shadow-[0px_0px_25px_10px_rgba(0,0,0,0.1)] absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white text-sm p-2 rounded-lg z-10 xl:w-[300px] w-[150px] break-words text-center">
+          <div className="group relative flex-shrink-0 flex items-center ml-1">
+            <IoMdInformationCircleOutline className="ml-1 text-orange-500 text-xl" />
+
+            <div className="hidden group-hover:block absolute left-1/2 top-full pt-2 -translate-x-1/2 z-10">
+              <div className="relative shadow-[0px_0px_25px_10px_rgba(0,0,0,0.1)] bg-white text-sm p-2 rounded-lg xl:w-[300px] w-[150px] break-words text-center">
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-white"></div>
                 {item.description}
               </div>
-            )}
+            </div>
           </div>
         </div>
       ))}
