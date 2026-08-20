@@ -47,6 +47,7 @@ import { TinaBanner } from './TinaBanner/TinaBanner';
 import TripleBox from './TripleBox/TripleBox';
 import { VersionsBlock } from './Versions/Versions';
 import VideoDisplay from './VideoEmbed/videoEmbed';
+import TestimonialsBlock from './Testimonial/Testimonials';
 
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
@@ -141,6 +142,8 @@ const blockByType = (
       return <TripleBox data={block} />;
     case 'PageBlocksProfessionalServices':
       return <ProfessionalServices data={block} />;
+    case 'PageBlocksTestimonials':
+      return <TestimonialsBlock data={block} />;
     case 'PageBlocksVersions':
       return <VersionsBlock data={block} />;
     default:
