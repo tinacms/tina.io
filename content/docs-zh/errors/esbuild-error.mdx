@@ -1,0 +1,36 @@
+---
+title: 'ESbuild 编译和构建错误'
+---
+
+`tina/config.{ts,js,tsx}` 文件是使用 [esbuild](https://esbuild.github.io/) 构建的，并在 node.js 运行时中执行。这允许您从 `.tina` 文件夹外部导入，esbuild 将为我们处理这些。这也可能会遇到一些边缘情况，其中一些东西在服务器上运行，而不应该运行。
+
+## 错误：您的架构未成功构建
+
+这意味着您的代码中某处存在语法或语义错误。这可能是在 .tina 文件夹内或从您的架构文件导入的任何文件中。
+
+## 错误：您的 `config.{ts,js}` 未成功执行
+
+此错误意味着架构已正确编译（语法正确），但在运行代码时产生了错误。
+
+一些常见问题是
+
+- 导入需要自定义编译逻辑的代码（webpack loader、esbuild loader、babel 插件等）
+- 导入并运行需要在前端运行的代码（使用 `window`、DOM API 等）
+
+如果您遇到上述问题之一，可以尝试仅导入您需要的代码。
+
+例如，您可能有
+
+```ts
+import { TinaHeroTemplate } from '../components/'
+```
+
+这可以切换为
+
+```ts
+import { TinaHeroTemplate } from '../components/blocks/hero'
+```
+
+使用这种更具体的路径意味着您不太可能遇到错误
+
+仍然困惑？别担心，我们在这里帮助您，请 [通过 Discord 联系我们](https://discord.gg/njvZZYHj2Q) 或提交一个 [GitHub 问题](https://github.com/tinacms/tinacms/issues/new/choose)，我们会尽快回复您。
