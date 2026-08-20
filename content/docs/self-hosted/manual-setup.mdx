@@ -123,7 +123,7 @@ The sample above is a Next.js API route, but `TinaNodeBackend` itself is not tie
 
 What it cannot do is mount directly in a route whose signature is the web `Request` / `Response` API, which is what Astro's `APIRoute` and SvelteKit's `+server.ts` give you. Two shapes work instead:
 
-* **Mount it in a Node server.** Frameworks that can build to Connect/Express middleware, such as Astro via `@astrojs/node` in `mode: 'middleware'`, let one server handle `/api/tina/*` with `TinaNodeBackend` and pass everything else to the framework. Put a body parser such as `express.json()` in front so `req.body` is populated.
+* **Mount it in a Node server.** Frameworks that can build to Connect/Express middleware, such as Astro via `@astrojs/node` in `mode: 'middleware'`, let one server handle `/api/tina/*` with `TinaNodeBackend` and pass everything else to the framework. Scope the body parser to that path, `app.use('/api/tina', express.json())`: `TinaNodeBackend` needs `req.body` populated, but parsing every route consumes the stream the framework needs for its own form posts.
 * **Deploy it as a standalone serverless function** beside your site: [Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/) or [Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/). [tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo) is a working example of a static site with the backend as its own function.
 
 ## 5. Update the TinaCMS config
