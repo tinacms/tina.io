@@ -52,15 +52,16 @@ const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
   { ssr: false },
 );
-const TestimonialsBlock = dynamic(() => import('./Testimonial/Testimonials'), {
-  ssr: false,
-});
 const BookingBlock = dynamic(() => import('./Booking/Booking'), { ssr: false });
 const CompareBoxBlock = dynamic(() => import('./CompareBox/CompareBox'), {
   ssr: false,
 });
 
-const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
+const blockByType = (
+  block: PageBlocks,
+  index: number,
+  recentPosts?,
+) => {
   switch (block.__typename) {
     case 'PageBlocksFeatures':
       return <FeaturesBlock data={block} index={index} />;
@@ -112,8 +113,6 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
           recentPosts={recentPosts}
         />
       );
-    case 'PageBlocksTestimonials':
-      return <TestimonialsBlock data={block} />;
     case 'PageBlocksQuote':
       return <QuoteBlock data={block} index={index} />;
     case 'PageBlocksTextMediaColumnComponent':
