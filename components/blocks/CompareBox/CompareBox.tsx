@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
@@ -165,12 +166,12 @@ const CompanyCard = ({ company, criteria }) => {
       </div>
 
       {company.testimonialLink && (
-        <a
+        <Link
           href={company.testimonialLink}
           className="inline-block py-4 text-center text-sm font-bold text-orange-500 hover:text-orange-800 hover:underline"
         >
           See how {company.headline} stacks up with TinaCMS →
-        </a>
+        </Link>
       )}
     </div>
   );
