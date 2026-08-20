@@ -77,12 +77,12 @@ const CriteriaCard = ({ criteriaItems }) => {
 
           <div className="group relative flex-shrink-0 flex items-center ml-1">
             <IoMdInformationCircleOutline className="ml-1 text-orange-500 text-xl" />
-              <div className="hidden group-hover:block absolute left-1/2 top-full pt-2 -translate-x-1/2 z-10">
-                <div className="relative shadow-xl bg-white text-sm p-2 rounded-lg xl:w-72 w-40 break-words text-center">
-                  {item.description}
-                </div>
+            <div className="hidden group-hover:block absolute left-1/2 top-full pt-2 -translate-x-1/2 z-10">
+              <div className="relative shadow-xl bg-white text-sm p-2 rounded-lg xl:w-72 w-40 break-words text-center">
+                {item.description}
               </div>
             </div>
+          </div>
         </div>
       ))}
     </div>
@@ -153,13 +153,6 @@ const CompanyCard = ({ company, criteria }) => {
                   />
                 )}
               </div>
-              <div
-                className="w-full"
-                style={{
-                  backgroundColor: 'transparent',
-                  height: '0px',
-                }}
-              ></div>
             </div>
           );
         })}
@@ -179,7 +172,6 @@ const CompanyCard = ({ company, criteria }) => {
 
 interface CompareBoxBlockProps {
   data: any;
-  index?: number;
 }
 
 export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
@@ -207,7 +199,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
         }));
 
         if (sliderRef.current) {
-          sliderRef.current.slickGoTo(currentIndex);
+          sliderRef.current.slickGoTo(currentIndex - 1);
         }
 
         currentIndex =
@@ -325,9 +317,10 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
           {data.heading}
         </h2>
 
-        <p 
+        <p
           data-tina-field={tinaField(data, 'subheading')}
-          className="text-center text-gray-600 text-sm font-semibold md:text-base -mt-4 mb-8">
+          className="text-center text-gray-600 text-sm font-semibold md:text-base -mt-4 mb-8"
+        >
           {data.subheading}
         </p>
         <div
