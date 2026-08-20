@@ -77,10 +77,11 @@
           ]
         },
         {
-          "headline": "Prepr CMS",
-          "logoColour": "/svg/logos/Prepr-clr.svg",
-          "logoWhite": "/svg/logos/Prepr-wht.svg",
-          "backgroundColor": "#5237E6",
+          "headline": "Contentful",
+          "logoColour": "/svg/logos/Contentful-clr.svg",
+          "logoWhite": "/svg/logos/Contentful-wht.svg",
+          "backgroundColor": "#007AFF",
+          "testimonialLink": "/tinacms-contentful-comparison",
           "satisfiedCriteria": [
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -95,16 +96,17 @@
           ]
         },
         {
-          "headline": "Umbraco",
-          "logoColour": "/svg/logos/Umbraco-clr.svg",
-          "logoWhite": "/svg/logos/Umbraco-wht.svg",
-          "backgroundColor": "#3544B1",
+          "headline": "Sanity",
+          "logoColour": "/svg/logos/Sanity-clr.svg",
+          "logoWhite": "/svg/logos/Sanity-wht.svg",
+          "backgroundColor": "#EF4434",
+          "testimonialLink": "/sanity-tina-comparison",
           "satisfiedCriteria": [
             "false-Repo-based Media",
             "true-Open Source Front-end",
             "true-Content API",
             "false-Git-based Content Management ",
-            "true-GitHub Contributions",
+            "false-GitHub Contributions",
             "true-Markdown Support",
             "true-Visual Editing Capabilities ",
             "true-Free Option",
@@ -113,21 +115,40 @@
           ]
         },
         {
-          "headline": "Decap CMS",
-          "logoColour": "/svg/logos/Decap-clr.svg",
-          "logoWhite": "/svg/logos/Decap-wht.svg",
-          "backgroundColor": "#FF0080",
+          "headline": "Storyblok",
+          "logoColour": "/svg/logos/Storyblok-clr.svg",
+          "logoWhite": "/svg/logos/Storyblok-wht.svg",
+          "backgroundColor": "#2DB47D",
+          "testimonialLink": "/tinacms-storyblok-comparison",
           "satisfiedCriteria": [
-            "true-Repo-based Media",
-            "true-Open Source Front-end",
-            "false-Content API",
-            "true-Git-based Content Management ",
-            "true-GitHub Contributions",
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "true-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
             "true-Markdown Support",
-            "false-Visual Editing Capabilities ",
+            "true-Visual Editing Capabilities ",
+            "true-Free Option",
+            "false-Local Development Workflow ",
+            "false-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "prismic.io",
+          "logoColour": "/svg/logos/Prismic-clr.svg",
+          "logoWhite": "/svg/logos/Prismic-wht.svg",
+          "backgroundColor": "#8E44EC",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "true-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "true-Markdown Support",
+            "true-Visual Editing Capabilities ",
             "true-Free Option",
             "true-Local Development Workflow ",
-            "true-Self-hosted Option"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -167,60 +188,6 @@
           ]
         },
         {
-          "headline": "Contentful",
-          "logoColour": "/svg/logos/Contentful-clr.svg",
-          "logoWhite": "/svg/logos/Contentful-wht.svg",
-          "backgroundColor": "#007AFF",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Storyblok",
-          "logoColour": "/svg/logos/Storyblok-clr.svg",
-          "logoWhite": "/svg/logos/Storyblok-wht.svg",
-          "backgroundColor": "#2DB47D",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Sanity",
-          "logoColour": "/svg/logos/Sanity-clr.svg",
-          "logoWhite": "/svg/logos/Sanity-wht.svg",
-          "backgroundColor": "#EF4434",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "true-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "true-Local Development Workflow ",
-            "true-Self-hosted Option"
-          ]
-        },
-        {
           "headline": "Payload",
           "logoColour": "/svg/logos/Payload-clr.svg",
           "logoWhite": "/svg/logos/Payload-wht.svg",
@@ -239,10 +206,47 @@
           ]
         },
         {
-          "headline": "prismic.io",
-          "logoColour": "/svg/logos/Prismic-clr.svg",
-          "logoWhite": "/svg/logos/Prismic-wht.svg",
-          "backgroundColor": "#8E44EC",
+          "headline": "Umbraco",
+          "logoColour": "/svg/logos/Umbraco-clr.svg",
+          "logoWhite": "/svg/logos/Umbraco-wht.svg",
+          "backgroundColor": "#3544B1",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "true-Open Source Front-end",
+            "true-Content API",
+            "false-Git-based Content Management ",
+            "true-GitHub Contributions",
+            "true-Markdown Support",
+            "true-Visual Editing Capabilities ",
+            "true-Free Option",
+            "true-Local Development Workflow ",
+            "true-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Decap CMS",
+          "logoColour": "/svg/logos/Decap-clr.svg",
+          "logoWhite": "/svg/logos/Decap-wht.svg",
+          "backgroundColor": "#FF0080",
+          "testimonialLink": "/tinacms-netlifycms-comparison",
+          "satisfiedCriteria": [
+            "true-Repo-based Media",
+            "true-Open Source Front-end",
+            "false-Content API",
+            "true-Git-based Content Management ",
+            "true-GitHub Contributions",
+            "true-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "true-Free Option",
+            "true-Local Development Workflow ",
+            "true-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Prepr CMS",
+          "logoColour": "/svg/logos/Prepr-clr.svg",
+          "logoWhite": "/svg/logos/Prepr-wht.svg",
+          "backgroundColor": "#5237E6",
           "satisfiedCriteria": [
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -252,7 +256,7 @@
             "true-Markdown Support",
             "true-Visual Editing Capabilities ",
             "true-Free Option",
-            "true-Local Development Workflow ",
+            "false-Local Development Workflow ",
             "false-Self-hosted Option"
           ]
         }
