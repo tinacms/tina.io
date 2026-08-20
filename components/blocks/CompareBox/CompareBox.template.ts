@@ -190,6 +190,13 @@ export const compareBoxTemplate: Template = {
           description: 'Choose a background color for the company',
         },
         {
+          name: 'testimonialLink',
+          label: 'Testimonial Link',
+          type: 'string',
+          description:
+            'URL to the full comparison/testimonial page for this company, e.g. /tinacms-contentful-comparison. Leave blank to hide the "Learn more" link.',
+        },
+        {
           name: 'satisfiedCriteria',
           label: 'Satisfied Criteria',
           type: 'string',
