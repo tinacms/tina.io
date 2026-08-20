@@ -42,12 +42,12 @@ import { RoadmapGridBlock } from './RoadMap/RoadmapGrid';
 import { ShowcaseItemsBlock } from './Showcase/Showcase';
 import { SpacerComponent } from './Spacer/Spacer';
 import TableBox from './Table/table';
+import TestimonialsBlock from './Testimonial/Testimonials';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import TripleBox from './TripleBox/TripleBox';
 import { VersionsBlock } from './Versions/Versions';
 import VideoDisplay from './VideoEmbed/videoEmbed';
-import TestimonialsBlock from './Testimonial/Testimonials';
 
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
@@ -58,11 +58,7 @@ const CompareBoxBlock = dynamic(() => import('./CompareBox/CompareBox'), {
   ssr: false,
 });
 
-const blockByType = (
-  block: PageBlocks,
-  index: number,
-  recentPosts?,
-) => {
+const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
   switch (block.__typename) {
     case 'PageBlocksFeatures':
       return <FeaturesBlock data={block} index={index} />;
