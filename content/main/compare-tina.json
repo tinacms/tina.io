@@ -312,6 +312,22 @@
         }
       ],
       "_template": "testimonials"
+    },
+    {
+      "headline": "Discover the power of TinaCMS",
+      "text": "Experience a new standard of content management with TinaCMS.\n\n",
+      "buttons": [
+        {
+          "label": "Get Started with TinaCMS",
+          "icon": false,
+          "shape": "pill",
+          "variant": "blue",
+          "size": "medium",
+          "url": "/",
+          "_template": "actions"
+        }
+      ],
+      "_template": "flying"
     }
   ]
 }
