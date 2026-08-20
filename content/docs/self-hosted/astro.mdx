@@ -34,7 +34,7 @@ The island registry and your `<TinaIsland>` regions are unaffected, since they c
 
 That is a constraint on the route signature, not on Astro. Two shapes work:
 
-* **One Node server.** Build with `@astrojs/node` in `mode: 'middleware'` and Astro becomes a Connect/Express middleware. Run a server that mounts `TinaNodeBackend` on `/api/tina/*` behind a body parser such as `express.json()`, and passes everything else to Astro. This suits a VPS or container, where you already have a long-running process.
+* **One Node server.** Build with `@astrojs/node` in `mode: 'middleware'` and Astro becomes a Connect/Express middleware, so a single process can mount `TinaNodeBackend` on `/api/tina/*` and pass everything else to Astro. Scope the body parser to that path, `app.use('/api/tina', express.json())`, rather than applying it globally: `TinaNodeBackend` needs `req.body` populated, but consuming the stream for every route takes it away from Astro's own form posts. This suits a VPS or container, where you already have a long-running process.
 * **A standalone serverless function** beside your static output, which is what the existing backend host pages cover: [Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/) and [Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/). [tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo) is a working example of that shape.
 
 The starter's `astro.config.mjs` defaults to the Node adapter in `standalone` mode, so the first option means switching that to `middleware` and supplying your own server entry.
