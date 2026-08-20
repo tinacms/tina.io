@@ -10,7 +10,6 @@ import { tinaField } from 'tinacms/dist/react';
 import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import { splitOneAndJoin } from './CompareBox.template';
 
-//Function to use alpha values to create a background gradient with any input hex colour
 function hexToRgba(hex, alpha) {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -100,7 +99,9 @@ const CompanyCard = ({ company, criteria }) => {
   const criterias = company.satisfiedCriteria?.map((item) =>
     splitOneAndJoin(item, '-'),
   );
+
   const baseColor = company.backgroundColor || '#000000';
+
   return (
     <div className="rounded-lg flex flex-col items-center w-full company-card">
       <div
@@ -125,6 +126,7 @@ const CompanyCard = ({ company, criteria }) => {
             height={40}
           />
         )}
+
         <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-md text-xs font-bold text-white whitespace-nowrap">
           {company.headline}
         </h3>
@@ -157,21 +159,36 @@ const CompanyCard = ({ company, criteria }) => {
                   />
                 )}
               </div>
+
               <div
                 className="w-full"
-                style={{ backgroundColor: 'transparent', height: '0px' }}
+                style={{
+                  backgroundColor: 'transparent',
+                  height: '0px',
+                }}
               ></div>
             </div>
           );
         })}
       </div>
+
+      {company.testimonialLink && (
+        <div className="py-4 text-center">
+          <a
+            href={company.testimonialLink}
+            className="text-sm font-bold text-orange-500 hover:text-orange-800 hover:underline transition-colors"
+          >
+            See how {company.headline} stacks up with TinaCMS →
+          </a>
+        </div>
+      )}
     </div>
   );
 };
 
 interface CompareBoxBlockProps {
   data: any;
-  index: number;
+  index?: number;
 }
 
 export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
@@ -311,7 +328,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
         <h2
           className={`${BLOCK_HEADINGS_SIZE} pl-3 font-ibm-plex flex items-center text-center justify-center lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8`}
         >
-          Why TinaCMS Over Traditional CMSs?
+          TinaCMS vs other CMSs at a glance
         </h2>
 
         <p className="text-center text-gray-600 text-sm font-semibold md:text-base -mt-4 mb-8">
@@ -353,6 +370,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
             <div className="col-span-1">
               <CriteriaCard criteriaItems={data.criteriaItems} />
             </div>
+
             {companies
               ?.filter((company) => company.active)
               .map((company, _idx) => (
