@@ -9,11 +9,11 @@ next: content/docs-zh/self-hosted/manual-setup.mdx
 previous: content/docs-zh/self-hosted/starters/nextjs-vercel.mdx
 ---
 
-如果你想自托管Tina后端，并且不想使用我们的[预配置入门](/docs/self-hosted/starters/nextjs-vercel/)，你可以按照以下步骤进行。
+如果你想自托管Tina后端，并且不想使用我们的[预配置入门](/docs/self-hosted/starters/nextjs-vercel/)，你可以按照以下步骤进行操作。
 
-我们提供了一个CLI初始化工具，可以快速在Next.js站点上设置后端，或者如果你使用的是其他框架，可以采用[手动设置方法](/docs/self-hosted/manual-setup/)。
+我们提供了一个CLI初始化来快速设置后端，但**它仅支持Next.js**。在任何其他框架上，包括Astro，`tinacms init backend`会停止并报错，并指向此页面。如果你不使用Next.js，请遵循[手动设置方法](/docs/self-hosted/manual-setup/)。
 
-> 更喜欢视频教程？查看这个视频：
+> 更喜欢视频演示？查看这个视频：
 
 <Youtube embedSrc="https://www.youtube.com/embed/Jq5yWF1c0aM" />
 
@@ -35,11 +35,11 @@ npx @tinacms/cli@latest init backend
 
 可以在[GitHub账户设置](https://github.com/settings/personal-access-tokens/new)中创建GitHub个人访问令牌。
 
-确保为你的新仓库分配`repo`访问权限，并具有对内容的读/写访问权限。
+确保为你的新仓库分配`repo`访问权限，并对内容具有读/写访问权限。
 
 ### 选择数据库适配器
 
-TinaCMS在初始化工作流中提供了两个数据库适配器：“Redis”（VercelKV）和“MongoDB”。在[这里](/docs/reference/self-hosted/database-adapter/overview/)了解更多关于数据库适配器的信息。
+TinaCMS在初始化工作流中提供了两个数据库适配器：“Redis”（VercelKV）和“MongoDB”。了解更多关于[数据库适配器](/docs/reference/self-hosted/database-adapter/overview/)的信息。
 
 ### 初始化命令的作用
 
@@ -65,10 +65,10 @@ TinaCMS在初始化工作流中提供了两个数据库适配器：“Redis”�
 
 查看[此页面](/docs/self-hosted/querying-data)以获取更多信息。
 
-完成这些步骤后，`dev`和`build`命令应该可以使用了
+完成这些步骤后，`dev`和`build`命令应该可以使用。
 
 ## 下一步
 
 * [查询数据](/docs/self-hosted/querying-data)
 * 如果你想更改Git提供者、数据库适配器或认证提供者，请查看[参考](/docs/reference/self-hosted/overview/)。
-* 有问题吗？欢迎在我们的[Discord](https://discord.com/invite/zumN63Ybpf)中询问
+* 有问题吗？欢迎在我们的[Discord](https://discord.com/invite/zumN63Ybpf)中提问。

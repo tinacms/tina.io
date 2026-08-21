@@ -22,7 +22,7 @@ yarn add tinacms @tinacms/datalayer
 yarn add --dev @tinacms/cli
 ```
 
-安装您选择的git提供商、数据库适配器和认证提供商的任何依赖项（这可能会根据您的选择有所不同）
+安装您选择的git提供商、数据库适配器和认证提供商的任何依赖项（这可能会根据您的选择而有所不同）
 
 ```bash
 yarn add tinacms-gitprovider-github tinacms-authjs upstash-redis-level @upstash/redis
@@ -117,6 +117,15 @@ export default (req, res) => {
 
 > 更多信息请参见[后端托管](/docs/reference/self-hosted/tina-backend/nextjs)
 
+### 在Next.js之外托管
+
+上面的示例是一个Next.js API路由，但`TinaNodeBackend`本身并不依赖于Next。它是一个普通的Node `(req, res)`处理程序，期望一个已经解析的`req.body`，因此任何能够提供该对的东西都可以为其服务。
+
+它不能直接挂载在一个签名为web `Request` / `Response` API的路由中，这是Astro的`APIRoute`和SvelteKit的`+server.ts`提供的。两种形状可以工作：
+
+* **将其挂载在Node服务器中。** 可以构建为Connect/Express中间件的框架，例如通过`@astrojs/node`在`mode: 'middleware'`下的Astro，让一个服务器使用`TinaNodeBackend`处理`/api/tina/*`，并将其他所有内容传递给框架。将body解析器限定在该路径上，`app.use('/api/tina', express.json())`：`TinaNodeBackend`需要填充`req.body`，但解析每个路由会消耗框架需要用于其自身表单提交的流。
+* **将其作为独立的无服务器函数部署**在您的站点旁边：[Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/)或[Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/)。[tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo)是一个将后端作为其自身函数的静态站点的工作示例。
+
 ## 5. 更新TinaCMS配置
 
 更新TinaCMS配置以使用您在上一步中创建的GraphQL API。
@@ -132,7 +141,7 @@ export default defineConfig({
 })
 ```
 
-现在您应该能够运行您的站点并使用TinaCMS编辑您的内容。有关如何自托管TinaCMS的更多信息，请参阅[配置组件](/docs/reference/self-hosted/overview)的文档。
+现在您应该可以运行您的站点并使用TinaCMS编辑您的内容。有关如何自托管TinaCMS的更多信息，请参阅[配置组件](/docs/reference/self-hosted/overview)的文档。
 
 ## 下一步
 
