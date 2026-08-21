@@ -42,6 +42,7 @@ import { RoadmapGridBlock } from './RoadMap/RoadmapGrid';
 import { ShowcaseItemsBlock } from './Showcase/Showcase';
 import { SpacerComponent } from './Spacer/Spacer';
 import TableBox from './Table/table';
+import TestimonialsBlock from './Testimonial/Testimonials';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import TripleBox from './TripleBox/TripleBox';
@@ -52,9 +53,6 @@ const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
   { ssr: false },
 );
-const TestimonialsBlock = dynamic(() => import('./Testimonial/Testimonials'), {
-  ssr: false,
-});
 const BookingBlock = dynamic(() => import('./Booking/Booking'), { ssr: false });
 const CompareBoxBlock = dynamic(() => import('./CompareBox/CompareBox'), {
   ssr: false,
@@ -65,7 +63,7 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
     case 'PageBlocksFeatures':
       return <FeaturesBlock data={block} index={index} />;
     case 'PageBlocksCompareBox':
-      return <CompareBoxBlock data={block} index={index} />;
+      return <CompareBoxBlock data={block} />;
     case 'PageBlocksFlying':
       return <FlyingBlock data={block} index={index} />;
     case 'PageBlocksEvents':
@@ -112,8 +110,6 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
           recentPosts={recentPosts}
         />
       );
-    case 'PageBlocksTestimonials':
-      return <TestimonialsBlock data={block} />;
     case 'PageBlocksQuote':
       return <QuoteBlock data={block} index={index} />;
     case 'PageBlocksTextMediaColumnComponent':
@@ -142,6 +138,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <TripleBox data={block} />;
     case 'PageBlocksProfessionalServices':
       return <ProfessionalServices data={block} />;
+    case 'PageBlocksTestimonials':
+      return <TestimonialsBlock data={block} />;
     case 'PageBlocksVersions':
       return <VersionsBlock data={block} />;
     default:

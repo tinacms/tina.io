@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
@@ -10,7 +11,6 @@ import { tinaField } from 'tinacms/dist/react';
 import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import { splitOneAndJoin } from './CompareBox.template';
 
-//Function to use alpha values to create a background gradient with any input hex colour
 function hexToRgba(hex, alpha) {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -59,8 +59,6 @@ const CompanyItem = ({ company, onClick }) => {
 };
 
 const CriteriaCard = ({ criteriaItems }) => {
-  const [hoveredItem, setHoveredItem] = useState(null);
-
   return (
     <div className="criteria-card rounded-lg relative">
       <div key={0} className="py-3 flex" style={commonHeightStyle} />
@@ -72,22 +70,18 @@ const CriteriaCard = ({ criteriaItems }) => {
         >
           <h3
             data-tina-field={tinaField(item, 'criteria')}
-            className="sm:leading-[10px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs flex items-center"
+            className="min-w-0 flex-1 flex items-center sm:leading-5 md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs"
           >
-            <span>{item.criteria}</span>
+            <span className="min-w-0">{item.criteria}</span>
           </h3>
-          <div className="relative content-center ml-auto lg:ml-0">
-            <IoMdInformationCircleOutline
-              className="ml-1 text-orange-500 text-xl"
-              onMouseEnter={() => setHoveredItem(_idx)}
-              onMouseLeave={() => setHoveredItem(null)}
-            />
-            {hoveredItem === _idx && (
-              <div className="ml-0.5 shadow-[0px_0px_25px_10px_rgba(0,0,0,0.1)] absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white text-sm p-2 rounded-lg z-10 xl:w-[300px] w-[150px] break-words text-center">
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-white"></div>
+
+          <div className="group relative flex-shrink-0 flex items-center ml-1">
+            <IoMdInformationCircleOutline className="ml-1 text-orange-500 text-xl" />
+            <div className="hidden group-hover:block absolute left-1/2 top-full pt-2 -translate-x-1/2 z-10">
+              <div className="relative shadow-xl bg-white text-sm p-2 rounded-lg xl:w-72 w-40 break-words text-center">
                 {item.description}
               </div>
-            )}
+            </div>
           </div>
         </div>
       ))}
@@ -99,7 +93,9 @@ const CompanyCard = ({ company, criteria }) => {
   const criterias = company.satisfiedCriteria?.map((item) =>
     splitOneAndJoin(item, '-'),
   );
+
   const baseColor = company.backgroundColor || '#000000';
+
   return (
     <div className="rounded-lg flex flex-col items-center w-full company-card">
       <div
@@ -124,6 +120,7 @@ const CompanyCard = ({ company, criteria }) => {
             height={40}
           />
         )}
+
         <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-md text-xs font-bold text-white whitespace-nowrap">
           {company.headline}
         </h3>
@@ -156,21 +153,25 @@ const CompanyCard = ({ company, criteria }) => {
                   />
                 )}
               </div>
-              <div
-                className="w-full"
-                style={{ backgroundColor: 'transparent', height: '0px' }}
-              ></div>
             </div>
           );
         })}
       </div>
+
+      {company.testimonialLink && (
+        <Link
+          href={company?.testimonialLink}
+          className="inline-block py-4 text-center text-sm font-bold text-gray-700 hover:text-orange-600 underline"
+        >
+          See how {company?.headline} stacks up with TinaCMS →
+        </Link>
+      )}
     </div>
   );
 };
 
 interface CompareBoxBlockProps {
   data: any;
-  index: number;
 }
 
 export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
@@ -180,7 +181,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    setCompanies(data.companies);
+    setCompanies(data.companies ?? []);
   }, [data]);
 
   useEffect(() => {
@@ -189,20 +190,24 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
     }
 
     let currentIndex = 1;
+
     const interval = setInterval(() => {
       setCompanies((prevCompanies) => {
         const newCompanies = prevCompanies?.map((company, idx) => ({
           ...company,
-          active: idx === 0 ? true : idx === currentIndex,
+          active: idx === 0 || idx === currentIndex,
         }));
+
         if (sliderRef.current) {
           sliderRef.current.slickGoTo(currentIndex - 1);
         }
-        currentIndex = (currentIndex + 1) % (prevCompanies?.length ?? 1);
-        if (currentIndex === 0) {
-          currentIndex = 1;
-        }
-        return newCompanies;
+
+        currentIndex =
+          currentIndex + 1 >= (prevCompanies?.length ?? 0)
+            ? 1
+            : currentIndex + 1;
+
+        return newCompanies ?? prevCompanies;
       });
     }, 3000);
 
@@ -306,10 +311,18 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
     <div className="md:px-10 lg:px-10 rounded-lg w-full">
       <div className="px-8 py-8 md:px-8 bg-linear-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
         <h2
+          data-tina-field={tinaField(data, 'heading')}
           className={`${BLOCK_HEADINGS_SIZE} pl-3 font-ibm-plex flex items-center text-center justify-center lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8`}
         >
-          Why Tina?
+          {data.heading}
         </h2>
+
+        <p
+          data-tina-field={tinaField(data, 'subheading')}
+          className="text-center text-gray-600 text-sm font-semibold md:text-base -mt-4 mb-8"
+        >
+          {data.subheading}
+        </p>
         <div
           className="items-center w-full"
           style={{ justifyContent: 'center' }}
@@ -346,6 +359,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
             <div className="col-span-1">
               <CriteriaCard criteriaItems={data.criteriaItems} />
             </div>
+
             {companies
               ?.filter((company) => company.active)
               .map((company, _idx) => (
