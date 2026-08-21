@@ -203,16 +203,10 @@ export function Footer({ footerData }: { footerData: FooterData }) {
               <button
                 type="button"
                 onClick={() => setIsContactOpen(true)}
-                className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap"
+                className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap cursor-pointer"
               >
                 Contact Us
               </button>
-            </div>
-            <div>
-              <p>
-                &copy; TinaCMS 2019–
-                {new Date().getFullYear()}
-              </p>
             </div>
             {isZhPath && (
               <div>
@@ -239,24 +233,24 @@ export function Footer({ footerData }: { footerData: FooterData }) {
 
       {/* SSW Banner */}
       <div
-        className="group relative flex justify-center overflow-hidden py-6"
+        className="group relative flex flex-wrap items-center justify-between gap-x-4 gap-y-2 overflow-hidden px-8 py-6 md:px-48"
         style={{
           backgroundImage:
-            'linear-gradient(60deg, #000000 0%, #CC4141 50%, #000000 100%)',
+            'linear-gradient(to right, #CC4141 0%, #000000 100%)',
         }}
       >
         <div
-          className="absolute top-0 -left-1/2 w-[200%] h-full z-[1] transition-transform duration-1000 ease-in-out group-hover:scale-x-[2]"
+          className="absolute inset-0 z-[1] origin-left scale-x-50 transition-transform duration-1000 ease-in-out group-hover:scale-x-100"
           style={{
             backgroundImage:
-              'linear-gradient(60deg, #333333 25%, #CC4141 50%, #333333 75%)',
+              'linear-gradient(to right, #CC4141 0%, rgba(204,65,65,0) 100%)',
           }}
         />
         <a
           href="https://www.ssw.com.au"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative z-10 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 px-4 text-center text-white text-sm md:text-base font-bold no-underline hover:no-underline"
+          className="relative z-10 flex flex-wrap items-center justify-start gap-x-1.5 gap-y-1 text-left text-white text-sm md:text-base font-bold no-underline hover:no-underline"
         >
           TinaCMS is actively developed by
           <svg
@@ -282,6 +276,10 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           <span className="-ml-1">{', '}</span>
           Australia&apos;s leading software consultants
         </a>
+        <p className="relative z-10 text-white/65 text-sm md:text-base font-bold">
+          &copy; TinaCMS 2019–
+          {new Date().getFullYear()}
+        </p>
       </div>
     </footer>
   );
