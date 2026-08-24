@@ -90,17 +90,17 @@ In this example we will show how to host the GraphQL API on Vercel. You can use 
 ```js
 // pages/api/tina/[...routes].{ts,js}
 
-import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
-import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from 'tinacms-authjs'
 
 import databaseClient from '../../../tina/__generated__/databaseClient'
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
 const handler = TinaNodeBackend({
-  authentication: isLocal
-    ? LocalBackendAuthentication()
-    : AuthJsBackendAuthentication({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
         authOptions: TinaAuthJSOptions({
           databaseClient: databaseClient,
           secret: process.env.NEXTAUTH_SECRET,
@@ -116,6 +116,15 @@ export default (req, res) => {
 ```
 
 > For more info see [Backend Host](/docs/reference/self-hosted/tina-backend/nextjs)
+
+### Hosting it outside Next.js
+
+The sample above is a Next.js API route, but `TinaNodeBackend` itself is not tied to Next. It is a plain Node `(req, res)` handler that expects an already-parsed `req.body`, so anything able to hand it that pair will serve it.
+
+What it cannot do is mount directly in a route whose signature is the web `Request` / `Response` API, which is what Astro's `APIRoute` and SvelteKit's `+server.ts` give you. Two shapes work instead:
+
+* **Mount it in a Node server.** Frameworks that can build to Connect/Express middleware, such as Astro via `@astrojs/node` in `mode: 'middleware'`, let one server handle `/api/tina/*` with `TinaNodeBackend` and pass everything else to the framework. Scope the body parser to that path, `app.use('/api/tina', express.json())`: `TinaNodeBackend` needs `req.body` populated, but parsing every route consumes the stream the framework needs for its own form posts.
+* **Deploy it as a standalone serverless function** beside your site: [Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/) or [Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/). [tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo) is a working example of a static site with the backend as its own function.
 
 ## 5. Update the TinaCMS config
 

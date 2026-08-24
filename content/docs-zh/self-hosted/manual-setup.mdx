@@ -22,7 +22,7 @@ yarn add tinacms @tinacms/datalayer
 yarn add --dev @tinacms/cli
 ```
 
-安装您选择的git提供商、数据库适配器和认证提供商的任何依赖项（这可能会根据您的选择有所不同）
+安装您选择的git提供商、数据库适配器和认证提供商的任何依赖项（这可能会根据您的选择而有所不同）
 
 ```bash
 yarn add tinacms-gitprovider-github tinacms-authjs upstash-redis-level @upstash/redis
@@ -37,10 +37,10 @@ yarn add tinacms-gitprovider-github tinacms-authjs upstash-redis-level @upstash/
 ```ts
 import { createDatabase, createLocalDatabase } from '@tinacms/datalayer'
 
-// 更改为您选择的git提供商
+// 将此更改为您选择的git提供商
 import { GitHubProvider } from 'tinacms-gitprovider-github'
 
-// 更改为您选择的数据库适配器
+// 将此更改为您选择的数据库适配器
 import { Redis } from '@upstash/redis'
 import { RedisLevel } from 'upstash-redis-level'
 
@@ -90,17 +90,17 @@ export default isLocal
 ```js
 // pages/api/tina/[...routes].{ts,js}
 
-import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
-import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from 'tinacms-authjs'
 
 import databaseClient from '../../../tina/__generated__/databaseClient'
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
 const handler = TinaNodeBackend({
-  authentication: isLocal
-    ? LocalBackendAuthentication()
-    : AuthJsBackendAuthentication({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
         authOptions: TinaAuthJSOptions({
           databaseClient: databaseClient,
           secret: process.env.NEXTAUTH_SECRET,
@@ -110,12 +110,21 @@ const handler = TinaNodeBackend({
 })
 
 export default (req, res) => {
-  // 如果需要，可以在这里修改请求
+  // 如果需要，可以在此处修改请求
   return handler(req, res)
 }
 ```
 
 > 更多信息请参见[后端托管](/docs/reference/self-hosted/tina-backend/nextjs)
+
+### 在Next.js之外托管
+
+上面的示例是一个Next.js API路由，但`TinaNodeBackend`本身并不依赖于Next。它是一个简单的Node `(req, res)`处理程序，期望一个已解析的`req.body`，因此任何能够提供该对的东西都可以为其服务。
+
+它不能直接挂载在一个签名为web `Request` / `Response` API的路由中，这是Astro的`APIRoute`和SvelteKit的`+server.ts`提供的。两种形状可以替代：
+
+* **将其挂载在Node服务器中。** 可以构建为Connect/Express中间件的框架，例如Astro通过`@astrojs/node`在`mode: 'middleware'`中，让一个服务器使用`TinaNodeBackend`处理`/api/tina/*`，并将其他所有内容传递给框架。将body解析器限定在该路径上，`app.use('/api/tina', express.json())`：`TinaNodeBackend`需要填充`req.body`，但解析每个路由会消耗框架需要用于其自身表单提交的流。
+* **将其作为独立的无服务器函数部署**在您的站点旁边：[Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/)或[Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/)。[tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo)是一个静态站点的工作示例，后端作为其自身的函数。
 
 ## 5. 更新TinaCMS配置
 
@@ -138,4 +147,4 @@ export default defineConfig({
 
 * [查询数据](/docs/self-hosted/querying-data)
 * 如果您想更改您的Git提供商、数据库适配器或认证提供商，请查看[参考](/docs/reference/self-hosted/overview/)。
-* 有问题吗？请在我们的[Discord](https://discord.com/invite/zumN63Ybpf)中询问。
+* 有问题吗？请在我们的[Discord](https://discord.com/invite/zumN63Ybpf)中询问
