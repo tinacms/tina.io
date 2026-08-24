@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2026.08.5",
+  "dateReleased": "2026-08-24T07:42:21Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Allow users to cancel pending account deletion",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "Fix disabled GitHub OAuth sign-in feedback",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        }
+      ]
+    }
+  ]
+}
