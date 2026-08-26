@@ -26,7 +26,7 @@ interface WhatsNewCardProps {
 
 const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
   return (
-    <li className="col-span-full grid grid-cols-subgrid items-start">
+    <li className="flex flex-wrap items-start gap-2 sm:col-span-full sm:grid sm:grid-cols-subgrid">
       {change.gitHubName && change.gitHubLink && (
         <>
           <Link
@@ -37,15 +37,15 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
           >
             @{change.gitHubName}
           </Link>
-          <span>-</span>
+          <span className="hidden sm:block">-</span>
         </>
       )}
       {change.changesDescription && (
-        <p className="col-start-3 wrap-anywhere text-gray-700">
+        <p className="order-last w-full wrap-anywhere text-gray-700 sm:order-none sm:col-start-3 sm:w-auto">
           {change.changesDescription}
         </p>
       )}
-      <div className="col-start-4 flex gap-2">
+      <div className="flex gap-2 sm:col-start-4">
         {change.pull_request_number && change.pull_request_link && (
           <Link
             href={change.pull_request_link}
@@ -95,7 +95,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
             {section.changesTitle}
           </h3>
           {section.changesList && section.changesList.length > 0 ? (
-            <ul className="grid grid-cols-[auto_auto_1fr_auto] gap-x-2 gap-y-4">
+            <ul className="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-[auto_auto_1fr_auto]">
               {section.changesList.map((change, changeIndex) => (
                 <ChangeItemComponent
                   key={`change-${changeIndex}-${change.commit_hash || change.gitHubName || 'unknown'}`}
