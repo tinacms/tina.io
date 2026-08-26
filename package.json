@@ -49,7 +49,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/app": "^2.5.10",
     "@tinacms/auth": "1.1.3",
-    "@tinacms/schema-tools": "^2.8.3",
+    "@tinacms/schema-tools": "0.0.0-2549bf9-20260824231952",
     "@tinacms/search": "^1.2.21",
     "@vercel/postgres": "^0.10.0",
     "algoliasearch": "^5.43.0",
@@ -112,7 +112,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2",
     "three": "^0.165.0",
-    "tinacms": "^3.11.0",
+    "tinacms": "0.0.0-2549bf9-20260824231952",
     "webpack": "^5.99.9"
   },
   "devDependencies": {
@@ -138,5 +138,11 @@
     "ts-jest": "^25.5.1",
     "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@9.6.0"
+  "packageManager": "pnpm@9.6.0",
+  "pnpm": {
+    "overrides": {
+      "tinacms": "0.0.0-2549bf9-20260824231952",
+      "@tinacms/schema-tools": "0.0.0-2549bf9-20260824231952"
+    }
+  }
 }
