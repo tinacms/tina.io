@@ -164,7 +164,7 @@ const CompanyCard = ({ company, criteria }) => {
           href={company?.testimonialLink}
           className="inline-block py-4 text-center text-sm font-bold text-gray-700 hover:text-orange-600 underline"
         >
-          See how {company?.headline} stacks up with TinaCMS →
+          How {company?.headline} stacks up with TinaCMS →
         </Link>
       )}
     </div>
