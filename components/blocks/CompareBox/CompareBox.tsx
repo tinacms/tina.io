@@ -95,6 +95,7 @@ const CompanyCard = ({ company, criteria }) => {
   );
 
   const baseColor = company.backgroundColor || '#000000';
+  const isTina = company.headline === 'TinaCMS';
 
   return (
     <div className="rounded-lg flex flex-col items-center w-full company-card">
