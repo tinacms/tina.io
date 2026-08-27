@@ -192,7 +192,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
 
     let currentIndex = 1;
 
-    const interval = setInterval(() => {
+    const advanceSlide = () => {
       setCompanies((prevCompanies) => {
         const newCompanies = prevCompanies?.map((company, idx) => ({
           ...company,
@@ -210,7 +210,11 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
 
         return newCompanies ?? prevCompanies;
       });
-    }, 3000);
+    };
+
+    advanceSlide();
+
+    const interval = setInterval(advanceSlide, 3000);
 
     return () => clearInterval(interval);
   }, [userInteracted]);
