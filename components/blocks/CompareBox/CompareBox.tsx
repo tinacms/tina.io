@@ -143,7 +143,10 @@ const CompanyCard = ({ company, criteria }) => {
                 style={{
                   ...commonHeightStyle,
                   backgroundColor: company.backgroundColor
-                    ? hexToRgba(isTina ? company.backgroundColor : '#808080', 0.2)
+                    ? hexToRgba(
+                        isTina ? company.backgroundColor : '#808080',
+                        0.2,
+                      )
                     : 'transparent',
                 }}
               >
