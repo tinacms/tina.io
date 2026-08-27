@@ -68,7 +68,6 @@ const CriteriaCard = ({ criteriaItems }) => {
           className="py-3 flex relative"
           style={commonHeightStyle}
         >
-          {/* 1. Tooltip icon container moved before the text heading */}
           <div className="group relative flex-shrink-0 flex items-center mr-1">
             <IoMdInformationCircleOutline className="mr-1 text-orange-500 text-xl" />
             <div className="hidden group-hover:block absolute left-1/2 top-full pt-2 -translate-x-1/2 z-10">
