@@ -68,21 +68,22 @@ const CriteriaCard = ({ criteriaItems }) => {
           className="py-3 flex relative"
           style={commonHeightStyle}
         >
-          <h3
-            data-tina-field={tinaField(item, 'criteria')}
-            className="min-w-0 flex-1 flex items-center sm:leading-5 md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs"
-          >
-            <span className="min-w-0">{item.criteria}</span>
-          </h3>
-
-          <div className="group relative flex-shrink-0 flex items-center ml-1">
-            <IoMdInformationCircleOutline className="ml-1 text-orange-500 text-xl" />
+          {/* 1. Tooltip icon container moved before the text heading */}
+          <div className="group relative flex-shrink-0 flex items-center mr-1">
+            <IoMdInformationCircleOutline className="mr-1 text-orange-500 text-xl" />
             <div className="hidden group-hover:block absolute left-1/2 top-full pt-2 -translate-x-1/2 z-10">
               <div className="relative shadow-xl bg-white text-sm p-2 rounded-lg xl:w-72 w-40 break-words text-center">
                 {item.description}
               </div>
             </div>
           </div>
+
+          <h3
+            data-tina-field={tinaField(item, 'criteria')}
+            className="min-w-0 flex-1 flex items-center sm:leading-5 md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs"
+          >
+            <span className="min-w-0">{item.criteria}</span>
+          </h3>
         </div>
       ))}
     </div>
