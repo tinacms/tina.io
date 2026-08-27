@@ -13,11 +13,6 @@
         "_template": "stringItem"
       },
       {
-        "label": "Docs for TinaCMS",
-        "href": "/docs/product-tour",
-        "_template": "stringItem"
-      },
-      {
         "label": "Roadmap",
         "href": "/roadmap",
         "_template": "stringItem"
@@ -89,10 +84,6 @@
           {
             "label": "Teams",
             "href": "/cms-for-teams"
-          },
-          {
-            "label": "Jamstack CMS",
-            "href": "/jamstack-cms"
           }
         ],
         "_template": "groupOfStringItems"
@@ -111,10 +102,6 @@
           {
             "label": "Git",
             "href": "/git-cms"
-          },
-          {
-            "label": "Editorial Workflow",
-            "href": "/editorial-workflow"
           },
           {
             "label": "Customization",
