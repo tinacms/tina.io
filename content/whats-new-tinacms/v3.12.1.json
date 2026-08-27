@@ -6,7 +6,7 @@
       "changesTitle": "Patch Changes",
       "changesList": [
         {
-          "changesDescription": "Bump the final-form family to the TypeScript releases\n\n`final-form` 4.20.10 → ^5.0.1, `final-form-arrays` ^3.1.0 → ^4.0.1, `react-final-form` ^6.5.9 → ^7.0.1. All three majors are the same event: a coordinated Flow → TypeScript rewrite published on 2025-06-07 and labelled as carrying no API changes. `react-final-form@7` is where React 19 was added to the peer range, which clears the last unmet peer warning on install outside the GraphiQL chain.\n\nThey must move together because each peers on the next: `react-final-form@7` requires `final-form@^5`, and `final-form-arrays@3` peers on `final-form@^4`. `final-form-set-field-data` stays put — its peer is `>=1.2.0`.",
+          "changesDescription": "Bump the final-form family to the TypeScript releases",
           "pull_request_number": "7469",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/7469",
           "commit_hash": "e24fc0e",
@@ -24,7 +24,7 @@
           "gitHubLink": "https://github.com/kulesy"
         },
         {
-          "changesDescription": "Drop the deprecated `crypto-js` dependency\n\n`@tinacms/cli` used it in one place, to generate the default `NEXTAUTH_SECRET` offered during `tinacms init`. `crypto.lib.WordArray.random(16).toString()` is replaced with `randomBytes(16).toString('hex')` from `node:crypto`, which produces the same 32-character hex string. `tinacms` declared the dependency without ever importing it.",
+          "changesDescription": "Drop the deprecated `crypto-js` dependency",
           "pull_request_number": "7468",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/7468",
           "commit_hash": "00a8b82",
@@ -33,7 +33,7 @@
           "gitHubLink": "https://github.com/joshbermanssw"
         },
         {
-          "changesDescription": "Declare the field props that `react-final-form`'s index signature used to cover\n\n`FieldRenderProps` carried `[otherProp: string]: any` in v6, so the extras `FieldsBuilder` passes to every field plugin — `tinaForm`, `index`, `children`, `experimental_focusIntent` — type-checked implicitly. v7's TypeScript rewrite dropped that index signature, so they are now declared on `FieldProps` directly. The rich-text plugin's `rawMode`, `setRawMode` and `rawEditor` are declared on its own props rather than the shared type.\n\nNo runtime change; these props were always being passed.",
+          "changesDescription": "Declare the field props that `react-final-form`'s index signature used to cover",
           "pull_request_number": "7469",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/7469",
           "commit_hash": "e24fc0e",
@@ -51,7 +51,7 @@
           "gitHubLink": "https://github.com/kulesy"
         },
         {
-          "changesDescription": "Add `data-test` hooks to group-list and blocks field controls\n\nMirrors the hooks already on simple list fields, so end-to-end tests can target the add button and field wrapper of an object list or a blocks field without depending on Tailwind classes. Nested fields carry their full path, e.g. `add-item-blocks.0.actions`.",
+          "changesDescription": "Add `data-test` hooks to group-list and blocks field controls",
           "pull_request_number": "7469",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/7469",
           "commit_hash": "e24fc0e",
@@ -78,7 +78,7 @@
           "gitHubLink": "https://github.com/kulesy"
         },
         {
-          "changesDescription": "Add `data-test` hooks to list field controls\n\nThe add and delete buttons on `list: true` fields had no stable selector, so end-to-end tests had to target Tailwind classes. Adds `data-test=\"list-<name>\"` on the field wrapper, `data-test=\"add-item-<name>\"` on the add button, and `data-test=\"delete-item-<name>.<index>\"` on the delete button shared with group-list and blocks fields.\n\nEvery hook carries the full field path. The wrapper hook lands on the outer field wrapper, so a nested list's delete buttons are descendants of the outer list's wrapper; a bare id would make `[data-test=\"list-x\"] [data-test=\"delete-item\"]` match the wrong row once lists nest.",
+          "changesDescription": "Add `data-test` hooks to list field controls",
           "pull_request_number": "7469",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/7469",
           "commit_hash": "e24fc0e",
@@ -87,13 +87,38 @@
           "gitHubLink": "https://github.com/joshbermanssw"
         },
         {
-          "changesDescription": "Fix the collection list and collection search hanging on the loading screen when the session check says the user is not signed in. Both now settle and render instead of spinning until the page is reloaded.\n\n- Updated dependencies [[`4f90806`](https://github.com/tinacms/tinacms/commit/4f9080666308063332e16d96d00a75ff7348c011), [`00a8b82`](https://github.com/tinacms/tinacms/commit/00a8b826d0f7bd663f5d9069e487606f71b98cfe), [`00a8b82`](https://github.com/tinacms/tinacms/commit/00a8b826d0f7bd663f5d9069e487606f71b98cfe), [`de5c7d7`](https://github.com/tinacms/tinacms/commit/de5c7d72b67f589f1f5c4bccc5f5677e70cd7e2d)]:\n- @tinacms/mdx@2.2.1\n- @tinacms/search@1.2.24\n- @tinacms/bridge@0.3.1\n- @tinacms/schema-tools@2.9.0",
+          "changesDescription": "Fix the collection list and collection search hanging on the loading screen when the session check says the user is not signed in. Both now settle and render instead of spinning until the page is reloaded.",
           "pull_request_number": "7445",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/7445",
           "commit_hash": "37ca62b",
           "commit_link": "https://github.com/tinacms/tinacms/commit/37ca62b66aadb2cb80daa280a25a390c0bc2e4af",
           "gitHubName": "kulesy",
           "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/mdx@2.2.1",
+          "commit_hash": "4f90806",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4f90806"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.24",
+          "commit_hash": "4f90806",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4f90806"
+        },
+        {
+          "changesDescription": "@tinacms/bridge@0.3.1",
+          "commit_hash": "4f90806",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4f90806"
+        },
+        {
+          "changesDescription": "@tinacms/schema-tools@2.9.0",
+          "commit_hash": "4f90806",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4f90806"
         }
       ]
     }
