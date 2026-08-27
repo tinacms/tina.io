@@ -233,7 +233,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
 
       {/* SSW Banner */}
       <div
-        className="group relative flex flex-wrap items-center justify-between gap-x-4 gap-y-2 overflow-hidden px-8 py-6 md:px-48"
+        className="group relative flex flex-wrap items-center justify-center gap-x-4 gap-y-2 overflow-hidden px-8 py-6 md:px-48 md:justify-between"
         style={{
           backgroundImage:
             'linear-gradient(to right, #CC4141 0%, #000000 100%)',
@@ -250,7 +250,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           href="https://www.ssw.com.au"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative z-10 flex flex-wrap items-center justify-start gap-x-1.5 gap-y-1 text-left text-white text-sm md:text-base font-bold no-underline hover:no-underline"
+          className="relative z-10 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-center md:justify-start md:text-left text-white text-sm md:text-base font-bold no-underline hover:no-underline"
         >
           TinaCMS is actively developed by
           <svg
@@ -276,7 +276,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           <span className="-ml-1">{', '}</span>
           Australia&apos;s leading software consultants
         </a>
-        <p className="relative z-10 text-white/65 text-sm md:text-base font-bold">
+        <p className="relative z-10 text-center md:text-left text-white/65 text-sm md:text-base font-bold">
           &copy; TinaCMS 2019–
           {new Date().getFullYear()}
         </p>
