@@ -1,9 +1,9 @@
 ---
 seo:
-  title: 'Markdown tables now render semantic thead and th | TinaCMS Blog'
-  description: 'TinaMarkdown now renders the first row of a markdown table as a real table header, and stops forcing its own inline borders. Here is what to change in your styles.'
+  title: 'TinaCMS ❤️ the developer community: markdown tables now render a proper header row | TinaCMS Blog'
+  description: 'A community PR made TinaMarkdown render the first row of a markdown table as a real <thead>/<th>, so screen readers can link every cell back to its column heading. Here is what changes for your styles.'
   canonicalUrl: 'https://tina.io/blog/semantic-tables-in-tinamarkdown'
-title: 'Markdown tables now render semantic thead and th'
+title: '🦙 TinaCMS ❤️ the developer community: markdown tables now render a proper header row'
 date: '2026-08-28T00:00:00.000Z'
 last_edited: '2026-08-28T00:00:00.000Z'
 author: Josh Berman
@@ -11,25 +11,67 @@ prev: content/blog/tinacms-news-may-june-2026.mdx
 next: ''
 ---
 
-We're continually blown away by the great developer community that help us improve TinaCMS. We get some great pull requests and we recently merged a PR that was worth a shout-out.
+We're continually blown away by the great developer community that helps us improve TinaCMS. Over the last 12 months, 18 people outside the core team have landed pull requests in TinaCMS (some multiple times). One we merged recently deserved a shout-out.
 
-A big thanks to [@lastenvoy30](https://github.com/lastenvoy30) for your PR that helped improve the way that our HTML tables are rendered, and ultimately improved a11y.
+Big thanks to [@lastenvoy30](https://github.com/lastenvoy30), whose [first PR to the repo](https://github.com/tinacms/tinacms/pull/7494) fixed the way our HTML tables render and made them a lot friendlier for screen readers.
 
-`TinaMarkdown` used to render every row of a markdown table as `<tbody><td>`, header row included. There was no `<thead>` and no `<th>` anywhere in the output.
+`TinaMarkdown` used to render every row of a markdown table as `<tbody><td>`, header row included. There was no `<thead>` and no `<th>` anywhere in the output. Screen readers use `<th>` to link a cell back to its column heading, so those tables came through as an unlabeled grid.
 
-The first row of a markdown table now renders as `<thead><th>`, matching standard GFM output and the behaviour TinaCMS already had for tables authored in the editor.
+The first row now renders as `<thead><th>`. That's standard GFM output, and it's what TinaCMS already did for tables you build in the rich text editor.
 
-This change was pushed with the aim to improve a11y, since screen readers rely on `<th>` to associate a header with the cells beneath it.
+## Before and after
 
-**TL;DR:** Your markdown tables will render different HTML after this release, and they will probably look different too. Nothing in the API changed, so this ships as a minor. Load a page with a table on it before you deploy.
+Take this table in a markdown file:
 
-## Why this is a minor and not a major
+```md
+| Framework | Status |
+| --------- | ------ |
+| Next.js   | Stable |
+```
 
-Nothing in the public API moved. `TinaMarkdown`, its props, and every component override behave exactly as before.
+Here is what TinaMarkdown used to give you:
 
-## What you need to change
+```html
+<table>
+  <tbody>
+    <tr>
+      <td>Framework</td>
+      <td>Status</td>
+    </tr>
+    <tr>
+      <td>Next.js</td>
+      <td>Stable</td>
+    </tr>
+  </tbody>
+</table>
+```
 
-**If you pass a `td` component override**, add a `th` alongside it. The header row no longer goes through `td`, so without this it renders unstyled.
+And here is what it gives you now:
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th>Framework</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Next.js</td>
+      <td>Stable</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+{/* TODO: swap in the real screenshot before publishing
+![The same table rendered before and after the change](/img/blog/PLACEHOLDER-table-before-after.png)
+*/}
+
+Your tables will output different HTML after this release, so they will probably look different too. We recommend that you double check your site by loading a page that has a table on it before you deploy TinaCMS 3.13.
+
+You've always been able to style each HTML element that your rich text renders. Now that the header row comes through as `th`, you can style it separately from the body cells. If you already override `td`, add a `th` next to it, or the header row renders unstyled.
 
 ```jsx
 <TinaMarkdown
@@ -41,28 +83,11 @@ Nothing in the public API moved. `TinaMarkdown`, its props, and every component 
 />
 ```
 
-**If you style tables with plain CSS**, point any header selector at `thead th`. The header row used to be the first row of `<tbody>`, so selectors written against `td` will now miss it.
-
-```css
-/* before: the header row lived in the body */
-.rich-text tbody tr:first-child td {
-  font-weight: 600;
-}
-
-/* after: it is a real header */
-.rich-text thead th {
-  font-weight: 600;
-}
-```
-
-Expect a visual change: tables will look different after you upgrade, even if you do nothing.
-
-If something feels off, tell us. Open an issue, or drop into [Discord](https://discord.com/invite/zumN63Ybpf) with what you found.
+If something looks off after you upgrade, tell us. Open an issue, or come find us in [Discord](https://tina.io/discord).
 
 The TinaCMS Team 🦙
 
-## Related Links
+## Related links
 
-Issue: [Render semantic thead/th for markdown tables #7169](https://github.com/tinacms/tinacms/issues/7169)
-
-Pull request: [fix(rich-text): render semantic thead/th for markdown tables #7494](https://github.com/tinacms/tinacms/pull/7494)
+- Issue: [Render semantic thead/th for markdown tables #7169](https://github.com/tinacms/tinacms/issues/7169)
+- PR: [fix(rich-text): render semantic thead/th for markdown tables #7494](https://github.com/tinacms/tinacms/pull/7494)
