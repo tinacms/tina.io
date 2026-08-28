@@ -171,9 +171,15 @@ export function Footer({ footerData }: { footerData: FooterData }) {
                         );
                       }
                       return item.items ? (
-                        <LinkGroup key={`link-group-${item.label}-${itemIndex}`} item={item} />
+                        <LinkGroup
+                          key={`link-group-${item.label}-${itemIndex}`}
+                          item={item}
+                        />
                       ) : (
-                        <LinkItem key={`link-item-${item.label}-${itemIndex}`} item={item} />
+                        <LinkItem
+                          key={`link-item-${item.label}-${itemIndex}`}
+                          item={item}
+                        />
                       );
                     })}
                   </div>
