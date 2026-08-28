@@ -1,0 +1,54 @@
+---
+seo:
+  title: 'Markdown tables now render semantic thead and th | TinaCMS Blog'
+  description: 'TinaMarkdown now renders the first row of a markdown table as a real table header, and stops forcing its own inline borders. Here is what to change in your styles.'
+  canonicalUrl: 'https://tina.io/blog/semantic-tables-in-tinamarkdown'
+title: 'Markdown tables now render semantic thead and th'
+date: '2026-08-28T00:00:00.000Z'
+last_edited: '2026-08-28T00:00:00.000Z'
+author: Josh Berman
+prev: content/blog/tinacms-news-may-june-2026.mdx
+next: ''
+---
+
+`TinaMarkdown` used to render every row of a markdown table as `<tbody><td>`, header row included. There was no `<thead>` and no `<th>` anywhere in the output.
+
+That is fixed. The first row of a markdown table now renders as `<thead><th>`, matching standard GFM output and the behaviour Tina already had for tables authored in the editor.
+
+**TL;DR:** Your markdown tables will render different HTML after this release, and they will probably look different too. Nothing in the API changed, so this ships as a minor. Load a page with a table on it before you deploy.
+
+This styling fix was applied for a11y purposes; screen readers rely on `<th>` to associate a header with the cells beneath it. Without it, a table is read as an undifferentiated grid of values, which is close to useless if you cannot see the layout.
+
+## Why this is a minor and not a major
+
+Nothing in the public API moved. `TinaMarkdown`, its props, and every component override behave exactly as before. What changed is the HTML we emit, and we treat shipping inaccessible markup as a bug rather than a contract we owe you.
+
+Holding an accessibility fix behind a major would mean leaving broken markup in place for months on every Tina site. We would rather correct it now and be specific about what to check.
+
+## What you need to change
+
+**If you pass a `td` component override**, add a `th` alongside it. The header row no longer goes through `td`, so without this it renders unstyled.
+
+```jsx
+<TinaMarkdown
+  content={page.body}
+  components={{
+    th: (props) => <th className="px-3 pb-2 font-semibold text-left" {...props} />,
+    td: (props) => <td className="px-3 py-2" {...props} />,
+  }}
+/>
+```
+
+## Expect a visual change
+
+Tables will look different after you upgrade, even if you do nothing.
+
+Worth loading a page with a table on it before you deploy.
+
+If something feels off, tell us. Open an issue, or drop into [Discord](https://discord.com/invite/zumN63Ybpf) with what you found.
+
+The TinaCMS Team 🦙
+
+## Related Links
+
+Issue: [Render semantic thead/th for markdown tables #7169](https://github.com/tinacms/tinacms/issues/7169)
