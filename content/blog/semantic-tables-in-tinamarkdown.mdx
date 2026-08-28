@@ -13,17 +13,15 @@ next: ''
 
 `TinaMarkdown` used to render every row of a markdown table as `<tbody><td>`, header row included. There was no `<thead>` and no `<th>` anywhere in the output.
 
-That is fixed. The first row of a markdown table now renders as `<thead><th>`, matching standard GFM output and the behaviour Tina already had for tables authored in the editor.
+The first row of a markdown table now renders as `<thead><th>`, matching standard GFM output and the behaviour TinaCMS already had for tables authored in the editor.
+
+This change was pushed with the aim to improve a11y, since screen readers rely on `<th>` to associate a header with the cells beneath it.
 
 **TL;DR:** Your markdown tables will render different HTML after this release, and they will probably look different too. Nothing in the API changed, so this ships as a minor. Load a page with a table on it before you deploy.
 
-This styling fix was applied for a11y purposes; screen readers rely on `<th>` to associate a header with the cells beneath it. Without it, a table is read as an undifferentiated grid of values, which is close to useless if you cannot see the layout.
-
 ## Why this is a minor and not a major
 
-Nothing in the public API moved. `TinaMarkdown`, its props, and every component override behave exactly as before. What changed is the HTML we emit, and we treat shipping inaccessible markup as a bug rather than a contract we owe you.
-
-Holding an accessibility fix behind a major would mean leaving broken markup in place for months on every Tina site. We would rather correct it now and be specific about what to check.
+Nothing in the public API moved. `TinaMarkdown`, its props, and every component override behave exactly as before.
 
 ## What you need to change
 
@@ -39,11 +37,7 @@ Holding an accessibility fix behind a major would mean leaving broken markup in 
 />
 ```
 
-## Expect a visual change
-
-Tables will look different after you upgrade, even if you do nothing.
-
-Worth loading a page with a table on it before you deploy.
+Expect a visual change: tables will look different after you upgrade, even if you do nothing.
 
 If something feels off, tell us. Open an issue, or drop into [Discord](https://discord.com/invite/zumN63Ybpf) with what you found.
 
