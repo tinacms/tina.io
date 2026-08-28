@@ -41,6 +41,20 @@ Nothing in the public API moved. `TinaMarkdown`, its props, and every component 
 />
 ```
 
+**If you style tables with plain CSS**, point any header selector at `thead th`. The header row used to be the first row of `<tbody>`, so selectors written against `td` will now miss it.
+
+```css
+/* before: the header row lived in the body */
+.rich-text tbody tr:first-child td {
+  font-weight: 600;
+}
+
+/* after: it is a real header */
+.rich-text thead th {
+  font-weight: 600;
+}
+```
+
 Expect a visual change: tables will look different after you upgrade, even if you do nothing.
 
 If something feels off, tell us. Open an issue, or drop into [Discord](https://discord.com/invite/zumN63Ybpf) with what you found.
