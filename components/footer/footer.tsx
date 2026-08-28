@@ -212,13 +212,13 @@ export function Footer({ footerData }: { footerData: FooterData }) {
                   />
                 );
               })}
-              <button
+              {/* <button
                 type="button"
                 onClick={() => setIsContactOpen(true)}
                 className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap cursor-pointer"
               >
                 Contact Us
-              </button>
+              </button> */}
             </div>
             {isZhPath && (
               <div>
