@@ -11,6 +11,10 @@ prev: content/blog/tinacms-news-may-june-2026.mdx
 next: ''
 ---
 
+We're continually blown away by the great developer community that help us improve TinaCMS. We get some great pull requests and we recently merged a PR that was worth a shout-out.
+
+A big thanks to [@lastenvoy30](https://github.com/lastenvoy30) for your PR that helped improve the way that our HTML tables are rendered, and ultimately improved a11y.
+
 `TinaMarkdown` used to render every row of a markdown table as `<tbody><td>`, header row included. There was no `<thead>` and no `<th>` anywhere in the output.
 
 The first row of a markdown table now renders as `<thead><th>`, matching standard GFM output and the behaviour TinaCMS already had for tables authored in the editor.
@@ -46,3 +50,5 @@ The TinaCMS Team 🦙
 ## Related Links
 
 Issue: [Render semantic thead/th for markdown tables #7169](https://github.com/tinacms/tinacms/issues/7169)
+
+Pull request: [fix(rich-text): render semantic thead/th for markdown tables #7494](https://github.com/tinacms/tinacms/pull/7494)
