@@ -286,7 +286,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
             <path d="M82.77 38.5762H76.766V44.5822H82.77V38.5822Z" />
           </svg>
           <span className="-ml-1">{', '}</span>
-          Australia&apos;s leading software consultants
+          Australia&apos;s leading software consultants.
         </a>
         <p className="relative z-10 text-center md:text-left text-white/65 text-sm md:text-base font-bold">
           &copy; TinaCMS 2019–
