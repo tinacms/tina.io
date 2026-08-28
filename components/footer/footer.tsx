@@ -158,16 +158,22 @@ export function Footer({ footerData }: { footerData: FooterData }) {
                       {header}
                     </p>
                     {footerItem.map((item, itemIndex) => {
+                      if (item._template === 'modalButton') {
+                        return (
+                          <button
+                            key={`modal-button-${item.label}-${itemIndex}`}
+                            type="button"
+                            onClick={() => setIsContactOpen(true)}
+                            className={`${linkStyles} cursor-pointer bg-transparent border-none p-0 m-0 text-left appearance-none`}
+                          >
+                            {item.label}
+                          </button>
+                        );
+                      }
                       return item.items ? (
-                        <LinkGroup
-                          key={`link-group-${item.label}-${itemIndex}`}
-                          item={item}
-                        />
+                        <LinkGroup key={`link-group-${item.label}-${itemIndex}`} item={item} />
                       ) : (
-                        <LinkItem
-                          key={`link-item-${item.label}-${itemIndex}`}
-                          item={item}
-                        />
+                        <LinkItem key={`link-item-${item.label}-${itemIndex}`} item={item} />
                       );
                     })}
                   </div>

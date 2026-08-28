@@ -139,6 +139,14 @@
           }
         ],
         "_template": "groupOfStringItems"
+      },
+      {
+        "label": "Contact Us",
+        "icon": false,
+        "color": "orange",
+        "size": "medium",
+        "modal": "ContactForm.tsx",
+        "_template": "modalButton"
       }
     ]
   },
