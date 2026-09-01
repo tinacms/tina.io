@@ -1,0 +1,86 @@
+{
+  "versionNumber": "2026.08.6",
+  "dateReleased": "2026-08-27T06:43:12Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Add branch-aware media rename support to TinaCloud",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "chore: force patched fast-jwt and fast-xml-parser in sst's deploy tree",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore: float @aws-sdk/client-cognito-identity-provider and client-ssm off stale locks",
+          "gitHubName": "aws-sdk",
+          "gitHubLink": "https://github.com/aws-sdk"
+        },
+        {
+          "changesDescription": "fix(identity): gateway-level CORS so authorizer 401/403s carry CORS headers",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "🟥 fix: patch fast-xml-parser 4.5.7 entity-expansion cap that kills sst deploys",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(ci): let the tinacms auto-bump workflow commit on the runner",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: honest error when password reset hits a confirmed user with unverified email",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: return 401 instead of 500 for expired GitHub refresh tokens",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: guard tiny search index uploads",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "Fix projects wedged when Tina config is missing on the default branch",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "Add security.txt and public_key.asc to app.tina.io /.well-known/",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore: clear form-data and jsonpath-plus transitive alerts",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "📝 docs: onboarding checklist covers Internal Project in CRM",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Allow /.well-known/ through the SPA rewrite in cf-security-headers",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(identity): require an org admin caller to change org roles and app assignments",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}
