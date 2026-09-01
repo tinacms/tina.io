@@ -83,6 +83,12 @@
       "_template": "partnerGrid"
     },
     {
+      "image": "/img/partners/tina-team.jpg",
+      "alt": "The TinaCMS team holding plush alpacas in front of a tina.io banner at a conference",
+      "caption": "Join the herd. Build with TinaCMS.",
+      "_template": "imageBand"
+    },
+    {
       "anchorId": "become-a-partner-section",
       "margin": "px-8 pt-8",
       "headline": "Become a TinaCMS partner.",
@@ -115,12 +121,6 @@
         }
       ],
       "_template": "highlightsSection"
-    },
-    {
-      "image": "/img/partners/tina-team.jpg",
-      "alt": "The TinaCMS team holding plush alpacas in front of a tina.io banner at a conference",
-      "caption": "Join the herd. Build with TinaCMS.",
-      "_template": "imageBand"
     },
     {
       "title": "Ready to partner with Tina?",
