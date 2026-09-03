@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.09.0",
+  "dateReleased": "2026-09-03T22:56:21Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "fix: disable zstd compression on content-api",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}
