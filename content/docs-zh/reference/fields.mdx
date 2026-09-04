@@ -9,20 +9,20 @@ next: content/docs-zh/reference/templates.mdx
 previous: content/docs-zh/reference/collections.mdx
 ---
 
-字段定义了内容结构，以及在编辑器中为特定[集合](/docs/reference/collections)显示的表单字段。
+字段定义了内容结构，以及在编辑器中为特定[集合](/zh/docs/reference/collections)显示的表单字段。
 
 这些字段被分类为字段类型——它们决定了存储的数据以及在编辑器中显示的输入组件。
 
 字段类型的选项包括：
 
-* [`string`](/docs/reference/types/string/)
-* [`number`](/docs/reference/types/number/)
-* [`datetime`](/docs/reference/types/datetime/)
-* [`boolean`](/docs/reference/types/boolean/)
-* [`image`](/docs/reference/types/image/)
-* [`reference`](/docs/reference/types/reference/)
-* [`object`](/docs/reference/types/object/)
-* [`rich-text`](/docs/reference/types/rich-text/)(markdown)
+* [`string`](/zh/docs/reference/types/string/)
+* [`number`](/zh/docs/reference/types/number/)
+* [`datetime`](/zh/docs/reference/types/datetime/)
+* [`boolean`](/zh/docs/reference/types/boolean/)
+* [`image`](/zh/docs/reference/types/image/)
+* [`reference`](/zh/docs/reference/types/reference/)
+* [`object`](/zh/docs/reference/types/object/)
+* [`rich-text`](/zh/docs/reference/types/rich-text/)(markdown)
 
 基本类型定义如下所示。某些字段类型通过特定类型的选项扩展了以下类型定义。
 
@@ -91,7 +91,7 @@ previous: content/docs-zh/reference/collections.mdx
       name: "list",
       type: "boolean",
       description:
-        "这可以用于存储值的数组。[检查兼容性](/docs/reference/fields#list-fields)。\n"
+        "这可以用于存储值的数组。[检查兼容性](/zh/docs/reference/fields#list-fields)。\n"
     },
     {
       groupName: "ui",
@@ -110,7 +110,7 @@ previous: content/docs-zh/reference/collections.mdx
       name: "validate",
       type: "(value: any, allValues: any, meta: any, field: Field) => string | object | undefined",
       description:
-        "用于自定义字段验证。[检查兼容性](/docs/reference/fields#validating-field-values)。\n"
+        "用于自定义字段验证。[检查兼容性](/zh/docs/reference/fields#validating-field-values)。\n"
     },
     {
       groupName: "ui",
@@ -130,7 +130,7 @@ previous: content/docs-zh/reference/collections.mdx
       name: "component",
       type: "FC<any> | string | null",
       description:
-        "用于[自定义字段组件](/docs/extending-tina/custom-field-components)。\n"
+        "用于[自定义字段组件](/zh/docs/extending-tina/custom-field-components)。\n"
     }
   ]}
 />
@@ -187,11 +187,11 @@ fields: [
 
 指定 `list: true` 会创建一个关联字段的数组。
 
-* [引用字段类型](/docs/reference/types/reference/)不能设置为列表。要解决此问题，可以将它们[包装](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types)在标记为 `list: true` 的对象字段类型中。
+* [引用字段类型](/zh/docs/reference/types/reference/)不能设置为列表。要解决此问题，可以将它们[包装](/zh/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types)在标记为 `list: true` 的对象字段类型中。
 * 只有以下类型在CMS中内置了专用的列表UI...
-  * [字符串字段类型](https://tina.io/docs/reference/types/string/)
-  * [对象字段类型](/docs/reference/types/object/)
-  * [图像字段类型](/docs/reference/types/image/)
+  * [字符串字段类型](/zh/docs/reference/types/string)
+  * [对象字段类型](/zh/docs/reference/types/object/)
+  * [图像字段类型](/zh/docs/reference/types/image/)
 
 ![](/img/docs/schema/image-example.png)
 
@@ -208,7 +208,7 @@ fields: [
 
 ### ui.max
 
-在[对象字段类型](/docs/reference/types/object/)的列表上设置 `ui.max` 后，一旦添加了至少给定数量的元素，编辑器中的添加按钮将被禁用。
+在[对象字段类型](/zh/docs/reference/types/object/)的列表上设置 `ui.max` 后，一旦添加了至少给定数量的元素，编辑器中的添加按钮将被禁用。
 
 ![](/img/docs/reference/obj-list.png)
 

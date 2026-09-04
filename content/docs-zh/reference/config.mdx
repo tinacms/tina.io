@@ -96,14 +96,14 @@ previous: content/docs-zh/reference/overview.mdx
       name: "localContentPath",
       type: "string",
       description:
-        "用于本地开发的单独内容仓库的路径，**相对于 `tina/` 配置文件夹解析**（而不是项目根目录）。\n\n设置后，集合 `path` 值相对于此内容根目录解析。内容目录**必须包含一个 `tina/` 文件夹**（可以是空的）— TinaCMS 在那里写入生成的文件，如 `tina-lock.json`。\n\n使用环境变量，因为路径可能因开发人员而异：\n\n```ts\nlocalContentPath: process.env.TINA_CONTENT_REPO_PATH // 例如 '../../my-content-repo'\n```\n\n有关完整的设置详细信息，请参阅[单独内容仓库指南](/docs/guides/separate-content-repo)。\n"
+        "用于本地开发的单独内容仓库的路径，**相对于 `tina/` 配置文件夹解析**（而不是项目根目录）。\n\n设置后，集合 `path` 值相对于此内容根目录解析。内容目录**必须包含一个 `tina/` 文件夹**（可以是空的）— TinaCMS 在那里写入生成的文件，如 `tina-lock.json`。\n\n使用环境变量，因为路径可能因开发人员而异：\n\n```ts\nlocalContentPath: process.env.TINA_CONTENT_REPO_PATH // 例如 '../../my-content-repo'\n```\n\n有关完整的设置详细信息，请参阅[单独内容仓库指南](/zh/docs/guides/separate-content-repo)。\n"
     },
     {
       groupName: "",
       name: "authProvider",
       type: "AuthProvider",
       description:
-        "设置[自定义身份验证](/docs/reference/self-hosted/auth-provider/overview)。\n"
+        "设置[自定义身份验证](/zh/docs/reference/self-hosted/auth-provider/overview)。\n"
     },
     {
       groupName: "admin",
@@ -407,7 +407,7 @@ Tina 的构建过程仅从 `.env` 文件中获取变量。在 `.env.local`、`.e
 | `NODE_ENV` | 当前环境（`development`、`production` 等） |
 | `HEAD` | 当前分支（由 Netlify 使用） |
 
-在管理中通过 `process.env` 访问的任何其他环境变量——包括[自定义字段组件](/docs/extending-tina/custom-field-components)、`beforeSubmit` 钩子或其他管理端代码——将是 `undefined`。
+在管理中通过 `process.env` 访问的任何其他环境变量——包括[自定义字段组件](/zh/docs/extending-tina/custom-field-components)、`beforeSubmit` 钩子或其他管理端代码——将是 `undefined`。
 
 <WarningCallout
   body={<>
@@ -425,7 +425,7 @@ Tina 的构建过程仅从 `.env` 文件中获取变量。在 `.env.local`、`.e
 | `NEXT_PUBLIC_TINA_BRANCH` | 站点 + 管理 | 覆盖用于内容获取的分支 |
 | `TINA_SEARCH_TOKEN` | 仅站点构建 | TinaCloud 搜索索引的令牌 |
 
-> 有关使用环境变量进行部署的更多信息，请参阅[使用 TinaCloud 进入生产](/docs/tinacloud/overview)。有关管理变量作用域的安全背景，请参阅[2023 年 2 月安全公告](/blog/2023-02-security-update)。
+> 有关使用环境变量进行部署的更多信息，请参阅[使用 TinaCloud 进入生产](/zh/docs/tinacloud/overview)。有关管理变量作用域的安全背景，请参阅[2023 年 2 月安全公告](/zh/blog/2023-02-security-update)。
 
 ### 使用 Typescript 路径别名的导入
 

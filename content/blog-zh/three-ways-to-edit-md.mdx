@@ -8,7 +8,7 @@ consumes:
   - file: /packages/gatsby-tinacms-remark/src/useRemarkForm.tsx
     details: 演示useLocalRemarkForm的用法
 warningMessage: >-
-  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/docs/setup-overview/)来获得更少摩擦的解决方案。
+  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/zh/docs/setup-overview/)来获得更少摩擦的解决方案。
 seo:
   title: 使用Tina编辑Markdown的三种方式 | TinaCMS博客
   description: >-
@@ -24,7 +24,7 @@ next: content/blog-zh/exporting-wordpress-content-to-gatsby.mdx
 
 在这篇文章中，我将探讨Tina提供的*三种不同方法*来编辑您Gatsby网站上的Markdown。您将学习如何使用Page Queries和Static Queries来设置Tina。
 
-*本文不会涵盖在Gatsby中使用Tina的基础知识。请参考[文档](/docs/guides/converting-gatsby-to-tina)了解如何最初设置Tina与Gatsby。*
+*本文不会涵盖在Gatsby中使用Tina的基础知识。请参考[文档](/zh/docs/guides/converting-gatsby-to-tina)了解如何最初设置Tina与Gatsby。*
 
 ## Page Queries和Static Queries是什么？
 
@@ -52,7 +52,7 @@ Static Queries的另一个好处是，您可以在需要数据的组件中获取
 
 ## 使用Tina编辑Markdown的三种方式
 
-鉴于在Gatsby中创建组件和获取数据的所有选项，我们必须为项目选择最合适的方法。Tina可以与所有这些选项一起工作，提供**[三种不同的方法](/docs/guides/converting-gatsby-to-tina)**来编辑Gatsby中的Markdown，如下所述。
+鉴于在Gatsby中创建组件和获取数据的所有选项，我们必须为项目选择最合适的方法。Tina可以与所有这些选项一起工作，提供**[三种不同的方法](/zh/docs/guides/converting-gatsby-to-tina)**来编辑Gatsby中的Markdown，如下所述。
 
 * **remarkForm** - 一个[高阶组件](https://legacy.reactjs.org/docs/higher-order-components.html)，用于从Gatsby中的Page Query获取数据时使用。此组件可用于函数和类组件。请注意这里的细微差别！与渲染props组件的唯一命名区别是小写的“r”。
 * **useLocalRemarkForm** - 一个[React Hook](https://legacy.reactjs.org/docs/hooks-overview.html)，用于从Static或Page Query获取数据的函数组件。如果组件获取的是静态数据，将调用Gatsby的`useStaticQuery` hook。
@@ -169,7 +169,7 @@ const [markdownRemark] = useLocalRemarkForm(heroData.markdownRemark)
 
 ### RemarkForm - 渲染Props组件
 
-您不能在类组件上使用React Hooks。这就是为什么Tina提供了一个使用[渲染Props](https://legacy.reactjs.org/docs/render-props.html)模式的[`RemarkForm`](/docs/guides/converting-gatsby-to-tina)组件。
+您不能在类组件上使用React Hooks。这就是为什么Tina提供了一个使用[渲染Props](https://legacy.reactjs.org/docs/render-props.html)模式的[`RemarkForm`](/zh/docs/guides/converting-gatsby-to-tina)组件。
 
 此组件适用于Page和Static Queries。我将在下面展示如何与Page Query一起使用。
 
@@ -227,9 +227,9 @@ export const pageQuery = graphql`
 
 在这篇文章中，我们学习了如何*在Gatsby中设置Tina与Static Queries和Page Queries*。我们还根据您的React组件类型学习了三种不同的方式来使用Tina编辑Markdown。
 
-这只是让您入门的基础。如果您喜欢Tina并想了解更多，您应该查看[官方文档](/docs/)。那里有很多内容可以阅读，还有一些有趣的用例。
+这只是让您入门的基础。如果您喜欢Tina并想了解更多，您应该查看[官方文档](/zh/docs/)。那里有很多内容可以阅读，还有一些有趣的用例。
 
-例如，您可以学习如何应用[内联编辑](/docs/contextual-editing/overview)，以及如何在Tina侧边栏中[自定义表单字段](/docs/plugins/fields)。
+例如，您可以学习如何应用[内联编辑](/zh/docs/contextual-editing/overview)，以及如何在Tina侧边栏中[自定义表单字段](/docs/plugins/fields)。
 
 Tina是React生态系统和静态网站生成器如Gatsby的一个很好的补充。它为您的网站提供了一种愉快且简单的方式来编辑和与您的内容互动。
 我很高兴看到TinaCMS会有多大，以及它在发展过程中能做些什么！

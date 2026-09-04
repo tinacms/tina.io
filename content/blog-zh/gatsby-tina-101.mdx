@@ -8,7 +8,7 @@ consumes:
   - file: /packages/@tinacms/fields/src/Wysiwyg/Wysiwyg.tsx
     details: TinaField使用Wysiwyg组件进行内联编辑
 warningMessage: >-
-  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/docs/setup-overview/)来获得更流畅的解决方案。
+  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/zh/docs/setup-overview/)来获得更流畅的解决方案。
 seo:
   title: Gatsby + Tina 101 | TinaCMS博客
   description: >-
@@ -24,7 +24,7 @@ next: content/blog-zh/introducing-visual-open-authoring.mdx
 
 尽管在技术上取得了进步，**静态网站的内容编辑故事可能会受到阻碍。** 那些对Git和Markdown感到舒适的人可能会直接编辑文件。但内容作者需要一个更好的解决方案来进行编辑。
 
-[TinaCMS](https://tinacms.org/docs/getting-started/introduction)是一个*可扩展的*工具包，可以帮助满足这些需求。Tina允许开发者使用我们喜爱的格式，如Markdown和JSON，同时为内容作者提供流畅的体验。
+[TinaCMS](/zh/docs/setup-overview)是一个*可扩展的*工具包，可以帮助满足这些需求。Tina允许开发者使用我们喜爱的格式，如Markdown和JSON，同时为内容作者提供流畅的体验。
 
 为了更好地理解Tina的工作原理，我决定将其添加到现有网站中，我的[Gatsby starter, *Tyra*](https://github.com/madelyneriksen/gatsby-starter-tyra/)。以下是我的过程演练。请随意*将其用作将TinaCMS添加到现有Gatsby网站的参考！*
 
@@ -78,7 +78,7 @@ module.exports = {
 }
 ```
 
-*Tyra*使用Markdown作为内容，但TinaCMS也通过[gatsby-tinacms-json](/docs/guides/converting-gatsby-to-tina)支持JSON文件。我发现JSON非常适合页面内容和[块](https://tinacms.org/blog/what-are-blocks/)。但对于简单的博客文章，Markdown效果很好。
+*Tyra*使用Markdown作为内容，但TinaCMS也通过[gatsby-tinacms-json](/zh/docs/guides/converting-gatsby-to-tina)支持JSON文件。我发现JSON非常适合页面内容和[块](/zh/blog/what-are-blocks)。但对于简单的博客文章，Markdown效果很好。
 
 由于*Tyra*的内容是基于Git的，所有的编辑都需要提交回存储库。`gatsby-tinacms-git`跟踪内容更改并处理新提交的创建。默认情况下，更改会推送到远程分支，但插件是可配置的。
 
@@ -227,7 +227,7 @@ module.exports = {
 
 还有一些*Tyra*使用的字段应该是“私有的”，不应该在侧边栏中可编辑。例如，用于识别帖子的`type`前置元数据值。
 
-我们可以通过将`FormConfig`对象传递给Tina来配置侧边栏表单。[使用Tina自定义表单](/docs/guides/converting-gatsby-to-tina)很简单。我们需要定义一个JavaScript对象来声明Tina要渲染的所需表单字段。
+我们可以通过将`FormConfig`对象传递给Tina来配置侧边栏表单。[使用Tina自定义表单](/zh/docs/guides/converting-gatsby-to-tina)很简单。我们需要定义一个JavaScript对象来声明Tina要渲染的所需表单字段。
 
 回到`src/blog/post.js`，我们可以添加这个配置对象：
 
@@ -304,7 +304,7 @@ const FormConfig = {
 export default inlineRemarkForm(Post, FormConfig)
 ```
 
-在`FormConfig`中，我们使用`text`、`markdown`、`date`，甚至`image`字段来使文章创作体验更好。Tina有[很多](https://tinacms.org/docs/plugins/fields/)内置字段，甚至允许你[添加自己的](https://tinacms.org/docs/plugins/fields/custom-fields)。
+在`FormConfig`中，我们使用`text`、`markdown`、`date`，甚至`image`字段来使文章创作体验更好。Tina有[很多](/zh/docs/reference/fields)内置字段，甚至允许你[添加自己的](/zh/docs/extending-tina/custom-field-components)。
 
 `image`字段的配置可能比较棘手。对于*文章图片*，我们需要Tina处理图像上传以及更新预览。要配置上传，你需要声明上传目录并从上传的图像中解析出预览缩略图。
 

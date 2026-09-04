@@ -8,7 +8,7 @@ previous: content/docs-zh/self-hosted/existing-site.mdx
 
 ## 1. 选择一个Git提供商、数据库适配器和认证提供商
 
-您需要选择一个[Git提供商](/docs/reference/self-hosted/git-provider/overview/)、[数据库适配器](/docs/reference/self-hosted/database-adapter/overview/)和[认证提供商](/docs/reference/self-hosted/auth-provider/overview/)。您可以使用我们创建的任何提供商，或者您可以创建自己的。在下面的示例中，我们将使用GitHub、Vercel KV和TinaCMS Auth.js提供商。
+您需要选择一个[Git提供商](/zh/docs/reference/self-hosted/git-provider/overview/)、[数据库适配器](/zh/docs/reference/self-hosted/database-adapter/overview/)和[认证提供商](/zh/docs/reference/self-hosted/auth-provider/overview/)。您可以使用我们创建的任何提供商，或者您可以创建自己的。在下面的示例中，我们将使用GitHub、Vercel KV和TinaCMS Auth.js提供商。
 
 如果您需要的Git提供商、数据库适配器或认证提供商不可用，您可以选择创建自己的。有关此过程的帮助，请参阅自托管解决方案的文档，其中提供了详细的指导。
 
@@ -83,7 +83,7 @@ export default isLocal
 
 ## 4. 托管Tina后端
 
-您将需要一个[后端端点](/docs/reference/self-hosted/tina-backend/nextjs)来托管GraphQL和认证API端点。
+您将需要一个[后端端点](/zh/docs/reference/self-hosted/tina-backend/nextjs)来托管GraphQL和认证API端点。
 
 在此示例中，我们将展示如何在Vercel上托管GraphQL API。您可以使用任何您想要的托管提供商（代码可能需要根据您选择的框架进行调整）。
 
@@ -115,7 +115,7 @@ export default (req, res) => {
 }
 ```
 
-> 更多信息请参见[后端托管](/docs/reference/self-hosted/tina-backend/nextjs)
+> 更多信息请参见[后端托管](/zh/docs/reference/self-hosted/tina-backend/nextjs)
 
 ### 在Next.js之外托管
 
@@ -124,7 +124,7 @@ export default (req, res) => {
 它不能直接挂载在一个签名为web `Request` / `Response` API的路由中，这是Astro的`APIRoute`和SvelteKit的`+server.ts`提供的。两种形状可以替代：
 
 * **将其挂载在Node服务器中。** 可以构建为Connect/Express中间件的框架，例如Astro通过`@astrojs/node`在`mode: 'middleware'`中，让一个服务器使用`TinaNodeBackend`处理`/api/tina/*`，并将其他所有内容传递给框架。将body解析器限定在该路径上，`app.use('/api/tina', express.json())`：`TinaNodeBackend`需要填充`req.body`，但解析每个路由会消耗框架需要用于其自身表单提交的流。
-* **将其作为独立的无服务器函数部署**在您的站点旁边：[Vercel Functions](/docs/reference/self-hosted/tina-backend/vercel-functions/)或[Netlify Functions](/docs/reference/self-hosted/tina-backend/netlify-functions/)。[tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo)是一个静态站点的工作示例，后端作为其自身的函数。
+* **将其作为独立的无服务器函数部署**在您的站点旁边：[Vercel Functions](/zh/docs/reference/self-hosted/tina-backend/vercel-functions/)或[Netlify Functions](/zh/docs/reference/self-hosted/tina-backend/netlify-functions/)。[tina-self-hosted-static-demo](https://github.com/tinacms/tina-self-hosted-static-demo)是一个静态站点的工作示例，后端作为其自身的函数。
 
 ## 5. 更新TinaCMS配置
 
@@ -141,10 +141,10 @@ export default defineConfig({
 })
 ```
 
-现在您应该能够运行您的站点并使用TinaCMS编辑您的内容。有关如何自托管TinaCMS的更多信息，请参阅[配置组件](/docs/reference/self-hosted/overview)的文档。
+现在您应该能够运行您的站点并使用TinaCMS编辑您的内容。有关如何自托管TinaCMS的更多信息，请参阅[配置组件](/zh/docs/reference/self-hosted/overview)的文档。
 
 ## 下一步
 
-* [查询数据](/docs/self-hosted/querying-data)
-* 如果您想更改您的Git提供商、数据库适配器或认证提供商，请查看[参考](/docs/reference/self-hosted/overview/)。
+* [查询数据](/zh/docs/self-hosted/querying-data)
+* 如果您想更改您的Git提供商、数据库适配器或认证提供商，请查看[参考](/zh/docs/reference/self-hosted/overview/)。
 * 有问题吗？请在我们的[Discord](https://discord.com/invite/zumN63Ybpf)中询问

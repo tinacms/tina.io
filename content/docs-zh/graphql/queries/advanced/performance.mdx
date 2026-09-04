@@ -18,8 +18,8 @@ GraphQL API在集合字段上建立索引，以便在使用`sort`参数时提供
 
 GraphQL API在执行查询时总是尝试使用适当的索引。然而，`sort`参数优先于过滤器，这意味着按一个字段排序并按另一个字段过滤可能导致查询执行速度较慢。
 
-为了在这种情况下提高查询性能，建议使用多字段索引（如[此处](/docs/graphql/queries/advanced/sorting/#sorting-on-multiple-fields)所述）。例如，如果我们只想获取特定类别的文档，并按日期排序，则应定义一个多字段索引，其中类别为第一个字段，日期为第二个字段。
+为了在这种情况下提高查询性能，建议使用多字段索引（如[此处](/zh/docs/graphql/queries/advanced/sorting/#sorting-on-multiple-fields)所述）。例如，如果我们只想获取特定类别的文档，并按日期排序，则应定义一个多字段索引，其中类别为第一个字段，日期为第二个字段。
 
 重要的是要记住，必须指定`sort`字段才能使用索引。如果没有指定`sort`，则会扫描集合中的所有项目（按文件名顺序）。
 
-> 并非所有查询都能利用索引。有关更多详细信息，请参见[限制](/docs/graphql/queries/advanced/limitations/#indexing)。
+> 并非所有查询都能利用索引。有关更多详细信息，请参见[限制](/zh/docs/graphql/queries/advanced/limitations/#indexing)。

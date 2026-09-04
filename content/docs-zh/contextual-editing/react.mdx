@@ -13,13 +13,13 @@ previous: content/docs-zh/contextual-editing/overview.mdx
 
 当你定义一个集合时，TinaCMS为你提供一个全页编辑器窗口来添加内容。
 
-当与React一起使用时，TinaCMS还允许进行["可视化编辑"](https://tina.io/docs/tinacms-lingo)。这是一种设置，允许你的**网站和编辑器窗口并排显示**，实时显示你的更改。
+当与React一起使用时，TinaCMS还允许进行["可视化编辑"](/zh/docs/tinacms-lingo)。这是一种设置，允许你的**网站和编辑器窗口并排显示**，实时显示你的更改。
 
 <WarningCallout
   body={<>
     **可视化编辑要求** – 在页面可以设置为可视化编辑之前，它必须：
     
-    * 使用[Tina的数据获取](/docs/features/data-fetching/)
+    * 使用[Tina的数据获取](/zh/docs/features/data-fetching/)
     * 与客户端渲染兼容
   </>}
 />
@@ -36,7 +36,7 @@ previous: content/docs-zh/contextual-editing/overview.mdx
 
 `useTina`应提供三个参数：
 
-* `query`和`variables`：这些是你用于[后端数据获取](/docs/features/data-fetching/)的相同值。查询必须仅针对**单个文档**。
+* `query`和`variables`：这些是你用于[后端数据获取](/zh/docs/features/data-fetching/)的相同值。查询必须仅针对**单个文档**。
 * `data`：这是你从Tina API收到的GraphQL响应。
 
 > 如果你使用了Tina客户端函数进行数据获取，这三个返回值可以直接插入到`useTina`钩子中。

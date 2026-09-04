@@ -58,13 +58,13 @@ previous: content/docs-zh/reference/schema.mdx
       groupName: "",
       name: "fields",
       type: "Field[]",
-      description: "[字段](/docs/reference/fields/)的数组。\n"
+      description: "[字段](/zh/docs/reference/fields/)的数组。\n"
     },
     {
       groupName: "",
       name: "templates",
       type: "Template[]",
-      description: "[模板](/docs/reference/templates/)的数组。\n"
+      description: "[模板](/zh/docs/reference/templates/)的数组。\n"
     },
     {
       groupName: "",
@@ -106,7 +106,7 @@ previous: content/docs-zh/reference/schema.mdx
       name: "beforeSubmit",
       type: "(values, cms, form) => { values }",
       description:
-        "在表单提交之前调用的函数。任何返回值将替换表单提交值。要在此函数中查询内容，请使用`cms`参数。参见[提交前函数](/docs/extending-tina/before-submit)。\n"
+        "在表单提交之前调用的函数。任何返回值将替换表单提交值。要在此函数中查询内容，请使用`cms`参数。参见[提交前函数](/zh/docs/extending-tina/before-submit)。\n"
     },
     {
       groupName: "ui",
@@ -120,7 +120,7 @@ previous: content/docs-zh/reference/schema.mdx
       name: "router",
       type: "(document) => string",
       description:
-        "一个函数，接收一个文档并返回其路由。如果没有返回值，将使用基本编辑器。用于设置[可视化编辑](/docs/contextual-editing/router/#the-router-property)。\n"
+        "一个函数，接收一个文档并返回其路由。如果没有返回值，将使用基本编辑器。用于设置[可视化编辑](/zh/docs/contextual-editing/router/#the-router-property)。\n"
     },
     {
       groupName: "ui.allowedActions",
@@ -192,7 +192,7 @@ previous: content/docs-zh/reference/schema.mdx
 
 不同集合的文档可以共存，但如果有重叠的文档，CLI将打印警告。
 
-默认情况下，路径是相对于CLI运行的位置，但可以通过使用[`--rootPath`](/docs/cli-overview) CLI标志来更改。
+默认情况下，路径是相对于CLI运行的位置，但可以通过使用[`--rootPath`](/zh/docs/cli-overview) CLI标志来更改。
 
 <WarningCallout
   body={<>
@@ -278,11 +278,11 @@ defaultItem: () => {
 
 ### 对象的默认值
 
-[对象字段类型](/docs/reference/types/object)独立定义其默认值。更多信息请参见此处。
+[对象字段类型](/zh/docs/reference/types/object)独立定义其默认值。更多信息请参见此处。
 
 ### 富文本的默认值
 
-要为[富文本字段](/docs/reference/types/rich-text/)设置默认值，你必须提供一个抽象语法树（AST）。更多信息请参见此处。
+要为[富文本字段](/zh/docs/reference/types/rich-text/)设置默认值，你必须提供一个抽象语法树（AST）。更多信息请参见此处。
 
 ## 全局集合
 

@@ -20,7 +20,7 @@ yarn remove tina-graphql-gateway
 + import { useGraphqlForms } from 'tinacms'
 ```
 
-> 注意，`useGraphqlForms`现在被认为是一个较低级别的API。您可能希望改为使用`tinacms`的默认导入来配置内容。[了解更多](/docs/contextual-editing/overview)
+> 注意，`useGraphqlForms`现在被认为是一个较低级别的API。您可能希望改为使用`tinacms`的默认导入来配置内容。[了解更多](/zh/docs/contextual-editing/overview)
 
 ### `tina-graphql-gateway-cli`现在是`@tinacms/cli`
 
@@ -135,7 +135,7 @@ getPostDocument(relativePage: $relativePath) {
 }
 ```
 
-[注册](/docs/extending-tina/custom-field-components)您的`myMapField`到Tina：
+[注册](/zh/docs/extending-tina/custom-field-components)您的`myMapField`到Tina：
 
 ```js
 cms.fields.add({
@@ -146,7 +146,7 @@ cms.fields.add({
 
 #### 一个重要的注意事项
 
-`defineSchema` API中的每个属性都必须是可序列化的。这意味着函数将不起作用。例如，无法在此级别定义`validate`或`parse`函数。但是，您可以使用[formifyCallback](/docs/extending-tina/custom-field-components) API来访问Tina表单，或者通过指定您选择的插件来提供自己的逻辑：
+`defineSchema` API中的每个属性都必须是可序列化的。这意味着函数将不起作用。例如，无法在此级别定义`validate`或`parse`函数。但是，您可以使用[formifyCallback](/zh/docs/extending-tina/custom-field-components) API来访问Tina表单，或者通过指定您选择的插件来提供自己的逻辑：
 
 ```js
 {

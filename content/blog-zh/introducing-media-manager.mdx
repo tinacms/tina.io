@@ -13,7 +13,7 @@ next: content/blog-zh/more-changes-coming-to-inline-editing.mdx
 
 如今的网站包含比以往更多的狗狗GIF和风景英雄照片。内容编辑者在创建和更新网页、博客或文章时，需要一种方式来处理这些媒体。
 
-到目前为止，Tina中的媒体更改是通过图像字段处理的。通过点击字段，编辑者可以从本地文件系统上传新图像。开发者会向CMS注册一个[媒体存储](/docs/reference/media/overview)来处理文件上传。然而，没有办法查看已上传的图像以便在内容中使用它们。
+到目前为止，Tina中的媒体更改是通过图像字段处理的。通过点击字段，编辑者可以从本地文件系统上传新图像。开发者会向CMS注册一个[媒体存储](/zh/docs/reference/media/overview)来处理文件上传。然而，没有办法查看已上传的图像以便在内容中使用它们。
 
 我们的最新版本解决了这一限制，并添加了一个**媒体管理界面！**
 
@@ -49,7 +49,7 @@ new TinaCMS({
 
 ### 媒体对象
 
-在单个[`媒体`对象接口](/docs/reference/media/overview)中添加了3个新属性。
+在单个[`媒体`对象接口](/zh/docs/reference/media/overview)中添加了3个新属性。
 
 * `type` : 表示媒体项是[文件还是目录](https://github.com/tinacms/tinacms/issues/1452)。
 * `id`: 此文件的唯一标识符，通常是文件的完整路径。
@@ -57,7 +57,7 @@ new TinaCMS({
 
 ### 媒体存储
 
-在[媒体存储](/docs/reference/media/overview)接口中添加了两个新方法。
+在[媒体存储](/zh/docs/reference/media/overview)接口中添加了两个新方法。
 
 * `list`: 此函数提供可供媒体管理器渲染的可用项的分页列表。
 * `delete`: 此函数删除媒体文件。
@@ -95,7 +95,7 @@ new TinaCMS({
 
 对于内联图像字段，我们添加了一个新的`alt`属性。当使用`InlineImage`而不使用渲染属性模式时，此属性很有帮助，以便您可以直接在`InlineImage`渲染的图像元素上设置替代文本。
 
-另一个改进是能够在内联图像上[扩展样式](/docs/contextual-editing/overview)。内联图像字段向DOM添加了一些元素，这可能会影响某些布局的样式。现在可以通过`className`或[styled-components](https://styled-components.com/docs/basics#extending-styles)直接设置样式。
+另一个改进是能够在内联图像上[扩展样式](/zh/docs/contextual-editing/overview)。内联图像字段向DOM添加了一些元素，这可能会影响某些布局的样式。现在可以通过`className`或[styled-components](https://styled-components.com/docs/basics#extending-styles)直接设置样式。
 
 ```tsx
 /**
@@ -139,7 +139,7 @@ const StyledInlineImage = styled(InlineImage)`
 
 `previewSrc`函数在启用CMS时提供图像源的URL。此函数由[媒体存储默认](https://github.com/tinacms/tinacms/pull/1386)实现，或者可以在字段基础上覆盖。
 
-我们统一了[`MediaStore`](https://tina.io/docs/reference/media/overview/)、[`InlineImage`](/docs/contextual-editing/overview)和常规[图像字段](/docs/plugins/fields/images)之间的`previewSrc`接口。
+我们统一了[`MediaStore`](/zh/docs/reference/media/overview)、[`InlineImage`](/zh/docs/contextual-editing/overview)和常规[图像字段](/docs/plugins/fields/images)之间的`previewSrc`接口。
 
 重大更改是现在将附加参数传递给`previewSrc`。我们进行了此更改，因为我们发现自己在配置图像字段中的此函数时经常返回字段值。提供`previewSrc`时，不必遍历所有表单值，第一个参数对于大多数用例应该足够。
 
@@ -176,7 +176,7 @@ const StyledInlineImage = styled(InlineImage)`
 
 传递给内联和常规图像字段的`parse`函数的参数已更改，以提供更多灵活性来配置图像路径在数据源中的保存方式。`parse`处理数据源中最终值的填充方式。
 
-现在传递的是整个[媒体对象](/docs/reference/media/overview)，而不是`filename`。作为一般建议，您可以使用`media.id`（图像的完整路径）或`media.filename`来调整数据源中保存的首选最终值。
+现在传递的是整个[媒体对象](/zh/docs/reference/media/overview)，而不是`filename`。作为一般建议，您可以使用`media.id`（图像的完整路径）或`media.filename`来调整数据源中保存的首选最终值。
 
 **之前**
 

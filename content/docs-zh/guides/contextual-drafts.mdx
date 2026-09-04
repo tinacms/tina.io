@@ -9,7 +9,7 @@ title: '使用草稿进行可视化编辑'
 
 ## 使用草稿进行可视化编辑
 
-在大多数情况下，您不希望在生产站点上为草稿文档创建页面。这使得[处理草稿](/docs/drafts/overview/)在可视化编辑中成为一个挑战。在本例中，我们将展示如何使用 [Next.js 预览模式](https://nextjs.org/docs/advanced-features/preview-mode)为草稿文档添加可视化编辑。
+在大多数情况下，您不希望在生产站点上为草稿文档创建页面。这使得[处理草稿](/zh/docs/drafts/overview/)在可视化编辑中成为一个挑战。在本例中，我们将展示如何使用 [Next.js 预览模式](https://nextjs.org/docs/advanced-features/preview-mode)为草稿文档添加可视化编辑。
 
 在预览模式中，`getStaticProps` 将在每次请求时被调用。这意味着我们可以在预览模式中有条件地获取草稿文档，并将其排除在生产站点之外。
 
@@ -219,7 +219,7 @@ export default App
 
 ## 使用编辑工作流
 
-如果您正在使用[编辑工作流](https://tina.io/docs/drafts/editorial-workflow/)，您可能希望确保预览数据从您正在编辑的分支中获取内容。要启用此功能，请通过配置中的 `cmsCallback` 函数订阅 `branch:change` 事件：
+如果您正在使用[编辑工作流](/zh/docs/tinacloud/editorial-workflow)，您可能希望确保预览数据从您正在编辑的分支中获取内容。要启用此功能，请通过配置中的 `cmsCallback` 函数订阅 `branch:change` 事件：
 
 ```ts
 // tina/config.ts

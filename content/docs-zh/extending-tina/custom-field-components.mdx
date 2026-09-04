@@ -35,7 +35,7 @@ const secret = process.env.MY_API_KEY
 
 <WarningCallout
   body={<>
-    如果您的自定义组件依赖于环境变量并且它总是 `undefined`，请检查：(1) 变量名称以 `TINA_PUBLIC_` 或 `NEXT_PUBLIC_` 开头，并且 (2) 变量在运行 `tinacms build` 时在您的 `.env` 文件或 CI 环境中定义。请注意，Tina 仅加载 `.env` 文件——不加载 `.env.local` 或 `.env.development`。有关详细信息，请参阅[配置参考](/docs/reference/config#environment-variables)和[安全公告](/blog/2023-02-security-update)。
+    如果您的自定义组件依赖于环境变量并且它总是 `undefined`，请检查：(1) 变量名称以 `TINA_PUBLIC_` 或 `NEXT_PUBLIC_` 开头，并且 (2) 变量在运行 `tinacms build` 时在您的 `.env` 文件或 CI 环境中定义。请注意，Tina 仅加载 `.env` 文件——不加载 `.env.local` 或 `.env.development`。有关详细信息，请参阅[配置参考](/zh/docs/reference/config#environment-variables)和[安全公告](/zh/blog/2023-02-security-update)。
   </>}
 />
 
@@ -43,7 +43,7 @@ const secret = process.env.MY_API_KEY
 
 这应该设置为一个有效的 React 组件，该组件接受最多四个属性：
 
-* `field`: 当前字段的[字段定义](https://tinacms.org/docs/reference/toolkit/fields)。
+* `field`: 当前字段的[字段定义](/docs/reference/toolkit/fields)。
 * `input`: 制作输入所需的数据和回调。
 * `meta`: 表单中关于字段的元数据。（例如 `dirty`、`valid`）。
 * `form`: CMS 表单，用于检索和更新同一集合中的其他字段。

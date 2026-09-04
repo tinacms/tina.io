@@ -12,17 +12,17 @@ previous: content/docs-zh/tinacloud/api-versioning.mdx
 
 对于不希望将其 CMS 后端托管在 TinaCloud 上的用户，**我们提供了自托管选项**。这使您可以运行自己的 TinaCMS 后端，灵活地提供自己的数据库、身份验证和 Git 集成，而无需依赖 TinaCloud。
 
-> 想直接查看代码？请查看[自托管入门文档](/docs/self-hosted/starters/nextjs-vercel/)。
+> 想直接查看代码？请查看[自托管入门文档](/zh/docs/self-hosted/starters/nextjs-vercel/)。
 
 ## 什么是 Tina 数据层
 
-[Tina 数据层](https://tina.io/docs/tinacloud#data-layer) 提供了一个 GraphQL API，用于服务由数据库支持的 Markdown 和 JSON 文件。您可以将数据库视为一种临时缓存，因为您内容的唯一真实来源实际上是您的 Markdown/JSON 文件。
+[Tina 数据层](/zh/docs/tinacloud#data-layer) 提供了一个 GraphQL API，用于服务由数据库支持的 Markdown 和 JSON 文件。您可以将数据库视为一种临时缓存，因为您内容的唯一真实来源实际上是您的 Markdown/JSON 文件。
 
 ## 自托管如何工作？
 
 当您选择自托管 TinaCMS 的后端时，您将配置一个 API 函数作为后端服务。此函数将为您的内容公开一个 GraphQL 端点，并处理身份验证和授权的所有方面。
 
-TinaCMS 后端设计为兼容任何 Node.js 无服务器环境，例如 Vercel 或 Netlify。我们提供了一个可以通过单击部署到 [Vercel](https://vercel.com/) 的 [Next.js 入门](/docs/self-hosted/starters/nextjs-vercel)。您也可以部署到 [Netlify](https://www.netlify.com/) 或任何其他无服务器环境。
+TinaCMS 后端设计为兼容任何 Node.js 无服务器环境，例如 Vercel 或 Netlify。我们提供了一个可以通过单击部署到 [Vercel](https://vercel.com/) 的 [Next.js 入门](/zh/docs/self-hosted/starters/nextjs-vercel)。您也可以部署到 [Netlify](https://www.netlify.com/) 或任何其他无服务器环境。
 
 ```js
 // pages/api/tina/[...routes].{ts,js}
@@ -40,11 +40,11 @@ export default (req, res) => {
 
 后端设置由三个主要的可配置模块组成：
 
-* [身份验证提供者](/docs/reference/self-hosted/auth-provider/overview)
-  * 处理 CMS 操作的身份验证和授权。提供了一个默认的 [Auth.js](/docs/reference/self-hosted/auth-provider/authjs) 实现，支持数据库中的用户集合。
-* [数据库适配器](/docs/reference/self-hosted/database-adapter/overview)
+* [身份验证提供者](/zh/docs/reference/self-hosted/auth-provider/overview)
+  * 处理 CMS 操作的身份验证和授权。提供了一个默认的 [Auth.js](/zh/docs/reference/self-hosted/auth-provider/authjs) 实现，支持数据库中的用户集合。
+* [数据库适配器](/zh/docs/reference/self-hosted/database-adapter/overview)
   * 处理与[数据库](/docs/introduction/faq/#why-do-i-need-a-database-when-using-markdown)（例如 MongoDB、Postgres 等）的索引和交互。
-* [Git 提供者](/docs/reference/self-hosted/git-provider/overview)
+* [Git 提供者](/zh/docs/reference/self-hosted/git-provider/overview)
   * 处理将内容保存到 Git
 
 每个模块都设计为独立的，这意味着您可以选择用不同的实现替换任何模块，或开发自定义解决方案以满足您的特定需求。
@@ -53,8 +53,8 @@ export default (req, res) => {
 
 ## 下一步
 
-* 从头开始，请查看 [Next.js 自托管入门指南](/docs/self-hosted/starters/nextjs-vercel/)。
-* 通过遵循[现有站点设置](/docs/self-hosted/existing-site/)将 TinaCMS 添加到现有项目中。
+* 从头开始，请查看 [Next.js 自托管入门指南](/zh/docs/self-hosted/starters/nextjs-vercel/)。
+* 通过遵循[现有站点设置](/zh/docs/self-hosted/existing-site/)将 TinaCMS 添加到现有项目中。
 
 ## 加入 TinaCMS 社区
 

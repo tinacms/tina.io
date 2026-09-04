@@ -25,7 +25,7 @@ previous: content/docs-zh/tinacloud/network-requirements.mdx
     {
       heading: "如何解决由未索引的分支引起的错误？",
       docText:
-        "如果您收到类似 `指定的分支 'my-branch-name' 未被 TinaCloud 索引` 的错误，或根本没有看到任何分支被索引，请尝试以下操作：\n\n1. **确保 `tina/tina-lock.json` 存在并已提交到您的仓库。** 这是分支未被索引的最常见原因。`tina-lock.json` 文件是在您本地运行 `tinacms dev` 时生成的——它**不是**仅通过 `tinacms build` 生成的。运行 `tinacms dev`（或您的包装开发命令，如 `yarn dev`），然后提交并推送生成的 `tina/tina-lock.json` 文件。有关更多详细信息，请参阅[将 Tina 添加到现有站点](/docs/introduction/tina-init/)。\n2. 验证默认分支上是否存在 `tina/config.ts` 配置文件\n3. 验证在传递给 `tina/config.ts` 中 defineConfig 的配置属性中指定了正确的分支。请注意，此值可能在您的 CI 构建过程中设置为环境变量\n4. 验证分支是否存在于 GitHub 仓库中\n5. 将分支拉入您的 TinaCloud 项目中。**视频：** [为什么 TinaCloud 与 GitHub 配合得如此好 | TinaCMS 数据层 | Eli Kent (3 分钟)](https://youtube.com/embed/TatnNqKPKIQ?start=109)\n6. 您还可以通过在该分支的 `tina/tina-lock.json` 文件中进行空白更改、提交并推送到 GitHub 来强制 TinaCloud 重新索引分支。这将启动分支的索引，几分钟后错误应得到解决\n7. 确保 Tina 项目位于根目录中\n"
+        "如果您收到类似 `指定的分支 'my-branch-name' 未被 TinaCloud 索引` 的错误，或根本没有看到任何分支被索引，请尝试以下操作：\n\n1. **确保 `tina/tina-lock.json` 存在并已提交到您的仓库。** 这是分支未被索引的最常见原因。`tina-lock.json` 文件是在您本地运行 `tinacms dev` 时生成的——它**不是**仅通过 `tinacms build` 生成的。运行 `tinacms dev`（或您的包装开发命令，如 `yarn dev`），然后提交并推送生成的 `tina/tina-lock.json` 文件。有关更多详细信息，请参阅[将 Tina 添加到现有站点](/zh/docs/introduction/tina-init/)。\n2. 验证默认分支上是否存在 `tina/config.ts` 配置文件\n3. 验证在传递给 `tina/config.ts` 中 defineConfig 的配置属性中指定了正确的分支。请注意，此值可能在您的 CI 构建过程中设置为环境变量\n4. 验证分支是否存在于 GitHub 仓库中\n5. 将分支拉入您的 TinaCloud 项目中。**视频：** [为什么 TinaCloud 与 GitHub 配合得如此好 | TinaCMS 数据层 | Eli Kent (3 分钟)](https://youtube.com/embed/TatnNqKPKIQ?start=109)\n6. 您还可以通过在该分支的 `tina/tina-lock.json` 文件中进行空白更改、提交并推送到 GitHub 来强制 TinaCloud 重新索引分支。这将启动分支的索引，几分钟后错误应得到解决\n7. 确保 Tina 项目位于根目录中\n"
     },
     {
       heading:
@@ -46,7 +46,7 @@ previous: content/docs-zh/tinacloud/network-requirements.mdx
     {
       heading: '如何解决 "API URL 格式错误" 错误？',
       docText:
-        "ContentAPI URL 格式不正确。请参阅我们的 [TinaCloud URL 格式指南](/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms) 了解 URL 应如何格式化。\n"
+        "ContentAPI URL 格式不正确。请参阅我们的 [TinaCloud URL 格式指南](/zh/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms) 了解 URL 应如何格式化。\n"
     },
     {
       heading: '如何解决 "无效的站点 URL" 错误？',
@@ -62,7 +62,7 @@ previous: content/docs-zh/tinacloud/network-requirements.mdx
       heading:
         '如何解决在 VPN 或受限网络上 "登录尝试超时" 错误？',
       docText:
-        "TinaCloud 登录流程通过多个外部域（AWS Cognito、API Gateway、GitHub）重定向，这些域可能会被您的 VPN 或防火墙阻止。如果重定向链中的任何域被阻止，登录将在完成前超时。\n\n要解决此问题，请确保您的网络允许出站流量到 [网络要求](/docs/tinacloud/network-requirements/) 页面上列出的所有域。仅将 `*.tina.io` 列入白名单是不够的——身份验证流程还需要访问 AWS 和 GitHub 域。\n\n要诊断哪个域被阻止，请打开浏览器的开发者工具（网络选项卡）并尝试登录。查找任何停滞或失败的请求。\n"
+        "TinaCloud 登录流程通过多个外部域（AWS Cognito、API Gateway、GitHub）重定向，这些域可能会被您的 VPN 或防火墙阻止。如果重定向链中的任何域被阻止，登录将在完成前超时。\n\n要解决此问题，请确保您的网络允许出站流量到 [网络要求](/zh/docs/tinacloud/network-requirements/) 页面上列出的所有域。仅将 `*.tina.io` 列入白名单是不够的——身份验证流程还需要访问 AWS 和 GitHub 域。\n\n要诊断哪个域被阻止，请打开浏览器的开发者工具（网络选项卡）并尝试登录。查找任何停滞或失败的请求。\n"
     }
   ]}
   fullWidth={true}

@@ -21,6 +21,6 @@ previous: content/docs-zh/tinacloud/deployment-options/vercel.mdx
 
 <WarningCallout
   body={<>
-    `tinacms build` 需要在构建时提供像 `TINA_TOKEN` 和 `NEXT_PUBLIC_TINA_CLIENT_ID` 这样的环境变量。确保这些已在Netlify的环境设置中配置。如果您使用像Turborepo这样的monorepo工具，您可能还需要显式地转发这些变量（例如，通过 `turbo.json` 中的 `env` 键）——否则即使它们在Netlify中设置了，`tinacms build` 也可能无法接收到它们。详情请参阅[环境变量参考](/docs/reference/config#environment-variables)。
+    `tinacms build` 需要在构建时提供像 `TINA_TOKEN` 和 `NEXT_PUBLIC_TINA_CLIENT_ID` 这样的环境变量。确保这些已在Netlify的环境设置中配置。如果您使用像Turborepo这样的monorepo工具，您可能还需要显式地转发这些变量（例如，通过 `turbo.json` 中的 `env` 键）——否则即使它们在Netlify中设置了，`tinacms build` 也可能无法接收到它们。详情请参阅[环境变量参考](/zh/docs/reference/config#environment-variables)。
   </>}
 />

@@ -18,13 +18,13 @@ prev: content/blog-zh/custom-field-components.mdx
 next: content/blog-zh/gatsby-tina-101.mdx
 ---
 
-在[上一篇文章](https://tinacms.org/blog/custom-field-components)中，我们学习了如何创建一个自定义字段组件并将其注册到侧边栏。有了这个基础，让我们全面了解TinaCMS中的自定义字段。在这篇简短但甜美的文章中🧁，我们将介绍如何*将字段组件转变为字段插件。*
+在[上一篇文章](/zh/blog/custom-field-components)中，我们学习了如何创建一个自定义字段组件并将其注册到侧边栏。有了这个基础，让我们全面了解TinaCMS中的自定义字段。在这篇简短但甜美的文章中🧁，我们将介绍如何*将字段组件转变为字段插件。*
 
 ## 字段插件 vs. 字段组件
 
 插件**扩展了CMS的功能**；字段插件允许我们创建和注册自定义字段。*创建字段插件有几个原因。*通过自定义字段，您可以完全控制编辑体验和功能。如果Tina提供的主要字段不适合您的用例，**您可以填补这些空白**。
 
-字段组件只是字段插件的一部分（[稍后会详细介绍](https://tinacms.org/blog/custom-field-plugins#field-plugin-interface)）。自定义字段组件可以实现与插件相同的功能。但如果您计划在不同的表单中重用自定义字段，建议采取额外的步骤来制作插件🔌。
+字段组件只是字段插件的一部分（[稍后会详细介绍](/zh/blog/custom-field-plugins#field-plugin-interface)）。自定义字段组件可以实现与插件相同的功能。但如果您计划在不同的表单中重用自定义字段，建议采取额外的步骤来制作插件🔌。
 
 创建字段插件有助于将复杂的逻辑限制在一个模块中。这使得以后更新或替换自定义字段功能更容易。使用**插件API使我们的“高级”代码更具可重用性**和封装性，使字段独立于核心CMS。
 
@@ -32,7 +32,7 @@ next: content/blog-zh/gatsby-tina-101.mdx
 
 ## 开始 👏
 
-要跟随学习，您应该已经设置了一个带有Tina表单的自定义字段组件。如果没有，您可以从上一篇文章中获取更多背景信息：[如何创建自定义字段组件](https://tinacms.org/blog/custom-field-components)。在接下来的示例中，我使用了我们上一篇文章中的相同[llama-filters](https://github.com/kendallstrautman/llama-filters) 🦙 演示。
+要跟随学习，您应该已经设置了一个带有Tina表单的自定义字段组件。如果没有，您可以从上一篇文章中获取更多背景信息：[如何创建自定义字段组件](/zh/blog/custom-field-components)。在接下来的示例中，我使用了我们上一篇文章中的相同[llama-filters](https://github.com/kendallstrautman/llama-filters) 🦙 演示。
 
 向CMS添加字段插件有**两个步骤**。首先，我们将定义字段组件对象并将其注册到CMS。接下来，我们将在表单定义中使用字段插件，以便我们可以在侧边栏中使用我们精美的自定义字段插件编辑内容。
 
@@ -86,9 +86,9 @@ export default class Site extends App {
 }
 ```
 
-您需要导入自定义字段组件，然后直接将插件注册到CMS。注意我们如何导入在[上一篇文章](https://tinacms.org/blog/custom-field-components)中创建的`RangeInput`组件。这是我们现在附加到*字段插件*的自定义*字段组件*。
+您需要导入自定义字段组件，然后直接将插件注册到CMS。注意我们如何导入在[上一篇文章](/zh/blog/custom-field-components)中创建的`RangeInput`组件。这是我们现在附加到*字段插件*的自定义*字段组件*。
 
-> 如果您正在使用Gatsby，这看起来[略有不同](/docs/guides/converting-gatsby-to-tina)。*提示*：您需要前往**gatsby-browser.js**文件以访问CMS实例。
+> 如果您正在使用Gatsby，这看起来[略有不同](/zh/docs/guides/converting-gatsby-to-tina)。*提示*：您需要前往**gatsby-browser.js**文件以访问CMS实例。
 
 #### 字段插件接口
 
@@ -110,11 +110,11 @@ interface FieldPlugin {
 }
 ```
 
-至少，字段插件**需要一个名称和一个组件。** `name`用于在表单定义中引用自定义字段（[稍后会详细介绍](https://tinacms.org/blog/custom-field-plugins#2-use-the-custom-field-in-a-form)）。`Component`是实际在侧边栏中渲染的内容。
+至少，字段插件**需要一个名称和一个组件。** `name`用于在表单定义中引用自定义字段（[稍后会详细介绍](/zh/blog/custom-field-plugins#2-use-the-custom-field-in-a-form)）。`Component`是实际在侧边栏中渲染的内容。
 
-您可以看到还有其他配置函数和选项。*注意带有问号的属性是可选的。*这些选项对于创建需要[验证](https://tinacms.org/docs/plugins/fields/custom-fields#validate-optional)、解析或格式化的字段非常有用。
+您可以看到还有其他配置函数和选项。*注意带有问号的属性是可选的。*这些选项对于创建需要[验证](/zh/docs/extending-tina/custom-field-components)、解析或格式化的字段非常有用。
 
-> 要查看更**复杂的示例**，请查看关于创建[电子邮件字段](/docs/guides/converting-gatsby-to-tina)的文档。
+> 要查看更**复杂的示例**，请查看关于创建[电子邮件字段](/zh/docs/guides/converting-gatsby-to-tina)的文档。
 
 ### 2. 在表单中使用自定义字段
 
@@ -155,4 +155,4 @@ Index.getInitialProps = async function() {
 
 ## 简短而甜美，如承诺的那样 🍰
 
-这篇文章结合前一篇，应该为您提供所有构建块，以开始制作自己的字段插件。随时*深入文档*了解[字段](https://tinacms.org/docs/plugins/fields/custom-fields/)或[插件](https://tinacms.org/docs/cms#plugins)。确保与我们[@tinacms](https://twitter.com/tinacms)分享您的炫酷自定义字段🖖。或者，如果您觉得Tina缺少一个基本字段，[打开一个PR](https://github.com/tinacms/tinacms/)来贡献您的自定义字段！
+这篇文章结合前一篇，应该为您提供所有构建块，以开始制作自己的字段插件。随时*深入文档*了解[字段](/zh/docs/extending-tina/custom-field-components)或[插件](/docs/reference/toolkit/cms#plugins)。确保与我们[@tinacms](https://twitter.com/tinacms)分享您的炫酷自定义字段🖖。或者，如果您觉得Tina缺少一个基本字段，[打开一个PR](https://github.com/tinacms/tinacms/)来贡献您的自定义字段！

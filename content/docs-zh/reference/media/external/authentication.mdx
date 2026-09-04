@@ -60,7 +60,7 @@ export default createMediaHandler({
 
 ### 选项2) Vercel API 路由
 
-Vercel支持通过在项目根目录创建一个`/api`目录来创建无服务器函数。要设置此项，请遵循上述[NextJS特定说明](/docs/reference/media/external/authentication/#option-1-nextjs-api-routes-nextjs-only)，但使用`/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts`而不是`/pages/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts`
+Vercel支持通过在项目根目录创建一个`/api`目录来创建无服务器函数。要设置此项，请遵循上述[NextJS特定说明](/zh/docs/reference/media/external/authentication/#option-1-nextjs-api-routes-nextjs-only)，但使用`/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts`而不是`/pages/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts`
 
 > 注意：你可能会注意到包名可能包含"next"（例如：`next-tinacms-cloudinary`）。你仍然可以将这些包用于其他框架。
 
@@ -261,6 +261,6 @@ export default defineConfig({
 })
 ```
 
-> 确保在推送到TinaCloud的生产环境时同时提交对配置和[`tina-lock.json`](/docs/tina-folder/overview/#tina-lockjson)文件的更改，否则你的资产仍将以`https://assets.tina.io`为前缀，就像你[仍在使用基于仓库的媒体](/docs/reference/media/repo-based/)一样。
+> 确保在推送到TinaCloud的生产环境时同时提交对配置和[`tina-lock.json`](/zh/docs/tina-folder/overview/#tina-lockjson)文件的更改，否则你的资产仍将以`https://assets.tina.io`为前缀，就像你[仍在使用基于仓库的媒体](/zh/docs/reference/media/repo-based/)一样。
 
 现在你可以在TinaCMS中管理外部媒体存储。要详细了解每个媒体存储，请参阅下一节。

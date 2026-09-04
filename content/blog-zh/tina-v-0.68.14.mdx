@@ -69,9 +69,9 @@ export const tinaConfig = defineConfig({
 export default schema
 ```
 
-令牌必须是通配符令牌 (`*`)，可以从 Tina 仪表板生成。阅读更多关于只读令牌的信息 [这里](https://tina.io/blog/read-only-tokens-content-anytime)
+令牌必须是通配符令牌 (`*`)，可以从 Tina 仪表板生成。阅读更多关于只读令牌的信息 [这里](/zh/blog/read-only-tokens-content-anytime)
 
-有关如何获取这些值的更多信息，请参阅 ["going to production"](/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms) 文档。
+有关如何获取这些值的更多信息，请参阅 ["going to production"](/zh/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms) 文档。
 
 ### package.json 中脚本的更新
 
@@ -158,11 +158,11 @@ const { data, query, variables } = await client.queries.post({
 })
 ```
 
-有关更多信息，请参阅新的 [数据获取](/docs/features/data-fetching) 文档。
+有关更多信息，请参阅新的 [数据获取](/zh/docs/features/data-fetching) 文档。
 
 ## 数据层默认启用
 
-[数据层](/docs/reference/content-api/data-layer/) 现在默认启用。通过此功能，您的存储库被缓存，允许在不使用 GitHub API 的情况下查询内容。这使得数据获取更快，并且还允许我们绕过 GitHub 的 [api 限制](https://docs.github.com/en/developers/apps/building-github-apps/rate-limits-for-github-apps)。
+[数据层](/zh/docs/reference/content-api/data-layer/) 现在默认启用。通过此功能，您的存储库被缓存，允许在不使用 GitHub API 的情况下查询内容。这使得数据获取更快，并且还允许我们绕过 GitHub 的 [api 限制](https://docs.github.com/en/developers/apps/building-github-apps/rate-limits-for-github-apps)。
 
 除了更新到最新版本的 `@tinacms/cli` 外，此更改不需要任何操作。
 
