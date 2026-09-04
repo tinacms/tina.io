@@ -1,0 +1,42 @@
+---
+title: 在联系我们之前……
+last_edited: '2025-03-11T22:13:14.367Z'
+tocIsHidden: true
+next: ''
+previous: ''
+---
+
+## 第一步 —— 排查问题
+
+1. `tina-lock.json` —— 检查你的 Tina 锁文件是否为最新。你可以通过在本地运行 CMS（`tinacms dev`，通常已包含在你的开发启动命令中）来手动更新它。大多数与索引相关的用户问题都能由此解决。[了解更多](/zh/docs/support#tina-lockjson)。
+2. **TinaCloud 索引** —— 如果更新 `tina-lock.json` 后索引问题仍未解决，你可以通过 [TinaCloud 控制台](https://app.tina.io/projects)对分支重新建立索引。
+
+![](/img/docs/SCR-20250310-jybh.png)
+
+![](/img/docs/SCR-20250310-jylo.png)
+
+## 最佳实践
+
+* **让 Tina 客户端与 UI 代码保持解耦** —— 在 TinaCMS 内容获取与应用其余部分之间保持清晰边界，有助于你判断问题究竟出在 Tina 还是你的应用上。
+* **缓存** —— TinaCloud 为你的内容提供了缓存层，而你的框架和托管服务很可能也有各自的缓存层。我们力求让 Tina 与常见服务的配合尽可能顺畅，但这些交互可能相当复杂。如果遇到问题，请先尝试移除自定义的缓存层。
+* **编辑器样式** —— TinaCMS 编辑器中的自定义组件无法使用自定义 Tailwind 类。这在一定程度上是有意为之，目的是避免与你的应用产生冲突，在可视化编辑场景下尤为重要。设计自定义编辑器组件时请考虑这一点。
+* **隔离 schema 定义** —— TinaCMS 会依据你提供的 schema 生成代码（类型信息、查询及相关基础设施）。如果你从独立文件导入 schema 定义，请确保该文件**只**包含 schema 定义与自定义组件。文件中的其他内容同样会被解析用于代码生成，而这未必是你想要的结果。
+
+## 联系我们
+
+<cardGrid
+  cards={[
+    {
+      link: "/zh/docs/faq",
+      title: "常见问题",
+      description:
+        "查看我们 FAQ 页面上最常被问到的问题，其中包含常见故障的解决方案。"
+    },
+    {
+      title: "取得联系",
+      description:
+        "如果这些资源仍无法解决你的问题，请在 Discord 上联系我们获取针对性支持。",
+      link: "https://discord.com/invite/zumN63Ybpf"
+    }
+  ]}
+/>

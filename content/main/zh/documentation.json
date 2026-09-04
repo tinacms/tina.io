@@ -1,0 +1,68 @@
+{
+  "seo": {
+    "title": "面向文档站点的 TinaCMS —— 基于 Git 的文档方案",
+    "description": "用 TinaCMS 提升你的开源文档项目。享受基于 Markdown 的内容管理、灵活的用户协作方式，以及跨框架的兼容性。"
+  },
+  "blocks": [
+    {
+      "headline": "TinaCMS：你的文档站点的理想伙伴。",
+      "text": "借助 Markdown 与基于 Git 的内容管理，让你的开源文档项目更上一层楼。",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## 用 TinaCMS 简化你的文档工作\n\nTinaCMS 可以轻松接入基于 Git 的文档站点。它提供的操作界面简单易用，编辑者和开发者都会喜欢。\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "基于 Markdown 的内容",
+          "text": "利用 Markdown 的简洁性来创建和管理你的文档内容。"
+        },
+        {
+          "headline": "灵活的协作方式",
+          "text": "TinaCMS 允许习惯 Git 的用户继续通过 Git 协作，其他人则可以使用 CMS。这营造出灵活而友好的协作环境。"
+        },
+        {
+          "headline": "框架无关",
+          "text": "TinaCMS 适配所有主流 Web 开发框架，你不会被锁定在某一套特定技术栈上。"
+        },
+        {
+          "headline": "对开源友好",
+          "text": "TinaCMS 能无缝融入开源项目，支持社区为你的文档做出贡献。"
+        },
+        {
+          "headline": "静态与动态兼备",
+          "text": "像使用无头 CMS 一样查询你的 Markdown 内容。Tina 的 GraphQL 数据层支持过滤、排序、分页等能力。"
+        },
+        {
+          "headline": "本地开发",
+          "text": "在本地运行 Tina 并直接读取本地文件系统。这让构建文档站点的开发体验极为顺畅。"
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "准备好升级你的文档了吗？",
+      "text": "从 TinaCMS 开始，打造你的文档项目。",
+      "buttons": [
+        {
+          "label": "开始构建文档",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "/zh/docs/setup-overview/",
+          "_template": "actions"
+        }
+      ],
+      "_template": "flying"
+    }
+  ]
+}

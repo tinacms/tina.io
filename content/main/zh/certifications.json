@@ -1,0 +1,49 @@
+{
+  "seo": {
+    "title": "TinaCMS 专业认证",
+    "description": "获取可展示在 LinkedIn 上的 TinaCMS 专业认证徽章。该徽章表明你是一名 TinaCMS 认证开发者！"
+  },
+  "blocks": [
+    {
+      "title": "TinaCMS 专业认证",
+      "subtext": "我们鼓励所有开发者通过展示自己的知识水平、解答团队疑问和解决实际问题来获取徽章。作为奖励，成功通过认证的开发者将免费获得 1 个月的 TinaCloud Teams Plus（价值 49 美元）。",
+      "image": "/tina-credly-badge.png",
+      "_template": "heroV2"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "title": "",
+      "intro": "",
+      "questions": [
+        {
+          "question": "第 1 步",
+          "answer": "按照[文档](/zh/docs/support)加入 Tina 的 Discord 频道。\n"
+        },
+        {
+          "question": "第 2 步",
+          "answer": "让 TinaCMS 跑起来，并使用启动器模板和 [TinaCloud](https://app.tina.io/signin) 部署一个站点。\n\n* 可以是个人站点，也可以是你为工作构建的站点\n* 提示：可参阅 [TinaCMS 编辑器最佳实践](/zh/docs/using-tina-editor)\n"
+        },
+        {
+          "question": "第 3 步",
+          "answer": "发送邮件至 [badge@tina.io](mailto\\:badge@tina.io)，回答以下问题并附上截图佐证：\n\n* 你在 TinaCloud 中的 Client ID 是什么？\n* 在你的站点上，Pull Request 工作流是如何运作的？\n* 你如何配置分支预览？\n* 场景 A：假设某位用户通过 TinaCMS 修改了内容，但 GitHub 显示这次提交的作者是 tina-cloud-bot 而不是该用户。你会如何修复，让提交归属到该用户名下？\n* 场景 B：你打开编辑器时看到下方的错误。你会采取哪些步骤来解决它？\n\n![](/schema-mismatch.jpg)**图：GraphQL Schema 不匹配错误**\n\n* 为 Tina 打个分（满分 10 分）\n* 你想给团队提出哪些反馈？\n"
+        },
+        {
+          "question": "第 4 步",
+          "answer": "我们会审阅你的邮件，通过后你将收到来自 [Credly](https://info.credly.com/) 的徽章。\n"
+        },
+        {
+          "question": "就这么简单！你将通过邮件收到免费的 TinaCloud 优惠码。",
+          "answer": ""
+        }
+      ],
+      "color": "seafoam",
+      "_template": "faq"
+    },
+    {
+      "spacingPx": 10,
+      "_template": "spacer"
+    }
+  ]
+}

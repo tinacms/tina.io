@@ -1,0 +1,60 @@
+{
+  "seo": {
+    "title": "面向代理商的 TinaCMS —— 打造更出色的客户网站",
+    "description": "用 TinaCMS 释放你所在团队的潜力。通过可视化编辑与 Git 版本控制，简化为客户交付网站与管理内容的流程。"
+  },
+  "blocks": [
+    {
+      "headline": "TinaCMS 是代理团队的理想选择。",
+      "text": "在交付精美网站的同时，也为客户带来出色的编辑体验。",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## 为客户做到更多\n\n借助 TinaCMS 交付一流的网站，并配上直观的内容管理界面，让你在竞争中保持领先。\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "可视化编辑",
+          "text": "相比其他 CMS，TinaCMS 提供无可比拟的可视化编辑体验。"
+        },
+        {
+          "headline": "可定制的界面",
+          "text": "交付贴合客户品牌与需求的定制化 CMS 体验。"
+        },
+        {
+          "headline": "充分利用 Git",
+          "text": "TinaCMS 是基于 Git 的 CMS，因而自带世界上最好的版本控制能力。不必再担心破坏性改动，开发过程更加从容。"
+        },
+        {
+          "headline": "加速开发",
+          "text": "TinaCMS 让你可以复用既有模板与组件来加快开发。Tina 的配置通过代码完成，因此一旦做出满意的模板，就能轻松复用于新客户的新项目。"
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "聊聊吧！",
+      "text": "有兴趣在你的团队中使用 TinaCMS 吗？我们很乐意与你交流！",
+      "buttons": [
+        {
+          "label": "联系我们",
+          "icon": false,
+          "color": "blue",
+          "size": "small",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "flying"
+    }
+  ]
+}

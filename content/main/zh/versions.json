@@ -1,0 +1,34 @@
+{
+  "seo": {
+    "title": "TinaCMS 软件包版本",
+    "description": "TinaCMS 每个软件包当前已发布的版本，实时从 npm 获取。",
+    "canonicalUrl": "/zh/versions"
+  },
+  "blocks": [
+    {
+      "title": "TinaCMS 软件包版本",
+      "description": "TinaCMS 生态中每个软件包当前已发布的版本 —— 在页面加载时直接从 npm registry 拉取。",
+      "buttons": [
+        {
+          "label": "TinaCMS 更新日志",
+          "icon": true,
+          "shape": "square",
+          "variant": "orange",
+          "size": "medium",
+          "url": "/whats-new/tinacms",
+          "_template": "actions"
+        },
+        {
+          "label": "TinaCloud 更新日志",
+          "icon": true,
+          "shape": "square",
+          "variant": "orangeWithBorder",
+          "size": "medium",
+          "url": "/whats-new/tinacloud",
+          "_template": "actions"
+        }
+      ],
+      "_template": "versions"
+    }
+  ]
+}
