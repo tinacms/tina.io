@@ -1,69 +1,187 @@
 {
   "seo": {
-    "title": "产品路线图",
-    "description": "探索TinaCMS的未来发展规划"
+    "title": "TinaCMS 产品路线图 —— 功能与更新",
+    "description": "了解 TinaCMS 的产品路线图：哪些功能已经发布、哪些即将到来，也欢迎通过 GitHub Discussions 提交你的想法。"
   },
   "blocks": [
     {
-      "headline": "产品路线图",
-      "text": "",
-      "_template": "hero"
-    },
-    {
-      "options": {
-        "narrow": true,
-        "color": "white"
-      },
-      "content": "欢迎了解Tina的产品发展规划！这是一个实时更新的动态路线图。如果您有好的想法或建议，或者想了解我们正在评估的功能计划，欢迎参与我们的[GitHub讨论](https://github.com/tinacms/tinacms/discussions )\n",
-      "_template": "content"
-    },
-    {
-      "headline": "最新动态",
-      "items": [
+      "title": "{产品路线图}",
+      "subtext": "欢迎查看 Tina 的公开路线图！这是一份持续更新的动态文档。如果你想提交想法，或者想看看我们正在评估的功能需求，欢迎前往我们的 GitHub Discussions。",
+      "buttons": [
         {
-          "heading": "GitHub企业版集成",
-          "status": "已上线",
-          "content": "TinaCloud现已支持与本地部署的GitHub企业版无缝对接。\n"
+          "label": "GitHub Discussions",
+          "icon": true,
+          "shape": "square",
+          "variant": "orange",
+          "size": "medium",
+          "url": "https://github.com/tinacms/tinacms/discussions",
+          "_template": "actions"
         }
       ],
-      "options": {
-        "paddingTop": false,
-        "paddingBottom": true
-      },
-      "_template": "roadmapGrid"
+      "buttonHorizontalAlignment": "left",
+      "image": "/ai-llamas/llama_roadmap.png",
+      "_template": "heroV2"
     },
     {
-      "blockSettings": {
-        "isFullscreen": true
-      },
-      "headline": "未来展望",
+      "headline": "已完成",
       "items": [
         {
-          "heading": "媒体管理体验升级",
-          "status": "开发中",
-          "content": "我们正在规划多项媒体管理功能优化，包括图片智能搜索、支持更多媒体格式等。\n"
+          "icon": "FaRegCheckCircle",
+          "heading": "TinaCloud —— 项目洞察\n",
+          "content": "我们正在为 TinaCloud 控制台加入新的分析能力，帮助团队了解内容是如何演进的。这些洞察会展示谁做了修改、哪些文件被更新，以及活跃度随时间的变化趋势，让团队对自己的内容工作流有更清晰的视野。\n"
         },
         {
-          "heading": "AI智能工具",
-          "status": "即将发布",
-          "content": "我们正在研发一系列AI辅助工具，帮助您更高效地创建和管理内容。\n"
-        },
-        {
-          "heading": "文档模板库",
-          "status": "即将发布",
-          "content": "基于Tina在文档网站中的出色表现，我们正在打造一套最佳实践模板，助您快速搭建文档站点。\n"
-        },
-        {
-          "heading": "PR工作流优化",
-          "status": "即将发布",
-          "content": "我们正在改进Tina的编辑工作流，未来您可以直接在CMS界面完成拉取请求的合并操作。\n",
+          "icon": "FaRegCheckCircle",
+          "heading": "TinaCMS —— 遥测（由 PostHog 提供支持）\n",
+          "content": "我们引入了由 PostHog 提供支持的可选遥测功能，以便更好地了解用户如何使用 TinaCMS。这些数据将指导我们改进产品，同时保护用户隐私。由于 TinaCMS 是开源的，所有遥测都完全可选、可配置。\n",
           "actions": [
             {
-              "label": "了解工作流",
+              "label": "PostHog 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://posthog.com/"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "TinaCloud 独立内容仓库支持\n",
+          "status": "",
+          "content": "多仓库支持让单个 TinaCloud 项目可以在生成器/代码仓库之外，再连接一个独立的内容仓库。这种面向企业的架构把编辑的内容与应用代码解耦，消除了 schema 同步问题和重复的 TinaCMS lock 文件。\n",
+          "actions": [
+            {
+              "label": "博客介绍",
+              "icon": false,
+              "shape": "pill",
+              "variant": "blue",
+              "size": "medium",
+              "url": "/zh/blog/tinacloud-separate-content-repos"
+            },
+            {
+              "label": "查看文档",
+              "icon": true,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "/zh/docs/guides/separate-content-repo"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "无需 React 的 Astro 支持\n",
+          "content": "TinaCMS 的实时编辑现在可以在 Astro 中使用，而无需把 React 引入你的站点。编辑者可以点击任意字段在后台内行内编辑，生产环境则完全不打包编辑器代码。\n",
+          "actions": [
+            {
+              "label": "博客介绍",
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "https://tina.io/editorial-workflow/"
+              "url": "/zh/blog/astro-is-becoming-the-default-tinacms-starter"
+            },
+            {
+              "label": "GitHub 讨论 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/5247"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "GitHub Enterprise 支持\n",
+          "status": "",
+          "content": "TinaCloud 现已支持连接 GitHub Enterprise 的本地部署实例。\n",
+          "actions": [
+            {
+              "label": "查看文档",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/zh/docs/tinacloud/github-enterprise-integration"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "双因素认证\n",
+          "status": "",
+          "content": "为 TinaCloud 用户增加一层额外的防护，防止未授权访问，让内容管理更安全。\n",
+          "actions": [
+            {
+              "label": "博客介绍",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/zh/blog/two-factor-authentication"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "Vercel 数据缓存支持\n",
+          "status": "",
+          "content": "部署在 Vercel 上？这项改进利用 Vercel 的数据缓存来加快内容分发、降低 API 负载，并提升编辑时的响应速度。\n",
+          "actions": [
+            {
+              "label": "博客介绍",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/zh/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "React 19 支持\n",
+          "content": "为 TinaCMS 带来更好的性能、更高效的渲染，以及对现代 React 特性的更好兼容。\n",
+          "actions": [
+            {
+              "label": "博客介绍",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/zh/blog/react-19-support"
+            },
+            {
+              "label": "🚀 已在 2.7.7 发布",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "/"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "文档站启动模板\n",
+          "content": "既然 Tina 与文档站如此契合，我们基于 Next.js 打造了一套一流的 TinaCMS + 文档站启动模板。\n",
+          "actions": [
+            {
+              "label": "TinaDocs",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/tinadocs"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "构建系统 —— 从 CommonJS 迁移到 ESM\n",
+          "content": "我们正在现代化构建系统，从 CommonJS 切换到 ESM，以获得更好的性能和兼容性。\n",
+          "actions": [
+            {
+              "label": "🚀 已在 3.0.0 发布",
+              "icon": true,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "/zh/blog/modernizing-to-esm"
             }
           ]
         }
@@ -73,6 +191,194 @@
         "paddingBottom": true
       },
       "_template": "roadmapGrid"
+    },
+    {
+      "headline": "正在进行中",
+      "items": [
+        {
+          "icon": "FaHourglassHalf",
+          "heading": "媒体管理器的编辑工作流支持\n",
+          "content": "我们正在为媒体管理器加入编辑工作流支持，让媒体变更也能走与内容编辑相同的基于分支的流程。\n",
+          "actions": [
+            {
+              "label": "GitHub 讨论 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/7002"
+            }
+          ]
+        },
+        {
+          "icon": "FaHourglassHalf",
+          "heading": "TinaCloud 性能\n",
+          "content": "改进我们的内容 API —— 更快的内容读取响应时间。这将缩短静态站点的构建时间，让部署更迅速。对于企业客户，我们还在增加数据隔离，确保其数据与其他账户分离，以获得更好的安全性和可扩展性。\n",
+          "actions": [
+            {
+              "label": "GitHub 讨论 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/5576"
+            }
+          ]
+        },
+        {
+          "icon": "FaHourglassHalf",
+          "heading": "改进媒体管理体验\n",
+          "content": "我们的清单上还有若干媒体管理方面的改进（图片搜索、支持更多媒体类型等）。\n",
+          "actions": [
+            {
+              "label": "GitHub 讨论 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/4476"
+            }
+          ]
+        },
+        {
+          "icon": "FaHourglassHalf",
+          "heading": "用 GitHub Actions 修改内容（即 ContentHawk）\n",
+          "content": "我们正在提供一个公开的 GitHub Action，用于查询和编辑你的内容。一个典型用法是：通过 GitHub Actions 定期借助 AI 在项目中查找内容，例如文档。\n",
+          "actions": [
+            {
+              "label": "GitHub Issue 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/issues/6156"
+            }
+          ]
+        },
+        {
+          "icon": "FaHourglassHalf",
+          "heading": "TinaCMS v4 —— 全新的插件架构与表单系统\n",
+          "content": "我们正在重构 TinaCMS 的底层，让更多部分可以在不 fork 项目的前提下被定制或替换。这会让 TinaCMS 更易维护，也让团队对编辑器的行为有更多掌控 —— 包括更好的脏状态管理、校验、草稿，以及自定义行为的钩子。\n",
+          "actions": [
+            {
+              "label": "博客介绍",
+              "icon": false,
+              "shape": "pill",
+              "variant": "blue",
+              "size": "medium",
+              "url": "/zh/blog/tinacms-v4-is-coming"
+            },
+            {
+              "label": "GitHub 讨论 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/6782"
+            }
+          ]
+        },
+        {
+          "icon": "FaHourglassHalf",
+          "heading": "TinaCloud —— 命令行工具\n",
+          "content": "官方的 TinaCloud CLI 让开发者可以在终端里管理项目、仓库、分支等。\n",
+          "actions": [
+            {
+              "label": "GitHub 讨论 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/7000"
+            }
+          ]
+        },
+        {
+          "icon": "FaHourglassHalf",
+          "heading": "认证从 AWS Cognito 切换到 WorkOS\n",
+          "content": "我们正在把认证体系升级为使用 WorkOS，让用户访问的管理更简单、更可靠。\n",
+          "actions": [
+            {
+              "label": "GitHub 讨论 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/7001"
+            }
+          ]
+        }
+      ],
+      "_template": "roadmapGrid"
+    },
+    {
+      "headline": "即将推出",
+      "items": [
+        {
+          "icon": "FaRegClock",
+          "heading": "TinaCMS v4.1 —— MDX 插件适配器\n",
+          "content": "我们正在增加 MDX 插件适配器，让团队可以使用自己偏好的 Markdown 工具和 Markdown 方言，同时保留 TinaCMS 的可视化编辑能力。Fumadocs 将是首个计划支持的适配器。\n",
+          "actions": [
+            {
+              "label": "GitHub 讨论 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/6973"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegClock",
+          "heading": "改进的 PR 工作流\n",
+          "status": "",
+          "content": "我们正在对 Tina 的编辑工作流做一些改进，让你可以直接在 CMS 界面中合并 Pull Request。\n",
+          "actions": [
+            {
+              "label": "编辑工作流",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/zh/editorial-workflow/"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegClock",
+          "heading": "Copilot 指令\n",
+          "content": "我们正在编写用 TinaCMS 做 VibeCoding 的文档，让上手更加轻松。\n",
+          "actions": [
+            {
+              "label": "查看文档",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/zh/docs/vibe-coding"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegClock",
+          "heading": "MCP 服务器\n",
+          "status": "",
+          "content": "我们正在探索一些在内容创作流程中运用 AI 的方式。\n",
+          "actions": [
+            {
+              "label": "你的站点用 /llms.txt 让 LLM 更好理解了吗？ 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
+            }
+          ]
+        }
+      ],
+      "options": {
+        "paddingTop": false,
+        "paddingBottom": true
+      },
+      "_template": "roadmapGrid",
+      "blockSettings": {
+        "isFullscreen": true
+      }
     }
   ]
 }

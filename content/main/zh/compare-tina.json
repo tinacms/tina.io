@@ -7,9 +7,14 @@
     {
       "headline": "TinaCMS 为何与众不同？",
       "text": "提示：不仅仅是因为那只羊驼",
-      "_template": "hero"
+      "_template": "hero",
+      "blockSettings": {
+        "isHeadingOne": true
+      }
     },
     {
+      "heading": "TinaCMS 与其他 CMS 一览对比",
+      "subheading": "最多可选择 3 个 CMS，看看它们与 TinaCMS 的对比",
       "criteriaItems": [
         {
           "criteria": "仓库式媒体管理",
@@ -89,7 +94,8 @@
             "true-免费方案",
             "false-本地开发工作流",
             "false-自托管选项"
-          ]
+          ],
+          "testimonialLink": "/tinacms-contentful-comparison"
         },
         {
           "headline": "Umbraco",
@@ -107,7 +113,8 @@
             "true-免费方案",
             "true-本地开发工作流",
             "true-自托管选项"
-          ]
+          ],
+          "testimonialLink": "/sanity-tina-comparison"
         },
         {
           "headline": "Decap CMS",
@@ -125,7 +132,8 @@
             "true-免费方案",
             "false-本地开发工作流",
             "false-自托管选项"
-          ]
+          ],
+          "testimonialLink": "/tinacms-storyblok-comparison"
         },
         {
           "headline": "Adobe (AEM)",
@@ -233,7 +241,8 @@
             "true-免费方案",
             "true-本地开发工作流",
             "true-自托管选项"
-          ]
+          ],
+          "testimonialLink": "/tinacms-netlifycms-comparison"
         },
         {
           "headline": "prismic.io",
@@ -257,54 +266,20 @@
       "_template": "CompareBox"
     },
     {
-      "title": "了解 Tina 的竞争优势",
-      "testimonials": [
+      "headline": "探索 TinaCMS 的强大之处",
+      "text": "用 TinaCMS 体验内容管理的全新标准。\n\n",
+      "buttons": [
         {
-          "name": " Contentful",
-          "username": "",
-          "rhsImage": true,
-          "avatar": "/svg/logos/Contentful-clr.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/tinacms-contentful-comparison"
-        },
-        {
-          "name": "StoryBlok",
-          "username": "",
-          "rhsImage": true,
-          "avatar": "/svg/logos/Storyblok-clr.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/tinacms-storyblok-comparison"
-        },
-        {
-          "name": "Sanity",
-          "rhsImage": true,
-          "avatar": "/svg/logos/Sanity-clr-v2.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/sanity-tina-comparison"
-        },
-        {
-          "name": "DecapCMS",
-          "rhsImage": true,
-          "avatar": "/svg/logos/Decap-clr.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/tinacms-netlifycms-comparison"
-        },
-        {
-          "name": "Builder.io",
-          "rhsImage": true,
-          "avatar": "/svg/logos/builderio-mono.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/tinacms-builder-comparison"
-        },
-        {
-          "name": "Strapi",
-          "rhsImage": true,
-          "avatar": "/svg/logos/Strapi.monogram.logo.svg",
-          "testimonial": "TinaCMS vs\n",
-          "link": "/tinacms-strapi-comparison"
+          "label": "开始使用 TinaCMS",
+          "icon": false,
+          "shape": "pill",
+          "variant": "blue",
+          "size": "medium",
+          "url": "/zh/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
-      "_template": "testimonials"
+      "_template": "flying"
     }
   ]
 }
