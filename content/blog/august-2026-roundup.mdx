@@ -1,0 +1,60 @@
+---
+title: 'Leaner & Cleaner: TinaCMS & TinaCloud August 2026 Roundup'
+author: The TinaCMS Team
+prev: ''
+next: ''
+---
+
+The herd has been busy again 🦙. Between TinaCMS core and TinaCloud, the team shipped **16 releases** and **92 changes** this past month. Here's the recap:
+
+## 📦 TinaCMS: 8 releases, 42 changes
+
+### 🧹 A big bundle-size cleanup
+
+This one's for anyone who's ever waited a little too long on an install. `monaco-editor` is no longer shipped — that's 73 MB of code that was never even executed, gone ([#7214](https://github.com/tinacms/tinacms/pull/7214)). Three separate icon libraries have been collapsed down to just `lucide` ([#7216](https://github.com/tinacms/tinacms/pull/7216)), and headless-UI has been swapped for Radix. On top of that, upgrading `graphql-codegen` to v7 cut lodash from six copies down to one ([#7228](https://github.com/tinacms/tinacms/pull/7228)).
+
+### 🖼️ Media Manager gets some love
+
+The Media Manager can now be searched and filtered by folder or file type ([#7323](https://github.com/tinacms/tinacms/pull/7323)), and there's a new Rename action for assets ([#7391](https://github.com/tinacms/tinacms/pull/7391)). Under the hood, it's now running on the v2 assets API ([#7322](https://github.com/tinacms/tinacms/pull/7322)).
+
+### 🚀 Astro takes the default seat
+
+`create-tina-app` now scaffolds an Astro project by default ([#6961](https://github.com/tinacms/tinacms/pull/6961)), and there's a new `tina-markdown` web component to go along with it ([#7392](https://github.com/tinacms/tinacms/pull/7392)).
+
+### 🔒 Security & stability
+
+The Cloudinary search expression is now properly escaped ([#7394](https://github.com/tinacms/tinacms/pull/7394)), and Vite has been moved off its end-of-life 4.x line ([#7297](https://github.com/tinacms/tinacms/pull/7297)).
+
+## ☁️ TinaCloud: 8 production releases, 50 PRs + 32 dependency updates
+
+TinaCloud went from 2026.08.0 to 2026.08.7 this month.
+
+### 🔐 The AuthKit migration is almost here
+
+The WorkOS AuthKit migration is closing in on the finish line! The dashboard now runs against AuthKit end to end ([#3893](https://github.com/tinacms/tinacloud/pull/3893)), including public routes for logged-out visitors ([#3930](https://github.com/tinacms/tinacloud/pull/3930)) and invite acceptance ([#3993](https://github.com/tinacms/tinacloud/pull/3993), [#4026](https://github.com/tinacms/tinacloud/pull/4026)).
+
+### 🛡️ Tighter account & org controls
+
+Self-signup is now protected by a Turnstile captcha ([#3923](https://github.com/tinacms/tinacloud/pull/3923)), and org admins have finer control over role and app assignment changes ([#4066](https://github.com/tinacms/tinacloud/pull/4066)).
+
+### 🖼️ More media fixes
+
+Editors can rename media assets directly ([#3921](https://github.com/tinacms/tinacloud/pull/3921)), media committed in a branch's first push is now staged correctly instead of getting skipped ([#3979](https://github.com/tinacms/tinacloud/pull/3979)), and the media library can be filtered by file type ([#4013](https://github.com/tinacms/tinacloud/pull/4013)).
+
+### 🧹 Dependency housekeeping
+
+Ten unused `content-api` dependencies were dropped ([#4004](https://github.com/tinacms/tinacloud/pull/4004)), along with a `fast-xml-parser` patch to keep sst deploys running smoothly ([#4046](https://github.com/tinacms/tinacloud/pull/4046), [#4030](https://github.com/tinacms/tinacloud/pull/4030)).
+
+## Keep up with socials
+
+We're posting regularly again - product updates, tutorials, and news from the team.
+
+* X: [@tinacms](https://x.com/tinacms)
+* LinkedIn: TinaCMS
+* YouTube: [@TinaCMS](https://youtube.com/@TinaCMS)
+* Bluesky: [@tina.io](https://bsky.app/profile/tina.io)
+* Discord: come chat with us
+
+That's the catch-up for now. Subscribe to the blog if you want these sent straight to your inbox.
+
+Till next time 👋🦙
