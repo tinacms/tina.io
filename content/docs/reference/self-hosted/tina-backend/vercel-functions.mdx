@@ -39,6 +39,12 @@ export default (req, res) => {
 }
 ```
 
+<WarningCallout
+  body={<>
+    If this function fails with `(0 , import_credentials.default) is not a function`, you have hit a known `tinacms-authjs` bug that affects every non-Next.js backend. See [Using Auth.js outside Next.js](/docs/reference/self-hosted/auth-provider/authjs/#using-authjs-outside-nextjs) for the workaround, and [tinacms/tinacms#7434](https://github.com/tinacms/tinacms/issues/7434) for the fix.
+  </>}
+/>
+
 Since Vercel Functions do not support catch all routes, you will need to add the following to your `vercel.json` file.
 
 ```json
