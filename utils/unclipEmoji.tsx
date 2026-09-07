@@ -1,7 +1,11 @@
 import React from 'react';
 
-const EMOJI_RUN =
-  /(\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic}|[\u{1F3FB}-\u{1F3FF}])*)/gu;
+// tsconfig targets es5, which rejects the `u` flag on a regex literal. The
+// constructor form is not checked, and the flag still applies at runtime.
+const EMOJI_RUN = new RegExp(
+  '(\\p{Extended_Pictographic}(?:\\uFE0F|\\u200D\\p{Extended_Pictographic}|[\\u{1F3FB}-\\u{1F3FF}])*)',
+  'gu',
+);
 
 // Headings fill their text with a gradient clipped to the glyph shapes, which
 // also masks colour emoji. Give emoji runs an opaque fill so they keep their
