@@ -25,55 +25,45 @@ export async function getBlogIndexPosts(
   const pageIndex = parseInt(pageIndexParam, 10) || 1;
   const startIndex = (pageIndex - 1) * POSTS_PER_PAGE;
 
-  let postResponse = null;
+  // Tina sorts oldest first, but the page shows newest first. Read the cursors
+  // once, then read only the posts this page shows.
+  let cursors: string[] = [];
   try {
-    postResponse =
+    const vars = { first: posts.length, sort: 'date' };
+    const edges =
       locale === 'zh'
-        ? await client.queries.postZhIndex({
-            first: posts.length,
-            sort: 'date',
-          })
-        : await client.queries.postIndex({
-            first: posts.length,
-            sort: 'date',
-          });
+        ? (await client.queries.postZhCursors(vars))?.data?.postZhConnection
+            ?.edges
+        : (await client.queries.postCursors(vars))?.data?.postConnection?.edges;
+    cursors = (edges ?? []).map((edge) => edge?.cursor ?? '');
   } catch (err) {
-    console.error('Error fetching postConnection:', err);
+    console.error('Error fetching post cursors:', err);
     notFound();
   }
 
-  const connection =
-    locale === 'zh'
-      ? postResponse?.data?.postZhConnection
-      : postResponse?.data?.postConnection;
+  const total = cursors.length;
+  const count = Math.min(POSTS_PER_PAGE, total - startIndex);
+  if (count <= 0) {
+    return { pageIndex, numPages, posts: [] };
+  }
+  const firstOnPage = total - startIndex - count;
+  const after = firstOnPage > 0 ? cursors[firstOnPage - 1] : null;
 
-  let reversedPosts = [];
+  let pagePosts = [];
   try {
-    reversedPosts = connection?.edges
-      ?.map((edge) => edge?.node)
-      ?.filter(Boolean)
-      ?.reverse();
+    const vars = { first: count, after, sort: 'date' };
+    const edges =
+      locale === 'zh'
+        ? (await client.queries.postZhPage(vars))?.data?.postZhConnection?.edges
+        : (await client.queries.postPage(vars))?.data?.postConnection?.edges;
+    pagePosts = (edges ?? [])
+      .map((edge) => edge?.node)
+      .filter(Boolean)
+      .reverse();
   } catch (err) {
-    console.error('Error processing posts:', err);
+    console.error('Error fetching posts for page:', err);
     notFound();
   }
 
-  const finalisedPostData = reversedPosts.slice(
-    startIndex,
-    startIndex + POSTS_PER_PAGE,
-  );
-
-  // The excerpt needs the body, so read it only for the posts on this page.
-  const postsWithBody = await Promise.all(
-    finalisedPostData.map(async (post) => {
-      const relativePath = post._sys.relativePath;
-      const doc =
-        locale === 'zh'
-          ? (await client.queries.postZh({ relativePath }))?.data?.postZh
-          : (await client.queries.post({ relativePath }))?.data?.post;
-      return { ...post, body: doc?.body };
-    }),
-  );
-
-  return { pageIndex, numPages, posts: postsWithBody };
+  return { pageIndex, numPages, posts: pagePosts };
 }

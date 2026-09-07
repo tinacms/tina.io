@@ -193,35 +193,51 @@ query postZhSlugs($after: String) {
   }
 }
 
-query postIndex($first: Float, $sort: String) {
+query postCursors($first: Float, $sort: String) {
   postConnection(first: $first, sort: $sort) {
+    edges {
+      cursor
+    }
+  }
+}
+
+query postZhCursors($first: Float, $sort: String) {
+  postZhConnection(first: $first, sort: $sort) {
+    edges {
+      cursor
+    }
+  }
+}
+
+query postPage($first: Float, $after: String, $sort: String) {
+  postConnection(first: $first, after: $after, sort: $sort) {
     edges {
       node {
         id
         _sys {
           filename
-          relativePath
         }
         title
         author
         date
+        body
       }
     }
   }
 }
 
-query postZhIndex($first: Float, $sort: String) {
-  postZhConnection(first: $first, sort: $sort) {
+query postZhPage($first: Float, $after: String, $sort: String) {
+  postZhConnection(first: $first, after: $after, sort: $sort) {
     edges {
       node {
         id
         _sys {
           filename
-          relativePath
         }
         title
         author
         date
+        body
       }
     }
   }
