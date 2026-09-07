@@ -98,17 +98,31 @@ export const LinkButton = ({
   const externalLink = link.startsWith('http');
 
   const nullcaseShape = shape || 'pill';
+  const classes = cn(
+    baseClasses,
+    shapeClasses[nullcaseShape],
+    colorClasses[color] ? colorClasses[color] : colorClasses.seafoam,
+    sizeClasses[size] ? sizeClasses[size] : sizeClasses.medium,
+    className,
+  );
+
+  // Same-page anchors go through a plain <a>: Next 14 handles hash-only Link
+  // clicks with scrollIntoView, which Chromium silently cancels while the
+  // document's `scroll-behavior: smooth` is in flight, so the hash updates
+  // but the page never moves. Native anchor navigation is reliable.
+  if (link.startsWith('#')) {
+    return (
+      <a href={link} className={classes} {...props}>
+        {children}
+      </a>
+    );
+  }
+
   return (
     <Link
       href={link}
       prefetch={shouldPrefetchLink(link)}
-      className={cn(
-        baseClasses,
-        shapeClasses[nullcaseShape],
-        colorClasses[color] ? colorClasses[color] : colorClasses.seafoam,
-        sizeClasses[size] ? sizeClasses[size] : sizeClasses.medium,
-        className,
-      )}
+      className={classes}
       {...props}
       target={externalLink ? '_blank' : undefined}
       rel={externalLink ? 'noopener noreferrer' : undefined}
