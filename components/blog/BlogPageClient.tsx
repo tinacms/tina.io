@@ -11,6 +11,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { buildBlogLinkSlug } from 'utils/i18n/buildLinkSlug';
 import { LOCALE_ROUTE_CONFIG } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
+import { unclipEmoji } from 'utils/unclipEmoji';
 import { formatDate } from '@/utils/formatDate';
 import type { BlogPageClientProps } from './BlogType';
 
@@ -91,7 +92,7 @@ function BlogPageTitle({ title }: { title: string }) {
 
   return (
     <header className="relative z-10 overflow-visible text-center px-8 pt-12 pb-4">
-      <h1 className={blogTitleStyling}>{title}</h1>
+      <h1 className={blogTitleStyling}>{unclipEmoji(title)}</h1>
     </header>
   );
 }
