@@ -80,29 +80,6 @@ This limit affects GitHub. If your GitHub organization enforces an IP allow list
 
 Enterprise Managed Users (EMU) organizations commonly enforce an IP allow list.
 
-#### The symptom is misleading
-
-Your repositories appear correctly in the TinaCloud dashboard, but project creation fails with an error like this:
-
-> cannot bind generator repo `https://api.github.com/repos/your-org/your-repo`: user does not have push access to the repo
-
-You can hold admin permission on the repository and still see this error. The dashboard lists your repositories from your browser, which uses your own network address. TinaCloud checks push access from its own servers, which use a different address. Only the second request is refused.
-
-#### A GitHub App allow list does not solve this
-
-GitHub lets an app owner register IP addresses. GitHub then adds those addresses to the allow list of each organization that installs the app. Two limits apply:
-
-- The registered addresses cover only server-to-server requests from an app installation. TinaCloud's push access check is a user-to-server request, so the addresses do not cover it.
-- TinaCloud has no static address to register, as described above.
-
-A GitHub App that you own has the same two limits. It does not avoid the problem.
-
-#### What to do
-
-Contact [support@tina.io](mailto:support@tina.io) before you start.
-
-Do not plan to turn the allow list off only while you create the project. TinaCloud also reads and writes your content as a GitHub App installation after the project exists, and your allow list restricts those requests too.
-
 ## Troubleshooting
 
 ### Login times out on VPN or restricted network
