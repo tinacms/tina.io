@@ -160,3 +160,69 @@ query getAllDocs {
     }
   }
 }
+
+query postSlugs($after: String) {
+  postConnection(after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        _sys {
+          filename
+        }
+      }
+    }
+  }
+}
+
+query postZhSlugs($after: String) {
+  postZhConnection(after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        _sys {
+          filename
+        }
+      }
+    }
+  }
+}
+
+query postIndex($first: Float, $sort: String) {
+  postConnection(first: $first, sort: $sort) {
+    edges {
+      node {
+        id
+        _sys {
+          filename
+          relativePath
+        }
+        title
+        author
+        date
+      }
+    }
+  }
+}
+
+query postZhIndex($first: Float, $sort: String) {
+  postZhConnection(first: $first, sort: $sort) {
+    edges {
+      node {
+        id
+        _sys {
+          filename
+          relativePath
+        }
+        title
+        author
+        date
+      }
+    }
+  }
+}

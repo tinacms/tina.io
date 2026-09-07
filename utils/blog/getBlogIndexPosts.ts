@@ -29,11 +29,11 @@ export async function getBlogIndexPosts(
   try {
     postResponse =
       locale === 'zh'
-        ? await client.queries.postZhConnection({
+        ? await client.queries.postZhIndex({
             first: posts.length,
             sort: 'date',
           })
-        : await client.queries.postConnection({
+        : await client.queries.postIndex({
             first: posts.length,
             sort: 'date',
           });
@@ -63,5 +63,17 @@ export async function getBlogIndexPosts(
     startIndex + POSTS_PER_PAGE,
   );
 
-  return { pageIndex, numPages, posts: finalisedPostData };
+  // The excerpt needs the body, so read it only for the posts on this page.
+  const postsWithBody = await Promise.all(
+    finalisedPostData.map(async (post) => {
+      const relativePath = post._sys.relativePath;
+      const doc =
+        locale === 'zh'
+          ? (await client.queries.postZh({ relativePath }))?.data?.postZh
+          : (await client.queries.post({ relativePath }))?.data?.post;
+      return { ...post, body: doc?.body };
+    }),
+  );
+
+  return { pageIndex, numPages, posts: postsWithBody };
 }
