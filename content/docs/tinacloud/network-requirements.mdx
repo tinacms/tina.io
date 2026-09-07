@@ -64,6 +64,45 @@ If your organization uses enterprise SSO through TinaCloud:
 |---|---|
 | `*.workos.com` | WorkOS enterprise SSO provider |
 
+## TinaCloud's Own IP Addresses
+
+The domains above cover traffic that leaves your network. This section covers traffic that leaves TinaCloud.
+
+### TinaCloud does not publish static IP addresses
+
+TinaCloud runs on AWS Lambda. Our services send their requests from the shared AWS address pool, and the address changes. We cannot give you an IP address or a CIDR range to add to an allow list.
+
+If a system you control accepts traffic only from known IP addresses, TinaCloud cannot reach that system.
+
+### GitHub organization IP allow lists
+
+This limit affects GitHub. If your GitHub organization enforces an IP allow list, TinaCloud cannot reach your repositories. GitHub refuses our requests, because TinaCloud's address is not on your list.
+
+Enterprise Managed Users (EMU) organizations commonly enforce an IP allow list.
+
+#### The symptom is misleading
+
+Your repositories appear correctly in the TinaCloud dashboard, but project creation fails with an error like this:
+
+> cannot bind generator repo `https://api.github.com/repos/your-org/your-repo`: user does not have push access to the repo
+
+You can hold admin permission on the repository and still see this error. The dashboard lists your repositories from your browser, which uses your own network address. TinaCloud checks push access from its own servers, which use a different address. Only the second request is refused.
+
+#### A GitHub App allow list does not solve this
+
+GitHub lets an app owner register IP addresses. GitHub then adds those addresses to the allow list of each organization that installs the app. Two limits apply:
+
+- The registered addresses cover only server-to-server requests from an app installation. TinaCloud's push access check is a user-to-server request, so the addresses do not cover it.
+- TinaCloud has no static address to register, as described above.
+
+A GitHub App that you own has the same two limits. It does not avoid the problem.
+
+#### What to do
+
+Contact [support@tina.io](mailto:support@tina.io) before you start.
+
+Do not plan to turn the allow list off only while you create the project. TinaCloud also reads and writes your content as a GitHub App installation after the project exists, and your allow list restricts those requests too.
+
 ## Troubleshooting
 
 ### Login times out on VPN or restricted network
