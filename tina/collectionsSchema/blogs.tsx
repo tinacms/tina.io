@@ -7,6 +7,12 @@ export const blogsCollection = {
   format: 'mdx',
   ui: {
     defaultItem: () => ({ date: new Date().toISOString() }),
+    beforeSubmit: async ({ values }) => {
+      return {
+        ...values,
+        last_edited: new Date().toISOString(),
+      };
+    },
   },
   fields: [
     {
@@ -40,12 +46,11 @@ export const blogsCollection = {
       },
     },
     {
-      // note: this should be a hidden field that auto-updates
       type: 'string',
       name: 'last_edited',
       label: 'Last Edited',
       ui: {
-        component: 'date',
+        component: 'hidden',
       },
     },
     {
