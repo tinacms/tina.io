@@ -1,0 +1,92 @@
+---
+seo:
+  title: 'TinaCMS ❤️ 开发者社区：Markdown 表格现在正确渲染表头行 | TinaCMS 博客'
+  description: '一个社区 PR 使 TinaMarkdown 将 Markdown 表格的第一行渲染为真正的 <thead>/<th>，以便屏幕阅读器可以将每个单元格链接回其列标题。以下是对您的样式的更改。'
+  canonicalUrl: 'https://tina.io/blog/semantic-tables-in-tinamarkdown'
+title: "\U0001F999 TinaCMS ❤️ 开发者社区 - 修复语义化 Markdown"
+date: '2026-08-28T00:00:00.000Z'
+last_edited: '2026-08-28T00:00:00.000Z'
+author: Josh Berman
+prev: content/blog-zh/tinacms-news-may-june-2026.mdx
+next: ''
+---
+
+我们不断被帮助我们改进 TinaCMS 的优秀开发者社区所震撼。在过去的12个月中，核心团队之外的18个人在 TinaCMS 中提交了 pull 请求（有些人多次提交）。最近我们合并的一个请求值得特别提及。
+
+非常感谢 [@lastenvoy30](https://github.com/lastenvoy30)，他的[首次 PR](https://github.com/tinacms/tinacms/pull/7494) 修复了我们 HTML 表格的渲染方式，使其对屏幕阅读器更加友好。
+
+`TinaMarkdown` 过去将 Markdown 表格的每一行渲染为 `<tbody><td>`，包括表头行。输出中没有 `<thead>` 和 `<th>`。屏幕阅读器使用 `<th>` 将单元格链接回其列标题，因此这些表格呈现为无标签的网格。
+
+现在第一行渲染为 `<thead><th>`。这是标准的 GFM 输出，也是 TinaCMS 已经为您在富文本编辑器中构建的表格所做的。
+
+## 之前和之后
+
+看看这个 Markdown 文件中的表格：
+
+```arduino
+| 框架     | 状态   |
+| --------- | ------ |
+| Next.js   | 稳定   |
+```
+
+这是 TinaMarkdown 过去给你的：
+
+```html
+<table>
+  <tbody>
+    <tr>
+      <td>框架</td>
+      <td>状态</td>
+    </tr>
+    <tr>
+      <td>Next.js</td>
+      <td>稳定</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+![一个 Markdown 表格渲染为每个单元格在一个方格中，没有加粗的表头行](/img/blog/semantic-tables-in-tinamarkdown/before-tables.png)
+
+**图：❌ 之前 - TinaCMS Next.js 启动器上的表格**
+
+这是现在给你的：
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th>框架</th>
+      <th>状态</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Next.js</td>
+      <td>稳定</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+![同一个 Markdown 表格渲染为一个加粗的表头行，用一条线分隔](/img/blog/semantic-tables-in-tinamarkdown/after-tables.png)
+
+**图：✅ 之后 - TinaCMS Next.js 启动器上的表格**
+
+在此版本之后，您的表格将输出不同的 HTML，因此它们可能看起来也不同。我们建议您在部署 TinaCMS 3.13 之前，通过加载包含表格的页面来仔细检查您的网站。
+
+您一直可以为您的富文本渲染的每个 HTML 元素设置样式。现在表头行以 `th` 形式出现，您可以将其与正文单元格分开设置样式。如果您已经覆盖了 `td`，请在旁边添加一个 `th`，否则表头行将没有样式。
+
+```jsx
+<TinaMarkdown
+  content={page.body}
+  components={{
+    th: (props) => <th className="px-3 pb-2 font-semibold text-left" {...props} />,
+    td: (props) => <td className="px-3 py-2" {...props} />,
+  }}
+/>
+```
+
+如果升级后有任何问题，请告诉我们。打开一个问题，或者在 [Discord](https://tina.io/discord) 上找到我们。
+
+TinaCMS 团队 🦙
