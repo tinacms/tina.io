@@ -66,19 +66,8 @@ If your organization uses enterprise SSO through TinaCloud:
 
 ## TinaCloud's Own IP Addresses
 
-The domains above cover traffic that leaves your network. This section covers traffic that leaves TinaCloud.
-
-### TinaCloud does not publish static IP addresses
-
 TinaCloud runs on AWS Lambda. Our services send their requests from the shared AWS address pool, and the address changes. We cannot give you an IP address or a CIDR range to add to an allow list.
 
-If a system you control accepts traffic only from known IP addresses, TinaCloud cannot reach that system.
-
-### GitHub organization IP allow lists
-
-This limit affects GitHub. If your GitHub organization enforces an IP allow list, TinaCloud cannot reach your repositories. GitHub refuses our requests, because TinaCloud's address is not on your list.
-
-Enterprise Managed Users (EMU) organizations commonly enforce an IP allow list.
 
 ## Troubleshooting
 
