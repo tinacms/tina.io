@@ -5,6 +5,9 @@ export const blogsCollection = {
   label: 'Blog Posts',
   path: 'content/blog',
   format: 'mdx',
+  ui: {
+    defaultItem: () => ({ date: new Date().toISOString() }),
+  },
   fields: [
     {
       ...seoInformation,
@@ -26,10 +29,12 @@ export const blogsCollection = {
       },
     },
     {
-      // note: default to current date/time
       type: 'string',
       name: 'date',
       label: 'Date Created',
+      required: true,
+      description:
+        'Required. The home page and the blog list sort by this date. A post with no date does not show in either list.',
       ui: {
         component: 'date',
       },
