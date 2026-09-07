@@ -1,0 +1,50 @@
+---
+title: Event Log
+alias: tinacloud-event-log
+last_edited: '2026-09-07T00:00:00.000Z'
+next: content/docs/tinacloud/dashboard/organizations.mdx
+previous: content/docs/tinacloud/dashboard/users.mdx
+---
+
+The **Event Log** is a record of the work TinaCloud has done for one branch of your project: indexing content, syncing media, and any errors it hit along the way. It is the place to look when something failed and you need to know why.
+
+## Finding the Event Log
+
+The log is kept per branch, not per project, so you open it from the branch you are interested in.
+
+1. Open your project in the [TinaCloud dashboard](https://app.tina.io).
+2. Go to the **Configuration** tab. Each branch TinaCloud knows about is listed with its current status.
+3. Open the menu at the end of a branch's row and choose **Event Log**.
+
+> Because the log is per branch, a save that failed while creating a new branch has its events on that **new** branch, not on `main`. If you cannot find the failure, check the branch named in the error rather than your default branch.
+
+## Reading an entry
+
+Each row is one event, newest first, with the time it happened. Errors are marked with an icon so you can pick them out of a busy log.
+
+An error row has two parts. The first is what TinaCloud was doing, for example indexing a branch. The second is the underlying cause, which is usually the specific thing that went wrong and often names the file responsible:
+
+```
+Unable to seed content/posts/my-post.mdx
+Caused by: val.replace is not a function
+```
+
+Some events have no cause recorded, in which case the row says so rather than leaving the space blank.
+
+Use **Load More Events** at the bottom to page further back through the history.
+
+## Common causes
+
+Most indexing errors come from content that does not match your schema. A few that come up often:
+
+- **A field holding the wrong type.** A field defined as `type: 'string'` with `list: true` must contain plain strings. An object or an unquoted number in that list will fail indexing, and the cause usually mentions `replace is not a function`.
+- **A block template that is not defined.** An MDX block whose `_template` does not exist in the collection's `templates` list cannot be indexed.
+- **A missing media directory.** If `mediaRoot` points at a folder that is not in the repository, media syncing fails even though content indexing succeeds.
+
+Indexing stops at the first file it cannot read, so fixing the file named in the cause and re-indexing will often surface the next one if there is more than one problem.
+
+## After you fix the content
+
+Commit the corrected file, then choose **Reindex** from the same branch menu you opened the log from. The log will show a fresh indexing event, and a successful run means editors can save again.
+
+If the cause is not clear, or the same error returns after a reindex, send the message and the branch name to [support@tina.io](mailto:support@tina.io).

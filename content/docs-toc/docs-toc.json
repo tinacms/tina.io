@@ -582,6 +582,11 @@
                   "title": "Project Collaborators",
                   "slug": "content/docs/tinacloud/dashboard/users.mdx",
                   "_template": "item"
+                },
+                {
+                  "title": "Event Log",
+                  "slug": "content/docs/tinacloud/dashboard/event-log.mdx",
+                  "_template": "item"
                 }
               ],
               "_template": "items"
