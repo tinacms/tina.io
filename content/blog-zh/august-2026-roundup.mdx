@@ -1,0 +1,60 @@
+---
+title: '意外事件：2026年8月新闻 - 更精简与更清洁'
+date: '2026-09-07T00:00:00.000Z'
+last_edited: '2026-09-07T00:00:00.000Z'
+author: The TinaCMS 团队
+prev: content/blog-zh/semantic-tables-in-tinamarkdown.mdx
+next: ''
+---
+
+团队又忙碌起来了 🦙。在 TinaCMS 核心和 TinaCloud 之间，团队在过去一个月内发布了**16个版本**和**92项更改**。以下是回顾：
+
+## 📦 TinaCMS: 8个版本，42项更改
+
+### 🧹 大规模的包大小清理
+
+这次是为那些安装时等待过久的人准备的。`monaco-editor` 不再被打包 - 这意味着73 MB从未执行过的代码被移除（[#7214](https://github.com/tinacms/tinacms/pull/7214)）。三个独立的图标库被合并为仅使用 `lucide`（[#7216](https://github.com/tinacms/tinacms/pull/7216)），并且 headless-UI 被替换为 Radix。此外，升级 `graphql-codegen` 到 v7 将 lodash 从六个副本减少到一个（[#7228](https://github.com/tinacms/tinacms/pull/7228)）。
+
+### 🖼️ 媒体管理器获得了一些关注
+
+媒体管理器现在可以按文件夹或文件类型进行搜索和过滤（[#7323](https://github.com/tinacms/tinacms/pull/7323)），并且新增了资产重命名功能（[#7391](https://github.com/tinacms/tinacms/pull/7391)）。在底层，它现在运行在 v2 资产 API 上（[#7322](https://github.com/tinacms/tinacms/pull/7322)）。
+
+### 🚀 Astro 成为默认选择
+
+`create-tina-app` 现在默认生成一个 Astro 项目（[#6961](https://github.com/tinacms/tinacms/pull/6961)），并且有一个新的 `tina-markdown` web 组件与之配合使用（[#7392](https://github.com/tinacms/tinacms/pull/7392)）。
+
+### 🔒 安全性与稳定性
+
+Cloudinary 搜索表达式现在被正确转义（[#7394](https://github.com/tinacms/tinacms/pull/7394)），并且 Vite 已从其生命周期结束的 4.x 版本中移除（[#7297](https://github.com/tinacms/tinacms/pull/7297)）。
+
+## ☁️ TinaCloud: 8个生产版本，50个PR + 32个依赖更新
+
+### 🔐 AuthKit 迁移即将完成
+
+WorkOS AuthKit 迁移即将完成！仪表板现在从头到尾运行在 AuthKit 上（[#3893](https://github.com/tinacms/tinacloud/pull/3893)），包括为未登录访客提供的公共路由（[#3930](https://github.com/tinacms/tinacloud/pull/3930)）和邀请接受（[#3993](https://github.com/tinacms/tinacloud/pull/3993), [#4026](https://github.com/tinacms/tinacloud/pull/4026)）。
+
+### 🛡️ 更严格的账户和组织控制
+
+自助注册现在受到 Turnstile 验证码的保护（[#3923](https://github.com/tinacms/tinacloud/pull/3923)），组织管理员对角色和应用分配更改有更精细的控制（[#4066](https://github.com/tinacms/tinacloud/pull/4066)）。
+
+### 🖼️ 更多媒体修复
+
+编辑者可以直接重命名媒体资产（[#3921](https://github.com/tinacms/tinacloud/pull/3921)），在分支的首次推送中提交的媒体现在被正确暂存而不是被跳过（[#3979](https://github.com/tinacms/tinacloud/pull/3979)），并且媒体库可以按文件类型进行过滤（[#4013](https://github.com/tinacms/tinacloud/pull/4013)）。
+
+### 🧹 依赖管理
+
+十个未使用的 `content-api` 依赖被移除（[#4004](https://github.com/tinacms/tinacloud/pull/4004)），以及一个 `fast-xml-parser` 补丁以确保 sst 部署顺利进行（[#4046](https://github.com/tinacms/tinacloud/pull/4046), [#4030](https://github.com/tinacms/tinacloud/pull/4030)）。
+
+## 跟上社交媒体的步伐
+
+我们又开始定期发布产品更新、教程和团队新闻。
+
+* X: [@tinacms](https://x.com/tinacms)
+* LinkedIn: TinaCMS
+* YouTube: [@TinaCMS](https://youtube.com/@TinaCMS)
+* Bluesky: [@tina.io](https://bsky.app/profile/tina.io)
+* Discord: 来和我们聊天
+
+这就是目前的更新。如果你希望这些内容直接发送到你的收件箱，请订阅博客。
+
+下次见 👋🦙
