@@ -25,7 +25,7 @@
           }
         ]
       },
-      "intro": "Need to scale? No Probllama! Tina offers a **per-project** pricing model that grows with your needs.\n\nSwitch to annual billing and save! All prices in **USD**\n",
+      "intro": "Need to scale? No Probllama! TinaCMS offers a **per-project** pricing model that grows with your needs.\n\nSwitch to annual billing and save! All prices in **USD**\n",
       "pillSwitchVisibileText": "All prices are **per-project** and in **USD**.\n",
       "pillSwitchToggleText": "Get **2 months free** with annual billing\n",
       "plans": [
@@ -471,7 +471,7 @@
         },
         {
           "rowHeader": "Projects",
-          "rowDescription": "All Tina plans are per-project",
+          "rowDescription": "All TinaCMS plans are per-project",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"1\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"1\",\"isTicked\":false}",
@@ -482,7 +482,7 @@
         },
         {
           "rowHeader": "Repositories",
-          "rowDescription": "Tina projects can be set up with multiple repositories if needed.",
+          "rowDescription": "TinaCMS projects can be set up with multiple repositories if needed.",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
