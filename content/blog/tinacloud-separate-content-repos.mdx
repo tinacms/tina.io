@@ -11,7 +11,7 @@ prev: content/blog/astro-is-becoming-the-default-tinacms-starter.mdx
 next: content/blog/tinacms-news-may-june-2026.mdx
 ---
 
-TinaCloud projects can now bind **two** GitHub repositories: a **generator repo** that holds your Tina schema and application code, and a separate **content repo** that holds your markdown, MDX, and media.
+TinaCloud projects can now bind **two** GitHub repositories: a **generator repo** that holds your TinaCMS schema and application code, and a separate **content repo** that holds your markdown, MDX, and media.
 
 **TL;DR:** One TinaCloud project, two repos. Editors commit content to the content repo, engineers commit code to the generator repo, and TinaCloud keeps everything connected. It is a toggle in the dashboard, available for new and existing projects today.
 
@@ -26,14 +26,14 @@ Plenty of teams have asked for this, and they usually want it for one of a few r
 * **Scaling.** As a site grows, content volume grows much faster than code. Splitting the repos keeps the generator repo lean, so clones, CI builds, and code reviews stay fast no matter how large the content library gets.
 * **Multi-site reuse.** A single content repo can power more than one generator, like regional sites, partner-facing variants, internationalized sites serving translated content per locale, or docs and marketing sites sharing one source of truth.
 
-Until now, the workaround was to create two TinaCloud projects and wire them together with a `tina/meta.json` file. That pattern worked, but it came with sync issues, duplicate Tina lock files, and search results that could drift out of date. Separate content repos replace it with a single project that understands both repos natively.
+Until now, the workaround was to create two TinaCloud projects and wire them together with a `tina/meta.json` file. That pattern worked, but it came with sync issues, duplicate TinaCMS lock files, and search results that could drift out of date. Separate content repos replace it with a single project that understands both repos natively.
 
 ## How it works
 
 From your editors' point of view, nothing changes. They open the dashboard, edit, save, and submit for review exactly as before. Behind the scenes:
 
 * **Schema** is loaded from the generator repo. It is never read from the content repo.
-* **Editorial branches and pull requests** created through Tina's editorial workflow are made on the content repo.
+* **Editorial branches and pull requests** created through TinaCMS's editorial workflow are made on the content repo.
 * **Media uploads** go to the content repo.
 * **Search re-indexes** on every content-repo push, so results stay current no matter which repo changed.
 
@@ -46,7 +46,7 @@ Here is what lives where:
 | Application code (Next.js / Astro / etc.) |        ✅       |       ❌      |
 |           `.md` / `.mdx` content          |        ❌       |       ✅      |
 |        Media (images, video, etc.)        |        ❌       |       ✅      |
-| Editorial branches / PRs from the Tina UI |        ❌       |       ✅      |
+| Editorial branches / PRs from the TinaCMS UI |        ❌       |       ✅      |
 
 ## Setting up a new project
 

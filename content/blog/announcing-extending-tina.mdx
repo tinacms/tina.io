@@ -1,10 +1,10 @@
 ---
 seo:
-  title: Announcing the new Extending Tina | TinaCMS Blog
+  title: Announcing the new Extending TinaCMS | TinaCMS Blog
   description: >-
     Discover how to extend TinaCMS with custom plugins and features, enabling
     tailored content management solutions for your unique project needs.
-title: Announcing the new "Extending Tina"
+title: Announcing the new "Extending TinaCMS"
 date: '2022-04-28T03:00:00.000Z'
 last_edited: '2022-04-28T03:00:00.000Z'
 author: Logan Anderson
@@ -12,7 +12,7 @@ prev: content/blog/automating-pull-requests.mdx
 next: content/blog/basics-of-graphql.mdx
 ---
 
-> **Note:** This post is out of date. For the latest Tina usage, [see our docs](/docs).
+> **Note:** This post is out of date. For the latest TinaCMS usage, [see our docs](/docs).
 
 The latest update empowers developers to put `validation` ,`component` and `parse` functions directly into the schema.
 
@@ -65,13 +65,13 @@ You should add the following two files in the `.tina/components` folder.
 
 ### 3. Add `.tina/components/TinaProvider.js`
 
-This file handles the Tina configuration and the tina provider component, and this will only load when in edit mode, and an example below.
+This file handles the TinaCMS configuration and the tina provider component, and this will only load when in edit mode, and an example below.
 
 ```js
 import TinaCMS from 'tinacms';
 import { tinaConfig } from '../schema.ts';
 
-// Importing the TinaProvider directly into your page will cause Tina to be added to the production bundle.
+// Importing the TinaProvider directly into your page will cause TinaCMS to be added to the production bundle.
 // Instead, import the tina/provider/index default export to have it dynamically imported in edit-mode
 /**
  *
