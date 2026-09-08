@@ -11,18 +11,18 @@ prev: content/blog/tina-cms-get-started.mdx
 next: content/blog/data-layer-performant-editing.mdx
 ---
 
-Tina allows you as a developer to create an amazing editing experience. By default the editing experience is a more traditional CMS, where you login to a specific URL and you edit your content without being able to see the content till after you finish your changes. But, if you are looking for a more transparent real-time editing experience, Tina has a superpower, called Visual Editing. Just as it sounds, you get instant feedback on the page as well as being able to preview the changes before publishing live to your site.
+TinaCMS allows you as a developer to create an amazing editing experience. By default the editing experience is a more traditional CMS, where you login to a specific URL and you edit your content without being able to see the content till after you finish your changes. But, if you are looking for a more transparent real-time editing experience, TinaCMS has a superpower, called Visual Editing. Just as it sounds, you get instant feedback on the page as well as being able to preview the changes before publishing live to your site.
 
 <WebmEmbed embedSrc="/img/blog/from-cms-to-contextual/TinaSuper.webm" />
 
 ## Getting our project started
 
-For this blog post we are going to use Tina’s example which is located in the Next.js official examples and allows us to use `create-next-app`.This example is based upon Next.js blog starter which is a markdown blog.
+For this blog post we are going to use TinaCMS’s example which is located in the Next.js official examples and allows us to use `create-next-app`.This example is based upon Next.js blog starter which is a markdown blog.
 
 > You can find the source code in the Next.js examples directory, under the name [cms-tina](https://github.com/vercel/next.js/tree/canary/examples/cms-tina).
 
 ```bash
-## Create our new Tina site
+## Create our new TinaCMS site
 
 npx create-next-app --example cms-tina tina-contextual-editing
 
@@ -33,19 +33,19 @@ cd tina-contextual-editing
 ## Open with your favorite editor
 ```
 
-> If you want to learn how this example was created check out the blog post that covers [getting started with Tina](https://tina.io/blog/tina-cms-get-started/).
+> If you want to learn how this example was created check out the blog post that covers [getting started with TinaCMS](https://tina.io/blog/tina-cms-get-started/).
 
-## What does the Tina code do?
+## What does the TinaCMS code do?
 
-Before you add any code to this example, I want to cover how Tina is integrated and how it works.
+Before you add any code to this example, I want to cover how TinaCMS is integrated and how it works.
 
 ### `.tina` folder
 
-You will find a `.tina` folder in the root of the project, this is the heart and brain of Tina in any project.
+You will find a `.tina` folder in the root of the project, this is the heart and brain of TinaCMS in any project.
 
 ### `schema.ts`
 
-The schema file contains two important pieces of code `defineSchema` and `defineConfig`. The `defineSchema` allows you to define the shape of your content. If you have used a more traditional CMS before you may have done this via a GUI. However, given how Tina is tightly coupled with Git and we treat the filesystem as the “source of truth”, we take the approach of “content-modeling as code”.
+The schema file contains two important pieces of code `defineSchema` and `defineConfig`. The `defineSchema` allows you to define the shape of your content. If you have used a more traditional CMS before you may have done this via a GUI. However, given how TinaCMS is tightly coupled with Git and we treat the filesystem as the “source of truth”, we take the approach of “content-modeling as code”.
 
 If you look at the current defined schema, you will see that each one of the fields is related to the front matter contained within any of the posts in the `_posts` folder.
 
@@ -53,11 +53,11 @@ Moving on to the `defineConfig`, the `defineConfig` tells your project where the
 
 ### `components`
 
-The `components` folder inside the `.tina` holds both our `TinaProvider` and `DynamicTinaProvider`; these two components wrap your application with the power of Tina. We will be heading back here later for some updates.
+The `components` folder inside the `.tina` holds both our `TinaProvider` and `DynamicTinaProvider`; these two components wrap your application with the power of TinaCMS. We will be heading back here later for some updates.
 
 ### `_generated__`
 
-This folder holds all the auto generated files from Tina, if you open this up you will see files that contain queries, fragments and types. You won’t need to make changes here but it’s good to know what you might find in there.
+This folder holds all the auto generated files from TinaCMS, if you open this up you will see files that contain queries, fragments and types. You won’t need to make changes here but it’s good to know what you might find in there.
 
 Before we add visual editing, go ahead and launch the application using `yarn tina-dev` and navigate to [`http://localhost:3000/`](http://localhost:3000/). You will notice that it is a static blog. Feel free to navigate around and get a feel for the blog.
 
@@ -69,7 +69,7 @@ Now if you navigate to [http://localhost:3000/admin](http://localhost:3000/admin
 
 Now you have an understanding of both how the CMS works, and how the code behind is laid out we can start working on adding visual editing to our project. What do we need to do to make visual editing work?
 
-1. Update `getStaticPaths` and `getStaticProps` to use Tina’s graphql layer
+1. Update `getStaticPaths` and `getStaticProps` to use TinaCMS’s graphql layer
 2. Update the page to use `useTina` and power the project props
 3. Update the TinaCMS configuration
 
@@ -308,7 +308,7 @@ const query = `query BlogPostQuery($relativePath: String!) {
 
 ### Adding `useTina` hook
 
-The `useTina` hook is used to make a piece of Tina content editable. It is code-split so in production, this hook will pass through the data value. When you are in edit mode, it registers an editable form in the sidebar.
+The `useTina` hook is used to make a piece of TinaCMS content editable. It is code-split so in production, this hook will pass through the data value. When you are in edit mode, it registers an editable form in the sidebar.
 
 ### Adding imports
 
@@ -338,9 +338,9 @@ We are going to update our props from `({ post, morePosts, preview })` to `(prop
 
 As you can see, we are reusing our query from before and passing the variables, and data to `useTina`. This now means we can power our site using visual editing. Congratulations your site now has superpowers!
 
-### Update our elements to use Tina data
+### Update our elements to use TinaCMS data
 
-Now we have access to our Tina powered data we can go through and update all of our elements to use Tina. You can replace each of the `post.` with `data.getPostsDocument.data.` and then replace the `!post?.slug` with `!props.variables.relativePath` when you are finished your return code should look like:
+Now we have access to our TinaCMS powered data we can go through and update all of our elements to use TinaCMS. You can replace each of the `post.` with `data.getPostsDocument.data.` and then replace the `!post?.slug` with `!props.variables.relativePath` when you are finished your return code should look like:
 
 ```diff
 const router = useRouter()
@@ -412,26 +412,26 @@ Now all we need to do is update our post body content from `data.post.body` to `
 
 ## Next steps
 
-Now that you have visual editing here are a few things you can explore with Tina
+Now that you have visual editing here are a few things you can explore with TinaCMS
 
 * [Media management through Cloudinary](https://tina.io/docs/reference/media/external/cloudinary/)
 * [Route Mapping - connect the CMS to visual editing](/docs/contextual-editing/overview)
 
-## How to keep up to date with Tina?
+## How to keep up to date with TinaCMS?
 
-The best way to keep up with Tina is to subscribe to our newsletter, we send out updates every two weeks. Updates include new features, what we have been working on, blog posts you may of missed and so much more!
+The best way to keep up with TinaCMS is to subscribe to our newsletter, we send out updates every two weeks. Updates include new features, what we have been working on, blog posts you may of missed and so much more!
 
 You can subscribe by following this link and entering your email: [https://tina.io/community/](https://tina.io/community/)
 
-### Tina Community Discord
+### TinaCMS Community Discord
 
-Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
+TinaCMS has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and TinaCMS enthusiasts. When you join you will find a place:
 
 * To get help with issues
-* Find the latest Tina news and sneak previews
-* Share your project with Tina community, and talk about your experience
+* Find the latest TinaCMS news and sneak previews
+* Share your project with TinaCMS community, and talk about your experience
 * Chat about the Jamstack
 
-### Tina Twitter
+### TinaCMS Twitter
 
-Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
+Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to TinaCMS. We would also be psyched if you tagged us in projects you have built.
