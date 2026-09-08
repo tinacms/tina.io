@@ -4,7 +4,7 @@ title: From GraphQL Gateway to TinaCMS
 
 # Package reorganization
 
-As we've trialed the GraphQL API and how it works with TinaCMS, it's become apparent that this is the primary path we want to carve out for users of Tina. We'll be moving the `tina-graphq-gateway` APIs in to the `tinacms` package to reflect its more central role in the Tina workflow. Other backend integrations will still be available to build out via the new `@tinacms/toolkit` package. You can read more details on those changes [here](https://github.com/tinacms/tinacms/issues/1898).
+As we've trialed the GraphQL API and how it works with TinaCMS, it's become apparent that this is the primary path we want to carve out for users of TinaCMS. We'll be moving the `tina-graphq-gateway` APIs in to the `tinacms` package to reflect its more central role in the TinaCMS workflow. Other backend integrations will still be available to build out via the new `@tinacms/toolkit` package. You can read more details on those changes [here](https://github.com/tinacms/tinacms/issues/1898).
 
 ### `tinacms` is absorbing `tina-graphql-gateway`
 
@@ -47,7 +47,7 @@ yarn remove tina-graphql-gateway-cli
 
 ## The new `defineSchema` API
 
-We're going to be leaning on a more _primitive_ concept of how types are defined with Tina, and in doing so will be introducing some breaking changes to the way schemas are defined. 
+We're going to be leaning on a more _primitive_ concept of how types are defined with TinaCMS, and in doing so will be introducing some breaking changes to the way schemas are defined. 
 
 ### Collections now accept a `fields` _or_ `templates` property
 
@@ -121,7 +121,7 @@ By default `string` will use the `text` field, but you can change that by specif
 }
 ```
 
-For the most part, the UI properties are added to the field and adhere to the existing capabilities of Tina's core [field plugins](/docs/reference/toolkit/fields/). But there's nothing stopping you from providing your own components -- just be sure to register those with the CMS object on the frontend:
+For the most part, the UI properties are added to the field and adhere to the existing capabilities of TinaCMS's core [field plugins](/docs/reference/toolkit/fields/). But there's nothing stopping you from providing your own components -- just be sure to register those with the CMS object on the frontend:
 
 ```js
 {
@@ -135,7 +135,7 @@ For the most part, the UI properties are added to the field and adhere to the ex
 }
 ```
 
-[Register](/docs/extending-tina/custom-field-components) your `myMapField` with Tina:
+[Register](/docs/extending-tina/custom-field-components) your `myMapField` with TinaCMS:
 
 ```js
 cms.fields.add({
@@ -146,7 +146,7 @@ cms.fields.add({
 
 #### One important gotcha
 
-Every property in the `defineSchema` API must be serializable. Meaning functions will not work. For example, there's no way to define a `validate` or `parse` function at this level. However, you can either use the [formifyCallback](/docs/extending-tina/custom-field-components) API to get access to the Tina form, or provide your own logic by specifying a plugin of your choice:
+Every property in the `defineSchema` API must be serializable. Meaning functions will not work. For example, there's no way to define a `validate` or `parse` function at this level. However, you can either use the [formifyCallback](/docs/extending-tina/custom-field-components) API to get access to the TinaCMS form, or provide your own logic by specifying a plugin of your choice:
 
 ```js
 {
@@ -216,7 +216,7 @@ While this, is a `checkbox` field
 
 ### Introducing the `object` type
 
-Tina currently represents the concept of an _object_ in two ways: a `group` (and `group-list`), which is a uniform collection of fields; and `blocks`, which is a polymporphic collection. Moving forward, we'll be introducing a more comprehensive type, which envelopes the behavior of both `group` and `blocks`, and since _every_ field can be a `list`, this also makes `group-list` redundant.
+TinaCMS currently represents the concept of an _object_ in two ways: a `group` (and `group-list`), which is a uniform collection of fields; and `blocks`, which is a polymporphic collection. Moving forward, we'll be introducing a more comprehensive type, which envelopes the behavior of both `group` and `blocks`, and since _every_ field can be a `list`, this also makes `group-list` redundant.
 
 > Note: we've previously assumed that `blocks` usage would _always_ be as an array. We'll be keeping that assumption with the `blocks` type for compatibility, but `object` will allow for non-array polymorphic objects.
 

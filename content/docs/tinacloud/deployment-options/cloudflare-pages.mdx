@@ -6,7 +6,7 @@ next: content/docs/tinacloud/deployment-options/cloudflare-workers.mdx
 previous: content/docs/tinacloud/deployment-options/github-pages.mdx
 ---
 
-TinaCMS works well with Cloudflare Pages when your site is deployed as a **static export**: content is rendered at build time, while visual editing remains fully live in the browser via Tina's client-side data layer. This page covers a **Next.js** static export.
+TinaCMS works well with Cloudflare Pages when your site is deployed as a **static export**: content is rendered at build time, while visual editing remains fully live in the browser via TinaCMS's client-side data layer. This page covers a **Next.js** static export.
 
 <WarningCallout
   body={<>
@@ -14,11 +14,11 @@ TinaCMS works well with Cloudflare Pages when your site is deployed as a **stati
   </>}
 />
 
-## Why static export works well with Tina
+## Why static export works well with TinaCMS
 
-Tina's live editing experience is client-side. Pages are pre-rendered at build time, and the `useTina()` hook in your client components hydrates with the build-time data for visitors. 
+TinaCMS's live editing experience is client-side. Pages are pre-rendered at build time, and the `useTina()` hook in your client components hydrates with the build-time data for visitors. 
 
-When you open `/admin` and edit a page, Tina swaps live data into the React tree, no server required. Saving commits to GitHub, which triggers a new Cloudflare build, which deploys the updated static site.
+When you open `/admin` and edit a page, TinaCMS swaps live data into the React tree, no server required. Saving commits to GitHub, which triggers a new Cloudflare build, which deploys the updated static site.
 
 ## Configure your project for static export
 
