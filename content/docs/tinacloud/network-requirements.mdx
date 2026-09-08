@@ -64,6 +64,11 @@ If your organization uses enterprise SSO through TinaCloud:
 |---|---|
 | `*.workos.com` | WorkOS enterprise SSO provider |
 
+## TinaCloud's Own IP Addresses
+
+TinaCloud runs on AWS Lambda. Our services send their requests from the shared AWS address pool, and the address changes. We cannot give you an IP address or a CIDR range to add to an allow list.
+
+
 ## Troubleshooting
 
 ### Login times out on VPN or restricted network
