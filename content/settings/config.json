@@ -757,6 +757,16 @@
       "source": "/zh/blog/customblog_tinacmsai",
       "destination": "/zh/blog/vibe-blogging-with-tinacms",
       "permanent": true
+    },
+    {
+      "source": "/blog/Tina-CMS--Leveljs",
+      "destination": "/blog/TinaCMS--Leveljs",
+      "permanent": true
+    },
+    {
+      "source": "/zh/blog/Tina-CMS--Leveljs",
+      "destination": "/zh/blog/TinaCMS--Leveljs",
+      "permanent": true
     }
   ]
 }

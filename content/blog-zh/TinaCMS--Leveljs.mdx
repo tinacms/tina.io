@@ -13,7 +13,7 @@ next: content/blog-zh/Tinacms-is-now-fully-open-source.mdx
 
 TinaCMS 是一个开源的、基于Git的无头内容管理系统（CMS），在内容存储和检索方面有着独特的方法。在本文中，我们将深入探讨其架构，并发现Level.js如何在Tina所需的简单性和功能性之间取得完美平衡。
 
-<WebmEmbed embedSrc="/img/blog/Tina-CMS--Leveljs/homepage-demo-2b_lmoaj8.webm" />
+<WebmEmbed embedSrc="/img/blog/TinaCMS--Leveljs/homepage-demo-2b_lmoaj8.webm" />
 
 ## 在Git上构建CMS的挑战
 
@@ -71,7 +71,7 @@ LevelDB是一个排序的键值存储。键按顺序写入磁盘，允许快速�
 
 在Tina中使用Level.js的好处不仅仅是为Tina API提供支持。我们最近添加了一个搜索功能，允许编辑器执行全文搜索以定位内容。
 
-<WebmEmbed embedSrc="/img/blog/Tina-CMS--Leveljs/search-demo.webm" />
+<WebmEmbed embedSrc="/img/blog/TinaCMS--Leveljs/search-demo.webm" />
 
 最初，我们计划提供与现有解决方案（如Algolia）的某种集成，但我们再次希望在保持本地开发和托管生产站点之间一致性的同时，启用简单的本地开发体验。解决方案在[Fergus McDowall](https://github.com/fergiemcdowall)的[search-index](https://www.npmjs.com/package/search-index)库中呈现。该库提供了一个可嵌入的全文搜索引擎，并建立在Level.js之上。由于它使用Level.js，因此可以与任何具有Level.js存储实现的数据库一起使用。使用此库，Tina能够在本地开发和生产托管站点中提供功能齐全的搜索，并具有完全的功能一致性。
 
