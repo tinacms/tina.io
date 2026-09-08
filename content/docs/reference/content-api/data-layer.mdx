@@ -3,13 +3,13 @@ title: Data Layer
 last_edited: '2026-02-10T23:24:00.000Z'
 ---
 
-## What is the Tina Data Layer?
+## What is the TinaCMS Data Layer?
 
-The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files backed by a database. You can think of the database as more of an ephemeral cache, since the single source of truth for your content is really your Markdown/JSON files.
+The TinaCMS Data Layer provides a GraphQL API that serves Markdown and JSON files backed by a database. You can think of the database as more of an ephemeral cache, since the single source of truth for your content is really your Markdown/JSON files.
 
 ![TinaCMS GraphQL Data Layer](/img/docs/tina-data-layer-diagram.png "TinaCMS Data Layer")
 
-TinaCMS implements this database layer between the Tina GraphQL API and the underlying Git repository. This data layer buffers requests between TinaCloud and GitHub resulting in improved editing performance with TinaCMS. 
+TinaCMS implements this database layer between the TinaCMS GraphQL API and the underlying Git repository. This data layer buffers requests between TinaCloud and GitHub resulting in improved editing performance with TinaCMS. 
 
 Primary benefits of the Data Layer include:
 
@@ -69,7 +69,7 @@ Indexing is the process of scanning your content files and storing them in the d
 - The configured [repository](/docs/tinacloud/dashboard/projects/#changing-the-repository) changes
 - A new branch is created in GitHub
 
-**Self-hosted:** Indexing occurs when your site is built. Content updates made by editors through Tina are immediately reflected, but edits made directly to GitHub outside of Tina won't appear until the next build.
+**Self-hosted:** Indexing occurs when your site is built. Content updates made by editors through TinaCMS are immediately reflected, but edits made directly to GitHub outside of TinaCMS won't appear until the next build.
 
 **Local dev:** The file watcher re-indexes files as soon as they change on disk.
 
