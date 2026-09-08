@@ -19,7 +19,7 @@ Go to `app/page.tsx` and add the following code:
 // needed because NextJS is SSR by default, and we want to do client-side rendering for now.
 import { useState, useEffect } from "react";
 import { client } from "../tina/__generated__/client";
-// this will be used to query our Tina CMS to get our awesome title
+// this will be used to query our TinaCMS to get our awesome title
 // you may need to update the relative import depending on your setup
 
 
@@ -50,7 +50,7 @@ return (
 
 There's a bit going on here, so let's take a look at the `fetchContent` method in more detail...
 
-The first, and most important thing, is we are using Tina's **`client`**, which is our gateway into the Tina CMS content. You can [read more about the client]() but for now, just think of it as a base "API service" that we use whenever we want to retrieve data from Tina.
+The first, and most important thing, is we are using Tina's **`client`**, which is our gateway into the TinaCMS content. You can [read more about the client]() but for now, just think of it as a base "API service" that we use whenever we want to retrieve data from Tina.
 
 We are then using `client.queries`, which gives us access to all the collections we defined in our Tina schema. Right now, we have 1 collection - `my_first_collection` - and Tina gives us strongly-typed access to those collections. That's pretty neat!
 

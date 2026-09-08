@@ -96,7 +96,7 @@ nginx -s reload
 
 #### 创建部署目录
 
-首先，在您的服务器上创建一个目录，用于部署您的 Tina CMS 项目：
+首先，在您的服务器上创建一个目录，用于部署您的 TinaCMS 项目：
 
 ```
 mkdir -p /www/tinademo
@@ -150,7 +150,7 @@ cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
    * 这是您 ECS 实例的公网 IP 地址
 3. `SERVER_USERNAME`: 连接到您服务器的用户名
    * 通常是 `root` 或您在 ECS 实例上创建的用户帐户
-4. `NEXT_PUBLIC_TINA_BRANCH`: Tina CMS 应该使用的内容分支
+4. `NEXT_PUBLIC_TINA_BRANCH`: TinaCMS 应该使用的内容分支
    * 通常是您的主分支（例如，`main` 或 `master`）
 5. `NEXT_PUBLIC_TINA_CLIENT_ID`: 您的 TinaCloud 客户端 ID
    * 在您的 TinaCloud 仪表板的项目设置中找到
