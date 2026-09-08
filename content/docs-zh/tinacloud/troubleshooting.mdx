@@ -14,7 +14,7 @@ previous: content/docs-zh/tinacloud/network-requirements.mdx
       heading:
         "如何解决 \"无法找到记录: 'tina/__generated__/_graphql.json'\" 错误？",
       docText:
-        "当 TinaCloud 的 GraphQL API 无法在您的 GitHub 仓库中找到文件时，会返回此错误。这可能在以下情况下发生：\n\n* `tina` 文件夹（以及 `__generated__` 子文件夹）不在您的 GitHub 仓库远程中\n  * 如果文件夹在您的本地仓库中，但不在远程中，请确保没有 `.gitignore` 文件排除它\n* Tina 配置了一个不存在的分支或不包含 `tina` 文件夹的分支\n  * 应创建引用的分支，并应包含 `tina` 文件夹\n* TinaCMS 组件上的 apiURL 属性配置错误\n  * 检查 apiURL，确保其格式为 `https://content.tinajs.io/content/{tina_client_id}/github/{branch}`，其中 `{tina_client_id}` 与 TinaCloud 项目中的客户端 ID 匹配，`{branch}` 是有效的分支\n"
+        "当 TinaCloud 的 GraphQL API 无法在您的 GitHub 仓库中找到文件时，会返回此错误。这可能在以下情况下发生：\n\n* `tina` 文件夹（以及 `__generated__` 子文件夹）不在您的 GitHub 仓库远程中\n  * 如果文件夹在您的本地仓库中，但不在远程中，请确保没有 `.gitignore` 文件排除它\n* TinaCMS 配置了一个不存在的分支或不包含 `tina` 文件夹的分支\n  * 应创建引用的分支，并应包含 `tina` 文件夹\n* TinaCMS 组件上的 apiURL 属性配置错误\n  * 检查 apiURL，确保其格式为 `https://content.tinajs.io/content/{tina_client_id}/github/{branch}`，其中 `{tina_client_id}` 与 TinaCloud 项目中的客户端 ID 匹配，`{branch}` 是有效的分支\n"
     },
     {
       heading:
@@ -25,7 +25,7 @@ previous: content/docs-zh/tinacloud/network-requirements.mdx
     {
       heading: "如何解决由未索引的分支引起的错误？",
       docText:
-        "如果您收到类似 `指定的分支 'my-branch-name' 未被 TinaCloud 索引` 的错误，或根本没有看到任何分支被索引，请尝试以下操作：\n\n1. **确保 `tina/tina-lock.json` 存在并已提交到您的仓库。** 这是分支未被索引的最常见原因。`tina-lock.json` 文件是在您本地运行 `tinacms dev` 时生成的——它**不是**仅通过 `tinacms build` 生成的。运行 `tinacms dev`（或您的包装开发命令，如 `yarn dev`），然后提交并推送生成的 `tina/tina-lock.json` 文件。有关更多详细信息，请参阅[将 Tina 添加到现有站点](/docs/introduction/tina-init/)。\n2. 验证默认分支上是否存在 `tina/config.ts` 配置文件\n3. 验证在传递给 `tina/config.ts` 中 defineConfig 的配置属性中指定了正确的分支。请注意，此值可能在您的 CI 构建过程中设置为环境变量\n4. 验证分支是否存在于 GitHub 仓库中\n5. 将分支拉入您的 TinaCloud 项目中。**视频：** [为什么 TinaCloud 与 GitHub 配合得如此好 | TinaCMS 数据层 | Eli Kent (3 分钟)](https://youtube.com/embed/TatnNqKPKIQ?start=109)\n6. 您还可以通过在该分支的 `tina/tina-lock.json` 文件中进行空白更改、提交并推送到 GitHub 来强制 TinaCloud 重新索引分支。这将启动分支的索引，几分钟后错误应得到解决\n7. 确保 Tina 项目位于根目录中\n"
+        "如果您收到类似 `指定的分支 'my-branch-name' 未被 TinaCloud 索引` 的错误，或根本没有看到任何分支被索引，请尝试以下操作：\n\n1. **确保 `tina/tina-lock.json` 存在并已提交到您的仓库。** 这是分支未被索引的最常见原因。`tina-lock.json` 文件是在您本地运行 `tinacms dev` 时生成的——它**不是**仅通过 `tinacms build` 生成的。运行 `tinacms dev`（或您的包装开发命令，如 `yarn dev`），然后提交并推送生成的 `tina/tina-lock.json` 文件。有关更多详细信息，请参阅[将 TinaCMS 添加到现有站点](/docs/introduction/tina-init/)。\n2. 验证默认分支上是否存在 `tina/config.ts` 配置文件\n3. 验证在传递给 `tina/config.ts` 中 defineConfig 的配置属性中指定了正确的分支。请注意，此值可能在您的 CI 构建过程中设置为环境变量\n4. 验证分支是否存在于 GitHub 仓库中\n5. 将分支拉入您的 TinaCloud 项目中。**视频：** [为什么 TinaCloud 与 GitHub 配合得如此好 | TinaCMS 数据层 | Eli Kent (3 分钟)](https://youtube.com/embed/TatnNqKPKIQ?start=109)\n6. 您还可以通过在该分支的 `tina/tina-lock.json` 文件中进行空白更改、提交并推送到 GitHub 来强制 TinaCloud 重新索引分支。这将启动分支的索引，几分钟后错误应得到解决\n7. 确保 TinaCMS 项目位于根目录中\n"
     },
     {
       heading:
@@ -36,7 +36,7 @@ previous: content/docs-zh/tinacloud/network-requirements.mdx
     {
       heading: '如何解决 "无效或未定义的分支" 错误？',
       docText:
-        "Tina 当前使用的分支无效或未定义。请仔细检查是否选择了正确的分支，并且该分支确实存在。\n\n您可以通过访问 `https://app.tina.io/projects/<your-project-id>/configuration` 查看 TinaCloud 已索引的分支。\n\n![已索引的分支](/img/docs/tinacloud/branch-status.png)\\\n**图：TinaCloud 索引的分支**\n"
+        "TinaCMS 当前使用的分支无效或未定义。请仔细检查是否选择了正确的分支，并且该分支确实存在。\n\n您可以通过访问 `https://app.tina.io/projects/<your-project-id>/configuration` 查看 TinaCloud 已索引的分支。\n\n![已索引的分支](/img/docs/tinacloud/branch-status.png)\\\n**图：TinaCloud 索引的分支**\n"
     },
     {
       heading: '如何解决 "tina 目录未推送到 git" 错误？',

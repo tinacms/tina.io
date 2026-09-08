@@ -11,7 +11,7 @@ next: content/docs-zh/reference/media/overview.mdx
 
   命令:
 
-  dev [options]          构建 Tina 并启动开发服务器
+  dev [options]          构建 TinaCMS 并启动开发服务器
   build [options]        构建 CMS 和自动生成的模块以供 TinaCloud 使用
   init [options]         向现有项目添加 TinaCloud
   audit [options]        审核你的架构和文件以检查错误
@@ -117,7 +117,7 @@ tinacms build --content=local -c "next build"
 
 当 SSG 生成数千个页面时很有用。在 SSW 规则（约 4,000 页）上，构建时间从 4:55 降至 2:12，TinaCloud 内容 API 调用从约 4,000 次降至 0 次。
 
-由于生成的客户端是生产客户端，因此必须在您的 Tina 配置中配置 `branch`、`clientId` 和 `token`，这些值与正常的 `tinacms build` 使用的值相同。
+由于生成的客户端是生产客户端，因此必须在您的 TinaCMS 配置中配置 `branch`、`clientId` 和 `token`，这些值与正常的 `tinacms build` 使用的值相同。
 
 需要注意的几点：
 
@@ -135,7 +135,7 @@ npx @tinacms/cli init
 
 这将会：
 
-* 安装 Tina 所需的所有依赖项。
+* 安装 TinaCMS 所需的所有依赖项。
 * 在 `tina` 目录中定义一个基本内容架构。
 * 在 demo 目录中创建示例内容。
 * 编辑 `package.json` 以使 `dev`、`build` 和 `start` 脚本运行 tina GraphQL API。
@@ -168,12 +168,12 @@ npx @tinacms/cli init
 
 ### "tinacms doctor"
 
-`doctor` 命令检查项目中安装的 Tina 包是否与 npm `latest` dist-tag 相符。它回答了“我是否是最新的？”这个问题——这是 CLI 对应于[`/versions`](/versions)页面的功能。
+`doctor` 命令检查项目中安装的 TinaCMS 包是否与 npm `latest` dist-tag 相符。它回答了“我是否是最新的？”这个问题——这是 CLI 对应于[`/versions`](/versions)页面的功能。
 
 该命令：
 
 * 读取你的 `package.json` 并从 `node_modules` 或项目锁定文件中解析已安装的版本（支持 `package-lock.json`、`pnpm-lock.yaml` 和 `yarn.lock`）。
-* 过滤到 Tina 包系列：`tinacms`、`@tinacms/*`、`tinacms-*`、`next-tinacms-*` 和 `create-tina-app`。
+* 过滤到 TinaCMS 包系列：`tinacms`、`@tinacms/*`、`tinacms-*`、`next-tinacms-*` 和 `create-tina-app`。
 * 并行从 `registry.npmjs.org` 获取每个已安装包的 `dist-tags.latest`。
 * 打印一个包含**声明的**、**已安装的**和**最新的**版本的表格，并带有状态列（`CURRENT`、`OUTDATED`、`LOCAL` 或 `UNKNOWN`）。
 * 如果任何包过时或无法解析，则以代码 `1` 退出，因此它对 CI 友好。

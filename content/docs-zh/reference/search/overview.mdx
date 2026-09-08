@@ -10,11 +10,11 @@ previous: ''
 
 TinaCMS 提供了内置的内容搜索功能。这对于允许编辑者快速查找网站中的内容非常有用。TinaCloud 的内容搜索由 [Fergus McDowall](https://github.com/fergiemcdowall "Fergus McDowall") 的 [search-index](https://www.npmjs.com/package/search-index "search-index") 库提供支持。
 
-> 注意：目前在自托管的 Tina 中不支持搜索。
+> 注意：目前在自托管的 TinaCMS 中不支持搜索。
 
 ## 配置
 
-要启用搜索功能，您需要在 Tina 配置中填充 `search` 字段。使用 TinaCloud 搜索时，搜索配置中唯一必需的元素是 `search.tina.indexerToken` 字段。这可以从项目的 TinaCloud [仪表板](/docs/tinacloud/dashboard/projects/#api-tokens)中获取。
+要启用搜索功能，您需要在 TinaCMS 配置中填充 `search` 字段。使用 TinaCloud 搜索时，搜索配置中唯一必需的元素是 `search.tina.indexerToken` 字段。这可以从项目的 TinaCloud [仪表板](/docs/tinacloud/dashboard/projects/#api-tokens)中获取。
 
 ```javascript
 export default defineConfig({

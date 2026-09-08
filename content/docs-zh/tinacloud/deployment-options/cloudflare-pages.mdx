@@ -6,7 +6,7 @@ next: content/docs-zh/tinacloud/deployment-options/cloudflare-workers.mdx
 previous: content/docs-zh/tinacloud/deployment-options/github-pages.mdx
 ---
 
-当您的网站作为**静态导出**部署时，TinaCMS 可以很好地与 Cloudflare Pages 配合使用：内容在构建时渲染，而通过 Tina 的客户端数据层，视觉编辑在浏览器中保持完全实时。本页面涵盖了 **Next.js** 的静态导出。
+当您的网站作为**静态导出**部署时，TinaCMS 可以很好地与 Cloudflare Pages 配合使用：内容在构建时渲染，而通过 TinaCMS 的客户端数据层，视觉编辑在浏览器中保持完全实时。本页面涵盖了 **Next.js** 的静态导出。
 
 <WarningCallout
   body={<>
@@ -14,11 +14,11 @@ previous: content/docs-zh/tinacloud/deployment-options/github-pages.mdx
   </>}
 />
 
-## 为什么静态导出与 Tina 配合良好
+## 为什么静态导出与 TinaCMS 配合良好
 
-Tina 的实时编辑体验是客户端的。页面在构建时预渲染，您的客户端组件中的 `useTina()` 钩子会为访问者提供构建时的数据。
+TinaCMS 的实时编辑体验是客户端的。页面在构建时预渲染，您的客户端组件中的 `useTina()` 钩子会为访问者提供构建时的数据。
 
-当您打开 `/admin` 并编辑页面时，Tina 将实时数据替换到 React 树中，无需服务器。保存提交到 GitHub，这会触发新的 Cloudflare 构建，从而部署更新的静态站点。
+当您打开 `/admin` 并编辑页面时，TinaCMS 将实时数据替换到 React 树中，无需服务器。保存提交到 GitHub，这会触发新的 Cloudflare 构建，从而部署更新的静态站点。
 
 ## 配置项目以进行静态导出
 

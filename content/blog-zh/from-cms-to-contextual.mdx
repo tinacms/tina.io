@@ -10,18 +10,18 @@ prev: content/blog-zh/tina-cms-get-started.mdx
 next: content/blog-zh/data-layer-performant-editing.mdx
 ---
 
-Tina允许您作为开发者创建一个惊人的编辑体验。默认情况下，编辑体验是一个更传统的CMS，您需要登录到特定的URL并编辑内容，直到完成更改后才能看到内容。但是，如果您正在寻找一种更透明的实时编辑体验，Tina有一个超级功能，称为可视化编辑。正如它听起来的那样，您可以在页面上获得即时反馈，并且可以在发布到您的网站之前预览更改。
+TinaCMS允许您作为开发者创建一个惊人的编辑体验。默认情况下，编辑体验是一个更传统的CMS，您需要登录到特定的URL并编辑内容，直到完成更改后才能看到内容。但是，如果您正在寻找一种更透明的实时编辑体验，TinaCMS有一个超级功能，称为可视化编辑。正如它听起来的那样，您可以在页面上获得即时反馈，并且可以在发布到您的网站之前预览更改。
 
 <WebmEmbed embedSrc="/img/blog/from-cms-to-contextual/TinaSuper.webm" />
 
 ## 开始我们的项目
 
-在这篇博客文章中，我们将使用Tina的示例，该示例位于Next.js官方示例中，并允许我们使用`create-next-app`。这个示例基于Next.js博客启动器，这是一个Markdown博客。
+在这篇博客文章中，我们将使用TinaCMS的示例，该示例位于Next.js官方示例中，并允许我们使用`create-next-app`。这个示例基于Next.js博客启动器，这是一个Markdown博客。
 
 > 您可以在Next.js示例目录中找到源代码，名称为[cms-tina](https://github.com/vercel/next.js/tree/canary/examples/cms-tina)。
 
 ```bash
-## 创建我们新的Tina站点
+## 创建我们新的TinaCMS站点
 
 npx create-next-app --example cms-tina tina-contextual-editing
 
@@ -32,19 +32,19 @@ cd tina-contextual-editing
 ## 用您喜欢的编辑器打开
 ```
 
-> 如果您想了解这个示例是如何创建的，请查看涵盖[开始使用Tina](https://tina.io/blog/tina-cms-get-started/)的博客文章。
+> 如果您想了解这个示例是如何创建的，请查看涵盖[开始使用TinaCMS](https://tina.io/blog/tina-cms-get-started/)的博客文章。
 
-## Tina代码的作用是什么？
+## TinaCMS代码的作用是什么？
 
-在您向此示例添加任何代码之前，我想介绍一下Tina是如何集成的以及它是如何工作的。
+在您向此示例添加任何代码之前，我想介绍一下TinaCMS是如何集成的以及它是如何工作的。
 
 ### `.tina`文件夹
 
-您会在项目的根目录中找到一个`.tina`文件夹，这是任何项目中Tina的核心和大脑。
+您会在项目的根目录中找到一个`.tina`文件夹，这是任何项目中TinaCMS的核心和大脑。
 
 ### `schema.ts`
 
-模式文件包含两个重要的代码片段`defineSchema`和`defineConfig`。`defineSchema`允许您定义内容的结构。如果您以前使用过更传统的CMS，您可能通过GUI完成过此操作。然而，鉴于Tina与Git紧密结合，我们将文件系统视为“真相的来源”，我们采用“内容建模即代码”的方法。
+模式文件包含两个重要的代码片段`defineSchema`和`defineConfig`。`defineSchema`允许您定义内容的结构。如果您以前使用过更传统的CMS，您可能通过GUI完成过此操作。然而，鉴于TinaCMS与Git紧密结合，我们将文件系统视为“真相的来源”，我们采用“内容建模即代码”的方法。
 
 如果您查看当前定义的模式，您会看到每个字段都与`_posts`文件夹中任何帖子内的前置内容相关。
 
@@ -52,11 +52,11 @@ cd tina-contextual-editing
 
 ### `components`
 
-`.tina`中的`components`文件夹包含我们的`TinaProvider`和`DynamicTinaProvider`；这两个组件用Tina的力量包裹您的应用程序。我们稍后会回到这里进行一些更新。
+`.tina`中的`components`文件夹包含我们的`TinaProvider`和`DynamicTinaProvider`；这两个组件用TinaCMS的力量包裹您的应用程序。我们稍后会回到这里进行一些更新。
 
 ### `_generated__`
 
-这个文件夹包含所有从Tina自动生成的文件，如果您打开它，您会看到包含查询、片段和类型的文件。您不需要在这里进行更改，但了解您可能会在其中找到什么是很好的。
+这个文件夹包含所有从TinaCMS自动生成的文件，如果您打开它，您会看到包含查询、片段和类型的文件。您不需要在这里进行更改，但了解您可能会在其中找到什么是很好的。
 
 在我们添加可视化编辑之前，继续使用`yarn tina-dev`启动应用程序并导航到[`http://localhost:3000/`](http://localhost:3000/)。您会注意到这是一个静态博客。随意浏览并感受一下博客。
 
@@ -68,7 +68,7 @@ cd tina-contextual-editing
 
 现在您已经了解了CMS的工作原理以及背后的代码布局，我们可以开始在我们的项目中添加可视化编辑。我们需要做些什么才能使可视化编辑工作？
 
-1. 更新`getStaticPaths`和`getStaticProps`以使用Tina的graphql层
+1. 更新`getStaticPaths`和`getStaticProps`以使用TinaCMS的graphql层
 2. 更新页面以使用`useTina`并为项目属性提供动力
 3. 更新TinaCMS配置
 
@@ -307,7 +307,7 @@ const query = `query BlogPostQuery($relativePath: String!) {
 
 ### 添加`useTina`钩子
 
-`useTina`钩子用于使Tina内容的一部分可编辑。它是代码分割的，因此在生产中，这个钩子将传递数据值。当您处于编辑模式时，它会在侧边栏中注册一个可编辑的表单。
+`useTina`钩子用于使TinaCMS内容的一部分可编辑。它是代码分割的，因此在生产中，这个钩子将传递数据值。当您处于编辑模式时，它会在侧边栏中注册一个可编辑的表单。
 
 ### 添加导入
 
@@ -337,9 +337,9 @@ import {useTina} from 'tinacms/dist/edit-state'
 
 如您所见，我们正在重用之前的查询，并将变量和数据传递给`useTina`。这现在意味着我们可以使用可视化编辑为我们的网站提供动力。恭喜，您的网站现在有了超级能力！
 
-### 更新我们的元素以使用Tina数据
+### 更新我们的元素以使用TinaCMS数据
 
-现在我们可以访问我们的Tina驱动的数据，我们可以遍历并更新所有元素以使用Tina。您可以将每个`post.`替换为`data.getPostsDocument.data.`，然后将`!post?.slug`替换为`!props.variables.relativePath`，当您完成时，您的返回代码应如下所示：
+现在我们可以访问我们的TinaCMS驱动的数据，我们可以遍历并更新所有元素以使用TinaCMS。您可以将每个`post.`替换为`data.getPostsDocument.data.`，然后将`!post?.slug`替换为`!props.variables.relativePath`，当您完成时，您的返回代码应如下所示：
 
 ```diff
 const router = useRouter()
@@ -411,26 +411,26 @@ useEffect(() => {
 
 ## 下一步
 
-现在您有了可视化编辑，以下是您可以使用Tina探索的一些内容
+现在您有了可视化编辑，以下是您可以使用TinaCMS探索的一些内容
 
 * [通过Cloudinary进行媒体管理](https://tina.io/docs/reference/media/external/cloudinary/)
 * [路由映射 - 将CMS连接到可视化编辑](/docs/contextual-editing/overview)
 
-## 如何跟上Tina的更新？
+## 如何跟上TinaCMS的更新？
 
-跟上Tina的最佳方式是订阅我们的新闻通讯，我们每两周发送一次更新。更新包括新功能、我们一直在做的事情、您可能错过的博客文章等等！
+跟上TinaCMS的最佳方式是订阅我们的新闻通讯，我们每两周发送一次更新。更新包括新功能、我们一直在做的事情、您可能错过的博客文章等等！
 
 您可以通过访问此链接并输入您的电子邮件来订阅：[https://tina.io/community/](https://tina.io/community/)
 
-### Tina社区Discord
+### TinaCMS社区Discord
 
-Tina有一个社区[Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了Jamstack爱好者和Tina爱好者。当您加入时，您会发现一个地方：
+TinaCMS有一个社区[Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了Jamstack爱好者和TinaCMS爱好者。当您加入时，您会发现一个地方：
 
 * 获得问题帮助
-* 找到最新的Tina新闻和抢先预览
-* 与Tina社区分享您的项目，并谈论您的经验
+* 找到最新的TinaCMS新闻和抢先预览
+* 与TinaCMS社区分享您的项目，并谈论您的经验
 * 聊聊Jamstack
 
-### Tina Twitter
+### TinaCMS Twitter
 
-我们的Twitter账号（[@tinacms](https://twitter.com/tinacms)）宣布Tina的最新功能、改进和抢先预览。如果您在您构建的项目中标记我们，我们也会非常兴奋。
+我们的Twitter账号（[@tinacms](https://twitter.com/tinacms)）宣布TinaCMS的最新功能、改进和抢先预览。如果您在您构建的项目中标记我们，我们也会非常兴奋。
