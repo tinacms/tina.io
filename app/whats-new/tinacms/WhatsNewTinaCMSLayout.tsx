@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaGithub, FaNewspaper } from 'react-icons/fa';
+import { FaGithub, FaNewspaper, FaYoutube } from 'react-icons/fa';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 
 interface ChangeItem {
@@ -139,6 +139,12 @@ const WhatsNewTinaCMSPageLayout = ({ data }) => {
           className="flex items-center justify-center hover:text-blue-800"
         >
           See Newsletters <FaNewspaper className="ml-2" />
+        </Link>
+        <Link
+          href="https://www.youtube.com/@TinaCMS/videos"
+          className="flex items-center justify-center hover:text-blue-800"
+        >
+          Watch the Videos <FaYoutube className="ml-2" />
         </Link>
       </div>
     </div>
