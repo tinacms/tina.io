@@ -8,7 +8,7 @@ previous: ''
 
 ## Introduction
 
-TinaCloud lets you split a single project across two GitHub repositories: a **generator repo** that holds your Tina schema and your application code, and a **content repo** that holds your editorial files (markdown / MDX content and media). Both repos belong to the **same** TinaCloud project; you don't create two projects and link them.
+TinaCloud lets you split a single project across two GitHub repositories: a **generator repo** that holds your TinaCMS schema and your application code, and a **content repo** that holds your editorial files (markdown / MDX content and media). Both repos belong to the **same** TinaCloud project; you don't create two projects and link them.
 
 <Youtube embedSrc="https://www.youtube.com/embed/fYGPW4185bg?si=oo3-sx4jm1imojba" />
 
@@ -17,7 +17,7 @@ Video: TinaCloud - Supporting Growth with Separate Content Repository Setups (4 
 Throughout this guide:
 
 * **Generator repo** - your `tina/config.tsx`, your Next.js / Astro / Remix / etc. app code, and the generated artifacts under `tina/__generated__/`.
-* **Content repo** - your `.md` / `.mdx` files and media. No Tina configuration lives here.
+* **Content repo** - your `.md` / `.mdx` files and media. No TinaCMS configuration lives here.
 
 ### Why?
 
@@ -38,7 +38,7 @@ A few reasons you might want this split:
 After setup, your TinaCloud project is bound to both repos. From the editor's point of view nothing about the dashboard changes; they edit, save, and submit for review the same way they always have. Behind the scenes:
 
 * **Schema** is loaded from the generator repo's indexed schema. It is never read from the content repo.
-* **Editorial branches and pull requests** created via Tina's editorial workflow are made on the **content repo**.
+* **Editorial branches and pull requests** created via TinaCMS's editorial workflow are made on the **content repo**.
 * **Media uploads** go to the **content repo**.
 * **Search index rebuilds** on every content-repo push.
 * The CLI reads content from a sibling content directory via `localContentPath` during local development and CI builds.
@@ -111,7 +111,7 @@ From the generator repo, run your usual dev command:
 pnpm dev   # or npm run dev / yarn dev
 ```
 
-Tina's dev server will watch the content repo's files alongside the generator's schema. Editing a content file in `my-content-repo/content/posts/hello.mdx` will hot-reload the admin UI; editing `my-generator-repo/tina/config.tsx` will regenerate the schema. Generated artifacts only ever land in `my-generator-repo/tina/__generated__/`.
+TinaCMS's dev server will watch the content repo's files alongside the generator's schema. Editing a content file in `my-content-repo/content/posts/hello.mdx` will hot-reload the admin UI; editing `my-generator-repo/tina/config.tsx` will regenerate the schema. Generated artifacts only ever land in `my-generator-repo/tina/__generated__/`.
 
 ## What lives where
 
@@ -123,7 +123,7 @@ Tina's dev server will watch the content repo's files alongside the generator's 
 | Application code (Next.js / Astro / etc.) |        ✅       | ❌            |
 |           `.md` / `.mdx` content          |        ❌       | ✅            |
 |        Media (images, video, etc.)        |        ❌       | ✅            |
-| Editorial branches / PRs from the Tina UI |        ❌       | ✅            |
+| Editorial branches / PRs from the TinaCMS UI |        ❌       | ✅            |
 
 ## Migrating from the old "two TinaCloud projects" pattern
 
@@ -139,11 +139,11 @@ If you have an existing setup following the old pattern, migrate as follows:
 
 ## Path Configuration Considerations
 
-When defining collection paths inside your `tina/config.(ts/js)`, avoid setting `path: ''`. Tina expects a folder-relative path; an empty string can result in errors when creating new documents because Tina prepends a `/` when saving, which can produce invalid GitHub paths.
+When defining collection paths inside your `tina/config.(ts/js)`, avoid setting `path: ''`. TinaCMS expects a folder-relative path; an empty string can result in errors when creating new documents because TinaCMS prepends a `/` when saving, which can produce invalid GitHub paths.
 
 ## Static Site Generator Compatibility
 
-If you are using a static site generator other than Next.js (such as Astro), ensure your content pipeline ignores the `tina/` directory inside your **generator repo**; Tina's config and generated files are not content files and may cause parsing errors when picked up by content collections.
+If you are using a static site generator other than Next.js (such as Astro), ensure your content pipeline ignores the `tina/` directory inside your **generator repo**; TinaCMS's config and generated files are not content files and may cause parsing errors when picked up by content collections.
 
 ```javascript
 export default defineCollection({
@@ -156,7 +156,7 @@ If you previously set up multi-repo before the latest tinacms version, your **co
 
 ## Triggering Website Builds from the Content Repo (Optional)
 
-When using a separate content repo, you may want content updates (e.g. from the Tina UI) to automatically trigger a build of your website. TinaCloud supports this out of the box using webhooks.
+When using a separate content repo, you may want content updates (e.g. from the TinaCMS UI) to automatically trigger a build of your website. TinaCloud supports this out of the box using webhooks.
 
 ### Using TinaCloud Webhooks (Recommended)
 
