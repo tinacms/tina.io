@@ -116,3 +116,27 @@ yarn dev
 ```
 
 You will be able to view your starter on `http://localhost:3000`. To edit content with TinaCMS go to `http://localhost:3000/admin`
+
+## Troubleshooting
+
+### Authentication Errors
+
+**"SyntaxError: The string did not match the expected pattern"**
+
+This error usually indicates malformed environment variables. Check that:
+
+1. Environment variables are set exactly as shown in the [Setup Environment Variables](#setup-environment-variables) section
+2. `KV_REST_API_URL` and `KV_REST_API_TOKEN` match the values from your Vercel KV dashboard (no extra prefixes)
+3. `GITHUB_PERSONAL_ACCESS_TOKEN` is valid and has the correct permissions
+4. `NEXTAUTH_SECRET` is properly set (NextAuth recommends `openssl rand -base64 32`)
+5. On Vercel, `NEXTAUTH_URL` is not needed (it's auto-detected)
+
+### Build Failures
+
+If your build fails with errors related to `better-sqlite3` or native modules:
+
+- This typically happens when deploying to serverless environments
+- Vercel KV uses Redis, which doesn't require native compilation
+- Make sure your `tina/database.ts` is configured to use `RedisLevel` from `upstash-redis-level`, not `better-sqlite3`
+
+For more help, visit our [Discord community](https://discord.com/invite/zumN63Ybpf) or open an issue in the [tina-self-hosted-demo repository](https://github.com/tinacms/tina-self-hosted-demo/issues).
