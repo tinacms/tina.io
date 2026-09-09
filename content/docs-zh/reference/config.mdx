@@ -305,7 +305,7 @@ previous: content/docs-zh/reference/overview.mdx
 
 ### Vercel 和 TinaCloud 配置
 
-这是一个使用 TinaCloud 托管数据层和内置 Tina 媒体及搜索功能的标准配置。
+这是一个使用 TinaCloud 托管数据层和内置 TinaCMS 媒体及搜索功能的标准配置。
 
 ```ts
 const branch =
@@ -349,7 +349,7 @@ export default defineConfig({
 
 ### Cloudinary 媒体存储
 
-Tina 支持 Git 支持的媒体和特定的外部媒体提供商：
+TinaCMS 支持 Git 支持的媒体和特定的外部媒体提供商：
 
 ```ts
 export default defineConfig({
@@ -366,10 +366,10 @@ export default defineConfig({
 
 ### TinaCloud 搜索选项
 
-Tina 通过 TinaCloud 提供内置搜索功能。
+TinaCMS 通过 TinaCloud 提供内置搜索功能。
 
 ```ts
-// Tina Cloud 搜索
+// TinaCloud 搜索
 export default defineConfig({
   // ... 其他配置选项
   search: {
@@ -388,11 +388,11 @@ TinaCMS 在两个上下文中使用环境变量：**站点构建**（你的 Next
 
 #### 构建时嵌入
 
-Tina 管理是一个**静态构建的 SPA**。环境变量在构建时（在 `tinacms build` 或 `tinacms dev` 期间）嵌入到管理的 JavaScript 中。它们不会在运行时读取。这意味着变量必须在构建运行时存在于环境中——之后设置它没有效果。
+TinaCMS 管理是一个**静态构建的 SPA**。环境变量在构建时（在 `tinacms build` 或 `tinacms dev` 期间）嵌入到管理的 JavaScript 中。它们不会在运行时读取。这意味着变量必须在构建运行时存在于环境中——之后设置它没有效果。
 
 #### `.env` 文件支持
 
-Tina 的构建过程仅从 `.env` 文件中获取变量。在 `.env.local`、`.env.development` 或其他 dotenv 变体中定义的变量**不会**被 TinaCMS 构建加载。如果你要部署到托管提供商（Vercel、Netlify 等），请确保变量也在该提供商的环境设置中配置。
+TinaCMS 的构建过程仅从 `.env` 文件中获取变量。在 `.env.local`、`.env.development` 或其他 dotenv 变体中定义的变量**不会**被 TinaCMS 构建加载。如果你要部署到托管提供商（Vercel、Netlify 等），请确保变量也在该提供商的环境设置中配置。
 
 #### 管理暴露的变量
 

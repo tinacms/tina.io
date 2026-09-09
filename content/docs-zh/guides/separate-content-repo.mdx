@@ -8,7 +8,7 @@ previous: ''
 
 ## 介绍
 
-TinaCloud 允许您将单个项目拆分为两个 GitHub 仓库：一个包含您的 Tina 架构和应用程序代码的 **生成器仓库**，以及一个包含您的编辑文件（markdown / MDX 内容和媒体）的 **内容仓库**。这两个仓库属于 **同一个** TinaCloud 项目；您无需创建两个项目并链接它们。
+TinaCloud 允许您将单个项目拆分为两个 GitHub 仓库：一个包含您的 TinaCMS 架构和应用程序代码的 **生成器仓库**，以及一个包含您的编辑文件（markdown / MDX 内容和媒体）的 **内容仓库**。这两个仓库属于 **同一个** TinaCloud 项目；您无需创建两个项目并链接它们。
 
 <Youtube embedSrc="https://www.youtube.com/embed/fYGPW4185bg?si=oo3-sx4jm1imojba" />
 
@@ -17,7 +17,7 @@ TinaCloud 允许您将单个项目拆分为两个 GitHub 仓库：一个包含�
 在本指南中：
 
 * **生成器仓库** - 包含您的 `tina/config.tsx`、您的 Next.js / Astro / Remix / 等应用程序代码，以及在 `tina/__generated__/` 下生成的工件。
-* **内容仓库** - 包含您的 `.md` / `.mdx` 文件和媒体。这里没有 Tina 配置。
+* **内容仓库** - 包含您的 `.md` / `.mdx` 文件和媒体。这里没有 TinaCMS 配置。
 
 ### 为什么？
 
@@ -38,7 +38,7 @@ TinaCloud 允许您将单个项目拆分为两个 GitHub 仓库：一个包含�
 设置完成后，您的 TinaCloud 项目绑定到两个仓库。从编辑者的角度来看，仪表板没有任何变化；他们以往的方式编辑、保存和提交审核。在幕后：
 
 * **架构** 从生成器仓库的索引架构加载。它从不从内容仓库读取。
-* **编辑分支和拉取请求** 通过 Tina 的编辑工作流在 **内容仓库** 上创建。
+* **编辑分支和拉取请求** 通过 TinaCMS 的编辑工作流在 **内容仓库** 上创建。
 * **媒体上传** 到 **内容仓库**。
 * **搜索索引重建** 在每次内容仓库推送时进行。
 * CLI 在本地开发和 CI 构建期间通过 `localContentPath` 从兄弟内容目录读取内容。
@@ -111,7 +111,7 @@ parent/
 pnpm dev   # 或 npm run dev / yarn dev
 ```
 
-Tina 的开发服务器将监视内容仓库的文件以及生成器的架构。在 `my-content-repo/content/posts/hello.mdx` 中编辑内容文件将热重载管理 UI；在 `my-generator-repo/tina/config.tsx` 中编辑将重新生成架构。生成的工件只会出现在 `my-generator-repo/tina/__generated__/` 中。
+TinaCMS 的开发服务器将监视内容仓库的文件以及生成器的架构。在 `my-content-repo/content/posts/hello.mdx` 中编辑内容文件将热重载管理 UI；在 `my-generator-repo/tina/config.tsx` 中编辑将重新生成架构。生成的工件只会出现在 `my-generator-repo/tina/__generated__/` 中。
 
 ## 什么内容存放在哪里
 
@@ -123,7 +123,7 @@ Tina 的开发服务器将监视内容仓库的文件以及生成器的架构。
 | 应用程序代码 (Next.js / Astro / 等)       |     ✅     | ❌        |
 |           `.md` / `.mdx` 内容             |     ❌     | ✅        |
 |        媒体 (图片、视频等)                |     ❌     | ✅        |
-| 从 Tina UI 的编辑分支 / PRs               |     ❌     | ✅        |
+| 从 TinaCMS UI 的编辑分支 / PRs               |     ❌     | ✅        |
 
 ## 从旧的“两 TinaCloud 项目”模式迁移
 
@@ -139,11 +139,11 @@ Tina 的开发服务器将监视内容仓库的文件以及生成器的架构。
 
 ## 路径配置注意事项
 
-在 `tina/config.(ts/js)` 中定义集合路径时，避免设置 `path: ''`。Tina 期望一个文件夹相对路径；空字符串可能导致在创建新文档时出现错误，因为 Tina 在保存时会添加一个 `/`，这可能会产生无效的 GitHub 路径。
+在 `tina/config.(ts/js)` 中定义集合路径时，避免设置 `path: ''`。TinaCMS 期望一个文件夹相对路径；空字符串可能导致在创建新文档时出现错误，因为 TinaCMS 在保存时会添加一个 `/`，这可能会产生无效的 GitHub 路径。
 
 ## 静态网站生成器兼容性
 
-如果您使用的是 Next.js 以外的静态网站生成器（例如 Astro），请确保您的内容管道忽略 **生成器仓库** 中的 `tina/` 目录；Tina 的配置和生成文件不是内容文件，可能会在被内容集合拾取时导致解析错误。
+如果您使用的是 Next.js 以外的静态网站生成器（例如 Astro），请确保您的内容管道忽略 **生成器仓库** 中的 `tina/` 目录；TinaCMS 的配置和生成文件不是内容文件，可能会在被内容集合拾取时导致解析错误。
 
 ```javascript
 export default defineCollection({
@@ -156,7 +156,7 @@ export default defineCollection({
 
 ## 从内容仓库触发网站构建（可选）
 
-使用单独的内容仓库时，您可能希望内容更新（例如来自 Tina UI）自动触发网站的构建。TinaCloud 支持通过 webhooks 开箱即用。
+使用单独的内容仓库时，您可能希望内容更新（例如来自 TinaCMS UI）自动触发网站的构建。TinaCloud 支持通过 webhooks 开箱即用。
 
 ### 使用 TinaCloud Webhooks（推荐）
 
