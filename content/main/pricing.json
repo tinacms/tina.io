@@ -475,14 +475,14 @@
           ]
         },
         {
-          "rowHeader": "Projects",
-          "rowDescription": "Free, Team and Business plans cover one project each. Enterprise is org-wide and covers every project.",
+          "rowHeader": "Billing unit",
+          "rowDescription": "Team and Business plans are bought per project. Enterprise covers every project in your organisation.",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Whole organisation\",\"isTicked\":false}"
           ]
         },
         {
