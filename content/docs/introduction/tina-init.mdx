@@ -1,16 +1,16 @@
 ---
 alias: tina-init
 cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/src/cmds/init/printFinalMessage.ts"
-title: Adding Tina to an Existing Site
+title: Adding TinaCMS to an Existing Site
 id: /docs/introduction/tina-init/
 last_edited: '2022-02-04T15:51:56.737Z'
 ---
 
 > Note: This doc assumes that you have a working site. If not, you can quickly get started with our default [Astro starter](/docs/frameworks/astro/), or one of the [other starters](/docs/introduction/using-starter/) in the CLI.
 
-## Adding Tina
+## Adding TinaCMS
 
-We created a quick way to bootstrap a Tina application to show the power of visual editing; from your terminal, enter the following command:
+We created a quick way to bootstrap a TinaCMS application to show the power of visual editing; from your terminal, enter the following command:
 
 ```bash
 npx @tinacms/cli@latest init
@@ -18,9 +18,9 @@ npx @tinacms/cli@latest init
 
 _For help with the prompts for non-NextJS based sites, see [this guide](/docs/frameworks/other/)._
 
-This command will ask you a few questions, and sets up the Tina boilerplate in your application:
+This command will ask you a few questions, and sets up the TinaCMS boilerplate in your application:
 
-1. Installs all required dependencies for Tina.
+1. Installs all required dependencies for TinaCMS.
 2. Defines a basic content schema in the `tina` directory.
 3. Creates example content in the demo directory.
 4. **(NextJS-only)**: Edits the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
@@ -52,13 +52,13 @@ These should be applied manually if they haven't been set by the CLI.
 
 ### A quick test
 
-Now that we have a basic Tina boilerplate setup, you can launch your application using the following command:
+Now that we have a basic TinaCMS boilerplate setup, you can launch your application using the following command:
 
 ```bash
 yarn dev
 ```
 
-When Tina is initialized on a NextJS site, a "/admin/index.html" page is created to allow editors to log in and begin to make content changes.
+When TinaCMS is initialized on a NextJS site, a "/admin/index.html" page is created to allow editors to log in and begin to make content changes.
 
 Now, if you navigate to `http://localhost:3000/admin/index.html` (assuming your site runs on port 3000), you should see a new CMS landing page has been added to your site!
 
@@ -80,6 +80,6 @@ git push
 
 > Note, many frameworks offer a way to redirect `/admin/index.html` to `/admin`.
 
-![Tina Login Page](/img/docs/using-tina-editor/tina-login.png "The TinaCMS login screen at /admin")
+![TinaCMS Login Page](/img/docs/using-tina-editor/tina-login.png "The TinaCMS login screen at /admin")
 
 Next we'll show you how to use the CMS and start editing some content!

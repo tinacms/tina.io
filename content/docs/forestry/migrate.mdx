@@ -10,7 +10,7 @@ TinaCMS can be added to your site locally. In this doc, we'll guide you through 
 
 ## Getting Started
 
-> Note: This Tina Migration will change your site's content files. Please back up your site's content before proceeding. This is best done by doing a git commit before proceeding.
+> Note: This TinaCMS Migration will change your site's content files. Please back up your site's content before proceeding. This is best done by doing a git commit before proceeding.
 
 From within your site's directory, run:
 
@@ -28,7 +28,7 @@ This will ask you a few questions. When it asks you if you want to migrate your 
 
 ## Migrating your content
 
-This will migrate your content from Forestry to TinaCMS. It will create a `tina/config.{ts,js}` that will contain the setup for Tina as well as the schema for your content. However, this migration will not be perfect. You will have to make some changes to your site to get it working with TinaCMS. We will go over these changes in the next section.
+This will migrate your content from Forestry to TinaCMS. It will create a `tina/config.{ts,js}` that will contain the setup for TinaCMS as well as the schema for your content. However, this migration will not be perfect. You will have to make some changes to your site to get it working with TinaCMS. We will go over these changes in the next section.
 
 This migration tool takes each section in your `.forestry/settings.yaml` file and turns it into a [TinaCMS collection](https://tina.io/docs/schema/#defining-collections). If one or more templates are defined in the section, it will create a [TinaCMS template](/docs/reference/templates/) for each front matter template. If only one template is defined it will create a [TinaCMS collection with fields](/docs/reference/collections/#basic-example)
 
@@ -55,7 +55,7 @@ With TinaCMS running, navigate to `http://localhost:1313/admin`
 
 > ^ The above default port may differ depending on your framework.Hint: If you are getting error when running this command please see the [Common Errors](/docs/forestry/common-errors) page.
 
-At this point, you should be able to see the Tina admin, select a post, save changes, and see the changes persisted to your local markdown files.
+At this point, you should be able to see the TinaCMS admin, select a post, save changes, and see the changes persisted to your local markdown files.
 
 ![](/img/hugo-tina-admin-screenshot.png)
 
@@ -97,19 +97,19 @@ schema: {
 // ...
 ```
 
-You can lean more about content modeling in Tina's [content modeling docs](https://tina.io/docs/schema/).
+You can lean more about content modeling in TinaCMS's [content modeling docs](https://tina.io/docs/schema/).
 
-## Deploy Tina to your site
+## Deploy TinaCMS to your site
 
 Next we'll take you from editing with TinaCMS locally to editing in production with your team.
 
 ### Step 1) Push your repo to git
 
-Push your repo up to git, along with its new Tina configuration.
+Push your repo up to git, along with its new TinaCMS configuration.
 
 ### Step 2) Set up a TinaCloud project
 
-In production, we'll want to make sure only authorized users can access your Tina admin, and make changes to your content. You can set up a [TinaCloud project](https://app.tina.io/) to handle this.
+In production, we'll want to make sure only authorized users can access your TinaCMS admin, and make changes to your content. You can set up a [TinaCloud project](https://app.tina.io/) to handle this.
 Once your project is created, you'll also need to generate a read-only-token.
 
 See our [TinaCloud docs](https://tina.io/docs/tinacloud/) for help using TinaCloud.
@@ -131,16 +131,16 @@ export default defineConfig({
 
 ### Step 4) Configure build commands
 
-Tina's build will need to be apart of your site's static generation.
+TinaCMS's build will need to be apart of your site's static generation.
 If you are using Netlify, this is configured in `app.netlify.com/sites/<your-site-id>/settings/deploys`
 
 You should prepend `yarn tinacms build && ` or `npx tinacms build && ` to your site's build command:
 
 ![](/img/docs/forestry-migration/build-settings.png)
 
-For more information on deploying Tina with Netlify, Vercel, or GitHub Pages, [see this doc](/docs/tinacloud/overview/#deploying-your-site-with-the-tinacms-admin)
+For more information on deploying TinaCMS with Netlify, Vercel, or GitHub Pages, [see this doc](/docs/tinacloud/overview/#deploying-your-site-with-the-tinacms-admin)
 
-### Step 5) Start using Tina!
+### Step 5) Start using TinaCMS!
 
 With that set, you should be able to push your config to Git and start editing on production at `<your-site-url>/admin`!
 

@@ -1,9 +1,9 @@
 ---
 id: /docs/guides/nextjs-data-fetching
-title: Querying Tina Content in Nextjs
+title: Querying TinaCMS Content in Nextjs
 ---
 
-## Querying Tina Content in NextJS
+## Querying TinaCMS Content in NextJS
 
 In NextJS, content can be queried statically at build-time or dynamically at runtime (using [SSR](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props), or [CSR](https://nextjs.org/docs/basic-features/data-fetching/client-side)).
 
@@ -33,7 +33,7 @@ const getStaticProps = async () => {
 
 #### Example: Fetching content through getStaticPaths
 
-You'll likely want to query the Tina's Content API for [dynamic routes](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths#getstaticpaths).
+You'll likely want to query the TinaCMS's Content API for [dynamic routes](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths#getstaticpaths).
 
 ```js
 export const getStaticPaths = async () => {
@@ -49,9 +49,9 @@ export const getStaticPaths = async () => {
 
 #### Next.js `fallback: "blocking"`
 
-In Next.js one can specify [`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking), this allows `getStaticProps` to run server-side at request time when a user goes to a page that was not specified in `getStaticPaths`. This allows document-creation to work with Tina, as well as advanced NextJS features like ISR.
+In Next.js one can specify [`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking), this allows `getStaticProps` to run server-side at request time when a user goes to a page that was not specified in `getStaticPaths`. This allows document-creation to work with TinaCMS, as well as advanced NextJS features like ISR.
 
-For a full working example of Tina + NextJS, [check out our "React Starter"](https://github.com/tinacms/tina-react-starter).
+For a full working example of TinaCMS + NextJS, [check out our "React Starter"](https://github.com/tinacms/tina-react-starter).
 
 ### Fetching content for SSR pages
 
