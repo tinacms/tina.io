@@ -14,7 +14,7 @@ NEXT_PUBLIC_TINA_CLIENT_ID=***
 
 ## Configure the auth provider
 
-To enable TinaCloud for auth, make sure the `clientId` property is set to the `NEXT_PUBLIC_TINA_CLIENT_ID` environment variable in your Tina config.
+To enable TinaCloud for auth, make sure the `clientId` property is set to the `NEXT_PUBLIC_TINA_CLIENT_ID` environment variable in your TinaCMS config.
 
 `tina/config.{ts,js}`
 
@@ -33,7 +33,7 @@ export default defineConfig({
 })
 ```
 
-## Update the Tina Backend
+## Update the TinaCMS Backend
 
 First install the `@tinacms/auth` package:
 
@@ -41,7 +41,7 @@ First install the `@tinacms/auth` package:
 yarn add @tinacms/auth
 ```
 
-Next you can update your Tina Backend to use the `TinaCloudBackendAuthProvider` class.
+Next you can update your TinaCMS Backend to use the `TinaCloudBackendAuthProvider` class.
 
 `/pages/api/tina/[...routes].{ts,js}`
 

@@ -5,7 +5,7 @@ next: ''
 previous: ''
 ---
 
-When your markdown content is requested through Tina's API, Tina serves a *parsed AST (abstract syntax tree)* version of the content.
+When your markdown content is requested through TinaCMS's API, TinaCMS serves a *parsed AST (abstract syntax tree)* version of the content.
 
 > The *parsed AST* gives developers the ability to step through each node, and render it with full control.
 
@@ -49,7 +49,7 @@ The below example has some sample markdown and associated AST.
 
 ## Inbuilt Markdown Rendering
 
-Tina also provides a `<TinaMarkdown>` component, which renders your `md` or `mdx` component from the *parsed AST* without having to handle the data structure yourself.
+TinaCMS also provides a `<TinaMarkdown>` component, which renders your `md` or `mdx` component from the *parsed AST* without having to handle the data structure yourself.
 
 It's as easy as passing in the markdown content via the `content` attribute.
 
@@ -143,20 +143,20 @@ function CodeBlock({ value, lang = "ts" }) {
 
 If you are using `mdx` as the format, you'll have the ability to define custom components that your editors can leverage.
 
-### How does MDX work with Tina?
+### How does MDX work with TinaCMS?
 
-Tina doesn't require a compilation step like other MDX tooling you
+TinaCMS doesn't require a compilation step like other MDX tooling you
 might be familiar with, so it needs to know about all the possible elements
 you support ahead of time. \
 \
 Instead of doing an `import` statement in MDX,
-you need to register each element as a `template` in your Tina schema.
+you need to register each element as a `template` in your TinaCMS schema.
 
 ### Rich-text templates
 
 This only works for documents of the `mdx` format.
 
-Tina also needs to have each MDX component defined in advance, when you define your collection.
+TinaCMS also needs to have each MDX component defined in advance, when you define your collection.
 
 By defining the above `NewsletterSignup` template, our editors now have the ability to add that template to the page body.
 
@@ -202,7 +202,7 @@ The rich-text field also gets a new 'embed' option for adding in these component
 
 ### Linking to React components
 
-Once you've registered a `template` with a rich-text field in a collection, Tina still needs to know how to render the custom component. Add the key and component to the mapping you pass into the `components` prop on `<TinaMarkdown>`.
+Once you've registered a `template` with a rich-text field in a collection, TinaCMS still needs to know how to render the custom component. Add the key and component to the mapping you pass into the `components` prop on `<TinaMarkdown>`.
 
 The key should match the templates name property.
 
