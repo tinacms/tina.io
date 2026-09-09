@@ -1,0 +1,62 @@
+---
+title: '比较 TinaCMS 和 Forestry: 访问 CMS'
+id: '/docs/forestry/accessing-cms/'
+---
+
+## CMS 托管
+
+Forestry.io 和 TinaCMS 之间的主要区别之一是如何访问 CMS。在 Forestry 中，你通过我们托管的环境 (`app.forestry.io`) 访问 CMS。
+
+在 TinaCMS 中，CMS 前端与您的网站一起托管。这种模式类似于 Forestry 的“远程管理”功能，允许您从网站的 URL 访问 CMS。
+
+要设置此功能，您的网站构建脚本将更改为类似以下内容：
+
+```diff
+- build: hugo
++ build: tinacms build && hugo
+```
+
+`tinacms build` 步骤将在您网站的构建目录中输出 TinaCMS 仪表板 SPA。
+
+一旦设置好 TinaCMS，您的编辑人员将通过 (`<your-site-url>/admin`) 访问 CMS。
+
+<WebmEmbed embedSrc="/img/docs/forestry-migration/accessing-admin.webm"/>
+
+## 额外的灵活性
+
+通过在您的网站内托管 CMS 前端，您可以对 CMS 行为有更多的灵活性/控制。编写自定义字段组件，创建自定义字段验证，重用您的模式模型等。
+
+例如，以下是如何创建一个自定义的“只读字段”
+
+```js
+//config.js
+// ...
+const ReadonlyTextField = wrapFieldsWithMeta(({ input }) => {
+  return <input type="text" disabled className={textFieldClasses} {...input} />
+})
+
+export default defineSchema({
+  collections: [
+    {
+      label: 'Post',
+      name: 'post',
+      path: 'posts',
+      fields: [
+        {
+          label: 'Title',
+          name: 'title',
+          type: 'string',
+        },
+        {
+          label: 'identifier',
+          name: 'identifier',
+          type: 'string',
+          ui: {
+            component: ReadonlyTextField,
+          },
+        },
+      ],
+    },
+  ],
+})
+```

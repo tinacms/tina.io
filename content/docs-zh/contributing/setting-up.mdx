@@ -1,0 +1,60 @@
+---
+id: /docs/contributing/setting-up
+consumes:
+  - file: /package.json
+    details: 使用脚本进行本地开发
+  - file: /lerna.json
+    details: 使用 `run` 脚本
+  - file: README.md
+    details: '显示命令，如何开始'
+title: 贡献设置
+last_edited: '2021-02-18T13:05:33.946Z'
+---
+
+<WarningCallout
+  body={<>
+    此页面已过时 - 请查看 [TinaCMS GitHub](https://github.com/tinacms/tinacms/blob/main/CONTRIBUTING.md) 以获取最新的贡献信息
+  </>}
+/>
+
+## 开发
+
+要开始：
+
+```bash
+git clone https://github.com/tinacms/tinacms.git
+cd tinacms
+npm install
+npm run bootstrap
+npm run build
+
+# 启动 Gatsby 演示
+cd packages/demo-gatsby
+npm run start
+```
+
+**不要在** `packages` 目录中运行 `npm install`
+
+> **TinaCMS** 使用 **[Lerna](https://lerna.js.org/)** 来管理本地开发时的依赖。这允许各个包通过符号链接相互引用。在包内运行 `npm install` 会用 npm 注册表中的包引用替换符号链接。
+
+## 命令
+
+| 命令                                 | 描述                                           |
+| ----------------------------------- | --------------------------------------------- |
+| `npm run bootstrap`                 | 安装依赖并链接本地包。                        |
+| `npm run build`                     | 构建所有包                                    |
+| `npm run test`                      | 为所有包运行测试                              |
+| `lerna run build --scope <package>` | 仅构建 `<package>`。                          |
+| `lerna run watch`                   | 监视所有包以进行重建。                        |
+
+## 运行开发包
+
+安装开发设置后，您可以运行 *packages* 目录中的演示应用程序 **demo-cra**、**demo-gatsby** 和 **demo-next**。
+
+这些项目可以用作 TinaCMS 包的开发环境，您可以编辑 TinaCMS 包中的任何其他包。
+
+在编辑 tina 的包时，我们可以执行命令 `npm run dev` 来在仓库包上执行开发构建。
+
+此命令将构建所有 TinaCMS 包。这将在 tina 演示包的引用中反映，从而根据所做的更改更新演示包。
+
+这样，您可以更改 tinacms 包并在演示包中测试更改，作为开发环境。

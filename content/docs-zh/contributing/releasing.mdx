@@ -1,0 +1,121 @@
+---
+id: /docs/contributing/releasing
+consumes:
+  - file: /RELEASE.md
+    details: '共享发布流程，应当镜像'
+  - file: /lerna.json
+    details: 使用发布命令
+  - file: README.md
+    details: '展示发布流程，应当镜像'
+title: 贡献发布
+---
+
+<WarningCallout
+  body={<>
+    此页面已过时 - 请查看 [TinaCMS GitHub](https://github.com/tinacms/tinacms/blob/main/CONTRIBUTING.md) 以获取最新的贡献信息
+  </>}
+/>
+
+## 总体流程
+
+TinaCMS 有三个主要分支：
+
+* **master:** tinacms 的前沿
+* **next:** 下一个版本的预览
+* **latest:** 当前稳定版本
+
+因此更改的流程如下：
+
+> `fix-some-bug` => `master` => `next` => `latest`
+
+该过程在一周内完成：
+
+* 周一
+  1. `next` 合并到 `latest`；然后 `latest` 发布到 npm
+  2. `master` 合并到 `next`；然后 `next` 发布到 npm
+* 任何错误的紧急修复将被挑选到 `next` 和 `latest` 中，并相应地发布。
+* 每个合并到 `master` 的拉取请求会自动触发一个
+  `canary` 发布。
+
+通过这个过程：
+
+* 所有接受的更改都可以作为 `canary` 发布进行早期测试
+* 关键修复会尽快发布
+* 新功能和小修复大约需要 1.5 周发布
+
+## 发布步骤
+
+一般的发布流程如下：
+
+1. **构建源文件：**
+
+   源文件必须编译、压缩和混淆以准备发布。
+2. **生成 CHANGELOG 和 Git 标签：**
+
+   我们使用 `lerna` 从提交信息中自动生成 CHANGELOG 文件。
+3. **清理 CHANGELOG**
+
+   Lerna 有时会添加空的变更日志条目。例如，如果 `react-tinacms` 被更改，
+   那么 `tinacms` 将获得一个仅更新依赖项的补丁更新。确保安装 `lerna-clean-changelog-cli`：
+
+   `npm i -g lerna-clean-changelogs-cli`
+4. **发布到 NPM：**
+
+   你必须在本地设置一个具有 `@tinacms` 组织访问权限的 NPM\_TOKEN
+5. **将 CHANGELOG 和 Git 标签推送到 GitHub：**
+
+   让所有人知道！
+
+具体命令根据发布类型略有不同。
+
+### 预发布
+
+1. **构建源文件：**
+
+   `npm run build`
+2. **生成 CHANGELOG 和 Git 标签：**
+
+   `lerna version \   --conventional-commits \   --conventional-prerelease \   --no-push \   --allow-branch next \
+     -m "chore(publish): prerelease"`
+3. **清理 CHANGELOG**
+
+   `lcc ** && git commit -am "chore: clean changelogs"`
+4. **发布到 NPM：**
+   `lerna publish from-package --dist-tag next`
+5. **将 CHANGELOG 和 Git 标签推送到 GitHub：**
+   `git push && git push --tags`
+
+### 预发布毕业
+
+1. **构建源文件：**
+
+   `npm run build`
+2. **生成 CHANGELOG 和 Git 标签：**
+
+   `lerna version \   --conventional-commits \   --conventional-graduate \   --no-push \   --allow-branch next \
+     -m "chore(publish): graduation"`
+3. **清理 CHANGELOG**
+
+   `lcc ** && git commit -am "chore: clean changelogs"`
+4. **发布到 NPM：**
+
+   `lerna publish from-package`
+5. **将 CHANGELOG 和 Git 标签推送到 GitHub：**
+   `git push && git push --tags`
+
+### 发布
+
+1. **构建源文件：**
+
+   `npm run build`
+2. **生成 CHANGELOG 和 Git 标签：**
+
+   `lerna version \   --conventional-commits \   --no-push \   --allow-branch master \
+     -m "chore(publish): release"`
+3. **清理 CHANGELOG**
+
+   `lcc ** && git commit -am "chore: clean changelogs"`
+4. **发布到 NPM：**
+   `lerna publish from-package`
+5. **将 CHANGELOG 和 Git 标签推送到 GitHub：**
+   `git push && git push --tags`

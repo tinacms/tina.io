@@ -50,11 +50,11 @@ export default function Home() {
 }
 ```
 
-这里有一些小但重要的变化。让我们来看看它们。
+这里有一些小但重要的变化。让我们逐一了解它们。
 
-* 我们将 `setAmazingTitle` 状态设置器更换为新的 `setGraphQLresponse` 状态设置器。这是为了让我们可以访问视觉编辑器的整个 GraphQL 对象。
-* 我们引入了 `useTina` 方法，这是 Tina 如何将我们在页面上看到的内容与视觉编辑器中的输入连接起来的方式。`useTina` 接受一个包含我们 GraphQL 响应中几个属性的对象，以便 Tina 的视觉编辑器可以用相同的值填充其输入。
+* 我们将 `setAmazingTitle` 状态设置器更改为新的 `setGraphQLresponse` 状态设置器。这样我们就可以访问整个 GraphQL 对象以供我们的可视化编辑器使用。
+* 我们引入了 `useTina` 方法，这是 TinaCMS 如何将我们在页面上看到的内容与可视化编辑器中的输入“连接”起来的方式。`useTina` 接受一个包含我们 GraphQL 响应中几个属性的对象，因此 TinaCMS 的可视化编辑器可以用相同的值填充其输入。
 
 我们还没有完全完成。如果你打开浏览器的开发工具并导航到 `http://localhost:3000/admin/index.html`，你会在控制台中看到一个错误。
 
-这实际上是由于 NextJS 的工作方式导致的——继续操作以启动你的视觉编辑器。
+这实际上是由于 NextJS 的工作方式导致的——继续操作以启动你的可视化编辑器。

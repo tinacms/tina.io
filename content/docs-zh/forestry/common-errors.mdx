@@ -6,11 +6,11 @@ title: 迁移时的常见错误
 last_edited: '2024-08-30T06:09:45.267Z'
 ---
 
-以下是从Forestry迁移到TinaCMS时可能遇到的一些常见问题列表。
+以下是从Forestry迁移到TinaCMS时可能遇到的常见问题列表。
 
 ## 迁移包含非字母数字字符的字段
 
-在TinaCMS中，所有字段只能包含字母数字字符或下划线。而在Forestry中，你可以有包含非字母数字字符的字段，例如`my-field-name`或`my field name`。
+在TinaCMS中，所有字段只能包含字母数字字符或下划线。而在Forestry中，你可以使用包含非字母数字字符的字段，例如`my-field-name`或`my field name`。
 
 TinaCMS提供了一个`nameOverride`属性，允许你指定如何输出包含特殊字符的字段。
 
@@ -32,7 +32,7 @@ TinaCMS提供了一个`nameOverride`属性，允许你指定如何输出包含�
 
 在TinaCMS中，使用块作为字段类型的概念（以前在Forestry中可用）被支持为[在对象字段中提供模板](/docs/editing/blocks/)。在迁移过程中，迁移工具会将你的块转换为模板。
 
-> 在TinaCMS中，我们默认使用`_template`键而不是`template`键。Forestry迁移工具会通过为Forestry站点设置`templateKey`为"template"来自动处理这一点，但需要注意这一点。
+> 在TinaCMS中，我们默认使用`_template`键而不是`template`键。Forestry迁移工具会自动处理这一点，为Forestry站点设置`templateKey`为"template"，但需要注意这一点。
 
 ### 在块名称中使用破折号
 
@@ -63,7 +63,7 @@ sections:
   #   ...
 ```
 
-那么在Tina中，你的块字段将如下所示：
+那么在TinaCMS中，你的块字段将如下所示：
 
 ```js
 // ...
@@ -112,7 +112,7 @@ sections:
 
 ![](/img/docs/forestry-migration/Screen-Shot-Error-Messager.png)
 
-这可能由于多种原因发生。一些常见原因是因为你尝试获取的数据
+这可能由于多种原因发生。一些常见原因是你尝试获取的数据
 
 * 格式不正确
 * 缺少必填字段
@@ -135,7 +135,7 @@ _template: my_template
 ---
 ```
 
-..其中"my_template"是文件所属集合中的模板名称。
+其中"my_template"是文件所属集合中的模板名称。
 
 ## 错误 `YAMLException: duplicated mapping key`
 
@@ -150,7 +150,7 @@ date: 2021-01-02
 ---
 ```
 
-它需要更改为
+需要更改为
 
 ```md
 ---
@@ -160,7 +160,7 @@ date: 2021-01-02
 
 ## 信息：Match被转换为newMatch
 
-在TinaCMS中，match属性的工作方式与在Forestry中略有不同。在Forestry中，match属性是一个包含文件扩展名的glob模式。在TinaCMS中，match属性是一个不包含文件扩展名的glob模式。
+在TinaCMS中，match属性的工作方式与在Forestry中有所不同。在Forestry中，match属性是一个包含文件扩展名的glob模式。在TinaCMS中，match属性是一个不包含文件扩展名的glob模式。
 
 在TinaCMS中，match属性为每个集合设置并嵌套。
 

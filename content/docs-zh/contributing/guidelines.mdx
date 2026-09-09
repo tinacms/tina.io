@@ -1,0 +1,45 @@
+---
+id: /docs/contributing/guidelines
+title: 贡献指南
+---
+
+<WarningCallout
+  body={<>
+    此页面已过时 - 请查看 [TinaCMS GitHub](https://github.com/tinacms/tinacms/blob/main/CONTRIBUTING.md) 以获取最新的贡献信息
+  </>}
+/>
+
+以下是一组为TinaCMS及其包贡献的指南和提示。请同时参考此[文档](https://github.com/tinacms/tinacms/blob/master/CONTRIBUTING.md)以获取最新的贡献信息。
+
+**如果您有问题或需要帮助，请在** **[论坛](https://tina.io/community/)** **上发布。**
+
+## 如何贡献
+
+* [报告错误](https://github.com/tinacms/tinacms/issues)
+* [建议增强功能](https://github.com/tinacms/tinacms/issues)
+* [撰写文档、指南或博客文章](https://github.com/tinacms/tina.io)
+* 自愿参与用户测试
+* [添加功能、修复错误等](https://github.com/tinacms/tinacms/issues)
+* [在TinaCMS论坛回答问题](https://tina.io/community/)
+* 解决一个[良好的入门问题](https://github.com/tinacms/tinacms/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)!
+
+## 贡献代码
+
+阅读[设置](/docs/contributing/setting-up)指南以开始在本地开发TinaCMS。
+
+### 提交更改
+
+TinaCMS使用[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/)来生成变更日志条目。请确保您的提交遵循此约定。
+
+### 创建包
+
+TinaCMS中的包根据其名称进行组织
+
+| 类型                    | 命名约定           | 示例路径                |
+| ----------------------- | ------------------ | ----------------------- |
+| 内部包                  | `@tinacms/*`       | `@tinacms/core`         |
+| Node API扩展            | `@tinacms/api-*`   | `@tinacms/api-git`      |
+| React特定包             | `react-tinacms-*`  | `react-tinacms-remark`  |
+| Gatsby插件              | `gatsby-tinacms-*` | `gatsby-tinacms-json`   |
+| NextJS包                | `next-tinacms-*`   | `next-tinacms-markdown` |
+| 演示项目                | `demo-*`           | `demo-gatsby`           |

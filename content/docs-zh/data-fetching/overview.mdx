@@ -8,7 +8,7 @@ previous: ''
 
 ## 介绍
 
-如[数据获取介绍](/docs/features/data-fetching/)中所述，Tina 提供了一个用于查询内容的客户端。
+如[数据获取介绍](/docs/features/data-fetching/)中所述，TinaCMS 提供了一个用于查询内容的客户端。
 
 > 注意，对于高级用例，您还可以手动查询底层的 [GraphQL API](/docs/data-fetching/custom-queries/#writing-inline-queries)。
 
@@ -64,7 +64,7 @@ const postsResponse = await client.queries.postConnection({
 
 > 只有 `gt`、`gte`、`lt`、`lte`、`after`、`before` 可以用于三元条件。
 
-#### 按文件名（\_sys）过滤
+#### 根据文件名（\_sys）过滤
 
 目前，按文件名过滤文档的唯一方法是通过**代码**过滤现有的文档集合。
 
@@ -76,7 +76,7 @@ const allPosts = posts?.data?.postConnection?.edges.filter(
 );
 ```
 
-> 注意：使用自动生成的 `<collection-name>Connection` 时，查询将仅应用于文档的字段，而不是 `_sys` 属性。如上所示的代码过滤是一个合适的替代方案。
+> 注意：使用自动生成的 `<collection-name>Connection` 时，查询将仅应用于文档的字段，而不是 `_sys` 属性。如上所示的代码过滤是一种合适的替代方案。
 
 ### 排序
 
@@ -90,9 +90,9 @@ const postsResponse = await client.queries.postConnection({
 // ...
 ```
 
-#### 按多个字段排序
+#### 多字段排序
 
-这里我们将使用 postConnection 查询我们的帖子集合，并使用名为 category-date 的多字段索引首先按类别排序，然后按日期排序结果：
+在这里，我们将使用 postConnection 查询我们的帖子集合，并首先按类别排序，然后按日期排序，使用名为 category-date 的多字段索引：
 
 ```js
 const postsResponse = await client.queries.postConnection({
@@ -104,7 +104,7 @@ const postsResponse = await client.queries.postConnection({
 
 ### 分页
 
-Tina 支持基于游标的分页：
+TinaCMS 支持基于游标的分页：
 
 ```js
 const postsResponse = await client.queries.postConnection({
@@ -116,4 +116,4 @@ const postsResponse = await client.queries.postConnection({
 // ...
 ```
 
-在客户端使用内置查询的一个注意事项是**您一次只能查询一个根集合**。如果您有一个页面上有多个表单，您可能需要使用[自定义查询](/docs/data-fetching/custom-queries/)。
+在客户端使用内置查询的一个限制是**您一次只能查询一个根集合**。如果您有一个页面上有多个表单，您可能需要使用[自定义查询](/docs/data-fetching/custom-queries/)。
