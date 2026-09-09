@@ -58,7 +58,7 @@ export default defineConfig({
 
 ## 设置API路由
 
-Tina的“外部媒体提供者”支持需要一个轻量级的后端媒体处理器，需要由用户设置/托管。有多种方式可以设置此处理器：
+TinaCMS的“外部媒体提供者”支持需要一个轻量级的后端媒体处理器，需要由用户设置/托管。有多种方式可以设置这个处理器：
 
 ### “NextJS API路由”
 
@@ -100,11 +100,11 @@ export default createMediaHandler({
 以上代码片段中发生了什么：
 
 * 我们调用`createMediaHandler`来设置路由并将您的媒体存储实例连接到您的Cloudinary账户。
-* `authorized`键将确保只有TinaCloud内的授权用户可以上传和编辑媒体。
+* `authorized`键将确保只有TinaCloud中的授权用户才能上传和编辑媒体。
 
 ### 框架无关的实现
 
-在上述示例中，我们展示了如何将后端处理器托管为NextJS API函数。如果您在Vercel上使用其他框架，同样的方法适用（唯一的小区别是您需要使用`/api/...`而不是`/pages/api/...`来处理您的处理器）。
+在上述示例中，我们展示了如何将后端处理器托管为NextJS API函数。如果您在Vercel上使用其他框架，同样的方法适用（唯一的区别是您需要使用`/api/...`而不是`/pages/api/...`来处理您的处理器）。
 
 您还可以查看我们的[Netlify Functions](/docs/reference/media/external/authentication/#option-3-netlify-functions)实现。
 

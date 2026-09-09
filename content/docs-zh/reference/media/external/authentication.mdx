@@ -8,7 +8,7 @@ next: ''
 previous: ''
 ---
 
-Tina支持使用外部媒体提供商，但需要用户设置/托管一个轻量级的后端媒体处理器。Tina提供了一些助手来简化这一过程，适用于`cloudinary`、`s3`和`dos`（"Digital Ocean Spaces"）。
+TinaCMS支持使用外部媒体提供商，但需要用户设置/托管一个轻量级的后端媒体处理器。TinaCMS提供了一些帮助工具来简化这一过程，适用于`cloudinary`、`s3`和`dos`（"Digital Ocean Spaces"）。
 
 你还需要定义自己的授权函数，以检查用户是否被允许访问处理器。
 
@@ -30,7 +30,7 @@ yarn add @tinacms/auth
 
 从["@tinacms/auth"](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/auth)导入`isAuthorized`。
 
-`authorized`键将确保只有TinaCloud中的授权用户可以上传和编辑媒体。
+`authorized`键将确保只有TinaCloud中的授权用户才能上传和编辑媒体。
 
 ```ts
 // pages/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts
@@ -64,11 +64,11 @@ Vercel支持通过在项目根目录创建一个`/api`目录来创建无服务�
 
 > 注意：你可能会注意到包名可能包含"next"（例如：`next-tinacms-cloudinary`）。你仍然可以将这些包用于其他框架。
 
-### 选项3) Netlify 函数
+### 选项3) Netlify Functions
 
 如果你的网站托管在Netlify上，你可以使用["Netlify Functions"](https://docs.netlify.com/functions/overview/)来托管你的媒体处理器。
 
-首先，你必须设置重定向，以便所有对`/api/*`的请求都可以重定向到Netlify函数。你可以在`netlify.toml`中设置重定向。我们还将使用[esbuild](https://docs.netlify.com/configure-builds/file-based-configuration/#functions)来构建我们的函数，因此我们也将在`netlify.toml`中设置这一点。
+首先，你必须设置重定向，以便所有对`/api/*`的请求都可以重定向到Netlify Functions。你可以在`netlify.toml`中设置重定向。我们还将使用[esbuild](https://docs.netlify.com/configure-builds/file-based-configuration/#functions)来构建我们的函数，因此我们也将在`netlify.toml`中设置这一点。
 
 在项目根目录的`netlify.toml`文件中添加以下内容。
 
@@ -140,8 +140,7 @@ export const handler = ServerlessHttp(app)
 
 ### 选项3) AWS Lambda
 
-如果你的网站托管在AWS上，你可以使用[AWS Lambda](https://aws.amazon.com/lambda/)来托管你的媒体处理器。以下示例
-使用S3媒体处理器，但你可以使用任何媒体处理器。
+如果你的网站托管在AWS上，你可以使用[AWS Lambda](https://aws.amazon.com/lambda/)来托管你的媒体处理器。以下示例使用S3媒体处理器，但你可以使用任何媒体处理器。
 
 #### 前提条件
 
@@ -212,28 +211,28 @@ TINA_AWS_REGION=********
 TINA_AWS_SECRET_ACCESS_KEY=******************
 ```
 
-#### API 网关
+#### API Gateway
 
-1. 有了Lambda函数后，你可以继续创建一个API网关：
+1. 有了Lambda函数后，你可以继续创建一个API Gateway：
    1. 点击**`Create API`**
    2. 选择**REST API**
 2. 一旦API创建完成，在根路径下创建一个名为**`/api`**的资源，方法是进入*Resources*并选择*Create Resource*
-3. 接下来，创建一个嵌套的子路径，通过创建一个使用**`{proxy+}`**特殊语法的资源来获取所有**`/api`**子路径。确保勾选***Configure as proxy resource.***
+3. 接下来，创建一个使用**`{proxy+}`**特殊语法的嵌套子路径，以捕获所有**`/api`**子路径。确保勾选***Configure as proxy resource.***
 
    在设置ANY方法时，传递处理TinaCMS媒体管理器逻辑的Lambda函数。
 
-   点击**`save`**并允许API网关向Lambda函数添加权限
+   点击**`save`**并允许API Gateway向Lambda函数添加权限
 4. 通过点击*Action*下拉菜单并选择Deploy API来部署你的API
    1. 为Deployment Stage选择**`[New Stage]`**并输入*Stage name*
-   2. 一旦API部署完成，你可以在*Stages*菜单中点击你创建的阶段查看*Invoke URL*。
+   2. 一旦API部署完成，你可以通过点击你创建的阶段在*Stages*菜单中查看*Invoke URL*
 5. 通过进入*Settings*菜单并添加**`/*`**通配符来配置**Binary Media Types**
 
 #### CloudFront
 
-1. 为了完成连接，使用刚创建的API网关的*Invocation URL*为CloudFront创建一个新的**Origin**。将Origin Path设置为API部署的阶段名称。
-2. 为CloudFront创建一个新的**Behaviour**，该行为将拦截带有**`/api/s3/media*`**路径的请求，并使用刚创建的API网关origin。确保允许以下HTTP方法：**`GET`**、**`HEAD`**、**`OPTIONS`**、**`PUT`**、**`POST`**、**`PATCH`**和**`DELETE`**。
+1. 为了完成连接，使用刚创建的API Gateway的*Invocation URL*为CloudFront创建一个新的**Origin**。将Origin Path设置为API部署的阶段名称。
+2. 为CloudFront创建一个新的**Behaviour**，它将拦截带有**`/api/s3/media*`**路径的请求，并使用刚创建的API Gateway origin。确保允许以下HTTP方法：**`GET`**、**`HEAD`**、**`OPTIONS`**、**`PUT`**、**`POST`**、**`PATCH`**和**`DELETE`**。
    1. 在**Cache key and origin requests**部分，选择*Cache policy and origin request policy*选项。对于*Cache policy*，选择**CachingDisabled**。对于*Origin request policy*，选择**AllViewerExceptHostHeader**。
-3. 重复上述过程以创建另一个行为，该行为将拦截带有**`/api/s3/media/*`**路径的请求。
+3. 重复上述过程以创建另一个行为，拦截带有**`/api/s3/media/*`**路径的请求。
 
 ## 在前端注册媒体存储
 
@@ -261,6 +260,6 @@ export default defineConfig({
 })
 ```
 
-> 确保在推送到TinaCloud的生产环境时同时提交对配置和[`tina-lock.json`](/docs/tina-folder/overview/#tina-lockjson)文件的更改，否则你的资产仍将以`https://assets.tina.io`为前缀，就像你[仍在使用基于仓库的媒体](/docs/reference/media/repo-based/)一样。
+> 确保在将更改推送到TinaCloud的生产环境时，同时提交对配置和[`tina-lock.json`](/docs/tina-folder/overview/#tina-lockjson)文件的更改，否则你的资产仍将以`https://assets.tina.io`为前缀，就像你[仍在使用基于仓库的媒体](/docs/reference/media/repo-based/)一样。
 
 现在你可以在TinaCMS中管理外部媒体存储。要详细了解每个媒体存储，请参阅下一节。

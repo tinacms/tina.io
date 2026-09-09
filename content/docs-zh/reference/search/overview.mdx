@@ -8,13 +8,13 @@ next: ''
 previous: ''
 ---
 
-TinaCMS 提供了内置的内容搜索功能。这对于允许编辑者快速查找网站中的内容非常有用。TinaCloud 的内容搜索由 [Fergus McDowall](https://github.com/fergiemcdowall "Fergus McDowall") 的 [search-index](https://www.npmjs.com/package/search-index "search-index") 库提供支持。
+TinaCMS 提供了内置的内容搜索功能。这对于允许编辑者快速在网站中查找内容非常有用。TinaCloud 的内容搜索由 [Fergus McDowall](https://github.com/fergiemcdowall "Fergus McDowall") 的 [search-index](https://www.npmjs.com/package/search-index "search-index") 库提供支持。
 
-> 注意：目前在自托管的 Tina 中不支持搜索。
+> 注意：目前在自托管的 TinaCMS 中不支持搜索功能。
 
 ## 配置
 
-要启用搜索功能，您需要在 Tina 配置中填充 `search` 字段。使用 TinaCloud 搜索时，搜索配置中唯一必需的元素是 `search.tina.indexerToken` 字段。这可以从项目的 TinaCloud [仪表板](/docs/tinacloud/dashboard/projects/#api-tokens)中获取。
+要启用搜索功能，您需要在 TinaCMS 配置中填充 `search` 字段。使用 TinaCloud 搜索时，搜索配置中唯一必需的元素是 `search.tina.indexerToken` 字段。可以从项目的 TinaCloud [仪表板](/docs/tinacloud/dashboard/projects/#api-tokens)中获取。
 
 ```javascript
 export default defineConfig({
@@ -38,30 +38,35 @@ export default defineConfig({
 
 ### 定义
 
-| 属性                               | 描述                                                                                                                                                                                                       |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `search.tina.indexerToken`         | TinaCloud 搜索令牌 (*必需*)                                                                                                                                                                                |
-| `search.tina.stopwordLanguages`    | 可选的字符串停用词语言数组。默认为 `['eng']`。请参阅 [stopword](https://github.com/fergiemcdowall/stopword#language-code) GitHub 仓库以获取支持语言的完整列表。                                             |
-| `search.indexBatchSize`            | 由索引过程使用，以确定每个请求要索引的文档数量。默认为 `100`。                                                                                                                                             |
-| `search.maxSearchIndexFieldLength` | 对于可变长度的文本字段，这控制索引时考虑的文本长度。较高的值将增加索引时间和搜索索引的大小。默认为 `100` 个字符。                                                                                           |
+| 属性                                        | 描述                                                                                                                                                                                                       |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `search.tina.indexerToken`                  | TinaCloud 搜索令牌 (*必需*)                                                                                                                                                                                |
+| `search.tina.stopwordLanguages`             | 可选的字符串停用词语言数组。默认为 `['eng']`。请参阅 [stopword](https://github.com/fergiemcdowall/stopword#language-code) GitHub 仓库以获取支持语言的完整列表。                                            |
+| `search.tina.fuzzyEnabled`                  | 全局启用或禁用模糊搜索。默认为 `true`。                                                                                                                                                                    |
+| `search.tina.fuzzyOptions.maxDistance`      | 模糊匹配的最大编辑距离（0-10）。较高的值可以找到更远的匹配项，但可能返回不太相关的结果。默认为 `2`。                                                                                                       |
+| `search.tina.fuzzyOptions.minSimilarity`    | 匹配所需的最低相似度分数（0-1）。较高的值返回更精确的匹配。默认为 `0.6`。                                                                                                                                  |
+| `search.tina.fuzzyOptions.maxTermExpansions`| 每个搜索词考虑的最大相似术语数量（1-100）。默认为 `10`。                                                                                                                                                  |
+| `search.tina.fuzzyOptions.useTranspositions`| 使用 Damerau-Levenshtein 算法允许字符换位（例如，“teh” → “the”）。默认为 `true`。                                                                                                                         |
+| `search.indexBatchSize`                     | 索引过程使用此参数来确定每个请求要索引的文档数量。默认为 `100`。                                                                                                                                          |
+| `search.maxSearchIndexFieldLength`          | 对于可变长度的文本字段，此参数控制索引时考虑的文本长度。较高的值会增加索引时间和搜索索引的大小。默认为 `100` 个字符。                                                                                     |
 
 ## 构建搜索索引
 
 ### 开发
 
-当搜索配置完成并且站点在本地使用 `dev` 命令运行时，内容将在启动时自动索引。对本地内容的任何更改也将触发对（本地）搜索索引的更新。
+当搜索配置完成并且站点在本地使用 `dev` 命令运行时，内容将在启动时自动索引。对本地内容的任何更改也会触发对（本地）搜索索引的更新。
 
 ### 生产
 
 当搜索配置完成并且站点使用 `build` 命令为生产环境构建时，搜索索引将自动创建并上传到 TinaCloud。站点的每个 Git 分支都有一个单独的搜索索引。
 
-请注意，搜索索引在站点构建后是“实时”的，因此任何新添加或删除的内容可能会在站点部署之前反映在搜索索引中。可以通过将 `--skip-search-index` CLI 选项传递给 `build` 命令来跳过构建搜索索引。然后可以在站点部署完成后单独运行 [search-index](/docs/cli-overview/#tinacms-search-index) 命令。
+请注意，搜索索引在站点构建后是“实时”的，因此任何新添加或删除的内容可能会在站点部署之前反映在搜索索引中。可以通过将 `--skip-search-index` cli 选项传递给 `build` 命令来跳过构建搜索索引。然后可以在站点部署完成后单独运行 [search-index](/docs/cli-overview/#tinacms-search-index) 命令。
 
 ## 自定义搜索索引
 
 ### 排除字段
 
-默认情况下，所有集合字段类型（除 `image` 外）都包含在搜索索引中。您可以通过控制哪些字段包含在搜索索引中来提高内容的可发现性。这可以通过在集合模式中的字段上设置可选的 `searchable` 属性来完成。例如，要禁用作者字段的索引，可以使用如下代码：
+默认情况下，所有集合字段类型（除 `image` 外）都包含在搜索索引中。您可以通过控制哪些字段包含在搜索索引中来提高内容的可发现性。这可以通过在集合模式中的字段上设置可选的 `searchable` 属性来完成。例如，要禁用作者字段的索引，请使用类似以下的代码：
 
 ```javascript
 // ...
@@ -95,6 +100,116 @@ fields: [
 ]
 //
 ```
+
+## 模糊搜索
+
+TinaCMS 包含内置的模糊搜索功能，即使用户输入错误或拼写错误，也能帮助他们找到内容。模糊搜索**默认启用**，因此您的搜索将自动处理常见的拼写错误，无需额外配置。
+
+> 模糊搜索在 **tinacms@3.3.0** 和 **@tinacms/cli@2.1.0** 中发布。无需更改配置即可获得新搜索的好处——只需更新您的包即可！
+
+### 模糊搜索的工作原理
+
+模糊搜索在您的内容中查找与用户输入“相似”的术语，即使它们不完全匹配。TinaCMS 使用 **Damerau-Levenshtein 距离**算法，该算法通过计算将一个单词转换为另一个单词所需的最小单字符编辑次数来衡量相似性。
+
+**支持的编辑操作：**
+
+| 操作       | 示例         | 编辑次数 |
+| ---------- | ------------ | -------- |
+| 插入       | "rect" → "react" | 1        |
+| 删除       | "reactt" → "react" | 1        |
+| 替换       | "reect" → "react" | 1        |
+| 换位       | "raect" → "react" | 1（交换相邻字符） |
+
+当用户搜索时，他们查询中的每个单词都会扩展为包含来自您索引内容的相似术语。例如，搜索 "Raect tutrial" 也会匹配包含 "React tutorial" 的文档。
+
+### 配置
+
+模糊搜索开箱即用，具有合理的默认设置。您可以通过在搜索配置中添加 `fuzzyOptions` 来自定义其行为：
+
+```javascript
+export default defineConfig({
+  //...
+  search: {
+    tina: {
+      indexerToken: '<Your Search Token>',
+      stopwordLanguages: ['eng'],
+      fuzzyEnabled: true, // 默认启用
+      fuzzyOptions: {
+        maxDistance: 2,          // 最大编辑距离（0-10）
+        minSimilarity: 0.6,      // 最小相似度分数（0-1）
+        maxTermExpansions: 10,   // 每个单词的最大相似术语
+        useTranspositions: true, // 允许字母交换
+      },
+    },
+  },
+  //...
+})
+```
+
+### 示例
+
+以下是模糊搜索在默认设置下将捕获的拼写错误示例：
+
+```javascript
+// 单字符错误
+"Raect"       → 匹配 "React"
+"TypeScrpt"   → 匹配 "TypeScript"
+"Javscript"   → 匹配 "JavaScript"
+
+// 字母换位
+"teh"         → 匹配 "the"
+"freind"      → 匹配 "friend"
+
+// 带有拼写错误的多词查询
+"Raect tutrial"           → 匹配 "React tutorial"
+"TypeScrpt developmnt"    → 匹配 "TypeScript development"
+```
+
+### 禁用模糊搜索
+
+如果您只希望精确匹配，可以禁用模糊搜索：
+
+```javascript
+export default defineConfig({
+  //...
+  search: {
+    tina: {
+      indexerToken: '<Your Search Token>',
+      fuzzyEnabled: false, // 禁用模糊搜索
+    },
+  },
+  //...
+})
+```
+
+### 性能提示
+
+模糊搜索包括对重复查询的自动缓存。如果您需要进一步优化性能，请考虑以下调整：
+
+| 调整                        | 效果                                           |
+| --------------------------- | ---------------------------------------------- |
+| 降低 `maxDistance`（例如，1）| 搜索速度更快，误报更少，但可能会错过一些拼写错误 |
+| 提高 `minSimilarity`（例如，0.8）| 匹配更精确，结果更相关                         |
+| 降低 `maxTermExpansions`（例如，5）| 在大型索引中搜索速度更快                       |
+
+**更严格、更快匹配的示例配置：**
+
+```javascript
+fuzzyOptions: {
+  maxDistance: 1,        // 仅允许 1 次编辑
+  minSimilarity: 0.8,    // 需要 80% 的相似度
+  maxTermExpansions: 5,  // 更少的术语扩展
+}
+```
+
+### 故障排除
+
+| 问题                             | 解决方案                                                                 |
+| -------------------------------- | ------------------------------------------------------------------------ |
+| 搜索返回太多不相关的结果         | 将 `minSimilarity` 增加到 `0.7` 或 `0.8`，或将 `maxDistance` 减少到 `1` |
+| 搜索无法找到带有拼写错误的结果   | 确保 `fuzzyEnabled` 为 `true`（默认）。尝试将 `maxDistance` 增加到 `3` |
+| 搜索感觉很慢                     | 减少 `maxTermExpansions` 和 `maxDistance`。考虑降低 `maxSearchIndexFieldLength` |
+| 只想要精确匹配                   | 设置 `fuzzyEnabled: false`                                               |
 
 ## 替代搜索提供商
 

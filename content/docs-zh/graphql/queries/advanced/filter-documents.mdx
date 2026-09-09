@@ -6,13 +6,13 @@ next: ''
 previous: ''
 ---
 
-Tina会自动为在你的模式中定义的集合创建过滤器。
+TinaCMS 会自动为在你的架构中定义的集合创建过滤器。
 
-要过滤集合结果，请将`filter`参数传递给`<collection>Connection`查询，然后为集合中的字段使用任何过滤[操作符类型](/docs/graphql/queries/advanced/filter-documents/#operator-types)。
+要过滤集合结果，请将 `filter` 参数传递给 `<collection>Connection` 查询，后跟集合字段的任何过滤器[操作符类型](/docs/graphql/queries/advanced/filter-documents/#operator-types)。
 
-`filter`对象是一组嵌套的条件，其中键对应于集合字段，值描述条件。
+`filter` 对象是一个嵌套的条件集，其中键对应于集合字段，值描述条件。
 
-条件可以是“二元”或“三元”的。二元条件由一个操作符和一个操作数组成（例如`{"eq":"foo"}`）。三元条件由两个操作符和两个操作数组成（例如`{"gt":0, "lte": 10}`）。
+条件可以是“二元”或“三元”的。二元条件由一个操作符和一个操作数组成（例如 `{"eq":"foo"}`）。三元条件由两个操作符和两个操作数组成（例如 `{"gt":0, "lte": 10}`）。
 
 ## 操作符类型
 
@@ -28,13 +28,13 @@ Tina会自动为在你的模式中定义的集合创建过滤器。
 | after      | 之后                     | datetime                         |
 | before     | 之前                     | datetime                         |
 
-> 只有`gt`、`gte`、`lt`、`lte`、`after`、`before`可以用于三元条件。
+> 只有 `gt`、`gte`、`lt`、`lte`、`after`、`before` 可以用于三元条件。
 
 ## 示例
 
 ### 在字段上进行过滤
 
-这里我们将使用`postConnection`查询我们的`post`集合，并通过帖子`title`过滤结果：
+在这里，我们将使用 `postConnection` 查询我们的 `post` 集合，并通过帖子 `title` 过滤结果：
 
 <GraphQLCodeBlock
   query="{
@@ -65,9 +65,9 @@ Tina会自动为在你的模式中定义的集合创建过滤器。
   }"
 />
 
-### 使用IN操作符在字段上进行过滤
+### 使用 IN 操作符在字段上进行过滤
 
-这里我们将使用`postConnection`查询我们的`post`集合，并过滤结果以便仅返回指定`category`的成员：
+在这里，我们将使用 `postConnection` 查询我们的 `post` 集合，并过滤结果，以便仅返回指定 `category` 的成员：
 
 <GraphQLCodeBlock
   query="{
@@ -98,9 +98,9 @@ Tina会自动为在你的模式中定义的集合创建过滤器。
   }"
 />
 
-### 在日期范围上进行过滤
+### 在日期范围内进行过滤
 
-这里我们将使用`postConnection`查询我们的`post`集合，并过滤结果以便仅返回在指定范围内具有`date`的帖子：
+在这里，我们将使用 `postConnection` 查询我们的 `post` 集合，并过滤结果，以便仅返回 `date` 在指定范围内的帖子：
 
 <GraphQLCodeBlock
   query="{
@@ -133,7 +133,7 @@ Tina会自动为在你的模式中定义的集合创建过滤器。
 
 ### 在多个字段上进行过滤
 
-可以在多个字段上进行过滤。多个条件目前被视为布尔`AND`操作。这里我们将使用`postConnection`查询我们的`post`集合，并通过`category`和`title`过滤结果：
+可以在多个字段上进行过滤。多个条件目前被视为布尔 `AND` 操作。在这里，我们将使用 `postConnection` 查询我们的 `post` 集合，并通过 `category` 和 `title` 过滤结果：
 
 <GraphQLCodeBlock
   query="{
@@ -166,7 +166,7 @@ Tina会自动为在你的模式中定义的集合创建过滤器。
 
 #### 在引用上进行过滤
 
-这里我们将使用`postConnection`查询我们的`post`集合，并在引用的`author`的名字上进行过滤：
+在这里，我们将使用 `postConnection` 查询我们的 `post` 集合，并在引用的 `author` 的名字上进行过滤：
 
 <GraphQLCodeBlock
   query="{

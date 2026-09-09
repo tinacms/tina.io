@@ -7,7 +7,7 @@ id: '/docs/reference/self-hosted/auth-provider/bring-your-own'
 
 ## 1. 创建一个自定义认证提供者类
 
-您可以通过扩展 `AbstractAuthProvider` 类并实现以下函数来实现。
+您可以通过扩展 `AbstractAuthProvider` 类并实现以下函数来实现：
 
 ### 必需的函数
 
@@ -15,7 +15,7 @@ id: '/docs/reference/self-hosted/auth-provider/bring-your-own'
 
 `getUser`: 当用户进入 `/admin` 时调用此函数，用于确定用户是否已登录。如果返回一个真值，用户已登录。如果返回一个假值，用户未登录。
 
-`getToken`: 当请求发送到 GraphQL 端点时调用此函数。它应返回一个带有 `id_token` 属性的对象。这将作为 `Authorization` 头以格式 `Bearer <id_token>` 传递。
+`getToken`: 当请求发送到 GraphQL 端点时调用此函数。它应返回一个带有 `id_token` 属性的对象。这将作为 `Authorization` 头以 `Bearer <id_token>` 格式传递。
 
 `logOut`: 当用户点击注销按钮时调用此函数。
 
@@ -23,7 +23,7 @@ id: '/docs/reference/self-hosted/auth-provider/bring-your-own'
 
 `authorize`: 当用户进入 `/admin` 且已登录时调用此函数。用于确定用户是否有权访问管理页面。如果返回一个真值，用户被授权。如果返回一个假值，用户未被授权。
 
-`getSessionProvider`: 返回一个包装 TinaCMS UI 的 React 上下文提供者。
+`getSessionProvider`: 返回一个包裹 TinaCMS UI 的 React 上下文提供者。
 
 ```ts
 import { AbstractAuthProvider } from 'tinacms'
@@ -31,26 +31,26 @@ import { AbstractAuthProvider } from 'tinacms'
 export class CustomAuthProvider extends AbstractAuthProvider {
   constructor() {
     super()
-    // 在这里进行任何设置
+    // 在此处进行任何设置
   }
   async authenticate(props?: {}): Promise<any> {
-    // 在这里进行任何认证
+    // 在此处进行任何认证
   }
   async getToken() {
-    // 在这里返回令牌。令牌将作为 Authorization 头以格式 `Bearer <token>` 传递
+    // 在此处返回令牌。令牌将作为 Authorization 头以 `Bearer <token>` 格式传递
   }
   async getUser() {
     // 返回一个真值，用户已登录；如果返回一个假值，用户未登录。
   }
   async logout() {
-    // 在这里执行任何注销逻辑
+    // 在此处进行任何注销逻辑
   }
   async authorize(context?: any): Promise<any> {
-    // 在这里执行任何授权逻辑
+    // 在此处进行任何授权逻辑
   }
   getSessionProvider() {
-    // 如果不需要，可以删除 getSessionProvider
-    // 可选地返回一个 React 上下文提供者来包装管理页面
+    // 如果不需要，可以删除 GetSessionProvider
+    // 可选地返回一个 React 上下文提供者来包裹管理页面
   }
 }
 ```
@@ -64,7 +64,7 @@ export default defineConfig({
 })
 ```
 
-## 2. 将认证添加到 Tina 后端
+## 2. 将认证添加到 TinaCMS 后端
 
 `TinaNodeBackend` 接受一个 `authProvider` 属性。
 
@@ -102,7 +102,7 @@ const CustomBackendAuth = () => {
   return {
     isAuthorized: async (req, res) => {
       const token = req.headers.authorization
-      // 在这里验证令牌
+      // 在此处验证令牌
       return {
         isAuthorized: true,
       }
@@ -113,7 +113,7 @@ const CustomBackendAuth = () => {
 
 有关如何执行此操作的示例，请参见 [Auth.js 后端](/docs/reference/self-hosted/auth-provider/authjs)。
 
-一旦创建了实现 `BackendAuthProvider` 接口的对象，您可以将其传递给 `TinaNodeBackend` 的 `authProvider` 属性。
+一旦您创建了一个实现 `BackendAuthProvider` 接口的对象，您可以将其传递给 `TinaNodeBackend` 的 `authProvider` 属性。
 
 `/pages/api/tina/[...routes].{ts,js}`
 

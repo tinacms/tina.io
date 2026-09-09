@@ -14,7 +14,7 @@ previous: content/docs-zh/reference/overview.mdx
   body={<>
     重要 - 配置必须是确定性的
     
-    defineConfig 返回的对象在开发和构建期间必须多次评估。避免在影响模式或运行时配置的配置属性中直接使用非确定性值（例如 Date.now(), Math.random()）。这可能导致 GraphQL 模式不匹配错误。
+    defineConfig 返回的对象在开发和构建过程中必须多次评估。避免在影响模式或运行时配置的配置属性中直接使用非确定性值（例如 Date.now(), Math.random()）。这可能导致 GraphQL 模式不匹配错误。
     
     如果需要动态值，请返回一个函数并延迟计算该值。
   </>}
@@ -49,7 +49,7 @@ previous: content/docs-zh/reference/overview.mdx
       type: "string",
       required: true,
       description:
-        'TinaCMS 构建路径（编辑器路由）。\n\n通常为 `"admin"`。\n\n这将在 `[url]/admin/index.html` 可查看。\n'
+        'TinaCMS 构建路径（编辑器路由）。\n\n通常为 `"admin"`。\n\n这将在 `[url]/admin/index.html` 中查看。\n'
     },
     {
       groupName: "build",
@@ -62,14 +62,14 @@ previous: content/docs-zh/reference/overview.mdx
       name: "basePath",
       type: "string",
       description:
-        '如果在子路径中提供服务，则设置。\n\n对于 `[url]/my-site`，设置为 `"my-site"`。\n'
+        '如果在子路径中提供服务，请设置。\n\n对于 `[url]/my-site`，设置为 `"my-site"`。\n'
     },
     {
       groupName: "server",
       name: "allowedOrigins",
       type: "(string | RegExp | 'private')[]",
       description:
-        "控制哪些网站可以与本地开发服务器通信。仅影响 `tinacms dev` — 在生产中无效。\n\n默认情况下，仅允许来自您自己机器（`localhost`）的请求。只有在远程环境（如 **GitHub Codespaces**、**Gitpod**、**Docker** 或 **WSL2**）中开发时才需要设置此项。\n\n每个条目可以是：\n\n- 一个**URL 字符串** — 例如 `'https://my-codespace.github.dev'`\n- 一个**正则表达式** — 用于匹配 URL 模式\n- `'private'` — 一个允许本地网络上任何设备的简写，即 RFC 1918 私有 IP 范围（对 Docker 或 WSL2 有用）\n\n```ts\nserver: {\n  allowedOrigins: ['private', 'https://my-codespace.github.dev']\n}\n```\n"
+        "控制哪些网站可以与本地开发服务器通信。仅影响 `tinacms dev` — 在生产中无效。\n\n默认情况下，仅允许来自您自己机器（`localhost`）的请求。只有在远程环境（如 **GitHub Codespaces**、**Gitpod**、**Docker** 或 **WSL2**）中开发时才需要设置此项。\n\n每个条目可以是：\n\n- 一个 **URL 字符串** — 例如 `'https://my-codespace.github.dev'`\n- 一个 **正则表达式** — 用于匹配 URL 模式\n- `'private'` — 允许本地网络上的任何设备，即 RFC 1918 私有 IP 范围（对 Docker 或 WSL2 有用）\n\n```ts\nserver: {\n  allowedOrigins: ['private', 'https://my-codespace.github.dev']\n}\n```\n"
     },
     {
       groupName: "",
@@ -96,14 +96,14 @@ previous: content/docs-zh/reference/overview.mdx
       name: "localContentPath",
       type: "string",
       description:
-        "用于本地开发的单独内容仓库的路径，**相对于 `tina/` 配置文件夹解析**（而不是项目根目录）。\n\n设置后，集合 `path` 值相对于此内容根目录解析。内容目录**必须包含一个 `tina/` 文件夹**（可以是空的）— TinaCMS 在那里写入生成的文件，如 `tina-lock.json`。\n\n使用环境变量，因为路径可能因开发人员而异：\n\n```ts\nlocalContentPath: process.env.TINA_CONTENT_REPO_PATH // 例如 '../../my-content-repo'\n```\n\n有关完整的设置详细信息，请参阅[单独内容仓库指南](/docs/guides/separate-content-repo)。\n"
+        "用于本地开发的单独内容仓库的路径，**相对于 `tina/` 配置文件夹解析**（而不是项目根目录）。\n\n设置后，集合 `path` 值相对于此内容根目录解析。内容目录**必须包含一个 `tina/` 文件夹**（可以为空）— TinaCMS 在那里写入生成的文件，如 `tina-lock.json`。\n\n使用环境变量，因为路径可能因开发人员而异：\n\n```ts\nlocalContentPath: process.env.TINA_CONTENT_REPO_PATH // 例如 '../../my-content-repo'\n```\n\n有关完整的设置详细信息，请参阅 [单独内容仓库指南](/docs/guides/separate-content-repo)。\n"
     },
     {
       groupName: "",
       name: "authProvider",
       type: "AuthProvider",
       description:
-        "设置[自定义身份验证](/docs/reference/self-hosted/auth-provider/overview)。\n"
+        "设置 [自定义身份验证](/docs/reference/self-hosted/auth-provider/overview)。\n"
     },
     {
       groupName: "admin",
@@ -250,7 +250,7 @@ previous: content/docs-zh/reference/overview.mdx
       name: "fuzzyOptions.minSimilarity",
       type: "number",
       description:
-        "结果与搜索词的相似度必须在 0 到 1 之间的阈值。提高此值以仅显示非常接近的匹配；降低它以更宽松。\n",
+        "结果与搜索词的相似度必须在 0 到 1 之间的阈值。提高此值以仅显示非常接近的匹配项；降低它以更宽松。\n",
       default: "0.6"
     },
     {
@@ -271,14 +271,14 @@ previous: content/docs-zh/reference/overview.mdx
     },
     {
       description:
-        "defaultBranchName 用于在本地解析 `historyUrl` 时覆盖本地分支。主要用例是当默认分支不叫 `main` 时。\n",
+        "defaultBranchName 用于在本地解析 `historyUrl` 时覆盖本地分支。主要用例是当默认分支不叫 `main` 时\n",
       groupName: "repoProvider",
       name: "defaultBranchName",
       type: "string"
     },
     {
       description:
-        "允许用户定义 TinaCMS 应该链接用户查看他们正在编辑的文件的源历史记录的位置。\n\n`branch` 由 TinaCMS 为活动编辑分支解析\n\n`relativePath` 由 TinaCMS 为相关内容文件的相对路径解析\n\nGitHub 示例：\n\n```\nhistoryUrl: ({ relativePath, branch }) => ({ \n  url: `https://github.com/tinacms/tina.io/commits/${branch}/${relativePath}`\n```\n",
+        "允许用户定义 TinaCMS 应该链接用户以查看他们正在编辑的文件的源历史记录的位置。\n\n`branch` 由 TinaCMS 为活动编辑分支解析\n\n`relativePath` 由 TinaCMS 为相关内容文件的相对路径解析\n\nGitHub 示例：\n\n```\nhistoryUrl: ({ relativePath, branch }) => ({ \n  url: `https://github.com/tinacms/tina.io/commits/${branch}/${relativePath}`\n```\n",
       groupName: "repoProvider",
       name: "historyUrl",
       type: "function -- historyUrl?: (context: { relativePath: string; branch: string;}) => { url: string }"
@@ -305,7 +305,7 @@ previous: content/docs-zh/reference/overview.mdx
 
 ### Vercel 和 TinaCloud 配置
 
-这是一个使用 TinaCloud 托管数据层和内置 Tina 媒体及搜索功能的标准配置。
+这是一个使用 TinaCloud 托管数据层和内置 TinaCMS 媒体和搜索功能的标准配置。
 
 ```ts
 const branch =
@@ -349,7 +349,7 @@ export default defineConfig({
 
 ### Cloudinary 媒体存储
 
-Tina 支持 Git 支持的媒体和特定的外部媒体提供商：
+TinaCMS 支持 Git 支持的媒体和特定的外部媒体提供商：
 
 ```ts
 export default defineConfig({
@@ -366,10 +366,10 @@ export default defineConfig({
 
 ### TinaCloud 搜索选项
 
-Tina 通过 TinaCloud 提供内置搜索功能。
+TinaCMS 通过 TinaCloud 提供内置搜索功能。
 
 ```ts
-// Tina Cloud 搜索
+// TinaCMS 云搜索
 export default defineConfig({
   // ... 其他配置选项
   search: {
@@ -388,11 +388,11 @@ TinaCMS 在两个上下文中使用环境变量：**站点构建**（你的 Next
 
 #### 构建时嵌入
 
-Tina 管理是一个**静态构建的 SPA**。环境变量在构建时（在 `tinacms build` 或 `tinacms dev` 期间）嵌入到管理的 JavaScript 中。它们不会在运行时读取。这意味着变量必须在构建运行时存在于环境中——之后设置它没有效果。
+TinaCMS 管理是一个**静态构建的 SPA**。环境变量在构建时（在 `tinacms build` 或 `tinacms dev` 期间）嵌入到管理的 JavaScript 中。它们不会在运行时读取。这意味着变量必须在构建运行时存在于环境中——之后设置它没有效果。
 
 #### `.env` 文件支持
 
-Tina 的构建过程仅从 `.env` 文件中获取变量。在 `.env.local`、`.env.development` 或其他 dotenv 变体中定义的变量**不会**被 TinaCMS 构建加载。如果你要部署到托管提供商（Vercel、Netlify 等），请确保变量也在该提供商的环境设置中配置。
+TinaCMS 的构建过程仅从 `.env` 文件中获取变量。在 `.env.local`、`.env.development` 或其他 dotenv 变体中定义的变量**不会**被 TinaCMS 构建加载。如果你正在部署到托管提供商（Vercel、Netlify 等），请确保变量也在该提供商的环境设置中配置。
 
 #### 管理暴露的变量
 
@@ -407,7 +407,7 @@ Tina 的构建过程仅从 `.env` 文件中获取变量。在 `.env.local`、`.e
 | `NODE_ENV` | 当前环境（`development`、`production` 等） |
 | `HEAD` | 当前分支（由 Netlify 使用） |
 
-在管理中通过 `process.env` 访问的任何其他环境变量——包括[自定义字段组件](/docs/extending-tina/custom-field-components)、`beforeSubmit` 钩子或其他管理端代码——将是 `undefined`。
+在管理中通过 `process.env` 访问的任何其他环境变量——包括 [自定义字段组件](/docs/extending-tina/custom-field-components)、`beforeSubmit` 钩子或其他管理端代码——将是 `undefined`。
 
 <WarningCallout
   body={<>
@@ -421,17 +421,17 @@ Tina 的构建过程仅从 `.env` 文件中获取变量。在 `.env.local`、`.e
 |----------|---------|-------------|
 | `NEXT_PUBLIC_TINA_CLIENT_ID` | 站点 + 管理 | 你的 TinaCloud 项目客户端 ID |
 | `TINA_TOKEN` | 仅站点构建 | TinaCloud 的只读令牌（不在管理中暴露） |
-| `TINA_PUBLIC_IS_LOCAL` | 站点 + 管理 | 在自托管设置中切换本地和生产后端 |
+| `TINA_PUBLIC_IS_LOCAL` | 站点 + 管理 | 在自托管设置中在本地和生产后端之间切换 |
 | `NEXT_PUBLIC_TINA_BRANCH` | 站点 + 管理 | 覆盖用于内容获取的分支 |
 | `TINA_SEARCH_TOKEN` | 仅站点构建 | TinaCloud 搜索索引的令牌 |
 
-> 有关使用环境变量进行部署的更多信息，请参阅[使用 TinaCloud 进入生产](/docs/tinacloud/overview)。有关管理变量作用域的安全背景，请参阅[2023 年 2 月安全公告](/blog/2023-02-security-update)。
+> 有关使用环境变量进行部署的更多信息，请参阅 [使用 TinaCloud 进入生产](/docs/tinacloud/overview)。有关管理变量作用域的安全背景，请参阅 [2023 年 2 月安全公告](/blog/2023-02-security-update)。
 
 ### 使用 Typescript 路径别名的导入
 
-TinaCMS 支持 `tina/config.{ts,js,tsx}` 文件和集合中的 TypeScript 路径别名。
+TinaCMS 支持在 `tina/config.{ts,js,tsx}` 文件和集合中使用 TypeScript 路径别名。
 
-确保 `tsconfig.json` 存在于项目的根目录。在 `compilerOptions` 部分定义你的别名。
+确保 `tsconfig.json` 存在于项目的根目录。 在 `compilerOptions` 部分定义你的别名。
 
 ```javascript
 //tsconfig.json

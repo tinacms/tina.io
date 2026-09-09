@@ -15,15 +15,15 @@ previous: ''
 
 ## 处理Markdown短代码
 
-如果您的markdown中有一些自定义**短代码**逻辑，您可以在`templates`属性中指定它，Tina会将其处理为`jsx`元素：
+如果您的markdown中有一些自定义**短代码**逻辑，您可以在`templates`属性中指定它，TinaCMS会将其处理为`jsx`元素：
 
-以下代码片段在解析时会抛出错误，因为Tina不知道如何处理`{{}}`：
+以下代码片段在解析时会抛出错误，因为TinaCMS不知道如何处理`{{}}`：
 
 ```markdown
-{{ WarningCallout content="这是一个实验性功能，API可能会更改。有任何想法吗？请在聊天中告诉我们，或通过我们的[社区渠道](/community/)！" }}
+{{ WarningCallout content="这是一个实验性功能，API可能会发生变化。有任何想法吗？请在聊天中告诉我们，或通过我们的[社区渠道](/community/)！" }}
 ```
 
-但您可以通过`template`告诉Tina如何处理它：
+但您可以通过`template`告诉TinaCMS如何处理它：
 
 ```ts
 fields: [
@@ -57,13 +57,13 @@ fields: [
 
 ### 原始字符串短代码
 
-某些框架支持具有原始字符串值的短代码：
+某些框架支持带有原始字符串值的短代码：
 
 ```
 {{  myshortcode "这是一些原始文本" }}
 ```
 
-在Tina中，这可以通过特殊的`_value`字段支持。
+在TinaCMS中可以通过特殊的`_value`字段支持此功能。
 
 ```ts
 fields: [
@@ -126,7 +126,7 @@ fields: [
 
 ### 带有连字符的短代码名称
 
-有时您的短代码会包含Tina的内容建模中不支持的字符
+有时您的短代码会包含TinaCMS内容建模中不支持的字符
 
 ```md
 {{ my-shortcode }}
@@ -157,6 +157,6 @@ fields: [
 
 ## CMS中的短代码
 
-短代码在CMS中显示为任何其他自定义markdown嵌入。要在CMS中检查短代码，请在编辑器中使用原始markdown选项。
+短代码在CMS中显示为任何其他自定义markdown嵌入。在CMS中检查短代码，请在编辑器中使用原始markdown选项。
 
 ![](/img/docs/reference/rtf-toolbar.png)

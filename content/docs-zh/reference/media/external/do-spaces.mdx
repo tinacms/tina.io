@@ -26,7 +26,7 @@ npm install next-tinacms-dos
 
 ## 连接Digital Ocean Spaces
 
-您需要Digital Ocean Spaces提供的一些凭据来正确设置。如果您还没有账户，可以[在这里注册](https://cloud.digitalocean.com/registrations/new)。
+您需要一些由Digital Ocean Spaces提供的凭据来正确设置。如果您还没有账户，可以[在这里注册](https://cloud.digitalocean.com/registrations/new)。
 
 将以下变量添加到`.env`文件中。
 
@@ -63,7 +63,7 @@ export default defineConfig({
 
 ## 设置API路由
 
-Tina的“外部媒体提供商”支持需要一个轻量级的后端媒体处理器，需要由用户设置/托管。有多种方法可以做到这一点，包括与框架无关的[Netlify Functions实现](/docs/reference/media/external/authentication/#netlify)。
+TinaCMS的“外部媒体提供商”支持需要一个轻量级的后端媒体处理器，需要由用户设置/托管。有多种方法可以做到这一点，包括与框架无关的[Netlify Functions实现](/docs/reference/media/external/authentication/#netlify)。
 
 > **注意：** 此步骤将向您展示如何为Next.js设置API路由。如果您使用的是不同的框架，则需要设置自己的API路由。
 
@@ -115,7 +115,7 @@ export default createMediaHandler({
 })
 ```
 
-对于Netlify的使用案例，请阅读如何设置Netlify Functions[这里](/docs/reference/media/external/authentication/#netlify)
+对于Netlify的使用案例，请阅读[Netlify Functions设置指南](/docs/reference/media/external/authentication/#netlify)
 
 ### 使用自定义URL
 
