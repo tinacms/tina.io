@@ -88,6 +88,13 @@ The `format` property can be set to control the filetype of content created in t
       default: '"---"'
     },
     {
+      description:
+        "The max line width used when serializing frontmatter for markdown and for content in YAML files. This sets the line length that reformats long strings with folded scalar syntax (>-). Setting to `-1` disables line wrapping.\n",
+      name: "yamlMaxLineWidth",
+      type: "number?",
+      default: "-1"
+    },
+    {
       groupName: "match",
       name: "include",
       type: "string",
