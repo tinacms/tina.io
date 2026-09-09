@@ -23,7 +23,7 @@ In December 2024, with the release of `tinacms@2.5.2` and `@tinacms/cli@1.7.0`, 
 
 When integrating TinaCMS with Next.js and deploying on Vercel, it’s essential to understand Vercel’s Data Cache mechanism since it operates seamlessly. This caching system stores API responses, reducing redundant requests and improving page load times. However, Vercel caches TinaCloud’s API responses for an extended period by default, which can lead to stale content.
 
-![](/img/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache/one-year-caching.png "One of our sites using Tina experienced late content updates due to 1 year default caching")
+![](/img/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache/one-year-caching.png "One of our sites using TinaCMS experienced late content updates due to 1 year default caching")
 
 To manage revalidation and ensure content freshness, consider the following approaches:
 
