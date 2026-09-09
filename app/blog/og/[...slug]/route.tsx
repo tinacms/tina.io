@@ -6,18 +6,24 @@
 // So we serve the image from a distinct prefix (/blog/og/<slug>) and point
 // `openGraph.images` at it from the post's generateMetadata.
 //
-// force-static + generateStaticParams pre-renders one image per post at build
-// (where the fonts/photos under public/ are readable via fs).
+// Rendered on-demand and cached (ISR): the first request for a post's image
+// renders it, then it's served from cache. A static export (output: 'export')
+// can't generate on-demand, so it must prebuild every image instead — gated on
+// the same EXPORT_MODE switch next.config.js uses. Fonts/photos load from
+// public/ on disk with a live production-host fallback (see utils/og/ogAssets),
+// so they resolve at build and at on-demand runtime.
 
 import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { renderBlogOgImage } from 'utils/og/blogOgImage';
 
+const IS_EXPORT = process.env.EXPORT_MODE === 'static';
+
 export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const dynamicParams = !IS_EXPORT;
 
 export function generateStaticParams() {
-  return generateBlogStaticParams('en');
+  return IS_EXPORT ? generateBlogStaticParams('en') : [];
 }
 
 export async function GET(
@@ -25,10 +31,22 @@ export async function GET(
   { params }: { params: { slug: string[] } },
 ) {
   const slugPath = params.slug.join('/');
-  const { post } = await getBlogPost('en', slugPath);
+  // Tina's client defaults to errorPolicy: 'throw', so an unknown slug throws
+  // rather than returning { post: null } (same convention as app/blog/[...slug]).
+  let post: Awaited<ReturnType<typeof getBlogPost>>['post'];
+  try {
+    ({ post } = await getBlogPost('en', slugPath));
+  } catch (error) {
+    console.error(`Error fetching post for OG image: ${slugPath}`, error);
+    post = null;
+  }
+  if (!post) {
+    // Unknown slug: 404 rather than render + ISR-cache a generic fallback image.
+    return new Response(null, { status: 404 });
+  }
   return renderBlogOgImage({
-    title: post?.title ?? 'TinaCMS Blog',
-    author: post?.author,
+    title: post.title,
+    author: post.author,
     seed: slugPath,
   });
 }
