@@ -305,7 +305,7 @@ Note that it **must be** the default export.
 
 ### Vercel and TinaCloud Configuration
 
-This is a standard configuration using TinaCloud to host your datalayer and the built-in Tina media and search capabilities.
+This is a standard configuration using TinaCloud to host your datalayer and the built-in TinaCMS media and search capabilities.
 
 ```ts
 const branch =
@@ -349,7 +349,7 @@ export default defineConfig({
 
 ### Cloudinary Media Store
 
-Tina supports both Git-backed media and specific external media providers:
+TinaCMS supports both Git-backed media and specific external media providers:
 
 ```ts
 export default defineConfig({
@@ -366,10 +366,10 @@ export default defineConfig({
 
 ### TinaCloud Search Options
 
-Tina provides built-in search capabilities through TinaCloud.
+TinaCMS provides built-in search capabilities through TinaCloud.
 
 ```ts
-// Tina Cloud search
+// TinaCMS Cloud search
 export default defineConfig({
   // ... other config options
   search: {
@@ -388,11 +388,11 @@ TinaCMS uses environment variables in two contexts: the **site build** (your Nex
 
 #### Build-Time Embedding
 
-The Tina admin is a **statically built SPA**. Environment variables are embedded into the admin's JavaScript at build time (during `tinacms build` or `tinacms dev`). They are not read at runtime. This means a variable must be present in the environment when the build runs — setting it afterwards has no effect.
+The TinaCMS admin is a **statically built SPA**. Environment variables are embedded into the admin's JavaScript at build time (during `tinacms build` or `tinacms dev`). They are not read at runtime. This means a variable must be present in the environment when the build runs — setting it afterwards has no effect.
 
 #### `.env` File Support
 
-Tina's build process only picks up variables from `.env` files. Variables defined in `.env.local`, `.env.development`, or other dotenv variants are **not** loaded by the TinaCMS build. If you're deploying to a hosting provider (Vercel, Netlify, etc.), make sure the variables are also configured in that provider's environment settings.
+TinaCMS's build process only picks up variables from `.env` files. Variables defined in `.env.local`, `.env.development`, or other dotenv variants are **not** loaded by the TinaCMS build. If you're deploying to a hosting provider (Vercel, Netlify, etc.), make sure the variables are also configured in that provider's environment settings.
 
 #### Admin-Exposed Variables
 

@@ -15,7 +15,7 @@
           "gitHubLink": "https://github.com/JackDevAU"
         },
         {
-          "changesDescription": "Support Tina media uploads and deletes in the editorial workflow on protected branches. Media changes now prompt for a branch, write to that branch, switch the editor to it after the media operation succeeds, and continue through indexing and pull request creation with the same workflow progress UI as content edits.",
+          "changesDescription": "Support TinaCMS media uploads and deletes in the editorial workflow on protected branches. Media changes now prompt for a branch, write to that branch, switch the editor to it after the media operation succeeds, and continue through indexing and pull request creation with the same workflow progress UI as content edits.",
           "pull_request_number": "6902",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/6902",
           "commit_hash": "b9d561f",

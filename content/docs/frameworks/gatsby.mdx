@@ -1,6 +1,6 @@
 ---
 id: /docs/frameworks/gatsby
-title: Gatsby + Tina Setup Guide
+title: Gatsby + TinaCMS Setup Guide
 last_edited: '2025-10-21T09:41:02.906Z'
 next: content/docs/frameworks/jekyll.mdx
 previous: content/docs/frameworks/hugo.mdx
@@ -10,7 +10,7 @@ previous: content/docs/frameworks/hugo.mdx
 
 TinaCMS can be added to your Gatsby site locally. In this doc, we'll guide through the local setup, as well as editing on your production site.
 
-> You can reference our [Tina Gatsby Starter](https://github.com/tinacms/tina-gatsby-starter) for an example.
+> You can reference our [TinaCMS Gatsby Starter](https://github.com/tinacms/tina-gatsby-starter) for an example.
 
 ## Getting Started
 
@@ -43,13 +43,13 @@ To work around this, add the following lines to your **package.json** file.
 +  },
 ```
 
-That way you can force the graphql version to be the one Tina needs.
+That way you can force the graphql version to be the one TinaCMS needs.
 
 > To be sure which version you need, you can run `npm list graphql` in your project folder
 
 ### Allowing static `/admin/index.html` file in dev-mode
 
-To make Tina admin accessible in dev-mode, you will need to add the following code to your **gatsby-node.ts** file.
+To make TinaCMS admin accessible in dev-mode, you will need to add the following code to your **gatsby-node.ts** file.
 
 ```diff
 + import express, { Express } from "express";
@@ -61,7 +61,7 @@ To make Tina admin accessible in dev-mode, you will need to add the following co
 
 ## Model your content
 
-To edit your site's content in Tina, you can model your content in the tina/config.ts file.
+To edit your site's content in TinaCMS, you can model your content in the tina/config.ts file.
 
 Learn more about [content modelling](/docs/schema/)
 
@@ -81,7 +81,7 @@ With TinaCMS running, navigate to `http://localhost:8000/admin/index.html`
 
 > Hint: One common error is caused by running `gatsby clean` **after** `tinacms build`. This causes your admin html file to be wiped out. For more common errors, please see the [Common Errors](/docs/forestry/common-errors) page.
 
-At this point, you should be able to see the Tina admin, select a post, save changes, and see the changes persisted to your local markdown files.
+At this point, you should be able to see the TinaCMS admin, select a post, save changes, and see the changes persisted to your local markdown files.
 
 ![](/img/hugo-tina-admin-screenshot.png)
 
@@ -103,6 +103,6 @@ Read more about [data fetching](/docs/features/data-fetching/) and [visual editi
 
 ## See Also
 
-* [Astro setup guide](/docs/frameworks/astro/) - Using Tina with Astro (our default starter)
-* [Next.js setup guide](/docs/frameworks/next/app-router/) - Using Tina with Next.js
+* [Astro setup guide](/docs/frameworks/astro/) - Using TinaCMS with Astro (our default starter)
+* [Next.js setup guide](/docs/frameworks/next/app-router/) - Using TinaCMS with Next.js
 * [Visual Editing setup](/docs/contextual-editing/overview/) - Enable live preview editing

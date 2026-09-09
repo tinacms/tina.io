@@ -34,10 +34,10 @@
           "_template": "item"
         },
         {
-          "title": "Getting Started with Tina",
+          "title": "Getting Started with TinaCMS",
           "items": [
             {
-              "title": "Tina Starter - CLI",
+              "title": "TinaCMS Starter - CLI",
               "slug": "content/docs/introduction/using-starter.mdx",
               "_template": "item"
             },
@@ -777,7 +777,7 @@
                   "_template": "item"
                 },
                 {
-                  "title": "Tina Cloud",
+                  "title": "TinaCloud",
                   "slug": "content/docs/reference/self-hosted/auth-provider/tinacloud.mdx",
                   "_template": "item"
                 },

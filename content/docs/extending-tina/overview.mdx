@@ -1,16 +1,16 @@
 ---
 id: /docs/extending-tina/overview
-title: Extending Tina
+title: Extending TinaCMS
 last_edited: '2025-05-01T01:56:24.122Z'
 next: ''
 previous: ''
 ---
 
-Tina has many advanced features that allow the entire CMS editing experience to be customized.
+TinaCMS has many advanced features that allow the entire CMS editing experience to be customized.
 
 ## Customizing Fields
 
-Tina allows any field to be customized through the `ui` property. This allows a custom experience to be created for your editors. Some of the main customization features are:
+TinaCMS allows any field to be customized through the `ui` property. This allows a custom experience to be created for your editors. Some of the main customization features are:
 
 - Customizing the rendered [field component](/docs/extending-tina/custom-field-components/)
 - Customizing the [parsing and formatting](/docs/extending-tina/format-and-parse/) of user input
@@ -64,4 +64,4 @@ export default defineConfig({
 })
 ```
 
-The `cmsCallback` hook is primarily used for registering custom field plugins. It can also be used for altering Tina's UI, dynamically hiding the sidebar on specific pages, tapping into the CMS event bus, etc.
+The `cmsCallback` hook is primarily used for registering custom field plugins. It can also be used for altering TinaCMS's UI, dynamically hiding the sidebar on specific pages, tapping into the CMS event bus, etc.

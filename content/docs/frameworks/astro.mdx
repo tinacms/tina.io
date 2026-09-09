@@ -50,11 +50,11 @@ Answer the prompts:
 |---|---|
 | Which framework is your existing site built with? | **Astro** |
 | Choose your package manager | *the one your site uses* |
-| Would you like to use TypeScript for your Tina configuration? | **Yes** |
+| Would you like to use TypeScript for your TinaCMS configuration? | **Yes** |
 
 > `init` adds TinaCMS to an **existing** site. Run it in an empty folder and it stops and points you to Option 1.
 
-`init` installs `@tinacms/astro` + an SSR adapter, wraps your `dev` / `build` scripts, and adds new files: a ready-to-edit demo at **`/tinacms-demo`**, your `tina/` config, and one sample collection. It won't overwrite your content, and it leaves a customized `astro.config` alone (an empty or default config gets the Tina wiring).
+`init` installs `@tinacms/astro` + an SSR adapter, wraps your `dev` / `build` scripts, and adds new files: a ready-to-edit demo at **`/tinacms-demo`**, your `tina/` config, and one sample collection. It won't overwrite your content, and it leaves a customized `astro.config` alone (an empty or default config gets the TinaCMS wiring).
 
 Start the dev server:
 
@@ -117,7 +117,7 @@ pnpm add @astrojs/node          # or @astrojs/vercel / netlify / cloudflare
 
 `@astrojs/node` is the safe default for local editing. Match it to your host (Vercel, Netlify, Cloudflare) when you deploy.
 
-Add the Tina integration and an SSR adapter to `astro.config.mjs`. If you already have an `integrations` array or an adapter, **keep them** and just append `tina()`.
+Add the TinaCMS integration and an SSR adapter to `astro.config.mjs`. If you already have an `integrations` array or an adapter, **keep them** and just append `tina()`.
 
 > **Not sure how to merge it?** Copy the version `init` printed in your terminal, or compare your file against the snippet below and keep your existing integrations and adapter.
 
@@ -150,7 +150,7 @@ pnpm dev
 
 ## Make your existing Astro pages editable
 
-Right after `init`, **`/tinacms-demo` is the only page wired for Tina editing**. It's a working template for the rest of your site: copy the same pattern into your existing pages and components. (An *island* is just an editable section of a page.) Each editable page wires these five things, all scaffolded for the demo:
+Right after `init`, **`/tinacms-demo` is the only page wired for TinaCMS editing**. It's a working template for the rest of your site: copy the same pattern into your existing pages and components. (An *island* is just an editable section of a page.) Each editable page wires these five things, all scaffolded for the demo:
 
 1. **A field in your schema** (`tina/config.ts`): whatever you want to edit.
 2. **A data loader**: wrap the query in `requestWithMetadata()`.

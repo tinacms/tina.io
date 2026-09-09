@@ -22,7 +22,7 @@ next: content/blog-zh/gatsby-tina-101.mdx
 
 ## 字段插件 vs. 字段组件
 
-插件**扩展了CMS的功能**；字段插件允许我们创建和注册自定义字段。*创建字段插件有几个原因。*通过自定义字段，您可以完全控制编辑体验和功能。如果Tina提供的主要字段不适合您的用例，**您可以填补这些空白**。
+插件**扩展了CMS的功能**；字段插件允许我们创建和注册自定义字段。*创建字段插件有几个原因。*通过自定义字段，您可以完全控制编辑体验和功能。如果TinaCMS提供的主要字段不适合您的用例，**您可以填补这些空白**。
 
 字段组件只是字段插件的一部分（[稍后会详细介绍](https://tinacms.org/blog/custom-field-plugins#field-plugin-interface)）。自定义字段组件可以实现与插件相同的功能。但如果您计划在不同的表单中重用自定义字段，建议采取额外的步骤来制作插件🔌。
 
@@ -32,7 +32,7 @@ next: content/blog-zh/gatsby-tina-101.mdx
 
 ## 开始 👏
 
-要跟随学习，您应该已经设置了一个带有Tina表单的自定义字段组件。如果没有，您可以从上一篇文章中获取更多背景信息：[如何创建自定义字段组件](https://tinacms.org/blog/custom-field-components)。在接下来的示例中，我使用了我们上一篇文章中的相同[llama-filters](https://github.com/kendallstrautman/llama-filters) 🦙 演示。
+要跟随学习，您应该已经设置了一个带有TinaCMS表单的自定义字段组件。如果没有，您可以从上一篇文章中获取更多背景信息：[如何创建自定义字段组件](https://tinacms.org/blog/custom-field-components)。在接下来的示例中，我使用了我们上一篇文章中的相同[llama-filters](https://github.com/kendallstrautman/llama-filters) 🦙 演示。
 
 向CMS添加字段插件有**两个步骤**。首先，我们将定义字段组件对象并将其注册到CMS。接下来，我们将在表单定义中使用字段插件，以便我们可以在侧边栏中使用我们精美的自定义字段插件编辑内容。
 
@@ -47,7 +47,7 @@ next: content/blog-zh/gatsby-tina-101.mdx
 
 import React from 'react'
 import App from 'next/app'
-import { Tina, TinaCMS } from 'tinacms'
+import { TinaCMS, TinaCMS } from 'tinacms'
 import { GitClient } from '@tinacms/git-client'
 /*
  ** 1. 导入自定义字段组件
@@ -92,7 +92,7 @@ export default class Site extends App {
 
 #### 字段插件接口
 
-让我们进一步解析字段插件。下面的接口应提供一些关于创建字段插件所需内容的见解。当您将字段插件注册到Tina时，它期望一个具有类似结构的对象。
+让我们进一步解析字段插件。下面的接口应提供一些关于创建字段插件所需内容的见解。当您将字段插件注册到TinaCMS时，它期望一个具有类似结构的对象。
 
 ```ts
 interface FieldPlugin {
@@ -118,7 +118,7 @@ interface FieldPlugin {
 
 ### 2. 在表单中使用自定义字段
 
-现在插件已注册到CMS，我们可以在任何表单定义中使用它。回到[llama-filters演示](https://github.com/kendallstrautman/llama-filters)，让我们前往配置Tina表单的`index.js`。我们需要**更新表单选项**，使我们的图像饱和度字段引用字段插件`name`，而不是直接调用组件。
+现在插件已注册到CMS，我们可以在任何表单定义中使用它。回到[llama-filters演示](https://github.com/kendallstrautman/llama-filters)，让我们前往配置TinaCMS表单的`index.js`。我们需要**更新表单选项**，使我们的图像饱和度字段引用字段插件`name`，而不是直接调用组件。
 
 ```diff
 /*
@@ -151,8 +151,8 @@ Index.getInitialProps = async function() {
 }
 ```
 
-**就是这样！** 定义并注册到CMS的插件，您可以无限次重用此字段。在我看来，创建字段插件有助于保持定义表单的一致接口。这样，自定义字段就像本地Tina字段一样在*幕后*工作，这非常酷。
+**就是这样！** 定义并注册到CMS的插件，您可以无限次重用此字段。在我看来，创建字段插件有助于保持定义表单的一致接口。这样，自定义字段就像本地TinaCMS字段一样在*幕后*工作，这非常酷。
 
 ## 简短而甜美，如承诺的那样 🍰
 
-这篇文章结合前一篇，应该为您提供所有构建块，以开始制作自己的字段插件。随时*深入文档*了解[字段](https://tinacms.org/docs/plugins/fields/custom-fields/)或[插件](https://tinacms.org/docs/cms#plugins)。确保与我们[@tinacms](https://twitter.com/tinacms)分享您的炫酷自定义字段🖖。或者，如果您觉得Tina缺少一个基本字段，[打开一个PR](https://github.com/tinacms/tinacms/)来贡献您的自定义字段！
+这篇文章结合前一篇，应该为您提供所有构建块，以开始制作自己的字段插件。随时*深入文档*了解[字段](https://tinacms.org/docs/plugins/fields/custom-fields/)或[插件](https://tinacms.org/docs/cms#plugins)。确保与我们[@tinacms](https://twitter.com/tinacms)分享您的炫酷自定义字段🖖。或者，如果您觉得TinaCMS缺少一个基本字段，[打开一个PR](https://github.com/tinacms/tinacms/)来贡献您的自定义字段！

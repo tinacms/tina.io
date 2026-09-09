@@ -9,7 +9,7 @@ previous: ''
 
 ![](/wordpress-to-tina.png)
 
-This guide is a walkthrough using a **WordPress to Markdown converter**, which is recommended for most use cases where you want to migrate your content from WordPress to Tina.
+This guide is a walkthrough using a **WordPress to Markdown converter**, which is recommended for most use cases where you want to migrate your content from WordPress to TinaCMS.
 
 This guide focuses on transferring content and media only and will not include page styling.
 
@@ -21,8 +21,8 @@ Other conversion options that are not covered in this guide include:
 ## Prerequisites
 
 * [Node.js](https://nodejs.org/) is installed
-* You have set up a [Tina starter](https://tina.io/docs/introduction/using-starter)
-* Have a basic understanding of using the [Tina Editor](https://tina.io/docs/using-tina-editor) and [the schema](https://tina.io/docs/schema)
+* You have set up a [TinaCMS starter](https://tina.io/docs/introduction/using-starter)
+* Have a basic understanding of using the [TinaCMS Editor](https://tina.io/docs/using-tina-editor) and [the schema](https://tina.io/docs/schema)
 * Have a basic understanding of [React](https://react.dev/learn)
 
 ## Getting Started
@@ -49,7 +49,7 @@ This creates an `output` folder that groups your posts and pages into separate f
 
 #### Migrating Images
 
-1\. In the output folder, drag the image folders `output/post/images` and `output/page/images` to your Tina app's `public/uploads` folder.
+1\. In the output folder, drag the image folders `output/post/images` and `output/page/images` to your TinaCMS app's `public/uploads` folder.
 
 > You can rename the folder before dragging to prevent duplicate image names being replaced
 
@@ -73,9 +73,9 @@ ren *.md *.mdx
 
 Which will convert your files from Markdown to MDX.
 
-2\. Drag all the MDX files in `output/post` to your Tina app's `content/posts` folder, now your posts have been migrated to Tina!
+2\. Drag all the MDX files in `output/post` to your TinaCMS app's `content/posts` folder, now your posts have been migrated to TinaCMS!
 
-> For ease of use the format of Tina Starter posts matches the format that WordPress uses.
+> For ease of use the format of TinaCMS Starter posts matches the format that WordPress uses.
 
 #### Migrating Pages
 
@@ -85,9 +85,9 @@ Which will convert your files from Markdown to MDX.
   </>}
 />
 
-1\. Create a new folder in your Tina app's `content` folder named `wp-pages`.
+1\. Create a new folder in your TinaCMS app's `content` folder named `wp-pages`.
 
-2\. Create a new file in your Tina app's `tina/collection` folder named `wp-page.ts` and use the template below, you can change this later to fit your page's schemas better.
+2\. Create a new file in your TinaCMS app's `tina/collection` folder named `wp-page.ts` and use the template below, you can change this later to fit your page's schemas better.
 
 ```javascript
 import type { Collection } from 'tinacms';
@@ -131,7 +131,7 @@ schema: {
 
 ### View and Edit your migrated content
 
-1\. At the root of your Tina app, run:
+1\. At the root of your TinaCMS app, run:
 
 ```powershell
 npm run dev
@@ -152,7 +152,7 @@ We can do this in two methods, unfortunately, they both will require some manual
 
 #### Option 1: Manually update posts' image
 
-Using the [Tina editor](https://tina.io/docs/using-tina-editor), you can update the hero image of each post.
+Using the [TinaCMS editor](https://tina.io/docs/using-tina-editor), you can update the hero image of each post.
 
 #### Option 2: Update the schema to match the Markdown
 

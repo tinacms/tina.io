@@ -13,7 +13,7 @@ prev: content/blog/tina-cloud-a-headless-cms-backed-by-git.mdx
 next: content/blog/evolution-of-inline-editing.mdx
 ---
 
-Today we want to introduce you to the Tina GraphQL gateway that brings reliability to Git-based content management. It's an essential piece to provide a robust structured content, while your content remains fully portable.
+Today we want to introduce you to the TinaCMS GraphQL gateway that brings reliability to Git-based content management. It's an essential piece to provide a robust structured content, while your content remains fully portable.
 
 ## Overcoming the limitations of the filesystem
 
@@ -116,7 +116,7 @@ Let's add a new post to test this out, this one *won't* be featured:
 
 ```markdown
 ---
-title: 'Why Tina is Great'
+title: 'Why TinaCMS is Great'
 excerpt: 'Lorem  ...'
 coverImage: '/assets/blog/dynamic-routing/cover.jpg'
 date: '2021-04-25T05:35:07.322Z'
@@ -147,7 +147,7 @@ Let's look at the data from our new blog post again:
 
 ***
 
-title: "Why Tina is Great"
+title: "Why TinaCMS is Great"
 excerpt: "Lorem ..."
 coverImage: "/assets/blog/dynamic-routing/cover.jpg"
 date: "2021-04-25T05:35:07.322Z"
@@ -178,13 +178,13 @@ With a CMS, when you make a change to the shape of your content you also need to
 
 Most CMSs have come up with various ways to help with this: separate sandbox environments, preview APIs, and migration SDK scripts — all of which carry their own set of headaches. None of this is necessary with file-based content, *everything moves and changes together*. So what if we could bring the robust features of a headless CMS to your local filesystem? What might that look like?
 
-## Meet Tina Content API
+## Meet TinaCMS Content API
 
-Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. **The Tina Content API is a GraphQL service that sources content from your local filesystem**. It will soon be available via [TinaCloud](https://app.tina.io), which connects to your GitHub repository to offer an identical, cloud-based, headless API.
+Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. **The TinaCMS Content API is a GraphQL service that sources content from your local filesystem**. It will soon be available via [TinaCloud](https://app.tina.io), which connects to your GitHub repository to offer an identical, cloud-based, headless API.
 
 To get a sense for how this works, let's make some tweaks to the blog demo.
 
-First let's install Tina CLI:
+First let's install TinaCMS CLI:
 
 ```sh
 yarn add tina-graphql-gateway-cli
@@ -308,8 +308,8 @@ Run the `dev` command, you can see that we now have a local GraphQL server liste
 
 ```sh
 Started Filesystem GraphQL server on port: 4001
-Generating Tina config
-Tina config ======> /.tina/__generated__/config
+Generating TinaCMS config
+TinaCMS config ======> /.tina/__generated__/config
 Typescript types => /.tina/__generated__/types.ts
 GraphQL types ====> /.tina/__generated__/schema.gql
 ready - started server on 0.0.0.0:3000, url: http://localhost:3000
@@ -393,7 +393,7 @@ query BlogPostQuery($relativePath: String!) {
 }
 ```
 
-> Demo: [View the changes](https://github.com/tinacms/next-blog-starter-graphql/compare/split-author-data..add-tina-gql) we made to add Tina GraphQL
+> Demo: [View the changes](https://github.com/tinacms/next-blog-starter-graphql/compare/split-author-data..add-tina-gql) we made to add TinaCMS GraphQL
 
 ## To be continued
 

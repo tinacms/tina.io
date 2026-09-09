@@ -13,7 +13,7 @@ NEXT_PUBLIC_TINA_CLIENT_ID=***
 
 ## 配置认证提供者
 
-要启用 TinaCloud 进行认证，请确保在您的 Tina 配置中将 `clientId` 属性设置为 `NEXT_PUBLIC_TINA_CLIENT_ID` 环境变量。
+要启用 TinaCloud 进行认证，请确保在您的 TinaCMS 配置中将 `clientId` 属性设置为 `NEXT_PUBLIC_TINA_CLIENT_ID` 环境变量。
 
 `tina/config.{ts,js}`
 
@@ -32,7 +32,7 @@ export default defineConfig({
 })
 ```
 
-## 更新 Tina 后端
+## 更新 TinaCMS 后端
 
 首先安装 `@tinacms/auth` 包：
 
@@ -40,7 +40,7 @@ export default defineConfig({
 yarn add @tinacms/auth
 ```
 
-接下来，您可以更新您的 Tina 后端以使用 `TinaCloudBackendAuthProvider` 类。
+接下来，您可以更新您的 TinaCMS 后端以使用 `TinaCloudBackendAuthProvider` 类。
 
 `/pages/api/tina/[...routes].{ts,js}`
 

@@ -4,7 +4,7 @@ cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/
 seo:
   title: 'Overview: Going to Production with TinaCloud'
   description: >-
-    Learn how to take a Tina site to production with TinaCloud. Follow our
+    Learn how to take a TinaCMS site to production with TinaCloud. Follow our
     step-by-step guide for setup and deployment on Vercel, Netlify, or GitHub
     Pages
 title: Going to Production with TinaCloud
@@ -18,7 +18,7 @@ previous: content/docs/tinacloud.mdx
 
 <Youtube embedSrc="https://www.youtube.com/embed/sTVd8CYtXrA?si=DmnS-45aXkmCq8Fa" />
 
-To deploy your site to production, you'll need to connect Tina to a hosted backend. This doc will walk you through the steps to get your site from [running locally to running for production](/docs/introduction/faq/#what-is-local-mode-vs-prod-mode).
+To deploy your site to production, you'll need to connect TinaCMS to a hosted backend. This doc will walk you through the steps to get your site from [running locally to running for production](/docs/introduction/faq/#what-is-local-mode-vs-prod-mode).
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ export default defineConfig({
 
 <WarningCallout
   body={<>
-    Note: If you're loading your schema config values from a local environment file, Tina's build process will only pickup `.env` files (not `.env.local` or `.env.development`).
+    Note: If you're loading your schema config values from a local environment file, TinaCMS's build process will only pickup `.env` files (not `.env.local` or `.env.development`).
   </>}
 />
 
@@ -127,7 +127,7 @@ The apiURL is configured to use the local Content API in development (to query y
 
 The next step is to update your deployment configuration, so the TinaCMS admin gets built alongside your site. This allows your editors to enter the CMS through `<your-site>/admin` (or `your-site/admin/index.html`).
 
-In general, you'll want to make sure that your build command is running `tinacms build` before your site's build command. This will build the TinaCMS admin alongside your site. You'll also want to make sure that your Tina `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` are setup as environment variables on your host.
+In general, you'll want to make sure that your build command is running `tinacms build` before your site's build command. This will build the TinaCMS admin alongside your site. You'll also want to make sure that your TinaCMS `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` are setup as environment variables on your host.
 
 <WarningCallout
   body={<>

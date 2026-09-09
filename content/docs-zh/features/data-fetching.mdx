@@ -10,7 +10,7 @@ previous: content/docs-zh/schema.mdx
 
 ## 介绍
 
-使用 Tina，您的内容与代码库一起存储在 Git 中。Tina 在基于仓库的内容前提供了一个内容API，使您可以像在数据库中一样与文件交互。
+使用 TinaCMS，您的内容与代码库一起存储在 Git 中。TinaCMS 在基于仓库的内容前提供了一个内容API，使您可以像在数据库中一样与文件交互。
 
 您可以：
 
@@ -18,11 +18,11 @@ previous: content/docs-zh/schema.mdx
 * 应用过滤、排序、分页等
 * 基于关系字段查询您的内容。
 
-要与API接口交互，您可以使用 Tina 的类型安全客户端进行数据获取，或者手动编写自定义 GraphQL 查询并自行访问API。
+要与API接口交互，您可以使用 TinaCMS 的类型安全客户端进行数据获取，或者手动编写自定义 GraphQL 查询并自行访问API。
 
-## 使用 Tina 客户端发起请求
+## 使用 TinaCMS 客户端发起请求
 
-Tina 客户端是获取网站内容的最简单方式。可以在 `tina/config.<js|ts>` 中的 `defineConfig` 函数中配置客户端。
+TinaCMS 客户端是获取网站内容的最简单方式。可以在 `tina/config.<js|ts>` 中的 `defineConfig` 函数中配置客户端。
 
 > 注意：token、clientId 和 branch 在[本地模式](/docs/tinacloud/#local-mode)下**不**使用。要为生产环境设置这些值，请参阅[此文档](/docs/tinacloud/overview)
 
@@ -38,7 +38,7 @@ export default defineConfig({
 
 在本地工作时，客户端使用本地 URL (`http://localhost:4001/graphql`) 构建。在[生产模式](/docs/tinacloud/#prod-mode)下，使用 `clientId`、`branch` 和 `token` 查询 TinaCloud。
 
-Tina 客户端提供了一个类型安全的查询构建器，该构建器是根据您网站的架构自动生成的：
+TinaCMS 客户端提供了一个类型安全的查询构建器，该构建器是根据您网站的架构自动生成的：
 
 ```js
 import { client } from '../[pathToTina]/tina/__generated__/client';
@@ -48,7 +48,7 @@ const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' });
 console.log(myPost.data.title);
 ```
 
-上述 `client.queries.post` 查询并不是 Tina 的 API 内置的。这是一个基于*您*定义的架构的查询示例（其中您定义了一个 "post" 集合）。
+上述 `client.queries.post` 查询并不是 TinaCMS 的 API 内置的。这是一个基于*您*定义的架构的查询示例（其中您定义了一个 "post" 集合）。
 
 在显示帖子列表的页面上，您可以这样获取帖子：
 
@@ -103,9 +103,9 @@ const data = await client.queries.post(
 
 ## 基于本地文件系统的内容API
 
-在本地开发时，与其与托管内容API通信，不如与本地文件系统上的内容通信更有利。Tina 提供了一个 CLI 工具，允许您在网站旁本地运行内容API。这使得在开发过程中，所有内容都可以通过相同的表达式 GraphQL API 获得。
+在本地开发时，与其与托管内容API通信，不如与本地文件系统上的内容通信更有利。TinaCMS 提供了一个 CLI 工具，允许您在网站旁本地运行内容API。这使得在开发过程中，所有内容都可以通过相同的表达式 GraphQL API 获得。
 
-> 如果您通过 `@tinacms/cli init` 设置 Tina，或使用了我们的入门模板之一，这应该是默认设置的。（在[这里](/docs/graphql/cli/)阅读有关 CLI 的信息。）
+> 如果您通过 `@tinacms/cli init` 设置 TinaCMS，或使用了我们的入门模板之一，这应该是默认设置的。（在[这里](/docs/graphql/cli/)阅读有关 CLI 的信息。）
 
 ## 视频教程
 
@@ -115,8 +115,8 @@ const data = await client.queries.post(
 
 ## 总结
 
-* Tina 提供了一个用于查询基于 git 的内容的 GraphQL API。
-* Tina 提供了一个客户端，允许您对内容API进行类型安全的请求。
+* TinaCMS 提供了一个用于查询基于 git 的内容的 GraphQL API。
+* TinaCMS 提供了一个客户端，允许您对内容API进行类型安全的请求。
 * 客户端的“queries”属性是根据*您的*架构生成的。
 * 本地版本的内容API可用于本地开发。
 * 使用 SSG，新页面需要重建或特定框架的处理（如回退或 ISR）以避免 404 错误。

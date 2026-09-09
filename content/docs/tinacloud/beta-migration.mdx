@@ -7,7 +7,7 @@ previous: ''
 
 <WarningCallout
   body={<>
-    Tina is currently in full release. While the content of this page may still be useful, we recommend using later versions of Tina – [latest changes](https://tina.io/whats-new/tinacms/).
+    TinaCMS is currently in full release. While the content of this page may still be useful, we recommend using later versions of TinaCMS – [latest changes](https://tina.io/whats-new/tinacms/).
   </>}
 />
 
@@ -19,7 +19,7 @@ under the hood. One of the biggest of these changes is how we handle user accoun
 Previously when you created a TinaCloud account you were creating an **organization** that you accessed at `https://OrgName.tina.io`. We thought that giving each organization its own unique subdomain and pool of users would be neat, but after spending some time in that paradigm it turned out to be a lot of added complexity that didn't add much value.
 
 With the release of the beta we're moving user accounts to the forefront. Whenever you create a TinaCloud account you'll always access it at [https://app.tina.io](https://app.tina.io). This means that even
-if you are part of multiple organizations, you'll only have a single Tina account.
+if you are part of multiple organizations, you'll only have a single TinaCMS account.
 
 > Tools for creating/managing organizations within TinaCloud accounts are coming. For now we create a default organization, which you'll still be able to invite users to.
 
@@ -41,7 +41,7 @@ Since we're changing how user accounts work within TinaCloud, existing alpha use
 yarn remove tina-graphql-gateway-cli tina-graphql-gateway
 ```
 
-1. Add the new Tina dependencies.
+1. Add the new TinaCMS dependencies.
 
 ```
 yarn add tinacms @tinacms/auth
@@ -55,6 +55,6 @@ yarn add -D @tinacms/cli
 * Delete `NEXT_PUBLIC_ORGANIZATION_NAME`
 * Change `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID found in your new TinaCloud Account.
 
-That's it! With any luck you should be able to keep working on your Tina enabled site the same as before. We're not expecting to have to repeat this process when we make it to our first full release.
+That's it! With any luck you should be able to keep working on your TinaCMS enabled site the same as before. We're not expecting to have to repeat this process when we make it to our first full release.
 
 If you come across any problems or have any questions feel free to [head over to our Discord](https://discord.com/invite/zumN63Ybpf)! We'd love to hear from you.

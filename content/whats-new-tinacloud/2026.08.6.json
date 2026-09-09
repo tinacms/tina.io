@@ -51,7 +51,7 @@
           "gitHubLink": "https://github.com/Aibono1225"
         },
         {
-          "changesDescription": "Fix projects wedged when Tina config is missing on the default branch",
+          "changesDescription": "Fix projects wedged when TinaCMS config is missing on the default branch",
           "gitHubName": "Aibono1225",
           "gitHubLink": "https://github.com/Aibono1225"
         },

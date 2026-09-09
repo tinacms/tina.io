@@ -10,7 +10,7 @@ previous: content/docs/schema.mdx
 
 ## Introduction
 
-With Tina, your content is stored in Git along with your codebase. Tina provides a Content API in front of your repo-based content, so that you can interact with your files as if they're in a database.
+With TinaCMS, your content is stored in Git along with your codebase. TinaCMS provides a Content API in front of your repo-based content, so that you can interact with your files as if they're in a database.
 
 You can:
 
@@ -18,11 +18,11 @@ You can:
 * Apply filters, sorting, pagination, etc
 * Query your content based on relational fields.
 
-To interface with the API, you can use Tina's type-safe client for data-fetching, or manually write custom GraphQL queries and hit the API yourself.
+To interface with the API, you can use TinaCMS's type-safe client for data-fetching, or manually write custom GraphQL queries and hit the API yourself.
 
-## Making requests with the Tina Client
+## Making requests with the TinaCMS Client
 
-The Tina client is the easiest way to fetch your site's content. The client can be configured the `tina/config.<js|ts>` in the `defineConfig` function.
+The TinaCMS client is the easiest way to fetch your site's content. The client can be configured the `tina/config.<js|ts>` in the `defineConfig` function.
 
 > Note: token, clientId and branch are **not** used in [local-mode](/docs/tinacloud/#local-mode). To setup these values for production see [this doc](/docs/tinacloud/overview)
 
@@ -38,7 +38,7 @@ export default defineConfig({
 
 When working locally, the client is built with the local url (`http://localhost:4001/graphql`). When in [production mode](/docs/tinacloud/#prod-mode), `clientId`, `branch` and `token` are used to query TinaCloud.
 
-Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
+TinaCMS client provides a type-safe query builder, that is auto-generated based on your site's schema:
 
 ```js
 import { client } from '../[pathToTina]/tina/__generated__/client';
@@ -48,7 +48,7 @@ const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' });
 console.log(myPost.data.title);
 ```
 
-The above `client.queries.post` query is not built-in to Tina's API. This is an example of a query based on *your* defined schema, (where you have a "post" collection defined).
+The above `client.queries.post` query is not built-in to TinaCMS's API. This is an example of a query based on *your* defined schema, (where you have a "post" collection defined).
 
 On a page that displays a list of posts, you can fetch the posts like so:
 
@@ -103,9 +103,9 @@ const data = await client.queries.post(
 
 ## The Local Filesystem-based Content API
 
-When developing locally, it's often beneficial to talk to the content on your local file-system, rather than talk to the hosted content API. Tina provides a CLI tool that lets you run the Content API locally next to your site. This allows all of your content to be made available through the same expressive GraphQL API during development.
+When developing locally, it's often beneficial to talk to the content on your local file-system, rather than talk to the hosted content API. TinaCMS provides a CLI tool that lets you run the Content API locally next to your site. This allows all of your content to be made available through the same expressive GraphQL API during development.
 
-> If you setup Tina via `@tinacms/cli init`, or used one of our starters, this should be setup by default. (Read about the CLI [in our documentation](/docs/graphql/cli/))
+> If you setup TinaCMS via `@tinacms/cli init`, or used one of our starters, this should be setup by default. (Read about the CLI [in our documentation](/docs/graphql/cli/))
 
 ## Video Tutorial
 
@@ -115,8 +115,8 @@ For those who prefer to learn from video, you can check out a snippet on "Data F
 
 ## Summary
 
-* Tina provides a GraphQL API for querying your git-based content.
-* Tina provides a client that allows you to make type-safe requests to the Content API.
+* TinaCMS provides a GraphQL API for querying your git-based content.
+* TinaCMS provides a client that allows you to make type-safe requests to the Content API.
 * The client's "queries" property is generated based on *your* schema.
 * A local version of the Content API can be used for local development.
 * With SSG, new pages require a rebuild or framework-specific handling (like fallbacks or ISR) to avoid 404s.

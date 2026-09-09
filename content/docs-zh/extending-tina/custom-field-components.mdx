@@ -13,7 +13,7 @@ previous: ''
 
 ## 自定义组件中的环境变量
 
-自定义字段组件在 Tina 管理界面中运行，该界面作为一个与您的网站分开的**静态 SPA**构建。环境变量在构建时嵌入到管理界面的 JavaScript 中——它们不会在运行时读取。这意味着要使变量可用，必须满足两个条件：
+自定义字段组件在 TinaCMS 管理界面中运行，该界面作为一个与您的网站分开的**静态 SPA**构建。环境变量在构建时嵌入到管理界面的 JavaScript 中——它们不会在运行时读取。这意味着要使变量可用，必须满足两个条件：
 
 1. **必须使用允许的前缀。** 出于安全原因，仅包括以下变量：
    - `TINA_PUBLIC_*`
@@ -35,7 +35,7 @@ const secret = process.env.MY_API_KEY
 
 <WarningCallout
   body={<>
-    如果您的自定义组件依赖于环境变量并且它总是 `undefined`，请检查：(1) 变量名称以 `TINA_PUBLIC_` 或 `NEXT_PUBLIC_` 开头，并且 (2) 变量在运行 `tinacms build` 时在您的 `.env` 文件或 CI 环境中定义。请注意，Tina 仅加载 `.env` 文件——不加载 `.env.local` 或 `.env.development`。有关详细信息，请参阅[配置参考](/docs/reference/config#environment-variables)和[安全公告](/blog/2023-02-security-update)。
+    如果您的自定义组件依赖于环境变量并且它总是 `undefined`，请检查：(1) 变量名称以 `TINA_PUBLIC_` 或 `NEXT_PUBLIC_` 开头，并且 (2) 变量在运行 `tinacms build` 时在您的 `.env` 文件或 CI 环境中定义。请注意，TinaCMS 仅加载 `.env` 文件——不加载 `.env.local` 或 `.env.development`。有关详细信息，请参阅[配置参考](/docs/reference/config#environment-variables)和[安全公告](/blog/2023-02-security-update)。
   </>}
 />
 
@@ -214,8 +214,8 @@ imgHeight: 1480
 
 ### 图像缩放滑块组件
 
-通过一些额外的 CSS，您可以在 Tina 中创建可缩放的图像。这将节省您为博客裁剪图像的时间。
-![在 Tina 编辑器中缩放图像](/img-scale-component.gif)
+通过一些额外的 CSS，您可以在 TinaCMS 中创建可缩放的图像。这将节省您为博客裁剪图像的时间。
+![在 TinaCMS 编辑器中缩放图像](/img-scale-component.gif)
 
 ```
 import { wrapFieldsWithMeta } from 'tinacms';

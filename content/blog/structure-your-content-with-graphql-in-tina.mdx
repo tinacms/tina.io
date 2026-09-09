@@ -1,10 +1,10 @@
 ---
 seo:
-  title: Structure Your Content with GraphQL in Tina | TinaCMS Blog
+  title: Structure Your Content with GraphQL in TinaCMS | TinaCMS Blog
   description: >-
     Explore how to use GraphQL in TinaCMS to structure and query your content
     more efficiently, improving data fetching and content management.
-title: Structure your content with GraphQL in Tina
+title: Structure your content with GraphQL in TinaCMS
 date: '2021-06-25T18:34:12+02:00'
 last_edited: '2021-06-25T20:42:18.533Z'
 author: Frank Taillandier
@@ -14,26 +14,26 @@ next: content/blog/manage-your-media-with-cloudinary.mdx
 
 <WarningCallout
   body={<>
-    **Update**: The Tina API has been evolving, and the content in this post
-    is outdated. For help getting started with Tina, we suggest checking out
+    **Update**: The TinaCMS API has been evolving, and the content in this post
+    is outdated. For help getting started with TinaCMS, we suggest checking out
     our [getting started doc](https://tina.io/docs/setup-overview/).
   </>}
 />
 
-Tina adopts a developer-centric approach to structure content, which means you can model your content locally in your favourite editor. Thanks to a [GraphQL layer on top of the files](/blog/using-graphql-with-the-filesystem/) stored in your repository, Tina makes it more straightforward to query content all across your files. Let's see how this feels.
+TinaCMS adopts a developer-centric approach to structure content, which means you can model your content locally in your favourite editor. Thanks to a [GraphQL layer on top of the files](/blog/using-graphql-with-the-filesystem/) stored in your repository, TinaCMS makes it more straightforward to query content all across your files. Let's see how this feels.
 
 When we refer to Git-based, it means your content is stored in Markdown and JSON files and modelled with front matter; on top of that TinaCloud aims to let you leverage the power of [GraphQL](https://graphql.org/).
 
-We open-sourced the [tina-graphql-gateway package](https://github.com/tinacms/tina-graphql-gateway) so that you can see how it works under the hood. It contains different tools for developers to work with Tina and GraphQL:
+We open-sourced the [tina-graphql-gateway package](https://github.com/tinacms/tina-graphql-gateway) so that you can see how it works under the hood. It contains different tools for developers to work with TinaCMS and GraphQL:
 
 - a GraphQL schema compiler,
 - a GraphQL Server,
 - a GraphQL Client (Altair),
 - a command-line interface to compile the schema and launch a local server,
-- Next.js helpers for Tina,
+- Next.js helpers for TinaCMS,
 - and more…
 
-The typical developer workflow when working on your structured content is to run Tina local GraphQL server, edit your schema, create and test queries to use those in your Next.js pages.
+The typical developer workflow when working on your structured content is to run TinaCMS local GraphQL server, edit your schema, create and test queries to use those in your Next.js pages.
 
 ## The GraphQL schema is the single source of truth
 
@@ -124,7 +124,7 @@ export default defineSchema({
 
 ## Query your content with GraphQL
 
-The Tina CLI provides a command to run a local GraphQL server to watch for changes in our schema and compiles it when edited; it runs alongside Next.js in development mode. We make it our default `dev` npm script in the `package.json`, so that when we run `yarn dev`, we have access to a GraphQL playground:
+The TinaCMS CLI provides a command to run a local GraphQL server to watch for changes in our schema and compiles it when edited; it runs alongside Next.js in development mode. We make it our default `dev` npm script in the `package.json`, so that when we run `yarn dev`, we have access to a GraphQL playground:
 
 yarn dev
 yarn tina-gql server\:start -c "next dev"
@@ -157,6 +157,6 @@ query BlogPost {
 }
 ```
 
-Now that we know how to query data from our files, we still need to use that query in our Next.js application, request it from the client and ask Tina to generate the corresponding form so that our contributors are able to edit it visually. We'll detail the remaining steps in a follow-up post, stay tuned!
+Now that we know how to query data from our files, we still need to use that query in our Next.js application, request it from the client and ask TinaCMS to generate the corresponding form so that our contributors are able to edit it visually. We'll detail the remaining steps in a follow-up post, stay tuned!
 
-_[Join our Discord](https://discord.com/invite/zumN63Ybpf), if you have any question regarding how to work with Tina and Next.js._
+_[Join our Discord](https://discord.com/invite/zumN63Ybpf), if you have any question regarding how to work with TinaCMS and Next.js._

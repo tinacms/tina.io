@@ -31,7 +31,7 @@ git clone https://github.com/tinacms/gatsby-mdx-example-blog
 cd gatsby-mdx-example-blog
 ```
 
-## Adding Tina
+## Adding TinaCMS
 
 Awesome! You're set up and ready to start adding TinaCMS. You can initialize it using the command below.
 
@@ -46,9 +46,9 @@ After running the command above you'll receive a few prompts
 3. When asked if you'd like to use Typescript choose `yes`
 4. Set the public assets location to `public`
 
-## Setting up Gatsby for Tina
+## Setting up Gatsby for TinaCMS
 
-Now that we've added Tina to our project, there are a few more steps to integrate it with Gatsby. Start by adding the following line at the top of `tina/config.js`
+Now that we've added TinaCMS to our project, there are a few more steps to integrate it with Gatsby. Start by adding the following line at the top of `tina/config.js`
 
 ```diff
 export default defineConfig({
@@ -69,7 +69,7 @@ Next, we'll set up the URL for the visual editor using Express.
 + export { createPages, createSchemaCustomization, onCreateNode, onCreateDevServer }
 ```
 
-To make sure Tina runs when the app is in development mode, update the startup command in `package.json` as follows:
+To make sure TinaCMS runs when the app is in development mode, update the startup command in `package.json` as follows:
 
 ```diff
   "scripts": {
@@ -202,7 +202,7 @@ You'll also need to move the existing images into the new folder we defined.
 As the hello world sample uses a list type that is unsupported by TinaCMS, we'll update the lists to the supported format manually.
 Make the following changes to `content/blog/hello-world/index.mdx`.
 
-> Note: You may need to update other elements on your site. For unsupported markdown elements in Tina, refer to [our guide](https://tina.io/docs/reference/types/rich-text/?#unsupported-elements).
+> Note: You may need to update other elements on your site. For unsupported markdown elements in TinaCMS, refer to [our guide](https://tina.io/docs/reference/types/rich-text/?#unsupported-elements).
 
 ````diff
 - - Red
@@ -279,7 +279,7 @@ Add the following to the top of `src/style.css`. This will resize any images in 
 + }
 ```
 
-Congratulations! Your Gatsby MDX blog is now set up with Tina. Run `yarn develop` to test it out.
+Congratulations! Your Gatsby MDX blog is now set up with TinaCMS. Run `yarn develop` to test it out.
 
 ## (Recommended) Adding Visual editing
 
@@ -291,7 +291,7 @@ Congratulations! Your Gatsby MDX blog is now set up with Tina. Run `yarn develop
 
 Up until now we've only set up TinaCMS as an editor for our markdown files. The display logic is still being handled by Gatsby's plugins.
 
-There are some pros and cons to using Gatsby's MDX plugin instead of Tina's.
+There are some pros and cons to using Gatsby's MDX plugin instead of TinaCMS's.
 
 Pros:
 
@@ -302,9 +302,9 @@ Cons:
 - You won't be able to use React components in your markdown files
 - You won't be get contextual editing when editing your markdown files
 
-Generally, we recommend using Tina's GraphQL API to load your pages, which we'll do now.
+Generally, we recommend using TinaCMS's GraphQL API to load your pages, which we'll do now.
 
-Because we'll be using Tina's graphql client for this approach we no longer need to skip it.
+Because we'll be using TinaCMS's graphql client for this approach we no longer need to skip it.
 In fact we'll need it to retrieve the GraphQL queries required for visual editing.
 
 ```diff
@@ -315,8 +315,8 @@ export default defineConfig({
 
 ### Generating the pages
 
-First, we'll new types for the response from Tina's GraphQL API and remove the existing ones.
-Modify the types in `src/types.ts` to reflect the new data we'll be getting back from Tina's API.
+First, we'll new types for the response from TinaCMS's GraphQL API and remove the existing ones.
+Modify the types in `src/types.ts` to reflect the new data we'll be getting back from TinaCMS's API.
 
 ```diff
 - type PageData = {
@@ -344,7 +344,7 @@ Modify the types in `src/types.ts` to reflect the new data we'll be getting back
 + export { AllPostResponse, BlogPost, PostResponse }
 ```
 
-Using these types, we'll add a helper to map out the response from Tina's GraphQL API.
+Using these types, we'll add a helper to map out the response from TinaCMS's GraphQL API.
 This will give the page data a similar format to the response from the GraphQL queries we're replacing.
 
 ```diff
@@ -369,7 +369,7 @@ This will give the page data a similar format to the response from the GraphQL q
 
 ```
 
-Next we'll update the `createPages` function to use Tina's GraphQL API to generate the pages and remove the existing call.
+Next we'll update the `createPages` function to use TinaCMS's GraphQL API to generate the pages and remove the existing call.
 
 ```diff
 
@@ -423,7 +423,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 - const posts = result!.data!.allMdx.nodes
 ```
 
-Using the response from Tina's GraphQL API we'll change the way that pages get generated
+Using the response from TinaCMS's GraphQL API we'll change the way that pages get generated
 
 ```diff
 
@@ -487,7 +487,7 @@ First we'll define our types inside of `src/types.ts`.
 
 Next we'll use a static query to get the data for our blog post page template.
 
-Add a static query to get the data for the page using Tina.
+Add a static query to get the data for the page using TinaCMS.
 
 ```diff
 + import { Post } from "../../tina/__generated__/types"
@@ -604,7 +604,7 @@ First update the page props for `BlogPostTemplate`. We'll add in our server fetc
 //...
 ```
 
-Then we'll swap out all of the existing data with the data we get back from Tina. Note the addition of the `tinaField` property, which is used to add contextual editing for each of the fields.
+Then we'll swap out all of the existing data with the data we get back from TinaCMS. Note the addition of the `tinaField` property, which is used to add contextual editing for each of the fields.
 
 ```diff
 + import {useTina } from 'tinacms/dist/react'

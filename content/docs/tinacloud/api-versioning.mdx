@@ -3,7 +3,7 @@ title: GraphQL API Versioning
 previous: content/docs/tinacloud/deployment-options/github-pages.mdx
 ---
 
-Tina is still evolving. In order to support a range of clients using different versions of Tina, Tina's [Content Api](../#content-api) leverages version metadata in your site's generated schema to select the appropriate version of the GraphQL API in TinaCloud. Starting with version 0.59.3, this version metadata will be compiled into your site's schema json.
+TinaCMS is still evolving. In order to support a range of clients using different versions of TinaCMS, TinaCMS's [Content Api](../#content-api) leverages version metadata in your site's generated schema to select the appropriate version of the GraphQL API in TinaCloud. Starting with version 0.59.3, this version metadata will be compiled into your site's schema json.
 
 ## What to know
 
@@ -25,6 +25,6 @@ For example:
 | 0.60.0        | 0.60.1            |
 | 0.60.1        | 0.60.1            |
 
-### What if my local version of Tina is different than what is in GitHub?
+### What if my local version of TinaCMS is different than what is in GitHub?
 
-If you are running Tina locally with TinaCloud, it is possible to upgrade the GraphQL API to a different version than what is compiled into the schema and committed to GitHub. Since TinaCloud uses the version in GitHub to determine what version of the GraphQL API to serve, you may encounter incompatibilities. To resolve the issue, commit and changes to your Tina schema directory (`tina`) whenever you upgrade Tina and make sure these changes are pushed to GitHub whenever you are working locally.
+If you are running TinaCMS locally with TinaCloud, it is possible to upgrade the GraphQL API to a different version than what is compiled into the schema and committed to GitHub. Since TinaCloud uses the version in GitHub to determine what version of the GraphQL API to serve, you may encounter incompatibilities. To resolve the issue, commit and changes to your TinaCMS schema directory (`tina`) whenever you upgrade TinaCMS and make sure these changes are pushed to GitHub whenever you are working locally.

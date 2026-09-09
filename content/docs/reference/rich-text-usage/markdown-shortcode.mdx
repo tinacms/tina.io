@@ -15,15 +15,15 @@ previous: ''
 
 ## Handling Markdown Shortcode
 
-If you have some custom **shortcode** logic in your markdown, you can specify it in the `templates` property and Tina will handle it as if it were a `jsx` element:
+If you have some custom **shortcode** logic in your markdown, you can specify it in the `templates` property and TinaCMS will handle it as if it were a `jsx` element:
 
-The following snippet would throw an error while parsing since Tina doesn't know what to do with `{{}}`:
+The following snippet would throw an error while parsing since TinaCMS doesn't know what to do with `{{}}`:
 
 ```markdown
 {{ WarningCallout content="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
 ```
 
-But you can tell Tina how to handle it with a `template`:
+But you can tell TinaCMS how to handle it with a `template`:
 
 ```ts
 fields: [
@@ -63,7 +63,7 @@ Certain frameworks support shortcodes with Raw string values:
 {{  myshortcode "This is some raw text" }}
 ```
 
-This is supported in Tina with the special `_value` field.
+This is supported in TinaCMS with the special `_value` field.
 
 ```ts
 fields: [
@@ -126,7 +126,7 @@ Your field template definition would look something like:
 
 ### Shortcode names with dashes
 
-Sometimes your shortcode will contain characters that aren't supported in Tina's content modelling
+Sometimes your shortcode will contain characters that aren't supported in TinaCMS's content modelling
 
 ```md
 {{ my-shortcode }}

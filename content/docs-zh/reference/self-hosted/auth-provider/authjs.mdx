@@ -18,7 +18,7 @@ yarn add next-auth tinacms-authjs
 
 > 提示：在继续之前，请确保您已设置[数据库适配器](/docs/reference/self-hosted/database-adapter/overview/)。
 
-### 更新您的 Tina 配置
+### 更新您的 TinaCMS 配置
 
 我们需要在 `tina/config.{ts,js}` 文件中添加认证提供者和一个用户集合。
 
@@ -54,7 +54,7 @@ export default defineConfig({
 {
   "users": [
     {
-      "name": "Tina User",
+      "name": "TinaCMS User",
       "email": "user@tina.io",
       "username": "admin",
       "password": "admin"
@@ -65,7 +65,7 @@ export default defineConfig({
 
 > 登录后，您可以更新用户名和密码
 
-### 更新 Tina 后端
+### 更新 TinaCMS 后端
 
 更新您的 `/api/tina/[...routes].{ts,js}` 文件以使用 Auth.js 后端。
 
@@ -130,7 +130,7 @@ Auth.js 支持许多不同的[登录提供者](https://authjs.dev/getting-starte
 
 例如，我们可以配置 Discord OAuth 登录提供者。
 
-### 更新您的 Tina 配置
+### 更新您的 TinaCMS 配置
 
 在这里，我们从 `UsernamePasswordAuthJSProvider` 切换到 `DefaultAuthJSProvider`。我们还重新定义了用户集合以移除密码字段，因为它不再需要。
 
@@ -188,7 +188,7 @@ export default defineConfig({
 {
   "users": [
     {
-      "name": "Tina Discord User",
+      "name": "TinaCMS Discord User",
       "email": "user@tina.io",
       "username": "mydiscorduser"
     }
@@ -228,7 +228,7 @@ export default (req, res) => {
 }
 ```
 
-在这里，我们指定了 DiscordProvider。此外，请注意我们在选项中添加了一个 `uidProp`。这用于告诉 Tina Discord 认证对象上的哪个属性具有用户的唯一标识符。如果您不确定这应该是什么，可以启用调试模式以查看认证对象。
+在这里，我们指定了 DiscordProvider。此外，请注意我们在选项中添加了一个 `uidProp`。这用于告诉 TinaCMS Discord 认证对象上的哪个属性具有用户的唯一标识符。如果您不确定这应该是什么，可以启用调试模式以查看认证对象。
 
 接下来，我们需要为后端创建一个单独的端点。在 `/pages/api/auth/[...nextauth].{ts,js}` 中，我们将有：
 

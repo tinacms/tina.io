@@ -12,7 +12,7 @@ The `@tinacms/cli` package will be installed as a dev dependency with the [tina 
 npx @tinacms/cli init
 ```
 
-This will setup a dummy `tina/config.{js,ts}` in your site, and install any required Tina dependencies.
+This will setup a dummy `tina/config.{js,ts}` in your site, and install any required TinaCMS dependencies.
 
 ## Running the GraphQL API
 
@@ -32,7 +32,7 @@ This command also takes an argument (`-c`) that allows you to run a command as a
 The reason we want to run the GraphQL API with our site is so that:
 
 - When our static pages build in CI, they can source their content from the local files using the GraphQL API.
-- In development, we can test out Tina with our local files.
+- In development, we can test out TinaCMS with our local files.
 
 Now if you run the updated `dev` script with:
 
@@ -55,7 +55,7 @@ Your console might show something like:
 
 Started Filesystem GraphQL server on port: 4001
 Visit the playground at http://localhost:3000/admin/index.html#/graphql
-Generating Tina config
+Generating TinaCMS config
 ...
 ```
 
