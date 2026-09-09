@@ -10,11 +10,11 @@ prev: content/blog-zh/data-layer-performant-editing.mdx
 next: content/blog-zh/automating-pull-requests.mdx
 ---
 
-只读令牌允许您在应用程序的任何位置查询项目中的数据，无论是在服务器端还是客户端。在只读令牌出现之前，Tina 的所有操作都是通过 `getStaticProps` 或 `getStaticPaths` 完成的。这在大多数情况下可以处理使用无头 CMS 和 SSG 的情况。然而，随着我们向 TinaCMS 的 1.0 版本迈进，我们希望能够支持更多的框架，包括 React、Remix 和 Gatsby。
+只读令牌允许您在应用程序的任何时候查询项目中的数据，无论是在服务器上还是在客户端上。在只读令牌出现之前，TinaCMS 所做的一切都是通过 `getStaticProps` 或 `getStaticPaths`。这在大多数情况下可以处理使用无头 CMS 和 SSG 的情况。然而，随着我们向 TinaCMS 的 1.0 版本迈进，我们希望能够支持更多的框架，包括 React、Remix 和 Gatsby。
 
-## 只读令牌的一些使用场景
+## 只读令牌的一些使用案例
 
-以下是只读令牌的一些使用场景
+以下是只读令牌的一些使用案例
 
 * 服务器端渲染
 * 客户端获取
@@ -22,7 +22,7 @@ next: content/blog-zh/automating-pull-requests.mdx
 
 ## 如何使用只读令牌？
 
-在开始使用只读令牌之前，您需要确保所使用的存储库已启用数据层。这是只读令牌正常工作并保持高效的必要条件。
+在开始使用只读令牌之前，您需要确保您正在使用的存储库已启用数据层。这是只读令牌正常工作并保持高效的必要条件。
 
 ### 从仪表板创建令牌
 
@@ -30,7 +30,7 @@ next: content/blog-zh/automating-pull-requests.mdx
 
 ![TinaCloud 令牌选项卡](/img/graphql-docs/token-tab.png)
 
-接下来，点击“新建令牌”并填写所需字段。令牌名称用于标识令牌，“Git 分支”是用逗号分隔的分支列表，令牌可以访问这些分支。
+接下来，点击“新建令牌”并填写所需字段。令牌名称用于识别令牌，“Git 分支”是令牌可以访问的分支列表，用逗号分隔。
 
 ![在 TinaCloud 中创建新令牌](/img/graphql-docs/create-new-token.png)
 
@@ -40,11 +40,11 @@ next: content/blog-zh/automating-pull-requests.mdx
 
 ### 准备好请求
 
-此时，您已经准备好使用只读令牌进行请求。我整理了一些不同使用场景的示例，包括 SSR、CSR、带回退的 SSG，这应该可以满足大多数 Tina 的使用场景。
+此时，您已经可以使用只读令牌进行请求。我整理了一些不同使用案例的示例，包括 SSR、CSR、带回退的 SSG，这应该可以满足 TinaCMS 的大多数使用案例。
 
 ### SSR - 服务器端渲染内容
 
-在大多数情况下，您的内容将在构建时静态生成，但有时您可能需要在 Tina 驱动的应用程序中使用 SSR。可能是一个不是由 Tina 驱动的页面，但您正在使用我们的 graphQL 层来驱动整个应用程序。
+在大多数情况下，您的内容将在构建时静态生成，但有时您可能需要在 TinaCMS 驱动的应用程序中使用 SSR。可能是一个不是由 TinaCMS 驱动的页面，但您正在使用我们的 graphQL 层来驱动整个应用程序。
 
 ```javascript
 const query = `
@@ -79,11 +79,11 @@ export async function getServerSideProps(context) {
 }
 ```
 
-每次用户返回此页面时，他们将收到一个新鲜的页面，其中包含来自 Tina 的最新内容。
+每次用户返回此页面时，他们将收到一个新鲜的页面，其中包含来自 TinaCMS 的最新内容。
 
 ### CSR - 客户端渲染
 
-客户端渲染可以是保持页面内容更新的好方法，每次有人访问页面时。可以使用您喜欢的 http 客户端（如 fetch 或 axios）来检索 Tina 内容。
+客户端渲染可以是保持页面内容更新的好方法，每次有人访问页面时。可以使用您喜欢的 http 客户端（如 fetch 或 axios）检索 TinaCMS 内容。
 
 ```javascript
 import { useState, useEffect } from 'react'
@@ -141,21 +141,21 @@ function BlogPostPage() {
 export default BlogPostPage
 ```
 
-如您所见，在此示例中我们使用 useEffect 从 Tina 获取数据，使用我们的只读令牌。您看到的 URL 是由您的 `clientId` 和选择的 GitHub 分支提供的。然后我们将数据设置为使用 `useTina` 并通过 UI 展示数据。
+如您所见，在此示例中，我们使用 useEffect 从 TinaCMS 获取数据，使用我们的只读令牌。您看到的 URL 是由您的 `clientId` 和选择的 GitHub 分支提供的。然后我们设置数据以使用 `useTina` 并通过 UI 显示数据。
 
 ### 带回退的 SSG
 
-到目前为止，大多数 Tina 用户使用 `fallback: blocking` 来创建新的 Tina 页面。
+到目前为止，大多数 TinaCMS 用户使用 `fallback: blocking` 来创建新的 TinaCMS 页面。
 
 这带来了问题：
 
 1. 默认情况下，您不再有回退页面（404 页面），任何导航都会被提供，即使是空白页面。
 2. 您需要一种方法来处理有数据、无数据或无页面的情况。
 
-使用只读令牌，这减少了开发者的摩擦并提供了更好的用户体验，我们可以将 getStaticsProps 代码分为三条路径。
+使用只读令牌，这减少了开发者的摩擦，并提供了更好的用户体验，我们可以将 getStaticsProps 代码分为三条路径。
 
 1. 返回数据（这是您之前的代码）
-2. 数据未返回，因此使用只读令牌获取它。如果存在，则返回。
+2. 数据未返回，因此使用只读令牌获取它。如果存在，则返回它。
 3. 数据未返回，使用只读令牌未返回数据，因此返回回退页面。
 
 ```javascript
@@ -184,9 +184,9 @@ export const getStaticProps = async (ctx) => {
       variables,
     })
   } catch (error) {
-    // 忽略与文档创建相关的错误
+    // 吞掉与文档创建相关的错误
   }
-  // 如果没有数据，则设置错误标志
+  // 如果没有数据则设置错误标志
   if (!data) {
     error = true
   }
@@ -205,7 +205,7 @@ export const getStaticProps = async (ctx) => {
     )
     const jsonData = await res.json()
     data = jsonData.data
-    // 如果没有数据，则设置 notFound 为 true（这将返回 404）
+    // 如果没有数据则设置 notFound 为 true（这将返回 404
     if (!data) {
       return {
         notFound: true,
@@ -227,23 +227,23 @@ export const getStaticProps = async (ctx) => {
 
 1. 原始请求产生数据，将返回数据、查询和变量。
 2. 如果没有返回数据，我们将错误标志设置为 true。如果错误标志为 true，我们尝试使用只读令牌检索您的数据并返回以显示给用户或内容编辑器。
-3. 如果没有返回数据，并且只读令牌未返回数据，我们返回 `notFound: true`（这是 Next.js 的一个特殊标志）。此标志将返回您的 404 错误页面以及状态代码中的 `404`。
+3. 如果没有返回数据，并且只读令牌未返回数据，我们返回 `notFound: true`（这是 Next.js 的特殊标志）。此标志将返回您的 404 错误页面以及状态代码中的 `404`。
 
-## 如何保持与 Tina 的同步？
+## 如何保持与 TinaCMS 的同步？
 
-保持与 Tina 同步的最佳方式是订阅我们的新闻通讯，我们每两周发送一次更新。更新包括新功能、我们正在进行的工作、您可能错过的博客文章等等！
+保持与 TinaCMS 同步的最佳方式是订阅我们的新闻通讯，我们每两周发送一次更新。更新包括新功能、我们正在进行的工作、您可能错过的博客文章等等！
 
 您可以通过访问此链接并输入您的电子邮件来订阅：[https://tina.io/community/](https://tina.io/community/)
 
-### Tina 社区 Discord
+### TinaCMS 社区 Discord
 
-Tina 有一个社区 [Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了 Jamstack 爱好者和 Tina 爱好者。加入后，您会发现一个地方：
+TinaCMS 有一个社区 [Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了 Jamstack 爱好者和 TinaCMS 爱好者。加入后，您将找到一个地方：
 
 * 获取问题帮助
-* 找到最新的 Tina 新闻和抢先预览
-* 与 Tina 社区分享您的项目，并讨论您的经验
+* 找到最新的 TinaCMS 新闻和预览
+* 与 TinaCMS 社区分享您的项目，并讨论您的经验
 * 聊聊 Jamstack
 
-### Tina Twitter
+### TinaCMS Twitter
 
-我们的 Twitter 账号 ([@tinacms](https://twitter.com/tinacms)) 宣布了 Tina 的最新功能、改进和抢先体验。如果您在构建的项目中标记我们，我们也会非常高兴。
+我们的 Twitter 账号 ([@tinacms](https://twitter.com/tinacms)) 宣布了 TinaCMS 的最新功能、改进和预览。如果您在构建的项目中标记我们，我们也会非常兴奋。
