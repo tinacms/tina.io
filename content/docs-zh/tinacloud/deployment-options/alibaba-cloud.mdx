@@ -21,7 +21,7 @@ TinaCMS 主要通过 GitHub 和静态托管平台集成实现自动内容库更�
 
 > 上述测试结果截至 **`2025年7月10日`**，可访问状态可能会随时间变化
 
-鉴于这些限制，本指南将引导您将 TinaCMS 项目部署到 **阿里云**。作为中国领先的云服务提供商，阿里云为中国用户提供了可靠的性能。虽然目前没有中国云服务能够像 Vercel 那样无缝集成 GitHub，但阿里云仍然是希望在中国大陆部署网站的开发者的首选。
+鉴于这些限制，本指南将引导您将 TinaCMS 项目部署到 **阿里云**。作为中国领先的云服务提供商，阿里云为中国用户提供了可靠的性能。虽然目前没有中国云服务提供商能像 Vercel 那样无缝集成 GitHub，但阿里云仍然是希望在中国大陆部署网站的开发者的首选。
 
 ## 阿里云配置
 
@@ -41,7 +41,7 @@ pnpm install -g pm2
 
 #### 安装和配置 Nginx
 
-Nginx 将作为您的 TinaCMS 应用程序的反向代理。
+Nginx 将作为 TinaCMS 应用程序的反向代理。
 
 ```
 yum install nginx
@@ -92,18 +92,18 @@ nginx -t
 nginx -s reload
 ```
 
-### 为 GitHub Actions 部署做准备
+### 准备 GitHub Actions 部署
 
 #### 创建部署目录
 
-首先，在您的服务器上创建一个目录，用于部署您的 TinaCMS 项目：
+首先，在服务器上创建一个目录，用于部署您的 TinaCMS 项目：
 
 ```
 mkdir -p /www/tinademo
 cd /www/tinademo
 ```
 
-#### 创建一个 TinaCMS 项目
+#### 创建 TinaCMS 项目
 
 使用模板创建一个基本的 TinaCMS 项目。
 
@@ -113,7 +113,7 @@ npx create-tina-app@latest
 
 #### 生成 GitHub Actions 的 SSH 密钥
 
-在您的阿里云服务器上生成一个 SSH 密钥对：
+在您的阿里云服务器上生成 SSH 密钥对：
 
 ```
 ssh -keygen -t ed25519 -C "deploy-key"
@@ -131,38 +131,38 @@ cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
 
 ## 配置 GitHub Secrets
 
-生成 SSH 密钥后，您需要将几个密钥添加到您的 GitHub 仓库中，以启用安全部署。
+生成 SSH 密钥后，您需要将几个密钥添加到 GitHub 仓库中，以启用安全部署。
 
 ### 导航到 GitHub Secrets
 
 1. GitHub 仓库 → 设置
 2. Secrets 和变量 → Actions
-3. 点击“新建仓库密钥”
+3. 点击“New repository secret”
 
-### 必需的 GitHub Secrets
+### 所需的 GitHub Secrets
 
 您需要配置以下密钥：
 
-1. `SSH_PRIVATE_KEY` : 在您的服务器上生成的私钥
+1. `SSH_PRIVATE_KEY` : 在服务器上生成的私钥
    * 使用以下命令查看：`cat ~/.ssh/id_ed25519`
    * 确保包含整个密钥，包括 `-----BEGIN OPENSSH PRIVATE KEY----` 和 `-----END OPENSSH PRIVATE KEY-----`
 2. `SERVER_HOST`: 您的阿里云服务器的 IP 地址
-   * 这是您 ECS 实例的公网 IP 地址
-3. `SERVER_USERNAME`: 连接到您服务器的用户名
-   * 通常是 `root` 或您在 ECS 实例上创建的用户帐户
+   * 这是您的 ECS 实例的公网 IP 地址
+3. `SERVER_USERNAME`: 连接到服务器的用户名
+   * 通常是 `root` 或您在 ECS 实例上创建的用户账户
 4. `NEXT_PUBLIC_TINA_BRANCH`: TinaCMS 应该使用的内容分支
    * 通常是您的主分支（例如，`main` 或 `master`）
 5. `NEXT_PUBLIC_TINA_CLIENT_ID`: 您的 TinaCloud 客户端 ID
    * 在您的 TinaCloud 仪表板的项目设置中找到
 6. `TINA_TOKEN`: 您的 TinaCloud 身份验证令牌
-   * 从您的 TinaCloud 仪表板的 API 访问中生成
+   * 在您的 TinaCloud 仪表板的 API 访问中生成
 
 ## 创建 GitHub Actions 工作流
 
 在您的仓库中创建一个新文件，路径为 `.github/workflows/deploy.yml`，内容如下：
 
 ```yaml
-name: 部署到阿里云服务器
+name: Deploy to Alibaba Cloud Server
 
 on:
   push:
@@ -174,20 +174,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: 设置 Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "22.14.0"
 
-      - name: 设置 pnpm
+      - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
 
-      - name: 安装依赖
+      - name: Install Dependencies
         run: pnpm install
 
-      - name: 创建 .env 文件
+      - name: Create .env file
         run: |
           cat > .env << EOL
           NEXT_PUBLIC_TINA_CLIENT_ID=${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
@@ -195,14 +195,14 @@ jobs:
           NEXT_PUBLIC_TINA_BRANCH=${{ secrets.NEXT_PUBLIC_TINA_BRANCH }}
           EOL
 
-      - name: 构建
+      - name: Build
         env:
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           NEXT_PUBLIC_TINA_BRANCH: ${{ secrets.NEXT_PUBLIC_TINA_BRANCH }}
         run: pnpm build
 
-      - name: 部署到服务器
+      - name: Deploy to Server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -212,7 +212,7 @@ jobs:
           target: "/tina/tinademo/"
           rm: true
 
-      - name: 执行远程 SSH 命令
+      - name: Execute Remote SSH Commands
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -233,7 +233,7 @@ jobs:
 
 ### 域名设置
 
-1. 从中国提供商处购买域名（例如阿里云、腾讯云）
+1. 从中国的提供商处购买域名（例如，阿里云，腾讯云）
 2. 添加指向您阿里云服务器 IP 地址的 A 记录
 3. 更新您的 Nginx 配置：
 
@@ -247,8 +247,8 @@ server {
 
 ### ICP 备案
 
-请记住，在中国大陆托管的网站需要进行 ICP 备案。通过您的域名提供商或阿里云开始此过程。
+请记住，托管在中国大陆的网站需要进行 ICP 备案。通过您的域名提供商或阿里云开始此过程。
 
 ## 结论
 
-通过上述阿里云和 GitHub Actions 配置，中国用户现在可以在中国大陆正常使用所有 TinaCMS 功能。此设置保持与 Vercel 相同的自动内容同步，没有功能差异。
+通过上述阿里云和 GitHub Actions 的配置，中国用户现在可以在中国大陆正常使用所有 TinaCMS 功能。此设置保持与 Vercel 相同的自动内容同步，无功能差异。
