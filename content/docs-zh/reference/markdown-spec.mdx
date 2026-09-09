@@ -7,7 +7,7 @@ previous: ''
 
 ## Markdown 语法支持
 
-虽然大多数 markdown 功能都可以直接使用，但 TinaCMS 会忽略它无法处理的元素。我们*不*期望支持完整的 [CommonMark](https://commonmark.org/) 和 [GitHub Flavored Markdown](https://github.github.com/gfm/) 规范。请务必通过我们的[社区渠道](/community/)表达您对各种富文本功能的支持！
+虽然大多数 markdown 功能都可以直接支持，但 TinaCMS 会忽略它无法处理的元素。我们*不*期望支持完整的 [CommonMark](https://commonmark.org/) 和 [GitHub Flavored Markdown](https://github.github.com/gfm/) 规范。请务必通过我们的[社区渠道](/community/)表达您对各种富文本功能的支持！
 
 ## 支持的元素
 
@@ -80,7 +80,7 @@ _您**可以**组合使用它们_
 ### 图片
 
 ```markdown
-![A llama](/uploads/llama-6.avif)
+![一只羊驼](/uploads/llama-6.avif)
 格式: ![Alt Text](url)
 ```
 
@@ -96,21 +96,21 @@ https://tina.io - 自动识别！
 [https://tina.io](https://tina.io) - 自动识别！
 [TinaCMS](https://tina.io)
 
-### 引用块
+### 块引用
 
 ```markdown
 正如拿破仑对狮虎兽所说：
 
 > 它几乎是我最喜欢的动物。
-> 它像狮子和老虎的混合……为其魔法技能而繁育。
+> 它像狮子和老虎的混合体……为其魔法技能而繁育。
 ```
 
 正如拿破仑对狮虎兽所说：
 
 > 它几乎是我最喜欢的动物。
-> 它像狮子和老虎的混合……为其魔法技能而繁育。
+> 它像狮子和老虎的混合体……为其魔法技能而繁育。
 
-### 内联代码
+### 行内代码
 
 ```markdown
 我认为您应该在这里使用
@@ -134,7 +134,7 @@ function fancyAlert(arg) {
 ```
 ````
 
-这是它的外观 - 带有漂亮颜色和样式的代码标题！
+这是它的外观 - 漂亮的颜色和样式化的代码标题！
 
 ```javascript
 function fancyAlert(arg) {
@@ -162,7 +162,7 @@ function fancyAlert(arg) {
 
 ### 图表
 
-您可以使用 Mermaid 图表直接在 Markdown 中可视化流程、序列和其他图表类型。以下是一个 Mermaid 流程图的示例：
+您可以使用 Mermaid 图表在 Markdown 中直接可视化流程、序列和其他图表类型。以下是一个 Mermaid 流程图的示例：
 
 ```mermaid
 graph TD
@@ -178,8 +178,8 @@ graph TD
 * 脚注
 * 通过缩进的代码块（请使用 ` ``` `）
 * 列表项中的代码块
-* 表格中的非内联元素...![](/img/docs/rich-text/cells-1.png)
-* 不支持的方案的链接 – 只有以 http、https、mailto、tel 和 xref 开头的 URL 会被识别。
+* 表格中的非行内元素...![](/img/docs/rich-text/cells-1.png)
+* 不支持的方案的链接——只有以 http、https、mailto、tel 和 xref 开头的 URL 会被识别。
 
 ### 不可序列化的内容
 
@@ -204,8 +204,10 @@ graph TD
 
 从 `- 项目 1` 到 `项目 1`。
 
-### 深度嵌套的引用块和代码块
+### 深度嵌套的块引用和代码块
 
-从 `* > 我的引用块` 到 `* 我的引用块`。
+从 `* > 我的块引用` 到 `* 我的块引用`。
 
-###
+### 转义的 markdown 实体
+
+从 `$a + b_{c}` 到 `$a + b\_{c}`。通过在[富文本字段](/docs/reference/types/rich-text)上使用 `parser: { type: 'markdown', skipEscaping: 'all' }` 来关闭此功能。
