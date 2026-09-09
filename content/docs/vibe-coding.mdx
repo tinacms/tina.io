@@ -51,7 +51,7 @@ Install them via the links above, or paste this prompt into your AI assistant:
 
 AI works best when it has context. Having the template provides it with some code to model itself after.
 
-Install via our [Tina Starter CLI tool](https://tina.io/docs/introduction/using-starter), or paste this prompt into your AI assistant:
+Install via our [TinaCMS Starter CLI tool](https://tina.io/docs/introduction/using-starter), or paste this prompt into your AI assistant:
 
 ```markdown
 - Set up a TinaCMS site using the command: npx create-tina-app@latest
@@ -64,7 +64,7 @@ Install via our [Tina Starter CLI tool](https://tina.io/docs/introduction/using-
 ![](/setup.png)
 **Figure: Results of the above prompt**
 
-The Tina Starter CLI tool will generate a new folder named after your project and install everything required to run TinaCMS into it.
+The TinaCMS Starter CLI tool will generate a new folder named after your project and install everything required to run TinaCMS into it.
 
 Once installed, navigate to the created folder and explore the generated files so you understand how TinaCMS is wired together.
 
@@ -79,7 +79,7 @@ Create a file named `AGENTS.md` in your root directory. This serves as a handboo
 Example:
 
 ```plaintext
-# Project: My Tina Blog
+# Project: My TinaCMS Blog
 Stack: Next.js, TinaCMS, Tailwind CSS
 
 - Use `tina/config.ts` for schema definitions.
@@ -122,13 +122,13 @@ I have a `content/posts` directory and a `components/Post.tsx` file. I want to a
 
 ***
 
-## 3. Master the Tina-Specific Patterns
+## 3. Master the TinaCMS-Specific Patterns
 
-Help your AI understand Tina's unique architecture.
+Help your AI understand TinaCMS's unique architecture.
 
 ### 3.1 Schema First
 
-Tina starts with the schema. Instead of asking for a page, ask for the schema definition first.
+TinaCMS starts with the schema. Instead of asking for a page, ask for the schema definition first.
 
 ```plaintext
 Create a 'Testimonial' object for my schema. It should have an author name, quote, and avatar image.
@@ -147,7 +147,7 @@ When building the component, ensure every editable element has a 'data-tina-fiel
 Don't manually type your props.
 
 ```plaintext
-Generate the TypeScript interface for this component based on the Tina query response.
+Generate the TypeScript interface for this component based on the TinaCMS query response.
 ```
 
 ***
@@ -230,7 +230,7 @@ Treat every output as a draft.
 
 * If a suggestion is close: Accept, tweak and refine
 * If it’s off: Add more detail and regenerate
-* If it forgets Tina: Remind it explicitly:
+* If it forgets TinaCMS: Remind it explicitly:
 
 ```plaintext
 This is using TinaCMS, follow its component patterns.
@@ -264,6 +264,6 @@ That single line of clarity is often all it needs to snap back into alignment.
 ## Final Thought
 
 AI won’t build your site for you, but it will build *with* you.
-Your job is to keep it aimed in the right direction by understanding Tina’s patterns, giving clear prompts, and staying hands-on.
+Your job is to keep it aimed in the right direction by understanding TinaCMS’s patterns, giving clear prompts, and staying hands-on.
 
 **Build small. Commit often. Iterate confidently.**

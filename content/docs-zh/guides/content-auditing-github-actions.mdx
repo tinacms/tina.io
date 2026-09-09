@@ -18,10 +18,10 @@ previous: ''
 <scrollBasedShowcase
   showcaseItems={[
     {
-      title: "Tina Cloud",
+      title: "TinaCloud",
       image: "",
       content:
-        "您的内容将在Tina Cloud中查询。这为GitHub操作提供了需要定位的文件列表。\n",
+        "您的内容将在TinaCloud中查询。这为GitHub操作提供了需要定位的文件列表。\n",
       useAsSubsection: false
     },
     {
@@ -87,7 +87,7 @@ previous: ''
 | 名称                 | 描述                                                                                                                              |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | **TINA\_TOKEN**      | 您的TinaCloud API令牌。**TinaCloud \| \<your-project> \| Tokens \| Content (Readonly)**                                               |
-| **TINA\_CLIENT\_ID** | 您项目的Tina客户端ID。您可以在**TinaCloud \| Projects \| \<your-project> \|  ⚙️ 项目详情 \| 客户端ID**中找到它 |
+| **TINA\_CLIENT\_ID** | 您项目的TinaCMS客户端ID。您可以在**TinaCloud \| Projects \| \<your-project> \|  ⚙️ 项目详情 \| 客户端ID**中找到它 |
 
 #### 变量
 
@@ -143,7 +143,7 @@ const MyCollection : Collection = {
 cd ./github/scripts/tina-helpers
 ```
 
-您需要在此位置添加一个`.env`文件，并保存您的**Collection**、**Tina Token**和**Tina Client ID**。这些是您在[GitHub设置](/docs/guides/content-auditing-github-actions#secrets)中添加的相同属性。
+您需要在此位置添加一个`.env`文件，并保存您的**Collection**、**TinaCMS Token**和**TinaCMS Client ID**。这些是您在[GitHub设置](/docs/guides/content-auditing-github-actions#secrets)中添加的相同属性。
 
 ```env
 TINA_TOKEN=<your-tina-token>

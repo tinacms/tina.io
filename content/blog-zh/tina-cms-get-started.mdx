@@ -10,31 +10,31 @@ prev: content/blog-zh/tinacms-2022.mdx
 next: content/blog-zh/from-cms-to-contextual.mdx
 ---
 
-到目前为止，作为 Tina 的用户，当你与内容互动时，你已经享受到了可视化编辑。我们知道，虽然这种体验对你的内容团队来说是顶级的，但将 Tina 与可视化编辑集成到你的应用程序中所需的时间比你在测试新 CMS 时可能愿意投入的时间要长。
+到目前为止，作为 TinaCMS 的用户，当你与内容互动时，你已经享受到了可视化编辑。我们知道，虽然这种体验对你的内容团队来说是顶级的，但将 TinaCMS 与可视化编辑集成到你的应用程序中所需的时间比你在测试新 CMS 时可能愿意投入的时间要长。
 
-## 以传统方式使用 Tina 作为 CMS
+## 以传统方式使用 TinaCMS 作为 CMS
 
-为了给所有用户提供最佳体验，Tina 现在提供了两种编辑内容的方式：可视化编辑和更传统的 CMS。除了我们的传统 CMS，我们仍然由 Markdown、JSON 或 MDX 提供支持，并由 Git 备份。以下是它在已部署网站上实现时的快速 GIF：
+为了给所有用户提供最佳体验，TinaCMS 现在提供了两种编辑内容的方式：可视化编辑和更传统的 CMS。除了我们的传统 CMS，我们仍然由 Markdown、JSON 或 MDX 提供支持，并由 Git 备份。以下是它在已部署网站上实现时的快速 GIF：
 
 <WebmEmbed embedSrc="/img/blog/mdx-powered-docs/example.webm" />
 
-### 如何实现 Tina？
+### 如何实现 TinaCMS？
 
-当我们在 alpha 版本中推出 Tina + Cloud 时，你需要执行以下步骤来集成 Tina，并且我们仅支持可视化编辑：
+当我们在 alpha 版本中推出 TinaCMS + Cloud 时，你需要执行以下步骤来集成 TinaCMS，并且我们仅支持可视化编辑：
 
-1. 使用 `npx @tinacms/cli init` 添加 Tina
+1. 使用 `npx @tinacms/cli init` 添加 TinaCMS
 2. 为你的 Markdown 创建架构
 3. 实现你的查询，用于 `getStaticPaths` 和 `getStaticProps`
 4. 处理 props 以使你的内容可编辑。
 
-这些步骤现在减少了一半。当你仅使用 Tina 作为 CMS 而不进行可视化编辑时，你只需要：
+这些步骤现在减少了一半。当你仅使用 TinaCMS 作为 CMS 而不进行可视化编辑时，你只需要：
 
-1. 使用 `npx @tinacms/cli init` 添加 Tina
+1. 使用 `npx @tinacms/cli init` 添加 TinaCMS
 2. 为你的 Markdown 创建架构
 
 话虽如此，让我们使用 Next.js 启动器来创建一个仅使用 CMS 的可编辑博客。
 
-第一步是创建博客启动器并初始化 Tina
+第一步是创建博客启动器并初始化 TinaCMS
 
 ```bash
 # 创建你的博客
@@ -43,25 +43,25 @@ npx create-next-app --example blog-starter tina-cms-blog
 # 进入你的新博客
 cd tina-cms-blog
 
-# 初始化 Tina
+# 初始化 TinaCMS
 npx @tinacms/cli@latest init
 
 ```
 
-那么 Tina CLI 做了什么？它在你的 Next.js 应用程序中做了很多事情：
+那么 TinaCMS CLI 做了什么？它在你的 Next.js 应用程序中做了很多事情：
 
-1. 安装了 Tina 所需的所有依赖项。
+1. 安装了 TinaCMS 所需的所有依赖项。
 2. 在 `.tina` 目录中定义了一个基本内容架构。
 3. 在 demo 目录中创建示例内容。
 4. 编辑 `package.json` 以添加启动 tina 的脚本（tina-dev、tina-build、tina-start）。
 
 ### 测试时间
 
-现在你已经设置了 Tina，可以使用以下命令启动你的应用程序：
+现在你已经设置了 TinaCMS，可以使用以下命令启动你的应用程序：
 
 `yarn tina-dev`
 
-现在，如果你导航到 [http://localhost:3000/admin](http://localhost:3000/admin)，你将看到一个新页面。继续点击“Edit with Tina”按钮。
+现在，如果你导航到 [http://localhost:3000/admin](http://localhost:3000/admin)，你将看到一个新页面。继续点击“Edit with TinaCMS”按钮。
 
 ![](/img/blog/getting-started-tina-admin/login-example.webp)
 你将进入一个看起来像这样的页面：
@@ -70,19 +70,19 @@ npx @tinacms/cli@latest init
 
 ### 编辑内容
 
-如果你在屏幕左侧选择“Blog Posts”，它将显示所有可供编辑的帖子，你可能会注意到 Tina 为你放置了一个名为“Hello World”的博客帖子。继续点击它，你将看到一个可编辑的表单。随意更改标题或正文并点击保存按钮。
+如果你在屏幕左侧选择“Blog Posts”，它将显示所有可供编辑的帖子，你可能会注意到 TinaCMS 为你放置了一个名为“Hello World”的博客帖子。继续点击它，你将看到一个可编辑的表单。随意更改标题或正文并点击保存按钮。
 
-![使用 Tina 编辑的示例](/img/blog/getting-started-tina-admin/editing-example.jpg)
+![使用 TinaCMS 编辑的示例](/img/blog/getting-started-tina-admin/editing-example.jpg)
 
 ### 发生了什么？
 
-当你点击保存时，Tina 的 GraphQL 层将这些更改直接保存到位于 content/posts 目录中的 Markdown 文件“HelloWorld.md”中。继续，打开它，查看你的新更改。
+当你点击保存时，TinaCMS 的 GraphQL 层将这些更改直接保存到位于 content/posts 目录中的 Markdown 文件“HelloWorld.md”中。继续，打开它，查看你的新更改。
 
-> 当你在生产环境中执行此操作时，Tina 将直接为你提交到 GitHub！
+> 当你在生产环境中执行此操作时，TinaCMS 将直接为你提交到 GitHub！
 
 ## 使启动博客可编辑
 
-现在你已经看到了 Tina 编辑的实际操作，让我们使 Next.js 启动器内容可编辑。第一步是定义我们内容的形状。你将看到一个名为 `.tina` 的文件夹，其中包含一个 `schema.ts` 文件。此文件允许你指示 Tina 的内容 API 查找哪种内容类型、如何标记它等等！
+现在你已经看到了 TinaCMS 编辑的实际操作，让我们使 Next.js 启动器内容可编辑。第一步是定义我们内容的形状。你将看到一个名为 `.tina` 的文件夹，其中包含一个 `schema.ts` 文件。此文件允许你指示 TinaCMS 的内容 API 查找哪种内容类型、如何标记它等等！
 
 ### 集合
 
@@ -144,7 +144,7 @@ Lorem ipsum dolor sit amet, ...
 
 ### 对架构进行更改
 
-打开位于 `/.tina/schema.ts` 的 Tina `schema.ts` 文件。首先在提供的对象下方，你需要用你想要的内容替换当前的集合：
+打开位于 `/.tina/schema.ts` 的 TinaCMS `schema.ts` 文件。首先在提供的对象下方，你需要用你想要的内容替换当前的集合：
 
 ```diff
 {
@@ -260,23 +260,23 @@ export default defineSchema({
 
 如果你选择第一篇帖子“动态路由”，你将看到我们在架构中定义的所有字段，这些字段与所有前言匹配。继续编辑一些字段，如标题或正文并点击保存。现在如果你导航到 `http://localhost:3000/posts/dynamic-routing` 你将看到这些更改！
 
-## 你可以在哪里尝试或跟进 Tina？
+## 你可以在哪里尝试或跟进 TinaCMS？
 
-如果你还没有机会尝试 Tina，并且没有时间遵循本教程，请在 TinaCloud 或命令行上启动一个启动站点并分享你的反馈。
+如果你还没有机会尝试 TinaCMS，并且没有时间遵循本教程，请在 TinaCloud 或命令行上启动一个启动站点并分享你的反馈。
 
 <CreateAppCta ctaText="尝试一个启动器" cliText="npx create-tina-app@latest" />
 
-你知道你会想成为这个充满创造力、创新性、支持性的开发者社区的一部分（甚至还有一些编辑和设计师），他们每天都在尝试和实施 Tina。
+你知道你会想成为这个充满创造力、创新性、支持性的开发者社区的一部分（甚至还有一些编辑和设计师），他们每天都在尝试和实施 TinaCMS。
 
-### Tina 社区 Discord
+### TinaCMS 社区 Discord
 
-Tina 有一个社区 [Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了 Jamstack 爱好者和 Tina 爱好者。当你加入时，你会发现一个地方：
+TinaCMS 有一个社区 [Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了 Jamstack 爱好者和 TinaCMS 爱好者。当你加入时，你会发现一个地方：
 
 * 获取问题帮助
-* 找到最新的 Tina 新闻和抢先预览
-* 与 Tina 社区分享你的项目，并谈论你的经验
+* 找到最新的 TinaCMS 新闻和抢先预览
+* 与 TinaCMS 社区分享你的项目，并谈论你的经验
 * 聊天关于 Jamstack
 
-### Tina Twitter
+### TinaCMS Twitter
 
-我们的 Twitter 账号 ([@tinacms](https://twitter.com/tinacms)) 宣布了 Tina 的最新功能、改进和抢先体验。如果你在项目中标记我们，我们也会很高兴。
+我们的 Twitter 账号 ([@tinacms](https://twitter.com/tinacms)) 宣布了 TinaCMS 的最新功能、改进和抢先体验。如果你在项目中标记我们，我们也会很高兴。

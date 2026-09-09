@@ -6,7 +6,7 @@ next: content/docs-zh/extending-tina/before-submit.mdx
 previous: content/docs-zh/extending-tina/format-and-parse.mdx
 ---
 
-默认情况下，Tina 不强制执行严格的文件名限制，因为操作系统支持多种格式。然而，如果需要，您可以在集合级别强制执行自定义限制。
+默认情况下，TinaCMS 不强制执行严格的文件名限制，因为操作系统支持多种格式。然而，如果需要，您可以在集合级别强制执行自定义限制。
 
 ## 文件名规则
 
@@ -112,7 +112,7 @@ export default defineConfig({
 
 ### 使用默认 slugify 的示例
 
-如果没有提供 `slugify` 函数，并且某个字段具有 `isTitle: true`，Tina 将使用默认的 `slugify` 函数。这将移除非字母数字字符并将空格替换为短划线。
+如果没有提供 `slugify` 函数，并且某个字段具有 `isTitle: true`，TinaCMS 将使用默认的 `slugify` 函数。这将移除非字母数字字符并将空格替换为短划线。
 
 ```ts
 export default defineConfig({

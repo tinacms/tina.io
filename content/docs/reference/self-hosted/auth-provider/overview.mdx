@@ -8,16 +8,16 @@ previous: ''
 
 The term "Auth Provider" refers to the TinaCMS component that handles authentication and authorization of users when self-hosting.
 
-The recommended auth provider for Tina is based on [Auth.js](https://authjs.dev/). It leverages a user collection
+The recommended auth provider for TinaCMS is based on [Auth.js](https://authjs.dev/). It leverages a user collection
 in your database to store user information and uses the Auth.js api to handle authentication and authorization. By leveraging Auth.js,
 you can also easily add support for any Auth.js [Login Provider](https://authjs.dev/getting-started/providers) such as Auth0, GitHub, Google, etc.
 
 The auth provider is configured in two places when self-hosting:
 
-* The Tina Config
-* The Tina Backend
+* The TinaCMS Config
+* The TinaCMS Backend
 
-## 1. Tina Config (tina/config.ts,tsx,js)
+## 1. TinaCMS Config (tina/config.ts,tsx,js)
 
 This is done by providing an [Auth Provider](/docs/reference/self-hosted/auth-provider/bring-your-own#) to the `authProvider` option in `defineConfig`.
 
@@ -35,7 +35,7 @@ export default defineConfig({
 })
 ```
 
-## 2. Tina Backend
+## 2. TinaCMS Backend
 
 `/api/tina/[...routes].{ts,js}`
 

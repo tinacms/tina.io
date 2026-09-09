@@ -18,13 +18,13 @@ Astro's visual editing path doesn't use `useTina()`; that hook is React-specific
 
 The flow:
 
-1. The `tina()` integration's request-scoped middleware buffers each HTML response and, on edit-mode requests, splices the bridge bootstrap and one `<div data-tina-form>` payload per Tina query the page consumes into `<head>`.
+1. The `tina()` integration's request-scoped middleware buffers each HTML response and, on edit-mode requests, splices the bridge bootstrap and one `<div data-tina-form>` payload per TinaCMS query the page consumes into `<head>`.
 2. The bridge (loaded from `/admin/bridge.js`) reads those payloads, posts `open` to the parent admin window, and seeds an in-memory data store.
 3. As the editor types, the admin posts `updateData` back to the iframe. The bridge stores it.
 4. Each editable region in the page is wrapped in `<TinaIsland>`, which emits a `<… data-tina-island="/tina-island/<name>?<params>">` marker. On every store update, the bridge POSTs the current overlay to that endpoint.
 5. The endpoint re-renders the matching Astro component against the overlay data and returns an HTML fragment. The bridge swaps it into the live DOM.
 
-In production (no admin parent), the middleware injects nothing and `init()` exits immediately — production HTML is byte-identical to a Tina-free Astro app. (Exception: pages that use `<TinaIsland>` carry a one-line inline bootstrap so editing still works when the page is statically built.)
+In production (no admin parent), the middleware injects nothing and `init()` exits immediately — production HTML is byte-identical to a TinaCMS-free Astro app. (Exception: pages that use `<TinaIsland>` carry a one-line inline bootstrap so editing still works when the page is statically built.)
 
 <WarningCallout
   body={<>
@@ -74,7 +74,7 @@ There is no shared `<head>` wiring component, no `forms` prop to thread, no manu
 
 ## Data loaders — wrap every query with `requestWithMetadata`
 
-Each route's data loader calls the generated Tina client and pipes the result through `requestWithMetadata()`. That single call:
+Each route's data loader calls the generated TinaCMS client and pipes the result through `requestWithMetadata()`. That single call:
 
 - Hashes `{ query, variables }` into a stable form id the bridge uses to address the form.
 - Reads the bridge's overlay from request-scoped storage and swaps `data` for the unsaved overlay when the page is rendered inside the admin iframe.
@@ -162,7 +162,7 @@ export const prerender = false;
 export const ALL: APIRoute = experimental_createIslandRoute(islands);
 ```
 
-That's the only file the bridge needs. The helper enforces same-origin POST with the Tina-preview content-type, renders the registered component via Astro's container API, and wraps the output in the registered wrapper element — matching the page-side `<TinaIsland>` so the bridge can swap it in.
+That's the only file the bridge needs. The helper enforces same-origin POST with the TinaCMS-preview content-type, renders the registered component via Astro's container API, and wraps the output in the registered wrapper element — matching the page-side `<TinaIsland>` so the bridge can swap it in.
 
 ## Use editable regions in pages
 
@@ -328,7 +328,7 @@ Requirements for static editing:
 - Pass `primary` on the page's main `<TinaIsland>`. On a static page the bridge can't tell which island is "the page" automatically, so without this the editor may land on the multi-document picker.
 - Keep `export const prerender = false` on `src/pages/tina-island/[name].ts`.
 
-Trade-off: a page that uses `<TinaIsland>` ships that one-line inline bootstrap in production HTML — it's no longer byte-identical to a Tina-free Astro app. Pages without `<TinaIsland>` are unchanged.
+Trade-off: a page that uses `<TinaIsland>` ships that one-line inline bootstrap in production HTML — it's no longer byte-identical to a TinaCMS-free Astro app. Pages without `<TinaIsland>` are unchanged.
 
 ## Cross-origin admin
 

@@ -50,11 +50,11 @@ npx @tinacms/cli@latest init
 |---|---|
 | 你的现有站点是用哪个框架构建的？ | **Astro** |
 | 选择你的包管理器 | *你的网站使用的那个* |
-| 你想使用 TypeScript 来配置 Tina 吗？ | **是** |
+| 你想使用 TypeScript 来配置 TinaCMS 吗？ | **是** |
 
 > `init` 将 TinaCMS 添加到一个**现有**站点。在空文件夹中运行它会停止并指向选项 1。
 
-`init` 安装 `@tinacms/astro` + 一个 SSR 适配器，包装你的 `dev` / `build` 脚本，并添加新文件：一个准备编辑的演示在 **`/tinacms-demo`**，你的 `tina/` 配置和一个示例集合。它不会覆盖你的内容，并且会保留自定义的 `astro.config`（空或默认配置会得到 Tina 的连接）。
+`init` 安装 `@tinacms/astro` + 一个 SSR 适配器，包装你的 `dev` / `build` 脚本，并添加新文件：一个准备编辑的演示在 **`/tinacms-demo`**，你的 `tina/` 配置和一个示例集合。它不会覆盖你的内容，并且会保留自定义的 `astro.config`（空或默认配置会得到 TinaCMS 的连接）。
 
 启动开发服务器：
 
@@ -117,7 +117,7 @@ pnpm add @astrojs/node          # 或 @astrojs/vercel / netlify / cloudflare
 
 `@astrojs/node` 是本地编辑的安全默认选项。部署时与主机（Vercel、Netlify、Cloudflare）匹配。
 
-将 Tina 集成和一个 SSR 适配器添加到 `astro.config.mjs`。如果你已经有一个 `integrations` 数组或适配器，**保留它们**并仅追加 `tina()`。
+将 TinaCMS 集成和一个 SSR 适配器添加到 `astro.config.mjs`。如果你已经有一个 `integrations` 数组或适配器，**保留它们**并仅追加 `tina()`。
 
 > **不确定如何合并？** 复制 `init` 在你的终端中打印的版本，或者将你的文件与下面的代码片段进行比较，并保留你现有的集成和适配器。
 
@@ -150,7 +150,7 @@ pnpm dev
 
 ## 使你的现有 Astro 页面可编辑
 
-在 `init` 之后，**`/tinacms-demo` 是唯一为 Tina 编辑连接的页面**。它是你网站其他部分的工作模板：将相同的模式复制到你现有的页面和组件中。（一个*岛*只是页面的一个可编辑部分。）每个可编辑页面连接这五个部分，所有这些都为演示搭建：
+在 `init` 之后，**`/tinacms-demo` 是唯一为 TinaCMS 编辑连接的页面**。它是你网站其他部分的工作模板：将相同的模式复制到你现有的页面和组件中。（一个*岛*只是页面的一个可编辑部分。）每个可编辑页面连接这五个部分，所有这些都为演示搭建：
 
 1. **你的架构中的一个字段**（`tina/config.ts`）：你想编辑的内容。
 2. **一个数据加载器**：将查询包装在 `requestWithMetadata()` 中。

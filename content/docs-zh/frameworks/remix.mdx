@@ -1,6 +1,6 @@
 ---
 id: /docs/frameworks/remix
-title: Remix + Tina 设置指南
+title: Remix + TinaCMS 设置指南
 last_edited: '2025-10-21T09:40:01.270Z'
 next: ''
 previous: ''
@@ -10,7 +10,7 @@ previous: ''
 
 TinaCMS 可以在本地添加到您的 Remix 网站。在本文档中，我们将指导您完成本地设置，以及在生产网站上的编辑。
 
-> 您可以参考我们的 [Tina Remix Starter](https://github.com/tinacms/tina-remix-starter) 作为示例。
+> 您可以参考我们的 [TinaCMS Remix Starter](https://github.com/tinacms/tina-remix-starter) 作为示例。
 
 ## 入门
 
@@ -26,7 +26,7 @@ TinaCMS 可以在本地添加到您的 Remix 网站。在本文档中，我们�
 
 ## 建模您的内容
 
-要在 Tina 中编辑您网站的内容，您可以在 tina/config.ts 文件中建模您的内容。
+要在 TinaCMS 中编辑您网站的内容，您可以在 tina/config.ts 文件中建模您的内容。
 
 在[这里](/docs/schema/)了解更多关于内容建模的信息。
 
@@ -46,19 +46,19 @@ npx tinacms dev -c "remix dev"
 
 > 提示：如果运行此命令时出现错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
 
-此时，您应该能够看到 Tina 管理界面，选择一篇文章，保存更改，并看到更改已持久化到您的本地 markdown 文件中。
+此时，您应该能够看到 TinaCMS 管理界面，选择一篇文章，保存更改，并看到更改已持久化到您的本地 markdown 文件中。
 
 ![](/img/hugo-tina-admin-screenshot.png)
 
 ## 在页面中获取数据
 
-Tina 提供了一个易于使用的客户端来获取您的内容数据。
+TinaCMS 提供了一个易于使用的客户端来获取您的内容数据。
 
 在[这里](/docs/features/data-fetching/)阅读更多关于数据获取的信息。
 
 ## 设置可视化编辑（可选）
 
-对于由 Tina 的内容 API 驱动的页面，您可能希望利用 TinaCMS 的可视化编辑功能。
+对于由 TinaCMS 的内容 API 驱动的页面，您可能希望利用 TinaCMS 的可视化编辑功能。
 
 ![基于块的编辑可视化](/gif/blocks.gif)
 

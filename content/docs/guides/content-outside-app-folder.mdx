@@ -83,7 +83,7 @@ export default defineConfig({
 TinaCMS writes generated files (`tina-lock.json`, `__generated__/` etc.) into a `tina/` folder inside the content root. **This folder must exist** or the CLI will fail with:
 
 ```
-Unable to find Tina folder, if you're working in folder outside of the Tina config be sure to specify --rootPath
+Unable to find TinaCMS folder, if you're working in folder outside of the TinaCMS config be sure to specify --rootPath
 ```
 
 Create it:
@@ -140,7 +140,7 @@ TinaCMS Dev Server is active
 
 ## Troubleshooting
 
-### "Unable to find Tina folder ... specify --rootPath"
+### "Unable to find TinaCMS folder ... specify --rootPath"
 
 This error means the content directory is missing a `tina/` folder. Create one with `mkdir content/tina`. The `--rootPath` suggestion in the error message is misleading for this use case — it controls where TinaCMS looks for the **app config**, not the content directory.
 

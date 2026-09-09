@@ -22,7 +22,7 @@ TinaCMS also allows for ["Visual Editing"](https://tina.io/docs/tinacms-lingo) w
     **Visual Editing Requirements** – before a page can be setup with visual
     editing, it must:
     
-    * Be using [Tina's data-fetching](/docs/features/data-fetching/)
+    * Be using [TinaCMS's data-fetching](/docs/features/data-fetching/)
     * Be compatible with client side rendering
   </>}
 />
@@ -40,9 +40,9 @@ In production, this hook will only pass through its initial data value.
 `useTina` should be provided three parameters:
 
 * `query` and `variables`: These are the same values that you used for [backend data-fetching](/docs/features/data-fetching/). The query must be for an **individual document only**.
-* `data`: This is the GraphQL response you received from the Tina API.
+* `data`: This is the GraphQL response you received from the TinaCMS API.
 
-> If you used the Tina client functions for data fetching, the three return values can be plugged directly into the `useTina` hook.
+> If you used the TinaCMS client functions for data fetching, the three return values can be plugged directly into the `useTina` hook.
 
 ## Examples
 
@@ -82,11 +82,11 @@ export const getStaticProps = async () => {
 
 ### Visual Editing with a Specified Form (experimental)
 
-Tina's experimental **Select Form By ID** feature allows developers to choose which form shows in the visual editing sidebar when multiple `useTina` hooks (or queries) exist on a page. By default, the first query requested is used to determine the form. However, by using this feature, you can ensure that a specific form — such as the one associated with a page collection rather than a global config — is used in the Tina sidebar. This can be particularly useful when working with multiple domains, where distinct sections or areas of your site require different form configurations.
+TinaCMS's experimental **Select Form By ID** feature allows developers to choose which form shows in the visual editing sidebar when multiple `useTina` hooks (or queries) exist on a page. By default, the first query requested is used to determine the form. However, by using this feature, you can ensure that a specific form — such as the one associated with a page collection rather than a global config — is used in the TinaCMS sidebar. This can be particularly useful when working with multiple domains, where distinct sections or areas of your site require different form configurations.
 
 #### How It Works
 
-When initializing the `useTina` hook, you can pass an experimental callback named `experimental___selectFormByFormId()`. This callback should return a unique form identifier, which tells Tina which document’s form should be shown in visual editing.
+When initializing the `useTina` hook, you can pass an experimental callback named `experimental___selectFormByFormId()`. This callback should return a unique form identifier, which tells TinaCMS which document’s form should be shown in visual editing.
 
 #### Example
 

@@ -6,7 +6,7 @@ next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
 
-By default, Tina does not enforce strict filename constraints, as operating systems support a wide variety of formats. However, you can enforce custom constraints at the collection level if needed.
+By default, TinaCMS does not enforce strict filename constraints, as operating systems support a wide variety of formats. However, you can enforce custom constraints at the collection level if needed.
 
 ## Filename Rules
 
@@ -112,7 +112,7 @@ export default defineConfig({
 
 ### Example with default slugify
 
-If no `slugify` function is provided and a field has `isTitle: true`, Tina uses a default `slugify` function. This removes non-alphanumeric characters and replaces spaces with dashes.
+If no `slugify` function is provided and a field has `isTitle: true`, TinaCMS uses a default `slugify` function. This removes non-alphanumeric characters and replaces spaces with dashes.
 
 ```ts
 export default defineConfig({

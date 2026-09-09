@@ -4,7 +4,7 @@ cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/
 seo:
   title: '概述：使用 TinaCloud 进行生产部署'
   description: >-
-    学习如何使用 TinaCloud 将 Tina 网站投入生产。按照我们的分步指南，在 Vercel、Netlify 或 GitHub Pages 上进行设置和部署
+    学习如何使用 TinaCloud 将 TinaCMS 网站投入生产。按照我们的分步指南，在 Vercel、Netlify 或 GitHub Pages 上进行设置和部署
 title: 使用 TinaCloud 进行生产部署
 alias: Production-with-TinaCloud
 last_edited: '2025-09-17T05:45:13.880Z'
@@ -16,7 +16,7 @@ previous: content/docs-zh/tinacloud.mdx
 
 <Youtube embedSrc="https://www.youtube.com/embed/sTVd8CYtXrA?si=DmnS-45aXkmCq8Fa" />
 
-要将您的网站部署到生产环境，您需要将 Tina 连接到托管的后端。本文件将引导您完成从[本地运行到生产运行](/docs/introduction/faq/#what-is-local-mode-vs-prod-mode)的步骤。
+要将您的网站部署到生产环境，您需要将 TinaCMS 连接到托管的后端。本文件将引导您完成从[本地运行到生产运行](/docs/introduction/faq/#what-is-local-mode-vs-prod-mode)的步骤。
 
 ## 前提条件
 
@@ -65,7 +65,7 @@ export default defineConfig({
 
 <WarningCallout
   body={<>
-    注意：如果您从本地环境文件加载您的 schema 配置值，Tina 的构建过程只会拾取 `.env` 文件（而不是 `.env.local` 或 `.env.development`）。
+    注意：如果您从本地环境文件加载您的 schema 配置值，TinaCMS 的构建过程只会拾取 `.env` 文件（而不是 `.env.local` 或 `.env.development`）。
   </>}
 />
 
@@ -125,7 +125,7 @@ apiURL 被配置为在开发中使用本地内容 API（查询您的本地文件
 
 下一步是更新您的部署配置，以便 TinaCMS 管理与您的网站一起构建。这允许您的编辑者通过 `<your-site>/admin`（或 `your-site/admin/index.html`）进入 CMS。
 
-通常，您需要确保您的构建命令在网站的构建命令之前运行 `tinacms build`。这将与您的网站一起构建 TinaCMS 管理。您还需要确保您的 Tina `NEXT_PUBLIC_TINA_CLIENT_ID` 和 `TINA_TOKEN` 被设置为您主机上的环境变量。
+通常，您需要确保您的构建命令在网站的构建命令之前运行 `tinacms build`。这将与您的网站一起构建 TinaCMS 管理。您还需要确保您的 TinaCMS `NEXT_PUBLIC_TINA_CLIENT_ID` 和 `TINA_TOKEN` 被设置为您主机上的环境变量。
 
 <WarningCallout
   body={<>

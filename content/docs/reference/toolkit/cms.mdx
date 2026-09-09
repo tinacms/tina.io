@@ -11,11 +11,11 @@ previous: ''
   </>}
 />
 
-The CMS object in Tina is a container for attaching and accessing plugins, APIs, and the event bus. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
+The CMS object in TinaCMS is a container for attaching and accessing plugins, APIs, and the event bus. On its own, the CMS does very little; however, since it's the central integration point for everything that TinaCMS does, it's extremely important!
 
 ## Accessing the CMS Object
 
-The CMS object can be retrieved from context via the `useCMS` hook (from anywhere within the Tina provider). Reference the available [core properties](/docs/cms#reference) to work with.
+The CMS object can be retrieved from context via the `useCMS` hook (from anywhere within the TinaCMS provider). Reference the available [core properties](/docs/cms#reference) to work with.
 
 ```javascript
 import * as React from 'react'
@@ -42,7 +42,7 @@ export default function ExitButton() {
 
   return (
     <button onClick={() => cms.toggle()}>
-      {cms.enabled ? `Exit Tina` : `Edit with Tina`}
+      {cms.enabled ? `Exit TinaCMS` : `Edit with TinaCMS`}
     </button>
   )
 }

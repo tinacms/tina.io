@@ -3,7 +3,7 @@ id: '/docs/reference/self-hosted/auth-provider/clerk-auth'
 title: Clerk Auth Provider
 ---
 
-[Clerk](https://clerk.com) 是一个用户管理服务，你可以在自托管的 Tina 设置中使用它。
+[Clerk](https://clerk.com) 是一个用户管理服务，你可以在自托管的 TinaCMS 设置中使用它。
 
 > 在寻找代码吗？查看 [GitHub 仓库](https://github.com/tinacms/tinacms/tree/main/packages/tinacms-clerk)。
 
@@ -40,7 +40,7 @@ TINA_PUBLIC_ALLOWED_EMAIL="your-email@gmail.com"
 }
 ```
 
-## 更新你的 Tina 配置
+## 更新你的 TinaCMS 配置
 
 将以下内容添加到你的 `tina/config.{ts.js}` 文件中。确保将 "my-email@gmail.com" 替换为你用于登录的电子邮件：
 
@@ -64,7 +64,7 @@ export default defineConfig({
 - 在 Clerk 中创建一个组织，并检查已登录用户是否是该项目组织的一部分。注意，组织在免费计划中目前限制为 3 个用户。
 - 创建一个 ["允许列表"](https://clerk.com/docs/authentication/allowlist)。注意，这是一个付费功能。
 
-## 更新 Tina 后端
+## 更新 TinaCMS 后端
 
 将以下内容添加到你的 `pages/api/tina/[...routes].{ts,js}` 文件中
 

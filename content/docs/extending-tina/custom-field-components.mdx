@@ -13,7 +13,7 @@ This component completely overrides the original component, providing the user w
 
 ## Environment Variables in Custom Components
 
-Custom field components run inside the Tina admin, which is built as a **static SPA** separately from your site. Environment variables are embedded into the admin JavaScript at build time — they are not read at runtime. This means two things must be true for a variable to be available:
+Custom field components run inside the TinaCMS admin, which is built as a **static SPA** separately from your site. Environment variables are embedded into the admin JavaScript at build time — they are not read at runtime. This means two things must be true for a variable to be available:
 
 1. **It must use an allowed prefix.** For security reasons, only these variables are included:
    - `TINA_PUBLIC_*`
@@ -35,7 +35,7 @@ const secret = process.env.MY_API_KEY
 
 <WarningCallout
   body={<>
-    If your custom component relies on an environment variable and it's always `undefined`, check that: (1) the variable name starts with `TINA_PUBLIC_` or `NEXT_PUBLIC_`, and (2) the variable is defined in your `.env` file or CI environment when `tinacms build` runs. Note that Tina only loads `.env` files — not `.env.local` or `.env.development`. See the [config reference](/docs/reference/config#environment-variables) and [security advisory](/blog/2023-02-security-update) for details.
+    If your custom component relies on an environment variable and it's always `undefined`, check that: (1) the variable name starts with `TINA_PUBLIC_` or `NEXT_PUBLIC_`, and (2) the variable is defined in your `.env` file or CI environment when `tinacms build` runs. Note that TinaCMS only loads `.env` files — not `.env.local` or `.env.development`. See the [config reference](/docs/reference/config#environment-variables) and [security advisory](/blog/2023-02-security-update) for details.
   </>}
 />
 
@@ -214,8 +214,8 @@ The below tutorial includes a segment on creating a custom Icon selector using a
 
 ### Image scale slider component
 
-With a little bit of extra CSS you can create scalable images in Tina. This will save you having to crop images for your blog.
-![An image being scaled within the Tina editor](/img-scale-component.gif)
+With a little bit of extra CSS you can create scalable images in TinaCMS. This will save you having to crop images for your blog.
+![An image being scaled within the TinaCMS editor](/img-scale-component.gif)
 
 ```
 import { wrapFieldsWithMeta } from 'tinacms';
