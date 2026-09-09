@@ -5,7 +5,7 @@ on:
 env:
   NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
   TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  NEXT_PUBLIC_TINA_BRANCH: ${{ github.head_ref }}
+  NEXT_PUBLIC_TINA_BRANCH: ${{ github.base_ref || github.head_ref }}
   NODE_OPTIONS: '--max_old_space_size=4096'
   TINA_SEARCH_TOKEN: ${{ secrets.TINA_SEARCH_TOKEN }}
   UNOPTIMIZED_IMAGES: 'true'
