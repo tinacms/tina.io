@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import pixelmatch from 'pixelmatch';
+import diff from '@blazediff/core';
 import { PNG } from 'pngjs';
 import sharp from 'sharp';
 
@@ -113,14 +113,9 @@ async function compareImages(slug: string): Promise<DiffResult> {
   const diffPng = new PNG({ width, height });
   const totalPixels = width * height;
 
-  const diffPixels = pixelmatch(
-    new Uint8Array(rgbaA),
-    new Uint8Array(rgbaB),
-    new Uint8Array(diffPng.data.buffer),
-    width,
-    height,
-    { threshold: 0.1 },
-  );
+  const diffPixels = diff(rgbaA, rgbaB, diffPng.data, width, height, {
+    threshold: 0.1,
+  });
 
   const diffPercent = (diffPixels / totalPixels) * 100;
 
