@@ -2,7 +2,7 @@
 seo:
   title: 介绍媒体管理器 | TinaCMS 博客
   description: >-
-    了解TinaCMS中的新媒体管理器，旨在简化媒体组织、改善文件管理并增强您的内容工作流程。
+    了解TinaCMS中的新媒体管理器，旨在简化媒体组织、改善文件管理并提升内容工作流程。
 title: 介绍 TinaCMS 媒体管理器
 date: '2020-10-02T10:20:39-04:00'
 last_edited: '2020-10-05T01:23:41.347Z'
@@ -11,17 +11,17 @@ prev: content/blog-zh/september-update.mdx
 next: content/blog-zh/more-changes-coming-to-inline-editing.mdx
 ---
 
-如今的网站包含比以往更多的狗狗GIF和风景英雄照片。内容编辑者在创建和更新网页、博客或文章时，需要一种方式来处理这些媒体。
+如今的网站包含比以往更多的狗狗GIF和风景英雄照片。内容编辑者在创建和更新网页、博客或文章时，需要一种处理这些媒体的方法。
 
-到目前为止，Tina中的媒体更改是通过图像字段处理的。通过点击字段，编辑者可以从本地文件系统上传新图像。开发者会向CMS注册一个[媒体存储](/docs/reference/media/overview)来处理文件上传。然而，没有办法查看已上传的图像以便在内容中使用它们。
+直到现在，TinaCMS中的媒体更改都是通过图像字段处理的。通过点击字段，编辑者可以从本地文件系统上传新图像。开发者会向CMS注册一个[媒体存储](/docs/reference/media/overview)来处理文件上传。然而，没有办法查看已经上传的图像以便在内容中使用。
 
-我们的最新版本解决了这一限制，并添加了一个**媒体管理界面！**
+我们最新的版本解决了这一限制，并添加了一个**媒体管理界面！**
 
 ![media-manager-image](/img/media-manager-ui.png)
 
-在[过去的几周](https://github.com/tinacms/tinacms/blob/master/ROADMAP.md#process)中，Tina团队一直专注于改进媒体管理。这个媒体管理器允许编辑者上传、删除和浏览媒体文件和目录。文件上传可以通过直接拖放到媒体列表上或点击**上传**按钮来进行。
+在[过去的几周](https://github.com/tinacms/tinacms/blob/master/ROADMAP.md#process)中，TinaCMS团队一直专注于改进媒体管理。这个媒体管理器允许编辑者上传、删除和浏览媒体文件和目录。文件上传可以通过直接拖放到媒体列表中或点击**上传**按钮进行。
 
-在此过程中，我们对媒体和图像字段API进行了重大更改，以改善使用媒体的整体体验。本文概述了所有新功能和重大更改。
+在此过程中，我们对媒体和图像字段API进行了重大更改，以改善媒体处理的整体体验。本文概述了所有新功能和重大更改。
 
 ## 功能与改进
 
@@ -53,16 +53,16 @@ new TinaCMS({
 
 * `type` : 表示媒体项是[文件还是目录](https://github.com/tinacms/tinacms/issues/1452)。
 * `id`: 此文件的唯一标识符，通常是文件的完整路径。
-* `previewSrc`: 用于预览图像的URL。此属性是可选的，但应包含在媒体存储的`list`函数的返回值中，以便在媒体列表中显示预览图像。
+* `previewSrc`: 用于获取预览图像的URL。此属性是可选的，但应包含在媒体存储的`list`函数的返回值中，以便在媒体列表中显示预览图像。
 
 ### 媒体存储
 
 在[媒体存储](/docs/reference/media/overview)接口中添加了两个新方法。
 
-* `list`: 此函数提供可供媒体管理器渲染的可用项的分页列表。
-* `delete`: 此函数删除媒体文件。
+* `list`: 此函数提供可供媒体管理器渲染的项目的分页列表。
+* `delete`: 此函数删除一个媒体文件。
 
-这些方法是**必需的**，以满足`MediaStore`接口。在`tinacms`中可用的所有媒体存储都已更新以支持这些方法，但如果您创建了自定义存储，则在更新时需要自己实现这些方法。
+这些方法是**必需的**，以满足`MediaStore`接口。`tinacms`中可用的所有媒体存储都已更新以支持这些方法，但如果您创建了自定义存储，则在更新时需要自己实现这些方法。
 
 ### 事件
 
@@ -83,23 +83,23 @@ new TinaCMS({
 
 ### 图像字段
 
-内联和常规图像字段都已更新以与新媒体管理器一起工作。
+内联和常规图像字段都已更新，以与新的媒体管理器配合使用。
 
 **两个字段的更改**：
 
 当您点击任一类型的图像字段时，此操作将打开媒体管理器界面，而不是打开本地文件选择器。您可以上传新图像或将先前添加的图像插入到字段中。
 
-另一个对两个字段的更改是`uploadDir`函数[现在是可选的](https://github.com/tinacms/tinacms/pull/1485)。设置时，媒体管理器将在点击字段时打开并列出该目录中的项目。
+另一个针对两个字段的更改是`uploadDir`函数[现在是可选的](https://github.com/tinacms/tinacms/pull/1485)。设置时，媒体管理器将在点击字段时打开并列出该目录中的项目。
 
 **特定内联图像添加：**
 
-对于内联图像字段，我们添加了一个新的`alt`属性。当使用`InlineImage`而不使用渲染属性模式时，此属性很有帮助，以便您可以直接在`InlineImage`渲染的图像元素上设置替代文本。
+对于内联图像字段，我们添加了一个新的`alt`属性。当使用`InlineImage`而不使用渲染属性模式时，此属性非常有用，以便您可以直接在`InlineImage`渲染的图像元素上设置替代文本。
 
 另一个改进是能够在内联图像上[扩展样式](/docs/contextual-editing/overview)。内联图像字段向DOM添加了一些元素，这可能会影响某些布局的样式。现在可以通过`className`或[styled-components](https://styled-components.com/docs/basics#extending-styles)直接设置样式。
 
 ```tsx
 /**
-* 通过 className 设置样式------------------------------------
+* 通过className设置样式------------------------------------
 */
 <InlineImage
   name="frontmatter.image.src"
@@ -109,13 +109,13 @@ new TinaCMS({
   className="inline-img"
 />
 
-// 示例 CSS
+// 示例CSS
 .inline-img {
   background-color: pink;
 }
 
 /**
-* 通过 styled-components 设置样式 ----------------------------
+* 通过styled-components设置样式 ----------------------------
 */
 <StyledInlineImage
   name="frontmatter.image.src"
@@ -137,11 +137,11 @@ const StyledInlineImage = styled(InlineImage)`
 
 ### *previewSrc*
 
-`previewSrc`函数在启用CMS时提供图像源的URL。此函数由[媒体存储默认](https://github.com/tinacms/tinacms/pull/1386)实现，或者可以在字段基础上覆盖。
+`previewSrc`函数在启用CMS时提供图像源的URL。此函数由[媒体存储默认](https://github.com/tinacms/tinacms/pull/1386)实现，或可以在字段级别覆盖。
 
 我们统一了[`MediaStore`](https://tina.io/docs/reference/media/overview/)、[`InlineImage`](/docs/contextual-editing/overview)和常规[图像字段](/docs/plugins/fields/images)之间的`previewSrc`接口。
 
-重大更改是现在将附加参数传递给`previewSrc`。我们进行了此更改，因为我们发现自己在配置图像字段中的此函数时经常返回字段值。提供`previewSrc`时，不必遍历所有表单值，第一个参数对于大多数用例应该足够。
+重大更改是现在将额外的参数传递给`previewSrc`。我们做出此更改是因为我们发现自己在图像字段中配置此函数时经常返回字段值。提供`previewSrc`时，不必遍历所有表单值，第一个参数应该足以满足大多数用例。
 
 **之前**
 
@@ -170,13 +170,13 @@ const StyledInlineImage = styled(InlineImage)`
 }
 ```
 
-媒体存储可以实现一个通用的`previewSrc`方法，如果字段没有定义自己的`previewSrc`，将运行该方法。如果您使用的是Tina包提供的媒体存储，或者使用的是其他定义了`previewSrc`的方法，您可能可以完全删除字段的自定义`previewSrc`方法。
+媒体存储可以实现一个通用的`previewSrc`方法，如果字段没有定义自己的`previewSrc`，则会运行此方法。如果您使用的是TinaCMS包提供的媒体存储，或使用定义了`previewSrc`的媒体存储，您可能可以完全删除字段的自定义`previewSrc`方法。
 
 ### *parse*
 
 传递给内联和常规图像字段的`parse`函数的参数已更改，以提供更多灵活性来配置图像路径在数据源中的保存方式。`parse`处理数据源中最终值的填充方式。
 
-现在传递的是整个[媒体对象](/docs/reference/media/overview)，而不是`filename`。作为一般建议，您可以使用`media.id`（图像的完整路径）或`media.filename`来调整数据源中保存的首选最终值。
+不再传递`filename`，而是传递整个[媒体对象](/docs/reference/media/overview)。作为一般建议，您可以使用`media.id`（图像的完整路径）或`media.filename`来调整数据源中保存的首选最终值。
 
 **之前**
 
@@ -192,11 +192,11 @@ parse: media => `/images/${media.filename}`
 
 ### *InlineImage* 渲染子属性
 
-在使用[渲染属性模式](https://reactjs.org/docs/render-props.html)配置内联图像字段时，根据CMS是否启用，渲染子接收到的属性存在一些不一致。这迫使开发者提供备份源并考虑是否传递了属性。
+在使用[渲染属性模式](https://reactjs.org/docs/render-props.html)配置内联图像字段时，根据CMS是否启用，渲染子接收到的属性存在一些不一致。这迫使开发者提供备用源并考虑是否传递了属性。
 
-使用这个新API，渲染子始终传递一个`src`，字段处理`src`是否应该是`previewSrc`函数的返回值（当CMS启用时），还是数据源中的值。
+使用此新API，渲染子始终传递一个`src`，字段处理`src`是否应为`previewSrc`函数的返回值（当CMS启用时），或数据源中的值。
 
-> 请注意，如果您使用[gatsby-image](https://www.gatsbyjs.com/plugins/gatsby-image/)，您仍然需要提供备份`src`值，因为图像的路径是*转换*的，并不反映数据源中的值。
+> 请注意，如果您使用[gatsby-image](https://www.gatsbyjs.com/plugins/gatsby-image/)，您仍然需要提供备用`src`值，因为图像的路径是*转换*的，并不反映数据源中的值。
 
 **之前**
 
@@ -226,12 +226,12 @@ parse: media => `/images/${media.filename}`
 
 ### Wysiwyg 图像
 
-在接下来的周期中，我们将专注于改进前面提到的更改，并重构WYSIWYG以连接媒体管理器。预计会有一些额外的重大更改，以使WYSIWYG图像实现与媒体存储和其他图像字段保持一致。
+在接下来的周期中，我们将专注于改进前面提到的更改，并重构WYSIWYG以连接到媒体管理器。预计会有一些额外的重大更改，以使WYSIWYG图像实现与媒体存储和其他图像字段保持一致。
 
 ### 扩展媒体存储
 
-在进行所有这些更改时，我们还重新审视了以前的媒体存储以进行更新，并喜欢这种扩展现有媒体存储的模式。这种模式允许我们根据特定框架或站点结构自定义某些方法。
+在进行所有这些更改时，我们还重新审视了以前的媒体存储以进行更新，并对这种扩展现有媒体存储的模式产生了兴趣。这种模式允许我们根据特定框架或站点结构自定义某些方法。
 
-查看[`NextGithubMediaStore`](https://github.com/tinacms/tinacms/blob/main/packages/next-tinacms-dos/src/dos-media-store.ts)、[PlaceCage媒体存储](https://github.com/ncphillips/tinacms-placecage)或[Cloudinary媒体存储](https://github.com/tinalabs/media-manager-prototype/blob/8f766ff7d421a9f6dd8fb8ea40d2f08da9537de3/pages/gh/posts/%5Bslug%5D.tsx#L28-L81)原型，以获得一些创建或扩展您自己的媒体存储的灵感。请继续关注即将发布的博客文章中的后续想法！
+查看[`NextGithubMediaStore`](https://github.com/tinacms/tinacms/blob/main/packages/next-tinacms-dos/src/dos-media-store.ts)、[PlaceCage媒体存储](https://github.com/ncphillips/tinacms-placecage)或[Cloudinary媒体存储](https://github.com/tinalabs/media-manager-prototype/blob/8f766ff7d421a9f6dd8fb8ea40d2f08da9537de3/pages/gh/posts/%5Bslug%5D.tsx#L28-L81)原型，以获取创建或扩展您自己的媒体存储的灵感。请继续关注即将发布的博客文章中的后续想法！
 
-希望这篇文章为您提供了升级Tina包并开始使用媒体管理器所需的所有信息。像往常一样，我们欢迎在[Discord](https://discord.com/invite/zumN63Ybpf)或[bug报告](https://github.com/tinacms/tinacms/issues)中提供反馈和想法。感谢并祝您媒体管理愉快 🦙 🌅!
+希望这篇文章为您提供了升级TinaCMS包并开始使用媒体管理器所需的所有信息。像往常一样，我们欢迎在[Discord](https://discord.com/invite/zumN63Ybpf)或[bug报告](https://github.com/tinacms/tinacms/issues)中提供反馈和想法。感谢并祝您媒体管理愉快 🦙 🌅!
