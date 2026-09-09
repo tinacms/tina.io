@@ -96,6 +96,65 @@ export default (req, res) => {
 }
 ```
 
+## Using Auth.js outside Next.js
+
+<WarningCallout
+  body={<>
+    **Known issue:** `tinacms-authjs` currently only works when your backend is bundled by Next.js. On any other host (Netlify Functions, Vercel Functions, or plain Node), the backend fails with `(0 , import_credentials.default) is not a function`, followed by `NextAuth is not a function` once that is worked around. Tracking issue: [tinacms/tinacms#7434](https://github.com/tinacms/tinacms/issues/7434). Until it is fixed, apply the workaround below.
+  </>}
+/>
+
+`tinacms-authjs` is published as ESM and does a default import of `next-auth`, which is CommonJS. Webpack (and therefore Next.js) unwraps that automatically, but Node's own ESM loader and esbuild do not, so the imported value is the module object rather than the function.
+
+To work around it, build the credentials provider yourself and swap in the auth route handler, both using an interop-safe unwrap:
+
+```js
+import NextAuthImport from 'next-auth'
+import CredentialsImport from 'next-auth/providers/credentials'
+
+const NextAuth = NextAuthImport.default ?? NextAuthImport
+const Credentials = CredentialsImport.default ?? CredentialsImport
+
+const provider = Credentials({
+  credentials: {
+    username: { label: 'Username', type: 'text' },
+    password: { label: 'Password', type: 'password' },
+  },
+  authorize: async ({ username, password }) => {
+    const result = await databaseClient.authenticate({ username, password })
+    return result.data?.authenticate || null
+  },
+})
+// This name must match exactly, or sign-in will not route to this provider
+provider.name = 'TinaCredentials'
+
+const authOptions = TinaAuthJSOptions({
+  databaseClient,
+  secret: process.env.NEXTAUTH_SECRET,
+  providers: [provider],
+})
+
+const authJs = AuthJsBackendAuthProvider({ authOptions })
+authJs.extraRoutes.auth.handler = async (req, res, opts) => {
+  const url = new URL(req.url, `http://${req.headers?.host || 'localhost'}`)
+  req.query.nextauth = url.pathname
+    ?.replace(`${opts.basePath}auth/`, '')
+    ?.split('/')
+  await NextAuth(authOptions)(req, res)
+}
+```
+
+Then pass `authJs` to `TinaNodeBackend` in place of the inline `AuthJsBackendAuthProvider({ ... })` call, keeping your `isLocal` branch:
+
+```js
+const tinaBackend = TinaNodeBackend({
+  authProvider: isLocal ? LocalBackendAuthProvider() : authJs,
+  databaseClient,
+})
+```
+
+Passing your own `providers` array is what avoids the broken code path, since `TinaAuthJSOptions` only builds its own credentials provider when `providers` is omitted. If your backend file is CommonJS, the two added imports become `require` calls and everything else is unchanged.
+
 ## Testing
 
 Now that you have set up the Auth.js auth provider you can test it out.
