@@ -1,14 +1,14 @@
 ---
 seo:
   description: >-
-    使用Next.js页面路由设置TinaCMS。了解配置步骤、最佳实践以及如何实现流畅的编辑体验。
-title: Next.js 页面路由
+    使用Next.js Pages Router设置TinaCMS。了解配置步骤、最佳实践以及如何实现流畅的编辑体验。
+title: Next.js Pages Router
 last_edited: '2025-10-21T09:40:45.384Z'
 next: content/docs-zh/frameworks/hugo.mdx
 previous: content/docs-zh/frameworks/next/app-router.mdx
 ---
 
-> ☝️ 本指南假设您正在使用 **Next.js 页面路由**。
+> ☝️ 本指南假设您正在使用 **Next.js pages router**。
 
 ## 视频指南
 
@@ -36,7 +36,7 @@ npx @tinacms/cli@latest init
 }
 ```
 
-如果这些没有被CLI设置，您需要手动应用。
+如果这些没有被CLI设置，您需要手动应用它们。
 
 ## 启动TinaCMS
 
@@ -48,24 +48,24 @@ pnpm dev
 
 **我们推荐使用pnpm。**
 
-在TinaCMS运行后，导航到 `http://localhost:3000/admin/index.html`。
+在TinaCMS运行时，导航到 `http://localhost:3000/admin/index.html`。
 
-> ❓ 提示：如果运行此命令时出现错误，请查看[常见错误](/docs/forestry/common-errors)页面。
+> ❓ 提示：如果运行此命令时出现错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
 
-此时，您应该能够看到Tina管理界面，选择一个帖子，保存更改，并看到更改持久化到本地的markdown文件中。
+此时，您应该能够看到TinaCMS管理界面，选择一个帖子，保存更改，并看到更改持久化到您的本地markdown文件中。
 
-![TinaCMS 管理界面截图](/img/hugo-tina-admin-screenshot.png)
+![TinaCMS管理界面截图](/img/hugo-tina-admin-screenshot.png)
 
-## TinaCMS 配置文件
+## TinaCMS配置文件
 
-运行 `tina init` 命令后，创建了一些文件以帮助您快速入门。其中之一是 `tina/config.ts` 文件。这是一个必需的配置文件，定义了所有的tina模式。
+运行 `tina init` 命令后，创建了一些文件以便您尽快开始。其中之一是 `tina/config.ts` 文件。这是一个必需的配置文件，定义了所有的tina模式。
 
 它看起来如下：
 
 ```ts
 import { defineConfig } from 'tinacms'
 
-// 您的托管服务提供商可能将其作为环境变量公开
+// 您的托管提供商可能将其作为环境变量公开
 const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
@@ -75,9 +75,9 @@ const branch =
 export default defineConfig({
   branch,
 
-  // 从 tina.io 获取
+  // 从tina.io获取
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  // 从 tina.io 获取
+  // 从tina.io获取
   token: process.env.TINA_TOKEN,
 
   build: {
@@ -117,7 +117,7 @@ export default defineConfig({
 })
 ```
 
-**有关配置的更详细概述，请参阅 [使用TinaCMS进行内容建模](/docs/extending-tina/overview/)**
+**有关配置的更详细概述，请参阅[使用TinaCMS进行内容建模](/docs/extending-tina/overview/)**
 
 > 💡 如果您按照本指南使用 `tina init` 命令，您可能已经注意到创建了一个 `content` 和一个 `pages` 文件夹：
 
@@ -134,9 +134,9 @@ export default defineConfig({
 
 1. 前往 `/admin/index.html`
 
-2. 点击 Posts
+2. 点击Posts
 
-3. 点击 Create
+3. 点击Create
 
 4. 输入必填字段
 
@@ -264,6 +264,6 @@ export const getStaticProps = async (ctx) => {
 
 ## 另请参阅
 
-* [Next.js 应用路由设置](/docs/frameworks/next/app-router/) - 使用React服务器组件的现代路由
+* [Next.js App Router设置](/docs/frameworks/next/app-router/) - 使用React服务器组件的现代路由
 * [可视化编辑设置](/docs/contextual-editing/overview/) - 启用实时预览编辑
-* [其他框架指南](/docs/frameworks/astro/) - Astro、Hugo、Gatsby等
+* [其他框架指南](/docs/frameworks/astro/) - Astro, Hugo, Gatsby等

@@ -1,6 +1,6 @@
 ---
 id: /docs/frameworks/gatsby
-title: Gatsby + Tina 设置指南
+title: Gatsby + TinaCMS 设置指南
 last_edited: '2025-10-21T09:41:02.906Z'
 next: content/docs-zh/frameworks/jekyll.mdx
 previous: content/docs-zh/frameworks/hugo.mdx
@@ -8,9 +8,9 @@ previous: content/docs-zh/frameworks/hugo.mdx
 
 ## 介绍
 
-TinaCMS 可以本地添加到您的 Gatsby 网站。在本文档中，我们将指导您完成本地设置，以及在生产网站上进行编辑。
+TinaCMS 可以本地添加到您的 Gatsby 网站。在本文档中，我们将指导您完成本地设置，以及在生产网站上的编辑。
 
-> 您可以参考我们的 [Tina Gatsby Starter](https://github.com/tinacms/tina-gatsby-starter) 作为示例。
+> 您可以参考我们的 [TinaCMS Gatsby Starter](https://github.com/tinacms/tina-gatsby-starter) 作为示例。
 
 ## 入门
 
@@ -22,11 +22,11 @@ TinaCMS 可以本地添加到您的 Gatsby 网站。在本文档中，我们将�
 
 这将询问您一些设置问题。
 
-当提示输入“**公共资产目录**”时，输入：**static**。
+当被询问“**公共资产目录**”时，输入：**static**。
 
-> 如果您是从 Forestry.io CMS 导入网站，某些模型和配置将自动导入。
+> 如果您是从 Forestry.io CMS 导入您的网站，某些模型和配置将被自动导入。
 
-### 解决 GraphQL 不匹配问题
+### GraphQL 不匹配问题的解决方法
 
 对于 Gatsby 网站，您可能会遇到以下错误：
 
@@ -43,13 +43,13 @@ TinaCMS 可以本地添加到您的 Gatsby 网站。在本文档中，我们将�
 +  },
 ```
 
-这样您可以强制使用 Tina 需要的 graphql 版本。
+这样您可以强制使用 TinaCMS 所需的 graphql 版本。
 
-> 为了确定您需要哪个版本，您可以在项目文件夹中运行 `npm list graphql`
+> 为确保您需要哪个版本，您可以在项目文件夹中运行 `npm list graphql`
 
 ### 在开发模式下允许静态 `/admin/index.html` 文件
 
-为了在开发模式下使 Tina 管理界面可访问，您需要将以下代码添加到您的 **gatsby-node.ts** 文件中。
+为了在开发模式下使 TinaCMS 管理界面可访问，您需要将以下代码添加到您的 **gatsby-node.ts** 文件中。
 
 ```diff
 + import express, { Express } from "express";
@@ -61,7 +61,7 @@ TinaCMS 可以本地添加到您的 Gatsby 网站。在本文档中，我们将�
 
 ## 建模您的内容
 
-要在 Tina 中编辑您网站的内容，您可以在 tina/config.ts 文件中建模您的内容。
+要在 TinaCMS 中编辑您网站的内容，您可以在 tina/config.ts 文件中建模您的内容。
 
 了解更多关于[内容建模](/docs/schema/)的信息
 
@@ -79,15 +79,15 @@ npx tinacms dev -c "gatsby develop"
 
 > ^ 上述默认端口可能会根据您的框架而有所不同。
 
-> 提示：一个常见错误是运行 `gatsby clean` **在** `tinacms build` 之后。这会导致您的管理 html 文件被清除。有关更多常见错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
+> 提示：一个常见错误是运行 `gatsby clean` **在** `tinacms build` 之后。这会导致您的管理 html 文件被清除。有关更多常见错误，请参阅 [常见错误](/docs/forestry/common-errors) 页面。
 
-此时，您应该能够看到 Tina 管理界面，选择一个帖子，保存更改，并看到更改持久化到您的本地 markdown 文件中。
+此时，您应该能够看到 TinaCMS 管理界面，选择一个帖子，保存更改，并看到更改持久化到您的本地 markdown 文件中。
 
 ![](/img/hugo-tina-admin-screenshot.png)
 
 ## 设置可视化编辑（可选）
 
-如果您希望通过 TinaCMS 的 API 为您的页面提供支持，您将能够利用 TinaCMS 的可视化编辑功能。
+如果您希望使用 TinaCMS 的 API 为您的页面提供支持，您将能够利用 TinaCMS 的可视化编辑功能。
 
 ![基于块的编辑可视化](/gif/blocks.gif)
 
@@ -103,6 +103,6 @@ npx tinacms dev -c "gatsby develop"
 
 ## 另请参阅
 
-* [Astro 设置指南](/docs/frameworks/astro/) - 使用 Tina 与 Astro（我们的默认入门）
-* [Next.js 设置指南](/docs/frameworks/next/app-router/) - 使用 Tina 与 Next.js
+* [Astro 设置指南](/docs/frameworks/astro/) - 使用 TinaCMS 与 Astro（我们的默认入门）
+* [Next.js 设置指南](/docs/frameworks/next/app-router/) - 使用 TinaCMS 与 Next.js
 * [可视化编辑设置](/docs/contextual-editing/overview/) - 启用实时预览编辑

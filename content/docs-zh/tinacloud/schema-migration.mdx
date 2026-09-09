@@ -4,9 +4,9 @@ title: 从GraphQL网关到TinaCMS
 
 # 包重组
 
-在我们试用GraphQL API及其与TinaCMS的工作方式时，很明显这是我们希望为Tina用户开辟的主要路径。我们将把`tina-graphql-gateway` API移入`tinacms`包中，以反映其在Tina工作流程中的更核心角色。其他后端集成仍然可以通过新的`@tinacms/toolkit`包进行构建。您可以在[这里](https://github.com/tinacms/tinacms/issues/1898)阅读有关这些更改的更多详细信息。
+在我们试用GraphQL API及其与TinaCMS的工作方式时，很明显这是我们希望为TinaCMS用户开辟的主要路径。我们将把`tina-graphql-gateway` API移入`tinacms`包中，以反映其在TinaCMS工作流程中的更核心角色。其他后端集成仍然可以通过新的`@tinacms/toolkit`包进行构建。您可以在[这里](https://github.com/tinacms/tinacms/issues/1898)阅读更多关于这些更改的详细信息。
 
-### `tinacms`吸收`tina-graphql-gateway`
+### `tinacms`正在吸收`tina-graphql-gateway`
 
 因此，升级到新的改进的GraphQL体验将需要您迁移到`tinacms@0.50.0`并完全移除`tina-graphql-gateway`包。
 
@@ -20,7 +20,7 @@ yarn remove tina-graphql-gateway
 + import { useGraphqlForms } from 'tinacms'
 ```
 
-> 注意，`useGraphqlForms`现在被认为是一个较低级别的API。您可能希望改为使用`tinacms`的默认导入来配置内容。[了解更多](/docs/contextual-editing/overview)
+> 注意，`useGraphqlForms`现在被认为是一个较低级别的API。您可能希望改为使用`tinacms`的默认导入来进行配置。[了解更多](/docs/contextual-editing/overview)
 
 ### `tina-graphql-gateway-cli`现在是`@tinacms/cli`
 
@@ -34,7 +34,7 @@ yarn remove tina-graphql-gateway-cli
 + import { defineSchema } from 'tinacms'
 ```
 
-> 注意：`defineSchema` API也已更改。继续阅读以了解如何升级
+> 注意：`defineSchema` API也已更改。请继续阅读以了解如何升级
 
 ### `tina-gql`命令行命令现在是`tinacms`
 
@@ -47,11 +47,11 @@ yarn remove tina-graphql-gateway-cli
 
 ## 新的`defineSchema` API
 
-我们将依赖于Tina中类型定义的更原始概念，并因此对模式定义方式引入一些重大更改。
+我们将依赖于TinaCMS中类型定义的更原始概念，并因此对模式定义方式引入一些重大更改。
 
 ### 集合现在接受`fields`或`templates`属性
 
-您现在可以为集合提供`fields`而不是`templates`，这样做将导致更直接的模式定义：
+您现在可以为您的集合提供`fields`而不是`templates`，这样做将导致更直接的模式定义：
 
 ```js
 {
@@ -64,7 +64,7 @@ yarn remove tina-graphql-gateway-cli
         {
           name: 'title',
           label: 'Title',
-          type: 'string', // 了解下面关于_type_更改的更多信息
+          type: 'string', // 了解更多关于_type_更改的信息
         },
       ],
     },
@@ -74,7 +74,7 @@ yarn remove tina-graphql-gateway-cli
 
 **为什么？**
 
-以前，一个集合可以定义多个模板，这一特性引入的模糊性意味着您的文档需要一个`_template`字段，以便我们知道它们属于哪个模板。这也意味着必须在graphql中消除查询的歧义：
+以前，一个集合可以定义多个模板，这一特性引入的模糊性意味着您的文档需要一个`_template`字段，以便我们知道它们属于哪个模板。这也意味着在graphql中必须对查询进行消歧：
 
 ```graphql
 getPostDocument(relativePage: $relativePath) {
@@ -86,7 +86,7 @@ getPostDocument(relativePage: $relativePath) {
 }
 ```
 
-今后，如果您在集合上使用`fields`，可以省略`_template`键并简化查询：
+今后，如果您在集合上使用`fields`，您可以省略`_template`键并简化您的查询：
 
 ```graphql
 getPostDocument(relativePage: $relativePath) {
@@ -121,7 +121,7 @@ getPostDocument(relativePage: $relativePath) {
 }
 ```
 
-在大多数情况下，UI属性会添加到字段中，并遵循Tina核心[字段插件](/docs/reference/toolkit/fields/)的现有功能。但您可以提供自己的组件——只需确保在前端注册这些组件到CMS对象：
+大多数情况下，UI属性会添加到字段中，并遵循TinaCMS核心[字段插件](/docs/reference/toolkit/fields/)的现有功能。但没有什么能阻止您提供自己的组件——只需确保在前端将它们注册到CMS对象中：
 
 ```js
 {
@@ -135,7 +135,7 @@ getPostDocument(relativePage: $relativePath) {
 }
 ```
 
-[注册](/docs/extending-tina/custom-field-components)您的`myMapField`到Tina：
+[注册](/docs/extending-tina/custom-field-components)您的`myMapField`到TinaCMS：
 
 ```js
 cms.fields.add({
@@ -146,7 +146,7 @@ cms.fields.add({
 
 #### 一个重要的注意事项
 
-`defineSchema` API中的每个属性都必须是可序列化的。这意味着函数将不起作用。例如，无法在此级别定义`validate`或`parse`函数。但是，您可以使用[formifyCallback](/docs/extending-tina/custom-field-components) API来访问Tina表单，或者通过指定您选择的插件来提供自己的逻辑：
+`defineSchema` API中的每个属性都必须是可序列化的。这意味着函数将不起作用。例如，无法在此级别定义`validate`或`parse`函数。但是，您可以使用[formifyCallback](/docs/extending-tina/custom-field-components) API来访问TinaCMS表单，或者通过指定您选择的插件来提供自己的逻辑：
 
 ```js
 {
@@ -165,7 +165,7 @@ cms.fields.add({
 import { TextFieldPlugin } from 'tinacms'
 // ...
 cms.fields.add({
-  ...TextFieldPlugin, // 展开现有的文本插件
+  ...TextFieldPlugin, // 展开现有文本插件
   name: 'myText',
   validate: value => {
     someValidationLogic(value)
@@ -175,7 +175,7 @@ cms.fields.add({
 
 **为什么？**
 
-实际上，在底层这对后端没有任何影响，因此我们将其作为一个摩擦点移除。相反，`type`是真正定义字段_形状_的定义，而`ui`可以用于自定义字段UI的外观和行为。
+实际上，这对后端没有任何影响，因此我们将其作为一个摩擦点移除。相反，`type`是真正定义字段_形状_的，而`ui`可以用于自定义字段UI的外观和行为。
 
 ## 每个`type`都可以是一个列表
 
@@ -201,7 +201,7 @@ cms.fields.add({
 }
 ```
 
-而这个，则是一个`checkbox`字段
+而这个是一个`checkbox`字段
 
 ```js
 {
@@ -215,7 +215,7 @@ cms.fields.add({
 
 ### 引入`object`类型
 
-Tina目前以两种方式表示_对象_的概念：`group`（和`group-list`），它是字段的统一集合；以及`blocks`，它是多态集合。今后，我们将引入一个更全面的类型，它涵盖了`group`和`blocks`的行为，并且由于_每个_字段都可以是`list`，这也使得`group-list`变得多余。
+TinaCMS目前以两种方式表示对象的概念：`group`（和`group-list`），它是字段的统一集合；以及`blocks`，它是多态集合。今后，我们将引入一种更全面的类型，它涵盖了`group`和`blocks`的行为，并且由于_每个_字段都可以是一个`list`，这也使得`group-list`变得多余。
 
 > 注意：我们之前假设`blocks`的使用_总是_作为一个数组。为了兼容性，我们将保留这种假设，但`object`将允许非数组的多态对象。
 
@@ -223,7 +223,7 @@ Tina目前以两种方式表示_对象_的概念：`group`（和`group-list`）�
 
 `object`类型接受`fields`或`templates`属性（就像`collections`定义一样）。如果您提供`fields`，您将得到一个本质上是`group`的项目。如果您说`list: true`，您将得到以前的`group-list`定义。
 
-同样，如果您提供一个`templates`字段和`list: true`，您将获得与`blocks`相同的API。然而，您也可以说`list: false`（或完全省略它），您将拥有一个非数组的多态对象。
+同样，如果您提供一个`templates`字段并且`list: true`，您将获得与`blocks`相同的API。然而，您也可以说`list: false`（或完全省略它），您将拥有一个不是数组的多态对象。
 
 > 注意 - `type: object`与`templates: []`和`list: false`尚不支持表单生成。您可以在API中使用它，但无法编辑该字段。
 
@@ -264,9 +264,9 @@ Tina目前以两种方式表示_对象_的概念：`group`（和`group-list`）�
 
 ### 引入`dataJSON`字段
 
-您现在可以请求`dataJSON`作为整个数据对象的单个查询键。这对于像主题文件这样繁琐的查询非常有用，因为在结果中包含每个项目很麻烦。
+您现在可以请求`dataJSON`作为整个数据对象的单个查询键。这对于像主题文件这样繁琐的查询非常有用，因为在结果中包含每个项目是很麻烦的。
 
-> 注意，目前此功能没有TypeScript帮助
+> 注意，目前此功能没有typescript帮助
 
 ```graphql
 getThemeDocument(relativePath: $relativePath) {
@@ -301,7 +301,7 @@ getThemeDocument(relativePath: $relativePath) {
 }
 ```
 
-## 列表查询现在将遵循GraphQL连接规范
+## 列表查询将遵循GraphQL连接规范
 
 [阅读规范](https://relay.dev/graphql/connections.htm)
 
@@ -361,7 +361,7 @@ getThemeDocument(relativePath: $relativePath) {
 
 **为什么？**
 
-GraphQL连接规范打开了一个更具前瞻性的结构，允许我们将更多信息放入_连接_本身，例如返回了多少结果，以及如何请求下一页数据。
+GraphQL连接规范打开了一个更具未来性的结构，允许我们将更多信息放入_连接_本身，比如返回了多少结果，以及如何请求下一页数据。
 
 阅读[详细解释](https://graphql.org/learn/pagination/)以了解连接规范如何提供更丰富的功能集。
 
@@ -373,7 +373,7 @@ GraphQL连接规范打开了一个更具前瞻性的结构，允许我们将更�
 
 **为什么？**
 
-由于markdown文件有一种隐含的“主体”，我们自动填充了一个代表markdown文件主体的字段。这并不是那么有用，而且有点烦人。相反，只需将`isBody`附加到您希望代表markdown“主体”的字段：
+由于markdown文件有一个隐含的“主体”，我们自动填充了一个代表markdown文件主体的字段。这并不那么有用，而且有点烦人。相反，只需将`isBody`附加到您希望代表markdown“主体”的字段上：
 
 ```js
 {
@@ -413,7 +413,7 @@ title: Hello, World!
 
 ### 引用现在指向多个集合
 
-您现在必须定义一个`collections`字段，它是一个数组，而不是一个`collection`属性：
+不再是一个`collection`属性，您现在必须定义一个`collections`字段，这是一个数组：
 
 ```js
 {
@@ -441,7 +441,7 @@ title: Hello, World!
   }
 ```
 
-### 多态对象（以前称为_blocks_）上的`template`字段现在是`_template`
+### 多态对象（以前的_blocks_）上的`template`字段现在是`_template`
 
 **旧API：**
 
@@ -465,7 +465,7 @@ myBlocks:
 
 ### `data` `__typename`值已更改
 
-它们现在包括适当的命名空间以防止命名冲突，并且不再需要`_Doc_Data`后缀。所有生成的`__typename`属性将略有不同。我们没有完全命名空间字段，因此无法保证不会发生冲突。在查询和过滤块时，这里的痛苦可能最为明显。这确保了此类型在未来的稳定性
+它们现在包括适当的命名空间以防止命名冲突，并且不再需要`_Doc_Data`后缀。所有生成的`__typename`属性将略有不同。我们没有完全命名空间字段，因此无法保证不会发生冲突。在通过块查询和过滤时，这里的痛苦可能最为明显。这确保了此类型在未来的稳定性
 
 ```graphql
 {
@@ -473,7 +473,7 @@ myBlocks:
     data {
       title
       myBlocks {
-        ...on Page_Hero_Data {  # 以前这会是Hero_Data
+        ...on Page_Hero_Data {  # 以前这将是Hero_Data
           # ...
         }
       }
@@ -484,7 +484,7 @@ myBlocks:
 
 ### 未定义的列表字段将返回`null`
 
-以前，未在文档中定义的可列字段被视为一个空数组。今后，API响应将导致`null`而不是`[]`：
+以前未在文档中定义的可列字段被视为一个空数组。今后，API响应将导致`null`而不是`[]`：
 
 ```md
 ---
@@ -501,4 +501,4 @@ title: 'Hello, World'
 ---
 ```
 
-响应将是`categories: null`。以前这会是`[]`，这是不正确的。
+响应将是`categories: null`。以前这将是`[]`，这是不正确的。

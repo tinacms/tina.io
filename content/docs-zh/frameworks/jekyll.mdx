@@ -8,11 +8,11 @@ previous: content/docs-zh/frameworks/gatsby.mdx
 
 ## 介绍
 
-TinaCMS 可以在本地添加到您的 Jekyll 网站。在本文档中，我们将指导您完成本地设置，以及在生产网站上的编辑。
+TinaCMS 可以本地添加到你的 Jekyll 网站。在本文档中，我们将指导您完成本地设置，以及在生产网站上的编辑。
 
 ## 入门
 
-在您网站的目录中，运行：
+在你的网站目录中运行：
 
 ```bash
  npx @tinacms/cli@latest init
@@ -26,13 +26,13 @@ TinaCMS 可以在本地添加到您的 Jekyll 网站。在本文档中，我们�
 
 ## 建模您的内容
 
-要在 Tina 中编辑您网站的内容，您可以在 tina/config.ts 文件中建模您的内容。
+要在 TinaCMS 中编辑您网站的内容，您可以在 tina/config.ts 文件中建模您的内容。
 
-在[这里](/docs/schema/)了解更多关于内容建模的信息
+了解更多关于[内容建模](/docs/schema/)的信息
 
 ## 启动 TinaCMS
 
-您可以通过以下方式启动 TinaCMS：
+您可以通过以下命令启动 TinaCMS：
 
 ```bash
 npx tinacms dev -c "jekyll serve"
@@ -46,7 +46,7 @@ npx tinacms dev -c "jekyll serve"
 
 > 提示：如果运行此命令时出现错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
 
-此时，您应该能够看到 Tina 管理界面，选择一个帖子，保存更改，并看到更改已持久化到您的本地 markdown 文件中。
+此时，您应该能够看到 TinaCMS 管理界面，选择一个帖子，保存更改，并看到更改持久化到您的本地 markdown 文件中。
 
 ![](/img/hugo-tina-admin-screenshot.png)
 
@@ -55,3 +55,9 @@ npx tinacms dev -c "jekyll serve"
 * [查看内容建模文档](/docs/schema/)
 * [了解如何查询您的内容](/docs/features/data-fetching/)
 * [部署您的网站](/docs/tinacloud)
+
+## 另请参阅
+
+* [Hugo 设置指南](/docs/frameworks/hugo/) - 类似的静态网站生成器
+* [11ty 设置指南](/docs/frameworks/11ty/) - 另一个流行的 SSG 选项
+* [Next.js 设置指南](/docs/frameworks/next/app-router/) - 针对基于 React 的网站

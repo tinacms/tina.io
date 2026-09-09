@@ -1,0 +1,115 @@
+---
+id: /docs/frameworks/sveltekit
+title: SvelteKit + TinaCMS 设置指南
+alias: sveltekit-tinacms
+last_edited: '2026-01-11T22:46:05.524Z'
+next: content/docs-zh/frameworks/other.mdx
+previous: content/docs-zh/frameworks/remix.mdx
+---
+
+## 介绍
+
+TinaCMS 可以本地添加到您的 SvelteKit 网站。在本文档中，我们将指导您完成本地设置以及在生产网站上的编辑。
+
+## 入门
+
+在您网站的目录中运行：
+
+```bash
+ npx @tinacms/cli@latest init
+```
+
+这将询问您一些设置问题。
+
+> 如果您是从 Forestry.io CMS 导入您的网站，某些模型和配置将被自动导入。
+
+## 更新您的构建脚本
+
+```json
+  "scripts": {
+    "dev": "tinacms dev -c \"vite dev\"",
+    "build": "tinacms build && vite build",
+    "preview": "tinacms build && vite preview"
+  }
+```
+
+## 移动静态文件
+
+TinaCMS 假定您的静态文件位于 `public` 目录中。然而，SvelteKit 从 `static` 目录提供静态文件。您需要确保 TinaCMS 配置为使用此目录。
+
+确认您在 `static` 下有两个目录：
+
+```bash
+ # TinaCMS 管理
+ static/admin/index.html
+ 
+ # TinaCMS 媒体/图片
+ static/images
+```
+
+## 调整 tina 配置
+
+更新输出目录以定位 SvelteKit 使用的 `static` 目录
+
+```js
+import { defineConfig } from 'tinacms';
+export default defineConfig({
+  // ... 其他配置
+  clientId: process.env.PUBLIC_TINA_CLIENT_ID,
+  token: process.env.TINA_TOKEN,
+  build: {
+    outputFolder: 'admin',      // 这将创建 static/admin
+    publicFolder: 'static'      // SvelteKit 所需
+  },
+  media: {
+    tina: {
+      mediaRoot: 'images',      // static/ 内的文件夹
+      publicFolder: 'static'    // SvelteKit 所需
+    }
+  },
+  schema: {
+    collections: [
+      {
+        name: 'post',
+        label: '文章',
+        path: 'content/posts', // 您的 markdown 文件所在位置
+        fields: [ /* ... */ ]
+      }
+    ]
+  }
+});
+```
+
+## 建模您的内容
+
+要在 TinaCMS 中编辑您网站的内容，您可以在 `tina/config.ts` 文件中建模您的内容。
+
+了解更多关于[内容建模](/docs/schema/)的信息
+
+## 启动 TinaCMS
+
+您可以通过以下方式启动 TinaCMS：
+
+```bash
+npm run dev
+```
+
+在 TinaCMS 运行时，导航到 `http://localhost:5173/admin/index.html`
+
+> 提示：如果运行此命令时遇到错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
+
+此时，您应该能够看到 TinaCMS 管理界面，选择一篇文章，保存更改，并看到更改已持久化到您的本地 markdown 文件中。
+
+![](/img/hugo-tina-admin-screenshot.png)
+
+## 下一步
+
+* [查看内容建模文档](/docs/schema/)
+* [了解如何查询您的内容](/docs/features/data-fetching/)
+* [部署您的网站](/docs/tinacloud)
+
+## 另请参阅
+
+* [Astro 设置指南](/docs/frameworks/astro/) - 另一个现代框架选项
+* [Remix 设置指南](/docs/frameworks/remix/) - 基于 React 的替代方案
+* [Next.js 设置指南](/docs/frameworks/next/app-router/) - 最受欢迎的 React 框架

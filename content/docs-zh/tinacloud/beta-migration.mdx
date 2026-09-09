@@ -1,0 +1,58 @@
+---
+title: 从Alpha升级到Beta
+last_edited: '2024-09-17T05:31:51.681Z'
+next: ''
+previous: ''
+---
+
+<WarningCallout
+  body={<>
+    TinaCMS目前已全面发布。虽然本页面的内容可能仍然有用，但我们建议使用TinaCMS的最新版本 – [最新变化](https://tina.io/whats-new/tinacms/)。
+  </>}
+/>
+
+## Beta变化
+
+除了在TinaCloud仪表板中进行了一些用户界面改进外，我们还在幕后进行了许多更改。其中最大的变化之一是我们如何处理用户账户。
+
+以前，当您创建一个TinaCloud账户时，您是在创建一个您可以在`https://OrgName.tina.io`访问的**组织**。我们认为给每个组织一个独特的子域和用户池会很不错，但在这种模式下花了一些时间后，发现这增加了很多复杂性，却没有带来太多价值。
+
+随着beta版本的发布，我们将用户账户移到了前台。无论何时创建TinaCloud账户，您都将始终在[https://app.tina.io](https://app.tina.io)访问它。这意味着即使您是多个组织的一部分，您也只会有一个TinaCMS账户。
+
+> 用于在TinaCloud账户中创建/管理组织的工具即将推出。目前，我们创建了一个默认组织，您仍然可以邀请用户加入。
+
+## 迁移路径
+
+由于我们正在更改TinaCloud中用户账户的工作方式，现有的alpha用户必须**重新创建他们的TinaCloud账户**并**更新他们的TinaCloud站点**。好消息是，由于我们不控制您的内容，实际上没有其他事情需要做。
+
+### 重新创建您的TinaCloud账户
+
+* 前往[https://app.tina.io](https://app.tina.io)并注册一个新账户。
+* 登录到您新创建的账户[重新创建任何现有项目](/docs/tinacloud/dashboard/projects/)。
+* 邀请任何用户加入您新创建的账户。
+
+### 更新您的TinaCloud站点
+
+1. 移除`tina-graphql-gateway`和`tina-graphql-gateway-cli`依赖项。
+
+```
+yarn remove tina-graphql-gateway-cli tina-graphql-gateway
+```
+
+1. 添加新的TinaCMS依赖项。
+
+```
+yarn add tinacms @tinacms/auth
+yarn add -D @tinacms/cli
+```
+
+1. 将任何现有的`tina-graphql-gateway`导入更改为`tinacms`。
+2. 更新`package.json`。将`yarn tina-gql`调用替换为`yarn tinacms`。
+3. 更新您站点的环境变量。
+
+* 删除`NEXT_PUBLIC_ORGANIZATION_NAME`
+* 将`NEXT_PUBLIC_TINA_CLIENT_ID`更改为您新TinaCloud账户中的客户端ID。
+
+就是这样！希望您能够像以前一样继续在启用了TinaCMS的站点上工作。我们不期望在首次全面发布时需要重复此过程。
+
+如果您遇到任何问题或有任何疑问，请随时[前往我们的Discord](https://discord.com/invite/zumN63Ybpf)！我们很乐意听到您的意见。
