@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Checkout (PR)
         if: github.event_name == 'pull_request'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
@@ -29,7 +29,7 @@ jobs:
 
       - name: Checkout (repository_dispatch)
         if: github.event_name == 'repository_dispatch'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.event.client_payload.git.sha }}
@@ -37,18 +37,18 @@ jobs:
 
       - name: Checkout (default)
         if: github.event_name != 'pull_request' && github.event_name != 'repository_dispatch'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
 
       - name: Install pnpm
-        run: npm install -g pnpm@9
+        uses: pnpm/action-setup@v4
 
       - name: Wait for slot to be available
         uses: jtalk/url-health-check-action@v4
