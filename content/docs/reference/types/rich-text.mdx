@@ -26,10 +26,31 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
       required: true
     },
     {
+      name: "isBody",
+      description:
+        "When the collection's `format` is markdown or MDX, this field's value is saved as the body of the file, and every other field in the collection is saved to frontmatter.\n",
+      type: "boolean"
+    },
+    {
       name: "templates",
       description:
         'MDX support. The "embed" option in the editor to inject custom React components.\n',
       type: "Template[]"
+    },
+    {
+      name: "type",
+      description:
+        "Which parser Tina uses to read and write this field. `mdx` allows custom components (see `templates`) inside the content, `markdown` is a stricter parser that does not, and `slatejson` is experimental and stores the raw editor document as JSON.\n",
+      type: "'mdx' | 'markdown' | 'slatejson'",
+      groupName: "parser"
+    },
+    {
+      name: "skipEscaping",
+      description:
+        "Only applies when `type` is `markdown`. Tina escapes markdown entities when it saves, so `$a + b_{c}$` is written to the file as `$a + b\\_{c}$`. Set `all` to turn escaping off completely, or `html` to stop only `<` being escaped.\n",
+      type: "'all' | 'html' | 'none'",
+      groupName: "parser",
+      default: "none"
     },
     {
       name: "toolbar",
@@ -57,6 +78,10 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
 />
 
 > The `templates` property is for `mdx` support.
+
+> `parser` sits at the top level of the field, next to `templates`. It is not one of the `overrides`.
+
+The parser default comes from the collection, not from the field. A collection whose `format` is `mdx` gets `{ type: 'mdx' }`, and every other format gets `{ type: 'markdown' }`. Set `parser` on the field when you want something different, for example a `.mdx` collection that should be parsed as plain markdown.
 
 <WarningCallout
   body={<>
