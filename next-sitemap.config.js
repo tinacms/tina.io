@@ -64,13 +64,6 @@ module.exports = {
         priority: 1.0,
       };
     }
-    if (path.indexOf('/docs/') > -1) {
-      return {
-        loc: path,
-        changefreq: 'weekly',
-        priority: 0.5,
-      };
-    }
     if (path.indexOf('/guides/') > -1) {
       return {
         loc: path,
