@@ -32,6 +32,11 @@ Images can be uploaded to the image component with drag-and-drop actions, or wit
       description: "The name of the field for internal use.\n",
       type: "string",
       required: true
+    },
+    {
+      name: "accept",
+      type: "string | string[]",
+      description: 'Restricts the field to specific file types. Takes an extension (`"pdf"`), a category (`"image"`, `"video"`, `"audio"` or `"document"`), or an array of either.\n'
     }
   ]}
 />
@@ -71,3 +76,46 @@ If you need to customize how an image is formatted in a field, you can use the `
   }
 }
 ```
+
+### Restricting file types
+
+Set `accept` to limit the field to certain file types. It takes a single extension, a category, or an array of either.
+
+```ts
+{
+  type: 'image',
+  label: 'Brochure',
+  name: 'brochure',
+  accept: 'pdf',
+}
+```
+
+```ts
+{
+  type: 'image',
+  label: 'Logo',
+  name: 'logo',
+  accept: ['png', 'svg'],
+}
+```
+
+The four categories are shorthand for a group of extensions:
+
+| Category     | Extensions                                       |
+| ------------ | ------------------------------------------------ |
+| `image`      | `jpg`, `jpeg`, `png`, `gif`, `webp`, `svg`, `avif`, `ico` |
+| `video`      | `mp4`, `webm`, `mov`                             |
+| `audio`      | `mp3`, `wav`, `ogg`                              |
+| `document`   | `pdf`, `json`, `csv`, `txt`                      |
+
+When a field declares `accept`:
+
+* The media manager lists only matching files, and its type filter is replaced by a locked chip naming what the field takes.
+* A file of any other type is refused before it uploads, whether it is dropped on the field or on the media manager, so nothing unwanted lands in your library.
+* Choosing a file already in the library that doesn't match raises an alert and leaves the field's value untouched.
+* `jpg` and `jpeg` mean the same thing, so `accept: 'jpeg'` still takes `photo.jpg`.
+* The field's `accept` overrides the global [`media.accept`](/docs/reference/media/overriding-accepted-media-types) for this field only.
+
+Values saved before `accept` was added are left alone; the restriction applies to what an editor picks from now on. It applies to `list: true` image fields too.
+
+> Narrowing the library needs a media store that can filter by extension. Repo-based media, TinaCloud media and the local dev server all can. A store that can't, such as `staticMedia`, keeps listing everything and hides the filter control, but the field still refuses a file outside its types.

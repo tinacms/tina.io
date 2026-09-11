@@ -27,6 +27,19 @@ export default defineConfig({
 
 This property determines the filetypes that can be uploaded
 
+### Restricting a single field
+
+`media.accept` applies to every upload. To restrict one field instead, give an [image field](/docs/reference/types/image#restricting-file-types) its own `accept`. It takes extensions and category shorthand rather than MIME types, and overrides the global list for that field.
+
+```javascript
+{
+  type: 'image',
+  name: 'brochure',
+  label: 'Brochure',
+  accept: 'pdf',
+}
+```
+
 ### next/image
 
 If you are using Next images, you will need to add the following to your next.config.js file to allow access to external images hosted on the TinaCMS media hostname 
