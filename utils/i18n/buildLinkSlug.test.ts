@@ -8,15 +8,17 @@ describe('buildDocLinkSlug', () => {
     );
   });
 
-  it('rewrites the zh content slug to the zh url slug', () => {
+  // The Chinese site has its own domain and serves prefix-free URLs, so a
+  // zh doc id maps to the same public path as its English counterpart.
+  it('maps the zh content slug to the shared, prefix-free url slug', () => {
     expect(buildDocLinkSlug('content/docs-zh/setup/install.mdx', 'zh')).toBe(
-      '/zh/docs/setup/install',
+      '/docs/setup/install',
     );
   });
 
   it('drops a trailing /index for zh', () => {
     expect(buildDocLinkSlug('content/docs-zh/setup/index.mdx', 'zh')).toBe(
-      '/zh/docs/setup',
+      '/docs/setup',
     );
   });
 
@@ -38,9 +40,9 @@ describe('buildBlogLinkSlug', () => {
     );
   });
 
-  it('rewrites the zh blog slug', () => {
+  it('maps the zh blog slug to the shared, prefix-free url slug', () => {
     expect(buildBlogLinkSlug('content/blog-zh/hello-world.mdx', 'zh')).toBe(
-      '/zh/blog/hello-world',
+      '/blog/hello-world',
     );
   });
 });

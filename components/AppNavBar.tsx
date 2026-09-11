@@ -17,6 +17,14 @@ import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
+import {
+  EN_ORIGIN,
+  hasZhPrefix,
+  isZhHost,
+  originForLocale,
+  stripZhPrefix,
+  ZH_ORIGIN,
+} from '@/utils/i18n/domains';
 import { saveLocaleToCookie } from '@/utils/locale';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
 import { Button, LinkButton } from './ui/Button';
@@ -755,10 +763,11 @@ export function AppNavBar({ sticky = true }) {
   const closeModal = () => setModalType(null);
 
   useEffect(() => {
-    const matchedLocale = Object.values(SupportedLocales).find((locale) =>
-      pathName.startsWith(`/${locale}`),
-    );
-    setSelectedFlag(matchedLocale || SupportedLocales.EN);
+    // On the Chinese domain the URL is prefix-free, so the path alone cannot
+    // identify the locale — the hostname decides. The `/zh` prefix is still
+    // honoured for local development, where there is no Chinese hostname.
+    const isChinese = isZhHost(window.location.host) || hasZhPrefix(pathName);
+    setSelectedFlag(isChinese ? SupportedLocales.ZH : SupportedLocales.EN);
   }, [pathName]);
 
   useEffect(() => {
@@ -789,38 +798,43 @@ export function AppNavBar({ sticky = true }) {
     fetchStarCount();
   }, [navItems]);
 
+  /**
+   * Each locale lives on its own domain and the two sites share one path
+   * shape, so switching language keeps the current page and only swaps the
+   * origin. That is a cross-origin navigation, hence window.location rather
+   * than the router.
+   *
+   * Locally there is no Chinese hostname, so fall back to same-origin routing
+   * with the `/zh` prefix that the physical routes still use.
+   */
   const handleLanguageChange = (code: string) => {
     saveLocaleToCookie(code);
     setSelectedFlag(code);
     closeModal();
 
-    const localePattern = new RegExp(
-      `^/(${Object.values(SupportedLocales).join('|')})(/|$)`,
-    );
-    const isRootOrLocale =
-      pathName === '/' ||
-      (localePattern.test(pathName) && !pathName.replace(localePattern, '$2'));
+    // The path without any locale prefix — shared by both sites.
+    const basePath = stripZhPrefix(pathName) || '/';
+    const targetOrigin = originForLocale(code);
 
-    if (isRootOrLocale) {
-      router.push(`/?setLocale=${code}`);
+    if (typeof window === 'undefined') {
       return;
     }
 
-    const isEnglish = code === SupportedLocales.EN;
-    const hasLocalePrefix = localePattern.test(pathName);
+    const onLocaleDomain =
+      window.location.origin === EN_ORIGIN ||
+      window.location.origin === ZH_ORIGIN;
 
-    let newPath: string;
-    if (hasLocalePrefix) {
-      newPath = isEnglish
-        ? pathName.replace(localePattern, (_, __, slash) =>
-            slash === '/' ? '/' : '',
-          )
-        : pathName.replace(localePattern, `/${code}$2`);
-    } else {
-      newPath = isEnglish ? pathName : `/${code}${pathName}`;
+    if (!onLocaleDomain) {
+      const isChinese = code === SupportedLocales.ZH;
+      router.push(
+        isChinese
+          ? `/zh${basePath === '/' ? '' : basePath}` || '/zh'
+          : basePath,
+      );
+      return;
     }
 
-    router.push(newPath === '' ? '/' : newPath);
+    window.location.href = `${targetOrigin}${basePath}`;
   };
 
   return (

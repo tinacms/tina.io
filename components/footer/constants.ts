@@ -3,7 +3,7 @@ export const footerNavZh = [
     header: '产品',
     footerItem: [
       {
-        href: '/zh/showcase',
+        href: '/showcase',
         label: '案例展示',
       },
       {
@@ -20,7 +20,7 @@ export const footerNavZh = [
       },
       {
         label: '产品路线',
-        href: '/zh/roadmap',
+        href: '/roadmap',
       },
     ],
   },
@@ -29,7 +29,7 @@ export const footerNavZh = [
     footerItem: [
       {
         label: '博客',
-        href: '/zh/blog',
+        href: '/blog',
       },
       {
         label: '示例',
@@ -37,7 +37,7 @@ export const footerNavZh = [
       },
       {
         label: '产品对比',
-        href: '/zh/compare-tina',
+        href: '/compare-tina',
       },
       {
         label: '技术支持',
