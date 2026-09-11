@@ -71,7 +71,7 @@ jobs:
           echo "Git status:"
           git status
 
-          git add content/docs-zh/ content/blog-zh/
+          git add content/blog-zh/
 
           echo "Git status:"
           git status
@@ -81,7 +81,7 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Add Chinese translation for docs and blog from PR ${{ env.PR_NUMBER }}"
+          git commit -m "Add Chinese translation for blog from PR ${{ env.PR_NUMBER }}"
           git push origin $BRANCH_NAME
 
       - name: Create Pull Request

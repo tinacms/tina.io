@@ -2,7 +2,7 @@
 
 # <p align="center">Tina.io – the Website for [TinaCMS](https://github.com/tinacms/tinacms)</p>
 
-Source code for the tina.io website, including the TinaCMS documentation and blog.
+Source code for the tina.io website: the TinaCMS marketing site and blog. The documentation lives in [tinacms/docs](https://github.com/tinacms/docs) and is served under `tina.io/docs` through a rewrite.
 
 Found a bug? Create a PBI and we'll look into it.
 
