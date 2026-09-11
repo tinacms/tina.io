@@ -10,7 +10,7 @@ const TINA_DOCS_URL = 'https://tina-docs-zeta-one.vercel.app';
 const TINA_DOCS_LANDING_URL = 'https://tina-docs-landing.vercel.app';
 const GEO_URL =
   process.env.GEO_URL || 'https://tinacms-geo-lead-capture-xi.vercel.app';
-const DOCS_UPSTREAM_URL = process.env.DOCS_UPSTREAM_URL;
+const DOCS_UPSTREAM_URL = process.env.DOCS_UPSTREAM_URL?.replace(/\/$/, '');
 
 /**
  * @type {import('next').NextConfig}
