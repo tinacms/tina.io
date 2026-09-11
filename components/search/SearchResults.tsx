@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
-import { highlightText } from './SearchNavigation';
+import { highlightText } from './SearchModal';
 
 export const SearchHeader = ({ query }: { query: string }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
