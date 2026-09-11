@@ -36,6 +36,14 @@ export default defineConfig({
 
 > Note: Only Repo-based Media or an External Media Provider can be configured, but **not both**
 
+## Filtering by file type
+
+The media manager's toolbar has a type filter for narrowing a large library to images, video, audio or documents.
+
+Opening the manager from an image field that declares [`accept`](/docs/reference/types/image#restricting-file-types) replaces that control with a locked chip, and the library shows only the types the field takes.
+
+The filter is only shown when the media store can filter by extension. Repo-based media, TinaCloud media and the local dev server all can; `staticMedia` can't, so the control is hidden there.
+
 ## Repo-based Media (default)
 
 With the built-in repo-based media option, media is stored within the site's repository.
