@@ -12,6 +12,7 @@ module.exports = {
     additionalSitemaps: [
       'https://tina.io/tinadocs/sitemap.xml',
       'https://tina.io/tinadocs/doc/sitemap.xml',
+      'https://tina.io/docs/sitemap.xml',
     ],
   },
   exclude: [
@@ -23,16 +24,11 @@ module.exports = {
     '/blog/instagram/*',
     '/zh/blog/og/*',
     '/zh/blog/instagram/*',
-    // Deprecated/orphaned docs - not in main navigation
-    '/docs/beginner-tutorials/*',
-    '/docs/forestry/*',
-    '/docs/tinacloud/alpha-faq',
-    '/docs/tinacloud/beta-migration',
-    '/docs/tinacloud/schema-migration',
-    '/docs/legacy-redirect',
-    '/docs/contributing/*',
-    '/docs/migrations/*',
-    '/docs/errors/*',
+    // Docs now live in a separate instance at tina.io/docs; see its own sitemap above.
+    '/docs',
+    '/docs/*',
+    '/zh/docs',
+    '/zh/docs/*',
   ],
   sitemapSize: 7000,
   transform: async (_config, path) => {
