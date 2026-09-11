@@ -1,11 +1,11 @@
 ---
-title: 覆盖接受的媒体类型
+title: 覆盖已接受的媒体类型
 last_edited: '2025-06-11T02:00:32.510Z'
 next: ''
 previous: ''
 ---
 
-基于[上一页](/docs/reference/media/repo-based)显示的支持类型表，您可以修改接受的媒体类型。
+根据[上一页](/docs/reference/media/repo-based)显示的支持类型表，您可以修改已接受的媒体类型。
 
 如果您想指定自己的允许文件类型，请在您的defineConfig函数中的media属性中添加以下属性。
 
@@ -27,9 +27,22 @@ export default defineConfig({
 
 此属性决定可以上传的文件类型
 
+### 限制单个字段
+
+`media.accept`适用于每次上传。要限制单个字段，请为[图像字段](/docs/reference/types/image#restricting-file-types)提供其自己的`accept`。它接受扩展名和类别简写而不是MIME类型，并覆盖该字段的全局列表。
+
+```javascript
+{
+  type: 'image',
+  name: 'brochure',
+  label: '宣传册',
+  accept: 'pdf',
+}
+```
+
 ### next/image
 
-如果您正在使用Next图像，您需要在您的next.config.js文件中添加以下内容，以允许访问托管在Tina媒体主机名上的外部图像
+如果您正在使用Next图像，您需要在您的next.config.js文件中添加以下内容，以允许访问托管在TinaCMS媒体主机名上的外部图像
 
 ```javascript
 //next.config.js

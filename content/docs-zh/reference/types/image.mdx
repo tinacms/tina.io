@@ -7,7 +7,7 @@ previous: ''
 
 一个专用的文件输入，用于存储上传图片的URL或路径。
 
-它支持[外部媒体库集成](http://localhost:3000/docs/reference/media/overview#external-media-providers)，也支持[基于仓库的媒体配置](http://localhost:3000/docs/reference/media/repo-based)。
+它支持[外部媒体库集成](/docs/reference/media/overview#external-media-providers)，也支持[基于仓库的媒体配置](/docs/reference/media/repo-based)。
 
 可以通过拖放操作将图片上传到图片组件，或者使用CMS附带的专用媒体管理器。
 
@@ -17,7 +17,7 @@ previous: ''
 
 ## 类型定义
 
-> 有关所有字段类型的其他常见属性，请查看[字段](/docs/reference/fields)类型定义。
+> 有关所有字段类型的其他通用属性，请查看[字段](/docs/reference/fields)类型定义。
 
 <apiReference
   property={[
@@ -29,9 +29,14 @@ previous: ''
     },
     {
       name: "name",
-      description: "供内部使用的字段名称。\n",
+      description: "字段的内部使用名称。\n",
       type: "string",
       required: true
+    },
+    {
+      name: "accept",
+      type: "string | string[]",
+      description: '将字段限制为特定的文件类型。接受扩展名（`"pdf"`）、类别（`"image"`、`"video"`、`"audio"` 或 `"document"`），或它们的数组。\n'
     }
   ]}
 />
@@ -52,7 +57,7 @@ previous: ''
 
 ### 带有图片路径格式化的字段
 
-如果需要自定义图片在字段中的格式，可以使用 `format` 和 `parse` 选项。
+如果需要自定义字段中图片的格式，可以使用 `format` 和 `parse` 选项。
 
 ```js
 {
@@ -61,13 +66,56 @@ previous: ''
   label: "主图",
   ui: {
     format(value) {
-      //如果值不存在前导斜杠，则添加
+      // 如果值不存在前导斜杠，则添加
       return value.startsWith("/") ? value : `/${value}`;
     },
     parse(value) {
-      //如果存在前导斜杠，则移除
+      // 如果存在前导斜杠，则移除
       return value.startsWith("/") ? value.slice(1) : value;
     },
   }
 }
 ```
+
+### 限制文件类型
+
+设置 `accept` 以限制字段为某些文件类型。它接受单个扩展名、类别或它们的数组。
+
+```ts
+{
+  type: 'image',
+  label: '宣传册',
+  name: 'brochure',
+  accept: 'pdf',
+}
+```
+
+```ts
+{
+  type: 'image',
+  label: '标志',
+  name: 'logo',
+  accept: ['png', 'svg'],
+}
+```
+
+四个类别是扩展名组的简写：
+
+| 类别         | 扩展名                                           |
+| ------------ | ------------------------------------------------ |
+| `image`      | `jpg`, `jpeg`, `png`, `gif`, `webp`, `svg`, `avif`, `ico` |
+| `video`      | `mp4`, `webm`, `mov`                             |
+| `audio`      | `mp3`, `wav`, `ogg`                              |
+| `document`   | `pdf`, `json`, `csv`, `txt`                      |
+
+当字段声明 `accept` 时：
+
+* 媒体管理器仅列出匹配的文件，其类型过滤器被替换为一个锁定的芯片，标明字段接受的内容。
+* 任何其他类型的文件在上传前都会被拒绝，无论是拖放到字段上还是媒体管理器上，因此不会有不需要的文件进入你的库。
+* 选择一个不匹配的库中已有文件会引发警报，并保持字段的值不变。
+* `jpg` 和 `jpeg` 意味着相同的东西，所以 `accept: 'jpeg'` 仍然接受 `photo.jpg`。
+* 字段的 `accept` 仅覆盖全局的 [`media.accept`](/docs/reference/media/overriding-accepted-media-types)。
+
+在添加 `accept` 之前保存的值保持不变；限制适用于编辑者从现在开始选择的内容。它也适用于 `list: true` 的图片字段。
+
+> 缩小库需要一个可以按扩展名过滤的媒体存储。基于仓库的媒体、TinaCloud 媒体和本地开发服务器都可以。不能的存储，如 `staticMedia`，会继续列出所有内容并隐藏过滤控制，但字段仍然会拒绝不在其类型范围内的文件。
