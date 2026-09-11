@@ -3,7 +3,7 @@
 import { SupportedLocales } from '../middleware';
 import { client } from '../tina/__generated__/client';
 
-export type PageType = 'pages' | 'docs' | 'blog' | 'whats-new';
+export type PageType = 'pages' | 'blog' | 'whats-new';
 
 export async function hasChineseVersion(
   pageType: PageType,
@@ -27,8 +27,6 @@ export async function hasChineseVersion(
   switch (pageType) {
     case 'pages':
       return checkPagesChineseVersion(normalizedPath);
-    case 'docs':
-      return checkDocsChineseVersion(normalizedPath);
     case 'blog':
       return checkBlogChineseVersion(normalizedPath);
     case 'whats-new':
@@ -47,23 +45,6 @@ async function checkPagesChineseVersion(
       relativePath: `zh/${zhPath}.json`,
     });
     return !!res.data.page;
-  } catch (_error) {
-    return false;
-  }
-}
-
-async function checkDocsChineseVersion(
-  normalizedPath: string,
-): Promise<boolean> {
-  try {
-    var zhPath = normalizedPath.replace(/^docs\//, '');
-    if (zhPath === 'docs') {
-      zhPath = 'index';
-    }
-    const res = await client.queries.docZh({
-      relativePath: `${zhPath}.mdx`,
-    });
-    return !!res.data.docZh;
   } catch (_error) {
     return false;
   }

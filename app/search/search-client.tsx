@@ -1,34 +1,13 @@
 'use client';
 
-import { useDocsNavigation } from 'components/Docs/DocsNavigationContext';
-import {
-  SearchHeader,
-  SearchTabs,
-} from 'components/Docs/docsSearch/SearchComponent';
-import {
-  DocsSearchBarHeader,
-  LeftHandSideParentContainer,
-} from 'components/Docs/docsSearch/SearchNavigation';
+import { SearchBar } from 'components/search/SearchModal';
+import { SearchHeader, SearchTabs } from 'components/search/SearchResults';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getSearchPageData } from './getSearchPageData';
+
 export default function SearchPageClient() {
-  const [props, setProps] = useState<{
-    formatted?: any;
-    formattedLearn?: any;
-  }>({});
   const [query, setQuery] = useState('');
-  const { learnActive, setLearnActive } = useDocsNavigation();
-
   const searchParams = useSearchParams();
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getSearchPageData();
-      setProps(data.props);
-    }
-    fetchData();
-  }, []);
 
   useEffect(() => {
     const param = searchParams.get('query');
@@ -38,30 +17,11 @@ export default function SearchPageClient() {
   }, [searchParams]);
 
   return (
-    <div className="relative my-16 flex justify-center items-center">
-      <div className="lg:px-16 w-full max-w-[2000px] lg:grid grid-cols-[1fr_3fr] gap-16">
-        <div className="hidden lg:block sticky top-32 h-[calc(100vh)]">
-          <LeftHandSideParentContainer
-            tableOfContents={props?.formatted?.data}
-            tableOfContentsLearn={props?.formattedLearn?.data}
-            learnActive={learnActive}
-            setLearnActive={setLearnActive}
-          />
-        </div>
-        <div className="mx-16 lg:mx-0">
-          <div className="block lg:hidden">
-            <DocsSearchBarHeader
-              paddingGlobal={undefined}
-              headerPadding=""
-              searchMargin="mb-6"
-              searchBarPadding=""
-              setLearnActive={setLearnActive}
-              learnActive={learnActive}
-            />
-          </div>
-          <SearchHeader query={query} />
-          <SearchTabs query={query} />
-        </div>
+    <div className="relative my-16 flex justify-center">
+      <div className="w-full max-w-(--breakpoint-xl) px-8 lg:px-16">
+        <SearchBar className="max-w-md mb-6" />
+        <SearchHeader query={query} />
+        <SearchTabs query={query} />
       </div>
     </div>
   );

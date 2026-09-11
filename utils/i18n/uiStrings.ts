@@ -2,9 +2,6 @@
 import type { Locale } from './localeRouteConfig';
 
 export interface UiStrings {
-  docs: {
-    lastEdited: string;
-  };
   blogPost: {
     lastEdited: string;
   };
@@ -18,7 +15,6 @@ export interface UiStrings {
 
 const STRINGS: Record<Locale, UiStrings> = {
   en: {
-    docs: { lastEdited: 'Last Edited' },
     blogPost: { lastEdited: 'Last Edited' },
     blogIndex: {
       heading: 'Blog',
@@ -29,7 +25,6 @@ const STRINGS: Record<Locale, UiStrings> = {
     },
   },
   zh: {
-    docs: { lastEdited: '上次编辑' },
     blogPost: { lastEdited: 'Last Edited' },
     blogIndex: {
       heading: '博客',

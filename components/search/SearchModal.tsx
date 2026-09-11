@@ -1,13 +1,11 @@
 'use client';
 
-import { MobileVersionSelect } from 'components/Docs/docsMain/docsMobileHeader';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { DocsNavigationList } from '../DocumentationNavigation/DocsNavigationList';
 
 // Helper function for highlighting Algolia search hits
 export const highlightText = (text: string) => {
@@ -142,14 +140,6 @@ export const SearchResultsOverflowTabs = ({
   );
 };
 
-export const SearchResultsOverflow = ({ query }) => {
-  return (
-    <div className="absolute pt-2 left-0 right-0 mx-7 mt-2 bg-white z-20 shadow-2xl rounded-md">
-      <SearchResultsOverflowTabs query={query} />
-    </div>
-  );
-};
-
 export const SearchModal = ({
   isOpen,
   onClose,
@@ -234,138 +224,40 @@ export const SearchModal = ({
   );
 };
 
-export const DocsSearchBarHeader = ({
-  paddingGlobal,
-  headerPadding,
-  searchMargin,
-  searchBarPadding,
-  learnActive = false,
-  setLearnActive = (_value: boolean) => {},
-}) => {
+export const SearchBar = ({ className = '' }: { className?: string }) => {
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-  const pathName = usePathname();
-  const isZh = pathName.includes('/zh/');
 
-  const handleInputClick = () => {
+  const openModal = () => {
     setIsSearchModalOpen(true);
   };
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      setIsSearchModalOpen(true);
+      openModal();
     }
   };
 
   return (
     <>
-      <div className={`${paddingGlobal} pt-8`}>
-        <div className="flex gap-8 max-w-sm">
-          <button
-            type="button"
-            className={`${
-              !learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
-            } hover:opacity-100 text-3xl pb-2 font-ibm-plex bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 ${headerPadding} bg-clip-text text-transparent`}
-            onClick={() => setLearnActive(false)}
-          >
-            {isZh ? '文档' : 'Docs'}
-          </button>
-          <button
-            type="button"
-            className={`${
-              learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
-            } hover:opacity-100 text-3xl pb-2 font-ibm-plex bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 ${headerPadding} bg-clip-text text-transparent`}
-            onClick={() => setLearnActive(true)}
-          >
-            {isZh ? '学习' : 'Learn'}
-          </button>
-          <div className="mr-3"></div>
-        </div>
-        <div className="flex justify-between mb-4 md:ml-4">
-          <MobileVersionSelect />
-        </div>
-        <div className={`relative ${searchMargin}`}>
-          <input
-            type="text"
-            className={`w-full p-2 pl-6 rounded-full border border-gray-300/20 bg-white/50 shadow-lg cursor-pointer ${searchBarPadding}`}
-            placeholder="Search"
-            onClick={handleInputClick}
-            onKeyDown={handleInputKeyDown}
-            readOnly
-          />
-          <HiMagnifyingGlass
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-600 text-xl cursor-pointer"
-            onClick={handleInputClick}
-          />
-        </div>
+      <div className={`relative ${className}`}>
+        <input
+          type="text"
+          className="w-full p-2 pl-6 rounded-full border border-gray-300/20 bg-white/50 shadow-lg cursor-pointer"
+          placeholder="Search"
+          onClick={openModal}
+          onKeyDown={handleInputKeyDown}
+          readOnly
+        />
+        <HiMagnifyingGlass
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-600 text-xl cursor-pointer"
+          onClick={openModal}
+        />
       </div>
       <SearchModal
         isOpen={isSearchModalOpen}
         onClose={() => setIsSearchModalOpen(false)}
       />
     </>
-  );
-};
-
-export const LeftHandSideParentContainer = ({
-  tableOfContents,
-  tableOfContentsLearn,
-  learnActive,
-  setLearnActive,
-}) => {
-  return (
-    <div className="rounded-2xl shadow-xl w-full bg-white/50 h-5/6 overflow-y-hidden relative">
-      <div className="absolute -bottom-1 left-0 right-0 h-8 bg-linear-to-t from-white/90 to-transparent pointer-events-none z-40"></div>
-      <DocsSearchBarHeader
-        paddingGlobal="p-4"
-        headerPadding="pl-4"
-        searchMargin="mx-3"
-        searchBarPadding=""
-        learnActive={learnActive}
-        setLearnActive={setLearnActive}
-      />
-      <div className="overflow-y-hidden overflow-x-hidden h-full pl-4 2xl:pl-0 relative">
-        <div className="h-full relative overflow-hidden">
-          <div
-            className="flex w-[200%] h-full absolute top-0 left-0"
-            style={{
-              transform: learnActive ? 'translateX(-50%)' : 'translateX(0)',
-              transition: 'transform 500ms ease-in-out',
-            }}
-          >
-            <div
-              className="w-1/2 shrink-0 h-full"
-              style={{
-                opacity: learnActive ? 0.3 : 1,
-                transition: 'opacity 400ms ease-in-out',
-                pointerEvents: learnActive ? 'none' : 'auto',
-              }}
-            >
-              <div className="h-full overflow-y-auto pb-44 relative">
-                <DocsNavigationList
-                  color={'orange'}
-                  navItems={tableOfContents}
-                />
-              </div>
-            </div>
-            <div
-              className="w-1/2 shrink-0 h-full"
-              style={{
-                opacity: learnActive ? 1 : 0.3,
-                transition: 'opacity 400ms ease-in-out',
-                pointerEvents: learnActive ? 'auto' : 'none',
-              }}
-            >
-              <div className="h-full overflow-y-auto pb-44 relative">
-                <DocsNavigationList
-                  color={'blue'}
-                  navItems={tableOfContentsLearn}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 };

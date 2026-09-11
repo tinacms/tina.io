@@ -12,7 +12,6 @@ type RouteInfo = {
 };
 
 const responseCheckers = {
-  docs: (response: any) => !!response?.data?.doc,
   blog: (response: any) => !!response?.data?.post,
   blogPagination: (response: any) =>
     !!response?.data?.postConnection?.edges?.length,
@@ -27,20 +26,6 @@ const responseCheckers = {
 };
 
 const routeConfig: Record<string, RouteInfo> = {
-  docs: {
-    type: 'docs',
-    queryFunction: async (params) => {
-      return await client.queries.doc({
-        relativePath: params,
-      });
-    },
-    getRedirectPath: (path) => {
-      return path === 'index' || path === '' ? '/docs' : `/docs/${path}`;
-    },
-    getRelativePath: (path) => `${path || 'index'}.mdx`,
-    fileExtension: '.mdx',
-    checkExists: responseCheckers.docs,
-  },
   blog: {
     type: 'blog',
     queryFunction: async (params) => {
