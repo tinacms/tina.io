@@ -26,7 +26,7 @@
         ]
       },
       "intro": "Need to scale? No Probllama! TinaCMS offers a **per-project** pricing model that grows with your needs.\n\nSwitch to annual billing and save! All prices in **USD**\n",
-      "pillSwitchVisibileText": "All prices are **per-project** and in **USD**.\n",
+      "pillSwitchVisibileText": "All prices in **USD**.\n",
       "pillSwitchToggleText": "Get **2 months free** with annual billing\n",
       "plans": [
         {
@@ -35,8 +35,12 @@
           "price": "$29",
           "annualPrice": "$24",
           "annualDescription": "$290 billed annually (save $58)",
-          "interval": "/ month",
+          "interval": "/ project / month",
           "cardItem": [
+            {
+              "name": "1 Project",
+              "icon": "FaCodeBranch"
+            },
             {
               "name": "3 Users",
               "icon": "AiOutlineUser",
@@ -74,8 +78,12 @@
           "price": "$49",
           "annualPrice": "$41",
           "annualDescription": "$490 billed annually (save $98)",
-          "interval": "/ month",
+          "interval": "/ project / month",
           "cardItem": [
+            {
+              "name": "1 Project",
+              "icon": "FaCodeBranch"
+            },
             {
               "name": "5 Users",
               "icon": "AiOutlineUser",
@@ -121,8 +129,12 @@
           "price": "$299",
           "annualPrice": "$249",
           "annualDescription": "$2,990 billed annually (save $598)",
-          "interval": "/ month",
+          "interval": "/ project / month",
           "cardItem": [
+            {
+              "name": "1 Project",
+              "icon": "FaCodeBranch"
+            },
             {
               "name": "20 Users",
               "icon": "AiOutlineUser",
@@ -175,6 +187,11 @@
           "annualPrice": "Custom",
           "interval": "",
           "cardItem": [
+            {
+              "name": "Entire Organization",
+              "icon": "FaCodeBranch",
+              "description": "One plan covers every project"
+            },
             {
               "name": "Custom Users",
               "icon": "AiOutlineUser",
@@ -339,18 +356,18 @@
         },
         {
           "columnHeader": "Team",
-          "columnByLine": "$29/month",
+          "columnByLine": "$29/project/month",
           "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
         },
         {
           "columnHeader": "Team Plus",
-          "columnByLine": "$49/month",
+          "columnByLine": "$49/project/month",
           "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
         },
         {
           "isReccomended": true,
           "columnHeader": "Business",
-          "columnByLine": "$299/month",
+          "columnByLine": "$299/project/month",
           "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
         },
         {
@@ -362,7 +379,7 @@
       "rowItems": [
         {
           "rowHeader": "Annual Billing",
-          "rowDescription": "Save over 16% - pay annually and get 2 months free!",
+          "rowDescription": "Save over 16% - pay annually per project and get 2 months free! Enterprise is billed per organization.",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"$290/year\",\"isTicked\":false}",
@@ -470,14 +487,14 @@
           ]
         },
         {
-          "rowHeader": "Projects",
-          "rowDescription": "All TinaCMS plans are per-project",
+          "rowHeader": "Billing unit",
+          "rowDescription": "Team and Business plans are bought per project. Enterprise covers every project in your organization.",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"1\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Entire organization\",\"isTicked\":false}"
           ]
         },
         {
