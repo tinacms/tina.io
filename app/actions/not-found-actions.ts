@@ -125,7 +125,6 @@ const routeConfig: Record<string, RouteInfo> = {
   default: {
     type: 'page',
     queryFunction: async (params) => {
-      console.log('[debug] Default route query params:', params);
       return await client.queries.pageWithRecentPosts({
         relativePath: typeof params === 'string' ? params : 'index.json',
       });
@@ -137,7 +136,6 @@ const routeConfig: Record<string, RouteInfo> = {
       return `/${path}`;
     },
     getRelativePath: (path) => {
-      console.log('[debug] Default route getRelativePath path:', path);
       return path ? `${path}.json` : 'index.json';
     },
     fileExtension: '.json',

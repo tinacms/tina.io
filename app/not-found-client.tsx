@@ -8,7 +8,8 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { Button } from '../components/ui';
 import { DynamicLink } from '../components/ui/DynamicLink';
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '../middleware';
+import { DEFAULT_LOCALE, SupportedLocales } from '../middleware';
+import { EN_ORIGIN, isZhHost } from '../utils/i18n/domains';
 import { checkPageExists } from './actions/not-found-actions';
 
 const localeContent = {
@@ -48,34 +49,48 @@ const PageLayout = ({
   );
 };
 
-const NotFoundContent = ({ content }) => (
+// Links stay on the site the visitor is already on. On the Chinese site the
+// URLs are prefix-free in production, but keep the /zh prefix during local
+// development where there is no Chinese hostname to rewrite from.
+const localePath = (path: string, locale: string) => {
+  if (locale !== SupportedLocales.ZH) {
+    return path;
+  }
+  const needsPrefix =
+    typeof window !== 'undefined' && !isZhHost(window.location.host);
+  return needsPrefix ? `/zh${path === '/' ? '' : path}` || '/' : path;
+};
+
+const NotFoundContent = ({ content, locale }) => (
   <PageLayout
     title={content.notFound.title}
     description={content.notFound.description}
   >
     <div className="flex flex-wrap gap-4">
-      <DynamicLink href="/docs" passHref>
+      <DynamicLink href={localePath('/docs', locale)} passHref>
         <Button>{content.notFound.buttons.documentation}</Button>
       </DynamicLink>
-      <DynamicLink href="/docs/guides" passHref>
+      <DynamicLink href={localePath('/docs/guides', locale)} passHref>
         <Button>{content.notFound.buttons.guides}</Button>
       </DynamicLink>
-      <DynamicLink href="/" passHref>
+      <DynamicLink href={localePath('/', locale)} passHref>
         <Button>{content.notFound.buttons.home}</Button>
       </DynamicLink>
     </div>
   </PageLayout>
 );
 
+// Crosses to the English site, so this is a full-page navigation to another
+// origin rather than a client-side route change.
 const RedirectPage = ({ redirectPath, content }) => (
   <PageLayout
     title={content.notTranslated.title}
     description={content.notTranslated.description}
   >
     <div className="flex flex-wrap gap-4">
-      <DynamicLink href={redirectPath} passHref>
+      <a href={redirectPath} className="cursor-pointer">
         <Button>{content.notTranslated.buttons.continue}</Button>
-      </DynamicLink>
+      </a>
     </div>
   </PageLayout>
 );
@@ -87,64 +102,83 @@ const LoadingPage = ({ content }) => (
   ></PageLayout>
 );
 
-const parsePath = (pathname: string, localeList: string[]) => {
-  const segments = pathname.split('/').filter(Boolean);
-  const hasLocalePrefix =
-    segments.length > 0 && localeList.includes(segments[0]);
-  const locale = hasLocalePrefix ? segments[0] : DEFAULT_LOCALE;
-
-  if (!hasLocalePrefix || segments.length === 1) {
-    return { needsQuery: false, locale };
+/**
+ * Work out which English document this missing page corresponds to.
+ *
+ * The locale comes from the hostname (passed in), not from the path: on the
+ * Chinese site URLs are prefix-free. A `/zh` prefix may still be present when
+ * browsing Chinese pages directly in local development, so it is tolerated and
+ * stripped here.
+ *
+ * Only the Chinese site asks the "does an English original exist?" question —
+ * on the English site a missing page is simply missing.
+ */
+const parsePath = (pathname: string, locale: string) => {
+  if (locale !== SupportedLocales.ZH) {
+    return { needsQuery: false as const };
   }
 
-  const routeType = segments[1];
+  const segments = pathname.split('/').filter(Boolean);
+  // Tolerate an explicit /zh prefix (local development).
+  if (segments[0] === SupportedLocales.ZH) {
+    segments.shift();
+  }
+
+  if (segments.length === 0) {
+    return { needsQuery: false as const };
+  }
+
+  const routeType = segments[0];
   const isBlogPagination =
-    routeType === 'blog' && segments.length > 2 && segments[2] === 'page';
-  const isBlogRoot = routeType === 'blog' && segments.length === 2;
+    routeType === 'blog' && segments.length > 1 && segments[1] === 'page';
+  const isBlogRoot = routeType === 'blog' && segments.length === 1;
 
   const routeKey = isBlogPagination || isBlogRoot ? 'blog/page' : routeType;
-  const pathWithoutPrefix = ((_type: string, segs: string[]) => {
+  const pathWithoutPrefix = (() => {
     if (isBlogPagination) {
-      return segs.slice(2).join('/');
+      return segments.slice(1).join('/');
     }
     if (isBlogRoot) {
       return 'page/1';
     }
-    if (segs.length === 2) {
+    if (segments.length === 1) {
       return '';
     }
-    return segs.slice(2).join('/');
-  })(routeType, segments);
-
-  console.log(
-    `[debug] pathname: ${pathname}, segments: ${segments}, routeKey: ${routeKey}, pathWithoutPrefix: ${pathWithoutPrefix}`,
-  );
+    return segments.slice(1).join('/');
+  })();
 
   return {
-    needsQuery: true,
-    locale,
+    needsQuery: true as const,
     routeKey,
     pathWithoutPrefix,
   };
 };
 
-export default function NotFoundClient() {
+export default function NotFoundClient({
+  locale = DEFAULT_LOCALE,
+}: {
+  locale?: string;
+}) {
   const pathname = usePathname();
-  const localeList = SUPPORTED_LOCALES;
   const [loading, setLoading] = useState(true);
   const [pageExists, setPageExists] = useState(false);
   const [redirectPath, setRedirectPath] = useState('');
 
-  const pathInfo = parsePath(pathname, localeList);
-  const content = localeContent[pathInfo.locale] || localeContent.en;
+  const content = localeContent[locale] || localeContent.en;
+  const { needsQuery, routeKey, pathWithoutPrefix } = parsePath(
+    pathname,
+    locale,
+  );
 
   useEffect(() => {
+    if (!needsQuery) {
+      setLoading(false);
+      return;
+    }
+
     async function checkPage() {
       try {
-        const result = await checkPageExists(
-          pathInfo.routeKey,
-          pathInfo.pathWithoutPrefix,
-        );
+        const result = await checkPageExists(routeKey, pathWithoutPrefix);
         setPageExists(result.exists);
         if (result.exists && result.redirectPath) {
           setRedirectPath(result.redirectPath);
@@ -155,19 +189,24 @@ export default function NotFoundClient() {
     }
 
     checkPage();
-  }, [pathInfo]);
+  }, [needsQuery, routeKey, pathWithoutPrefix]);
 
-  if (!pathInfo.needsQuery) {
-    return <NotFoundContent content={content} />;
+  if (!needsQuery) {
+    return <NotFoundContent content={content} locale={locale} />;
   }
 
   if (loading) {
     return <LoadingPage content={content} />;
   }
 
+  // The English original exists but has no translation yet: offer to cross over
+  // to the English site rather than dead-ending on a 404.
   return pageExists ? (
-    <RedirectPage redirectPath={redirectPath} content={content} />
+    <RedirectPage
+      redirectPath={`${EN_ORIGIN}${redirectPath}`}
+      content={content}
+    />
   ) : (
-    <NotFoundContent content={content} />
+    <NotFoundContent content={content} locale={locale} />
   );
 }
