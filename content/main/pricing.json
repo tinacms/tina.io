@@ -26,7 +26,7 @@
         ]
       },
       "intro": "Need to scale? No Probllama! TinaCMS offers a **per-project** pricing model that grows with your needs.\n\nSwitch to annual billing and save! All prices in **USD**\n",
-      "pillSwitchVisibileText": "Team and Business plans are priced **per project**. Enterprise covers your **whole organisation**. All prices in **USD**.\n",
+      "pillSwitchVisibileText": "All prices in **USD**.\n",
       "pillSwitchToggleText": "Get **2 months free** with annual billing\n",
       "plans": [
         {
@@ -34,9 +34,13 @@
           "description": "For growing teams\n",
           "price": "$29",
           "annualPrice": "$24",
-          "annualDescription": "$290 per project billed annually (save $58)",
+          "annualDescription": "$290 billed annually (save $58)",
           "interval": "/ project / month",
           "cardItem": [
+            {
+              "name": "1 Project",
+              "icon": "FaCodeBranch"
+            },
             {
               "name": "3 Users",
               "icon": "AiOutlineUser",
@@ -73,9 +77,13 @@
           "description": "For bigger teams\n",
           "price": "$49",
           "annualPrice": "$41",
-          "annualDescription": "$490 per project billed annually (save $98)",
+          "annualDescription": "$490 billed annually (save $98)",
           "interval": "/ project / month",
           "cardItem": [
+            {
+              "name": "1 Project",
+              "icon": "FaCodeBranch"
+            },
             {
               "name": "5 Users",
               "icon": "AiOutlineUser",
@@ -120,9 +128,13 @@
           "description": "For premium support\n",
           "price": "$299",
           "annualPrice": "$249",
-          "annualDescription": "$2,990 per project billed annually (save $598)",
+          "annualDescription": "$2,990 billed annually (save $598)",
           "interval": "/ project / month",
           "cardItem": [
+            {
+              "name": "1 Project",
+              "icon": "FaCodeBranch"
+            },
             {
               "name": "20 Users",
               "icon": "AiOutlineUser",
@@ -176,7 +188,7 @@
           "interval": "",
           "cardItem": [
             {
-              "name": "Whole Organisation",
+              "name": "Entire Organization",
               "icon": "FaCodeBranch",
               "description": "One plan covers every project"
             },
@@ -367,7 +379,7 @@
       "rowItems": [
         {
           "rowHeader": "Annual Billing",
-          "rowDescription": "Save over 16% - pay annually per project and get 2 months free! Enterprise is billed per organisation.",
+          "rowDescription": "Save over 16% - pay annually per project and get 2 months free! Enterprise is billed per organization.",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"$290/year\",\"isTicked\":false}",
@@ -476,13 +488,13 @@
         },
         {
           "rowHeader": "Billing unit",
-          "rowDescription": "Team and Business plans are bought per project. Enterprise covers every project in your organisation.",
+          "rowDescription": "Team and Business plans are bought per project. Enterprise covers every project in your organization.",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"Per project\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"Per project\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Per project\",\"isTicked\":false}",
             "{\"columnHeader\":\"Business\",\"cellValue\":\"Per project\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Whole organisation\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Entire organization\",\"isTicked\":false}"
           ]
         },
         {
