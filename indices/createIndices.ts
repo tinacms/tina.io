@@ -3,7 +3,6 @@ require('dotenv').config();
 import { algoliasearch, type SearchClient } from 'algoliasearch';
 
 import { fetchRelevantBlogs as fetchBlogs } from '../data-api/fetchBlogs';
-import fetchSearchableDocs from '../data-api/fetchDocs';
 import { stripMarkdown } from '../utils/blog_helpers';
 
 const mapContentToIndex = async ({
@@ -75,13 +74,6 @@ const createIndices = async () => {
   const client = algoliasearch(
     process.env.ALGOLIA_APP_ID,
     process.env.ALGOLIA_ADMIN_KEY,
-  );
-  const docs = await fetchSearchableDocs();
-
-  await saveIndex(
-    client,
-    'Tina-Docs-Next',
-    (await Promise.all(docs.map(mapContentToIndex))).flat(),
   );
 
   const blogs = await fetchBlogs();
