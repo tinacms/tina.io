@@ -194,7 +194,7 @@ export const SearchModal = ({
               ref={inputRef}
               type="text"
               className="w-full py-3 px-6 rounded-full border border-gray-300 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              placeholder="Search docs and blogs..."
+              placeholder="Search blog posts..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -223,7 +223,7 @@ export const SearchModal = ({
                   Start typing to search...
                 </p>
                 <p className="text-sm text-gray-400 mt-2">
-                  Search through docs and blog posts
+                  Search through blog posts
                 </p>
               </div>
             )}
