@@ -10,7 +10,7 @@ import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
-import { getDocId } from 'utils/docs/getDocIds';
+import { getDocId } from 'utils/getDocIds';
 import { unclipEmoji } from 'utils/unclipEmoji';
 import { Prism } from '../styles/Prism';
 import { AccordionBlock } from './templateComponents/accordionBlock';
