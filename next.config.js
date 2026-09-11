@@ -10,6 +10,7 @@ const TINA_DOCS_URL = 'https://tina-docs-zeta-one.vercel.app';
 const TINA_DOCS_LANDING_URL = 'https://tina-docs-landing.vercel.app';
 const GEO_URL =
   process.env.GEO_URL || 'https://tinacms-geo-lead-capture-xi.vercel.app';
+const DOCS_UPSTREAM_URL = process.env.DOCS_UPSTREAM_URL;
 
 /**
  * @type {import('next').NextConfig}
@@ -56,61 +57,80 @@ const config = {
   },
 
   async rewrites() {
-    return [
-      // Your existing site routes
-      { source: '/', destination: '/home' },
-      { source: '/:locale(en|zh)', destination: '/:locale/home' },
+    // beforeFiles: wins over the local app/docs routes.
+    const docsUpstreamRewrites = DOCS_UPSTREAM_URL
+      ? [
+          { source: '/docs', destination: `${DOCS_UPSTREAM_URL}/docs` },
+          {
+            source: '/docs/:path*',
+            destination: `${DOCS_UPSTREAM_URL}/docs/:path*`,
+          },
+          { source: '/zh/docs', destination: `${DOCS_UPSTREAM_URL}/docs/zh` },
+          {
+            source: '/zh/docs/:path*',
+            destination: `${DOCS_UPSTREAM_URL}/docs/zh/:path*`,
+          },
+        ]
+      : [];
 
-      // Docs
-      {
-        source: '/tinadocs/docs',
-        destination: `${TINA_DOCS_URL}/tinadocs/docs`,
-      },
-      {
-        source: '/tinadocs/api/:path*',
-        destination: `${TINA_DOCS_URL}/tinadocs/api/:path*`,
-      },
-      {
-        source: '/tinadocs/docs/:path*',
-        destination: `${TINA_DOCS_URL}/tinadocs/docs/:path*`,
-      },
-      {
-        source: '/tinadocs/docsassets/:path*',
-        destination: `${TINA_DOCS_URL}/tinadocs/docsassets/:path*`,
-      },
-      // Docs - Search functionality - Pagefind
-      {
-        source: '/tinadocs/_next/static/pagefind/:path*',
-        destination: `${TINA_DOCS_URL}/tinadocs/_next/static/pagefind/:path*`,
-      },
-      // Docs - Sitemap
-      {
-        source: '/tinadocs/doc/sitemap.xml',
-        destination: `${TINA_DOCS_URL}/tinadocs/doc/sitemap.xml`,
-      },
+    return {
+      beforeFiles: docsUpstreamRewrites,
+      afterFiles: [
+        // Your existing site routes
+        { source: '/', destination: '/home' },
+        { source: '/:locale(en|zh)', destination: '/:locale/home' },
 
-      // Landing Page - Specific patterns first
-      {
-        source: '/tinadocs',
-        destination: `${TINA_DOCS_LANDING_URL}/tinadocs`,
-      },
-      {
-        source: '/tinadocs/landing/:path*',
-        destination: `${TINA_DOCS_LANDING_URL}/tinadocs/landing/:path*`,
-      },
-      // Catch-all for remaining tinadocs paths
-      {
-        source: '/tinadocs/:path*',
-        destination: `${TINA_DOCS_LANDING_URL}/tinadocs/:path*`,
-      },
+        // Docs
+        {
+          source: '/tinadocs/docs',
+          destination: `${TINA_DOCS_URL}/tinadocs/docs`,
+        },
+        {
+          source: '/tinadocs/api/:path*',
+          destination: `${TINA_DOCS_URL}/tinadocs/api/:path*`,
+        },
+        {
+          source: '/tinadocs/docs/:path*',
+          destination: `${TINA_DOCS_URL}/tinadocs/docs/:path*`,
+        },
+        {
+          source: '/tinadocs/docsassets/:path*',
+          destination: `${TINA_DOCS_URL}/tinadocs/docsassets/:path*`,
+        },
+        // Docs - Search functionality - Pagefind
+        {
+          source: '/tinadocs/_next/static/pagefind/:path*',
+          destination: `${TINA_DOCS_URL}/tinadocs/_next/static/pagefind/:path*`,
+        },
+        // Docs - Sitemap
+        {
+          source: '/tinadocs/doc/sitemap.xml',
+          destination: `${TINA_DOCS_URL}/tinadocs/doc/sitemap.xml`,
+        },
 
-      // AI Search Readiness tool (separate deployment: tinacms/tinacms-geo-lead-capture)
-      { source: '/geo', destination: `${GEO_URL}/geo` },
-      { source: '/geo/:path*', destination: `${GEO_URL}/geo/:path*` },
+        // Landing Page - Specific patterns first
+        {
+          source: '/tinadocs',
+          destination: `${TINA_DOCS_LANDING_URL}/tinadocs`,
+        },
+        {
+          source: '/tinadocs/landing/:path*',
+          destination: `${TINA_DOCS_LANDING_URL}/tinadocs/landing/:path*`,
+        },
+        // Catch-all for remaining tinadocs paths
+        {
+          source: '/tinadocs/:path*',
+          destination: `${TINA_DOCS_LANDING_URL}/tinadocs/:path*`,
+        },
 
-      // Admin passthrough (yours)
-      { source: '/admin', destination: '/admin/index.html' },
-    ];
+        // AI Search Readiness tool (separate deployment: tinacms/tinacms-geo-lead-capture)
+        { source: '/geo', destination: `${GEO_URL}/geo` },
+        { source: '/geo/:path*', destination: `${GEO_URL}/geo/:path*` },
+
+        // Admin passthrough (yours)
+        { source: '/admin', destination: '/admin/index.html' },
+      ],
+    };
   },
 
   env: {
