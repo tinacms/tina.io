@@ -27,7 +27,7 @@ TinaCMS 可以在本地添加到你的 SvelteKit 站点中。本文将引导你�
 
 ```json
   "scripts": {
-    "dev": "tinacms dev -c \"vite dev\"",
+    "dev": "tinacms dev -c \"vite dev\"/",
     "build": "tinacms build && vite build",
     "preview": "tinacms build && vite preview"
   }
@@ -84,7 +84,7 @@ export default defineConfig({
 
 要在 Tina 中编辑站点内容，你可以在 `tina/config.ts` 文件里对内容进行建模。
 
-进一步了解[内容建模](/zh/docs/schema/)
+进一步了解[内容建模](/docs/schema/)
 
 ## 启动 TinaCMS
 
@@ -96,7 +96,7 @@ npm run dev
 
 TinaCMS 运行后，访问 `http://localhost:5173/admin/index.html`
 
-> 提示：如果运行该命令时遇到错误，请参阅[常见错误](/zh/docs/forestry/common-errors)页面。
+> 提示：如果运行该命令时遇到错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
 
 此时，你应该已经能看到 Tina 管理后台，可以选择一篇文章、保存修改，并看到更改被写入本地 Markdown 文件。
 
@@ -104,12 +104,12 @@ TinaCMS 运行后，访问 `http://localhost:5173/admin/index.html`
 
 ## 后续步骤
 
-* [查看内容建模文档](/zh/docs/schema/)
-* [了解如何查询内容](/zh/docs/features/data-fetching/)
-* [部署你的站点](/zh/docs/tinacloud)
+* [查看内容建模文档](/docs/schema/)
+* [了解如何查询内容](/docs/features/data-fetching/)
+* [部署你的站点](/docs/tinacloud)
 
 ## 另请参阅
 
-* [Astro 设置指南](/zh/docs/frameworks/astro/) —— 另一个现代框架选项
-* [Remix 设置指南](/zh/docs/frameworks/remix/) —— 基于 React 的替代方案
-* [Next.js 设置指南](/zh/docs/frameworks/next/app-router/) —— 最流行的 React 框架
+* [Astro 设置指南](/docs/frameworks/astro/) —— 另一个现代框架选项
+* [Remix 设置指南](/docs/frameworks/remix/) —— 基于 React 的替代方案
+* [Next.js 设置指南](/docs/frameworks/next/app-router/) —— 最流行的 React 框架

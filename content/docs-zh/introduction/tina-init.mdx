@@ -6,7 +6,7 @@ id: /docs/introduction/tina-init/
 last_edited: '2022-02-04T15:51:56.737Z'
 ---
 
-> 注意：本文档假设您已经有一个正在运行的站点。如果没有，您可以快速开始使用我们的默认 [Astro starter](/zh/docs/frameworks/astro/) 或 CLI 中的 [其他启动器](/zh/docs/introduction/using-starter/)。
+> 注意：本文档假设您已经有一个正在运行的站点。如果没有，您可以快速开始使用我们的默认 [Astro starter](/docs/frameworks/astro/) 或 CLI 中的 [其他启动器](/docs/introduction/using-starter/)。
 
 ## 添加 Tina
 
@@ -16,7 +16,7 @@ last_edited: '2022-02-04T15:51:56.737Z'
 npx @tinacms/cli@latest init
 ```
 
-_有关非 NextJS 站点的提示帮助，请参阅[本指南](/zh/docs/frameworks/other/)。_
+_有关非 NextJS 站点的提示帮助，请参阅[本指南](/docs/frameworks/other/)。_
 
 此命令将询问您几个问题，并在您的应用程序中设置 Tina 样板：
 
@@ -33,7 +33,7 @@ _有关非 NextJS 站点的提示帮助，请参阅[本指南](/zh/docs/framewor
 
 ```json
   "scripts": {
-    "dev": "tinacms dev -c \"next dev\"",
+    "dev": "tinacms dev -c \"next dev\"/",
     "build": "tinacms build && next build",
     "start": "tinacms build && next start"
   }
@@ -43,7 +43,7 @@ _有关非 NextJS 站点的提示帮助，请参阅[本指南](/zh/docs/framewor
 
 ```json
   "scripts": {
-    "dev": "tinacms dev -c \"hugo server -D\"",
+    "dev": "tinacms dev -c \"hugo server -D\"/",
     "build": "tinacms build && hugo"
   }
 ```

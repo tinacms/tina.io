@@ -24,7 +24,7 @@ previous: content/docs-zh/schema.mdx
 
 Tina 客户端是获取网站内容的最简单方式。可以在 `tina/config.<js|ts>` 中的 `defineConfig` 函数中配置客户端。
 
-> 注意：token、clientId 和 branch 在[本地模式](/zh/docs/tinacloud/#local-mode)下**不**使用。要为生产环境设置这些值，请参阅[此文档](/zh/docs/tinacloud/overview)
+> 注意：token、clientId 和 branch 在[本地模式](/docs/tinacloud/#local-mode)下**不**使用。要为生产环境设置这些值，请参阅[此文档](/docs/tinacloud/overview)
 
 ```js
 // tina/config.{js,ts,tsx}
@@ -36,7 +36,7 @@ export default defineConfig({
 });
 ```
 
-在本地工作时，客户端使用本地 URL (`http://localhost:4001/graphql`) 构建。在[生产模式](/zh/docs/tinacloud/#prod-mode)下，使用 `clientId`、`branch` 和 `token` 查询 TinaCloud。
+在本地工作时，客户端使用本地 URL (`http://localhost:4001/graphql`) 构建。在[生产模式](/docs/tinacloud/#prod-mode)下，使用 `clientId`、`branch` 和 `token` 查询 TinaCloud。
 
 Tina 客户端提供了一个类型安全的查询构建器，该构建器是根据您网站的架构自动生成的：
 
@@ -60,7 +60,7 @@ const posts = postsResponse.data.postConnection.edges.map((post) => {
 // 这将返回一个数组，如：[ { slug: 'HelloWorld.md'}, /*...*/ ]
 ```
 
-> 有关为您的特定架构手动编写查询的更多信息，请查看我们的["编写自定义查询"](/zh/docs/data-fetching/custom-queries/#writing-inline-queries)文档。
+> 有关为您的特定架构手动编写查询的更多信息，请查看我们的["编写自定义查询"](/docs/data-fetching/custom-queries/#writing-inline-queries)文档。
 
 ## 使用静态站点生成（SSG）处理新页面
 
@@ -105,7 +105,7 @@ const data = await client.queries.post(
 
 在本地开发时，与其与托管内容API通信，不如与本地文件系统上的内容通信更有利。Tina 提供了一个 CLI 工具，允许您在网站旁本地运行内容API。这使得在开发过程中，所有内容都可以通过相同的表达式 GraphQL API 获得。
 
-> 如果您通过 `@tinacms/cli init` 设置 Tina，或使用了我们的入门模板之一，这应该是默认设置的。（在[这里](/zh/docs/graphql/cli/)阅读有关 CLI 的信息。）
+> 如果您通过 `@tinacms/cli init` 设置 Tina，或使用了我们的入门模板之一，这应该是默认设置的。（在[这里](/docs/graphql/cli/)阅读有关 CLI 的信息。）
 
 ## 视频教程
 

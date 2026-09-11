@@ -1,6 +1,6 @@
 ---
 warningMessage: >-
-  **更新：** 内联编辑正在发展，当前版本被视为实验性版本，阅读更多关于[内联编辑的演变](/zh/blog/evolution-of-inline-editing/)。
+  **更新：** 内联编辑正在发展，当前版本被视为实验性版本，阅读更多关于[内联编辑的演变](/blog/evolution-of-inline-editing/)。
 seo:
   title: 内联编辑改进 | TinaCMS 博客
   description: >-
@@ -12,11 +12,11 @@ prev: content/blog-zh/upgrade-notice-improved-github-security.mdx
 next: content/blog-zh/september-update.mdx
 ---
 
-6周前，我们启动了一个专注于改进[内联编辑](/zh/docs/contextual-editing/overview)的项目。我们相信**这种创建内容的方式是未来的发展方向**，我们希望成为实现这一未来的推动者。
+6周前，我们启动了一个专注于改进[内联编辑](/docs/contextual-editing/overview)的项目。我们相信**这种创建内容的方式是未来的发展方向**，我们希望成为实现这一未来的推动者。
 
 <Youtube embedSrc="https://www.youtube.com/embed/4qGz0cP_DSA" />
 
-我们选择特别关注[内联块](/zh/docs/editing/blocks)，以提升Tina的页面构建能力。以下是react-tinacms-inline中进行的一些**改进和更改**，以及在项目过程中收集的过程笔记：
+我们选择特别关注[内联块](/docs/editing/blocks)，以提升Tina的页面构建能力。以下是react-tinacms-inline中进行的一些**改进和更改**，以及在项目过程中收集的过程笔记：
 
 ## 美学
 
@@ -68,7 +68,7 @@ next: content/blog-zh/september-update.mdx
 
 ### 嵌套块焦点
 
-对我们来说，支持[嵌套块](/zh/docs/editing/blocks)非常重要——这意味着块可以渲染其他块而不会导致控件和焦点状态冲突。
+对我们来说，支持[嵌套块](/docs/editing/blocks)非常重要——这意味着块可以渲染其他块而不会导致控件和焦点状态冲突。
 
 我们很快注意到嵌套块的一个问题是焦点环过多。当悬停在字段和字段上时，可能会同时显示多个焦点环——以指示块和块内的字段都有潜在的活跃状态。为了解决这个问题，所有内联字段现在都接受一个`focusRing`布尔值，以指示是否显示焦点环。这提供了对焦点混乱的更大控制。
 
@@ -76,7 +76,7 @@ next: content/blog-zh/september-update.mdx
 
 ## 字段
 
-### 新的[内联组字段](/zh/docs/editing/blocks)
+### 新的[内联组字段](/docs/editing/blocks)
 
 在引入此字段之前，唯一可以在*设置模态*中编辑元数据的方法是通过块。此字段提供了一个机会，可以为一组常规内联字段添加类似块的控件和焦点环。
 
@@ -96,7 +96,7 @@ next: content/blog-zh/september-update.mdx
 
 ### 通过CMS启用编辑模式
 
-在这个项目过程中，引入了[完全启用或禁用](/zh/docs/contextual-editing/overview)CMS的能力。通过此功能，我们现在可以通过`enabled`标志控制*内联编辑模式*。当CMS启用时，内联编辑状态会自动激活。
+在这个项目过程中，引入了[完全启用或禁用](/docs/contextual-editing/overview)CMS的能力。通过此功能，我们现在可以通过`enabled`标志控制*内联编辑模式*。当CMS启用时，内联编辑状态会自动激活。
 
 这简化了内联编辑配置。开发者不再需要制作单独的“启用编辑模式”切换来*激活*该活动编辑状态。他们可以在应用程序级别控制整个项目中CMS是否启用。
 
@@ -106,4 +106,4 @@ next: content/blog-zh/september-update.mdx
 
 我们希望为开发者提供构建完全自定义页面构建器类型工作流的自由。虽然我们已经有一些想法来进一步发展，但**我们很想听到您的反馈**！欢迎通过[Twitter](https://twitter.com/tinacms)与我们分享您的想法。
 
-要深入了解，请阅读[我们的块文档](/zh/docs/editing/blocks)，以更好地了解这些新功能的技术实现。或者尝试[简单演示](https://logan-anderson.github.io/cra-hosted-demo/)，从[指南](/zh/docs/editing/blocks)中获得灵感！
+要深入了解，请阅读[我们的块文档](/docs/editing/blocks)，以更好地了解这些新功能的技术实现。或者尝试[简单演示](https://logan-anderson.github.io/cra-hosted-demo/)，从[指南](/docs/editing/blocks)中获得灵感！

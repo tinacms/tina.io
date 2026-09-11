@@ -2,7 +2,7 @@
   "seo": {
     "title": "TinaCMS 软件包版本",
     "description": "TinaCMS 每个软件包当前已发布的版本，实时从 npm 获取。",
-    "canonicalUrl": "/zh/versions"
+    "canonicalUrl": "/versions"
   },
   "blocks": [
     {

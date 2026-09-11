@@ -8,7 +8,7 @@ title: 默认 (Auth.js) 认证提供者
 
 ## 入门
 
-> 注意：如果您尚未设置自托管，我们建议使用 `init backend` 命令。有关更多信息，请参阅[入门文档](/zh/docs/self-hosted/existing-site/)。
+> 注意：如果您尚未设置自托管，我们建议使用 `init backend` 命令。有关更多信息，请参阅[入门文档](/docs/self-hosted/existing-site/)。
 
 要开始，您需要安装以下依赖项：
 
@@ -16,7 +16,7 @@ title: 默认 (Auth.js) 认证提供者
 yarn add next-auth tinacms-authjs
 ```
 
-> 提示：在继续之前，请确保您已设置[数据库适配器](/zh/docs/reference/self-hosted/database-adapter/overview/)。
+> 提示：在继续之前，请确保您已设置[数据库适配器](/docs/reference/self-hosted/database-adapter/overview/)。
 
 ### 更新您的 Tina 配置
 
@@ -105,7 +105,7 @@ export default (req, res) => {
 在您的 package.json 文件中添加以下脚本。
 
 ```json
-"dev:prod": "TINA_PUBLIC_IS_LOCAL=false tinacms dev -c \"next dev\"",
+"dev:prod": "TINA_PUBLIC_IS_LOCAL=false tinacms dev -c \"next dev\"/",
 ```
 
 这将允许您在本地测试认证流程。
@@ -122,7 +122,7 @@ yarn dev:prod
 
 ## 管理用户
 
-要添加其他用户，请导航到侧边栏中的用户集合以添加或编辑用户。有关更多详细信息，请参阅[用户管理](/zh/docs/self-hosted/user-management/)。
+要添加其他用户，请导航到侧边栏中的用户集合以添加或编辑用户。有关更多详细信息，请参阅[用户管理](/docs/self-hosted/user-management/)。
 
 ## 配置其他 Auth.js 登录提供者
 

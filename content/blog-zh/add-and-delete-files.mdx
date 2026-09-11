@@ -10,7 +10,7 @@ consumes:
   - file: /packages/tinacms/src/components/CreateContent.tsx
     details: 包含创建表单外观的图片
 warningMessage: >-
-  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/zh/docs/setup-overview/)以获得更流畅的解决方案。
+  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/docs/setup-overview/)以获得更流畅的解决方案。
 seo:
   title: 添加和删除文件 | TinaCMS博客
   description: >-
@@ -22,7 +22,7 @@ prev: content/blog-zh/dynamic-plugin-system.mdx
 next: content/blog-zh/jamstack-denver-talk.mdx
 ---
 
-[创建](/zh/blog/add-and-delete-files#creating-new-files)和[删除](/zh/blog/add-and-delete-files#deleting-files)内容——CMS的两个基本方面。本文将介绍如何在[Gatsby](https://www.gatsbyjs.org/)网站上使用TinaCMS设置此功能。但首先，先来个概述。
+[创建](/blog/add-and-delete-files#creating-new-files)和[删除](/blog/add-and-delete-files#deleting-files)内容——CMS的两个基本方面。本文将介绍如何在[Gatsby](https://www.gatsbyjs.org/)网站上使用TinaCMS设置此功能。但首先，先来个概述。
 
 ![tinacms-add-new-file-gif](/gif/add-new-blog.gif)
 
@@ -30,9 +30,9 @@ next: content/blog-zh/jamstack-denver-talk.mdx
 
 安装Tina后，您将立即获得一个**侧边栏**。这个侧边栏是使用Tina编辑和管理内容的主要界面。
 
-要使网站上的内容可编辑，您需要向Tina注册一个表单。表单出现在侧边栏中，显示[字段](/zh/docs/reference/fields)，您可以在页面上编辑内容。
+要使网站上的内容可编辑，您需要向Tina注册一个表单。表单出现在侧边栏中，显示[字段](/docs/reference/fields)，您可以在页面上编辑内容。
 
-插件扩展了核心CMS的功能。在幕后，插件在Tina中做了一些重要的工作。它们注册表单，创建新的屏幕视图，并允许我们添加新内容。如果您有兴趣了解更多，请阅读Tina的[动态插件系统](/zh/blog/dynamic-plugin-system)这篇文章。
+插件扩展了核心CMS的功能。在幕后，插件在Tina中做了一些重要的工作。它们注册表单，创建新的屏幕视图，并允许我们添加新内容。如果您有兴趣了解更多，请阅读Tina的[动态插件系统](/blog/dynamic-plugin-system)这篇文章。
 
 ## 创建新文件
 
@@ -40,10 +40,10 @@ next: content/blog-zh/jamstack-denver-talk.mdx
 
 这些步骤将是我们在[Gatsby](https://www.gatsbyjs.org/)网站中设置内容创建功能的路线图。
 
-1. [设置一个`content-creator`插件](/zh/blog/add-and-delete-files#step-1-set-up-a-content-creator-plugin)
-2. [在Tina中注册插件](/zh/blog/add-and-delete-files#2-register-the-plugin-with-the-sidebar)
-3. [自定义`create-form`](/zh/blog/add-and-delete-files#3-customize-the-create-form)
-4. [为新文件配置默认数据](/zh/blog/add-and-delete-files#4-configure-defaults)
+1. [设置一个`content-creator`插件](/blog/add-and-delete-files#step-1-set-up-a-content-creator-plugin)
+2. [在Tina中注册插件](/blog/add-and-delete-files#2-register-the-plugin-with-the-sidebar)
+3. [自定义`create-form`](/blog/add-and-delete-files#3-customize-the-create-form)
+4. [为新文件配置默认数据](/blog/add-and-delete-files#4-configure-defaults)
 
 ### 在哪里添加插件
 
@@ -61,7 +61,7 @@ next: content/blog-zh/jamstack-denver-talk.mdx
 
 好的，让我们开始吧。在这一步中，我们将创建一个`content-creator`插件👩‍🎨。
 
-有不同的插件用于创建新的markdown或JSON文件。在本教程中，我们将使用`RemarkCreatorPlugin`来处理markdown文件。请随意阅读[文档](/zh/docs/guides/converting-gatsby-to-tina)中的`JsonCreatorPlugin`。
+有不同的插件用于创建新的markdown或JSON文件。在本教程中，我们将使用`RemarkCreatorPlugin`来处理markdown文件。请随意阅读[文档](/docs/guides/converting-gatsby-to-tina)中的`JsonCreatorPlugin`。
 
 前往您想要添加此插件的组件文件。本例将使用`Layout`组件。这样，**编辑者始终可以创建新帖子。**
 
@@ -128,7 +128,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 注意如何使用`create-form`提交的数据。当创建新文件时，您可以让编辑者输入一个标题，然后所有的**`create-form`数据都会传递给`filename`函数**。
 
-您可以使用`create-form`的数据来创造性地生成新文件路径或填充默认数据（稍后会详细介绍）。总体而言，格式化`filename`取决于您的项目结构。选择一个对您有意义的简单解决方案，或者在[这里](/zh/docs/reference/self-hosted/git-provider/github)查看更多示例。
+您可以使用`create-form`的数据来创造性地生成新文件路径或填充默认数据（稍后会详细介绍）。总体而言，格式化`filename`取决于您的项目结构。选择一个对您有意义的简单解决方案，或者在[这里](/docs/reference/self-hosted/git-provider/github)查看更多示例。
 
 ## 2. 在侧边栏中注册插件
 
@@ -278,7 +278,7 @@ frontmatter和body函数都接收由`create-form`中的字段捕获的数据。�
 有了创建的能力，就有了删除的能力🧙‍♀️。我向您保证这一步要简单得多。
 
 我们不需要添加一个“删除”插件，只需将`delete-action`传递给主表单选项即可。
-前往您在项目中配置了Tina表单的文件。这通常是生成多个帖子、案例研究等的模板文件。如果您的项目中没有配置Tina表单，请在[这里](/zh/docs/guides/converting-gatsby-to-tina)了解有关使用Gatsby+Tina创建表单的更多信息。
+前往您在项目中配置了Tina表单的文件。这通常是生成多个帖子、案例研究等的模板文件。如果您的项目中没有配置Tina表单，请在[这里](/docs/guides/converting-gatsby-to-tina)了解有关使用Gatsby+Tina创建表单的更多信息。
 
 您不希望编辑者有权删除他们不应该删除的文件。因此，请考虑您希望此操作可用的位置。对于博客之类的东西，将`delete-action`添加到博客模板表单中是有意义的。但将`delete-action`添加到编辑全局站点配置的表单中可能就没有意义了。
 

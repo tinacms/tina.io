@@ -19,35 +19,35 @@ previous: ''
   showcaseItems={[
     {
       title: "Tina Cloud",
-      image: "",
+      image: "/",
       content:
         "您的内容将在Tina Cloud中查询。这为GitHub操作提供了需要定位的文件列表。\n",
       useAsSubsection: false
     },
     {
       title: "GitHub Actions",
-      image: "",
+      image: "/",
       content:
         "GitHub操作将使用来自TinaCloud的响应在您的存储库中定位正确的文件。从那里开始，将读取每个文件的内容以进行审查。\n",
       useAsSubsection: false
     },
     {
       title: "问题",
-      image: "",
+      image: "/",
       content:
         "在扫描您的内容后，GitHub操作将生成一个问题列表，并根据您的系统提示提出改进建议。\n",
       useAsSubsection: true
     },
     {
       title: "拉取请求",
-      image: "",
+      image: "/",
       content:
         "GitHub操作将自动创建包含已检查文件列表的拉取请求。\n",
       useAsSubsection: true
     },
     {
       title: "GitHub模型",
-      image: "",
+      image: "/",
       content:
         "GitHub模型将读取并评估您的内容，标记任何潜在的改进区域。\n",
       useAsSubsection: false
@@ -143,7 +143,7 @@ const MyCollection : Collection = {
 cd ./github/scripts/tina-helpers
 ```
 
-您需要在此位置添加一个`.env`文件，并保存您的**Collection**、**Tina Token**和**Tina Client ID**。这些是您在[GitHub设置](/zh/docs/guides/content-auditing-github-actions#secrets)中添加的相同属性。
+您需要在此位置添加一个`.env`文件，并保存您的**Collection**、**Tina Token**和**Tina Client ID**。这些是您在[GitHub设置](/docs/guides/content-auditing-github-actions#secrets)中添加的相同属性。
 
 ```env
 TINA_TOKEN=<your-tina-token>

@@ -52,7 +52,7 @@ export default defineConfig({
 
 删除`react()`集成。如果你使用了自定义客户端指令（`addClientDirective({ name: 'tina', … })`），也删除它——它被新路径使用的`<TinaIsland>`组件替代，用于标记可编辑区域。
 
-`output: 'static'`也支持，只要你将可编辑区域包裹在`<TinaIsland>`中；请参阅可视化编辑指南中的[静态站点编辑](/zh/docs/contextual-editing/astro/#static-site-editing)。
+`output: 'static'`也支持，只要你将可编辑区域包裹在`<TinaIsland>`中；请参阅可视化编辑指南中的[静态站点编辑](/docs/contextual-editing/astro/#static-site-editing)。
 
 ## 3. 删除React粘合代码
 
@@ -204,7 +204,7 @@ export const ALL: APIRoute = experimental_createIslandRoute(islands);
 * `src/components/mdx/<Name>.template.ts`中的一个`Template`（仅模式）
 * `src/components/mdx/<Name>.astro`中的一个渲染器
 
-请参阅[可视化编辑设置 → Astro → 自定义MDX嵌入](/zh/docs/contextual-editing/astro/#custom-mdx-embeds)以获取完整模式。
+请参阅[可视化编辑设置 → Astro → 自定义MDX嵌入](/docs/contextual-editing/astro/#custom-mdx-embeds)以获取完整模式。
 
 ## 11. 验证
 
@@ -218,6 +218,6 @@ export const ALL: APIRoute = experimental_createIslandRoute(islands);
 
 ## 另请参阅
 
-* [Astro设置指南](/zh/docs/frameworks/astro/): 完整的集成起点
-* [可视化编辑设置 → Astro](/zh/docs/contextual-editing/astro/): 桥接架构深入解析
+* [Astro设置指南](/docs/frameworks/astro/): 完整的集成起点
+* [可视化编辑设置 → Astro](/docs/contextual-editing/astro/): 桥接架构深入解析
 * [Astro入门模板](https://github.com/tinacms/tina-astro-starter): 参考实现

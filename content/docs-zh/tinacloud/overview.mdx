@@ -22,11 +22,11 @@ previous: content/docs-zh/tinacloud.mdx
 
 * 确保您的网站在 GitHub 上，并且所有更改都已推送（包括 `tina/tina-lock.json`）。此文件是通过在本地运行 `tinacms dev` 生成的——它必须被提交并推送，以便 TinaCloud 索引您的内容。
 * 确保您有一个 [TinaCloud](https://app.tina.io) 账户。
-  * 查看 [TinaCloud Dashboard](/zh/docs/tinacloud/dashboard) 文档以获取更多信息。
+  * 查看 [TinaCloud Dashboard](/docs/tinacloud/dashboard) 文档以获取更多信息。
 
 ## 创建一个 TinaCloud 项目
 
-前往 [app.tina.io](https://app.tina.io) 并创建一个新的[项目](/zh/docs/tinacloud/dashboard/projects/)。系统会要求您连接您的 GitHub 账户并选择要连接到 TinaCloud 的存储库。
+前往 [app.tina.io](https://app.tina.io) 并创建一个新的[项目](/docs/tinacloud/dashboard/projects/)。系统会要求您连接您的 GitHub 账户并选择要连接到 TinaCloud 的存储库。
 
 ## 运行后端初始化命令
 
@@ -129,12 +129,12 @@ apiURL 被配置为在开发中使用本地内容 API（查询您的本地文件
 
 <WarningCallout
   body={<>
-    TinaCMS 管理是一个静态构建的 SPA —— 环境变量在构建时嵌入到其 JavaScript 中。您在管理中需要的任何变量（包括在[自定义字段组件](/zh/docs/extending-tina/custom-field-components)中）必须：(1) 使用 `TINA_PUBLIC_` 或 `NEXT_PUBLIC_` 前缀，并且 (2) 在您的托管提供商的环境设置中配置，以便在 `tinacms build` 运行时可用。查看[环境变量参考](/zh/docs/reference/config#environment-variables)以获取允许的前缀的完整列表。
+    TinaCMS 管理是一个静态构建的 SPA —— 环境变量在构建时嵌入到其 JavaScript 中。您在管理中需要的任何变量（包括在[自定义字段组件](/docs/extending-tina/custom-field-components)中）必须：(1) 使用 `TINA_PUBLIC_` 或 `NEXT_PUBLIC_` 前缀，并且 (2) 在您的托管提供商的环境设置中配置，以便在 `tinacms build` 运行时可用。查看[环境变量参考](/docs/reference/config#environment-variables)以获取允许的前缀的完整列表。
   </>}
 />
 
 我们为一些流行的部署选项提供了文档：
 
-* [Vercel](/zh/docs/tinacloud/deployment-options/vercel)
-* [Netlify](/zh/docs/tinacloud/deployment-options/netlify)
-* [GitHub Pages](/zh/docs/tinacloud/deployment-options/github-pages)
+* [Vercel](/docs/tinacloud/deployment-options/vercel)
+* [Netlify](/docs/tinacloud/deployment-options/netlify)
+* [GitHub Pages](/docs/tinacloud/deployment-options/github-pages)

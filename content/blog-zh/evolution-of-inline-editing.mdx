@@ -15,11 +15,11 @@ next: content/blog-zh/tina-cloud-and-nextjs-the-perfect-match.mdx
 
 我们正在继续从我们的开发社区中学习，并寻找更好的方法来整合内联编辑赋予的超能力。
 
-在这个讨论中，我们不能忘记侧边栏编辑！内联编辑的吸引力往往掩盖了我们通过侧边栏编辑获得的灵活设置和可用性优势。**我们建议从[侧边栏编辑](/zh/docs/using-tina-editor)开始，以快速启动和运行。**
+在这个讨论中，我们不能忘记侧边栏编辑！内联编辑的吸引力往往掩盖了我们通过侧边栏编辑获得的灵活设置和可用性优势。**我们建议从[侧边栏编辑](/docs/using-tina-editor)开始，以快速启动和运行。**
 
 ## 原始方法的回顾
 
-让我们来看一个简单的[内联编辑](/zh/docs/contextual-editing/overview)场景，在这里我们使页面的标题可编辑。
+让我们来看一个简单的[内联编辑](/docs/contextual-editing/overview)场景，在这里我们使页面的标题可编辑。
 
 我们用TinaCMS的`InlineForm`组件包装我们的页面，以便我们的子组件表现得像一个表单。我们可以使用`InlineText`组件注入一个文本输入来编辑标题值。
 
@@ -27,7 +27,7 @@ next: content/blog-zh/tina-cloud-and-nextjs-the-perfect-match.mdx
 
 通过这种方法，我们作为开发者获得了很多控制权。内联编辑组件与您的布局组件共存，并且表现得几乎如您所期望的那样。
 
-但这种方法有[一些权衡](/zh/blog/more-changes-coming-to-inline-editing/)：
+但这种方法有[一些权衡](/blog/more-changes-coming-to-inline-editing/)：
 
 * 像`InlineText`这样的组件添加了标记和行为，这可能会干扰您期望的布局和样式。您现在有一个`input`元素和包裹的`divs`，而通常您只会渲染文本。
 * 侧边栏编辑表单是由一个单一的配置对象构建的。内联编辑带来了不同的开发者体验和另一组需要理解的概念。
@@ -60,7 +60,7 @@ next: content/blog-zh/tina-cloud-and-nextjs-the-perfect-match.mdx
 
 ## 接下来是什么？
 
-> 以下部分可能不再准确，请参阅[官方路线图](/zh/roadmap "Roadmap")和[GitHub](https://github.com/tinacms)页面以获取最新的开发信息
+> 以下部分可能不再准确，请参阅[官方路线图](/roadmap "Roadmap")和[GitHub](https://github.com/tinacms)页面以获取最新的开发信息
 
 我们在文档和指南中明确指出，**原始内联编辑方法和基于引用的内联编辑仍然是实验性的**。
 

@@ -24,7 +24,7 @@ next: content/blog-zh/custom-field-plugins.mdx
 
 **先决条件 👩‍🏫**
 
-在整篇文章中，我将提到一些TinaCMS的核心概念，如[表单](/docs/reference/toolkit/forms)、侧边栏和[字段](/zh/docs/reference/fields)。在阅读之前，了解一些关于**[TinaCMS如何工作](/zh/docs/setup-overview)**的基本知识会很有帮助。
+在整篇文章中，我将提到一些TinaCMS的核心概念，如[表单](/docs/reference/toolkit/forms)、侧边栏和[字段](/docs/reference/fields)。在阅读之前，了解一些关于**[TinaCMS如何工作](/docs/setup-overview)**的基本知识会很有帮助。
 
 ## 为什么要创建自定义字段？
 
@@ -36,9 +36,9 @@ Tina旨在完全可定制和可扩展。创建**自定义字段可以提供对�
 
 ## 两种方法——让我们从简单开始
 
-有两种方法可以将[自定义字段](/zh/docs/extending-tina/custom-field-components)添加到Tina。第一种方法是定义一个React组件，并将其传递给字段定义的`component`属性。Tina团队称之为**内联字段组件**。这种方法更简单；这将是本文的重点。
+有两种方法可以将[自定义字段](/docs/extending-tina/custom-field-components)添加到Tina。第一种方法是定义一个React组件，并将其传递给字段定义的`component`属性。Tina团队称之为**内联字段组件**。这种方法更简单；这将是本文的重点。
 
-第二种方法是定义一个自定义组件，然后将该组件注册为CMS的[字段插件](/zh/docs/extending-tina/custom-field-components)。Tina提供的所有[核心字段](/zh/docs/reference/fields)都是作为插件使用的。
+第二种方法是定义一个自定义组件，然后将该组件注册为CMS的[字段插件](/docs/extending-tina/custom-field-components)。Tina提供的所有[核心字段](/docs/reference/fields)都是作为插件使用的。
 
 创建插件与内联字段相比有一些优势——主要是可重用性和访问解析、验证等附加功能。但**对于简单的情况**，当您只需要在一个表单中使用自定义字段或不需要验证时，内联字段组件就足够了👌。
 
@@ -164,7 +164,7 @@ function RangeInput(props) {
 
 **传递给字段组件的所有props**是：
 
-* `field` — 对[字段定义](/zh/docs/reference/fields)的引用。
+* `field` — 对[字段定义](/docs/reference/fields)的引用。
 * `input` — 包含字段设置和更新数据所需的数据和回调的对象。*如上所述* ☝️。
 * `meta` — 提供有关字段状态的[元数据](https://final-form.org/docs/react-final-form/types/FieldRenderProps#metaactive)。
 * `tinaForm` — 对注册此字段的表单的引用。
@@ -262,7 +262,7 @@ AboutMe.getInitialProps = async function() {
 
 我们来把这个自定义字段连接到Tina吧？🎊
 
-在这一步中，我们需要创建自定义字段定义并内联传入`RangeInput`组件。我们将回到我们的*关于我*页面[表单选项](/zh/docs/guides/converting-gatsby-to-tina)：
+在这一步中，我们需要创建自定义字段定义并内联传入`RangeInput`组件。我们将回到我们的*关于我*页面[表单选项](/docs/guides/converting-gatsby-to-tina)：
 
 ```jsx
 const formOptions = {
@@ -340,9 +340,9 @@ function AboutMe(props) {
 
 ### 下一步
 
-一个好的下一步是*为自定义`RangeInput`组件添加样式*。您可以使用[`@tinacms/styles`](/zh/docs/extending-tina/custom-field-components)来适应其他Tina字段的风格✌️。或者您可以随心所欲地装饰侧边栏🤠。
+一个好的下一步是*为自定义`RangeInput`组件添加样式*。您可以使用[`@tinacms/styles`](/docs/extending-tina/custom-field-components)来适应其他Tina字段的风格✌️。或者您可以随心所欲地装饰侧边栏🤠。
 
-如果我们想在整个网站中重用这个组件，我们可以更进一步，将其制作成一个[字段插件](/zh/docs/extending-tina/custom-field-components)。请继续关注后续文章，深入探讨创建自定义字段插件，或者访问[文档](/zh/docs/extending-tina/custom-field-components)以抢先了解。
+如果我们想在整个网站中重用这个组件，我们可以更进一步，将其制作成一个[字段插件](/docs/extending-tina/custom-field-components)。请继续关注后续文章，深入探讨创建自定义字段插件，或者访问[文档](/docs/extending-tina/custom-field-components)以抢先了解。
 
 > 可以查看这个自定义范围输入字段的[完成版本](https://github.com/kendallstrautman/llama-filters)，或者看看Tina Grande仓库中更复杂的[*Authors*字段插件](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js)。
 

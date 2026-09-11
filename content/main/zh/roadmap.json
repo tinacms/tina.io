@@ -47,7 +47,7 @@
         {
           "icon": "FaRegCheckCircle",
           "heading": "TinaCloud 独立内容仓库支持\n",
-          "status": "",
+          "status": "/",
           "content": "多仓库支持让单个 TinaCloud 项目可以在生成器/代码仓库之外，再连接一个独立的内容仓库。这种面向企业的架构把编辑的内容与应用代码解耦，消除了 schema 同步问题和重复的 TinaCMS lock 文件。\n",
           "actions": [
             {
@@ -56,7 +56,7 @@
               "shape": "pill",
               "variant": "blue",
               "size": "medium",
-              "url": "/zh/blog/tinacloud-separate-content-repos"
+              "url": "/blog/tinacloud-separate-content-repos"
             },
             {
               "label": "查看文档",
@@ -64,7 +64,7 @@
               "shape": "pill",
               "variant": "default",
               "size": "medium",
-              "url": "/zh/docs/guides/separate-content-repo"
+              "url": "/docs/guides/separate-content-repo"
             }
           ]
         },
@@ -78,7 +78,7 @@
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "/zh/blog/astro-is-becoming-the-default-tinacms-starter"
+              "url": "/blog/astro-is-becoming-the-default-tinacms-starter"
             },
             {
               "label": "GitHub 讨论 🔗",
@@ -93,7 +93,7 @@
         {
           "icon": "FaRegCheckCircle",
           "heading": "GitHub Enterprise 支持\n",
-          "status": "",
+          "status": "/",
           "content": "TinaCloud 现已支持连接 GitHub Enterprise 的本地部署实例。\n",
           "actions": [
             {
@@ -101,14 +101,14 @@
               "icon": true,
               "variant": "blue",
               "size": "medium",
-              "url": "/zh/docs/tinacloud/github-enterprise-integration"
+              "url": "/docs/tinacloud/github-enterprise-integration"
             }
           ]
         },
         {
           "icon": "FaRegCheckCircle",
           "heading": "双因素认证\n",
-          "status": "",
+          "status": "/",
           "content": "为 TinaCloud 用户增加一层额外的防护，防止未授权访问，让内容管理更安全。\n",
           "actions": [
             {
@@ -116,14 +116,14 @@
               "icon": true,
               "variant": "blue",
               "size": "medium",
-              "url": "/zh/blog/two-factor-authentication"
+              "url": "/blog/two-factor-authentication"
             }
           ]
         },
         {
           "icon": "FaRegCheckCircle",
           "heading": "Vercel 数据缓存支持\n",
-          "status": "",
+          "status": "/",
           "content": "部署在 Vercel 上？这项改进利用 Vercel 的数据缓存来加快内容分发、降低 API 负载，并提升编辑时的响应速度。\n",
           "actions": [
             {
@@ -131,7 +131,7 @@
               "icon": true,
               "variant": "blue",
               "size": "medium",
-              "url": "/zh/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache"
+              "url": "/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache"
             }
           ]
         },
@@ -145,7 +145,7 @@
               "icon": true,
               "variant": "blue",
               "size": "medium",
-              "url": "/zh/blog/react-19-support"
+              "url": "/blog/react-19-support"
             },
             {
               "label": "🚀 已在 2.7.7 发布",
@@ -181,7 +181,7 @@
               "shape": "pill",
               "variant": "default",
               "size": "medium",
-              "url": "/zh/blog/modernizing-to-esm"
+              "url": "/blog/modernizing-to-esm"
             }
           ]
         }
@@ -264,7 +264,7 @@
               "shape": "pill",
               "variant": "blue",
               "size": "medium",
-              "url": "/zh/blog/tinacms-v4-is-coming"
+              "url": "/blog/tinacms-v4-is-coming"
             },
             {
               "label": "GitHub 讨论 🔗",
@@ -329,7 +329,7 @@
         {
           "icon": "FaRegClock",
           "heading": "改进的 PR 工作流\n",
-          "status": "",
+          "status": "/",
           "content": "我们正在对 Tina 的编辑工作流做一些改进，让你可以直接在 CMS 界面中合并 Pull Request。\n",
           "actions": [
             {
@@ -337,7 +337,7 @@
               "icon": true,
               "variant": "blue",
               "size": "medium",
-              "url": "/zh/editorial-workflow/"
+              "url": "/editorial-workflow/"
             }
           ]
         },
@@ -351,14 +351,14 @@
               "icon": true,
               "variant": "blue",
               "size": "medium",
-              "url": "/zh/docs/vibe-coding"
+              "url": "/docs/vibe-coding"
             }
           ]
         },
         {
           "icon": "FaRegClock",
           "heading": "MCP 服务器\n",
-          "status": "",
+          "status": "/",
           "content": "我们正在探索一些在内容创作流程中运用 AI 的方式。\n",
           "actions": [
             {

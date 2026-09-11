@@ -31,15 +31,15 @@
         {
           "headline": "SSW Rules",
           "text": "SSW 将 **4000 多个**页面从 Decap CMS 迁移到了 TinaCMS。[SSW Rules](https://www.ssw.com.au/rules) 是 SSW 用来沉淀软件开发行业最佳实践的站点，内容源自他们 **30 年**的开发经验。",
-          "url": "",
+          "url": "/",
           "media": {
             "youtubeUrl": "https://www.youtube.com/watch?v=lqqduKKhH_o",
-            "src": ""
+            "src": "/"
           }
         },
         {
           "headline": "Smashing Magazine",
-          "text": "Smashing Magazine使用TinaCMS编辑成千上万的帖子和页面内容。查看他们的[文章](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)，了解他们如何使用分支和Git通过Tina的[编辑工作流](/zh/editorial-workflow)管理内容。",
+          "text": "Smashing Magazine使用TinaCMS编辑成千上万的帖子和页面内容。查看他们的[文章](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)，了解他们如何使用分支和Git通过Tina的[编辑工作流](/editorial-workflow)管理内容。",
           "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
           "media": {
             "src": "/gif/smashingmagazine-tinacms.gif"

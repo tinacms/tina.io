@@ -27,7 +27,7 @@ export interface GitProvider {
 
 ## 示例
 
-以下是[GitHub Git提供者](/zh/docs/reference/self-hosted/git-provider/github)的源代码。它是如何实现`GitProvider`接口的一个很好的例子。
+以下是[GitHub Git提供者](/docs/reference/self-hosted/git-provider/github)的源代码。它是如何实现`GitProvider`接口的一个很好的例子。
 
 ```ts
 import { Octokit } from '@octokit/rest'
@@ -129,7 +129,7 @@ export class MyGitHubProvider implements GitProvider {
 
 ## 添加你的Git提供者
 
-现在可以将其用作`createDatabase`[函数](/zh/docs/reference/self-hosted/database-adapter/overview/#createdatabase-function)的一个属性。
+现在可以将其用作`createDatabase`[函数](/docs/reference/self-hosted/database-adapter/overview/#createdatabase-function)的一个属性。
 
 database.ts,js:
 

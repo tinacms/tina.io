@@ -11,7 +11,7 @@
         },
         {
           "label": "TinaCMS 文档",
-          "href": "/zh/docs",
+          "href": "/docs",
           "external": false
         },
         {
@@ -21,7 +21,7 @@
         },
         {
           "label": "案例展示",
-          "href": "/zh/showcase",
+          "href": "/showcase",
           "external": false
         },
         {
@@ -31,7 +31,7 @@
         },
         {
           "label": "版本列表",
-          "href": "/zh/versions",
+          "href": "/versions",
           "external": false
         }
       ],
@@ -58,12 +58,12 @@
       "items": [
         {
           "label": "定价",
-          "href": "/zh/pricing",
+          "href": "/pricing",
           "external": false
         },
         {
           "label": "企业版",
-          "href": "/zh/enterprise",
+          "href": "/enterprise",
           "external": false
         },
         {
@@ -81,7 +81,7 @@
     },
     {
       "label": "编辑工作流",
-      "href": "/zh/editorial-workflow",
+      "href": "/editorial-workflow",
       "external": false,
       "_template": "stringItem"
     },
@@ -95,12 +95,12 @@
         },
         {
           "label": "合作伙伴",
-          "href": "/zh/partners",
+          "href": "/partners",
           "external": false
         },
         {
           "label": "认证",
-          "href": "/zh/certifications",
+          "href": "/certifications",
           "external": false
         },
         {
@@ -115,7 +115,7 @@
         },
         {
           "label": "技术支持",
-          "href": "/zh/docs/support",
+          "href": "/docs/support",
           "external": false
         },
         {
@@ -125,7 +125,7 @@
         },
         {
           "label": "产品路线",
-          "href": "/zh/roadmap",
+          "href": "/roadmap",
           "external": false
         }
       ],
@@ -136,17 +136,17 @@
       "items": [
         {
           "label": "关于 Tina",
-          "href": "/zh/about",
+          "href": "/about",
           "external": false
         },
         {
           "label": "产品对比",
-          "href": "/zh/compare-tina",
+          "href": "/compare-tina",
           "external": false
         },
         {
           "label": "博客",
-          "href": "/zh/blog",
+          "href": "/blog",
           "external": false
         },
         {
@@ -156,7 +156,7 @@
         },
         {
           "label": "联系我们",
-          "href": "",
+          "href": "/",
           "modal": "ContactForm"
         }
       ],

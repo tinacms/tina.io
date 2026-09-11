@@ -8,13 +8,13 @@ previous: ''
 
 要通过集合字段对集合结果进行排序，请将 `sort` 参数传递给 `<collection>Connection` 查询，值对应于要排序的集合字段。结果将按升序返回。
 
-> 请参阅[反向分页](/zh/docs/graphql/queries/advanced/pagination/)以了解如何以降序检索结果。
+> 请参阅[反向分页](/docs/graphql/queries/advanced/pagination/)以了解如何以降序检索结果。
 
 ## 多字段排序
 
 要通过多个字段对集合结果进行排序，我们需要在模式中定义一个多字段“索引”。索引定义决定了集合中哪些字段包含在索引中以及排序结果时字段的顺序。
 
-> 除了决定查询结果的排序顺序外，索引还会影响查询的[性能](/zh/docs/graphql/queries/advanced/performance/)。
+> 除了决定查询结果的排序顺序外，索引还会影响查询的[性能](/docs/graphql/queries/advanced/performance/)。
 
 以下是我们的帖子集合的索引定义示例：
 

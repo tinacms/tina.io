@@ -37,49 +37,49 @@
       "items": [
         {
           "name": "Bunny Net",
-          "link": "/zh/showcase#bunny-net",
+          "link": "/showcase#bunny-net",
           "logo": "/svg/logos/bunnynet.svg",
           "size": 220
         },
         {
           "name": "Unity",
-          "link": "/zh/showcase#unity",
+          "link": "/showcase#unity",
           "logo": "/svg/logos/unity.svg",
           "size": 220
         },
         {
           "name": "Protocol Labs",
-          "link": "/zh/showcase#protocol-labs",
+          "link": "/showcase#protocol-labs",
           "logo": "/svg/logos/protocollabs.svg",
           "size": 90
         },
         {
           "name": "伦敦市",
-          "link": "/zh/showcase#city-of-london",
+          "link": "/showcase#city-of-london",
           "logo": "/svg/logos/cityoflondon.svg",
           "size": 120
         },
         {
           "name": "Devolver Digital",
-          "link": "/zh/showcase#devolver-digital",
+          "link": "/showcase#devolver-digital",
           "logo": "/svg/logos/devolverdigital.svg",
           "size": 150
         },
         {
           "name": "Smashing Magazine",
-          "link": "/zh/showcase#smashing-magazine",
+          "link": "/showcase#smashing-magazine",
           "logo": "/svg/logos/smashing.svg",
           "size": 90
         },
         {
           "name": "Supernova",
-          "link": "/zh/showcase#supernova",
+          "link": "/showcase#supernova",
           "logo": "/svg/logos/supernova.svg",
           "size": 240
         },
         {
           "name": "Paradise Helicopters",
-          "link": "/zh/showcase#paradise-helicopters",
+          "link": "/showcase#paradise-helicopters",
           "logo": "/svg/logos/paradisehelicopters.svg",
           "size": 150
         },
@@ -91,37 +91,37 @@
         },
         {
           "name": "SSW",
-          "link": "/zh/showcase#ssw",
+          "link": "/showcase#ssw",
           "logo": "/svg/logos/ssw-logo-charcoal.svg",
           "size": 150
         },
         {
           "name": "Comedia",
-          "link": "/zh/showcase#comedia",
+          "link": "/showcase#comedia",
           "logo": "/svg/logos/comedia.svg",
           "size": 110
         },
         {
           "name": "RRE Ventures",
-          "link": "/zh/showcase#rre-ventures",
+          "link": "/showcase#rre-ventures",
           "logo": "/svg/logos/rreventures.svg",
           "size": 220
         },
         {
           "name": "Shadow Lion",
-          "link": "/zh/showcase#shadow-lion",
+          "link": "/showcase#shadow-lion",
           "logo": "/svg/logos/shadowlion.svg",
           "size": 220
         },
         {
           "name": "Roev",
-          "link": "/zh/showcase#roev",
+          "link": "/showcase#roev",
           "logo": "/svg/logos/roe.svg",
           "size": 200
         },
         {
           "name": "Locality Bank",
-          "link": "/zh/showcase#locality-bank",
+          "link": "/showcase#locality-bank",
           "logo": "/svg/logos/localitybank.svg",
           "size": 200
         }
@@ -145,7 +145,7 @@
               "shape": "square",
               "variant": "orangeWithBorder",
               "size": "medium",
-              "url": "/zh/editorial-workflow",
+              "url": "/editorial-workflow",
               "_template": "actions"
             }
           ],
@@ -177,7 +177,7 @@
               "shape": "square",
               "variant": "orangeWithBorder",
               "size": "small",
-              "url": "/zh/docs/self-hosted/overview"
+              "url": "/docs/self-hosted/overview"
             }
           ]
         },
@@ -189,7 +189,7 @@
       "_template": "featureGrid"
     },
     {
-      "title2": "\"Tina彻底革新了Unity的文档管理方式\"",
+      "title2": "\"Tina彻底革新了Unity的文档管理方式\"/",
       "subtext": "Anton Iancu，AI与文档产品工程经理",
       "logo": "/svg/logos/unity.svg",
       "_template": "quote"
@@ -222,7 +222,7 @@
               "shape": "square",
               "variant": "orangeWithBorder",
               "size": "small",
-              "url": "/zh/docs/tinacloud/webhooks"
+              "url": "/docs/tinacloud/webhooks"
             }
           ]
         },
@@ -244,7 +244,7 @@
               "shape": "square",
               "variant": "orangeWithBorder",
               "size": "small",
-              "url": "/zh/docs/support"
+              "url": "/docs/support"
             }
           ]
         },

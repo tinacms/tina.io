@@ -58,7 +58,7 @@
           "icon": false,
           "variant": "default",
           "size": "medium",
-          "url": "/zh/docs/setup-overview/",
+          "url": "/docs/setup-overview/",
           "_template": "actions"
         }
       ],

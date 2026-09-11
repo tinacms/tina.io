@@ -40,7 +40,7 @@
             {
               "name": "3 名用户",
               "icon": "AiOutlineUser",
-              "description": ""
+              "description": "/"
             },
             {
               "name": "2 种角色",
@@ -79,7 +79,7 @@
             {
               "name": "5 名用户",
               "icon": "AiOutlineUser",
-              "description": ""
+              "description": "/"
             },
             {
               "name": "2 种角色",
@@ -126,8 +126,8 @@
             {
               "name": "20 名用户",
               "icon": "AiOutlineUser",
-              "description": "",
-              "annualDescription": ""
+              "description": "/",
+              "annualDescription": "/"
             },
             {
               "name": "3 种角色（Beta）",
@@ -173,12 +173,12 @@
           "description": "适合定制化需求\n",
           "price": "定制",
           "annualPrice": "定制",
-          "interval": "",
+          "interval": "/",
           "cardItem": [
             {
               "name": "定制用户数",
               "icon": "AiOutlineUser",
-              "description": ""
+              "description": "/"
             },
             {
               "name": "定制角色",
@@ -230,24 +230,24 @@
       "_template": "pricing"
     },
     {
-      "title": "",
-      "link": "",
+      "title": "/",
+      "link": "/",
       "items": [
         {
           "name": "Bunny Net",
-          "link": "/zh/showcase#bunny-net",
+          "link": "/showcase#bunny-net",
           "logo": "/svg/logos/bunnynet.svg",
           "size": 220
         },
         {
           "name": "Unity",
-          "link": "/zh/showcase#unity",
+          "link": "/showcase#unity",
           "logo": "/svg/logos/unity.svg",
           "size": 200
         },
         {
           "name": "Protocol Labs",
-          "link": "/zh/showcase#Microgen",
+          "link": "/showcase#Microgen",
           "logo": "/svg/logos/protocollabs.svg",
           "size": 80
         },
@@ -259,67 +259,67 @@
         },
         {
           "name": "Devolver Digital",
-          "link": "/zh/showcase#devolver-digital",
+          "link": "/showcase#devolver-digital",
           "logo": "/svg/logos/devolverdigital.svg",
           "size": 150
         },
         {
           "name": "Smashing Magazine",
-          "link": "/zh/showcase#smashing-magazine",
+          "link": "/showcase#smashing-magazine",
           "logo": "/svg/logos/smashing.svg",
           "size": 90
         },
         {
           "name": "Supernova",
-          "link": "/zh/showcase#supernova",
+          "link": "/showcase#supernova",
           "logo": "/svg/logos/supernova.svg",
           "size": 240
         },
         {
           "name": "Paradise Helicopters",
-          "link": "/zh/showcase#paradise-helicopters",
+          "link": "/showcase#paradise-helicopters",
           "logo": "/svg/logos/paradisehelicopters.svg",
           "size": 150
         },
         {
           "name": "NDC Conferences",
-          "link": "/zh/showcase#ndc-conferences",
+          "link": "/showcase#ndc-conferences",
           "logo": "/img/logos/NDCLogo.webp",
           "size": 220
         },
         {
           "name": "SSW",
-          "link": "/zh/showcase#ssw",
+          "link": "/showcase#ssw",
           "logo": "/svg/logos/ssw-logo-charcoal.svg",
           "size": 150
         },
         {
           "name": "Comedia",
-          "link": "/zh/showcase#comedia",
+          "link": "/showcase#comedia",
           "logo": "/svg/logos/comedia.svg",
           "size": 110
         },
         {
           "name": "RRE Ventures",
-          "link": "/zh/showcase#rre-ventures",
+          "link": "/showcase#rre-ventures",
           "logo": "/svg/logos/rreventures.svg",
           "size": 220
         },
         {
           "name": "Shadow Lion",
-          "link": "/zh/showcase#shadow-lion",
+          "link": "/showcase#shadow-lion",
           "logo": "/svg/logos/shadowlion.svg",
           "size": 220
         },
         {
           "name": "Roev",
-          "link": "/zh/showcase#roev",
+          "link": "/showcase#roev",
           "logo": "/svg/logos/roe.svg",
           "size": 200
         },
         {
           "name": "Locality Bank",
-          "link": "/zh/showcase#locality-bank",
+          "link": "/showcase#locality-bank",
           "logo": "/svg/logos/localitybank.svg",
           "size": 200
         }

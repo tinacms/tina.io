@@ -42,7 +42,7 @@ Next.js 允许您在编辑模式下从 GitHub 获取和更新远程数据的同�
 
 ![使用 TinaCMS 和 TinaCloud 进行实时编辑](/img/blog/edit_demo.gif "使用 TinaCMS 和 TinaCloud 进行实时编辑")
 
-[TinaCloud](https://app.tina.io) 通过在浏览器中从 GitHub 动态获取数据，加载并将其作为 props 传递给您的页面组件，为您提供即时编辑预览。由于数据被包裹在 React 状态中，当您在内容表单中更改数据时，它会立即反映在您的网站预览中。当您的网站为生产用途构建时，文件将通过我们的[本地 GraphQL 服务器](/zh/blog/using-graphql-with-the-filesystem/)从文件系统中获取。
+[TinaCloud](https://app.tina.io) 通过在浏览器中从 GitHub 动态获取数据，加载并将其作为 props 传递给您的页面组件，为您提供即时编辑预览。由于数据被包裹在 React 状态中，当您在内容表单中更改数据时，它会立即反映在您的网站预览中。当您的网站为生产用途构建时，文件将通过我们的[本地 GraphQL 服务器](/blog/using-graphql-with-the-filesystem/)从文件系统中获取。
 
 ```js
 const TinaWrapper = (props) => {
@@ -107,4 +107,4 @@ function InnerApp({ Component, pageProps }) {
 
 专注于单一框架有助于使开发尽可能无瑕疵。一旦我们对开发者和用户体验感到满意，我们将更有信心扩展到其他工具，无论是 Vue 应用程序还是非 React 网站。Tina 不是一个 CMS，它是一个开源工具包，用于在您的网站上构建客户端编辑，并可以移植到其他用例。
 
-> 有关支持框架的最新详细信息，请参阅[我们的框架特定指南]()
+> 有关支持框架的最新详细信息，请参阅[我们的框架特定指南](/)

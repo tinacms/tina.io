@@ -35,7 +35,7 @@ const secret = process.env.MY_API_KEY
 
 <WarningCallout
   body={<>
-    如果您的自定义组件依赖于环境变量并且它总是 `undefined`，请检查：(1) 变量名称以 `TINA_PUBLIC_` 或 `NEXT_PUBLIC_` 开头，并且 (2) 变量在运行 `tinacms build` 时在您的 `.env` 文件或 CI 环境中定义。请注意，Tina 仅加载 `.env` 文件——不加载 `.env.local` 或 `.env.development`。有关详细信息，请参阅[配置参考](/zh/docs/reference/config#environment-variables)和[安全公告](/zh/blog/2023-02-security-update)。
+    如果您的自定义组件依赖于环境变量并且它总是 `undefined`，请检查：(1) 变量名称以 `TINA_PUBLIC_` 或 `NEXT_PUBLIC_` 开头，并且 (2) 变量在运行 `tinacms build` 时在您的 `.env` 文件或 CI 环境中定义。请注意，Tina 仅加载 `.env` 文件——不加载 `.env.local` 或 `.env.development`。有关详细信息，请参阅[配置参考](/docs/reference/config#environment-variables)和[安全公告](/blog/2023-02-security-update)。
   </>}
 />
 

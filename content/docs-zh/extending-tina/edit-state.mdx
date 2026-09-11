@@ -5,7 +5,7 @@ title: 手动编辑Tina的编辑状态
 
 ## 通过 `useEditState` 手动切换
 
-你可以通过使用 `useEditState` 钩子手动进入和退出编辑模式。你应该**始终**有一个 [`/pages/admin.{js,tsx}` 文件](/zh/docs/contextual-editing/overview)，但在某些情况下，你可能希望在不访问 `/admin` 或 `/admin#/logout` 路由的情况下进入编辑模式。
+你可以通过使用 `useEditState` 钩子手动进入和退出编辑模式。你应该**始终**有一个 [`/pages/admin.{js,tsx}` 文件](/docs/contextual-editing/overview)，但在某些情况下，你可能希望在不访问 `/admin` 或 `/admin#/logout` 路由的情况下进入编辑模式。
 
 在这种情况下，你可以使用 `useEditState` 钩子。这将使你进入编辑模式（如果适用，还会触发 TinaCloud 登录）。
 

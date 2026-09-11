@@ -2,7 +2,7 @@
   "seo": {
     "title": "TinaCMS —— GitHub 上排名第一的无头 CMS，配备出色的 Markdown 可视化编辑器",
     "description": "用 TinaCMS 把 GitHub 与 Markdown 的能力结合起来，实现顺畅的内容管理。让开发者和创作者都能轻松编辑、预览和管理静态与动态站点。",
-    "canonicalUrl": "/zh",
+    "canonicalUrl": "/",
     "hasCustomSuffix": true
   },
   "blocks": [
@@ -12,7 +12,7 @@
       "buttons": [
         {
           "label": "npx create-tina-app@latest",
-          "helpText": "需要帮助？看看视频 —— 或查阅 [CLI 文档](/zh/docs/introduction/using-starter)\n",
+          "helpText": "需要帮助？看看视频 —— 或查阅 [CLI 文档](/docs/introduction/using-starter)\n",
           "starterTemplates": [
             {
               "title": "Astro",
@@ -37,11 +37,11 @@
       "image": "/ai-llamas/Relax-Llama.png",
       "recentNewsBanner": {
         "title": "TinaCMS v4 我们打算怎么做",
-        "link": "/zh/blog/tinacms-v4-is-coming",
+        "link": "/blog/tinacms-v4-is-coming",
         "openInNewTab": false,
         "badge": {
           "text": "新",
-          "icon": "",
+          "icon": "/",
           "position": "left",
           "color": "orange"
         },
@@ -53,24 +53,24 @@
       "blockSettings": {
         "isFullscreen": false
       },
-      "title": "",
-      "link": "",
+      "title": "/",
+      "link": "/",
       "items": [
         {
           "name": "Bunny Net",
-          "link": "/zh/showcase#bunny-net",
+          "link": "/showcase#bunny-net",
           "logo": "/svg/logos/bunnynet.svg",
           "size": 220
         },
         {
           "name": "Unity",
-          "link": "/zh/showcase#unity",
+          "link": "/showcase#unity",
           "logo": "/svg/logos/unity.svg",
           "size": 200
         },
         {
           "name": "Protocol Labs",
-          "link": "/zh/showcase#Microgen",
+          "link": "/showcase#Microgen",
           "logo": "/svg/logos/protocollabs.svg",
           "size": 80
         },
@@ -82,67 +82,67 @@
         },
         {
           "name": "Devolver Digital",
-          "link": "/zh/showcase#devolver-digital",
+          "link": "/showcase#devolver-digital",
           "logo": "/svg/logos/devolverdigital.svg",
           "size": 150
         },
         {
           "name": "Smashing Magazine",
-          "link": "/zh/showcase#smashing-magazine",
+          "link": "/showcase#smashing-magazine",
           "logo": "/svg/logos/smashing.svg",
           "size": 90
         },
         {
           "name": "Roev",
-          "link": "/zh/showcase#roev",
+          "link": "/showcase#roev",
           "logo": "/svg/logos/roe.svg",
           "size": 200
         },
         {
           "name": "Supernova",
-          "link": "/zh/showcase#supernova",
+          "link": "/showcase#supernova",
           "logo": "/svg/logos/supernova.svg",
           "size": 240
         },
         {
           "name": "Paradise Helicopters",
-          "link": "/zh/showcase#paradise-helicopters",
+          "link": "/showcase#paradise-helicopters",
           "logo": "/svg/logos/paradisehelicopters.svg",
           "size": 150
         },
         {
           "name": "NDC Conferences",
-          "link": "/zh/showcase#ndc-conferences",
+          "link": "/showcase#ndc-conferences",
           "logo": "/img/logos/NDCLogo.webp",
           "size": 220
         },
         {
           "name": "SSW",
-          "link": "/zh/showcase#ssw",
+          "link": "/showcase#ssw",
           "logo": "/svg/logos/ssw-logo-charcoal.svg",
           "size": 150
         },
         {
           "name": "Comedia",
-          "link": "/zh/showcase#comedia",
+          "link": "/showcase#comedia",
           "logo": "/svg/logos/comedia.svg",
           "size": 110
         },
         {
           "name": "RRE Ventures",
-          "link": "/zh/showcase#rre-ventures",
+          "link": "/showcase#rre-ventures",
           "logo": "/svg/logos/rreventures.svg",
           "size": 220
         },
         {
           "name": "Shadow Lion",
-          "link": "/zh/showcase#shadow-lion",
+          "link": "/showcase#shadow-lion",
           "logo": "/svg/logos/shadowlion.svg",
           "size": 220
         },
         {
           "name": "Locality Bank",
-          "link": "/zh/showcase#locality-bank",
+          "link": "/showcase#locality-bank",
           "logo": "/svg/logos/localitybank.svg",
           "size": 200
         }
@@ -418,7 +418,7 @@
             "架构与最佳实践指导",
             "专属支持对接人"
           ],
-          "link": "/zh/professional-services#priority-support"
+          "link": "/professional-services#priority-support"
         },
         {
           "icon": "MdOutlineRocketLaunch",
@@ -429,7 +429,7 @@
             "定制化配置",
             "团队培训课程"
           ],
-          "link": "/zh/professional-services#onboarding"
+          "link": "/professional-services#onboarding"
         },
         {
           "icon": "MdOutlineExtension",
@@ -440,7 +440,7 @@
             "第三方集成",
             "量身定制的编辑工作流"
           ],
-          "link": "/zh/professional-services#custom-features"
+          "link": "/professional-services#custom-features"
         }
       ],
       "_template": "professionalServices"

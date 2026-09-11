@@ -14,16 +14,16 @@
       "blockSettings": {
         "isFullscreen": false
       },
-      "title": "",
-      "intro": "",
+      "title": "/",
+      "intro": "/",
       "questions": [
         {
           "question": "第 1 步",
-          "answer": "按照[文档](/zh/docs/support)加入 Tina 的 Discord 频道。\n"
+          "answer": "按照[文档](/docs/support)加入 Tina 的 Discord 频道。\n"
         },
         {
           "question": "第 2 步",
-          "answer": "让 TinaCMS 跑起来，并使用启动器模板和 [TinaCloud](https://app.tina.io/signin) 部署一个站点。\n\n* 可以是个人站点，也可以是你为工作构建的站点\n* 提示：可参阅 [TinaCMS 编辑器最佳实践](/zh/docs/using-tina-editor)\n"
+          "answer": "让 TinaCMS 跑起来，并使用启动器模板和 [TinaCloud](https://app.tina.io/signin) 部署一个站点。\n\n* 可以是个人站点，也可以是你为工作构建的站点\n* 提示：可参阅 [TinaCMS 编辑器最佳实践](/docs/using-tina-editor)\n"
         },
         {
           "question": "第 3 步",
@@ -35,7 +35,7 @@
         },
         {
           "question": "就这么简单！你将通过邮件收到免费的 TinaCloud 优惠码。",
-          "answer": ""
+          "answer": "/"
         }
       ],
       "color": "seafoam",

@@ -11,7 +11,7 @@ previous: content/docs-zh/reference/types/reference.mdx
 
 ## 类型定义
 
-> 有关所有字段类型共有的其他属性，请查看[字段](/zh/docs/reference/fields)类型定义。
+> 有关所有字段类型共有的其他属性，请查看[字段](/docs/reference/fields)类型定义。
 
 <apiReference
   property={[
@@ -49,7 +49,7 @@ previous: content/docs-zh/reference/types/reference.mdx
       name: "list",
       type: "boolean",
       default: "false",
-      groupName: ""
+      groupName: "/"
     },
     {
       description:
@@ -89,7 +89,7 @@ previous: content/docs-zh/reference/types/reference.mdx
 重要的是，有两种关键方式使用对象类型...
 
 1. 使用`fields`，对象将其内部字段包装在一个子窗口中。![](</img/docs/reference/Screen Recording 2025-03-14 at 11.38.07 am.gif>)
-2. 使用`templates`时，用户可以在关联的[模板](/zh/docs/reference/templates)之间进行选择。![](</img/docs/reference/Screen Recording 2025-03-14 at 12.03.21 pm.gif>)
+2. 使用`templates`时，用户可以在关联的[模板](/docs/reference/templates)之间进行选择。![](</img/docs/reference/Screen Recording 2025-03-14 at 12.03.21 pm.gif>)
 
 这如上所示，但按下`+`会让您选择一组选项之一。
 
@@ -101,7 +101,7 @@ previous: content/docs-zh/reference/types/reference.mdx
 
 ![](</img/docs/reference/Screen Recording 2025-03-14 at 11.43.03 am.gif>)
 
-要为某个模板获取图像，您需要提供带有模板的`ui.previewSrc`属性的图像。这是一个URL，或相对于您在TinaCMS配置中定义的[公共文件夹](/zh/docs/reference/media/repo-based)。
+要为某个模板获取图像，您需要提供带有模板的`ui.previewSrc`属性的图像。这是一个URL，或相对于您在TinaCMS配置中定义的[公共文件夹](/docs/reference/media/repo-based)。
 
 ```javascript
 const showcaseTemplate: Template = {
