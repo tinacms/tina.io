@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
 import { highlightText } from './SearchNavigation';
 
@@ -93,7 +93,6 @@ export const SearchHeader = ({ query }: { query: string }) => {
 };
 
 export const SearchTabs = ({ query }: { query: string }) => {
-  const [activeTab, setActiveTab] = useState('DOCS');
   const [algoliaSearchResults, setAlgoliaSearchResults] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -111,55 +110,16 @@ export const SearchTabs = ({ query }: { query: string }) => {
     fetchResults();
   }, [query]);
 
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const activeTabIndex = activeTab === 'DOCS' ? 0 : 1;
-  const activeTabElement = tabRefs.current[activeTabIndex];
-  const left = activeTabElement?.offsetLeft || 0;
-  const width = (activeTabElement?.offsetWidth || 0) + 30;
-
-  const numberOfResults =
-    algoliaSearchResults?.docs?.count + algoliaSearchResults?.blogs?.count || 0;
+  const numberOfResults = algoliaSearchResults?.blogs?.count || 0;
 
   return (
     <div className="pt-6 w-full">
       <div className="max-w-(--breakpoint-xl) mx-auto pb-2">
         <div className="flex justify-between items-center">
-          {/* Navigation Buttons */}
           <nav className="relative flex gap-16 px-4">
-            <button
-              type="button"
-              ref={(el) => {
-                tabRefs.current[0] = el;
-              }}
-              className={`font-inter text-lg ${
-                activeTab === 'DOCS' ? 'text-blue-800' : 'text-gray-500'
-              }`}
-              onClick={() => setActiveTab('DOCS')}
-            >
-              DOCS ({algoliaSearchResults?.docs?.count})
-            </button>
-            <button
-              type="button"
-              ref={(el) => {
-                tabRefs.current[1] = el;
-              }}
-              className={`font-inter text-lg ${
-                activeTab === 'BLOG' ? 'text-blue-800' : 'text-gray-500'
-              }`}
-              onClick={() => setActiveTab('BLOG')}
-            >
+            <span className="font-inter text-lg text-blue-800">
               BLOGS ({algoliaSearchResults?.blogs?.count})
-            </button>
-
-            {/* Blue moving underline */}
-            <div
-              className="absolute -bottom-2 h-0.5 bg-blue-800 transition-all duration-300 ease-in-out"
-              style={{
-                left: `${left}px`,
-                width: `${width}px`,
-                transform: 'translateX(-15px)', //To make sure the blue line is in the middle of the component we minus 1/2 of the width of the blue line
-              }}
-            />
+            </span>
           </nav>
 
           {/* Search Results Count */}
@@ -172,7 +132,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
             Mustering all the Llamas...
           </div>
         )}
-        <SearchBody results={algoliaSearchResults} activeItem={activeTab} />
+        <SearchBody results={algoliaSearchResults} />
         {numberOfResults === 0 && isLoading === false && (
           <div className="font-inter font-semibold text-gray-500 text-xl">
             No Results Found...
@@ -183,20 +143,12 @@ export const SearchTabs = ({ query }: { query: string }) => {
   );
 };
 
-export const SearchBody = ({
-  results,
-  activeItem,
-}: {
-  results: any;
-  activeItem: string;
-}) => {
-  const bodyItem = activeItem === 'DOCS' ? results?.docs : results?.blogs;
-
+export const SearchBody = ({ results }: { results: any }) => {
   return (
     <div className="py-10">
-      {bodyItem?.results.map((item: any) => (
+      {results?.blogs?.results.map((item: any) => (
         <div key={item.objectID} className="py-4 px-4 border-b group">
-          <Link href={`/${activeItem.toLowerCase()}/${item.slug}`}>
+          <Link href={`/blog/${item.slug}`}>
             <h2 className="text-xl font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
