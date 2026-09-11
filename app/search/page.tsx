@@ -3,9 +3,9 @@ import { Suspense } from 'react';
 import SearchPageClient from './search-client';
 
 export const metadata: Metadata = {
-  title: 'Search TinaCMS – Find Docs, Blog Posts & Resources',
+  title: 'Search the TinaCMS Blog',
   description:
-    'Search the TinaCMS documentation, blog posts, and resources. Find guides, tutorials, and answers to your questions about the Git-backed headless CMS.',
+    'Search TinaCMS blog posts for guides, tutorials, release roundups and news about the Git-backed headless CMS.',
 };
 
 export default function SearchPage() {
