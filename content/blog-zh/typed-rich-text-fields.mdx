@@ -1,0 +1,94 @@
+---
+seo:
+  title: 富文本字段获得真实的TypeScript类型 | TinaCMS博客
+  description: '从@tinacms/cli 3.0.0开始，富文本字段被类型化为TinaMarkdownContent而不是any，因此您的编辑器可以自动完成它们，TypeScript可以捕捉读取它们的代码中的错误。'
+  canonicalUrl: 'https://tina.io/blog/typed-rich-text-fields'
+title: 富文本字段获得真实的TypeScript类型
+date: '2026-09-14T00:00:00.000Z'
+last_edited: '2026-09-14T00:00:00.000Z'
+author: Matt Wicks
+prev: content/blog-zh/august-2026-roundup.mdx
+next: ''
+---
+
+我们非常重视TinaCMS的开发者体验，而TypeScript是其核心。因此，只要我们能给您提供一个合适的类型而不是`any`，我们就会这样做。
+
+富文本字段一直是个例外。从`@tinacms/cli` 3.0.0和`tinacms` 3.14.0开始，它们返回为`TinaMarkdownContent`，这与`<TinaMarkdown>`已经期望的类型相同。
+
+**注意：** 这对于TypeScript用户来说是一个重大变化。针对`any`编译的代码在升级后可能无法编译。升级下的表格显示了需要更改的内容。
+
+## 展示代码
+
+在`tina/__generated__/types.ts`中，帖子查询的类型更改如下：
+
+```ts
+// 之前
+export type PostQuery = { post: { title: string, _body: any } };
+
+// 之后
+export type PostQuery = { post: { title: string, _body: TinaMarkdownContent | null } };
+```
+
+使用`any`时，这两行代码编译正常，但在运行时会崩溃。现在TypeScript会捕捉到它们：
+
+```tsx
+const excerpt = data.post._body?.slice(0, 160);
+// 属性'slice'在类型'TinaMarkdownContent'上不存在。
+
+const count = data.post._body?.childrn.length;
+// 属性'childrn'在类型'TinaMarkdownContent'上不存在。您是想说'children'吗？
+```
+
+您的编辑器在您输入时也会建议`type`和`children`。
+
+如果您在空检查中包装`<TinaMarkdown>`，您可以去掉它，因为从`tinacms` 3.14.0开始，它的`content`属性接受`null`和`undefined`：
+
+```tsx
+// 之前
+{data.post._body && <TinaMarkdown content={data.post._body} />}
+
+// 之后
+<TinaMarkdown content={data.post._body} />
+```
+
+如果您有将富文本作为属性的组件，请将`any`替换为`TinaMarkdownContent`以获得相同的检查：
+
+```tsx
+import { TinaMarkdown, type TinaMarkdownContent } from 'tinacms/dist/rich-text';
+
+export const Callout = ({ body }: { body: TinaMarkdownContent }) => (
+  <aside className="callout">
+    <TinaMarkdown content={body} />
+  </aside>
+);
+```
+
+## 为什么`_values`仍然是`any`
+
+GraphQL API中的每个文档也有一个`_values`字段，它将所有字段作为一个JSON对象返回。我们尝试将其类型化为`unknown`，但通过它读取文档的项目（如我们的[自托管演示](https://github.com/tinacms/tinacms/tree/main/examples/next/tina-self-hosted-demo)）几乎每行都需要一个转换，而转换并不比`any`更安全。更好的解决方案是为每个集合的`_values`生成一个类型，我们将在[v4](https://tina.io/blog/tinacms-v4-is-coming)发布后研究这一点。
+
+## 升级
+
+一起更新到`tinacms` 3.14.0和`@tinacms/cli` 3.0.0：
+
+```bash
+pnpm update --latest tinacms @tinacms/cli
+# 或者
+npm install tinacms@latest @tinacms/cli@latest
+```
+
+启动您的开发服务器以便CLI重新生成您的类型，然后运行`tsc --noEmit`以查看TypeScript发现了什么：
+
+| 如果您的代码 | 更改 |
+| --- | --- |
+| 读取除`type`和`children`之外的节点属性，例如`.text` | 将它们添加到您自己的类型中，例如`TinaMarkdownContent & { text?: string }` |
+| 将可选的富文本字段传递给`<TinaMarkdown>` | 无需更改。可选：您可以去掉其周围的任何空检查。 |
+| 有将富文本作为`any`属性的组件 | 可选：将属性类型化为`TinaMarkdownContent` |
+| 读取`_values` | 无需更改。`_values`仍然是`any`。 |
+| 有`.gql`查询 | 无需更改。您的查询和内容保持不变。 |
+
+如果在升级后富文本字段仍然返回为`any`，或者TypeScript标记了您认为正常的代码，请打开一个[问题](https://github.com/tinacms/tinacms/issues)或在[Discord](https://tina.io/discord)上找到我们。
+
+## 相关链接
+
+拉取请求 - [将富文本字段类型化为TinaMarkdownContent而不是any #7229](https://github.com/tinacms/tinacms/pull/7229)
