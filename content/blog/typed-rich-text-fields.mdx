@@ -39,7 +39,7 @@ const count = data.post._body?.childrn.length;
 
 Your editor also suggests `type` and `children` as you type.
 
-When we first switched this on, our own kitchen-sink example failed to compile in two places where it passed an optional body to `<TinaMarkdown>`. Our first fix was a null check at each call. The component already renders nothing for a `null` body, though, so we fixed its types in `tinacms` instead, and you can pass the field straight in:
+If you wrap `<TinaMarkdown>` in a null check, you can drop it, since its `content` prop accepts `null` and `undefined` from `tinacms` 3.14.0:
 
 ```tsx
 // Before
