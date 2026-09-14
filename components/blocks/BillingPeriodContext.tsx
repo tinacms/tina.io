@@ -21,7 +21,7 @@ export const BillingPeriodProvider = ({ children }) => {
 export const useBillingPeriod = () => {
   const context = useContext(BillingPeriodContext);
   const [localIsMonthly, setLocalIsMonthly] = useState(false);
-  // Blocks rendered outside BlocksPage keep working with their own toggle state.
+  // Only pages with a pricing block get a provider; elsewhere a block keeps its own state.
   return (
     context ?? { isMonthly: localIsMonthly, setIsMonthly: setLocalIsMonthly }
   );
