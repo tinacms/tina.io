@@ -82,7 +82,7 @@ Start your dev server so the CLI regenerates your types, then run `tsc --noEmit`
 | If your code | Change |
 | --- | --- |
 | Reads node properties other than `type` and `children`, such as `.text` | Add them to your own type, for example `TinaMarkdownContent & { text?: string }` |
-| Passes an optional rich-text field to `<TinaMarkdown>` | Nothing. You can drop any null check around it. |
+| Passes an optional rich-text field to `<TinaMarkdown>` | No change required. Optional: You can drop any null check around it. |
 | Has components that take rich text as an `any` prop | Optional: type the prop as `TinaMarkdownContent` |
 | Reads `_values` | Nothing. `_values` is still `any`. |
 | Has `.gql` queries | Nothing. Your queries and content stay the same. |
