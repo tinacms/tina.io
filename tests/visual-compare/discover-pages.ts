@@ -3,28 +3,6 @@ import path from 'node:path';
 
 const ROOT = path.resolve(__dirname, '../..');
 
-/** Recursively find files matching a pattern in a directory. */
-function findFiles(dir: string, ext: string): string[] {
-  const absDir = path.resolve(ROOT, dir);
-  if (!fs.existsSync(absDir)) {
-    return [];
-  }
-
-  const results: string[] = [];
-  const walk = (d: string) => {
-    for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
-      const full = path.join(d, entry.name);
-      if (entry.isDirectory()) {
-        walk(full);
-      } else if (entry.name.endsWith(ext) && !entry.name.startsWith('.')) {
-        results.push(path.relative(absDir, full));
-      }
-    }
-  };
-  walk(absDir);
-  return results.sort();
-}
-
 /** List files in a single directory (non-recursive) matching an extension. */
 function listFiles(dir: string, ext: string): string[] {
   const absDir = path.resolve(ROOT, dir);
@@ -48,7 +26,6 @@ export function discoverPages(): string[] {
   pages.push(
     '/',
     '/blog',
-    '/docs',
     '/community',
     '/conference',
     '/events',
@@ -57,7 +34,6 @@ export function discoverPages(): string[] {
     '/whats-new/tinacms',
     '/whats-new/tinacloud',
     '/zh/blog',
-    '/zh/docs',
   );
 
   // ── Main (EN) ────────────────────────────────────────────
@@ -107,30 +83,6 @@ export function discoverPages(): string[] {
   const zhBlogPageCount = Math.ceil(zhBlogFiles.length / 8);
   for (let i = 1; i <= zhBlogPageCount; i++) {
     pages.push(`/zh/blog/page/${i}`);
-  }
-
-  // ── Docs (EN) ────────────────────────────────────────────────────
-  // content/docs/**/*.mdx → /docs/{path}
-  // Excludes: r/ directory (redirects), index.mdx (served at /docs)
-  for (const relPath of findFiles('content/docs', '.mdx')) {
-    if (relPath.startsWith('r/') || relPath.startsWith('r\\')) {
-      continue;
-    }
-    const slug = relPath.replace(/\.mdx$/, '').replace(/\\/g, '/');
-    if (slug === 'index') {
-      continue;
-    }
-    pages.push(`/docs/${slug}`);
-  }
-
-  // ── Docs (ZH) ────────────────────────────────────────────────────
-  // content/docs-zh/**/*.mdx → /zh/docs/{path}
-  for (const relPath of findFiles('content/docs-zh', '.mdx')) {
-    const slug = relPath.replace(/\.mdx$/, '').replace(/\\/g, '/');
-    if (slug === 'index') {
-      continue;
-    }
-    pages.push(`/zh/docs/${slug}`);
   }
 
   return Array.from(new Set(pages)).sort();
