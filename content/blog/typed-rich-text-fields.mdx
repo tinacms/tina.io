@@ -15,6 +15,8 @@ We care a lot about developer experience at TinaCMS, and TypeScript is at the co
 
 Rich-text fields have been the exception. From `@tinacms/cli` 3.0.0 and `tinacms` 3.14.0, they come back as `TinaMarkdownContent`, the same type `<TinaMarkdown>` already expects.
 
+**Heads up:** this is a breaking change for TypeScript users. Code that compiled against `any` can fail to compile after you upgrade. The table under Upgrading shows what to change.
+
 ## Show me the code
 
 In `tina/__generated__/types.ts`, the type for a post query changes like this:
@@ -75,7 +77,15 @@ pnpm update --latest tinacms @tinacms/cli
 npm install tinacms@latest @tinacms/cli@latest
 ```
 
-Start your dev server so the CLI regenerates your types, then run `tsc --noEmit` to see what TypeScript finds. Your queries and content don't change.
+Start your dev server so the CLI regenerates your types, then run `tsc --noEmit` to see what TypeScript finds:
+
+| If your code | Change |
+| --- | --- |
+| Reads node properties other than `type` and `children`, such as `.text` | Add them to your own type, for example `TinaMarkdownContent & { text?: string }` |
+| Passes an optional rich-text field to `<TinaMarkdown>` | Nothing. You can drop any null check around it. |
+| Has components that take rich text as an `any` prop | Optional: type the prop as `TinaMarkdownContent` |
+| Reads `_values` | Nothing. `_values` is still `any`. |
+| Has `.gql` queries | Nothing. Your queries and content stay the same. |
 
 If a rich-text field still comes back as `any` after you upgrade, or TypeScript flags code you think is fine, open an [issue](https://github.com/tinacms/tinacms/issues) or come and find us on [Discord](https://tina.io/discord).
 
