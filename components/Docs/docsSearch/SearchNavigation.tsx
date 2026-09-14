@@ -36,32 +36,25 @@ export const highlightText = (text: string) => {
 
 export const SearchResultsOverflowBody = ({
   results,
-  activeItem,
   query,
   numberOfResults,
   isLoading,
   onResultClick,
 }: {
   results: any;
-  activeItem: string;
   query: string;
   numberOfResults: number;
   isLoading: boolean;
   onResultClick?: () => void;
 }) => {
-  const bodyItem = activeItem === 'DOCS' ? results?.docs : results?.blogs;
-
   return (
     <div className="py-2">
-      {bodyItem?.results.slice(0, 10).map((item: any) => (
+      {results?.blogs?.results.slice(0, 10).map((item: any) => (
         <div
           key={item.objectID}
           className="py-3 px-4 border-b border-gray-100 group hover:bg-gray-50 transition-colors"
         >
-          <Link
-            href={`/${activeItem.toLowerCase()}/${item.slug}`}
-            onClick={onResultClick}
-          >
+          <Link href={`/blog/${item.slug}`} onClick={onResultClick}>
             <h2 className="text-md font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
@@ -101,7 +94,6 @@ export const SearchResultsOverflowTabs = ({
   query: string;
   onResultClick?: () => void;
 }) => {
-  const [activeTab, setActiveTab] = useState('DOCS');
   const [algoliaSearchResults, setAlgoliaSearchResults] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -119,55 +111,16 @@ export const SearchResultsOverflowTabs = ({
     fetchResults();
   }, [query]);
 
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const activeTabIndex = activeTab === 'DOCS' ? 0 : 1;
-  const activeTabElement = tabRefs.current[activeTabIndex];
-  const left = activeTabElement?.offsetLeft || 0;
-  const width = (activeTabElement?.offsetWidth || 0) + 30;
-  const docsCount = algoliaSearchResults?.docs?.count || 0;
-  const blogsCount = algoliaSearchResults?.blogs?.count || 0;
-  const numberOfResults = docsCount + blogsCount || 0;
+  const numberOfResults = algoliaSearchResults?.blogs?.count || 0;
 
   return (
     <div className="w-full">
       <div className="border-b border-gray-200">
         <div className="flex justify-between items-center">
-          {/* Navigation Buttons */}
           <nav className="relative flex gap-16 px-6">
-            <button
-              type="button"
-              ref={(el) => {
-                tabRefs.current[0] = el;
-              }}
-              className={`font-inter font-semibold text-sm py-4 ${
-                activeTab === 'DOCS' ? 'text-blue-800' : 'text-gray-500'
-              }`}
-              onClick={() => setActiveTab('DOCS')}
-            >
-              DOCS ({docsCount})
-            </button>
-            <button
-              type="button"
-              ref={(el) => {
-                tabRefs.current[1] = el;
-              }}
-              className={`font-inter font-semibold text-sm py-4 ${
-                activeTab === 'BLOG' ? 'text-blue-800' : 'text-gray-500'
-              }`}
-              onClick={() => setActiveTab('BLOG')}
-            >
-              BLOGS ({blogsCount})
-            </button>
-
-            {/* Blue moving underline */}
-            <div
-              className="absolute bottom-0 h-0.5 bg-blue-800 transition-all duration-300 ease-in-out"
-              style={{
-                left: `${left}px`,
-                width: `${width}px`,
-                transform: 'translateX(-15px)',
-              }}
-            />
+            <span className="font-inter font-semibold text-sm py-4 text-blue-800">
+              BLOGS ({numberOfResults})
+            </span>
           </nav>
         </div>
       </div>
@@ -179,7 +132,6 @@ export const SearchResultsOverflowTabs = ({
       <div className="overflow-x-hidden">
         <SearchResultsOverflowBody
           results={algoliaSearchResults}
-          activeItem={activeTab}
           numberOfResults={numberOfResults}
           query={query}
           isLoading={isLoading}
@@ -242,7 +194,7 @@ export const SearchModal = ({
               ref={inputRef}
               type="text"
               className="w-full py-3 px-6 rounded-full border border-gray-300 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              placeholder="Search docs and blogs..."
+              placeholder="Search blog posts..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -271,7 +223,7 @@ export const SearchModal = ({
                   Start typing to search...
                 </p>
                 <p className="text-sm text-gray-400 mt-2">
-                  Search through docs and blog posts
+                  Search through blog posts
                 </p>
               </div>
             )}
