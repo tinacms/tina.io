@@ -27,14 +27,7 @@ export type PostQuery = { post: { title: string, _body: any } };
 export type PostQuery = { post: { title: string, _body: TinaMarkdownContent | null } };
 ```
 
-With `any`, both of these lines compiled fine and then blew up at runtime:
-
-```tsx
-const excerpt = data.post._body?.slice(0, 160);
-const count = data.post._body?.childrn.length;
-```
-
-Now TypeScript catches them:
+With `any`, both of these lines compiled fine and then blew up at runtime. Now TypeScript catches them:
 
 ```tsx
 const excerpt = data.post._body?.slice(0, 160);
