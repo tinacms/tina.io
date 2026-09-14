@@ -13,7 +13,7 @@ next: ''
 
 We care a lot about developer experience at TinaCMS, and TypeScript is at the core of it. So wherever we can give you a proper type instead of `any`, we want to.
 
-Rich-text fields have been the exception. From `@tinacms/cli` 3.0.0, they come back as `TinaMarkdownContent`, the same type `<TinaMarkdown>` already expects.
+Rich-text fields have been the exception. From `@tinacms/cli` 3.0.0 and `tinacms` 3.14.0, they come back as `TinaMarkdownContent`, the same type `<TinaMarkdown>` already expects.
 
 ## Show me the code
 
@@ -74,7 +74,7 @@ Every document in the GraphQL API also has a `_values` field, which returns all 
 
 ## Upgrading
 
-Update `tinacms` and `@tinacms/cli` together:
+Update to `tinacms` 3.14.0 and `@tinacms/cli` 3.0.0 together:
 
 ```bash
 pnpm update --latest tinacms @tinacms/cli
