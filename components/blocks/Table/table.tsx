@@ -3,8 +3,10 @@ import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
+import { useBillingPeriod } from '../BillingPeriodContext';
 
 const TableHeader = ({ data, scrollData }) => {
+  const { isMonthly } = useBillingPeriod();
   return (
     <div className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] pt-6 px-6 bg-slate-50">
       {/* Sticky Header Column */}
@@ -30,7 +32,9 @@ const TableHeader = ({ data, scrollData }) => {
             </Link>
           </div>
           <div className="text-center font-normal text-xs text-slate-400">
-            {headerItem.columnByLine}
+            {!isMonthly && headerItem.columnByLineAnnual
+              ? headerItem.columnByLineAnnual
+              : headerItem.columnByLine}
           </div>
         </div>
       ))}

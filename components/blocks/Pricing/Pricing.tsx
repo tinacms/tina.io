@@ -23,6 +23,7 @@ import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { useBillingPeriod } from '../BillingPeriodContext';
 
 const icons = {
   FaClock,
@@ -273,7 +274,7 @@ export function PillSwitch({
 }
 
 export function PricingBlock({ data }) {
-  const [isMonthly, setIsMonthly] = useState(false);
+  const { isMonthly, setIsMonthly } = useBillingPeriod();
 
   return (
     <div className="max-w-7xl w-full px-8 mx-auto">

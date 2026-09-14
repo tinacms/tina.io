@@ -357,17 +357,20 @@
         {
           "columnHeader": "Team",
           "columnByLine": "$29/project/month",
+          "columnByLineAnnual": "$24/project/month",
           "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
         },
         {
           "columnHeader": "Team Plus",
           "columnByLine": "$49/project/month",
+          "columnByLineAnnual": "$41/project/month",
           "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
         },
         {
           "isReccomended": true,
           "columnHeader": "Business",
           "columnByLine": "$299/project/month",
+          "columnByLineAnnual": "$249/project/month",
           "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
         },
         {
