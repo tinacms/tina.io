@@ -3,10 +3,8 @@ import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
-import { useBillingPeriod } from '../billingPeriodStore';
 
-const TableHeader = ({ data, scrollData }) => {
-  const { isMonthly } = useBillingPeriod();
+const TableHeader = ({ data, scrollData, isMonthly }) => {
   return (
     <div className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] pt-6 px-6 bg-slate-50">
       {/* Sticky Header Column */}
@@ -32,7 +30,7 @@ const TableHeader = ({ data, scrollData }) => {
             </Link>
           </div>
           <div className="text-center font-normal text-xs text-slate-400">
-            {!isMonthly && headerItem.columnByLineAnnual
+            {isMonthly === false && headerItem.columnByLineAnnual
               ? headerItem.columnByLineAnnual
               : headerItem.columnByLine}
           </div>
@@ -42,7 +40,7 @@ const TableHeader = ({ data, scrollData }) => {
   );
 };
 
-const TableBox = ({ data, index }) => {
+const TableBox = ({ data, index, isMonthly = undefined }) => {
   const [infoIconHoverIndex, setInfoHoveredIndex] = useState(null);
   const [scrollData, setScrollData] = useState(null);
   const scrollContainerRef = useRef(null);
@@ -78,7 +76,11 @@ const TableBox = ({ data, index }) => {
 
             {/* Sticky Table Header */}
             <div className=" bg-slate-50 pb-4">
-              <TableHeader data={data} scrollData={scrollData} />
+              <TableHeader
+                data={data}
+                scrollData={scrollData}
+                isMonthly={isMonthly}
+              />
             </div>
             {/* Table Rows */}
             <div

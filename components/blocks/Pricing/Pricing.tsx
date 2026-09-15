@@ -23,7 +23,7 @@ import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
-import { useBillingPeriod } from '../billingPeriodStore';
+import TableBox from '../Table/table';
 
 const icons = {
   FaClock,
@@ -274,7 +274,7 @@ export function PillSwitch({
 }
 
 export function PricingBlock({ data }) {
-  const { isMonthly, setIsMonthly } = useBillingPeriod();
+  const [isMonthly, setIsMonthly] = useState(false);
 
   return (
     <div className="max-w-7xl w-full px-8 mx-auto">
@@ -308,6 +308,11 @@ export function PricingBlock({ data }) {
           </div>
         ))}
       </div>
+      {data.comparisonTable && (
+        <div className="pt-20">
+          <TableBox data={data.comparisonTable} isMonthly={isMonthly} />
+        </div>
+      )}
       <style jsx>{`
         .responsive-grid {
           display: grid;
