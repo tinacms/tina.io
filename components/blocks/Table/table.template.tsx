@@ -36,6 +36,13 @@ export const tableTemplate: Template = {
         { name: 'isReccomended', label: 'Is Reccomended?', type: 'boolean' },
         { name: 'columnHeader', label: 'Column Header', type: 'string' },
         { name: 'columnByLine', label: 'Column By-Line', type: 'string' },
+        {
+          name: 'columnByLineAnnual',
+          label: 'Column By-Line (annual billing)',
+          type: 'string',
+          description:
+            'Shown instead of the by-line while the pricing toggle is on Annually',
+        },
         { name: 'columnHeaderLink', label: 'Column Link', type: 'string' },
       ],
     },
