@@ -14,9 +14,9 @@ const subscribe = (listener: () => void) => {
 
 const setIsMonthly = (next: boolean) => {
   isMonthly = next;
-  for (const listener of listeners) {
+  listeners.forEach((listener) => {
     listener();
-  }
+  });
 };
 
 export const useBillingPeriod = () => ({
