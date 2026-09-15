@@ -40,7 +40,7 @@ const TableHeader = ({ data, scrollData, isMonthly }) => {
   );
 };
 
-const TableBox = ({ data, index, isMonthly = undefined }) => {
+const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
   const [infoIconHoverIndex, setInfoHoveredIndex] = useState(null);
   const [scrollData, setScrollData] = useState(null);
   const scrollContainerRef = useRef(null);
