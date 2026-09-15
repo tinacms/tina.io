@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
-import { useBillingPeriod } from '../BillingPeriodContext';
+import { useBillingPeriod } from '../billingPeriodStore';
 
 const TableHeader = ({ data, scrollData }) => {
   const { isMonthly } = useBillingPeriod();

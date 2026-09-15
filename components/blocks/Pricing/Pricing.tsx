@@ -23,7 +23,7 @@ import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
-import { useBillingPeriod } from '../BillingPeriodContext';
+import { useBillingPeriod } from '../billingPeriodStore';
 
 const icons = {
   FaClock,
