@@ -5,7 +5,7 @@ When making significant changes to the project, update this file to keep it accu
 
 ## Project Overview
 
-Tina.io is the documentation, blog, and marketing website for [TinaCMS](https://github.com/tinacms/tinacms). It is a Next.js 14 (App Router) application with TinaCMS for content management, deployed on Vercel.
+Tina.io is the marketing and blog website for [TinaCMS](https://github.com/tinacms/tinacms). It is a Next.js 14 (App Router) application with TinaCMS for content management, deployed on Vercel. The documentation lives in the separate [tinacms/docs](https://github.com/tinacms/docs) repo and is served under `tina.io/docs` and `tina.io/zh/docs` through the `DOCS_UPSTREAM_URL` rewrite in `next.config.js`.
 
 ## Common Commands
 
@@ -54,15 +54,14 @@ pnpm create-rss     # Regenerate RSS feeds
 - `components/` — React components organized by feature:
   - `blocks/` — TinaCMS block-editing components and their schemas
   - `tinaMarkdownComponents/` — Rich-text rendering and embedded MDX components
-  - `DocumentNavigation/` — Docs sidebar navigation
-  - `toc/` — Table of contents schema + generated components
+  - `search/` (blog search modal and the `/search` results page components)
   - `ui/` — Reusable utility components (shadcn/ui)
   - `layout/` — Page layout wrappers
-- `content/` — TinaCMS-managed content (MDX/JSON). Subdirectories include `blog/`, `blog-zh/`, `docs/`, `docs-zh/`, `pages/`, navigation, footer, and settings
+- `content/` — TinaCMS-managed content (MDX/JSON). Subdirectories include `blog/`, `blog-zh/`, `pages/`, navigation, footer, and settings
 - `tina/` — TinaCMS configuration:
   - `config.ts` — Main Tina config (client ID, branch, search, media)
   - `schema.tsx` — Top-level schema combining collections
-  - `collectionsSchema/` — Individual collection definitions (pages, docs, blogs, events, etc.)
+  - `collectionsSchema/` — Individual collection definitions (pages, blogs, events, etc.)
 - `utils/` — Utility functions
 - `indices/` — Algolia search index generation
 - `rss/` — RSS feed generation
@@ -85,11 +84,11 @@ Strict mode and strict null checks are both **off**. This is intentional for the
 
 ### Internationalization (i18n)
 
-Two locales: English (`en`, default) and Chinese (`zh`). Middleware handles locale detection/redirection. Content is maintained in parallel directories (`docs/` vs `docs-zh/`, `blog/` vs `blog-zh/`).
+Two locales: English (`en`, default) and Chinese (`zh`). Middleware handles locale detection/redirection. Content is maintained in parallel directories (`blog/` vs `blog-zh/`).
 
 ### TinaCMS Content Model
 
-14 collections defined in `tina/collectionsSchema/`: Pages, Docs, Docs-ZH, Blogs, Blogs-ZH, Examples, Meeting Links, Navigation Bar, Events, Footer, Settings, What's New (TinaCMS/TinaCloud), Conference, Table of Contents. The generated `tina-lock.json` must be committed.
+12 collections defined in `tina/collectionsSchema/`: Pages, Blogs, Blogs-ZH, Examples, Meeting Links, Navigation Bar, Events, Footer, Settings, What's New (TinaCMS/TinaCloud), Conference. The generated `tina-lock.json` must be committed.
 
 ## Important Workflow Notes
 

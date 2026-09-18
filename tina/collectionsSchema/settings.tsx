@@ -91,11 +91,6 @@ export const settingCollection = {
       type: 'string',
     },
     {
-      name: 'docsHomepage',
-      label: 'Docs Homepage',
-      type: 'string',
-    },
-    {
       name: 'defaultOGImage',
       label: 'Default OG Image',
       type: 'image',
