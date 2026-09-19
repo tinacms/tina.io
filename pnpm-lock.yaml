@@ -57,8 +57,8 @@ importers:
         specifier: ^2.5.10
         version: 2.5.10(@codemirror/language@6.0.0)(@types/hoist-non-react-statics@3.3.6)(@types/node@22.16.0)(@types/react@18.3.29)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.6.0(react@18.3.1))(yup@1.6.1)
       '@tinacms/auth':
-        specifier: 1.1.3
-        version: 1.1.3
+        specifier: 1.1.4
+        version: 1.1.4
       '@tinacms/schema-tools':
         specifier: ^2.8.3
         version: 2.8.3(react@18.3.1)(yup@1.6.1)
@@ -3304,8 +3304,8 @@ packages:
       react: '>=18.3.1 <20.0.0'
       react-dom: '>=18.3.1 <20.0.0'
 
-  '@tinacms/auth@1.1.3':
-    resolution: {integrity: sha512-YlFZk12GMPoP/5cFeYiglCQmiZfi97LUlqi5FlrwXQcXYEJQn3EgqlI6Zb3z+6K9yammsn40VFitEIFXYkDlhw==}
+  '@tinacms/auth@1.1.4':
+    resolution: {integrity: sha512-mlq7+aAzHx6eORgBHPjCex2uE866mHD5sk3iGOEwrrfh1anEh06D1KpII8dq2ljMlRY+dQJvYJPoLS0Ou3e50A==}
 
   '@tinacms/bridge@0.3.1':
     resolution: {integrity: sha512-HgFZGFec+92FvXR5NVinQtPmkidWIubkjyYkNnRWlqFmGbhzIZE6GhMX/RWZ9uNYek6kRQUtpFnGaQeBkXo95Q==}
@@ -13014,7 +13014,7 @@ snapshots:
       - use-sync-external-store
       - yup
 
-  '@tinacms/auth@1.1.3': {}
+  '@tinacms/auth@1.1.4': {}
 
   '@tinacms/bridge@0.3.1': {}
 
