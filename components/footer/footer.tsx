@@ -233,9 +233,11 @@ export function Footer({ footerData }: { footerData: FooterData }) {
                   网站备案号:{' '}
                   <a
                     href="https://beian.miit.gov.cn/#/Integrated/index"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="transition-all duration-200 hover:underline hover:opacity-100 opacity-80"
                   >
-                    浙ICP备20009588号-5
+                    浙ICP备20009588号-8
                   </a>
                 </p>
               </div>
