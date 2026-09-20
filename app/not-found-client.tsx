@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '../components/ui';
 import { DynamicLink } from '../components/ui/DynamicLink';
 import { DEFAULT_LOCALE, SupportedLocales } from '../middleware';
-import { EN_ORIGIN, isZhHost } from '../utils/i18n/domains';
+import { EN_ORIGIN, hasZhPrefix, isZhHost } from '../utils/i18n/domains';
 import { checkPageExists } from './actions/not-found-actions';
 
 const localeContent = {
@@ -105,10 +105,10 @@ const LoadingPage = ({ content }) => (
 /**
  * Work out which English document this missing page corresponds to.
  *
- * The locale comes from the hostname (passed in), not from the path: on the
- * Chinese site URLs are prefix-free. A `/zh` prefix may still be present when
- * browsing Chinese pages directly in local development, so it is tolerated and
- * stripped here.
+ * The locale comes from the hostname, not from the path: on the Chinese site
+ * URLs are prefix-free. A `/zh` prefix may still be present when browsing
+ * Chinese pages directly in local development, so it is tolerated and stripped
+ * here.
  *
  * Only the Chinese site asks the "does an English original exist?" question —
  * on the English site a missing page is simply missing.
@@ -154,23 +154,35 @@ const parsePath = (pathname: string, locale: string) => {
   };
 };
 
-export default function NotFoundClient({
-  locale = DEFAULT_LOCALE,
-}: {
-  locale?: string;
-}) {
+export default function NotFoundClient() {
   const pathname = usePathname();
   const [loading, setLoading] = useState(true);
   const [pageExists, setPageExists] = useState(false);
   const [redirectPath, setRedirectPath] = useState('');
 
-  const content = localeContent[locale] || localeContent.en;
+  // The locale is read here rather than passed in from the server: this page
+  // backs the global not-found boundary, which Next prerenders statically, so
+  // reading request headers on the server would break that prerender. It stays
+  // null until the client knows, so the Chinese site does not flash an English
+  // 404 before the check for an English original has run.
+  const [locale, setLocale] = useState<string | null>(null);
+
+  useEffect(() => {
+    const isChinese =
+      isZhHost(window.location.host) || hasZhPrefix(pathname ?? '');
+    setLocale(isChinese ? SupportedLocales.ZH : DEFAULT_LOCALE);
+  }, [pathname]);
+
+  const content = localeContent[locale ?? DEFAULT_LOCALE] || localeContent.en;
   const { needsQuery, routeKey, pathWithoutPrefix } = parsePath(
     pathname,
-    locale,
+    locale ?? '',
   );
 
   useEffect(() => {
+    if (locale === null) {
+      return;
+    }
     if (!needsQuery) {
       setLoading(false);
       return;
@@ -189,14 +201,16 @@ export default function NotFoundClient({
     }
 
     checkPage();
-  }, [needsQuery, routeKey, pathWithoutPrefix]);
+  }, [locale, needsQuery, routeKey, pathWithoutPrefix]);
+
+  // Until the client has resolved the locale there is nothing meaningful to
+  // show: the wrong language would flash before the real answer arrives.
+  if (locale === null || loading) {
+    return <LoadingPage content={content} />;
+  }
 
   if (!needsQuery) {
     return <NotFoundContent content={content} locale={locale} />;
-  }
-
-  if (loading) {
-    return <LoadingPage content={content} />;
   }
 
   // The English original exists but has no translation yet: offer to cross over
