@@ -18,13 +18,13 @@ prev: content/blog/2021-a-year-in-review.mdx
 next: content/blog/syntax-highlighting-with-tina.mdx
 ---
 
-Here we are, the new year is upon us, and if you are like us, you have set some New Year’s resolutions for yourself. We are big fans of the fresh start and self-improvement that comes along with this time of year. Have you set any resolutions, maybe building or rebuilding your own personal site, starting a new business, or giving your portfolio a new lick of pain?. That means that you will need a CMS to handle all the content that drives your site and we think Tina can fill the role in some unique ways.
+Here we are, the new year is upon us, and if you are like us, you have set some New Year’s resolutions for yourself. We are big fans of the fresh start and self-improvement that comes along with this time of year. Have you set any resolutions, maybe building or rebuilding your own personal site, starting a new business, or giving your portfolio a new lick of pain?. That means that you will need a CMS to handle all the content that drives your site and we think TinaCMS can fill the role in some unique ways.
 
-## Why Tina?
+## Why TinaCMS?
 
 ### Git Backed
 
-Traditionally when you sign up for a CMS, your content is locked into the vendor. This means if you decide that the CMS is not for you, you have to find a way to export that data and import it into your new CMS. That is not what Tina is about, we don’t want to hold you or your content hostage. In fact, Tina doesn’t store any of your data, it is stored in a GitHub repository that you own. Yep, that is right, you own and control it all. In addition to feeling secure that you own your own content, there are many practical advantages to this approach such as:
+Traditionally when you sign up for a CMS, your content is locked into the vendor. This means if you decide that the CMS is not for you, you have to find a way to export that data and import it into your new CMS. That is not what TinaCMS is about, we don’t want to hold you or your content hostage. In fact, TinaCMS doesn’t store any of your data, it is stored in a GitHub repository that you own. Yep, that is right, you own and control it all. In addition to feeling secure that you own your own content, there are many practical advantages to this approach such as:
 
 * Easy to track when and what changed in your project
 * CI / CD support
@@ -32,63 +32,63 @@ Traditionally when you sign up for a CMS, your content is locked into the vendor
 
 ### Visual Editing
 
-Tina is different from a traditional headless CMS, where you enter your data into a form with no context of how it will behave or look on your site. You then have to kick off a build and navigate to your site to see the changes.
-When you use Tina, the content is edited using a sidebar on your site, you get to see the changes in real time as you make them. This allows you to see exactly what you are editing or creating and how it will look and behave. No more saves, previews, refreshes after every few edits. Once you are happy with the changes, you can hit save and Tina will commit it directly to your GitHub repository and the rebuild process will begin.
+TinaCMS is different from a traditional headless CMS, where you enter your data into a form with no context of how it will behave or look on your site. You then have to kick off a build and navigate to your site to see the changes.
+When you use TinaCMS, the content is edited using a sidebar on your site, you get to see the changes in real time as you make them. This allows you to see exactly what you are editing or creating and how it will look and behave. No more saves, previews, refreshes after every few edits. Once you are happy with the changes, you can hit save and TinaCMS will commit it directly to your GitHub repository and the rebuild process will begin.
 
 ### Native MDX Support
 
-Tina can support MDX out of the box, this means you can create reusable components and Tina can provide an easy way for anyone editing or creating content to add them to the page, no matter how experienced they are.
+TinaCMS can support MDX out of the box, this means you can create reusable components and TinaCMS can provide an easy way for anyone editing or creating content to add them to the page, no matter how experienced they are.
 
 Other headless CMSs require the users who are creating the content to remember the Component names, use the correct syntax when using them, as well as transform the data using mdx-remote or something similar. This is fine for an experienced developer but if you want to bring on guests who have zero experience it is a steep learning curve. Seriously, ask your editor friends about this, see the rage and/or fear in their eyes.
 
 We include a button that will allow anyone to click, select the user-friendly named component, and add it to the page. They can then dynamically edit that component with the correct text, images, or styles that you defined.
-Tina also doesn’t require you to transform the MDX or hydrate your components, making it easier to integrate then traditional CMS.
+TinaCMS also doesn’t require you to transform the MDX or hydrate your components, making it easier to integrate then traditional CMS.
 
 ## Three ways to get started in under five minutes
 
-### Tina Quickstart
+### TinaCMS Quickstart
 
-Our [Tina Quickstart ](https://app.tina.io/quickstart) flow is a web based way to get started with Tina, it allows you to choose from one of our starters (Tina Barebones, Tina Documentation Starter, TinaCloud Starter) and deploy directly to Vercel.
+Our [TinaCMS Quickstart ](https://app.tina.io/quickstart) flow is a web based way to get started with TinaCMS, it allows you to choose from one of our starters (TinaCMS Barebones, TinaCMS Documentation Starter, TinaCloud Starter) and deploy directly to Vercel.
 
-This approach allows you to see how Tina works in a production deployment almost immediately . This is great for getting to know what Tina can do, how Tina works,and show it to others such as your content team.
+This approach allows you to see how TinaCMS works in a production deployment almost immediately . This is great for getting to know what TinaCMS can do, how TinaCMS works,and show it to others such as your content team.
 
 <WebmEmbed embedSrc="/img/blog/new-year-new-cms/tina-quickstart.webm" />
 
 ### `npx create-tina-app`
 
-`create-tina-app` allows you to work locally with one of our starters, this allows you to see how all the code behind the scenes is working before you decide that Tina is right for you.
+`create-tina-app` allows you to work locally with one of our starters, this allows you to see how all the code behind the scenes is working before you decide that TinaCMS is right for you.
 
 To use the `create-tina-app` you will need `Node 14+` .This doesn't require you to already have an application and will create a new project and directory and allow you to start developing locally.
 
 <WebmEmbed embedSrc="/img/blog/new-year-new-cms/create-tina-app.webm" />
 
-### Tina CLI
+### TinaCMS CLI
 
-Tina CLI (`npx @tincms/cli@latest init`) allows you to add Tina to an existing Next.js application. When using the CLI we will take care of the important pieces including:
+TinaCMS CLI (`npx @tincms/cli@latest init`) allows you to add TinaCMS to an existing Next.js application. When using the CLI we will take care of the important pieces including:
 
-* Adding all the Tina dependencies
+* Adding all the TinaCMS dependencies
 * Setting up a .tina folder with a basic schema
-* Creating a demo directory with an example Tina powered page
+* Creating a demo directory with an example TinaCMS powered page
 * Creating an admin route
-* Ensuring Tina best practices are used
+* Ensuring TinaCMS best practices are used
 
-Using the Tina CLI allows you to add Tina and selectively integrate it into your existing Next.js application. This allows you to keep your established site and slowly bring the power of Tina to your editors and content team. Though once you use it, we are not sure how slowly you will want to move.
+Using the TinaCMS CLI allows you to add TinaCMS and selectively integrate it into your existing Next.js application. This allows you to keep your established site and slowly bring the power of TinaCMS to your editors and content team. Though once you use it, we are not sure how slowly you will want to move.
 
 <WebmEmbed embedSrc="/img/blog/new-year-new-cms/tina-cli.webm" />
 
-## Where can you keep up to date with Tina?
+## Where can you keep up to date with TinaCMS?
 
-You know that you will want to be part of this creative, innovative, supportive community of developers (and even some editors and designers) who are experimenting and implementing Tina daily.
+You know that you will want to be part of this creative, innovative, supportive community of developers (and even some editors and designers) who are experimenting and implementing TinaCMS daily.
 
-### Tina Community Discord
+### TinaCMS Community Discord
 
-Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
+TinaCMS has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and TinaCMS enthusiasts. When you join you will find a place:
 
 * To get help with issues
-* Find the latest Tina news and sneak previews
-* Share your project with Tina community, and talk about your experience
+* Find the latest TinaCMS news and sneak previews
+* Share your project with TinaCMS community, and talk about your experience
 * Chat about the Jamstack
 
-### Tina Twitter
+### TinaCMS Twitter
 
-Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
+Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to TinaCMS. We would also be psyched if you tagged us in projects you have built.

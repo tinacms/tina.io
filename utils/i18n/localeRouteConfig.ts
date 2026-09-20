@@ -3,8 +3,7 @@ import type { SupportedLocales } from 'middleware';
 export type Locale = `${SupportedLocales}`;
 
 export interface LocaleRouteConfig {
-  /** Directory globbed for static params, e.g. './content/docs/' */
-  docsContentDir: string;
+  /** Directory globbed for static params, e.g. './content/blog/' */
   blogContentDir: string;
   /**
    * URL prefix. Empty for both locales: each language has its own domain
@@ -13,11 +12,9 @@ export interface LocaleRouteConfig {
    * domain's requests onto the physical `/zh/...` routes.
    */
   pathPrefix: string;
-  /** Path segment inside Tina document ids, e.g. 'docs' or 'docs-zh' */
-  docsContentSlug: string;
+  /** Path segment inside Tina document ids, e.g. 'blog' or 'blog-zh' */
   blogContentSlug: string;
-  /** Public URL segment the content slug maps to, e.g. 'docs' or 'zh/docs' */
-  docsUrlSlug: string;
+  /** Public URL segment the content slug maps to — 'blog' for both locales */
   blogUrlSlug: string;
   /** giscus comment widget language */
   giscusLang: string;
@@ -25,22 +22,16 @@ export interface LocaleRouteConfig {
 
 export const LOCALE_ROUTE_CONFIG: Record<Locale, LocaleRouteConfig> = {
   en: {
-    docsContentDir: './content/docs/',
     blogContentDir: './content/blog/',
     pathPrefix: '',
-    docsContentSlug: 'docs',
     blogContentSlug: 'blog',
-    docsUrlSlug: 'docs',
     blogUrlSlug: 'blog',
     giscusLang: 'en',
   },
   zh: {
-    docsContentDir: './content/docs-zh/',
     blogContentDir: './content/blog-zh/',
     pathPrefix: '',
-    docsContentSlug: 'docs-zh',
     blogContentSlug: 'blog-zh',
-    docsUrlSlug: 'docs',
     blogUrlSlug: 'blog',
     giscusLang: 'zh-CN',
   },

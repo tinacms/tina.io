@@ -4,6 +4,7 @@ import IconSelector from '../../forms/IconSelector';
 import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
 import { codeButtonTemplate } from '../CodeButton/CodeButton.template';
 import { modalButtonTemplate } from '../ModalButton/ModalButton.template';
+import { tableTemplate } from '../Table/table.template';
 
 export const cardTemplate: Template = {
   name: 'card',
@@ -162,6 +163,12 @@ export const pricingTemplate: Template = {
           interval: 'month',
         },
       },
+    },
+    {
+      name: 'comparisonTable',
+      label: 'Plan Comparison Table',
+      type: 'object',
+      fields: tableTemplate.fields,
     },
   ],
 };

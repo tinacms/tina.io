@@ -294,7 +294,7 @@
         {
           "icon": "FaHourglassHalf",
           "heading": "Swapping auth from AWS Cognito to WorkOS\n",
-          "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access.\n",
+          "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access. Brook covers what is changing and who it affects here: [https://youtu.be/UdNko6iJEsQ](https://youtu.be/UdNko6iJEsQ)\n",
           "actions": [
             {
               "label": "GitHub Discussion 🔗",

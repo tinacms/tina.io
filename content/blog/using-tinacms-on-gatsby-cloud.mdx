@@ -39,7 +39,7 @@ And tada! ✨ Our site's preview should be live! Any commits we make to the repo
 
 > Note: This preview will act as our "Cloud Editing Environment" and not our production site. Your production site should be built and deployed separately.
 
-Now that our **preview is live**, there's some extra configuration that we'll want to do to have Tina work smoothly on the cloud.
+Now that our **preview is live**, there's some extra configuration that we'll want to do to have TinaCMS work smoothly on the cloud.
 
 ## Make the Cloud Environment Private 🔒
 
@@ -51,7 +51,7 @@ We don't want just any stranger making commits from our cloud editing environmen
 
 To set up for canary, run `yarn add gatsby-tinacms-git@canary` until this version reaches a full release.
 
-To get Tina working in Gatsby Cloud, we'll need to configure a few environment variables in our **Gatsby Cloud site settings**:
+To get TinaCMS working in Gatsby Cloud, we'll need to configure a few environment variables in our **Gatsby Cloud site settings**:
 
 GIT\_AUTHOR\_EMAIL
 GIT\_AUTHOR\_NAME
@@ -67,7 +67,7 @@ If you want the author to be based off of the logged-in user instead of a static
 
 ### `TINA_CEE`
 
-This needs to be set to ensure that Tina knows that it is being run in a *Cloud Editing Environment*. Set it to `true`.
+This needs to be set to ensure that TinaCMS knows that it is being run in a *Cloud Editing Environment*. Set it to `true`.
 
 ### `SSH_KEY` 🔑
 
@@ -132,12 +132,12 @@ Now after you trigger a rebuild, it should be able to commit to your repository!
 
 ## Site Configuration 🔨
 
-When it's time to get our editors editing a Tina site on a cloud editing environment, we will need to be **extra careful around safeguarding against run-time errors.** Does the site blow up if an array is empty? or if an image isn't defined? We'll want to account for these edge cases which your editors may run into while editing.
+When it's time to get our editors editing a TinaCMS site on a cloud editing environment, we will need to be **extra careful around safeguarding against run-time errors.** Does the site blow up if an array is empty? or if an image isn't defined? We'll want to account for these edge cases which your editors may run into while editing.
 
 ## Happy Cloud Editing! ☁️
 
-Hopefully this gets you started editing **your Gatsby site with Tina on the cloud.**
+Hopefully this gets you started editing **your Gatsby site with TinaCMS on the cloud.**
 
 We'll continue to detail how to host cloud editing environments on a few different services. You can also sign up for our Tina Teams Alpha to try out some extended team features!
 
-If you run into trouble or have any questions, head over to the [Tina Forum](https://community.tinacms.org/) for help. Stoked on TinaCMS? Please ⭐️ us on [GitHub](https://github.com/tinacms/tinacms) or [Tweet us](https://twitter.com/Tina_cms) 🐦 to show-off your Tina projects.
+If you run into trouble or have any questions, head over to the [TinaCMS Forum](https://community.tinacms.org/) for help. Stoked on TinaCMS? Please ⭐️ us on [GitHub](https://github.com/tinacms/tinacms) or [Tweet us](https://twitter.com/Tina_cms) 🐦 to show-off your TinaCMS projects.

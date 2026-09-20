@@ -23,6 +23,7 @@ import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import TableBox from '../Table/table';
 
 const icons = {
   FaClock,
@@ -307,6 +308,11 @@ export function PricingBlock({ data }) {
           </div>
         ))}
       </div>
+      {data.comparisonTable && (
+        <div className="pt-20">
+          <TableBox data={data.comparisonTable} isMonthly={isMonthly} />
+        </div>
+      )}
       <style jsx>{`
         .responsive-grid {
           display: grid;

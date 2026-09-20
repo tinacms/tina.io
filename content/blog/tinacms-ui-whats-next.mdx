@@ -13,11 +13,11 @@ next: content/blog/designing-an-extensible-styling-system.mdx
 
 This week we deployed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring 'Introducing Visual Open Authoring') on the TinaCMS website to make the editing experience for ourselves and all the community members totally amazing!
 
-You may have noticed that the editing interface on [tinacms.org](https://tinacms.org) is different than what's in our videos and what you have running locally. This new Toolbar was an experiment we made directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org 'GitHub: tinacms.org'). In this post, I will talk about why we took this approach and the next steps in making the Tina Toolbar available for everyone.
+You may have noticed that the editing interface on [tinacms.org](https://tinacms.org) is different than what's in our videos and what you have running locally. This new Toolbar was an experiment we made directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org 'GitHub: tinacms.org'). In this post, I will talk about why we took this approach and the next steps in making the TinaCMS Toolbar available for everyone.
 
 ![TinaCMS UI Options](/img/blog/tinacms-ui-whats-next/sidebar-toolbar.jpg)
 
-## Tina is not a CMS
+## TinaCMS is not a CMS
 
 It is not an application. It is not intended to be an all-in-one solution. It is a toolkit for building content management directly into your apps and websites. This philosophy has tremendous implications on the architecture of the TinaCMS codebase. For example, the user interface that we provide is only the _default option_.
 
@@ -29,11 +29,11 @@ Now that Open Authoring with [tinacms.org](https://tinacms.org/) is published, w
 
 ## _tinacms_ as a quick-start package
 
-Currently, the `tinacms` package implements a number of features directly. The Sidebar, Modals, Alerts, and Screen Plugins are all defined directly here. After this change, `tinacms` will simply be the "quick-start" package for developers looking to get started with Tina as fast as possible. The sole purpose of the `tinacms` package will be to provide a pre-configured CMS instance along with a few simple components that add the CMS, Alerts, Modals, Screens, and either the Sidebar or the Toolbar to the website. This change will give newcomers to Tina the ability to get started quickly, but it will also give other developers the ability to optimize and modify Tina to fit their needs.
+Currently, the `tinacms` package implements a number of features directly. The Sidebar, Modals, Alerts, and Screen Plugins are all defined directly here. After this change, `tinacms` will simply be the "quick-start" package for developers looking to get started with TinaCMS as fast as possible. The sole purpose of the `tinacms` package will be to provide a pre-configured CMS instance along with a few simple components that add the CMS, Alerts, Modals, Screens, and either the Sidebar or the Toolbar to the website. This change will give newcomers to TinaCMS the ability to get started quickly, but it will also give other developers the ability to optimize and modify TinaCMS to fit their needs.
 
 A large problem with `tinacms` is the impact it has on the bundle size of the developer's website. This will be made worse when we start adding more features to the toolbar. By breaking these pieces up, developers can solve this problem by taking advantage of dynamic imports and code splitting in their application.
 
-This separation will give developers the ability to opt-out of the pre-defined UI and roll their own. This will give developers the option to deeply integrate the CMS into their website and opens Tina up to the possibility of great UI/UX innovations.
+This separation will give developers the ability to opt-out of the pre-defined UI and roll their own. This will give developers the option to deeply integrate the CMS into their website and opens TinaCMS up to the possibility of great UI/UX innovations.
 
 ## Upcoming Packages
 

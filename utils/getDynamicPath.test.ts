@@ -1,9 +1,4 @@
-import {
-  BLOG_INDEX_PATH,
-  BLOG_PATH,
-  DOCS_PATH,
-  getDynamicPath,
-} from './getDynamicPath';
+import { BLOG_INDEX_PATH, BLOG_PATH, getDynamicPath } from './getDynamicPath';
 
 describe('getDynamicPath', () => {
   describe('with static path', () => {
@@ -29,12 +24,6 @@ describe('getDynamicPath', () => {
       it('should return blog index path', () => {
         const url = getDynamicPath('/blog/page/3');
         expect(url).toEqual(BLOG_INDEX_PATH);
-      });
-    });
-    describe('- docs', () => {
-      it('should return docs path', () => {
-        const url = getDynamicPath('/docs/sub/heres-a-doc');
-        expect(url).toEqual(DOCS_PATH);
       });
     });
   });

@@ -11,7 +11,8 @@ export function HeroBlock({ data, index }) {
   return (
     <section
       key={index}
-      className={`relative overflow-visible z-10 text-center ${
+      id={data.anchorId || undefined}
+      className={`relative overflow-visible z-10 text-center scroll-mt-24 ${
         data.margin ? data.margin : 'px-8 pt-8 lg:pt-32'
       }`}
     >
@@ -30,14 +31,14 @@ export const HeroFeature = ({ item, spacing, children }) => {
       <div className="flex flex-col gap-2">
         {item.headline && item.blockSettings?.isHeadingOne ? (
           <h1
-            className={`${H1_HEADINGS_SIZE} font-ibm-plex  text-center font-bold`}
+            className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center font-bold text-balance`}
             data-tina-field={tinaField(item, 'headline')}
           >
             {item.headline}
           </h1>
         ) : (
           <h2
-            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-black text-center font-bold`}
+            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-black text-center font-bold text-balance`}
             data-tina-field={tinaField(item, 'headline')}
           >
             {item.headline}
@@ -45,7 +46,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
         )}
         {item.headline2 && (
           <h2
-            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-black text-center font-bold`}
+            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-black text-center font-bold text-balance`}
             data-tina-field={tinaField(item, 'headline2')}
           >
             {item.headline2}
@@ -60,19 +61,25 @@ export const HeroFeature = ({ item, spacing, children }) => {
           {item.text}
         </p>
       )}
-      <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-start lg:items-center gap-10 pb-10">
-        {/* Tina's button objects have no `id`, so key on the label. */}
-        {item.buttons?.map((button, index) => (
-          <div
-            key={`heroButton-${button.label}`}
-            className={`flex items-start lg:items-center ${
-              index === 2 ? 'md:col-span-2 md:justify-center' : ''
-            }`}
-          >
-            <RenderButton button={button} />
-          </div>
-        ))}
-      </div>
+      {/* Skipped entirely when there are no buttons — the row's own pb-10 would
+          otherwise leave a dead gap under a text-only hero. */}
+      {/* items-center on mobile: the column's cross axis is horizontal, so
+          items-start pinned the buttons left under a centred headline. */}
+      {item.buttons?.length > 0 && (
+        <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-center md:items-start lg:items-center gap-4 md:gap-10 pb-10">
+          {/* Tina's button objects have no `id`, so key on the label. */}
+          {item.buttons.map((button, index) => (
+            <div
+              key={`heroButton-${button.label}`}
+              className={`flex items-start lg:items-center ${
+                index === 2 ? 'md:col-span-2 md:justify-center' : ''
+              }`}
+            >
+              <RenderButton button={button} />
+            </div>
+          ))}
+        </div>
+      )}
       {children}
     </div>
   );
