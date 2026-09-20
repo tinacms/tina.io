@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import '../../styles/tailwind.css';
+import { hasZhPrefix, isZhHost } from '@/utils/i18n/domains';
 import { TinaIcon } from '../logo';
 import { ContactForm } from '../modals/ContactForm';
 import { DynamicLink } from '../ui';
@@ -105,8 +106,14 @@ FooterLink.displayName = 'FooterLink';
 
 export function Footer({ footerData }: { footerData: FooterData }) {
   const pathName = usePathname();
-  const isZhPath = pathName?.includes('/zh') || false;
+  // The Chinese site serves prefix-free URLs, so the hostname decides the
+  // locale; the `/zh` prefix is still honoured for local development.
+  const [isZhPath, setIsZhPath] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
+
+  useEffect(() => {
+    setIsZhPath(isZhHost(window.location.host) || hasZhPrefix(pathName ?? ''));
+  }, [pathName]);
 
   const { socialLinks, currentFooterNav, currentFooterLinks, modalButton } =
     useMemo(() => {
@@ -226,9 +233,11 @@ export function Footer({ footerData }: { footerData: FooterData }) {
                   网站备案号:{' '}
                   <a
                     href="https://beian.miit.gov.cn/#/Integrated/index"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="transition-all duration-200 hover:underline hover:opacity-100 opacity-80"
                   >
-                    浙ICP备20009588号-5
+                    浙ICP备20009588号-8
                   </a>
                 </p>
               </div>

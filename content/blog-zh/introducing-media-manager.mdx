@@ -139,7 +139,7 @@ const StyledInlineImage = styled(InlineImage)`
 
 `previewSrc`函数在启用CMS时提供图像源的URL。此函数由[媒体存储默认](https://github.com/tinacms/tinacms/pull/1386)实现，或可以在字段级别覆盖。
 
-我们统一了[`MediaStore`](https://tina.io/docs/reference/media/overview/)、[`InlineImage`](/docs/contextual-editing/overview)和常规[图像字段](/docs/plugins/fields/images)之间的`previewSrc`接口。
+我们统一了[`MediaStore`](/docs/reference/media/overview)、[`InlineImage`](/docs/contextual-editing/overview)和常规[图像字段](/docs/plugins/fields/images)之间的`previewSrc`接口。
 
 重大更改是现在将额外的参数传递给`previewSrc`。我们做出此更改是因为我们发现自己在图像字段中配置此函数时经常返回字段值。提供`previewSrc`时，不必遍历所有表单值，第一个参数应该足以满足大多数用例。
 

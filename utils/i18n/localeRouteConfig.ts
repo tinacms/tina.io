@@ -5,11 +5,16 @@ export type Locale = `${SupportedLocales}`;
 export interface LocaleRouteConfig {
   /** Directory globbed for static params, e.g. './content/blog/' */
   blogContentDir: string;
-  /** URL prefix: '' for English, '/zh' for Chinese */
+  /**
+   * URL prefix. Empty for both locales: each language has its own domain
+   * (tina.io / tinaio.cn) and the two share one path shape, so the `/zh`
+   * segment never appears in a public URL. Middleware rewrites the Chinese
+   * domain's requests onto the physical `/zh/...` routes.
+   */
   pathPrefix: string;
   /** Path segment inside Tina document ids, e.g. 'blog' or 'blog-zh' */
   blogContentSlug: string;
-  /** Public URL segment the content slug maps to, e.g. 'blog' or 'zh/blog' */
+  /** Public URL segment the content slug maps to — 'blog' for both locales */
   blogUrlSlug: string;
   /** giscus comment widget language */
   giscusLang: string;
@@ -25,9 +30,9 @@ export const LOCALE_ROUTE_CONFIG: Record<Locale, LocaleRouteConfig> = {
   },
   zh: {
     blogContentDir: './content/blog-zh/',
-    pathPrefix: '/zh',
+    pathPrefix: '',
     blogContentSlug: 'blog-zh',
-    blogUrlSlug: 'zh/blog',
+    blogUrlSlug: 'blog',
     giscusLang: 'zh-CN',
   },
 };

@@ -12,9 +12,9 @@ describe('buildBlogLinkSlug', () => {
     );
   });
 
-  it('rewrites the zh blog slug', () => {
+  it('maps the zh blog slug to the shared, prefix-free url slug', () => {
     expect(buildBlogLinkSlug('content/blog-zh/hello-world.mdx', 'zh')).toBe(
-      '/zh/blog/hello-world',
+      '/blog/hello-world',
     );
   });
 });
