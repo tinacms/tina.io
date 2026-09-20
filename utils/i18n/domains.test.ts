@@ -1,5 +1,6 @@
 import {
   hasZhPrefix,
+  isEnHost,
   isZhHost,
   localeForHost,
   normaliseHost,
@@ -42,6 +43,24 @@ describe('isZhHost', () => {
   it('treats a missing host as not Chinese', () => {
     expect(isZhHost(null)).toBe(false);
   });
+});
+
+describe('isEnHost', () => {
+  // Used to decide whether a cross-domain language switch is possible, so the
+  // `www.` form has to count just as much as the bare one.
+  it.each(['tina.io', 'www.tina.io', 'TINA.IO', 'tina.io:3000'])(
+    'recognises %s as the English site',
+    (host) => {
+      expect(isEnHost(host)).toBe(true);
+    },
+  );
+
+  it.each(['tinaio.cn', 'localhost', 'tina-io-git-main.vercel.app', ''])(
+    'treats %s as not the English site',
+    (host) => {
+      expect(isEnHost(host)).toBe(false);
+    },
+  );
 });
 
 describe('localeForHost', () => {

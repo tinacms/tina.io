@@ -53,8 +53,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(canonical, request.url), 301);
   }
 
-  // Serve the physical Chinese route without exposing the prefix.
-  return NextResponse.rewrite(new URL(`/zh${pathname}${search}`, request.url));
+  // Serve the physical Chinese route without exposing the prefix. The site
+  // root maps to `/zh` with no trailing slash: `/zh/` would miss the
+  // `/:locale(en|zh)` rewrite in next.config.js that resolves a locale root
+  // to its home page.
+  const target = pathname === '/' ? '/zh' : `/zh${pathname}`;
+  return NextResponse.rewrite(new URL(`${target}${search}`, request.url));
 }
 
 export const config = {

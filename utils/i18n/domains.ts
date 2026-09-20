@@ -24,6 +24,12 @@ export const ZH_HOSTS: ReadonlySet<string> = new Set([
   'www.tinaio.cn',
 ]);
 
+/** Hostnames that serve the English site. Compared lowercase, without port. */
+export const EN_HOSTS: ReadonlySet<string> = new Set([
+  'tina.io',
+  'www.tina.io',
+]);
+
 /** Strip the port and normalise case so `TINAIO.CN:3000` matches. */
 export function normaliseHost(rawHost: string | null | undefined): string {
   return (rawHost ?? '').split(':')[0].toLowerCase();
@@ -36,6 +42,15 @@ export function normaliseHost(rawHost: string | null | undefined): string {
  */
 export function isZhHost(rawHost: string | null | undefined): boolean {
   return ZH_HOSTS.has(normaliseHost(rawHost));
+}
+
+/**
+ * Whether a raw Host value belongs to the English site. Unlike isZhHost this
+ * is not a locale decision — it answers "is this one of the two public
+ * sites?", which is what cross-domain navigation needs to know.
+ */
+export function isEnHost(rawHost: string | null | undefined): boolean {
+  return EN_HOSTS.has(normaliseHost(rawHost));
 }
 
 /**

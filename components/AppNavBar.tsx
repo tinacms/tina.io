@@ -18,12 +18,11 @@ import { MdEmail } from 'react-icons/md';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import {
-  EN_ORIGIN,
   hasZhPrefix,
+  isEnHost,
   isZhHost,
   originForLocale,
   stripZhPrefix,
-  ZH_ORIGIN,
 } from '@/utils/i18n/domains';
 import { saveLocaleToCookie } from '@/utils/locale';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
@@ -820,9 +819,11 @@ export function AppNavBar({ sticky = true }) {
       return;
     }
 
-    const onLocaleDomain =
-      window.location.origin === EN_ORIGIN ||
-      window.location.origin === ZH_ORIGIN;
+    // Compare by hostname, not origin, so the `www.` forms of both sites are
+    // recognised too. Anywhere else (localhost, a preview deployment) there is
+    // no second domain to cross to.
+    const host = window.location.host;
+    const onLocaleDomain = isZhHost(host) || isEnHost(host);
 
     if (!onLocaleDomain) {
       const isChinese = code === SupportedLocales.ZH;
