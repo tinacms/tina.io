@@ -26,6 +26,7 @@ import {
 } from '@/utils/i18n/domains';
 import { saveLocaleToCookie } from '@/utils/locale';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
+import AdminLink from './AdminLink';
 import { Button, LinkButton } from './ui/Button';
 
 // Dynamic imports for modals - only loaded when modal is opened
@@ -584,7 +585,7 @@ const MobileNavMenu = ({
                 />
               </Link>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               <button
                 type="button"
                 className={`outline-hidden hover:animate-jelly duration-600`}
@@ -596,6 +597,7 @@ const MobileNavMenu = ({
                   <ZhFlag className="w-8 h-8" />
                 )}
               </button>
+              <AdminLink />
             </div>
           </div>
           <LinkButton
@@ -709,6 +711,7 @@ const DesktopNavMenu = ({
             <ZhFlag className="w-8 h-8" />
           )}
         </button>
+        <AdminLink />
       </li>
     </nav>
   );

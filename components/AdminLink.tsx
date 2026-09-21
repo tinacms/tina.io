@@ -1,44 +1,49 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import React, { useEffect } from 'react';
-import { RxCross1 } from 'react-icons/rx';
+import { useEffect, useState } from 'react';
 import { useEditState } from 'tinacms/dist/react';
+import TinaIconSvg from '../public/svg/tina-icon.svg';
+
+const hasTinaSession = () => {
+  const raw = window.localStorage.getItem('tinacms-auth');
+  if (!raw) {
+    return false;
+  }
+  try {
+    const auth: unknown = JSON.parse(raw);
+    return (
+      typeof auth === 'object' &&
+      auth !== null &&
+      'access_token' in auth &&
+      Boolean(auth.access_token)
+    );
+  } catch {
+    return false;
+  }
+};
 
 const AdminLink = () => {
   const { edit } = useEditState();
   const pathname = usePathname();
-  const [showAdminLink, setShowAdminLink] = React.useState(false);
+  const [showAdminLink, setShowAdminLink] = useState(false);
 
   useEffect(() => {
-    setShowAdminLink(
-      !edit &&
-        JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
-          ?.access_token,
-    );
+    setShowAdminLink(!edit && hasTinaSession());
   }, [edit]);
 
-  const handleDismiss = () => {
-    setShowAdminLink(false);
-  };
+  if (!showAdminLink) {
+    return null;
+  }
 
   return (
-    <>
-      {showAdminLink && (
-        <div className="fixed top-[88px] right-16 flex items-center justify-between bg-blue-500 text-white px-3 py-1 rounded-full z-50">
-          <a href={`/admin/index.html#/~${pathname}`} className="text-xs">
-            Edit This Page
-          </a>
-          <button
-            type="button"
-            onClick={handleDismiss}
-            className="ml-2 text-sm"
-          >
-            <RxCross1 />
-          </button>
-        </div>
-      )}
-    </>
+    <a
+      href={`/admin/index.html#/~${pathname}`}
+      className="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-orange-500 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-orange-600"
+    >
+      <TinaIconSvg className="h-5 w-auto fill-white" />
+      Edit ✏️
+    </a>
   );
 };
 
