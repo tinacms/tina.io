@@ -13,3 +13,16 @@ export function acceptsMarkdown(accept: string | null) {
     }),
   );
 }
+
+export function getBlogMarkdownRoute(
+  pathname: string,
+  isChineseDomain: boolean,
+) {
+  const match = pathname.match(/^\/(?:(zh)\/)?blog\/(.+)$/);
+  if (!match) {
+    return null;
+  }
+
+  const locale = isChineseDomain || match[1] ? 'zh' : 'en';
+  return `/api/markdown/blog/${locale}/${match[2]}`;
+}

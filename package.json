@@ -113,7 +113,6 @@
     "tailwindcss-animated": "^1.1.2",
     "three": "^0.165.0",
     "tinacms": "^3.11.0",
-    "turndown": "7.2.4",
     "webpack": "^5.99.9"
   },
   "devDependencies": {
@@ -130,7 +129,6 @@
     "@types/react": "^18.3.12",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^5.1.34",
-    "@types/turndown": "5.0.5",
     "babel-plugin-styled-components": "^1.13.3",
     "jest": "^25.5.4",
     "next-sitemap": "^4.2.3",

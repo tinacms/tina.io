@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { acceptsMarkdown } from 'utils/acceptsMarkdown';
+import { acceptsMarkdown, getBlogMarkdownRoute } from 'utils/acceptsMarkdown';
 import { hasZhPrefix, isZhHost, stripZhPrefix } from 'utils/i18n/domains';
 
 export enum SupportedLocales {
@@ -26,8 +26,8 @@ export const DEFAULT_LOCALE = 'en';
  * going to tinaio.cn or by using the language switcher, so tina.io never
  * redirects anyone away from the page they asked for.
  *
- * HTML requests keep the existing locale routing. Requests that explicitly
- * accept Markdown are rewritten to the converter while preserving the locale.
+ * HTML requests keep the existing locale routing. Blog post requests that
+ * explicitly accept Markdown are rewritten to their source MDX.
  */
 export function middleware(request: NextRequest) {
   // Behind the China reverse proxy the browser-facing hostname arrives in
@@ -47,14 +47,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(canonical, request.url), 301);
   }
 
-  if (acceptsMarkdown(request.headers.get('accept'))) {
+  const markdownRoute = getBlogMarkdownRoute(pathname, isChineseDomain);
+  if (markdownRoute && acceptsMarkdown(request.headers.get('accept'))) {
     const markdownUrl = request.nextUrl.clone();
-    const contentPath = isChineseDomain
-      ? `${pathname === '/' ? '/zh' : `/zh${pathname}`}${search}`
-      : `${pathname}${search}`;
-    markdownUrl.pathname = '/api/markdown';
+    markdownUrl.pathname = markdownRoute;
     markdownUrl.search = '';
-    markdownUrl.searchParams.set('path', contentPath);
     return NextResponse.rewrite(markdownUrl);
   }
 
