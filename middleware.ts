@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
+import { acceptsMarkdown } from 'utils/acceptsMarkdown';
 import { hasZhPrefix, isZhHost, stripZhPrefix } from 'utils/i18n/domains';
 
 export enum SupportedLocales {
@@ -25,9 +26,8 @@ export const DEFAULT_LOCALE = 'en';
  * going to tinaio.cn or by using the language switcher, so tina.io never
  * redirects anyone away from the page they asked for.
  *
- * English requests return immediately. Nothing about the English site's URLs,
- * routing or rendering changes; the physical `app/` tree is untouched and only
- * the Chinese branch below rewrites anything.
+ * HTML requests keep the existing locale routing. Requests that explicitly
+ * accept Markdown are rewritten to the converter while preserving the locale.
  */
 export function middleware(request: NextRequest) {
   // Behind the China reverse proxy the browser-facing hostname arrives in
@@ -35,17 +35,11 @@ export function middleware(request: NextRequest) {
   // direct requests (local dev, Vercel).
   const rawHost =
     request.headers.get('x-forwarded-host') ?? request.headers.get('host');
-
-  if (!isZhHost(rawHost)) {
-    return NextResponse.next();
-  }
+  const isChineseDomain = isZhHost(rawHost);
 
   const { pathname, search } = request.nextUrl;
 
-  // On the Chinese domain the `/zh` prefix is redundant, so collapse it to the
-  // canonical prefix-free URL. Only in production: locally there is no Chinese
-  // hostname, and `/zh/...` is the only way to open Chinese pages by hand.
-  if (hasZhPrefix(pathname)) {
+  if (isChineseDomain && hasZhPrefix(pathname)) {
     if (process.env.NODE_ENV !== 'production') {
       return NextResponse.next();
     }
@@ -53,6 +47,24 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(canonical, request.url), 301);
   }
 
+  if (acceptsMarkdown(request.headers.get('accept'))) {
+    const markdownUrl = request.nextUrl.clone();
+    const contentPath = isChineseDomain
+      ? `${pathname === '/' ? '/zh' : `/zh${pathname}`}${search}`
+      : `${pathname}${search}`;
+    markdownUrl.pathname = '/api/markdown';
+    markdownUrl.search = '';
+    markdownUrl.searchParams.set('path', contentPath);
+    return NextResponse.rewrite(markdownUrl);
+  }
+
+  if (!isChineseDomain) {
+    return NextResponse.next();
+  }
+
+  // On the Chinese domain the `/zh` prefix is redundant, so collapse it to the
+  // canonical prefix-free URL. Only in production: locally there is no Chinese
+  // hostname, and `/zh/...` is the only way to open Chinese pages by hand.
   // Serve the physical Chinese route without exposing the prefix. The site
   // root maps to `/zh` with no trailing slash: `/zh/` would miss the
   // `/:locale(en|zh)` rewrite in next.config.js that resolves a locale root
