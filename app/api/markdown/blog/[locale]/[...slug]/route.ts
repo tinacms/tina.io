@@ -1,8 +1,24 @@
-import { readFile } from 'node:fs/promises';
-import path from 'node:path';
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
+
+type MarkdownContext = {
+  keys: () => string[];
+  (key: string): { default: string };
+};
+
+// @ts-expect-error require.context is provided by Webpack.
+const englishPosts = require.context(
+  '!!raw-loader!../../../../../../content/blog',
+  true,
+  /\.mdx$/,
+) as MarkdownContext;
+// @ts-expect-error require.context is provided by Webpack.
+const chinesePosts = require.context(
+  '!!raw-loader!../../../../../../content/blog-zh',
+  true,
+  /\.mdx$/,
+) as MarkdownContext;
 
 export async function GET(
   _request: Request,
@@ -13,29 +29,13 @@ export async function GET(
     return NextResponse.json({ error: 'Unknown locale' }, { status: 404 });
   }
 
-  const contentRoot = path.join(
-    process.cwd(),
-    'content',
-    locale === 'zh' ? 'blog-zh' : 'blog',
-  );
-  const filePath = path.join(contentRoot, `${slug.join('/')}.mdx`);
-
-  if (!filePath.startsWith(`${contentRoot}${path.sep}`)) {
-    return NextResponse.json({ error: 'Invalid blog path' }, { status: 400 });
+  const posts = locale === 'zh' ? chinesePosts : englishPosts;
+  const key = `./${slug.join('/')}.mdx`;
+  if (!posts.keys().includes(key)) {
+    return NextResponse.json({ error: 'Blog post not found' }, { status: 404 });
   }
 
-  try {
-    const source = await readFile(filePath, 'utf8');
-    return new NextResponse(source, {
-      headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
-    });
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-      return NextResponse.json(
-        { error: 'Blog post not found' },
-        { status: 404 },
-      );
-    }
-    throw error;
-  }
+  return new NextResponse(posts(key).default, {
+    headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
+  });
 }
