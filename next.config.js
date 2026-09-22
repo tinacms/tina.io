@@ -37,7 +37,12 @@ const config = {
   compiler: {
     styledComponents: true,
   },
-  outputFileTracing: false,
+  outputFileTracingIncludes: {
+    '/api/markdown/blog/[locale]/[...slug]': [
+      './content/blog/**/*.mdx',
+      './content/blog-zh/**/*.mdx',
+    ],
+  },
   images: {
     unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
     // Cache optimized images for 31 days. Next.js defaults to 60s, which
