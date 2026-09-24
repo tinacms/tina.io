@@ -49,7 +49,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/app": "^2.5.14",
     "@tinacms/auth": "1.1.5",
-    "@tinacms/schema-tools": "^2.10.0",
+    "@tinacms/schema-tools": "0.0.0-de0bfdf-20260924013415",
     "@tinacms/search": "^1.2.25",
     "@vercel/postgres": "^0.10.0",
     "algoliasearch": "^5.43.0",
