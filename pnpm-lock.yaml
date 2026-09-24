@@ -6,6 +6,8 @@ settings:
 
 overrides:
   graphql: ^15.5.1
+  tinacms: 0.0.0-de0bfdf-20260924013415
+  '@tinacms/schema-tools': 0.0.0-de0bfdf-20260924013415
 
 importers:
 
@@ -249,8 +251,8 @@ importers:
         specifier: ^0.165.0
         version: 0.165.0
       tinacms:
-        specifier: ^3.14.0
-        version: 3.14.0(@types/hoist-non-react-statics@3.3.6)(@types/node@22.16.0)(@types/react@18.3.29)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.6.0(react@18.3.1))
+        specifier: 0.0.0-de0bfdf-20260924013415
+        version: 0.0.0-de0bfdf-20260924013415(@types/hoist-non-react-statics@3.3.6)(@types/node@22.16.0)(@types/react@18.3.29)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.6.0(react@18.3.1))
       webpack:
         specifier: ^5.99.9
         version: 5.99.9
@@ -3429,12 +3431,6 @@ packages:
 
   '@tinacms/schema-tools@0.0.0-de0bfdf-20260924013415':
     resolution: {integrity: sha512-u3gxoQ8gg9WOrWS45vKGmK+/8+i1kwKGO7IKhdZZ2Q8fiuYPSFlAyFpB5eUSYF6EstEDynkIk8deoZzbgx0nqw==}
-    peerDependencies:
-      react: '>=16.14.0'
-      yup: ^1.0.0
-
-  '@tinacms/schema-tools@2.10.0':
-    resolution: {integrity: sha512-y8AeJrvmZnYgljk/b/wM85g7YWtdKx28G4o0I4fBtFRiDfXWnvC+m2HXt99mffgu49SA6AjmPDwDl8BrJaygYA==}
     peerDependencies:
       react: '>=16.14.0'
       yup: ^1.0.0
@@ -9066,8 +9062,8 @@ packages:
   through2@2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==}
 
-  tinacms@3.14.0:
-    resolution: {integrity: sha512-ClGMm8V3X5K1Lw9JpgyR6BnBJdFL0EpRvVCM7uQw5CZQWJe0pKYNTa4y1+Nvdxhu6GEFVNFet0GzUoJbo9OR4A==}
+  tinacms@0.0.0-de0bfdf-20260924013415:
+    resolution: {integrity: sha512-tX7ecszZRs+myS5IydH3dZMwBqANcbDGW6p6zn/qxxE+tk0X9c2AlNsHMY725P1t5qK9cCMZCLGxqGwKDgBbog==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
@@ -11421,7 +11417,7 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.6
       collect-v8-coverage: 1.0.2
 
-  '@jest/test-sequencer@25.5.4(bufferutil@4.0.9)':
+  '@jest/test-sequencer@25.5.4':
     dependencies:
       '@jest/test-result': 25.5.0
       graceful-fs: 4.2.11
@@ -11429,10 +11425,7 @@ snapshots:
       jest-runner: 25.5.4(bufferutil@4.0.9)
       jest-runtime: 25.5.4(bufferutil@4.0.9)
     transitivePeerDependencies:
-      - bufferutil
-      - canvas
       - supports-color
-      - utf-8-validate
 
   '@jest/transform@25.5.1':
     dependencies:
@@ -12872,7 +12865,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-router-dom: 6.30.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      tinacms: 3.14.0(@types/hoist-non-react-statics@3.3.6)(@types/node@22.16.0)(@types/react@18.3.29)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.6.0(react@18.3.1))
+      tinacms: 0.0.0-de0bfdf-20260924013415(@types/hoist-non-react-statics@3.3.6)(@types/node@22.16.0)(@types/react@18.3.29)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.6.0(react@18.3.1))
       zod: 3.25.75
     transitivePeerDependencies:
       - '@codemirror/language'
@@ -12914,7 +12907,7 @@ snapshots:
       '@tinacms/app': 2.5.14(@codemirror/language@6.0.0)(@emotion/is-prop-valid@1.2.2)(@types/hoist-non-react-statics@3.3.6)(@types/node@22.16.0)(@types/react@18.3.29)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.6.0(react@18.3.1))(yup@1.6.1)
       '@tinacms/graphql': 3.0.0(react@18.3.1)
       '@tinacms/metrics': 2.1.3
-      '@tinacms/schema-tools': 2.10.0(react@18.3.1)(yup@1.6.1)
+      '@tinacms/schema-tools': 0.0.0-de0bfdf-20260924013415(react@18.3.1)(yup@1.6.1)
       '@tinacms/search': 1.2.25(abstract-level@1.0.4)(react@18.3.1)(yup@1.6.1)
       '@vitejs/plugin-react': 4.7.0(vite@6.4.3(@types/node@22.16.0)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.1)(yaml@2.8.1))
       altair-express-middleware: 7.3.6
@@ -12943,7 +12936,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       readable-stream: 4.7.0
       tailwindcss: 3.4.17
-      tinacms: 3.14.0(@types/hoist-non-react-statics@3.3.6)(@types/node@22.16.0)(@types/react@18.3.29)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.6.0(react@18.3.1))
+      tinacms: 0.0.0-de0bfdf-20260924013415(@types/hoist-non-react-statics@3.3.6)(@types/node@22.16.0)(@types/react@18.3.29)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.6.0(react@18.3.1))
       typanion: 3.13.0
       typescript: 5.9.3
       vite: 6.4.3(@types/node@22.16.0)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.1)(yaml@2.8.1)
@@ -12984,7 +12977,7 @@ snapshots:
     dependencies:
       '@iarna/toml': 2.2.5
       '@tinacms/mdx': 2.2.3(react@18.3.1)(yup@1.6.1)
-      '@tinacms/schema-tools': 2.10.0(react@18.3.1)(yup@1.6.1)
+      '@tinacms/schema-tools': 0.0.0-de0bfdf-20260924013415(react@18.3.1)(yup@1.6.1)
       abstract-level: 1.0.4
       date-fns: 4.1.0
       es-toolkit: 1.50.0
@@ -13008,7 +13001,7 @@ snapshots:
 
   '@tinacms/mdx@2.2.3(react@18.3.1)(yup@1.6.1)':
     dependencies:
-      '@tinacms/schema-tools': 2.10.0(react@18.3.1)(yup@1.6.1)
+      '@tinacms/schema-tools': 0.0.0-de0bfdf-20260924013415(react@18.3.1)(yup@1.6.1)
       acorn: 8.18.0
       ccount: 2.0.1
       estree-util-is-identifier-name: 2.1.0
@@ -13050,18 +13043,10 @@ snapshots:
       yup: 1.6.1
       zod: 3.25.75
 
-  '@tinacms/schema-tools@2.10.0(react@18.3.1)(yup@1.6.1)':
-    dependencies:
-      picomatch-browser: 2.2.6
-      react: 18.3.1
-      url-pattern: 1.0.3
-      yup: 1.6.1
-      zod: 3.25.75
-
   '@tinacms/search@1.2.25(abstract-level@1.0.4)(react@18.3.1)(yup@1.6.1)':
     dependencies:
       '@tinacms/graphql': 3.0.0(react@18.3.1)
-      '@tinacms/schema-tools': 2.10.0(react@18.3.1)(yup@1.6.1)
+      '@tinacms/schema-tools': 0.0.0-de0bfdf-20260924013415(react@18.3.1)(yup@1.6.1)
       memory-level: 1.0.0
       search-index: 4.0.0(abstract-level@1.0.4)
       sqlite-level: 2.1.0
@@ -16404,7 +16389,7 @@ snapshots:
   jest-config@25.5.4(bufferutil@4.0.9):
     dependencies:
       '@babel/core': 7.28.0
-      '@jest/test-sequencer': 25.5.4(bufferutil@4.0.9)
+      '@jest/test-sequencer': 25.5.4
       '@jest/types': 25.5.0
       babel-jest: 25.5.1(@babel/core@7.28.0)
       chalk: 3.0.0
@@ -19872,7 +19857,7 @@ snapshots:
       readable-stream: 2.3.8
       xtend: 4.0.2
 
-  tinacms@3.14.0(@types/hoist-non-react-statics@3.3.6)(@types/node@22.16.0)(@types/react@18.3.29)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.6.0(react@18.3.1)):
+  tinacms@0.0.0-de0bfdf-20260924013415(@types/hoist-non-react-statics@3.3.6)(@types/node@22.16.0)(@types/react@18.3.29)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.6.0(react@18.3.1)):
     dependencies:
       '@ariakit/react': 0.4.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@dnd-kit/core': 6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -19893,7 +19878,7 @@ snapshots:
       '@tanstack/react-table': 8.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tinacms/bridge': 0.3.1
       '@tinacms/mdx': 2.2.3(react@18.3.1)(yup@1.6.1)
-      '@tinacms/schema-tools': 2.10.0(react@18.3.1)(yup@1.6.1)
+      '@tinacms/schema-tools': 0.0.0-de0bfdf-20260924013415(react@18.3.1)(yup@1.6.1)
       '@tinacms/search': 1.2.25(abstract-level@1.0.4)(react@18.3.1)(yup@1.6.1)
       '@udecode/cmdk': 0.2.1(@types/react@18.3.29)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@udecode/cn': 48.0.3(@types/react@18.3.29)(class-variance-authority@0.7.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-merge@2.6.0)
