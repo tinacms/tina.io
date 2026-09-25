@@ -3,7 +3,7 @@ seo:
   title: 'Spit Happens: September 2026 News - Better media, clearer workflows'
 title: 'Spit Happens: September 2026 News - Better media, clearer workflows'
 date: '2026-09-25T06:06:43.004Z'
-last_edited: '2026-09-25T06:43:05.500Z'
+last_edited: '2026-09-25T07:01:10.619Z'
 author: The TinaCMS Team
 prev: content/blog/august-2026-roundup.mdx
 next: ''
@@ -19,7 +19,7 @@ Image fields can now restrict accepted file types, and the rule also applies to 
 
 ### ⚡ A lighter editor load
 
-Mermaid diagrams now load only when a document uses them. In the kitchen-sink admin build, the entry bundle dropped from 6.34 MB to 5.70 MB, with the diagram library fetched separately when needed ([#7467](https://github.com/tinacms/tinacms/pull/7467)).
+Mermaid diagrams now load only when a document uses them. In the measured build, the entry bundle dropped from 6.34 MB to 5.70 MB, with the diagram library fetched separately when needed ([#7467](https://github.com/tinacms/tinacms/pull/7467)).
 
 ### Fewer snags while editing
 
@@ -27,28 +27,20 @@ Optional rich-text fields can now pass `null` or `undefined` straight to TinaMar
 
 ## ☁️ TinaCloud: 8 production releases, 72 feature and fix entries, 19 dependency entries
 
-### 🔐 More useful admin and account tools
-
-AuthKit accounts can enrol in MFA ([#4101](https://github.com/tinacms/tinacloud/pull/4101)). Staff can find customer projects and manage project and organisation details, contributor seats, and change history from the admin panel ([#4195](https://github.com/tinacms/tinacloud/pull/4195), [#4197](https://github.com/tinacms/tinacloud/pull/4197), [#4198](https://github.com/tinacms/tinacloud/pull/4198), [#4199](https://github.com/tinacms/tinacloud/pull/4199)).
-
 ### 🖼️ Media and indexing improvements
 
-Branch-aware media renaming is here ([#3921](https://github.com/tinacms/tinacloud/pull/3921)), and indexing reports a specific failure instead of the catch-all “Please try again” ([#4069](https://github.com/tinacms/tinacloud/pull/4069)). TinaCloud also validates schemas before marking indexing successful ([#4100](https://github.com/tinacms/tinacloud/pull/4100)) and can recover failed index migrations ([#4120](https://github.com/tinacms/tinacloud/pull/4120)).
-
-### 🧹 A little housekeeping that matters
-
-The team patched an XML parser issue that could break SST deployments ([#4046](https://github.com/tinacms/tinacloud/pull/4046)), tightened organisation-role permissions ([#4066](https://github.com/tinacms/tinacloud/pull/4066)), and fixed a content API compression issue ([#4113](https://github.com/tinacms/tinacloud/pull/4113)).
+Branch-aware media renaming is now available in TinaCloud. Indexing reports a specific failure instead of the catch-all “Please try again”; TinaCloud also checks schemas before reporting indexing as successful and can recover a failed index migration.
 
 ## Keep up with socials
 
 We're posting regularly again - product updates, tutorials, and news from the team.
 
 * X: [@tinacms](https://x.com/tinacms)
-* LinkedIn: TinaCMS
+* LinkedIn: [TinaCMS](https://www.linkedin.com/company/tinacms)
 * YouTube: [@TinaCMS](https://youtube.com/@TinaCMS)
 * Bluesky: [@tina.io](https://bsky.app/profile/tina.io)
 * Discord: [Come chat with us!](https://tina.io/discord)
 
-That's the catch-up for now. Subscribe to the blog if you'd like these sent straight to your inbox.
+That's the catch-up for now.
 
 Till next time 👋🦙
