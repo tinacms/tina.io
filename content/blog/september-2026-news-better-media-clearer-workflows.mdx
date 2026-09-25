@@ -1,0 +1,36 @@
+---
+seo:
+  title: 'Spit Happens: September 2026 News - Better media, clearer workflows'
+title: 'Spit Happens: September 2026 News - Better media, clearer workflows'
+date: '2026-09-25T06:06:43.004Z'
+last_edited: '2026-09-25T06:08:39.189Z'
+author: The TinaCMS Team
+prev: ''
+next: ''
+---
+
+The herd has been busy again 🦙. Since August 25, TinaCMS core shipped three releases and TinaCloud shipped eight production releases. Across their release notes, the teams listed 90 feature and fix entries, plus 23 dependency entries. Here are a few changes worth catching up on.
+📦 **TinaCMS: 3 releases, 18 changes**
+🖼️ **More control over media**
+Image fields can now restrict accepted file types, and the rule also applies to list fields and the media picker. The Media Manager can rename assets in TinaCloud, including branch-aware renames ([3.13.0](https://github.com/tinacms/tina.io/pull/4835), [3.14.0](https://github.com/tinacms/tina.io/pull/4887), [#7477](https://github.com/tinacms/tinacms/pull/7477), [#7423](https://github.com/tinacms/tinacms/pull/7423)).
+⚡ **A lighter editor load**
+Mermaid diagrams now load only when a document uses them. In the kitchen-sink admin build, the entry bundle dropped from 6.34 MB to 5.70 MB, with the diagram library fetched separately when needed ([#7467](https://github.com/tinacms/tinacms/pull/7467)).
+**Fewer snags while editing**
+Optional rich-text fields can now pass `null` or `undefined` straight to TinaMarkdown. Nested panel edits survive navigation, expired sessions return editors to login instead of leaving a misleading save error, and `Shift+Enter` line breaks now survive a save ([#7229](https://github.com/tinacms/tinacms/pull/7229), [#7520](https://github.com/tinacms/tinacms/pull/7520), [#7486](https://github.com/tinacms/tinacms/pull/7486), [#7452](https://github.com/tinacms/tinacms/pull/7452)).
+☁️ **TinaCloud: 8 production releases, 72 feature and fix entries, 19 dependency entries**
+🔐 **More useful admin and account tools**
+AuthKit accounts can enrol in MFA. Staff can now find customer projects and manage project and organisation details, contributor seats, and change history from the admin panel ([2026.09.2](https://github.com/tinacms/tina.io/pull/4889), [2026.09.4](https://github.com/tinacms/tina.io/pull/4904)).
+🖼️ **Media and indexing improvements**
+Branch-aware media renaming is here, and indexing reports a specific failure instead of the catch-all “Please try again”. TinaCloud also validates schemas before marking indexing successful and can recover failed index migrations ([2026.08.6](https://github.com/tinacms/tina.io/pull/4821), [2026.09.1](https://github.com/tinacms/tina.io/pull/4883), [2026.09.3](https://github.com/tinacms/tina.io/pull/4891)).
+🧹 **A little housekeeping that matters**
+The team patched an XML parser issue that could break SST deployments, improved account and permission handling, and tidied dependencies across the Cloud services ([2026.08.6](https://github.com/tinacms/tina.io/pull/4821), [2026.08.8](https://github.com/tinacms/tina.io/pull/4830), [2026.09.0](https://github.com/tinacms/tina.io/pull/4831)).
+Keep up with socials
+We're posting regularly again: product updates, tutorials and news from the team.
+X: @tinacms\
+LinkedIn: TinaCMS\
+YouTube: @TinaCMS\
+Bluesky: @tina.io\
+Discord: come chat with us
+That's the catch-up for now. Subscribe to the blog if you'd like these sent straight to your inbox.
+Till next time 👋🦙
+**Spit Happens.**
