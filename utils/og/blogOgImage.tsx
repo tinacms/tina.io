@@ -54,12 +54,12 @@ export async function renderBlogOgImage({
   seed,
 }: BlogOgInput): Promise<ImageResponse> {
   const mappedAvatar = authorImagePath(author);
-  const avatarUri = mappedAvatar ? pngDataUri(mappedAvatar) : null;
+  const avatarUri = mappedAvatar ? await pngDataUri(mappedAvatar) : null;
   const llamaSrc = pickLlama(seed);
-  const llamaUri = avatarUri ? null : pngDataUri(llamaSrc);
+  const llamaUri = avatarUri ? null : await pngDataUri(llamaSrc);
   const llamaLayout = LLAMA_LAYOUT[llamaSrc];
 
-  const logo = logoDataUri();
+  const logo = await logoDataUri();
   const displayTitle = truncateTitle(title, TITLE_CAP);
   const fontSize = pickFontSize(
     displayTitle.length,
@@ -243,7 +243,7 @@ export async function renderBlogOgImage({
     </div>,
     {
       ...OG_SIZE,
-      fonts: ogFonts(),
+      fonts: await ogFonts(),
     },
   );
 }
