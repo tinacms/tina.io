@@ -12,11 +12,11 @@ next: content/blog-zh/designing-an-extensible-styling-system.mdx
 
 本周，我们在 TinaCMS 网站上部署了[可视化开放创作](https://tinacms.org/blog/introducing-visual-open-authoring 'Introducing Visual Open Authoring')，以便为我们自己和所有社区成员提供绝佳的编辑体验！
 
-您可能已经注意到，[tinacms.org](https://tinacms.org) 上的编辑界面与我们的视频中以及您本地运行的界面不同。这个新的工具栏是我们在 [tinacms.org 仓库](https://github.com/tinacms/tinacms.org 'GitHub: tinacms.org')中直接进行的一个实验。在这篇文章中，我将讨论我们为什么采取这种方法以及如何让 Tina 工具栏对所有人开放的下一步。
+您可能已经注意到，[tinacms.org](https://tinacms.org) 上的编辑界面与我们的视频中以及您本地运行的界面不同。这个新的工具栏是我们在 [tinacms.org 仓库](https://github.com/tinacms/tinacms.org 'GitHub: tinacms.org')中直接进行的一个实验。在这篇文章中，我将讨论我们为什么采取这种方法以及如何让 TinaCMS 工具栏对所有人开放的下一步。
 
 ![TinaCMS UI 选项](/img/blog/tinacms-ui-whats-next/sidebar-toolbar.jpg)
 
-## Tina 不是一个 CMS
+## TinaCMS 不是一个 CMS
 
 它不是一个应用程序。它并不打算成为一个一体化的解决方案。它是一个工具包，用于将内容管理直接构建到您的应用程序和网站中。这种理念对 TinaCMS 代码库的架构有着巨大的影响。例如，我们提供的用户界面只是_默认选项_。
 
@@ -28,11 +28,11 @@ next: content/blog-zh/designing-an-extensible-styling-system.mdx
 
 ## _tinacms_ 作为快速启动包
 
-目前，`tinacms` 包直接实现了许多功能。侧边栏、模态框、警报和屏幕插件都在这里直接定义。更改后，`tinacms` 将仅仅是希望尽快开始使用 Tina 的开发人员的“快速启动”包。`tinacms` 包的唯一目的是提供一个预配置的 CMS 实例，以及一些简单的组件，这些组件将 CMS、警报、模态框、屏幕以及侧边栏或工具栏添加到网站中。此更改将使 Tina 的新手能够快速入门，但也将使其他开发人员能够优化和修改 Tina 以满足他们的需求。
+目前，`tinacms` 包直接实现了许多功能。侧边栏、模态框、警报和屏幕插件都在这里直接定义。更改后，`tinacms` 将仅仅是希望尽快开始使用 TinaCMS 的开发人员的“快速启动”包。`tinacms` 包的唯一目的是提供一个预配置的 CMS 实例，以及一些简单的组件，这些组件将 CMS、警报、模态框、屏幕以及侧边栏或工具栏添加到网站中。此更改将使 TinaCMS 的新手能够快速入门，但也将使其他开发人员能够优化和修改 TinaCMS 以满足他们的需求。
 
 `tinacms` 的一个大问题是它对开发者网站的包大小的影响。当我们开始向工具栏添加更多功能时，这个问题将变得更糟。通过将这些部分分解，开发人员可以通过在其应用程序中利用动态导入和代码拆分来解决此问题。
 
-这种分离将使开发人员能够选择退出预定义的 UI 并自行创建。这将使开发人员能够将 CMS 深度集成到他们的网站中，并为 Tina 打开了伟大的 UI/UX 创新的可能性。
+这种分离将使开发人员能够选择退出预定义的 UI 并自行创建。这将使开发人员能够将 CMS 深度集成到他们的网站中，并为 TinaCMS 打开了伟大的 UI/UX 创新的可能性。
 
 ## 即将推出的包
 

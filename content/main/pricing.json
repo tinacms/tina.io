@@ -25,8 +25,8 @@
           }
         ]
       },
-      "intro": "Need to scale? No Probllama! Tina offers a **per-project** pricing model that grows with your needs.\n\nSwitch to annual billing and save! All prices in **USD**\n",
-      "pillSwitchVisibileText": "All prices are **per-project** and in **USD**.\n",
+      "intro": "Need to scale? No Probllama! TinaCMS offers a **per-project** pricing model that grows with your needs.\n\nSwitch to annual billing and save! All prices in **USD**\n",
+      "pillSwitchVisibileText": "All prices in **USD**.\n",
       "pillSwitchToggleText": "Get **2 months free** with annual billing\n",
       "plans": [
         {
@@ -35,8 +35,12 @@
           "price": "$29",
           "annualPrice": "$24",
           "annualDescription": "$290 billed annually (save $58)",
-          "interval": "/ month",
+          "interval": "/ project / month",
           "cardItem": [
+            {
+              "name": "1 Project",
+              "icon": "FaCodeBranch"
+            },
             {
               "name": "3 Users",
               "icon": "AiOutlineUser",
@@ -74,8 +78,12 @@
           "price": "$49",
           "annualPrice": "$41",
           "annualDescription": "$490 billed annually (save $98)",
-          "interval": "/ month",
+          "interval": "/ project / month",
           "cardItem": [
+            {
+              "name": "1 Project",
+              "icon": "FaCodeBranch"
+            },
             {
               "name": "5 Users",
               "icon": "AiOutlineUser",
@@ -121,8 +129,12 @@
           "price": "$299",
           "annualPrice": "$249",
           "annualDescription": "$2,990 billed annually (save $598)",
-          "interval": "/ month",
+          "interval": "/ project / month",
           "cardItem": [
+            {
+              "name": "1 Project",
+              "icon": "FaCodeBranch"
+            },
             {
               "name": "20 Users",
               "icon": "AiOutlineUser",
@@ -176,6 +188,11 @@
           "interval": "",
           "cardItem": [
             {
+              "name": "Entire Organization",
+              "icon": "FaCodeBranch",
+              "description": "One plan covers every project"
+            },
+            {
               "name": "Custom Users",
               "icon": "AiOutlineUser",
               "description": ""
@@ -227,6 +244,194 @@
           ]
         }
       ],
+      "comparisonTable": {
+        "tableHeader": "Plan Comparison",
+        "columnItems": [
+          {
+            "columnHeader": "Free",
+            "columnByLine": "$0 Forever",
+            "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+          },
+          {
+            "columnHeader": "Team",
+            "columnByLine": "$29/project/month",
+            "columnByLineAnnual": "$24/project/month",
+            "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+          },
+          {
+            "columnHeader": "Team Plus",
+            "columnByLine": "$49/project/month",
+            "columnByLineAnnual": "$41/project/month",
+            "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+          },
+          {
+            "isReccomended": true,
+            "columnHeader": "Business",
+            "columnByLine": "$299/project/month",
+            "columnByLineAnnual": "$249/project/month",
+            "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+          },
+          {
+            "columnHeader": "Enterprise",
+            "columnByLine": "Custom",
+            "columnHeaderLink": "mailto:info@tina.io"
+          }
+        ],
+        "rowItems": [
+          {
+            "rowHeader": "Annual Billing",
+            "rowDescription": "Save over 16% - pay annually per project and get 2 months free! Enterprise is billed per organization.",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"$290/year\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$490/year\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"$2,990/year\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
+            ]
+          },
+          {
+            "rowHeader": "Included Users",
+            "rowDescription": "Default number of users that are included in each plan",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"3\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"5\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"20\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
+            ]
+          },
+          {
+            "rowHeader": "Additional Users",
+            "rowDescription": "Get more users on your plan",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"$9/user\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$15/user\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"$18/user\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
+            ]
+          },
+          {
+            "rowHeader": "User Limit",
+            "rowDescription": "Maximum number of users on a plan",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"10\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"20\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited\",\"isTicked\":false}"
+            ]
+          },
+          {
+            "rowHeader": "Roles",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"2\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"2\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"3\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
+            ]
+          },
+          {
+            "rowHeader": "Community Support",
+            "rowDescription": "Active online Discord community forums and comprehensive documentation on tina.io/docs",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+            ]
+          },
+          {
+            "rowHeader": "Premium Support",
+            "rowDescription": "Support options and custom support plans are available",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"Business Support\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Dedicated Account Manager\",\"isTicked\":false}"
+            ]
+          },
+          {
+            "rowHeader": "SSO",
+            "rowDescription": "Single Sign-On available for Enterprise Plans",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+            ]
+          },
+          {
+            "rowHeader": "Editorial Workflow",
+            "rowDescription": "Users can submit content changes that initiate a Pull Request in GitHub, so team members can review, give feedback, and approve updates before they’re published, ensuring quality and collaboration. ",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+            ]
+          },
+          {
+            "rowHeader": "AI Assist",
+            "rowDescription": "Check the Tina Roadmap for more details",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}"
+            ]
+          },
+          {
+            "rowHeader": "Billing unit",
+            "rowDescription": "Team and Business plans are bought per project. Enterprise covers every project in your organization.",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"Per project\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Entire organization\",\"isTicked\":false}"
+            ]
+          },
+          {
+            "rowHeader": "Repositories",
+            "rowDescription": "TinaCMS projects can be set up with multiple repositories if needed.",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+            ]
+          },
+          {
+            "rowHeader": "Documents",
+            "rowDescription": "Number of documents or content items",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited\",\"isTicked\":false}"
+            ]
+          },
+          {
+            "rowHeader": "Asset Size cap",
+            "rowCells": [
+              "{\"columnHeader\":\"Free\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"100 MB\",\"isTicked\":false}"
+            ]
+          }
+        ]
+      },
       "_template": "pricing"
     },
     {
@@ -325,195 +530,6 @@
         }
       ],
       "_template": "logoGrid"
-    },
-    {
-      "blockSettings": {
-        "isFullscreen": false
-      },
-      "tableHeader": "Plan Comparison",
-      "columnItems": [
-        {
-          "columnHeader": "Free",
-          "columnByLine": "$0 Forever",
-          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
-        },
-        {
-          "columnHeader": "Team",
-          "columnByLine": "$29/month",
-          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
-        },
-        {
-          "columnHeader": "Team Plus",
-          "columnByLine": "$49/month",
-          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
-        },
-        {
-          "isReccomended": true,
-          "columnHeader": "Business",
-          "columnByLine": "$299/month",
-          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
-        },
-        {
-          "columnHeader": "Enterprise",
-          "columnByLine": "Custom",
-          "columnHeaderLink": "mailto:info@tina.io"
-        }
-      ],
-      "rowItems": [
-        {
-          "rowHeader": "Annual Billing",
-          "rowDescription": "Save over 16% - pay annually and get 2 months free!",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"$290/year\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$490/year\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"$2,990/year\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
-          ]
-        },
-        {
-          "rowHeader": "Included Users",
-          "rowDescription": "Default number of users that are included in each plan",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"3\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"5\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"20\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
-          ]
-        },
-        {
-          "rowHeader": "Additional Users",
-          "rowDescription": "Get more users on your plan",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"$9/user\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$15/user\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"$18/user\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
-          ]
-        },
-        {
-          "rowHeader": "User Limit",
-          "rowDescription": "Maximum number of users on a plan",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"10\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"20\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited\",\"isTicked\":false}"
-          ]
-        },
-        {
-          "rowHeader": "Roles",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"2\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"2\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"3\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
-          ]
-        },
-        {
-          "rowHeader": "Community Support",
-          "rowDescription": "Active online Discord community forums and comprehensive documentation on tina.io/docs",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
-          ]
-        },
-        {
-          "rowHeader": "Premium Support",
-          "rowDescription": "Support options and custom support plans are available",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"Business Support\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Dedicated Account Manager\",\"isTicked\":false}"
-          ]
-        },
-        {
-          "rowHeader": "SSO",
-          "rowDescription": "Single Sign-On available for Enterprise Plans",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
-          ]
-        },
-        {
-          "rowHeader": "Editorial Workflow",
-          "rowDescription": "Users can submit content changes that initiate a Pull Request in GitHub, so team members can review, give feedback, and approve updates before they’re published, ensuring quality and collaboration. ",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
-          ]
-        },
-        {
-          "rowHeader": "AI Assist",
-          "rowDescription": "Check the Tina Roadmap for more details",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}"
-          ]
-        },
-        {
-          "rowHeader": "Projects",
-          "rowDescription": "All Tina plans are per-project",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"1\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"1\",\"isTicked\":false}"
-          ]
-        },
-        {
-          "rowHeader": "Repositories",
-          "rowDescription": "Tina projects can be set up with multiple repositories if needed.",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
-          ]
-        },
-        {
-          "rowHeader": "Documents",
-          "rowDescription": "Number of documents or content items",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited\",\"isTicked\":false}"
-          ]
-        },
-        {
-          "rowHeader": "Asset Size cap",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"100 MB\",\"isTicked\":false}"
-          ]
-        }
-      ],
-      "_template": "table"
     },
     {
       "blockSettings": {

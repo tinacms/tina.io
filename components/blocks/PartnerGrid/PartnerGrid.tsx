@@ -7,6 +7,7 @@ import {
   H1_HEADINGS_SIZE,
 } from '@/component/styles/typography';
 import { Container } from '../Container';
+import { ModalB } from '../ModalButton/ModalButton';
 
 const PartnerCard = ({ data }) => {
   const website =
@@ -104,6 +105,14 @@ const PartnerCard = ({ data }) => {
   );
 };
 
+// Same modal the navbar's "Contact Us" opens — there is no /contact route.
+const CONTACT_BUTTON = {
+  label: 'Contact us',
+  modal: 'ContactForm.tsx',
+  color: 'blueOutline',
+  shape: 'pill',
+};
+
 // Always the last card: the directory only lists partners who opted in, so a
 // visitor who sees no fit still needs a path to the ones who aren't listed.
 const GetInContactCard = ({ data }) => (
@@ -124,15 +133,9 @@ const GetInContactCard = ({ data }) => (
         {data.contactCardText}
       </p>
     )}
-    {data.contactCardEmail && (
-      <a
-        href={`mailto:${data.contactCardEmail}`}
-        className="mt-auto font-medium text-blue-500 hover:text-blue-700"
-        data-tina-field={tinaField(data, 'contactCardEmail')}
-      >
-        {data.contactCardEmail}
-      </a>
-    )}
+    <div className="mt-auto">
+      <ModalB items={[CONTACT_BUTTON]} />
+    </div>
   </div>
 );
 
@@ -151,6 +154,11 @@ const sectionId = (data, index) => {
 };
 
 export function PartnerGridBlock({ data, index }) {
+  // With a single partner the full-width grid reads as if partners are missing;
+  // center the lone card next to the contact card instead. The heading stays —
+  // it's what tells visitors this section is the partner list.
+  const isSingle = data.items?.length === 1;
+
   return (
     <section
       id={sectionId(data, index)}
@@ -177,12 +185,23 @@ export function PartnerGridBlock({ data, index }) {
             {data.subText}
           </p>
         )}
-        <div className="grid grid-cols-1 gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
-          {data.items?.map((item, i) => (
-            <PartnerCard key={`${item.name}-${i}`} data={item} />
-          ))}
-          <GetInContactCard data={data} />
-        </div>
+        {isSingle ? (
+          <div className="flex justify-center pt-8">
+            <div className="grid w-full max-w-3xl grid-cols-1 gap-8 sm:grid-cols-2">
+              {data.items.map((item, i) => (
+                <PartnerCard key={`${item.name}-${i}`} data={item} />
+              ))}
+              <GetInContactCard data={data} />
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
+            {data.items?.map((item, i) => (
+              <PartnerCard key={`${item.name}-${i}`} data={item} />
+            ))}
+            <GetInContactCard data={data} />
+          </div>
+        )}
       </Container>
     </section>
   );

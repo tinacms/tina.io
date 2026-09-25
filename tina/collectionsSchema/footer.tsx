@@ -353,6 +353,33 @@ export const footerCollection = {
                 },
               ],
             },
+            {
+              label: 'Modal Button',
+              name: 'modalButton',
+              type: 'object',
+              ui: {
+                itemProps: (item) => {
+                  return { label: `🍌 ${item?.label}` };
+                },
+                defaultItem: {
+                  variant: 'default',
+                  label: 'Secondary Action',
+                  icon: false,
+                  size: 'medium',
+                },
+              },
+              fields: [
+                ...modalButtonTemplateFields,
+                {
+                  name: 'icon2',
+                  label: 'Icon',
+                  type: 'string',
+                  options: iconOptions,
+                  description:
+                    'If you want a new icon added please ask a developer :)',
+                },
+              ],
+            },
           ],
         },
       ],

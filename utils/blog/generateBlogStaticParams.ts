@@ -13,8 +13,8 @@ export async function generateBlogStaticParams(locale: Locale) {
       let res = null;
       res =
         locale === 'zh'
-          ? await client.queries.postZhConnection({ after })
-          : await client.queries.postConnection({ after });
+          ? await client.queries.postZhSlugs({ after })
+          : await client.queries.postSlugs({ after });
       const connection =
         locale === 'zh'
           ? res?.data?.postZhConnection

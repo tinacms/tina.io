@@ -1,7 +1,7 @@
 {
   "examples": [
     {
-      "label": "Tina NextJS Starter",
+      "label": "TinaCMS NextJS Starter",
       "description": "A Next.js blog site built with TinaCMS.\n",
       "image": "/img/Tina_Cloud_Starter_pxdxfu.png",
       "link": "https://github.com/tinacms/tina-cloud-starter"
@@ -13,26 +13,26 @@
       "link": "https://github.com/tinacms/tina-react-starter"
     },
     {
-      "label": "Tina Self Hosted Demo",
+      "label": "TinaCMS Self Hosted Demo",
       "description": "A demo of how to use self-hosted TinaCMS with Nextjs.\\\n\\\nUses\n\n* Vercel KV\n* GitHub\n* Auth.js\n",
       "image": "/img/Tina_Self_Hosted_Demo_k4vpql.png",
       "link": "https://github.com/tinacms/tina-self-hosted-demo"
     },
     {
-      "label": "Tina Remix Starter",
+      "label": "TinaCMS Remix Starter",
       "description": "An example of how to use TinaCMS and remix.\n",
       "image": "/img/Tina_Remix_w3cpe4.png",
       "link": "https://github.com/tinacms/tina-remix-starter"
     },
     {
-      "label": "Tina Hugo Starter",
+      "label": "TinaCMS Hugo Starter",
       "description": "A starter showing how TinaCMS can be used with a static site generator like hugo. This starter could be modified to use any SSG.\n",
       "image": "/img/Tina_Hugo_Starter_bwulx5.png",
       "link": "https://github.com/tinacms/tina-hugo-starter"
     },
     {
-      "label": "Tina Self Hosted SSG Demo",
-      "description": "This demo shows how self hosted Tina works with static site generators. This demo uses 11ty but could be adapted to use any SSG.\n",
+      "label": "TinaCMS Self Hosted SSG Demo",
+      "description": "This demo shows how self hosted TinaCMS works with static site generators. This demo uses 11ty but could be adapted to use any SSG.\n",
       "image": "/img/Tina_Static_Starter_Self_Hosted_kknsnf.png",
       "link": "https://github.com/tinacms/tina-self-hosted-ssg-demo"
     },

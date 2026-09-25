@@ -1,0 +1,176 @@
+{
+  "versionNumber": "3.12.0",
+  "dateReleased": "2026-08-17T07:16:49Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "Add a Rename action to the Media Manager, backed by the local dev server.",
+          "pull_request_number": "7391",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7391",
+          "commit_hash": "ece366b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ece366bd5aa86e048d22f829319e41fe3d1267ba",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "Add media-manager search and a folder/file filter, and refresh the grid.",
+          "pull_request_number": "7323",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7323",
+          "commit_hash": "4a19d66",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4a19d669b069c0af959c6461cd60b5910aea6512",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat: add tina-markdown web component",
+          "pull_request_number": "7392",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7392",
+          "commit_hash": "4b7d9b9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4b7d9b9f116f7f649aae1a573c838a663f97d99d",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "refactor: facilitate token refresh through tinacloud",
+          "pull_request_number": "7304",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7304",
+          "commit_hash": "d7a1641",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d7a16416b1b4bc1ba0e2aabdddcf39ed1e4135d7",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "Bump `mermaid` to 11.16.1, picking up an upstream security fix (GHSA-c4c3-pg64-4m4v)",
+          "pull_request_number": "7422",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7422",
+          "commit_hash": "f014558",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f014558a7ece15964b3b2eda942c02fc609dc32f",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/apps/dependabot"
+        },
+        {
+          "changesDescription": "feat: add announcements banner",
+          "pull_request_number": "7388",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7388",
+          "commit_hash": "17931b7",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/17931b72762afb575505c383ee6355476207a44e",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "Collapse three icon libraries into `lucide-react` (~85 MB).",
+          "pull_request_number": "7216",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7216",
+          "commit_hash": "cf75e5b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/cf75e5b8dd3209203df9fe1ffbc12a9d965277f9",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "feat: when WorkOS is enabled, use a redirect-based workflow for authentication",
+          "pull_request_number": "7327",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7327",
+          "commit_hash": "5050709",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5050709dcbbc99530d6b284021c259d098d6455d",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "Drop `@headlessui/react` (~50 MB).",
+          "pull_request_number": "7216",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7216",
+          "commit_hash": "cf75e5b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/cf75e5b8dd3209203df9fe1ffbc12a9d965277f9",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "Stop shipping the `monaco-editor` package (~73 MB).",
+          "pull_request_number": "7214",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7214",
+          "commit_hash": "bd4df92",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/bd4df92a7e00bd74ee13eaf9f9b584fbb1a864ab",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "Fix the preview iframe going unresponsive after resizing the sidebar.",
+          "pull_request_number": "6403",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6403",
+          "commit_hash": "566f977",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/566f9775bc306f1a41806a29eb22182700765974",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        },
+        {
+          "changesDescription": "Add a dedicated `@tinacms/mdx/sanitize-url` subpath export containing just the URL-scheme sanitizer, and point `tinacms`'s rich-text renderer (`TinaMarkdown` / `StaticTinaMarkdown`) at it instead of the root `@tinacms/mdx` entry. Previously, importing `sanitizeUrl` pulled in `@tinacms/mdx`'s full remark/mdast/micromark markdown-parsing bundle (~2MB) into every site's client bundle, even though rich-text rendering only needs the ~15-line sanitizer. The root `@tinacms/mdx` export of `sanitizeUrl` is unchanged and still works.",
+          "pull_request_number": "7233",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7233",
+          "commit_hash": "5f14d96",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5f14d96fdba3d7a143827fc1cac9c7964c3f9b01",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "The media manager now lists assets from the v2 assets-api endpoint. Uploads and deletes are unchanged and stay on v1. Listing behaviour is identical — this is a transport-only move that sets up media search.",
+          "pull_request_number": "7322",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7322",
+          "commit_hash": "b6199da",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b6199da1eeea7de01d5216c9b50c9e158440f891",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Remove dead code left over from the `monaco-editor` removal in the mdx field plugin.",
+          "pull_request_number": "7231",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7231",
+          "commit_hash": "5112e60",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5112e60bd0c98f6de36f63dbf068d252993e586f",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "Give the exported Plate plugin arrays (`plugins`, `viewPlugins`, `createEditorPlugins`) an explicit type, so their emitted declarations no longer carry a `.pnpm/` store path.",
+          "pull_request_number": "7428",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7428",
+          "commit_hash": "8c8e297",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/8c8e297efb12324f23785a5f8f7acbceeb3f0a4a",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.9.0",
+          "commit_hash": "d7a1641",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d7a1641"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.2.0",
+          "commit_hash": "d7a1641",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d7a1641"
+        },
+        {
+          "changesDescription": "@tinacms/bridge@0.3.1",
+          "commit_hash": "d7a1641",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d7a1641"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.23",
+          "commit_hash": "d7a1641",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d7a1641"
+        }
+      ]
+    }
+  ]
+}

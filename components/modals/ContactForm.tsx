@@ -160,6 +160,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
   const messagePlaceholder = isAgency
     ? 'Tell us about your agency *'
     : config.messagePlaceholder;
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
@@ -468,7 +469,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         <Button
           type="submit"
           color="orange"
-          disabled={isProcessing}
+          disabled={isProcessing || !isValidEmail}
           className="px-6 py-2.5"
         >
           {isProcessing ? 'Sending...' : config.submitLabel}

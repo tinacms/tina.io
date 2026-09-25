@@ -1,0 +1,126 @@
+{
+  "versionNumber": "3.12.1",
+  "dateReleased": "2026-08-24T07:06:00Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Bump the final-form family to the TypeScript releases",
+          "pull_request_number": "7469",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7469",
+          "commit_hash": "e24fc0e",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/e24fc0eef00ecd4facdcbcdc78548fa8d78627e7",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Fix `Button` and `IconButton` not passing `disabled` to the DOM. Both components used the prop only to pick styling (`pointer-events-none`), which blocks the pointer but not the keyboard, so every disabled button in the CMS stayed focusable and could still be activated with Enter or Space. `busy` is now treated as disabled too, closing a double-submit path on in-flight buttons. `disabled` is omitted when `Button` renders as a tag that does not support it (`as='a'`).",
+          "pull_request_number": "7472",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7472",
+          "commit_hash": "d7cdea7",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d7cdea75219702574fa78b6adcc90c368e4e71eb",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Drop the deprecated `crypto-js` dependency",
+          "pull_request_number": "7468",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7468",
+          "commit_hash": "00a8b82",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/00a8b826d0f7bd663f5d9069e487606f71b98cfe",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Declare the field props that `react-final-form`'s index signature used to cover",
+          "pull_request_number": "7469",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7469",
+          "commit_hash": "e24fc0e",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/e24fc0eef00ecd4facdcbcdc78548fa8d78627e7",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Fix \"Save to new branch\" failing with \"Branch operation failed\" when the derived branch name is not a valid Git ref, e.g. when a collection's `path` has a trailing slash, producing `content/articles//foo.mdx` and the invalid ref `tina/articles//foo`. The default branch name derived from the file path, and any user-typed name, are now normalised to a valid ref: repeated and leading/trailing slashes collapse, characters Git forbids in refs (whitespace, control characters, `~ ^ : ? * [ \\` and the `@{` sequence) become hyphens, `..` runs collapse, and leading dots and trailing `.` / `.lock` are stripped per path component. Saving is disabled while the name normalises to an empty string. The same normalisation now runs when creating a branch from the branch switcher and from the deleted-branch recovery modal, and the duplicated `formatBranchName` helpers are unified into a single util (the legacy branch switcher previously deleted invalid characters; it now replaces them with hyphens like the main switcher).",
+          "pull_request_number": "6763",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6763",
+          "commit_hash": "8d94e35",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/8d94e354d9bb62ce52defb56c1e25ac114b0d971",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Add `data-test` hooks to group-list and blocks field controls",
+          "pull_request_number": "7469",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7469",
+          "commit_hash": "e24fc0e",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/e24fc0eef00ecd4facdcbcdc78548fa8d78627e7",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Fix two admin regressions that appear once the TinaCloud session check starts failing. Making the collection list settle instead of spinning left the previously fetched data in place, so switching collections rendered the last collection's documents under the new collection's heading; on a fresh mount it left `collection` undefined with no error set, so `GetCollection` ran its auto-open effect against it and threw, which the top-level error boundary caught and replaced the admin with a raw TypeError card. A failed session check now sends the user straight back to the login modal with a \"Your session has ended\" message, and signing back in returns them to the page they were on. `GetCollection` and `GetDocument` also stop handing `undefined` to their children, showing an \"Unable to load\" popup for non-auth load failures, and `GetCollection`'s auto-open effect bails out early, which clears the same crash on a failed `fetchCollection`.",
+          "pull_request_number": "7483",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7483",
+          "commit_hash": "4d08c25",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4d08c2546f96fa7b8fbef48b19e19c45e24b44d5",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Skip TinaCloud identity requests when no auth token is stored. Logged-out admin loads no longer produce misleading 401/CORS console errors; a clear console message now points at the login popup console instead. Also fixes an unawaited auth guard in GetDocument, stops the document view from loading forever when that guard rejects the request, and fixes an unhandled promise rejection when the project settings request fails.",
+          "pull_request_number": "7445",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7445",
+          "commit_hash": "37ca62b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/37ca62b66aadb2cb80daa280a25a390c0bc2e4af",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Add `data-test` hooks to list field controls",
+          "pull_request_number": "7469",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7469",
+          "commit_hash": "e24fc0e",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/e24fc0eef00ecd4facdcbcdc78548fa8d78627e7",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Fix the collection list and collection search hanging on the loading screen when the session check says the user is not signed in. Both now settle and render instead of spinning until the page is reloaded.",
+          "pull_request_number": "7445",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7445",
+          "commit_hash": "37ca62b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/37ca62b66aadb2cb80daa280a25a390c0bc2e4af",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/mdx@2.2.1",
+          "commit_hash": "4f90806",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4f90806"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.24",
+          "commit_hash": "4f90806",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4f90806"
+        },
+        {
+          "changesDescription": "@tinacms/bridge@0.3.1",
+          "commit_hash": "4f90806",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4f90806"
+        },
+        {
+          "changesDescription": "@tinacms/schema-tools@2.9.0",
+          "commit_hash": "4f90806",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4f90806"
+        }
+      ]
+    }
+  ]
+}

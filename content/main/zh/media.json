@@ -1,0 +1,104 @@
+{
+  "seo": {
+    "title": "TinaCMS 标志与品牌资源 —— 官方媒体资料包",
+    "description": "获取 TinaCMS 官方标志、图标与品牌资源。下载高质量文件，并遵循我们的规范，在你的项目中一致地呈现 TinaCMS。"
+  },
+  "blocks": [
+    {
+      "headline": "TinaCMS 标志与品牌资源",
+      "text": "",
+      "margin": "",
+      "spacing": "gap-12",
+      "buttons": [
+        {
+          "label": "下载压缩包",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tinaio.sharepoint.com/:u:/s/TinaMarketing/IQAdMdaH4n4-SZID34L4bFXZAb26XTimPBRwsoZfY1s4E1o?e=rUulCV&download=1",
+          "_template": "actions"
+        }
+      ],
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "_template": "hero"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": true
+      },
+      "features": [
+        {
+          "headline": "标志",
+          "text": "下载 SVG 与 PNG 格式的标志资源包\n",
+          "buttons": [
+            {
+              "label": "下载",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tinaio.sharepoint.com/:u:/s/TinaMarketing/IQAuaGVZUPqMTLzZLhoqhI9PAarv2KqjRMfkDOXLPHVnOXs?e=RaYmxZ&download=1",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/brand-assets/logo-black-on-background-min.png",
+              "_template": "image"
+            }
+          ],
+          "imageBackground": true
+        },
+        {
+          "headline": "背景图",
+          "text": "下载 TinaCMS 官方背景图与分隔元素\n",
+          "buttons": [
+            {
+              "label": "下载压缩包",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tinaio.sharepoint.com/:u:/s/TinaMarketing/IQDt9HH0D60ORrrgIGc3V5v2AVHgZVMrhnFgR8UbSIuHrW0?e=fGFLpY&download=1",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/brand-assets/background-min.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true,
+          "imageBackground": true
+        },
+        {
+          "headline": "字体",
+          "text": "Tina.io 与 TinaCMS 使用的官方字体为：标题使用 IBM Plex Sans，正文使用 Inter，代码块使用 Roboto Mono\n",
+          "media": [
+            {
+              "image": "/img/brand-assets/Tina-Media-Fonts-hero.png",
+              "_template": "image"
+            }
+          ],
+          "imageBackground": true
+        },
+        {
+          "headline": "角色设定图",
+          "text": "这张角色设定图用作生成羊驼 Tina 新图片与视频时的参考。\n\n要获得一致的结果，请使用类似这样的提示词……\n\n`Use the provided character sheet as the exact character reference. `\n\n`Do not change colors, facial features, proportions, or style. `\n\n`Generate an image of Tina the Llama standing up and covering eyes.`\n\n参见 SSW 规范[你会在图片和视频中生成一致的 AI 角色吗？](https://www.ssw.com.au/rules/consistent-ai-generated-characters)\n",
+          "alignCenter": false,
+          "headingOne": false,
+          "media": [
+            {
+              "image": "/ai-llamas/tina-character-sheet.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true,
+          "imageBackground": false
+        }
+      ],
+      "_template": "features"
+    }
+  ]
+}

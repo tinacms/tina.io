@@ -1,0 +1,94 @@
+---
+seo:
+  title: Rich-text fields get real TypeScript types | TinaCMS Blog
+  description: 'From @tinacms/cli 3.0.0, rich-text fields are typed as TinaMarkdownContent instead of any, so your editor can autocomplete them and TypeScript can catch mistakes in the code that reads them.'
+  canonicalUrl: 'https://tina.io/blog/typed-rich-text-fields'
+title: Rich-text fields get real TypeScript types
+date: '2026-09-14T00:00:00.000Z'
+last_edited: '2026-09-14T00:00:00.000Z'
+author: Matt Wicks
+prev: content/blog/august-2026-roundup.mdx
+next: ''
+---
+
+We care a lot about developer experience at TinaCMS, and TypeScript is at the core of it. So wherever we can give you a proper type instead of `any`, we want to.
+
+Rich-text fields have been the exception. From `@tinacms/cli` 3.0.0 and `tinacms` 3.14.0, they come back as `TinaMarkdownContent`, the same type `<TinaMarkdown>` already expects.
+
+**Heads up:** this is a breaking change for TypeScript users. Code that compiled against `any` can fail to compile after you upgrade. The table under Upgrading shows what to change.
+
+## Show me the code
+
+In `tina/__generated__/types.ts`, the type for a post query changes like this:
+
+```ts
+// Before
+export type PostQuery = { post: { title: string, _body: any } };
+
+// After
+export type PostQuery = { post: { title: string, _body: TinaMarkdownContent | null } };
+```
+
+With `any`, both of these lines compiled fine and then blew up at runtime. Now TypeScript catches them:
+
+```tsx
+const excerpt = data.post._body?.slice(0, 160);
+// Property 'slice' does not exist on type 'TinaMarkdownContent'.
+
+const count = data.post._body?.childrn.length;
+// Property 'childrn' does not exist on type 'TinaMarkdownContent'. Did you mean 'children'?
+```
+
+Your editor also suggests `type` and `children` as you type.
+
+If you wrap `<TinaMarkdown>` in a null check, you can drop it, since its `content` prop accepts `null` and `undefined` from `tinacms` 3.14.0:
+
+```tsx
+// Before
+{data.post._body && <TinaMarkdown content={data.post._body} />}
+
+// After
+<TinaMarkdown content={data.post._body} />
+```
+
+If you have components that take rich text as a prop, swap `any` for `TinaMarkdownContent` to get the same checks there:
+
+```tsx
+import { TinaMarkdown, type TinaMarkdownContent } from 'tinacms/dist/rich-text';
+
+export const Callout = ({ body }: { body: TinaMarkdownContent }) => (
+  <aside className="callout">
+    <TinaMarkdown content={body} />
+  </aside>
+);
+```
+
+## Why `_values` is still `any`
+
+Every document in the GraphQL API also has a `_values` field, which returns all of its fields as one JSON object. We tried typing it as `unknown`, but projects that read documents through it, like our [self-hosted demo](https://github.com/tinacms/tinacms/tree/main/examples/next/tina-self-hosted-demo), would need a cast on almost every line, and a cast is no safer than `any`. The better fix is a generated type for each collection's `_values`, and we're looking at that once [v4](https://tina.io/blog/tinacms-v4-is-coming) lands.
+
+## Upgrading
+
+Update to `tinacms` 3.14.0 and `@tinacms/cli` 3.0.0 together:
+
+```bash
+pnpm update --latest tinacms @tinacms/cli
+# or
+npm install tinacms@latest @tinacms/cli@latest
+```
+
+Start your dev server so the CLI regenerates your types, then run `tsc --noEmit` to see what TypeScript finds:
+
+| If your code | Change |
+| --- | --- |
+| Reads node properties other than `type` and `children`, such as `.text` | Add them to your own type, for example `TinaMarkdownContent & { text?: string }` |
+| Passes an optional rich-text field to `<TinaMarkdown>` | No change required. Optional: You can drop any null check around it. |
+| Has components that take rich text as an `any` prop | Optional: type the prop as `TinaMarkdownContent` |
+| Reads `_values` | Nothing. `_values` is still `any`. |
+| Has `.gql` queries | Nothing. Your queries and content stay the same. |
+
+If a rich-text field still comes back as `any` after you upgrade, or TypeScript flags code you think is fine, open an [issue](https://github.com/tinacms/tinacms/issues) or come and find us on [Discord](https://tina.io/discord).
+
+## Related links
+
+Pull request - [Type rich-text fields as TinaMarkdownContent instead of any #7229](https://github.com/tinacms/tinacms/pull/7229)

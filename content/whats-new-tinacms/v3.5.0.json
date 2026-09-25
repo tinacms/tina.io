@@ -6,7 +6,7 @@
       "changesTitle": "Minor Changes",
       "changesList": [
         {
-          "changesDescription": "Telemetry - We’ve added anonymous telemetry to help us understand how Tina is used and prioritize improvements in areas where it matters. No personal or sensitive data is collected, and the information cannot be used to identify individual users. Telemetry is used solely to improve performance, stability, and the overall user experience. You can opt-out at any time by disabling telemetry in your Tina config.",
+          "changesDescription": "Telemetry - We’ve added anonymous telemetry to help us understand how TinaCMS is used and prioritize improvements in areas where it matters. No personal or sensitive data is collected, and the information cannot be used to identify individual users. Telemetry is used solely to improve performance, stability, and the overall user experience. You can opt-out at any time by disabling telemetry in your TinaCMS config.",
           "pull_request_number": "6438",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/6438",
           "commit_hash": "f90d47b",

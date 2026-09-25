@@ -23,6 +23,7 @@ import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import TableBox from '../Table/table';
 
 const icons = {
   FaClock,
@@ -83,7 +84,7 @@ const PaidTier = ({ data, isMonthly }) => {
 
   return (
     <span className="animate-pop-in">
-      <div className="hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden">
+      <div className="hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden">
         {data.isStarred && (
           <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
             <div className="w-24 h-24 bg-orange-400 transform rotate-45"></div>
@@ -307,6 +308,11 @@ export function PricingBlock({ data }) {
           </div>
         ))}
       </div>
+      {data.comparisonTable && (
+        <div className="pt-20">
+          <TableBox data={data.comparisonTable} isMonthly={isMonthly} />
+        </div>
+      )}
       <style jsx>{`
         .responsive-grid {
           display: grid;

@@ -1,0 +1,68 @@
+{
+  "seo": {
+    "title": "用 TinaCMS 全面提升你的 SEO",
+    "description": "借助 TinaCMS 带来的灵活性与掌控力，释放你的 SEO 潜力。按需配置 SEO 字段，打造快速且对搜索引擎友好的网站。"
+  },
+  "blocks": [
+    {
+      "headline": "用 TinaCMS 提升你的 SEO。",
+      "text": "借助 TinaCMS 带来的灵活性与掌控力，充分释放你在 SEO 上的潜力。",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## 用 TinaCMS 全面提升你的 SEO\n\n有了 TinaCMS，主动权在你手中。你可以按需配置任意 SEO 字段，并借助无头 CMS 的能力，打造飞快且对搜索引擎友好的网站。\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "完全掌控 SEO",
+          "text": "根据你的策略与需求配置 SEO 字段，一切由你做主。"
+        },
+        {
+          "headline": "速度是关键",
+          "text": "TinaCMS 让你能够构建超快的网站，而速度正是 SEO 排名的关键因素。"
+        },
+        {
+          "headline": "Lighthouse 满分表现",
+          "text": "使用 TinaCMS 构建的站点可以拿到 Lighthouse 100 分，进一步助力你的 SEO。"
+        },
+        {
+          "headline": "开源前端",
+          "text": "TinaCMS 的前端代码完全开源，背后有活跃的社区和持续的更新。"
+        },
+        {
+          "headline": "同时支持 SSR 与静态站点",
+          "text": "既支持服务端渲染，也支持静态网站，让你的 SEO 策略更具灵活性。"
+        },
+        {
+          "headline": "无头 CMS",
+          "text": "作为无头 CMS，TinaCMS 提供了更高的灵活性与速度，从而带来更好的 SEO 表现。"
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "准备好提升你的 SEO 了吗？",
+      "text": "立即开始使用 TinaCMS。",
+      "buttons": [
+        {
+          "label": "用 Tina 优化你的 SEO",
+          "icon": false,
+          "variant": "default",
+          "size": "medium",
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
+        }
+      ],
+      "_template": "flying"
+    }
+  ]
+}

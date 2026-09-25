@@ -12,27 +12,27 @@ prev: content/blog-zh/introducing-tina-grande.mdx
 next: content/blog-zh/deprecating-tina-git-server.mdx
 ---
 
-## Tina + Next: 第二部分
+## TinaCMS + Next: 第二部分
 
-这篇博客是探索使用 Next.js + Tina 系列的一部分。在[第一部分](https://tinacms.org/blog/simple-markdown-blog-nextjs/)中，您学习了如何使用 Next 创建一个简单的基于 Markdown 的博客。在这篇文章中，您将通过配置 TinaCMS 为网站添加内容编辑功能。
+这篇博客是探索使用 Next.js + TinaCMS 系列的一部分。在[第一部分](https://tinacms.org/blog/simple-markdown-blog-nextjs/)中，您学习了如何使用 Next 创建一个简单的基于 Markdown 的博客。在这篇文章中，您将通过配置 TinaCMS 为网站添加内容编辑功能。
 
 ### Next.js 回顾 ▲
 
 [Next.js](https://nextjs.org/) 是一个由 [Vercel](https://vercel.com/) 团队构建的用于开发 Web 应用程序的 **React “元框架”**（一个基于框架构建的框架）。阅读[第一部分](/blog/simple-markdown-blog-nextjs/)以熟悉 Next.js 的基础知识。
 
-### Tina 概述 🦙
+### TinaCMS 概述 🦙
 
-[Tina](https://tina.io/) 是一个基于 Git 的无头内容管理系统，使开发人员和内容创作者能够无缝协作。使用 Tina，开发人员可以创建一个完全适合其网站的自定义可视化编辑体验。
+[TinaCMS](https://tina.io/) 是一个基于 Git 的无头内容管理系统，使开发人员和内容创作者能够无缝协作。使用 TinaCMS，开发人员可以创建一个完全适合其网站的自定义可视化编辑体验。
 
-体验 Tina 的最佳方式是使用它。我们希望通过本教程，您不仅能学会如何使用 Tina，还能了解 Tina 如何重新思考 CMS 的工作方式。
+体验 TinaCMS 的最佳方式是使用它。我们希望通过本教程，您不仅能学会如何使用 TinaCMS，还能了解 TinaCMS 如何重新思考 CMS 的工作方式。
 
 ## 让我们开始吧
 
 ![tinacms 编辑 gif](/gif/tina-nextjs.gif)
 
-本教程将向您展示如何安装和**配置 Tina 以编辑上周文章中创建的简单基于 Markdown 的博客**。如果您想深入了解基础博客的制作过程，请阅读本系列的[第一部分](/blog/simple-markdown-blog-nextjs/)。
+本教程将向您展示如何安装和**配置 TinaCMS 以编辑上周文章中创建的简单基于 Markdown 的博客**。如果您想深入了解基础博客的制作过程，请阅读本系列的[第一部分](/blog/simple-markdown-blog-nextjs/)。
 
-> 跳到这里查看 [Tina 文档](/docs/setup-overview/)
+> 跳到这里查看 [TinaCMS 文档](/docs/setup-overview/)
 
 ### 本地设置 🏡
 
@@ -45,7 +45,7 @@ $ git clone https://github.com/tinalabs/brevifolia-next-2022 next-tina-blog
 # 导航到目录
 $ cd next-tina-blog
 
-# 安装依赖 & 初始化 Tina
+# 安装依赖 & 初始化 TinaCMS
 $ yarn install
 $ npx @tinacms/cli@latest init
 
@@ -54,15 +54,15 @@ $ 您希望我们覆盖您的 _app.js 吗？是
 
 `npx @tinacms/cli@latest init` 命令在您的 Next.js 应用程序中执行以下操作：
 
-* 安装 Tina 所需的所有依赖
+* 安装 TinaCMS 所需的所有依赖
 * 在 .tina 目录中定义一个易于扩展的基本架构
-* 使用 Tina 包装您的 next.js 应用程序，以便任何页面都可以轻松编辑
+* 使用 TinaCMS 包装您的 next.js 应用程序，以便任何页面都可以轻松编辑
 * 在 demo 目录中创建示例内容
 * 编辑 package.json 以添加启动 tina 的脚本（dev、build、start）
 
 ### 快速测试
 
-现在您有了一个基本的 Tina 设置，您可以使用以下命令启动您的应用程序：
+现在您有了一个基本的 TinaCMS 设置，您可以使用以下命令启动您的应用程序：
 
 ```bash
 yarn dev
@@ -73,7 +73,7 @@ yarn dev
 * `http://localhost:3000/demo/blog/HelloWorld`
 * `http://localhost:4001/altair/`
 
-第一个 URL 将带您到 TinaCMS 的演示，它将向您展示 Tina 的强大功能，并提供一些信息链接供您查看。如果您导航到 [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld)，您将无法立即编辑。首先，您需要进入编辑模式。要进入编辑模式，请导航到 [http://localhost:3000/admin](http://localhost:3000/admin)，选择登录。然后返回到 [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld)。选择左上角的铅笔可以直接在前端编辑页面的标题和正文。当您点击保存时，您的更改将保存到 Markdown 文件中。
+第一个 URL 将带您到 TinaCMS 的演示，它将向您展示 TinaCMS 的强大功能，并提供一些信息链接供您查看。如果您导航到 [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld)，您将无法立即编辑。首先，您需要进入编辑模式。要进入编辑模式，请导航到 [http://localhost:3000/admin](http://localhost:3000/admin)，选择登录。然后返回到 [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld)。选择左上角的铅笔可以直接在前端编辑页面的标题和正文。当您点击保存时，您的更改将保存到 Markdown 文件中。
 
 > 想查看您的更改吗？打开位于 `/content/posts/HelloWorld.md` 的文件，您所做的更改将会在那里！这通过我们的内容 API 实现，我们将在本指南中更深入地探讨。
 
@@ -81,7 +81,7 @@ yarn dev
 
 ## 定义我们的内容结构
 
-Tina 的一个关键元素是定义一个架构，允许您塑造和与页面上的内容进行交互。打开项目，您将看到一个名为 `.tina` 的文件夹，其中包含一个 `schema.ts` 文件。此文件允许您指示 Tina 的内容 API 查找哪种内容类型、如何标记等！
+TinaCMS 的一个关键元素是定义一个架构，允许您塑造和与页面上的内容进行交互。打开项目，您将看到一个名为 `.tina` 的文件夹，其中包含一个 `schema.ts` 文件。此文件允许您指示 TinaCMS 的内容 API 查找哪种内容类型、如何标记等！
 
 在查看当前项目之前，让我们讨论一下内容的结构。我们的架构可以分为三个概念：`collections`、`fields` 和 `references`。每个都有其角色：
 
@@ -143,7 +143,7 @@ title: 'Bali —body, mind & soul'
 
 ### 对架构进行更改
 
-打开位于 `/.tina/schema.ts` 的 Tina `schema.ts` 文件。首先在我们提供的对象下方，您需要用您想要的内容替换当前集合：
+打开位于 `/.tina/schema.ts` 的 TinaCMS `schema.ts` 文件。首先在我们提供的对象下方，您需要用您想要的内容替换当前集合：
 
 ```diff
 {
@@ -221,7 +221,7 @@ export default defineSchema({
 
 您的 Markdown 文件现在由一个定义良好的架构支持，这为我们使用 GraphQL 查询文件内容铺平了道路。您会注意到，当在 Next.js 博客入门模板中导航时，什么都没有改变，这是因为您需要更新入门模板以使用您的 GraphQL 层，而不是直接访问 Markdown 文件。在下一节中，您将处理将前端转换为使用 TinaCMS。
 
-目前，Next 博客入门模板从文件系统中获取内容。但由于 Tina 带有一个文件系统之上的 GraphQL API，您将改为查询它。使用 GraphQL API 将允许您使用 TinaCMS 的强大功能，您将能够检索内容，还可以直接编辑和保存内容。
+目前，Next 博客入门模板从文件系统中获取内容。但由于 TinaCMS 带有一个文件系统之上的 GraphQL API，您将改为查询它。使用 GraphQL API 将允许您使用 TinaCMS 的强大功能，您将能够检索内容，还可以直接编辑和保存内容。
 
 ## 创建 getStaticPaths 查询
 
@@ -303,7 +303,7 @@ export async function getStaticPaths() {
 
 > 它只是一个帮助函数，向您本地运行的 GraphQL 服务器提供查询，该服务器在端口 4001 上启动。您也可以轻松地使用 fetch 或您选择的 http 客户端。
 
-在 `getStaticPaths` 函数内部，您可以构建对我们的内容 API 的请求。在发出请求时，Tina 期望传递查询或变更以及变量，这是一个示例：
+在 `getStaticPaths` 函数内部，您可以构建对我们的内容 API 的请求。在发出请求时，TinaCMS 期望传递查询或变更以及变量，这是一个示例：
 
 ```javascript
 staticRequest({
@@ -351,7 +351,7 @@ export async function getStaticPaths() {
 
 ## 创建 `getStaticProps` 查询
 
-`getStaticProps` 查询将向博客提供所有内容，这就是它当前的工作方式。当您使用 GraphQL API 时，Tina 将同时提供内容，并使内容团队能够直接在浏览器中编辑它。
+`getStaticProps` 查询将向博客提供所有内容，这就是它当前的工作方式。当您使用 GraphQL API 时，TinaCMS 将同时提供内容，并使内容团队能够直接在浏览器中编辑它。
 
 您需要从您的内容 API 中查询以下项目：
 
@@ -401,7 +401,7 @@ import { useTina } from 'tinacms/dist/edit-state';
 
 > 什么是 `useTina`？
 
-> `useTina` 是一个钩子，可用于使 Tina 内容的一部分在上下文中可编辑。它是代码分割的，因此在生产环境中，此钩子将简单地传递其数据值。在编辑模式中，它在侧边栏中注册一个可编辑的表单，并在用户输入时上下文更新其值。
+> `useTina` 是一个钩子，可用于使 TinaCMS 内容的一部分在上下文中可编辑。它是代码分割的，因此在生产环境中，此钩子将简单地传递其数据值。在编辑模式中，它在侧边栏中注册一个可编辑的表单，并在用户输入时上下文更新其值。
 
 您现在可以将您创建的查询用作变量，此变量将在您的 `getStaticProps` 和 `useTina` 钩子中使用。
 
@@ -480,7 +480,7 @@ const { data } = useTina({
   })
 ```
 
-这意味着您现在可以使用 Tina 编辑您的内容，但在此之前，您需要更新所有元素以使用您的新 Tina 驱动的数据。
+这意味着您现在可以使用 TinaCMS 编辑您的内容，但在此之前，您需要更新所有元素以使用您的新 TinaCMS 驱动的数据。
 
 ```diff
 - if (!frontmatter) return <></>
@@ -519,7 +519,7 @@ const { data } = useTina({
 
 ### 测试和编辑内容 ✨
 
-如果一切顺利，您的博客帖子现在可以通过 Tina 编辑了。让我们看看它的实际效果！
+如果一切顺利，您的博客帖子现在可以通过 TinaCMS 编辑了。让我们看看它的实际效果！
 
 通过运行 `yarn dev` 启动开发服务器，并在浏览器中打开一个博客帖子。继续进行编辑，然后在文本编辑器中检查源文件。如果您将浏览器和代码编辑器并排打开，您应该能够实时观察到更改在两个地方的反映！
 
@@ -529,12 +529,12 @@ const { data } = useTina({
 
 要添加 Markdown 支持，您需要做两件事。
 
-1. 告诉 Tina 如何使用不同的组件。
+1. 告诉 TinaCMS 如何使用不同的组件。
 2. 动态加载 Markdown 组件。
 
-#### 更新 Tina 架构
+#### 更新 TinaCMS 架构
 
-打开位于 `.tina` 文件夹中的 `schema.ts`。Tina 的一个优点是您可以扩展 UI 字段以满足您的确切需求，为此您可以使用 `ui` 对象并告诉 Tina 您想使用的组件。
+打开位于 `.tina` 文件夹中的 `schema.ts`。TinaCMS 的一个优点是您可以扩展 UI 字段以满足您的确切需求，为此您可以使用 `ui` 对象并告诉 TinaCMS 您想使用的组件。
 
 ```typescript
 ui: {
@@ -558,7 +558,7 @@ ui: {
 
 #### 更新 `_app.js`
 
-在打开您的 `_app.js` 文件之前，您需要从 Tina 安装 Markdown 插件。
+在打开您的 `_app.js` 文件之前，您需要从 TinaCMS 安装 Markdown 插件。
 
 ```bash,cp
 yarn add react-tinacms-editor

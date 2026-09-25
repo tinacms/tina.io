@@ -12,9 +12,9 @@ prev: content/blog/structure-your-content-with-graphql-in-tina.mdx
 next: content/blog/tina-is-in-beta.mdx
 ---
 
-# Tina now supports Cloudinary as a Media Manager
+# TinaCMS now supports Cloudinary as a Media Manager
 
-We released our public alpha just over a month ago and one thing that has come up in the feedback we have been collecting is the ability to use Tina's Media Manager. This was a core feature that gives content creators the ability to drag and drop their images or replace an image easily. We decided to start with Cloudinary, to allow users to keep their GitHub repositories lightweight.
+We released our public alpha just over a month ago and one thing that has come up in the feedback we have been collecting is the ability to use TinaCMS's Media Manager. This was a core feature that gives content creators the ability to drag and drop their images or replace an image easily. We decided to start with Cloudinary, to allow users to keep their GitHub repositories lightweight.
 
 ### Why did we start with Cloudinary?
 
@@ -23,7 +23,7 @@ Serving images for the web is not just about uploading one file in a specific fo
 
 ### What formats are supported?
 
-All image formats that are supported by Cloudinary are supported by Tina which are the following:
+All image formats that are supported by Cloudinary are supported by TinaCMS which are the following:
 
 JPG, PNG, GIF, BMP, TIFF, ICO, PDF, EPS, PSD, SVG, WebP, JXR, and WDP.
 
@@ -49,7 +49,7 @@ CLOUDINARY_API_SECRET=
 
 ### Adding Cloudinary to your application
 
-Now that you have installed the Tina Cloudinary package, we need to make some changes to our Tina application to add support for images. Firstly you will need to update your Tina client to include the Cloudinary package:
+Now that you have installed the TinaCMS Cloudinary package, we need to make some changes to our TinaCMS application to add support for images. Firstly you will need to update your TinaCMS client to include the Cloudinary package:
 
 ```js
 //Other imports
@@ -153,4 +153,4 @@ export default createMediaHandler({
 
 Now when you launch your application you will see a change in the sidebar, that gives you access to the media manager:
 
-Note that developers can [pass a `pageSize` option to the media store](https://github.com/tinacms/tina-graphql-gateway/blob/main/packages/next-tinacms-cloudinary/README.md) in order to decide how many media should be displayed per page in the manager. We'll continue improving Cloudinary integration and look into media caching later, for now, we feel it's already a huge step to make sure your content team can manage media like a pro in Tina.
+Note that developers can [pass a `pageSize` option to the media store](https://github.com/tinacms/tina-graphql-gateway/blob/main/packages/next-tinacms-cloudinary/README.md) in order to decide how many media should be displayed per page in the manager. We'll continue improving Cloudinary integration and look into media caching later, for now, we feel it's already a huge step to make sure your content team can manage media like a pro in TinaCMS.

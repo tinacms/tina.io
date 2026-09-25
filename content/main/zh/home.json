@@ -1,56 +1,59 @@
 {
   "seo": {
-    "title": "TinaCMS – 集成GitHub和Markdown的无头CMS",
-    "description": "将Github和Markdown的强大功能与TinaCMS集成，实现无缝内容管理。让开发者和创作者能够轻松地编辑、预览和管理静态及动态网站",
-    "canonicalUrl": "https://tina.io/zh",
+    "title": "TinaCMS —— GitHub 上排名第一的无头 CMS，配备出色的 Markdown 可视化编辑器",
+    "description": "用 TinaCMS 把 GitHub 与 Markdown 的能力结合起来，实现顺畅的内容管理。让开发者和创作者都能轻松编辑、预览和管理静态与动态站点。",
+    "canonicalUrl": "/",
     "hasCustomSuffix": true
   },
   "blocks": [
     {
-      "features": [
+      "title": "{站点、}文档与羊驼。省心省力",
+      "subtext": "用 TinaCMS 的可视化编辑器构建出色的网站，或用 TinaDocs 打造漂亮的文档站。两者都由 Git 驱动，专为看重使用体验的开发者而生。",
+      "buttons": [
         {
-          "headline": "网站、文档与羊驼，轻松无碍",
-          "text": "TinaCMS是一个开源的无头内容管理系统，支持Git，并内置版本控制功能。",
-          "buttons": [
+          "label": "npx create-tina-app@latest",
+          "helpText": "需要帮助？看看视频 —— 或查阅 [CLI 文档](/docs/introduction/using-starter)\n",
+          "starterTemplates": [
             {
-              "label": "立即体验在线编辑",
-              "icon": false,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://demo.tina.io/admin#/~",
-              "_template": "actions"
+              "title": "Astro",
+              "icon": "/Starters/astro.svg",
+              "link": "https://app.tina.io/quickstart"
             },
             {
-              "label": "预约演示",
-              "icon": false,
-              "color": "blueOutline",
-              "size": "medium",
-              "modal": "BookDemo.tsx",
-              "_template": "modalButton"
+              "title": "Next.js",
+              "icon": "/Starters/next.js.svg",
+              "link": "https://app.tina.io/quickstart"
             },
             {
-              "label": "npx create-tina-app@latest",
-              "_template": "codeButton"
+              "title": "TinaDocs",
+              "icon": "/Starters/tina-docs.svg",
+              "link": "https://app.tina.io/quickstart"
             }
           ],
-          "media": [
-            {
-              "src": "/gif/smashingmagazine-tinacms.gif",
-              "_template": "v2Video"
-            }
-          ],
-          "isFullScreen": false,
-          "isReversed": false,
-          "imageBackground": false
+          "_template": "codeButton"
         }
       ],
-      "_template": "features"
+      "buttonHorizontalAlignment": "left",
+      "image": "/ai-llamas/Relax-Llama.png",
+      "recentNewsBanner": {
+        "title": "TinaCMS v4 我们打算怎么做",
+        "link": "/blog/tinacms-v4-is-coming",
+        "openInNewTab": false,
+        "badge": {
+          "text": "新",
+          "icon": "/",
+          "position": "left",
+          "color": "orange"
+        },
+        "backgroundColor": "blueSecondary"
+      },
+      "_template": "heroV2"
     },
     {
       "blockSettings": {
         "isFullscreen": false
       },
-      "title": "深受以下企业信赖",
+      "title": "",
       "link": "",
       "items": [
         {
@@ -147,117 +150,85 @@
       "_template": "logoGrid"
     },
     {
-      "blockHeadline": "核心特性",
-      "items": [
+      "title": "你的一站式内容中枢",
+      "sectionEyebrow": "精简流程 · 有序组织 · 事半功倍",
+      "cards": [
         {
-          "headline": "可视化编辑",
-          "text": "实时查看编辑内容变化",
-          "icon2": "FaClock",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-visual-editing-v3.webm",
-          "button": {
-            "label": "了解更多",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "https://demo.tina.io/admin#/"
-          }
+          "textOnRight": true,
+          "themeColour": "tinaOrange",
+          "title": "TinaCMS",
+          "featureHeadline": "为开发者打造的可视化编辑器",
+          "featureText": "一款开源的无头 CMS，内置 Git 版本控制。可视化地编辑内容，同时保留开发者的完全掌控。",
+          "buttons": [
+            {
+              "label": "了解 TinaCMS",
+              "icon": true,
+              "shape": "square",
+              "variant": "orange",
+              "size": "medium",
+              "url": "/tinacms",
+              "_template": "actions"
+            },
+            {
+              "label": "试用编辑器",
+              "icon": false,
+              "shape": "square",
+              "variant": "ghostOutline",
+              "size": "medium",
+              "url": "https://demo.tina.io/admin#/~",
+              "_template": "actions"
+            }
+          ],
+          "image": "/Screenshot 2025-09-10 at 11.14.59 am.webp"
         },
         {
-          "headline": "开源",
-          "text": "Tina采用Apache 2.0许可协议。可以自托管或托管在TinaCloud上",
-          "icon2": "FaUnlock",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-open-source.webm",
-          "button": {
-            "label": "了解更多",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "https://github.com/tinacms/tinacms"
-          }
-        },
-        {
-          "headline": "本地开发",
-          "text": "在本地环境轻松配置Tina，与本地文件系统直接交互",
-          "icon2": "FaCodeBranch",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-local.webm",
-          "button": {
-            "label": "了解更多",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/setup-overview/"
-          }
-        },
-        {
-          "headline": "第三方资源管理",
-          "text": "将媒体资源存储在您的代码库中，或连接到S3、Cloudinary、DigitalOcean Spaces等服务。您也可以使用TinaCloud存储。",
-          "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
-          "button": {
-            "label": "了解更多",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/reference/media/overview"
-          }
-        },
-        {
-          "headline": "区块化构建",
-          "text": "使用预建模板或从头创建自定义组件 - 您可以完全掌控如何构建您的网站",
-          "icon2": "FaPuzzlePiece",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
-          "button": {
-            "label": "了解更多",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/editing/blocks"
-          }
-        },
-        {
-          "headline": "大规模Markdown支持",
-          "text": "Tina支持使用Markdown构建拥有10,000+页面的超快速网站，Markdown是您网站内容的最佳语言",
-          "icon2": "FaMarkdown",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm",
-          "button": {
-            "label": "了解更多",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/editing/overview"
-          }
-        },
-        {
-          "headline": "Git集成",
-          "text": "用户可以在界面内编辑、保存更改和请求审批 - 而开发者则可在GitHub中查看分支、提交和拉取请求",
-          "icon2": "FaGithub",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm",
-          "button": {
-            "label": "了解更多",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/drafts/editorial-workflow/"
-          }
-        },
-        {
-          "headline": "官方文档",
-          "text": "Tina的文档使用TinaCMS构建 - 快来看看吧！",
-          "icon2": "FaFileAlt",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-docs.webm",
-          "button": {
-            "label": "了解更多",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs"
-          }
+          "textOnRight": false,
+          "themeColour": "black",
+          "title": "TinaDocs",
+          "featureHeadline": "把漂亮的文档变简单",
+          "featureText": "一套构建在 TinaCMS 之上的完整文档站启动模板。零配置即可创建、编辑和发布精美文档。",
+          "buttons": [
+            {
+              "label": "了解 TinaDocs",
+              "icon": true,
+              "shape": "square",
+              "variant": "black",
+              "size": "medium",
+              "url": "/tinadocs",
+              "_template": "actions"
+            },
+            {
+              "label": "试用编辑器",
+              "icon": false,
+              "shape": "square",
+              "variant": "ghostOutline",
+              "size": "medium",
+              "url": "https://docsdemo.tina.io/admin/index.html#/~/docs",
+              "_template": "actions"
+            }
+          ],
+          "image": "/Screenshot 2025-09-10 at 12.10.41 pm.webp"
         }
       ],
-      "_template": "carouselFeature"
+      "_template": "featureCard"
     },
     {
-      "_template": "events"
+      "title": "答案是 {Markdown}。",
+      "subtitle": "问题是什么并不重要……",
+      "subtext": "LLM 用它思考。GEO 靠它运转。你的 CMS 也该如此。\n\nLLM 天生就懂 Markdown —— 它们就是在这种格式上训练出来的。Tina 把一切都以 Markdown 的形式存放在你的 Git 仓库里，所以你的内容从发布那一刻起就是干净的、可迁移的、对 AI 友好的。",
+      "featureTags": [
+        {
+          "label": "为 LLM 而生"
+        },
+        {
+          "label": "原生 Git"
+        },
+        {
+          "label": "开放格式"
+        }
+      ],
+      "secondaryImage": "/ai-llamas/Peek-Llama.png",
+      "_template": "markdownFeature"
     },
     {
       "blockSettings": {
@@ -270,43 +241,10 @@
       "_template": "videoEmbed"
     },
     {
-      "features": [
-        {
-          "headline": "与Tina专家对话",
-          "text": "正在为您的项目考虑使用Tina？立即预约30分钟与TinaCMS架构师的专业咨询",
-          "buttons": [
-            {
-              "label": "预约咨询",
-              "icon": true,
-              "color": "blue",
-              "size": "small",
-              "modal": "BookDemo.tsx",
-              "_template": "modalButton"
-            }
-          ],
-          "media": [
-            {
-              "image": "/img/TinaExpert.webp",
-              "_template": "image"
-            }
-          ],
-          "isReversed": true,
-          "imageBackground": false
-        }
-      ],
-      "_template": "features"
+      "_template": "events"
     },
     {
-      "blockSettings": {
-        "isFullscreen": false
-      },
-      "title2": "\"Tina 正在改变我们在 Unity 处理文档的方式\"",
-      "subtext": "Anton Iancu，AI 和文档产品工程经理",
-      "logo": "/img/logos/unity-logo.webp",
-      "_template": "quote"
-    },
-    {
-      "title": "开发者的最爱",
+      "title": "听听其他优秀用户怎么说",
       "testimonials": [
         {
           "name": "MadeWithReactJS",
@@ -437,48 +375,91 @@
       "_template": "testimonials"
     },
     {
-      "features": [
+      "title": "最新视频",
+      "featuredHeading": "精选视频",
+      "featuredPost": {
+        "title": "TinaCMS 与 GitHub —— SSW Rules 迁移实录",
+        "description": "Jake 带你走完 SSW Rules 站点从 Decap CMS + Gatsby 迁移到 TinaCMS + Next.js 的全过程。",
+        "url": "https://www.youtube.com/watch?v=lqqduKKhH_o",
+        "datePosted": "2026-01-16T13:00:00.000Z",
+        "authorName": "Jake Bayliss",
+        "authorUrl": "https://www.ssw.com.au/people/jake-bayliss/",
+        "imageUrl": "/jake-ssw-rules-video.png"
+      },
+      "youtubeVideos": [
         {
-          "headline": "编辑工作流程助您避免错误",
-          "text": "通过编辑工作流功能，用户可以在不使用GitHub或其他IDE的情况下，直接审阅和管理不同分支上的内容",
-          "buttons": [
-            {
-              "label": "编辑工作流程",
-              "icon": false,
-              "variant": "blue",
-              "size": "small",
-              "url": "/editorial-workflow",
-              "_template": "actions"
-            }
-          ],
-          "media": [
-            {
-              "thumbnailVideo": "/video/create-branch.webm",
-              "videoEmbedId": "gYukiULGqGc",
-              "figureCaption": "视频：运用编辑流程进行修改（1分钟）",
-              "_template": "videoThumbnailToInternalVideo"
-            }
-          ]
+          "embedUrl": "https://www.youtube.com/embed/TE72AZQODaw?si=IlIW0bxlj7KvOgIu",
+          "dateReleased": "2026-03-19T23:00:00.000Z",
+          "title": "用 Vibe Coding 写 TinaCMS 自定义组件",
+          "authorName": "Thomas Sepanosian",
+          "authorUrl": "https://www.ssw.com.au/people/thomas-sepanosian/"
         },
         {
-          "headline": "无与伦比的用户体验",
-          "text": "编辑Markdown、MDX和JSON文件的内容不再繁琐。Tina提供实时预览功能，让用户体验达到全新水平",
-          "media": [
-            {
-              "thumbnailVideo": "/video/click-to-edit.webm",
-              "videoEmbedId": "CsCQS7HIBv0",
-              "figureCaption": "视频：高效管理内容工作流程（2分钟）",
-              "_template": "videoThumbnailToInternalVideo"
-            }
-          ],
-          "isReversed": true
+          "embedUrl": "https://www.youtube.com/embed/TatnNqKPKIQ?si=KIn5BCJE5ZjbkaCM",
+          "dateReleased": "2026-02-19T23:00:00.000Z",
+          "title": "TinaCloud 为何与 GitHub 如此契合 | TinaCMS 数据层",
+          "authorName": "Eli Kent",
+          "authorUrl": "https://www.ssw.com.au/people/eli-kent/"
         }
       ],
-      "_template": "features"
+      "_template": "recentPosts"
     },
     {
-      "title": "最新文章",
-      "_template": "recentPosts"
+      "eyebrow": "我们的服务",
+      "title": "需要专业协助？",
+      "description": "无论你是刚启动第一个项目，还是在大规模管理内容，TinaCMS 团队都能帮到你。",
+      "services": [
+        {
+          "icon": "MdOutlineHeadsetMic",
+          "title": "优先支持",
+          "description": "直接对接 TinaCMS 资深开发者，解决技术卡点、排查故障并获取架构建议。",
+          "features": [
+            "优先修复缺陷",
+            "架构与最佳实践指导",
+            "专属支持对接人"
+          ],
+          "link": "/professional-services#priority-support"
+        },
+        {
+          "icon": "MdOutlineRocketLaunch",
+          "title": "上手辅导",
+          "description": "在我们团队的实操辅导下加速落地 TinaCMS。从初始配置到编辑培训，让你的团队迅速形成产出。",
+          "features": [
+            "从其他 CMS 平台迁移的协助",
+            "定制化配置",
+            "团队培训课程"
+          ],
+          "link": "/professional-services#onboarding"
+        },
+        {
+          "icon": "MdOutlineExtension",
+          "title": "定制功能",
+          "description": "有特殊需求？我们的团队可以开发定制插件、集成与功能，扩展 TinaCMS 以贴合你的内容工作流。",
+          "features": [
+            "定制插件开发",
+            "第三方集成",
+            "量身定制的编辑工作流"
+          ],
+          "link": "/professional-services#custom-features"
+        }
+      ],
+      "_template": "professionalServices"
+    },
+    {
+      "title": "和 Tina 专家聊聊",
+      "description": "正在为你的项目评估 Tina？预约 30 分钟通话，与 TinaCMS 架构师聊聊",
+      "buttons": [
+        {
+          "label": "预约通话",
+          "icon": false,
+          "shape": "square",
+          "color": "orange",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "callToAction"
     }
   ]
 }

@@ -43,12 +43,6 @@ export const partnerGridTemplate: Template = {
       },
     },
     {
-      name: 'contactCardEmail',
-      label: 'Contact Card Email',
-      type: 'string',
-      description: 'Shown as a mailto link under the contact card text.',
-    },
-    {
       name: 'items',
       label: 'Partners',
       type: 'object',

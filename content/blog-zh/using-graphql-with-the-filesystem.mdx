@@ -12,7 +12,7 @@ prev: content/blog-zh/tina-cloud-a-headless-cms-backed-by-git.mdx
 next: content/blog-zh/evolution-of-inline-editing.mdx
 ---
 
-今天我们想向您介绍Tina GraphQL网关，它为基于Git的内容管理带来了可靠性。这是提供强大结构化内容的关键部分，同时您的内容仍然完全可移植。
+今天我们想向您介绍TinaCMS GraphQL网关，它为基于Git的内容管理带来了可靠性。这是提供强大结构化内容的关键部分，同时您的内容仍然完全可移植。
 
 ## 克服文件系统的局限性
 
@@ -115,7 +115,7 @@ export function getAllPosts(fields = []) {
 
 ```markdown
 ---
-title: 'Why Tina is Great'
+title: 'Why TinaCMS is Great'
 excerpt: 'Lorem  ...'
 coverImage: '/assets/blog/dynamic-routing/cover.jpg'
 date: '2021-04-25T05:35:07.322Z'
@@ -146,7 +146,7 @@ Lorem ipsum dolor sit amet ...
 
 ***
 
-title: "Why Tina is Great"
+title: "Why TinaCMS is Great"
 excerpt: "Lorem ..."
 coverImage: "/assets/blog/dynamic-routing/cover.jpg"
 date: "2021-04-25T05:35:07.322Z"
@@ -177,13 +177,13 @@ author: \_authors/jj.md
 
 大多数CMS已经想出了各种方法来帮助解决这个问题：单独的沙盒环境、预览API和迁移SDK脚本——所有这些都有自己的一套麻烦。使用基于文件的内容，这些都不是必需的，*一切都一起移动和改变*。那么如果我们能将无头CMS的强大功能带到您的本地文件系统会怎么样？那会是什么样子？
 
-## 认识Tina内容API
+## 认识TinaCMS内容API
 
-今天我们介绍一个工具，它结合了无头CMS的强大功能和基于文件的内容的便利性和可移植性。**Tina内容API是一个从本地文件系统获取内容的GraphQL服务**。它将很快通过[TinaCloud](https://app.tina.io)提供，该服务连接到您的GitHub仓库，以提供相同的基于云的无头API。
+今天我们介绍一个工具，它结合了无头CMS的强大功能和基于文件的内容的便利性和可移植性。**TinaCMS内容API是一个从本地文件系统获取内容的GraphQL服务**。它将很快通过[TinaCloud](https://app.tina.io)提供，该服务连接到您的GitHub仓库，以提供相同的基于云的无头API。
 
 为了了解它是如何工作的，让我们对博客演示进行一些调整。
 
-首先安装Tina CLI：
+首先安装TinaCMS CLI：
 
 ```sh
 yarn add tina-graphql-gateway-cli
@@ -306,8 +306,8 @@ export default defineSchema({
 
 ```sh
 Started Filesystem GraphQL server on port: 4001
-Generating Tina config
-Tina config ======> /.tina/__generated__/config
+Generating TinaCMS config
+TinaCMS config ======> /.tina/__generated__/config
 Typescript types => /.tina/__generated__/types.ts
 GraphQL types ====> /.tina/__generated__/schema.gql
 ready - started server on 0.0.0.0:3000, url: http://localhost:3000
@@ -391,7 +391,7 @@ query BlogPostQuery($relativePath: String!) {
 }
 ```
 
-> 演示：[查看更改](https://github.com/tinacms/next-blog-starter-graphql/compare/split-author-data..add-tina-gql)我们为添加Tina GraphQL所做的更改
+> 演示：[查看更改](https://github.com/tinacms/next-blog-starter-graphql/compare/split-author-data..add-tina-gql)我们为添加TinaCMS GraphQL所做的更改
 
 ## 未完待续
 
