@@ -1,0 +1,46 @@
+---
+seo:
+  title: 'Spit Happens: September 2026 News - Better media, clearer workflows'
+title: 'Spit Happens: September 2026 News - Better media, clearer workflows'
+date: '2026-09-25T06:06:43.004Z'
+last_edited: '2026-09-25T07:01:10.619Z'
+author: The TinaCMS Team
+prev: content/blog/august-2026-roundup.mdx
+next: ''
+---
+
+The herd has been busy again 🦙. So far in September, TinaCMS core shipped three releases and TinaCloud shipped eight production releases. Stacking up to 90 feature and fix entries, plus 23 dependency entries. Here are a few changes worth catching up on:
+
+## 📦 TinaCMS: 3 releases, 18 changes
+
+### 🖼️ More control over media
+
+Image fields can now restrict accepted file types, and the rule also applies to list fields and the media picker ([#7477](https://github.com/tinacms/tinacms/pull/7477)). The Media Manager can rename assets in TinaCloud, including branch-aware renames ([#7423](https://github.com/tinacms/tinacms/pull/7423)).
+
+### ⚡ A lighter editor load
+
+Mermaid diagrams now load only when a document uses them. In the measured build, the entry bundle dropped from 6.34 MB to 5.70 MB, with the diagram library fetched separately when needed ([#7467](https://github.com/tinacms/tinacms/pull/7467)).
+
+### Fewer snags while editing
+
+Optional rich-text fields can now pass `null` or `undefined` straight to TinaMarkdown. Nested panel edits survive navigation, expired sessions return editors to login instead of leaving a misleading save error, and `Shift+Enter` line breaks now survive a save ([#7229](https://github.com/tinacms/tinacms/pull/7229), [#7520](https://github.com/tinacms/tinacms/pull/7520), [#7486](https://github.com/tinacms/tinacms/pull/7486), [#7452](https://github.com/tinacms/tinacms/pull/7452)).
+
+## ☁️ TinaCloud: 8 production releases, 72 feature and fix entries, 19 dependency entries
+
+### 🖼️ Media and indexing improvements
+
+Branch-aware media renaming is now available in TinaCloud. Indexing reports a specific failure instead of the catch-all “Please try again”; TinaCloud also checks schemas before reporting indexing as successful and can recover a failed index migration.
+
+## Keep up with socials
+
+We're posting regularly again - product updates, tutorials, and news from the team.
+
+* X: [@tinacms](https://x.com/tinacms)
+* LinkedIn: [TinaCMS](https://www.linkedin.com/company/tinacms)
+* YouTube: [@TinaCMS](https://youtube.com/@TinaCMS)
+* Bluesky: [@tina.io](https://bsky.app/profile/tina.io)
+* Discord: [Come chat with us!](https://tina.io/discord)
+
+That's the catch-up for now.
+
+Till next time 👋🦙
