@@ -1,18 +1,15 @@
 // Dynamic blog OG image (zh) as a Route Handler. See app/blog/og/[...slug]
 // for why this is a route handler rather than the opengraph-image convention.
 
-import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { isMissingBlogPostError } from 'utils/blog/isMissingBlogPostError';
 import { renderBlogOgImage } from 'utils/og/blogOgImage';
 
-const IS_EXPORT = process.env.EXPORT_MODE === 'static';
-
 export const dynamic = 'force-static';
-export const dynamicParams = !IS_EXPORT;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return IS_EXPORT ? generateBlogStaticParams('zh') : [];
+  return [];
 }
 
 export async function GET(

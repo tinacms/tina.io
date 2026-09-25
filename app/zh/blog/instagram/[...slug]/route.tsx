@@ -1,15 +1,12 @@
-import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { isMissingBlogPostError } from 'utils/blog/isMissingBlogPostError';
 import { renderBlogInstagramImage } from 'utils/og/blogInstagramImage';
 
-const IS_EXPORT = process.env.EXPORT_MODE === 'static';
-
 export const dynamic = 'force-static';
-export const dynamicParams = !IS_EXPORT;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return IS_EXPORT ? generateBlogStaticParams('zh') : [];
+  return [];
 }
 
 export async function GET(

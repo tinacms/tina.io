@@ -6,25 +6,19 @@
 // So we serve the image from a distinct prefix (/blog/og/<slug>) and point
 // `openGraph.images` at it from the post's generateMetadata.
 //
-// Rendered on-demand and cached (ISR): the first request for a post's image
-// renders it, then it's served from cache. A static export (output: 'export')
-// can't generate on-demand, so it must prebuild every image instead — gated on
-// the same EXPORT_MODE switch next.config.js uses. Fonts/photos load from
-// public/ on disk with a live production-host fallback (see utils/og/ogAssets),
-// so they resolve at build and at on-demand runtime.
+// Render on the first request and cache the image. Returning no static params
+// keeps image rendering out of the build. Assets load from disk or the public
+// production host at runtime (see utils/og/ogAssets).
 
-import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { isMissingBlogPostError } from 'utils/blog/isMissingBlogPostError';
 import { renderBlogOgImage } from 'utils/og/blogOgImage';
 
-const IS_EXPORT = process.env.EXPORT_MODE === 'static';
-
 export const dynamic = 'force-static';
-export const dynamicParams = !IS_EXPORT;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return IS_EXPORT ? generateBlogStaticParams('en') : [];
+  return [];
 }
 
 export async function GET(
