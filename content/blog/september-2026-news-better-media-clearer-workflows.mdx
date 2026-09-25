@@ -3,21 +3,19 @@ seo:
   title: 'Spit Happens: September 2026 News - Better media, clearer workflows'
 title: 'Spit Happens: September 2026 News - Better media, clearer workflows'
 date: '2026-09-25T06:06:43.004Z'
-last_edited: '2026-09-25T06:20:09.837Z'
+last_edited: '2026-09-25T06:43:05.500Z'
 author: The TinaCMS Team
 prev: content/blog/august-2026-roundup.mdx
 next: ''
 ---
 
-The herd has been busy again 🦙.
-
-Since August, TinaCMS and TinaCloud team shipped a total of **12 production releases** and **109 changes**. The team shipped 90 features and fixes, plus 23 dependency entries. Here are a few changes worth catching up on.
+The herd has been busy again 🦙. Since August 25, TinaCMS core shipped three releases and TinaCloud shipped eight production releases. Across their release notes, the teams listed 90 feature and fix entries, plus 23 dependency entries. Here are a few changes worth catching up on.
 
 ## 📦 TinaCMS: 3 releases, 18 changes
 
 ### 🖼️ More control over media
 
-Image fields can now restrict accepted file types, and the rule also applies to list fields and the media picker. The Media Manager can rename assets in TinaCloud, including branch-aware renames ([#4835](https://github.com/tinacms/tina.io/pull/4835), [#4887](https://github.com/tinacms/tina.io/pull/4887), [#7477](https://github.com/tinacms/tinacms/pull/7477), [#7423](https://github.com/tinacms/tinacms/pull/7423)).
+Image fields can now restrict accepted file types, and the rule also applies to list fields and the media picker ([#7477](https://github.com/tinacms/tinacms/pull/7477)). The Media Manager can rename assets in TinaCloud, including branch-aware renames ([#7423](https://github.com/tinacms/tinacms/pull/7423)).
 
 ### ⚡ A lighter editor load
 
@@ -31,15 +29,15 @@ Optional rich-text fields can now pass `null` or `undefined` straight to TinaMar
 
 ### 🔐 More useful admin and account tools
 
-AuthKit accounts can enrol in MFA. Staff can now find customer projects and manage project and organisation details, contributor seats, and change history from the admin panel ([#4889](https://github.com/tinacms/tina.io/pull/4889), [#4904](https://github.com/tinacms/tina.io/pull/4904)).
+AuthKit accounts can enrol in MFA ([#4101](https://github.com/tinacms/tinacloud/pull/4101)). Staff can find customer projects and manage project and organisation details, contributor seats, and change history from the admin panel ([#4195](https://github.com/tinacms/tinacloud/pull/4195), [#4197](https://github.com/tinacms/tinacloud/pull/4197), [#4198](https://github.com/tinacms/tinacloud/pull/4198), [#4199](https://github.com/tinacms/tinacloud/pull/4199)).
 
 ### 🖼️ Media and indexing improvements
 
-Branch-aware media renaming is here, and indexing reports a specific failure instead of the catch-all “Please try again”. TinaCloud also validates schemas before marking indexing successful and can recover failed index migrations ([#4821](https://github.com/tinacms/tina.io/pull/4821), [#4883](https://github.com/tinacms/tina.io/pull/4883), [#4891](https://github.com/tinacms/tina.io/pull/4891)).
+Branch-aware media renaming is here ([#3921](https://github.com/tinacms/tinacloud/pull/3921)), and indexing reports a specific failure instead of the catch-all “Please try again” ([#4069](https://github.com/tinacms/tinacloud/pull/4069)). TinaCloud also validates schemas before marking indexing successful ([#4100](https://github.com/tinacms/tinacloud/pull/4100)) and can recover failed index migrations ([#4120](https://github.com/tinacms/tinacloud/pull/4120)).
 
 ### 🧹 A little housekeeping that matters
 
-The team patched an XML parser issue that could break SST deployments, improved account and permission handling, and tidied dependencies across the Cloud services ([#4821](https://github.com/tinacms/tina.io/pull/4821), [#4830](https://github.com/tinacms/tina.io/pull/4830), [#4831](https://github.com/tinacms/tina.io/pull/4831)).
+The team patched an XML parser issue that could break SST deployments ([#4046](https://github.com/tinacms/tinacloud/pull/4046)), tightened organisation-role permissions ([#4066](https://github.com/tinacms/tinacloud/pull/4066)), and fixed a content API compression issue ([#4113](https://github.com/tinacms/tinacloud/pull/4113)).
 
 ## Keep up with socials
 
@@ -51,6 +49,6 @@ We're posting regularly again - product updates, tutorials, and news from the te
 * Bluesky: [@tina.io](https://bsky.app/profile/tina.io)
 * Discord: [Come chat with us!](https://tina.io/discord)
 
-That's the catch-up for now. Subscribe to the blog if you want these sent straight to your inbox.
+That's the catch-up for now. Subscribe to the blog if you'd like these sent straight to your inbox.
 
 Till next time 👋🦙
