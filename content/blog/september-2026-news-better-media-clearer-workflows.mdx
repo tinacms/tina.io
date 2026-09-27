@@ -27,6 +27,10 @@ The CLI moved to Vite 7, so installs now carry a single esbuild binary ([#7556](
 
 Optional rich-text fields can now pass `null` or `undefined` straight to TinaMarkdown. Nested panel edits survive navigation, expired sessions return editors to login instead of leaving a misleading save error, and `Shift+Enter` line breaks now survive a save ([#7229](https://github.com/tinacms/tinacms/pull/7229), [#7520](https://github.com/tinacms/tinacms/pull/7520), [#7486](https://github.com/tinacms/tinacms/pull/7486), [#7452](https://github.com/tinacms/tinacms/pull/7452)).
 
+### 🚀 V4 keeps taking shape
+
+The V4 field plugins grew up this month: **array** ([#7492](https://github.com/tinacms/tinacms/pull/7492)), **object** ([#7535](https://github.com/tinacms/tinacms/pull/7535)) and **reference** ([#7533](https://github.com/tinacms/tinacms/pull/7533)) all landed. There's now one consistent way to write a validation rule ([#7601](https://github.com/tinacms/tinacms/pull/7601)), and forms get lifecycle hooks you register by name and use per collection ([#7622](https://github.com/tinacms/tinacms/pull/7622)).
+
 ## ☁️ TinaCloud: 8 production releases, 72 feature and fix entries, 19 dependency entries
 
 ### 🖼️ Media and indexing improvements
