@@ -19,7 +19,9 @@ Image fields can now restrict accepted file types, and the rule also applies to 
 
 ### ⚡ A lighter editor load
 
-Mermaid diagrams now load only when a document uses them. In the measured build, the entry bundle dropped from 6.34 MB to 5.70 MB, with the diagram library fetched separately when needed ([#7467](https://github.com/tinacms/tinacms/pull/7467)).
+Mermaid diagrams now load only when a document uses them. In the measured build, the entry bundle dropped from 6.34 MB to 5.70 MB, with the diagram library fetched separately when needed ([#7467](https://github.com/tinacms/tinacms/pull/7467))
+
+The CLI moved to Vite 7, so installs now carry a single esbuild binary ([#7556](https://github.com/tinacms/tinacms/pull/7556)). We added CI size budgets to catch bloat before it ships, and `next-tinacms-azure` no longer bundles a second copy of Next.js ([#7316](https://github.com/tinacms/tinacms/pull/7316))..
 
 ### Fewer snags while editing
 
