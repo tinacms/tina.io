@@ -1,52 +1,74 @@
 ---
 seo:
-  title: 'Spit Happens: September 2026 News - Better media, clearer workflows'
-title: 'Spit Happens: September 2026 News - Better media, clearer workflows'
+  title: 'Spit Happens: September 2026 News - Pickier media, lighter editor'
+title: 'Spit Happens: September 2026 News - Pickier media, lighter editor'
 date: '2026-09-25T06:06:43.004Z'
-last_edited: '2026-09-25T07:01:10.619Z'
+last_edited: '2026-09-28T23:51:14.514Z'
 author: The TinaCMS Team
 prev: content/blog/august-2026-roundup.mdx
 next: ''
 ---
 
-The herd has been busy again 🦙. So far in September, TinaCMS core shipped three releases and TinaCloud shipped eight production releases. Stacking up to 90 feature and fix entries, plus 23 dependency entries. Here are a few changes worth catching up on:
+The herd has been busy again 🦙. In September we merged 112 pull requests across TinaCMS and TinaCloud and shipped 8 releases between them.
 
-## 📦 TinaCMS: 3 releases, 40 changes
+## 📦 TinaCMS: 3 releases
 
-### 🖼️ More control over media
+### 🖼️ Pickier media fields
 
-Image fields can now restrict accepted file types, and the rule also applies to list fields and the media picker ([#7477](https://github.com/tinacms/tinacms/pull/7477)). The Media Manager can rename assets in TinaCloud, including branch-aware renames ([#7423](https://github.com/tinacms/tinacms/pull/7423)).
+Image fields take a new [`accept` option](/docs/reference/types/image). Give it an extension, a category like `video` or `document`, or a list of either, and the field refuses any other file before it uploads. The Media Manager toolbar gets a [file type filter](/docs/reference/media/overview#filtering-by-file-type) too, so you can cut a big library down to the PDFs ([#7477](https://github.com/tinacms/tinacms/pull/7477)).
 
-### ⚡ A lighter editor load
+If you use TinaCloud, you can rename assets in the Media Manager. On an unprotected branch the rename happens at once. On a protected branch it goes through the [editorial workflow](/docs/tinacloud/editorial-workflow) like any other change ([#7423](https://github.com/tinacms/tinacms/pull/7423)).
 
-Mermaid diagrams now load only when a document uses them. In the measured build, the entry bundle dropped from 6.34 MB to 5.70 MB, with the diagram library fetched separately when needed ([#7467](https://github.com/tinacms/tinacms/pull/7467))
+### ⚡ A lighter editor
 
-The CLI moved to Vite 7, so installs now carry a single esbuild binary ([#7556](https://github.com/tinacms/tinacms/pull/7556)). We added CI size budgets to catch bloat before it ships, and `next-tinacms-azure` no longer bundles a second copy of Next.js ([#7316](https://github.com/tinacms/tinacms/pull/7316))..
+The rich-text editor used to download the [Mermaid](/docs/reference/rich-text-usage/mermaid) diagram library in every editing session, even when no document had a diagram. It now waits for a Mermaid code block to appear. That takes about 640 KB, or 10%, off the editor's main bundle ([#7467](https://github.com/tinacms/tinacms/pull/7467)).
 
-### Fewer snags while editing
+We moved the CLI to Vite 7, so an install pulls in one esbuild binary instead of two ([#7556](https://github.com/tinacms/tinacms/pull/7556)).
 
-Optional rich-text fields can now pass `null` or `undefined` straight to TinaMarkdown. Nested panel edits survive navigation, expired sessions return editors to login instead of leaving a misleading save error, and `Shift+Enter` line breaks now survive a save ([#7229](https://github.com/tinacms/tinacms/pull/7229), [#7520](https://github.com/tinacms/tinacms/pull/7520), [#7486](https://github.com/tinacms/tinacms/pull/7486), [#7452](https://github.com/tinacms/tinacms/pull/7452)).
+`next-tinacms-azure` stopped bundling its own copy of Next.js. We added size budgets to CI as well, so we see bloat before you download it ([#7316](https://github.com/tinacms/tinacms/pull/7316)).
+
+### 🩹 Fewer snags while editing
+
+If your session expires mid-edit, TinaCMS sends you back to the login screen. You used to get a save error that pointed at the wrong problem ([#7486](https://github.com/tinacms/tinacms/pull/7486)).
+
+`Shift+Enter` line breaks survive a save ([#7452](https://github.com/tinacms/tinacms/pull/7452)).
+
+Edits inside nested panels stay put when you navigate back ([#7520](https://github.com/tinacms/tinacms/pull/7520)).
+
+We typed rich-text fields as `TinaMarkdownContent` instead of `any`, and [`<TinaMarkdown>`](/docs/reference/types/rendering-markdown) accepts `null` or `undefined`. Pass an optional rich-text field straight in, no guard needed ([#7229](https://github.com/tinacms/tinacms/pull/7229)).
 
 ### 🚀 V4 keeps taking shape
 
-The V4 field plugins grew up this month: **array** ([#7492](https://github.com/tinacms/tinacms/pull/7492)), **object** ([#7535](https://github.com/tinacms/tinacms/pull/7535)) and **reference** ([#7533](https://github.com/tinacms/tinacms/pull/7533)) all landed. There's now one consistent way to write a validation rule ([#7601](https://github.com/tinacms/tinacms/pull/7601)), and forms get lifecycle hooks you register by name and use per collection ([#7622](https://github.com/tinacms/tinacms/pull/7622)).
+V4 is still in progress. This month we added the **array** ([#7492](https://github.com/tinacms/tinacms/pull/7492)), **object** ([#7535](https://github.com/tinacms/tinacms/pull/7535)) and **reference** ([#7533](https://github.com/tinacms/tinacms/pull/7533)) fields.
 
-## ☁️ TinaCloud: 8 production releases, 72 feature and fix entries, 19 dependency entries
+You write a validation rule one way now ([#7601](https://github.com/tinacms/tinacms/pull/7601)). Forms get lifecycle hooks that you register by name and turn on per collection ([#7622](https://github.com/tinacms/tinacms/pull/7622)).
 
-### 🖼️ Media and indexing improvements
+## ☁️ TinaCloud: 5 production releases
 
-Branch-aware media renaming is now available in TinaCloud. Indexing reports a specific failure instead of the catch-all “Please try again”; TinaCloud also checks schemas before reporting indexing as successful and can recover a failed index migration.
+### 🔎 Cataloging that tells you what went wrong
+
+Cataloging is the step where TinaCloud reads your repo so the editor can find your content.
+
+When cataloging fails, TinaCloud shows you the real error instead of "Please try again" ([#4069](https://github.com/tinacms/tinacloud/pull/4069)).
+
+TinaCloud checks your GraphQL schema before it marks cataloging as done ([#4100](https://github.com/tinacms/tinacloud/pull/4100)). If a catalog migration fails, TinaCloud can recover from it ([#4120](https://github.com/tinacms/tinacloud/pull/4120)).
+
+If a branch still won't catalog, the [TinaCloud troubleshooting guide](/docs/tinacloud/troubleshooting) walks through the usual causes.
+
+### 💅 A fresher dashboard
+
+We gave the [dashboard](/docs/tinacloud/dashboard) orange buttons and a llama on the welcome screen. The Create Project chooser works on small screens ([#4181](https://github.com/tinacms/tinacloud/pull/4181)).
+
+Dashboard forms mark required fields. They wait until you leave a field before they show an error ([#4162](https://github.com/tinacms/tinacloud/pull/4162)).
 
 ## Keep up with socials
 
-We're posting regularly again - product updates, tutorials, and news from the team.
+We post product updates, tutorials and team news here:
 
 * X: [@tinacms](https://x.com/tinacms)
 * LinkedIn: [TinaCMS](https://www.linkedin.com/company/tinacms)
 * YouTube: [@TinaCMS](https://youtube.com/@TinaCMS)
 * Bluesky: [@tina.io](https://bsky.app/profile/tina.io)
 * Discord: [Come chat with us!](https://tina.io/discord)
-
-That's the catch-up for now.
 
 Till next time 👋🦙
