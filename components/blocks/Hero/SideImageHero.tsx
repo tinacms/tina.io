@@ -11,11 +11,11 @@ const RISE_DELAY = { headline: 0, headline2: 0.12, body: 0.28 };
 const IMAGE_DELAY = 0.4;
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
-// Poster layout for the Hero block: headline and text on the left, the
-// Poster Image flying in on the right. Stacks with the image below on
+// Side image layout for the Hero block: headline and text on the left, the
+// Side Image flying in on the right. Stacks with the image below on
 // mobile. MotionConfig drops the movement (keeping a short fade) for
 // visitors who prefer reduced motion, without a server/client mismatch.
-export const PosterHero = ({ data }) => {
+export const SideImageHero = ({ data }) => {
   const Heading = data.blockSettings?.isHeadingOne ? 'h1' : 'h2';
 
   const rise = (delay: number) => ({
@@ -70,7 +70,7 @@ export const PosterHero = ({ data }) => {
               >
                 {data.buttons.map((button) => (
                   <RenderButton
-                    key={`posterHero-${button.label}`}
+                    key={`sideImageHero-${button.label}`}
                     button={button}
                   />
                 ))}
@@ -89,7 +89,7 @@ export const PosterHero = ({ data }) => {
               delay: IMAGE_DELAY,
             }}
             className="w-60 md:w-72 lg:w-96 justify-self-center md:justify-self-end"
-            data-tina-field={tinaField(data, 'posterImage')}
+            data-tina-field={tinaField(data, 'sideImage')}
           >
             <motion.div
               animate={{ y: [0, -12, 0] }}
@@ -101,7 +101,7 @@ export const PosterHero = ({ data }) => {
               className="relative aspect-3/4"
             >
               <Image
-                src={data.posterImage}
+                src={data.sideImage}
                 alt=""
                 fill={true}
                 priority={true}

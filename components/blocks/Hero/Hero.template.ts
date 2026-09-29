@@ -158,11 +158,11 @@ export const heroTemplate: Template = {
       ],
     },
     {
-      name: 'posterImage',
-      label: 'Poster Image',
+      name: 'sideImage',
+      label: 'Side Image',
       type: 'image',
       description:
-        'Switches to the poster layout: headline and text on the left, this image on the right (below on mobile). Works best with a transparent cut-out, e.g. /img/tina-llama/tina-llama-superhero.webp. Media and Mobile Text Size are not used in this layout.',
+        'Shows this image beside the headline and text (below them on mobile). Works best with a transparent cut-out, e.g. /img/tina-llama/tina-llama-superhero.webp. Media and Mobile Text Size are not used when a Side Image is set.',
     },
     {
       name: 'anchorId',

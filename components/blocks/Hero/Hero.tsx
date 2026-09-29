@@ -3,16 +3,14 @@ import RenderButton from 'utils/renderButtonArrayHelper';
 import {
   BLOCK_HEADINGS_SIZE,
   H1_HEADINGS_SIZE,
-  HERO_BODY_SIZE,
-  HERO_BODY_SIZE_SMALL_MOBILE,
 } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
-import { PosterHero } from './PosterHero';
+import { SideImageHero } from './SideImageHero';
 
 export function HeroBlock({ data, index }) {
-  if (data.posterImage) {
-    return <PosterHero key={index} data={data} />;
+  if (data.sideImage) {
+    return <SideImageHero key={index} data={data} />;
   }
 
   return (
@@ -63,9 +61,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
       {item.text && (
         <p
           className={
-            item.smallerMobileBodyText
-              ? HERO_BODY_SIZE_SMALL_MOBILE
-              : HERO_BODY_SIZE
+            item.smallerMobileBodyText ? 'text-lg lg:text-xl' : 'text-xl'
           }
           data-tina-field={tinaField(item, 'text')}
         >
