@@ -9,3 +9,7 @@ export const POSTER_HEADINGS_SIZE = 'text-7xl sm:text-8xl lg:text-9xl';
 export const HERO_BODY_SIZE = 'text-xl';
 
 export const HERO_BODY_SIZE_SMALL_MOBILE = 'text-lg lg:text-xl';
+
+// Hero intro paragraph, shared by the home page hero and the poster hero.
+export const HERO_BODY_TEXT =
+  'text-lg leading-relaxed font-normal text-neutral-text-secondary';

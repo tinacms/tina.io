@@ -22,7 +22,7 @@ const TextAndMediaColumnsComponent = ({ data }) => {
           })}
         </div>
         <div
-          className={`lg:col-span-3 py-12 lg:py-0 mx-12 md:mx-16 text-center lg:text-start lg:mx-30 my-auto relative row-start-1 ${
+          className={`lg:col-span-3 pt-8 lg:pt-0 mx-12 md:mx-16 text-center lg:text-start lg:mx-30 my-auto relative row-start-1 ${
             isVideoOnLeft ? 'lg:col-start-5' : 'lg:col-start-1'
           }`}
         >

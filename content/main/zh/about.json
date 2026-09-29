@@ -9,11 +9,9 @@
       "blockSettings": {
         "isHeadingOne": true
       },
-      "headline": "遇见",
-      "headline2": "TinaCMS",
+      "headline": "遇见TinaCMS",
       "text": " TinaCMS是一个面向开发者、由Git和Markdown驱动的开源内容管理系统。它提供实时预览、即时编辑功能，并为开发者提供无缝集成体验——同时确保内容创作者保持对内容的控制权。无需数据库，无需繁琐操作。",
       "posterImage": "/img/tina-llama/tina-llama-superhero.webp",
-      "smallerMobileBodyText": true,
       "_template": "hero"
     },
     {

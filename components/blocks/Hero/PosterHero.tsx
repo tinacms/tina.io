@@ -5,8 +5,7 @@ import Image from 'next/image';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import {
-  HERO_BODY_SIZE,
-  HERO_BODY_SIZE_SMALL_MOBILE,
+  HERO_BODY_TEXT,
   POSTER_HEADINGS_SIZE,
 } from '@/component/styles/typography';
 
@@ -15,9 +14,9 @@ const RISE_DELAY = { headline: 0, headline2: 0.12, body: 0.28 };
 const IMAGE_DELAY = 0.4;
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
-// Poster layout for the Hero block: Headline and Headline 2 set as a giant
-// black and orange pair, with the Poster Image flying in on the right.
-// Motion is skipped for visitors who prefer reduced motion.
+// Poster layout for the Hero block: a giant headline with the Poster Image
+// flying in on the right. Motion is skipped for visitors who prefer reduced
+// motion.
 export const PosterHero = ({ data }) => {
   const reduceMotion = useReducedMotion();
   const Heading = data.blockSettings?.isHeadingOne ? 'h1' : 'h2';
@@ -32,7 +31,7 @@ export const PosterHero = ({ data }) => {
     <section
       id={data.anchorId || undefined}
       className={`relative overflow-hidden scroll-mt-24 ${
-        data.margin || 'pt-24 pb-16 sm:pt-12 lg:pt-20 lg:pb-24'
+        data.margin || 'pt-24 sm:pt-12 lg:pt-20 lg:pb-24'
       }`}
     >
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
@@ -42,11 +41,11 @@ export const PosterHero = ({ data }) => {
           }`}
         >
           <Heading
-            className={`${POSTER_HEADINGS_SIZE} max-w-3xl font-ibm-plex font-bold leading-none tracking-tight`}
+            className={`${POSTER_HEADINGS_SIZE} max-w-lg font-ibm-plex leading-none tracking-tight`}
           >
             <motion.span
               {...rise(RISE_DELAY.headline)}
-              className="block text-gray-900"
+              className="block"
               data-tina-field={tinaField(data, 'headline')}
             >
               {data.headline}
@@ -54,7 +53,7 @@ export const PosterHero = ({ data }) => {
             {data.headline2 && (
               <motion.span
                 {...rise(RISE_DELAY.headline2)}
-                className="block text-orange-500"
+                className="block"
                 data-tina-field={tinaField(data, 'headline2')}
               >
                 {data.headline2}
@@ -65,11 +64,7 @@ export const PosterHero = ({ data }) => {
           {data.text && (
             <motion.p
               {...rise(RISE_DELAY.body)}
-              className={`max-w-xl leading-relaxed text-neutral-text-secondary ${
-                data.smallerMobileBodyText
-                  ? HERO_BODY_SIZE_SMALL_MOBILE
-                  : HERO_BODY_SIZE
-              }`}
+              className={`${HERO_BODY_TEXT} max-w-xl`}
               data-tina-field={tinaField(data, 'text')}
             >
               {data.text}
