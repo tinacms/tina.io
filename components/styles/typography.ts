@@ -4,5 +4,5 @@ export const BLOCK_HEADINGS_SIZE = 'text-3xl md:text-4xl lg:text-5xl';
 
 export const SECTION_HEADINGS_SIZE = 'text-xl md:text-2xl lg:text-3xl';
 
-// Body copy, matching the /versions page intro.
+// Standard body copy for paragraphs and list items.
 export const BODY_TEXT = 'text-lg text-gray-600';

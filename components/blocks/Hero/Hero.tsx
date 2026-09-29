@@ -10,7 +10,7 @@ import { SideImageHero } from './SideImageHero';
 
 export function HeroBlock({ data, index }) {
   if (data.sideImage) {
-    return <SideImageHero key={index} data={data} />;
+    return <SideImageHero data={data} />;
   }
 
   return (
