@@ -32,6 +32,7 @@ import {
 import { HiOutlineSparkles } from 'react-icons/hi2';
 import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
+import { BODY_TEXT } from '@/component/styles/typography';
 
 const icons = {
   FaClock,
@@ -100,7 +101,7 @@ const HighlightsSection = ({ data }) => {
                             className={`text-3xl mr-2 ${iconColorClass} inline`}
                           />
                         )}
-                        <span className="font-inter text-lg md:text-xl text-black">
+                        <span className={`font-inter ${BODY_TEXT}`}>
                           {iconItem.name}
                         </span>
                       </div>

@@ -4,10 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import {
-  HERO_BODY_TEXT,
-  POSTER_HEADINGS_SIZE,
-} from '@/component/styles/typography';
+import { BODY_TEXT, POSTER_HEADINGS_SIZE } from '@/component/styles/typography';
 
 // Entrance order: headline, headline 2, body and buttons, then the image.
 const RISE_DELAY = { headline: 0, headline2: 0.12, body: 0.28 };
@@ -64,7 +61,7 @@ export const PosterHero = ({ data }) => {
           {data.text && (
             <motion.p
               {...rise(RISE_DELAY.body)}
-              className={`${HERO_BODY_TEXT} max-w-xl`}
+              className={`${BODY_TEXT} max-w-xl`}
               data-tina-field={tinaField(data, 'text')}
             >
               {data.text}

@@ -10,6 +10,5 @@ export const HERO_BODY_SIZE = 'text-xl';
 
 export const HERO_BODY_SIZE_SMALL_MOBILE = 'text-lg lg:text-xl';
 
-// Hero intro paragraph, shared by the home page hero and the poster hero.
-export const HERO_BODY_TEXT =
-  'text-lg leading-relaxed font-normal text-neutral-text-secondary';
+// Body copy, matching the /versions page intro.
+export const BODY_TEXT = 'text-lg text-gray-600';
