@@ -25,11 +25,16 @@ export async function fetchBlogSlugs(locale: Locale): Promise<string[]> {
 
 const slugSets = new Map<Locale, Promise<Set<string>>>();
 
-// Fetched once per warm instance; a failed fetch is evicted so the next request retries.
+// Fetched once per warm instance; a failed or empty fetch is evicted so the next request retries.
 export function blogSlugSet(locale: Locale): Promise<Set<string>> {
   let cached = slugSets.get(locale);
   if (!cached) {
-    cached = fetchBlogSlugs(locale).then((slugs) => new Set(slugs));
+    cached = fetchBlogSlugs(locale).then((slugs) => {
+      if (slugs.length === 0) {
+        throw new Error(`No ${locale} blog slugs returned`);
+      }
+      return new Set(slugs);
+    });
     slugSets.set(locale, cached);
     cached.catch(() => slugSets.delete(locale));
   }
