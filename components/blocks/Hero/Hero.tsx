@@ -3,6 +3,8 @@ import RenderButton from 'utils/renderButtonArrayHelper';
 import {
   BLOCK_HEADINGS_SIZE,
   H1_HEADINGS_SIZE,
+  HERO_BODY_SIZE,
+  HERO_BODY_SIZE_SMALL_MOBILE,
 } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
@@ -60,7 +62,11 @@ export const HeroFeature = ({ item, spacing, children }) => {
       </div>
       {item.text && (
         <p
-          className={item.mobileTextSize ? 'text-lg lg:text-xl' : 'text-xl'}
+          className={
+            item.smallerMobileBodyText
+              ? HERO_BODY_SIZE_SMALL_MOBILE
+              : HERO_BODY_SIZE
+          }
           data-tina-field={tinaField(item, 'text')}
         >
           {item.text}

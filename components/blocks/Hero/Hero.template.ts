@@ -162,7 +162,7 @@ export const heroTemplate: Template = {
       label: 'Poster Image',
       type: 'image',
       description:
-        'Switches to the poster layout: a large two-line headline with its last word in orange, and this image on the right (e.g. /img/tina-llama/tina-llama-superhero.webp). Media, Buttons, Custom Margin and Custom Spacing are not shown in this layout.',
+        'Switches to the poster layout: Headline and Headline 2 in large type (Headline 2 in orange), with this image on the right. Keep each headline to a word or two. Works best with a transparent cut-out, e.g. /img/tina-llama/tina-llama-superhero.webp. Media is not shown in this layout.',
     },
     {
       name: 'anchorId',
