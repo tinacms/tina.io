@@ -7,12 +7,10 @@ export async function fetchBlogSlugs(locale: Locale): Promise<string[]> {
   let after: string | null = null;
 
   while (hasNextPage) {
-    const res =
-      locale === 'zh'
-        ? await client.queries.postZhSlugs({ after })
-        : await client.queries.postSlugs({ after });
     const connection =
-      locale === 'zh' ? res.data.postZhConnection : res.data.postConnection;
+      locale === 'zh'
+        ? (await client.queries.postZhSlugs({ after })).data.postZhConnection
+        : (await client.queries.postSlugs({ after })).data.postConnection;
     for (const edge of connection.edges ?? []) {
       const filename = edge?.node?._sys.filename;
       if (filename) {
