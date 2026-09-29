@@ -6,8 +6,13 @@ import {
 } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
+import { PosterHero } from './PosterHero';
 
 export function HeroBlock({ data, index }) {
+  if (data.posterImage) {
+    return <PosterHero key={index} data={data} />;
+  }
+
   return (
     <section
       key={index}

@@ -158,6 +158,13 @@ export const heroTemplate: Template = {
       ],
     },
     {
+      name: 'posterImage',
+      label: 'Poster Image',
+      type: 'image',
+      description:
+        'Switches to the poster layout: a large two-line headline with its last word in orange, and this image on the right (e.g. /img/tina-llama/tina-llama-superhero.webp). Media, Buttons, Custom Margin and Custom Spacing are not shown in this layout.',
+    },
+    {
       name: 'anchorId',
       label: 'Anchor ID',
       type: 'string',
