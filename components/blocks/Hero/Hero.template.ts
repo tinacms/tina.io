@@ -162,7 +162,7 @@ export const heroTemplate: Template = {
       label: 'Poster Image',
       type: 'image',
       description:
-        'Switches to the poster layout: a large headline with this image on the right. Keep the headline short. Works best with a transparent cut-out, e.g. /img/tina-llama/tina-llama-superhero.webp. Media and Mobile Text Size are not used in this layout.',
+        'Switches to the poster layout: headline and text on the left, this image on the right (below on mobile). Works best with a transparent cut-out, e.g. /img/tina-llama/tina-llama-superhero.webp. Media and Mobile Text Size are not used in this layout.',
     },
     {
       name: 'anchorId',
