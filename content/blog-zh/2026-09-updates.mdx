@@ -1,0 +1,74 @@
+---
+seo:
+  title: '意外事件：2026年9月新闻 - 更挑剔的媒体，更轻量的编辑器'
+title: '意外事件：2026年9月新闻 - 更挑剔的媒体，更轻量的编辑器'
+date: '2026-09-25T06:06:43.004Z'
+last_edited: '2026-09-28T23:51:14.514Z'
+author: TinaCMS团队
+prev: content/blog-zh/august-2026-roundup.mdx
+next: ''
+---
+
+团队又忙碌起来了 🦙。在9月，我们在TinaCMS和TinaCloud中合并了112个拉取请求，并在它们之间发布了8个版本。
+
+## 📦 TinaCMS: 3个版本
+
+### 🖼️ 更挑剔的媒体字段
+
+图像字段新增了一个[`accept`选项](/docs/reference/types/image)。给它一个扩展名、一个类别如`video`或`document`，或一个列表，字段在上传前会拒绝任何其他文件。媒体管理工具栏也获得了一个[文件类型过滤器](/docs/reference/media/overview#filtering-by-file-type)，这样你可以将一个大型库缩减到PDF文件（[#7477](https://github.com/tinacms/tinacms/pull/7477)）。
+
+如果你使用TinaCloud，你可以在媒体管理器中重命名资产。在未保护的分支上，重命名会立即生效。在受保护的分支上，它会像其他更改一样通过[编辑工作流程](/docs/tinacloud/editorial-workflow)（[#7423](https://github.com/tinacms/tinacms/pull/7423)）。
+
+### ⚡ 更轻量的编辑器
+
+富文本编辑器过去在每个编辑会话中都会下载[Mermaid](/docs/reference/rich-text-usage/mermaid)图表库，即使没有文档包含图表。现在它会等待Mermaid代码块出现。这减少了大约640 KB，或10%的编辑器主包大小（[#7467](https://github.com/tinacms/tinacms/pull/7467)）。
+
+我们将CLI迁移到Vite 7，因此安装时只会拉取一个esbuild二进制文件而不是两个（[#7556](https://github.com/tinacms/tinacms/pull/7556)）。
+
+`next-tinacms-azure`停止捆绑自己的Next.js副本。我们还在CI中添加了大小预算，因此在你下载之前我们就能看到膨胀（[#7316](https://github.com/tinacms/tinacms/pull/7316)）。
+
+### 🩹 编辑时更少的障碍
+
+如果你的会话在编辑中途过期，TinaCMS会将你送回登录屏幕。过去你会收到一个指向错误问题的保存错误（[#7486](https://github.com/tinacms/tinacms/pull/7486)）。
+
+`Shift+Enter`换行符在保存后仍然存在（[#7452](https://github.com/tinacms/tinacms/pull/7452)）。
+
+在嵌套面板内的编辑在你导航返回时保持不变（[#7520](https://github.com/tinacms/tinacms/pull/7520)）。
+
+我们将富文本字段类型化为`TinaMarkdownContent`而不是`any`，并且[`<TinaMarkdown>`](/docs/reference/types/rendering-markdown)接受`null`或`undefined`。直接传递一个可选的富文本字段，无需保护（[#7229](https://github.com/tinacms/tinacms/pull/7229)）。
+
+### 🚀 V4持续成型
+
+V4仍在进行中。本月我们添加了**数组**（[#7492](https://github.com/tinacms/tinacms/pull/7492)）、**对象**（[#7535](https://github.com/tinacms/tinacms/pull/7535)）和**引用**（[#7533](https://github.com/tinacms/tinacms/pull/7533)）字段。
+
+你现在可以用一种方式编写验证规则（[#7601](https://github.com/tinacms/tinacms/pull/7601)）。表单获得生命周期钩子，你可以按名称注册并在每个集合中启用（[#7622](https://github.com/tinacms/tinacms/pull/7622)）。
+
+## ☁️ TinaCloud: 5个生产版本
+
+### 🔎 告诉你出错原因的目录编制
+
+目录编制是TinaCloud读取你的仓库以便编辑器找到你的内容的步骤。
+
+当目录编制失败时，TinaCloud会显示真实错误而不是“请重试”（[#4069](https://github.com/tinacms/tinacloud/pull/4069)）。
+
+TinaCloud在标记目录编制完成之前检查你的GraphQL模式（[#4100](https://github.com/tinacms/tinacloud/pull/4100)）。如果目录迁移失败，TinaCloud可以从中恢复（[#4120](https://github.com/tinacms/tinacloud/pull/4120)）。
+
+如果一个分支仍然无法进行目录编制，[TinaCloud故障排除指南](/docs/tinacloud/troubleshooting)会逐步介绍常见原因。
+
+### 💅 更清新的仪表板
+
+我们给[仪表板](/docs/tinacloud/dashboard)添加了橙色按钮和欢迎屏幕上的一只羊驼。创建项目选择器在小屏幕上也能工作（[#4181](https://github.com/tinacms/tinacloud/pull/4181)）。
+
+仪表板表单标记必填字段。它们在你离开字段之前不会显示错误（[#4162](https://github.com/tinacms/tinacloud/pull/4162)）。
+
+## 跟上社交动态
+
+我们在这里发布产品更新、教程和团队新闻：
+
+* X: [@tinacms](https://x.com/tinacms)
+* LinkedIn: [TinaCMS](https://www.linkedin.com/company/tinacms)
+* YouTube: [@TinaCMS](https://youtube.com/@TinaCMS)
+* Bluesky: [@tina.io](https://bsky.app/profile/tina.io)
+* Discord: [来和我们聊天！](https://tina.io/discord)
+
+下次见 👋🦙
