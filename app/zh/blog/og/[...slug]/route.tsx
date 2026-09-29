@@ -1,8 +1,8 @@
 // Dynamic blog OG image (zh) as a Route Handler. See app/blog/og/[...slug]
 // for why this is a route handler rather than the opengraph-image convention.
 
+import { blogSlugSet } from 'utils/blog/blogSlugs';
 import { getBlogPost } from 'utils/blog/getBlogPost';
-import { isMissingBlogPostError } from 'utils/blog/isMissingBlogPostError';
 import { renderBlogOgImage } from 'utils/og/blogOgImage';
 
 export const dynamic = 'force-static';
@@ -17,17 +17,11 @@ export async function GET(
   { params }: { params: { slug: string[] } },
 ) {
   const slugPath = params.slug.join('/');
-  let post: Awaited<ReturnType<typeof getBlogPost>>['post'];
-  try {
-    ({ post } = await getBlogPost('zh', slugPath));
-  } catch (error) {
-    if (!isMissingBlogPostError(error, 'zh', slugPath)) {
-      throw error;
-    }
+  if (!(await blogSlugSet('zh')).has(slugPath)) {
     return new Response(null, { status: 404 });
   }
+  const { post } = await getBlogPost('zh', slugPath);
   if (!post) {
-    // Unknown slug: 404 rather than render + ISR-cache a generic fallback image.
     return new Response(null, { status: 404 });
   }
   return renderBlogOgImage({

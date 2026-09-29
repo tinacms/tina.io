@@ -10,8 +10,8 @@
 // keeps image rendering out of the build. Assets load from disk or the public
 // production host at runtime (see utils/og/ogAssets).
 
+import { blogSlugSet } from 'utils/blog/blogSlugs';
 import { getBlogPost } from 'utils/blog/getBlogPost';
-import { isMissingBlogPostError } from 'utils/blog/isMissingBlogPostError';
 import { renderBlogOgImage } from 'utils/og/blogOgImage';
 
 export const dynamic = 'force-static';
@@ -26,17 +26,11 @@ export async function GET(
   { params }: { params: { slug: string[] } },
 ) {
   const slugPath = params.slug.join('/');
-  let post: Awaited<ReturnType<typeof getBlogPost>>['post'];
-  try {
-    ({ post } = await getBlogPost('en', slugPath));
-  } catch (error) {
-    if (!isMissingBlogPostError(error, 'en', slugPath)) {
-      throw error;
-    }
+  if (!(await blogSlugSet('en')).has(slugPath)) {
     return new Response(null, { status: 404 });
   }
+  const { post } = await getBlogPost('en', slugPath);
   if (!post) {
-    // Unknown slug: 404 rather than render + ISR-cache a generic fallback image.
     return new Response(null, { status: 404 });
   }
   return renderBlogOgImage({

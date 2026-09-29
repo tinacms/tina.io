@@ -1,5 +1,5 @@
+import { blogSlugSet } from 'utils/blog/blogSlugs';
 import { getBlogPost } from 'utils/blog/getBlogPost';
-import { isMissingBlogPostError } from 'utils/blog/isMissingBlogPostError';
 import { renderBlogInstagramImage } from 'utils/og/blogInstagramImage';
 
 export const dynamic = 'force-static';
@@ -14,17 +14,11 @@ export async function GET(
   { params }: { params: { slug: string[] } },
 ) {
   const slugPath = params.slug.join('/');
-  let post: Awaited<ReturnType<typeof getBlogPost>>['post'];
-  try {
-    ({ post } = await getBlogPost('zh', slugPath));
-  } catch (error) {
-    if (!isMissingBlogPostError(error, 'zh', slugPath)) {
-      throw error;
-    }
+  if (!(await blogSlugSet('zh')).has(slugPath)) {
     return new Response(null, { status: 404 });
   }
+  const { post } = await getBlogPost('zh', slugPath);
   if (!post) {
-    // Unknown slug: 404 rather than render + ISR-cache a generic fallback image.
     return new Response(null, { status: 404 });
   }
   return renderBlogInstagramImage({
