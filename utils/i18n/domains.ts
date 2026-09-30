@@ -53,6 +53,19 @@ export function isEnHost(rawHost: string | null | undefined): boolean {
   return EN_HOSTS.has(normaliseHost(rawHost));
 }
 
+/** Plausible site ID for a supported production host; previews stay untracked. */
+export function plausibleSiteIdForHost(
+  rawHost: string | null | undefined,
+): 'tina.io' | 'tinaio.cn' | undefined {
+  if (isEnHost(rawHost)) {
+    return 'tina.io';
+  }
+  if (isZhHost(rawHost)) {
+    return 'tinaio.cn';
+  }
+  return undefined;
+}
+
 /**
  * Locale for a request host. Behind the China reverse proxy the real hostname
  * arrives in X-Forwarded-Host, so callers should prefer that over Host.

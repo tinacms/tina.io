@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
-import { isEnHost, isZhHost } from '@/utils/i18n/domains';
+import { plausibleSiteIdForHost } from '@/utils/i18n/domains';
 
 let plausibleInitialized = false;
 let plausibleInitPromise: Promise<void> | undefined;
@@ -32,7 +32,8 @@ const initPlausible = () => {
   }
 
   const hostname = window.location.hostname;
-  if (!isEnHost(hostname) && !isZhHost(hostname)) {
+  const plausibleSiteId = plausibleSiteIdForHost(hostname);
+  if (!plausibleSiteId) {
     return;
   }
 
@@ -44,9 +45,8 @@ const initPlausible = () => {
       }
 
       init({
-        // Use one Plausible site ID for both country domains; hostname remains
-        // available in the event URL for filtering in the shared dashboard.
-        domain: 'tina.io',
+        // Keep the country domains on separate Plausible sites for comparison.
+        domain: plausibleSiteId,
         endpoint: '/p/e',
         transformRequest: (payload) => (hasAnalyticsConsent() ? payload : null),
       });
