@@ -8,6 +8,7 @@ import {
 } from 'utils/fetchPackageInfo';
 import { formatPublishedDate } from 'utils/formatPublishedDate';
 import RenderButton from 'utils/renderButtonArrayHelper';
+import { BODY_TEXT } from '@/component/styles/typography';
 import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import { TINA_PACKAGES, type TinaPackage } from './packages';
 
@@ -83,7 +84,7 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
             </span>
           </h1>
           {description && (
-            <p className="mt-4 max-w-2xl text-balance text-lg text-gray-600">
+            <p className={`mt-4 max-w-2xl text-balance ${BODY_TEXT}`}>
               {description}
             </p>
           )}

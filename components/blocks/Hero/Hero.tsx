@@ -6,8 +6,13 @@ import {
 } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
+import { SideImageHero } from './SideImageHero';
 
 export function HeroBlock({ data, index }) {
+  if (data.sideImage) {
+    return <SideImageHero data={data} />;
+  }
+
   return (
     <section
       key={index}
@@ -55,7 +60,9 @@ export const HeroFeature = ({ item, spacing, children }) => {
       </div>
       {item.text && (
         <p
-          className={item.mobileTextSize ? 'text-lg lg:text-xl' : 'text-xl'}
+          className={
+            item.smallerMobileBodyText ? 'text-lg lg:text-xl' : 'text-xl'
+          }
           data-tina-field={tinaField(item, 'text')}
         >
           {item.text}

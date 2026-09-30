@@ -247,6 +247,10 @@ module.exports = {
           from: { opacity: '0', transform: 'translateY(0.125rem)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
+        bob: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-0.75rem)' },
+        },
       },
       animation: {
         jelly: 'jelly 0.6s ease',
@@ -258,6 +262,7 @@ module.exports = {
         'slide-down': 'slideDown 500ms ease-out',
         shimmer: 'shimmer 1.6s ease-in-out infinite',
         'row-in': 'row-in 240ms ease-out both',
+        bob: 'bob 5s ease-in-out infinite',
       },
       backgroundSize: {
         skeleton: '200% 100%',
