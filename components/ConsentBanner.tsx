@@ -3,8 +3,59 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
+import { isEnHost, isZhHost } from '@/utils/i18n/domains';
 
 let plausibleInitialized = false;
+let plausibleInitPromise: Promise<void> | undefined;
+
+const hasAnalyticsConsent = () => {
+  const savedConsent = Cookies.get('consentGiven');
+  if (!savedConsent) {
+    return false;
+  }
+
+  try {
+    return JSON.parse(savedConsent).analytics_storage === true;
+  } catch {
+    return false;
+  }
+};
+
+const initPlausible = () => {
+  if (
+    typeof window === 'undefined' ||
+    plausibleInitialized ||
+    plausibleInitPromise ||
+    !hasAnalyticsConsent()
+  ) {
+    return;
+  }
+
+  const hostname = window.location.hostname;
+  if (!isEnHost(hostname) && !isZhHost(hostname)) {
+    return;
+  }
+
+  plausibleInitPromise = import('@plausible-analytics/tracker')
+    .then(({ init }) => {
+      plausibleInitPromise = undefined;
+      if (!hasAnalyticsConsent() || plausibleInitialized) {
+        return;
+      }
+
+      init({
+        // Use one Plausible site ID for both country domains; hostname remains
+        // available in the event URL for filtering in the shared dashboard.
+        domain: 'tina.io',
+        endpoint: '/p/e',
+        transformRequest: (payload) => (hasAnalyticsConsent() ? payload : null),
+      });
+      plausibleInitialized = true;
+    })
+    .catch(() => {
+      plausibleInitPromise = undefined;
+    });
+};
 
 const ConsentBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,38 +80,8 @@ const ConsentBanner = () => {
   }, []);
 
   useEffect(() => {
-    if (!consent.analytics_storage || plausibleInitialized) {
-      return;
-    }
-
-    let cancelled = false;
-    import('@plausible-analytics/tracker').then(({ init }) => {
-      if (cancelled || plausibleInitialized) {
-        return;
-      }
-
-      plausibleInitialized = true;
-      init({
-        domain: 'tina.io',
-        transformRequest: (payload) => {
-          const savedConsent = Cookies.get('consentGiven');
-          if (!savedConsent) {
-            return null;
-          }
-
-          try {
-            return JSON.parse(savedConsent).analytics_storage ? payload : null;
-          } catch {
-            return null;
-          }
-        },
-      });
-    });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [consent.analytics_storage]);
+    initPlausible();
+  }, []);
 
   const handleConsentChange = (e) => {
     setConsent({
@@ -81,6 +102,7 @@ const ConsentBanner = () => {
     });
     setConsent(acceptedConsent);
     setIsVisible(false);
+    initPlausible();
   };
 
   const handleDeclineAll = () => {
@@ -93,6 +115,7 @@ const ConsentBanner = () => {
     Cookies.set('consentGiven', JSON.stringify(deniedConsent), {
       expires: 365,
     });
+    setConsent(deniedConsent);
     setIsVisible(false);
   };
 
@@ -104,6 +127,7 @@ const ConsentBanner = () => {
   const closeModal = () => {
     Cookies.set('consentGiven', JSON.stringify(consent), { expires: 365 });
     setIsModalOpen(false);
+    initPlausible();
   };
 
   const cancelModal = useCallback(() => {
