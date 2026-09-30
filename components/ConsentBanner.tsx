@@ -29,18 +29,24 @@ const ConsentBanner = () => {
   }, []);
 
   useEffect(() => {
-    if (!consent.analytics_storage || plausibleInitialized) return;
+    if (!consent.analytics_storage || plausibleInitialized) {
+      return;
+    }
 
     let cancelled = false;
     import('@plausible-analytics/tracker').then(({ init }) => {
-      if (cancelled || plausibleInitialized) return;
+      if (cancelled || plausibleInitialized) {
+        return;
+      }
 
       plausibleInitialized = true;
       init({
         domain: 'tina.io',
         transformRequest: (payload) => {
           const savedConsent = Cookies.get('consentGiven');
-          if (!savedConsent) return null;
+          if (!savedConsent) {
+            return null;
+          }
 
           try {
             return JSON.parse(savedConsent).analytics_storage ? payload : null;
