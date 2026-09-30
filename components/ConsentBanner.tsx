@@ -4,6 +4,8 @@ import Link from 'next/link';
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
+let plausibleInitialized = false;
+
 const ConsentBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,6 +27,34 @@ const ConsentBanner = () => {
       setIsVisible(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (!consent.analytics_storage || plausibleInitialized) return;
+
+    let cancelled = false;
+    import('@plausible-analytics/tracker').then(({ init }) => {
+      if (cancelled || plausibleInitialized) return;
+
+      plausibleInitialized = true;
+      init({
+        domain: 'tina.io',
+        transformRequest: (payload) => {
+          const savedConsent = Cookies.get('consentGiven');
+          if (!savedConsent) return null;
+
+          try {
+            return JSON.parse(savedConsent).analytics_storage ? payload : null;
+          } catch {
+            return null;
+          }
+        },
+      });
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [consent.analytics_storage]);
 
   const handleConsentChange = (e) => {
     setConsent({
