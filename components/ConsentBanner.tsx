@@ -7,7 +7,6 @@ import { init } from '@plausible-analytics/tracker';
 import { plausibleSiteIdForHost } from '@/utils/i18n/domains';
 
 let plausibleInitialized = false;
-let plausibleInitPromise: Promise<void> | undefined;
 
 const hasAnalyticsConsent = () => {
   const savedConsent = Cookies.get('consentGiven');
