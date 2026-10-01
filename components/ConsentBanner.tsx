@@ -38,24 +38,12 @@ const initPlausible = () => {
     return;
   }
 
-  plausibleInitPromise = import('@plausible-analytics/tracker')
-    .then(({ init }) => {
-      plausibleInitPromise = undefined;
-      if (!hasAnalyticsConsent() || plausibleInitialized) {
-        return;
-      }
-
-      init({
-        // Keep the country domains on separate Plausible sites for comparison.
-        domain: plausibleSiteId,
-        endpoint: '/p/e',
-        transformRequest: (payload) => (hasAnalyticsConsent() ? payload : null),
-      });
-      plausibleInitialized = true;
-    })
-    .catch(() => {
-      plausibleInitPromise = undefined;
-    });
+  plausibleInitialized = true;
+  init({
+    // Keep the country domains on separate Plausible sites for comparison.
+    domain: plausibleSiteId,
+    endpoint: '/p/e',
+  });
 };
 
 const ConsentBanner = () => {
