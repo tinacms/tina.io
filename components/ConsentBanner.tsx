@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
+import { init } from '@plausible-analytics/tracker';
 import { plausibleSiteIdForHost } from '@/utils/i18n/domains';
 
 let plausibleInitialized = false;
