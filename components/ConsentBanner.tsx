@@ -23,17 +23,11 @@ const hasAnalyticsConsent = () => {
 };
 
 const initPlausible = () => {
-  if (
-    typeof window === 'undefined' ||
-    plausibleInitialized ||
-    plausibleInitPromise ||
-    !hasAnalyticsConsent()
-  ) {
+  if (plausibleInitialized || !hasAnalyticsConsent()) {
     return;
   }
 
-  const hostname = window.location.hostname;
-  const plausibleSiteId = plausibleSiteIdForHost(hostname);
+  const plausibleSiteId = plausibleSiteIdForHost(window.location.hostname);
   if (!plausibleSiteId) {
     return;
   }
