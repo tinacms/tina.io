@@ -5,6 +5,7 @@ import {
   localeForHost,
   normaliseHost,
   originForLocale,
+  plausibleSiteIdForHost,
   stripZhPrefix,
 } from './domains';
 
@@ -59,6 +60,24 @@ describe('isEnHost', () => {
     'treats %s as not the English site',
     (host) => {
       expect(isEnHost(host)).toBe(false);
+    },
+  );
+});
+
+describe('plausibleSiteIdForHost', () => {
+  it.each([
+    ['tina.io', 'tina.io'],
+    ['www.tina.io', 'tina.io'],
+    ['tinaio.cn', 'tinaio.cn'],
+    ['www.tinaio.cn', 'tinaio.cn'],
+  ])('uses the distinct Plausible site ID for %s', (host, siteId) => {
+    expect(plausibleSiteIdForHost(host)).toBe(siteId);
+  });
+
+  it.each(['localhost', 'tina-io-git-main.vercel.app', ''])(
+    'does not assign a Plausible site ID to %s',
+    (host) => {
+      expect(plausibleSiteIdForHost(host)).toBeUndefined();
     },
   );
 });

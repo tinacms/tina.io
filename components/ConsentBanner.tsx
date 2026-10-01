@@ -1,8 +1,43 @@
 'use client';
+import { init } from '@plausible-analytics/tracker';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
+import { plausibleSiteIdForHost } from '@/utils/i18n/domains';
+
+let plausibleInitialized = false;
+
+const hasAnalyticsConsent = () => {
+  const savedConsent = Cookies.get('consentGiven');
+  if (!savedConsent) {
+    return false;
+  }
+
+  try {
+    return JSON.parse(savedConsent).analytics_storage === true;
+  } catch {
+    return false;
+  }
+};
+
+const initPlausible = () => {
+  if (plausibleInitialized || !hasAnalyticsConsent()) {
+    return;
+  }
+
+  const plausibleSiteId = plausibleSiteIdForHost(window.location.hostname);
+  if (!plausibleSiteId) {
+    return;
+  }
+
+  plausibleInitialized = true;
+  init({
+    // Keep the country domains on separate Plausible sites for comparison.
+    domain: plausibleSiteId,
+    endpoint: '/p/e',
+  });
+};
 
 const ConsentBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,6 +61,10 @@ const ConsentBanner = () => {
     }
   }, []);
 
+  useEffect(() => {
+    initPlausible();
+  }, []);
+
   const handleConsentChange = (e) => {
     setConsent({
       ...consent,
@@ -45,6 +84,7 @@ const ConsentBanner = () => {
     });
     setConsent(acceptedConsent);
     setIsVisible(false);
+    initPlausible();
   };
 
   const handleDeclineAll = () => {
@@ -57,6 +97,7 @@ const ConsentBanner = () => {
     Cookies.set('consentGiven', JSON.stringify(deniedConsent), {
       expires: 365,
     });
+    setConsent(deniedConsent);
     setIsVisible(false);
   };
 
@@ -68,6 +109,7 @@ const ConsentBanner = () => {
   const closeModal = () => {
     Cookies.set('consentGiven', JSON.stringify(consent), { expires: 365 });
     setIsModalOpen(false);
+    initPlausible();
   };
 
   const cancelModal = useCallback(() => {
