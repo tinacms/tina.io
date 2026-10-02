@@ -4,3 +4,11 @@ declare module '*.svg' {
   const src: string;
   export default src;
 }
+
+interface Window {
+  gtag?: (
+    command: string,
+    eventName: string,
+    params?: Record<string, unknown>,
+  ) => void;
+}

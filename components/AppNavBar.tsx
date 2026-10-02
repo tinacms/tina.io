@@ -387,6 +387,13 @@ function desktopNavItemMapper(
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center"
+            onClick={() => {
+              window.gtag?.('event', 'header_link_click', {
+                link_name: 'GitHub',
+                link_url: `https://github.com/${item.owner}/${item.repo}`,
+                location: 'header',
+              });
+            }}
           >
             <span className="flex items-center">
               <GitHubIcon />
@@ -509,7 +516,14 @@ function mobileNavItemMapper(
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center"
-            onClick={closeMenu}
+            onClick={() => {
+              window.gtag?.('event', 'header_link_click', {
+                link_name: 'GitHub',
+                link_url: `https://github.com/${item.owner}/${item.repo}`,
+                location: 'header',
+              });
+              closeMenu();
+            }}
           >
             <span className="flex items-center">
               <GitHubIcon />
