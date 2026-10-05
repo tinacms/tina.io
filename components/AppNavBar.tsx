@@ -485,7 +485,7 @@ function mobileNavItemMapper(
       return (
         <li
           key={`${index}-${item.href}`}
-          className={`group ${_navLinkClasses}`}
+          className={`group ${_navLinkClasses} text-lg`}
         >
           <Link
             href={item.href}
