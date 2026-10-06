@@ -299,7 +299,8 @@
               "{\"columnHeader\":\"Team\",\"cellValue\":\"3\",\"isTicked\":false}",
               "{\"columnHeader\":\"Business\",\"cellValue\":\"3\",\"isTicked\":false}",
               "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited (Beta)\",\"isTicked\":false}"
-            ]
+            ],
+            "rowDescription": "Owner, Admin and Editor on every plan. Enterprise can add custom roles (Beta)."
           },
           {
             "rowHeader": "Community Support",
@@ -418,7 +419,8 @@
               "{\"columnHeader\":\"Team\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
               "{\"columnHeader\":\"Business\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
               "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"100 MB\",\"isTicked\":false}"
-            ]
+            ],
+            "rowDescription": "The largest single file you can upload in the media manager, matching GitHub's 100 MB file limit."
           }
         ]
       },
