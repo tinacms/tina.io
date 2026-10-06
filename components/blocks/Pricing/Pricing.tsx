@@ -140,7 +140,7 @@ const PlanCard = ({ data, isMonthly }) => {
         </div>
         <div className="pt-3 flex">
           {data.buttons?.map((button, _index) => (
-            <RenderButton key={button.id} button={button} />
+            <RenderButton key={button.label} button={button} />
           ))}
         </div>
         <div className="pt-6">
@@ -160,7 +160,7 @@ const PlanCard = ({ data, isMonthly }) => {
                   const Icon = icons[item.icon];
                   return (
                     <div
-                      key={item.id}
+                      key={item.name}
                       className="flex flex-col items-start mt-2"
                     >
                       <div className="flex items-center text-lg">
@@ -186,7 +186,10 @@ const PlanCard = ({ data, isMonthly }) => {
               {data.cardItem?.map((item) => {
                 const Icon = icons[item.icon];
                 return (
-                  <div key={item.id} className="flex flex-col items-start mt-2">
+                  <div
+                    key={item.name}
+                    className="flex flex-col items-start mt-2"
+                  >
                     <div className="flex items-center">
                       {Icon && <Icon className="mr-2" />}
                       <CardItemName item={item} />
