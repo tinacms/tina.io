@@ -175,6 +175,8 @@ const PlanCard = ({ data, isMonthly, annualBillingText }) => {
               ? 'animate-fadeOut opacity-0'
               : 'animate-fadeIn opacity-100'
           } ${!annualDescription ? 'mt-5' : ''}`}
+          aria-live="polite"
+          aria-hidden={isMonthly}
         >
           {annualDescription}{' '}
         </div>
@@ -183,26 +185,32 @@ const PlanCard = ({ data, isMonthly, annualBillingText }) => {
             <RenderButton key={button.label} button={button} />
           ))}
         </div>
-        <div className="pt-6">
-          <div className="accordion-content block xl:hidden">
-            <div
-              className="flex justify-between items-center font-semibold cursor-pointer"
-              onClick={toggleAccordion}
-            >
-              <p className="flex text-xl items-center">{featuresHeading}</p>
-              <span className="ml-2">
-                {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
-              </span>
+        {data.cardItem?.length > 0 && (
+          <div className="pt-6">
+            <div className="accordion-content block xl:hidden">
+              <div
+                className="flex justify-between items-center font-semibold cursor-pointer"
+                onClick={toggleAccordion}
+              >
+                <p className="flex text-xl items-center">{featuresHeading}</p>
+                <span className="ml-2">
+                  {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
+                </span>
+              </div>
+              {isAccordionOpen && (
+                <CardItems
+                  items={data.cardItem}
+                  isMonthly={isMonthly}
+                  isLarge
+                />
+              )}
             </div>
-            {isAccordionOpen && (
-              <CardItems items={data.cardItem} isMonthly={isMonthly} isLarge />
-            )}
+            <div className="non-accordion-content hidden xl:block">
+              <p className="font-semibold">{featuresHeading}</p>
+              <CardItems items={data.cardItem} isMonthly={isMonthly} />
+            </div>
           </div>
-          <div className="non-accordion-content hidden xl:block">
-            <p className="font-semibold">{featuresHeading}</p>
-            <CardItems items={data.cardItem} isMonthly={isMonthly} />
-          </div>
-        </div>
+        )}
 
         {data.addOn?.name && (
           <label className="mt-6 flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm cursor-pointer select-none">
