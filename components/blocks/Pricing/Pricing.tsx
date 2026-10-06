@@ -105,9 +105,9 @@ const PlanCard = ({ data, isMonthly }) => {
   const featuresHeading = data.featuresHeading || 'Includes:';
 
   return (
-    <span className="animate-pop-in">
+    <span className="animate-pop-in block h-full">
       <div
-        className={`hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl transform transition-transform duration-300 border border-transparent overflow-hidden ${
+        className={`h-full hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl transform transition-transform duration-300 border border-transparent overflow-hidden ${
           data.isMuted
             ? 'grayscale bg-gray-50/70 text-gray-600 shadow-lg'
             : 'shadow-2xl'
