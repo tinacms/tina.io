@@ -244,6 +244,11 @@ export async function renderBlogOgImage({
     {
       ...OG_SIZE,
       fonts: await ogFonts(),
+      // NOTE: [7 Oct 2026] EK - next/og's default adds no-transform, which stops
+      // Vercel's optimiser shrinking the copy shown on the post page.
+      ...(process.env.NODE_ENV !== 'development' && {
+        headers: { 'cache-control': 'public, immutable, max-age=31536000' },
+      }),
     },
   );
 }
