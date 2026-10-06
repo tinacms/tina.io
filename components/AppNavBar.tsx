@@ -242,6 +242,8 @@ interface NavItemMapperContext {
 const _navLinkClasses =
   'flex items-center py-2 text-blue-700 hover:text-blue-500 transition ease-out duration-150 drop-shadow-sm text-base font-medium';
 
+const _mobileNavLinkClasses = `${_navLinkClasses} text-lg`;
+
 interface MobileNavItemMapperContext {
   index: number;
   starCount: number;
@@ -424,7 +426,7 @@ function mobileNavItemMapper(
       return (
         <li
           key={`${index}-${item.label}`}
-          className={`group ${_navLinkClasses} flex flex-col items-start text-lg`}
+          className={`group ${_mobileNavLinkClasses} flex flex-col items-start`}
         >
           <button
             type="button"
@@ -485,7 +487,7 @@ function mobileNavItemMapper(
       return (
         <li
           key={`${index}-${item.href}`}
-          className={`group ${_navLinkClasses}`}
+          className={`group ${_mobileNavLinkClasses}`}
         >
           <Link
             href={item.href}
@@ -502,7 +504,7 @@ function mobileNavItemMapper(
       return (
         <li
           key={`${index}-${item.owner}-${item.repo}`}
-          className={`group ${_navLinkClasses} py-2 flex items-center`}
+          className={`group ${_mobileNavLinkClasses} py-2 flex items-center`}
         >
           <Link
             href={`https://github.com/${item.owner}/${item.repo}`}
