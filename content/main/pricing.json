@@ -332,13 +332,14 @@
             ]
           },
           {
-            "rowHeader": "Visual editing",
+            "rowHeader": "Visual Editing",
             "rowCells": [
               "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
               "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
               "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
               "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
-            ]
+            ],
+            "rowDescription": "Edit your pages in the TinaCMS visual editor and see changes live as you type."
           },
           {
             "rowHeader": "Collections",
