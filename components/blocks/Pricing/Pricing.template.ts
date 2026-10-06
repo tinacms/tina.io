@@ -23,19 +23,23 @@ export const cardTemplate: Template = {
       type: 'rich-text',
     },
     {
-      name: 'price',
-      label: 'Monthly Price',
-      type: 'string',
+      name: 'monthlyPrice',
+      label: 'Monthly Price (USD)',
+      type: 'number',
+      description: 'Leave empty to show the Custom Price instead',
     },
     {
-      name: 'annualPrice',
-      label: 'Annual Price',
-      type: 'string',
+      name: 'yearlyPrice',
+      label: 'Yearly Price (USD)',
+      type: 'number',
+      description:
+        'Billed once a year. When billed annually, the card shows it per month, plus the total and the saving',
     },
     {
-      name: 'annualDescription',
-      label: 'Annual Description',
+      name: 'customPrice',
+      label: 'Custom Price',
       type: 'string',
+      description: 'Shown when there is no Monthly Price, e.g. "Custom"',
     },
     {
       name: 'interval',
@@ -163,13 +167,6 @@ export const pricingTemplate: Template = {
       type: 'string',
     },
     {
-      name: 'freeTier',
-      label: 'Free Tier',
-      type: 'object',
-      description: 'Shown as the first card in the row of pricing plans',
-      fields: cardTemplate.fields as any,
-    },
-    {
       name: 'intro',
       label: 'Intro Text',
       type: 'rich-text',
@@ -187,6 +184,13 @@ export const pricingTemplate: Template = {
       description: 'this is the text displayed depending on the toggle',
     },
     {
+      name: 'annualBillingText',
+      label: 'Annual Billing Text',
+      type: 'string',
+      description:
+        'Shown under the price when billed annually. {total} is the Yearly Price and {saving} the saving. Defaults to "{total} billed annually (save {saving})"',
+    },
+    {
       name: 'plans',
       label: 'Pricing Plans',
       // @ts-expect-error
@@ -200,7 +204,7 @@ export const pricingTemplate: Template = {
         }),
         defaultItem: {
           name: 'Pricing Tier',
-          price: '$99',
+          monthlyPrice: 99,
           interval: 'month',
         },
       },

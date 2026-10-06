@@ -9,66 +9,65 @@
         "isFullscreen": false
       },
       "headline": "Plans & Pricing",
-      "freeTier": {
-        "name": "Free",
-        "description": "For trying Tina\n",
-        "price": "$0",
-        "annualPrice": "$0",
-        "interval": "Forever",
-        "cardItem": [
-          {
-            "name": "Visual Editing",
-            "icon": "LuMousePointerClick"
-          },
-          {
-            "name": "Unlimited Collections",
-            "icon": "LuLayers",
-            "description": "aka Content Types"
-          },
-          {
-            "name": "Unlimited projects",
-            "icon": "FaCodeBranch"
-          },
-          {
-            "name": "2 users",
-            "icon": "AiOutlineUser"
-          },
-          {
-            "name": "3 roles",
-            "icon": "BiBadge"
-          },
-          {
-            "name": "Community support",
-            "icon": "BiSupport"
-          },
-          {
-            "name": "100 GB bandwidth",
-            "icon": "LuGauge",
-            "description": "per month"
-          }
-        ],
-        "buttons": [
-          {
-            "label": "Start Free",
-            "icon": false,
-            "variant": "orangeWithBorder",
-            "size": "medium",
-            "url": "https://app.tina.io/register?origin=https://app.tina.io",
-            "_template": "actions"
-          }
-        ],
-        "isMuted": true
-      },
       "intro": "Need to scale? No Probllama! TinaCMS offers a **per-project** pricing model that grows with your needs.\n\nSwitch to annual billing and save! All prices in **USD**\n",
       "pillSwitchVisibileText": "All prices in **USD**.\n",
       "pillSwitchToggleText": "Get **2 months free** with annual billing\n",
+      "annualBillingText": "{total} billed annually (save {saving})",
       "plans": [
+        {
+          "name": "Free",
+          "description": "For trying Tina\n",
+          "monthlyPrice": 0,
+          "interval": "Forever",
+          "cardItem": [
+            {
+              "name": "Visual Editing",
+              "icon": "LuMousePointerClick"
+            },
+            {
+              "name": "Unlimited Collections",
+              "icon": "LuLayers",
+              "description": "aka Content Types"
+            },
+            {
+              "name": "Unlimited projects",
+              "icon": "FaCodeBranch"
+            },
+            {
+              "name": "2 users",
+              "icon": "AiOutlineUser"
+            },
+            {
+              "name": "3 roles",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "Community support",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "100 GB bandwidth",
+              "icon": "LuGauge",
+              "description": "per month"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "Start Free",
+              "icon": false,
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
+              "_template": "actions"
+            }
+          ],
+          "isMuted": true
+        },
         {
           "name": "Team",
           "description": "For growing teams\n",
-          "price": "$29",
-          "annualPrice": "$24",
-          "annualDescription": "$290 billed annually (save $58)",
+          "monthlyPrice": 29,
+          "yearlyPrice": 290,
           "interval": "/ project / month",
           "featuresHeading": "Everything in Free, plus:",
           "cardItem": [
@@ -115,9 +114,8 @@
         {
           "name": "Business",
           "description": "For premium support\n",
-          "price": "$299",
-          "annualPrice": "$249",
-          "annualDescription": "$2,990 billed annually (save $598)",
+          "monthlyPrice": 299,
+          "yearlyPrice": 2990,
           "interval": "/ project / month",
           "featuresHeading": "Everything in Team, plus:",
           "cardItem": [
@@ -163,8 +161,7 @@
         {
           "name": "Enterprise",
           "description": "For custom needs\n",
-          "price": "Custom",
-          "annualPrice": "Custom",
+          "customPrice": "Custom",
           "interval": "",
           "featuresHeading": "Everything in Business, plus:",
           "cardItem": [

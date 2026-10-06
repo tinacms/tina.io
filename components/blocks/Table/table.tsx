@@ -4,12 +4,6 @@ import React, { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
-// Tailwind only generates classes it finds written out in full, so each
-// supported column count maps to a complete class instead of an interpolated one.
-// Every row is its own grid, so the label track is minmax(0,1fr): a long row
-// label wraps instead of widening its row and pushing its cells off the grid.
-// Links in plan cards and table row headers (e.g. Editorial Workflow). They
-// open in a new tab so readers keep their place on the pricing page.
 export const LINK_CLASSES =
   'underline decoration-dotted decoration-2 underline-offset-4 decoration-orange-500 transition-colors duration-150 hover:decoration-solid hover:text-orange-500';
 

@@ -55,23 +55,11 @@ const icons = {
   LuGauge,
 };
 
-// Icon in the first column, label and its grey sub-line in the second, so the
-// sub-line always starts exactly under the label text.
 const ITEM_GRID_CLASSES = 'grid grid-cols-[auto_1fr] items-center gap-x-2';
 
-const formatDollars = (amount: number) => `$${amount.toLocaleString('en-US')}`;
+const DEFAULT_ANNUAL_BILLING_TEXT = '{total} billed annually (save {saving})';
 
-// Adds `amount` to the first dollar figure in `text`: "$249" becomes "$429",
-// and "$2,990 billed annually (save $598)" becomes "$5,150 billed annually
-// (save $598)". Text without a dollar figure, such as "Custom", is unchanged.
-const addToDollarAmount = (text: string, amount: number) => {
-  if (!text || !amount) {
-    return text;
-  }
-  return text.replace(/\$([\d,]+)/, (_match, digits: string) =>
-    formatDollars(Number(digits.replace(/,/g, '')) + amount),
-  );
-};
+const formatDollars = (amount: number) => `$${amount.toLocaleString('en-US')}`;
 
 const CardItemName = ({ item }) =>
   item.link ? (
@@ -87,21 +75,34 @@ const CardItemName = ({ item }) =>
     <span>{item.name}</span>
   );
 
-const PlanCard = ({ data, isMonthly }) => {
+const PlanCard = ({ data, isMonthly, annualBillingText }) => {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
   const [isAddOnSelected, setAddOnSelected] = useState(false);
 
   const toggleAccordion = () => setAccordionOpen(!isAccordionOpen);
 
-  const addOnMonthlyPrice = isAddOnSelected ? data.addOn?.monthlyPrice : 0;
-  const price = addToDollarAmount(
-    isMonthly ? data.price : (data.annualPrice ?? data.price),
-    addOnMonthlyPrice,
-  );
-  const annualDescription = addToDollarAmount(
-    data.annualDescription,
-    addOnMonthlyPrice * 12,
-  );
+  const addOnPrice = isAddOnSelected ? (data.addOn?.monthlyPrice ?? 0) : 0;
+  const hasPrice = typeof data.monthlyPrice === 'number';
+  const monthlyPrice = data.monthlyPrice + addOnPrice;
+  const yearlyPrice =
+    hasPrice && typeof data.yearlyPrice === 'number'
+      ? data.yearlyPrice + addOnPrice * 12
+      : null;
+
+  let price = data.customPrice;
+  if (hasPrice) {
+    price = formatDollars(
+      !isMonthly && yearlyPrice !== null
+        ? Math.round(yearlyPrice / 12)
+        : monthlyPrice,
+    );
+  }
+  const annualDescription =
+    yearlyPrice === null
+      ? null
+      : (annualBillingText || DEFAULT_ANNUAL_BILLING_TEXT)
+          .replace('{total}', formatDollars(yearlyPrice))
+          .replace('{saving}', formatDollars(monthlyPrice * 12 - yearlyPrice));
   const featuresHeading = data.featuresHeading || 'Includes:';
 
   return (
@@ -296,7 +297,6 @@ export function PillSwitch({
 
 export function PricingBlock({ data }) {
   const [isMonthly, setIsMonthly] = useState(false);
-  const plans = [data.freeTier, ...(data.plans ?? [])].filter(Boolean);
 
   return (
     <div className="max-w-7xl w-full px-8 mx-auto">
@@ -320,14 +320,14 @@ export function PricingBlock({ data }) {
         visibleText={data.pillSwitchVisibileText}
         toggleText={data.pillSwitchToggleText}
       />
-      {/* Tailwind, not styled-jsx: the app router doesn't server-render
-          styled-jsx, so the cards stacked full width until hydration. Both
-          breakpoints are in px so Tailwind can order them; md is rem and
-          would win over min-[1250px]. */}
-      <div className="grid grid-cols-1 auto-rows-min gap-4 min-[768px]:grid-cols-2 min-[1250px]:grid-cols-4">
-        {plans.map((plan) => (
+      <div className="grid grid-cols-1 auto-rows-min items-start gap-4 min-[768px]:grid-cols-2 min-[1250px]:grid-cols-4 min-[1250px]:items-stretch">
+        {data.plans?.map((plan) => (
           <div key={plan.name} className="flex flex-col">
-            <PlanCard data={plan} isMonthly={isMonthly} />
+            <PlanCard
+              data={plan}
+              isMonthly={isMonthly}
+              annualBillingText={data.annualBillingText}
+            />
           </div>
         ))}
       </div>
