@@ -157,7 +157,7 @@ const PlanCard = ({ data, isMonthly }) => {
           ))}
         </div>
         <div className="pt-6">
-          <div className="accordion-content">
+          <div className="accordion-content block min-[1250px]:hidden">
             <div
               className="flex justify-between items-center font-semibold cursor-pointer"
               onClick={toggleAccordion}
@@ -191,7 +191,7 @@ const PlanCard = ({ data, isMonthly }) => {
               </div>
             )}
           </div>
-          <div className="non-accordion-content">
+          <div className="non-accordion-content hidden min-[1250px]:block">
             <p className="font-semibold">{featuresHeading}</p>
             <div className="pl-2">
               {data.cardItem?.map((item) => {
@@ -230,26 +230,6 @@ const PlanCard = ({ data, isMonthly }) => {
             )}
           </label>
         )}
-
-        <style jsx>{`
-          @media (min-width: 0px) and (max-width: 1250px) {
-            .accordion-content {
-              display: block;
-            }
-            .non-accordion-content {
-              display: none;
-            }
-          }
-
-          @media (min-width: 1250px) {
-            .accordion-content {
-              display: none;
-            }
-            .non-accordion-content {
-              display: block;
-            }
-          }
-        `}</style>
       </div>
     </span>
   );
@@ -340,7 +320,11 @@ export function PricingBlock({ data }) {
         visibleText={data.pillSwitchVisibileText}
         toggleText={data.pillSwitchToggleText}
       />
-      <div className="responsive-grid">
+      {/* Tailwind, not styled-jsx: the app router doesn't server-render
+          styled-jsx, so the cards stacked full width until hydration. Both
+          breakpoints are in px so Tailwind can order them; md is rem and
+          would win over min-[1250px]. */}
+      <div className="grid grid-cols-1 auto-rows-min gap-4 min-[768px]:grid-cols-2 min-[1250px]:grid-cols-4">
         {plans.map((plan) => (
           <div key={plan.name} className="flex flex-col">
             <PlanCard data={plan} isMonthly={isMonthly} />
@@ -352,26 +336,6 @@ export function PricingBlock({ data }) {
           <TableBox data={data.comparisonTable} isMonthly={isMonthly} />
         </div>
       )}
-      <style jsx>{`
-        .responsive-grid {
-          display: grid;
-          grid-template-columns: repeat(1, 1fr);
-          gap: 1rem;
-          grid-auto-rows: min-content;
-        }
-
-        @media (min-width: 768px) {
-          .responsive-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (min-width: 1250px) {
-          .responsive-grid {
-            grid-template-columns: repeat(4, 1fr);
-          }
-        }
-      `}</style>
     </div>
   );
 }
