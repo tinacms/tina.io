@@ -21,8 +21,9 @@
             "icon": "LuMousePointerClick"
           },
           {
-            "name": "Unlimited Collections (aka Content Types)",
-            "icon": "LuLayers"
+            "name": "Unlimited Collections",
+            "icon": "LuLayers",
+            "description": "aka Content Types"
           },
           {
             "name": "Unlimited projects",
@@ -177,7 +178,7 @@
               "icon": "AiOutlineUser"
             },
             {
-              "name": "Unlimited roles (beta)",
+              "name": "Unlimited roles (Beta)",
               "icon": "BiBadge"
             },
             {
@@ -297,7 +298,7 @@
               "{\"columnHeader\":\"Free\",\"cellValue\":\"3\",\"isTicked\":false}",
               "{\"columnHeader\":\"Team\",\"cellValue\":\"3\",\"isTicked\":false}",
               "{\"columnHeader\":\"Business\",\"cellValue\":\"3\",\"isTicked\":false}",
-              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited (beta)\",\"isTicked\":false}"
+              "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited (Beta)\",\"isTicked\":false}"
             ]
           },
           {
@@ -340,13 +341,14 @@
             ]
           },
           {
-            "rowHeader": "Collections (aka Content Types)",
+            "rowHeader": "Collections",
             "rowCells": [
               "{\"columnHeader\":\"Free\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
               "{\"columnHeader\":\"Team\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
               "{\"columnHeader\":\"Business\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
               "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited\",\"isTicked\":false}"
-            ]
+            ],
+            "rowDescription": "aka Content Types"
           },
           {
             "rowHeader": "Editorial Workflow",

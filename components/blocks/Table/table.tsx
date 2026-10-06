@@ -11,7 +11,7 @@ import { IoMdInformationCircleOutline } from 'react-icons/io';
 // Links in plan cards and table row headers (e.g. Editorial Workflow). They
 // open in a new tab so readers keep their place on the pricing page.
 export const LINK_CLASSES =
-  'underline decoration-1 underline-offset-4 decoration-blue-300 transition-colors duration-150 hover:text-orange-500 hover:decoration-orange-500';
+  'underline decoration-1 underline-offset-4 decoration-orange-500 transition-colors duration-150 hover:text-orange-500';
 
 const gridColumnsClasses = {
   3: 'grid-cols-[minmax(0,1fr)_30px_repeat(3,minmax(150px,1fr))]',
