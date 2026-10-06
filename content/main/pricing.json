@@ -18,11 +18,11 @@
         "cardItem": [
           {
             "name": "Visual Editing",
-            "icon": "FaHandPointer"
+            "icon": "LuMousePointerClick"
           },
           {
-            "name": "Unlimited collections (AKA Content Types)",
-            "icon": "FaDatabase"
+            "name": "Unlimited Collections (aka Content Types)",
+            "icon": "LuLayers"
           },
           {
             "name": "Unlimited projects",
@@ -41,8 +41,9 @@
             "icon": "BiSupport"
           },
           {
-            "name": "100 GB bandwidth / month",
-            "icon": "FaCloudDownloadAlt"
+            "name": "100 GB bandwidth",
+            "icon": "LuGauge",
+            "description": "per month"
           }
         ],
         "buttons": [
@@ -94,8 +95,9 @@
               "icon": "HiOutlineSparkles"
             },
             {
-              "name": "500 GB bandwidth / month",
-              "icon": "FaCloudDownloadAlt"
+              "name": "500 GB bandwidth",
+              "icon": "LuGauge",
+              "description": "per month"
             }
           ],
           "buttons": [
@@ -138,7 +140,7 @@
             },
             {
               "name": "Unlimited bandwidth",
-              "icon": "FaCloudDownloadAlt"
+              "icon": "LuGauge"
             }
           ],
           "addOn": {
@@ -338,7 +340,7 @@
             ]
           },
           {
-            "rowHeader": "Collections (AKA Content Types)",
+            "rowHeader": "Collections (aka Content Types)",
             "rowCells": [
               "{\"columnHeader\":\"Free\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
               "{\"columnHeader\":\"Team\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",

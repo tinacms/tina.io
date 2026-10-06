@@ -22,12 +22,13 @@ import {
 } from 'react-icons/fa';
 import { GoPeople } from 'react-icons/go';
 import { HiOutlineSparkles } from 'react-icons/hi2';
+import { LuGauge, LuLayers, LuMousePointerClick } from 'react-icons/lu';
 import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
-import TableBox from '../Table/table';
+import TableBox, { LINK_CLASSES } from '../Table/table';
 
 const icons = {
   FaClock,
@@ -49,6 +50,9 @@ const icons = {
   FaDatabase,
   FaHandPointer,
   GoPeople,
+  LuMousePointerClick,
+  LuLayers,
+  LuGauge,
 };
 
 const formatDollars = (amount: number) => `$${amount.toLocaleString('en-US')}`;
@@ -67,7 +71,12 @@ const addToDollarAmount = (text: string, amount: number) => {
 
 const CardItemName = ({ item }) =>
   item.link ? (
-    <Link href={item.link} className="underline decoration-dotted">
+    <Link
+      href={item.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={LINK_CLASSES}
+    >
       {item.name}
     </Link>
   ) : (
@@ -164,7 +173,7 @@ const PlanCard = ({ data, isMonthly }) => {
                       className="flex flex-col items-start mt-2"
                     >
                       <div className="flex items-center text-lg">
-                        {Icon && <Icon className="mr-2" />}
+                        {Icon && <Icon className="mr-2 shrink-0" />}
                         <CardItemName item={item} />
                       </div>
                       {item.description && (
@@ -191,7 +200,7 @@ const PlanCard = ({ data, isMonthly }) => {
                     className="flex flex-col items-start mt-2"
                   >
                     <div className="flex items-center">
-                      {Icon && <Icon className="mr-2" />}
+                      {Icon && <Icon className="mr-2 shrink-0" />}
                       <CardItemName item={item} />
                     </div>
                     {item.description && (
