@@ -55,6 +55,10 @@ const icons = {
   LuGauge,
 };
 
+// Icon in the first column, label and its grey sub-line in the second, so the
+// sub-line always starts exactly under the label text.
+const ITEM_GRID_CLASSES = 'grid grid-cols-[auto_1fr] items-center gap-x-2';
+
 const formatDollars = (amount: number) => `$${amount.toLocaleString('en-US')}`;
 
 // Adds `amount` to the first dollar figure in `text`: "$249" becomes "$429",
@@ -170,14 +174,12 @@ const PlanCard = ({ data, isMonthly }) => {
                   return (
                     <div
                       key={item.name}
-                      className="flex flex-col items-start mt-2"
+                      className={`${ITEM_GRID_CLASSES} mt-2 text-lg`}
                     >
-                      <div className="flex items-center text-lg">
-                        {Icon && <Icon className="mr-2 shrink-0" />}
-                        <CardItemName item={item} />
-                      </div>
+                      {Icon ? <Icon /> : <span />}
+                      <CardItemName item={item} />
                       {item.description && (
-                        <div className="my-1 ml-5 text-md text-gray-600/70">
+                        <div className="col-start-2 my-1 text-md text-gray-600/70">
                           {!isMonthly
                             ? (item.annualDescription ?? item.description)
                             : item.description}
@@ -195,16 +197,11 @@ const PlanCard = ({ data, isMonthly }) => {
               {data.cardItem?.map((item) => {
                 const Icon = icons[item.icon];
                 return (
-                  <div
-                    key={item.name}
-                    className="flex flex-col items-start mt-2"
-                  >
-                    <div className="flex items-center">
-                      {Icon && <Icon className="mr-2 shrink-0" />}
-                      <CardItemName item={item} />
-                    </div>
+                  <div key={item.name} className={`${ITEM_GRID_CLASSES} mt-2`}>
+                    {Icon ? <Icon /> : <span />}
+                    <CardItemName item={item} />
                     {item.description && (
-                      <div className="my-1 ml-5 text-sm text-gray-600/70">
+                      <div className="col-start-2 my-1 text-sm text-gray-600/70">
                         {!isMonthly
                           ? (item.annualDescription ?? item.description)
                           : item.description}
