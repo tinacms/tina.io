@@ -50,13 +50,15 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
             </span>
             <time dateTime={post.date}>{postedDate}</time>
           </div>
-          {/* The image repeats the title and author shown above it, so screen readers skip it. */}
+          {/* The image repeats the title and author shown above it, so screen readers skip it.
+              NOTE: [7 Oct 2026] EK - unoptimized is deliberate. Vercel only optimises static
+              files and passes this route's PNG through unchanged. */}
           <Image
             src={ogImage}
             alt=""
             width={1200}
             height={630}
-            sizes="(max-width: 704px) 100vw, 656px"
+            unoptimized={true}
             priority={true}
             className="w-full h-auto mt-6 rounded-xl border"
           />
