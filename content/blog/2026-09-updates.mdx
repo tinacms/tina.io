@@ -3,22 +3,15 @@ seo:
   title: 'Spit Happens: September 2026 News - Pickier media, lighter editor'
 title: 'Spit Happens: September 2026 News - Pickier media, lighter editor'
 date: '2026-09-25T06:06:43.004Z'
-last_edited: '2026-09-28T23:51:14.514Z'
+last_edited: '2026-10-06T23:10:03.216Z'
 author: The TinaCMS Team
 prev: content/blog/august-2026-roundup.mdx
 next: ''
 ---
 
-
 The herd has been busy again 🦙. In September we merged 112 pull requests across TinaCMS and TinaCloud and shipped 8 releases between them.
 
-## 📦 TinaCMS: 3 releases
-
-### 🖼️ Pickier media fields
-
-Image fields take a new [`accept` option](/docs/reference/types/image). Give it an extension, a category like `video` or `document`, or a list of either, and the field refuses any other file before it uploads. The Media Manager toolbar gets a [file type filter](/docs/reference/media/overview#filtering-by-file-type) too, so you can cut a big library down to the PDFs ([#7477](https://github.com/tinacms/tinacms/pull/7477)).
-
-If you use TinaCloud, you can rename assets in the Media Manager. On an unprotected branch the rename happens at once. On a protected branch it goes through the [editorial workflow](/docs/tinacloud/editorial-workflow) like any other change ([#7423](https://github.com/tinacms/tinacms/pull/7423)).
+## 📦 TinaCMS
 
 ### ⚡ A lighter editor
 
@@ -27,6 +20,12 @@ The rich-text editor used to download the [Mermaid](/docs/reference/rich-text-us
 We moved the CLI to Vite 7, so an install pulls in one esbuild binary instead of two ([#7556](https://github.com/tinacms/tinacms/pull/7556)).
 
 `next-tinacms-azure` stopped bundling its own copy of Next.js. We added size budgets to CI as well, so we see bloat before you download it ([#7316](https://github.com/tinacms/tinacms/pull/7316)).
+
+### 🖼️ Pickier media fields
+
+Image fields take a new [`accept` option](/docs/reference/types/image). Give it an extension, a category like `video` or `document`, or a list of either, and the field refuses any other file before it uploads. The Media Manager toolbar gets a [file type filter](/docs/reference/media/overview#filtering-by-file-type) too, so you can cut a big library down to the PDFs ([#7477](https://github.com/tinacms/tinacms/pull/7477)).
+
+If you use TinaCloud, you can rename assets in the Media Manager. On an unprotected branch the rename happens at once. On a protected branch it goes through the [editorial workflow](/docs/tinacloud/editorial-workflow) like any other change ([#7423](https://github.com/tinacms/tinacms/pull/7423)).
 
 ### 🩹 Fewer snags while editing
 
@@ -44,7 +43,7 @@ V4 is still in progress. This month we added the **array** ([#7492](https://gith
 
 You write a validation rule one way now ([#7601](https://github.com/tinacms/tinacms/pull/7601)). Forms get lifecycle hooks that you register by name and turn on per collection ([#7622](https://github.com/tinacms/tinacms/pull/7622)).
 
-## ☁️ TinaCloud: 5 production releases
+## ☁️ TinaCloud
 
 ### 🔎 Cataloging that tells you what went wrong
 
