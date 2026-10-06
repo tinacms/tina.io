@@ -1,5 +1,6 @@
 import BlogPageClient from 'components/blog/BlogPageClient';
 import { notFound } from 'next/navigation';
+import { blogOgImagePath } from 'utils/blog/blogOgImagePath';
 import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { getExcerpt } from 'utils/getExcerpt';
@@ -29,8 +30,7 @@ export async function generateMetadata({
     title: `${post.title} | TinaCMS Blog`,
     description: excerpt,
     canonicalUrl: `${settings.siteUrl}/blog/${slugPath}`,
-    // dynamic per-post OG image (app/blog/og/[...slug]/route.tsx)
-    ogImage: `/blog/og/${slugPath}`,
+    ogImage: blogOgImagePath('en', slugPath),
   });
 }
 
@@ -52,6 +52,7 @@ export default async function BlogPage({
         variables={variables}
         query={query}
         locale="en"
+        ogImage={blogOgImagePath('en', slugPath)}
       />
     );
   } catch (error) {

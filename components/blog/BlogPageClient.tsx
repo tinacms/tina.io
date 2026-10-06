@@ -4,6 +4,7 @@
 import Giscus from '@giscus/react';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
+import Image from 'next/image';
 // biome-ignore lint/style/useImportType: React is required
 import React from 'react';
 import { useTina } from 'tinacms/dist/react';
@@ -20,6 +21,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   variables,
   query,
   locale,
+  ogImage,
 }) => {
   const { data: blogPostData } = useTina({ query, variables, data });
 
@@ -48,6 +50,16 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
             </span>
             <time dateTime={post.date}>{postedDate}</time>
           </div>
+          {/* The image repeats the title and author shown above it, so screen readers skip it. */}
+          <Image
+            src={ogImage}
+            alt=""
+            width={1200}
+            height={630}
+            sizes="(max-width: 704px) 100vw, 656px"
+            priority={true}
+            className="w-full h-auto mt-6 rounded-xl border"
+          />
           <div className=" pt-6">
             <TinaMarkdown
               content={post.body}
