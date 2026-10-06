@@ -43,6 +43,13 @@ export const cardTemplate: Template = {
       type: 'string',
     },
     {
+      name: 'featuresHeading',
+      label: 'Features Heading',
+      type: 'string',
+      description:
+        'Shown above the card items, e.g. "Everything in Free, plus:". Leave empty to show "Includes:"',
+    },
+    {
       name: 'cardItem',
       label: 'Card Item',
       type: 'object',
@@ -81,6 +88,32 @@ export const cardTemplate: Template = {
           description:
             '⚠️ If this field is empty, it will show the normal description for both annual and monthly',
         },
+        {
+          name: 'link',
+          label: 'Link',
+          type: 'string',
+          description: 'Optional URL that turns the item name into a link',
+        },
+      ],
+    },
+    {
+      name: 'addOn',
+      label: 'Add-on',
+      type: 'object',
+      description:
+        'Optional add-on with a checkbox on the card. Ticking it adds its price to the price and annual total shown on the card',
+      fields: [
+        {
+          name: 'name',
+          label: 'Name',
+          type: 'string',
+          description: 'e.g. "Add SSO"',
+        },
+        {
+          name: 'monthlyPrice',
+          label: 'Monthly Price (USD)',
+          type: 'number',
+        },
       ],
     },
     {
@@ -102,6 +135,13 @@ export const cardTemplate: Template = {
       label: 'Is Starred?',
       type: 'boolean',
       description: 'Enabling this will add a star to the pricing block',
+    },
+    {
+      name: 'isMuted',
+      label: 'Is Muted?',
+      type: 'boolean',
+      description:
+        'Greys out the card so the paid plans stand out, e.g. for the Free plan',
     },
   ],
 };
@@ -126,6 +166,7 @@ export const pricingTemplate: Template = {
       name: 'freeTier',
       label: 'Free Tier',
       type: 'object',
+      description: 'Shown as the first card in the row of pricing plans',
       fields: cardTemplate.fields as any,
     },
     {

@@ -4,9 +4,24 @@ import React, { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
+// Tailwind only generates classes it finds written out in full, so each
+// supported column count maps to a complete class instead of an interpolated one.
+// Every row is its own grid, so the label track is minmax(0,1fr): a long row
+// label wraps instead of widening its row and pushing its cells off the grid.
+const gridColumnsClasses = {
+  3: 'grid-cols-[minmax(0,1fr)_30px_repeat(3,minmax(150px,1fr))]',
+  4: 'grid-cols-[minmax(0,1fr)_30px_repeat(4,minmax(150px,1fr))]',
+  5: 'grid-cols-[minmax(0,1fr)_30px_repeat(5,minmax(150px,1fr))]',
+};
+
+const gridColumnsClass = (columnCount: number) =>
+  gridColumnsClasses[columnCount] ?? gridColumnsClasses[5];
+
 const TableHeader = ({ data, scrollData, isMonthly }) => {
   return (
-    <div className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] pt-6 px-6 bg-slate-50">
+    <div
+      className={`grid ${gridColumnsClass(data.columnItems?.length)} pt-6 px-6 bg-slate-50`}
+    >
       {/* Sticky Header Column */}
       <div className="sticky top-0 left-0 z-10 bg-slate-50 pl-4 pb-2 text-gray-700 font-bold">
         {data.tableHeader}
@@ -90,11 +105,20 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
               {data.rowItems?.map((row, rowIndex) => (
                 <div
                   key={row.id}
-                  className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group"
+                  className={`grid ${gridColumnsClass(data.columnItems?.length)} min-h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group`}
                 >
                   <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50">
-                    <div className="pl-2 py-2 whitespace-nowrap font-medium flex items-center">
-                      {row.rowHeader}
+                    <div className="pl-2 py-2 font-medium flex items-center">
+                      {row.rowHeaderLink ? (
+                        <Link
+                          href={row.rowHeaderLink}
+                          className="underline decoration-dotted"
+                        >
+                          {row.rowHeader}
+                        </Link>
+                      ) : (
+                        row.rowHeader
+                      )}
                       {row.rowDescription && (
                         <div
                           className="relative ml-1 flex items-center"
