@@ -75,6 +75,32 @@ const CardItemName = ({ item }) =>
     <span>{item.name}</span>
   );
 
+const CardItems = ({ items, isMonthly, isLarge = false }) => (
+  <div className="pl-2">
+    {items?.map((item) => {
+      const Icon = icons[item.icon];
+      return (
+        <div
+          key={item.name}
+          className={`${ITEM_GRID_CLASSES} mt-2 ${isLarge ? 'text-lg' : ''}`}
+        >
+          {Icon ? <Icon /> : <span />}
+          <CardItemName item={item} />
+          {item.description && (
+            <div
+              className={`col-start-2 my-1 text-gray-600/70 ${isLarge ? 'text-md' : 'text-sm'}`}
+            >
+              {!isMonthly
+                ? (item.annualDescription ?? item.description)
+                : item.description}
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+);
+
 const PlanCard = ({ data, isMonthly, annualBillingText }) => {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
   const [isAddOnSelected, setAddOnSelected] = useState(false);
@@ -158,7 +184,7 @@ const PlanCard = ({ data, isMonthly, annualBillingText }) => {
           ))}
         </div>
         <div className="pt-6">
-          <div className="accordion-content block min-[1250px]:hidden">
+          <div className="accordion-content block xl:hidden">
             <div
               className="flex justify-between items-center font-semibold cursor-pointer"
               onClick={toggleAccordion}
@@ -169,49 +195,12 @@ const PlanCard = ({ data, isMonthly, annualBillingText }) => {
               </span>
             </div>
             {isAccordionOpen && (
-              <div className="pl-2">
-                {data.cardItem?.map((item) => {
-                  const Icon = icons[item.icon];
-                  return (
-                    <div
-                      key={item.name}
-                      className={`${ITEM_GRID_CLASSES} mt-2 text-lg`}
-                    >
-                      {Icon ? <Icon /> : <span />}
-                      <CardItemName item={item} />
-                      {item.description && (
-                        <div className="col-start-2 my-1 text-md text-gray-600/70">
-                          {!isMonthly
-                            ? (item.annualDescription ?? item.description)
-                            : item.description}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+              <CardItems items={data.cardItem} isMonthly={isMonthly} isLarge />
             )}
           </div>
-          <div className="non-accordion-content hidden min-[1250px]:block">
+          <div className="non-accordion-content hidden xl:block">
             <p className="font-semibold">{featuresHeading}</p>
-            <div className="pl-2">
-              {data.cardItem?.map((item) => {
-                const Icon = icons[item.icon];
-                return (
-                  <div key={item.name} className={`${ITEM_GRID_CLASSES} mt-2`}>
-                    {Icon ? <Icon /> : <span />}
-                    <CardItemName item={item} />
-                    {item.description && (
-                      <div className="col-start-2 my-1 text-sm text-gray-600/70">
-                        {!isMonthly
-                          ? (item.annualDescription ?? item.description)
-                          : item.description}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+            <CardItems items={data.cardItem} isMonthly={isMonthly} />
           </div>
         </div>
 
@@ -320,7 +309,7 @@ export function PricingBlock({ data }) {
         visibleText={data.pillSwitchVisibileText}
         toggleText={data.pillSwitchToggleText}
       />
-      <div className="grid grid-cols-1 auto-rows-min items-start gap-4 min-[768px]:grid-cols-2 min-[1250px]:grid-cols-4 min-[1250px]:items-stretch">
+      <div className="grid grid-cols-1 auto-rows-min items-start gap-4 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
         {data.plans?.map((plan) => (
           <div key={plan.name} className="flex flex-col">
             <PlanCard
