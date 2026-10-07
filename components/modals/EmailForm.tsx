@@ -88,6 +88,7 @@ export const EmailForm = (props: EmailFormProps) => {
           src={BettyWithLlama}
           alt="Betty with a llama"
           fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
           className="w-full h-full object-cover"
         />
       </div>
