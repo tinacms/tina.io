@@ -118,6 +118,12 @@ export const cardTemplate: Template = {
           label: 'Monthly Price (USD)',
           type: 'number',
         },
+        {
+          name: 'interval',
+          label: 'Interval',
+          type: 'string',
+          description: 'Shown after the price. Defaults to "/month"',
+        },
       ],
     },
     {
