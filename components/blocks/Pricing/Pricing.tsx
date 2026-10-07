@@ -1,5 +1,6 @@
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { pricingComponents } from 'components/tinaMarkdownComponents/pricingComponents';
+import Link from 'next/link';
 import { useState } from 'react';
 import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { BiBadge, BiSupport } from 'react-icons/bi';
@@ -10,20 +11,24 @@ import {
   FaClock,
   FaCloudDownloadAlt,
   FaCodeBranch,
+  FaDatabase,
   FaFileAlt,
   FaGithub,
+  FaHandPointer,
   FaMarkdown,
   FaPuzzlePiece,
   FaStar,
   FaUnlock,
 } from 'react-icons/fa';
+import { GoPeople } from 'react-icons/go';
 import { HiOutlineSparkles } from 'react-icons/hi2';
+import { LuGauge, LuLayers, LuMousePointerClick } from 'react-icons/lu';
 import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
-import TableBox from '../Table/table';
+import TableBox, { LINK_CLASSES } from '../Table/table';
 
 const icons = {
   FaClock,
@@ -42,49 +47,99 @@ const icons = {
   HiOutlineSparkles,
   TbPlugConnected,
   SlLock,
+  FaDatabase,
+  FaHandPointer,
+  GoPeople,
+  LuMousePointerClick,
+  LuLayers,
+  LuGauge,
 };
 
-const FreeTier = ({ data }) => (
-  <span className="animate-pop-in w-full">
-    <div className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/40 to-cyan-100">
-      {data.freeTier && (
-        <div className="flex flex-col sm:flex-row justify-between pb-2">
-          <h2 className="font-ibm-plex text-3xl bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-            {data.freeTier?.name}
-          </h2>
-          <div className="flex items-baseline mt-2 sm:mt-0">
-            <h2 className="font-ibm-plex text-3xl bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-              {data.freeTier?.price}
-            </h2>
-            <span className="text-lg ml-2 bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-              {data.freeTier?.interval}
-            </span>
-          </div>
+const ITEM_GRID_CLASSES = 'grid grid-cols-[auto_1fr] items-center gap-x-2';
+
+const DEFAULT_ANNUAL_BILLING_TEXT = '{total} billed annually (save {saving})';
+
+const formatDollars = (amount: number) => `$${amount.toLocaleString('en-US')}`;
+
+const CardItemName = ({ item }) =>
+  item.link ? (
+    <Link
+      href={item.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={LINK_CLASSES}
+    >
+      {item.name}
+    </Link>
+  ) : (
+    <span>{item.name}</span>
+  );
+
+const CardItems = ({ items, isMonthly, isLarge = false }) => (
+  <div className="pl-2">
+    {items?.map((item) => {
+      const Icon = icons[item.icon];
+      return (
+        <div
+          key={item.name}
+          className={`${ITEM_GRID_CLASSES} mt-2 ${isLarge ? 'text-lg' : ''}`}
+        >
+          {Icon ? <Icon /> : <span />}
+          <CardItemName item={item} />
+          {item.description && (
+            <div
+              className={`col-start-2 my-1 text-gray-600/70 ${isLarge ? 'text-md' : 'text-sm'}`}
+            >
+              {!isMonthly
+                ? (item.annualDescription ?? item.description)
+                : item.description}
+            </div>
+          )}
         </div>
-      )}
-      <div className="flex flex-col sm:flex-row justify-between">
-        <TinaMarkdown
-          content={data.freeTier?.description}
-          components={pricingComponents}
-        />
-        <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-start">
-          {data.freeTier?.buttons?.map((button, _index) => (
-            <RenderButton key={button.id} button={button} />
-          ))}
-        </div>
-      </div>
-    </div>
-  </span>
+      );
+    })}
+  </div>
 );
 
-const PaidTier = ({ data, isMonthly }) => {
+const PlanCard = ({ data, isMonthly, annualBillingText }) => {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
+  const [isAddOnSelected, setAddOnSelected] = useState(false);
 
   const toggleAccordion = () => setAccordionOpen(!isAccordionOpen);
 
+  const addOnPrice = isAddOnSelected ? (data.addOn?.monthlyPrice ?? 0) : 0;
+  const hasPrice = typeof data.monthlyPrice === 'number';
+  const monthlyPrice = data.monthlyPrice + addOnPrice;
+  const yearlyPrice =
+    hasPrice && typeof data.yearlyPrice === 'number'
+      ? data.yearlyPrice + addOnPrice * 12
+      : null;
+
+  let price = data.customPrice;
+  if (hasPrice) {
+    price = formatDollars(
+      !isMonthly && yearlyPrice !== null
+        ? Math.round(yearlyPrice / 12)
+        : monthlyPrice,
+    );
+  }
+  const annualDescription =
+    yearlyPrice === null
+      ? null
+      : (annualBillingText || DEFAULT_ANNUAL_BILLING_TEXT)
+          .replace('{total}', formatDollars(yearlyPrice))
+          .replace('{saving}', formatDollars(monthlyPrice * 12 - yearlyPrice));
+  const featuresHeading = data.featuresHeading || 'Includes:';
+
   return (
-    <span className="animate-pop-in">
-      <div className="hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden">
+    <span className="animate-pop-in block h-full">
+      <div
+        className={`h-full hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl transform transition-transform duration-300 border border-transparent overflow-hidden ${
+          data.isMuted
+            ? 'grayscale bg-gray-50/70 text-gray-600 shadow-lg'
+            : 'shadow-2xl'
+        }`}
+      >
         {data.isStarred && (
           <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
             <div className="w-24 h-24 bg-orange-400 transform rotate-45"></div>
@@ -104,9 +159,9 @@ const PaidTier = ({ data, isMonthly }) => {
           content={data.description}
           components={pricingComponents}
         />
-        <div className="pt-10">
+        <div className="pt-10" aria-live="polite">
           <span className="text-3xl font-ibm-plex bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-            {isMonthly ? data.price : data.annualPrice}
+            {price}
           </span>
           {data.interval && (
             <span className="pl-2 text-lg bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
@@ -119,96 +174,60 @@ const PaidTier = ({ data, isMonthly }) => {
             isMonthly
               ? 'animate-fadeOut opacity-0'
               : 'animate-fadeIn opacity-100'
-          } ${!data.annualDescription ? 'mt-5' : ''}`}
+          } ${!annualDescription ? 'mt-5' : ''}`}
+          aria-live="polite"
+          aria-hidden={isMonthly}
         >
-          {data.annualDescription}{' '}
+          {annualDescription}{' '}
         </div>
         <div className="pt-3 flex">
           {data.buttons?.map((button, _index) => (
-            <RenderButton key={button.id} button={button} />
+            <RenderButton key={button.label} button={button} />
           ))}
         </div>
-        <div className="pt-6">
-          <div className="accordion-content">
-            <div
-              className="flex justify-between items-center font-semibold cursor-pointer"
-              onClick={toggleAccordion}
-            >
-              <p className="flex text-xl items-center">Includes:</p>
-              <span className="ml-2">
-                {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
-              </span>
-            </div>
-            {isAccordionOpen && (
-              <div className="pl-2">
-                {data.cardItem?.map((item) => {
-                  const Icon = icons[item.icon];
-                  return (
-                    <div
-                      key={item.id}
-                      className="flex flex-col items-start mt-2"
-                    >
-                      <div className="flex items-center text-lg">
-                        {Icon && <Icon className="mr-2" />}
-                        <span>{item.name}</span>
-                      </div>
-                      {item.description && (
-                        <div className="my-1 ml-5 text-md text-gray-600/70">
-                          {!isMonthly
-                            ? (item.annualDescription ?? item.description)
-                            : item.description}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+        {data.cardItem?.length > 0 && (
+          <div className="pt-6">
+            <div className="accordion-content block xl:hidden">
+              <div
+                className="flex justify-between items-center font-semibold cursor-pointer"
+                onClick={toggleAccordion}
+              >
+                <p className="flex text-xl items-center">{featuresHeading}</p>
+                <span className="ml-2">
+                  {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
+                </span>
               </div>
-            )}
-          </div>
-          <div className="non-accordion-content">
-            <p className="font-semibold">Includes:</p>
-            <div className="pl-2">
-              {data.cardItem?.map((item) => {
-                const Icon = icons[item.icon];
-                return (
-                  <div key={item.id} className="flex flex-col items-start mt-2">
-                    <div className="flex items-center">
-                      {Icon && <Icon className="mr-2" />}
-                      <span>{item.name}</span>
-                    </div>
-                    {item.description && (
-                      <div className="my-1 ml-5 text-sm text-gray-600/70">
-                        {!isMonthly
-                          ? (item.annualDescription ?? item.description)
-                          : item.description}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+              {isAccordionOpen && (
+                <CardItems
+                  items={data.cardItem}
+                  isMonthly={isMonthly}
+                  isLarge
+                />
+              )}
+            </div>
+            <div className="non-accordion-content hidden xl:block">
+              <p className="font-semibold">{featuresHeading}</p>
+              <CardItems items={data.cardItem} isMonthly={isMonthly} />
             </div>
           </div>
-        </div>
+        )}
 
-        <style jsx>{`
-          @media (min-width: 0px) and (max-width: 1250px) {
-            .accordion-content {
-              display: block;
-            }
-            .non-accordion-content {
-              display: none;
-            }
-          }
-
-          @media (min-width: 1250px) {
-            .accordion-content {
-              display: none;
-            }
-            .non-accordion-content {
-              display: block;
-            }
-          }
-        `}</style>
+        {data.addOn?.name && (
+          <label className="mt-6 flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm cursor-pointer select-none">
+            <input
+              type="checkbox"
+              className="size-4 accent-orange-500 cursor-pointer"
+              checked={isAddOnSelected}
+              onChange={(event) => setAddOnSelected(event.target.checked)}
+            />
+            <span className="font-semibold">{data.addOn.name}</span>
+            {data.addOn.monthlyPrice > 0 && (
+              <span className="ml-auto font-semibold whitespace-nowrap">
+                +{formatDollars(data.addOn.monthlyPrice)}/month
+              </span>
+            )}
+          </label>
+        )}
       </div>
     </span>
   );
@@ -292,19 +311,20 @@ export function PricingBlock({ data }) {
         </h2>
       )}
 
-      <div className="pt-2 max-w-7xl mx-auto flex justify-center">
-        <FreeTier data={data} />
-      </div>
       <PillSwitch
         isMonthly={isMonthly}
         setIsMonthly={setIsMonthly}
         visibleText={data.pillSwitchVisibileText}
         toggleText={data.pillSwitchToggleText}
       />
-      <div className="responsive-grid">
-        {data.plans?.map((plan, _index) => (
-          <div key={plan.id} className="flex flex-col">
-            <PaidTier data={plan} isMonthly={isMonthly} />
+      <div className="grid grid-cols-1 auto-rows-min items-start gap-4 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
+        {data.plans?.map((plan) => (
+          <div key={plan.name} className="flex flex-col">
+            <PlanCard
+              data={plan}
+              isMonthly={isMonthly}
+              annualBillingText={data.annualBillingText}
+            />
           </div>
         ))}
       </div>
@@ -313,26 +333,6 @@ export function PricingBlock({ data }) {
           <TableBox data={data.comparisonTable} isMonthly={isMonthly} />
         </div>
       )}
-      <style jsx>{`
-        .responsive-grid {
-          display: grid;
-          grid-template-columns: repeat(1, 1fr);
-          gap: 1rem;
-          grid-auto-rows: min-content;
-        }
-
-        @media (min-width: 768px) {
-          .responsive-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (min-width: 1250px) {
-          .responsive-grid {
-            grid-template-columns: repeat(4, 1fr);
-          }
-        }
-      `}</style>
     </div>
   );
 }

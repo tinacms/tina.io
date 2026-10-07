@@ -25,6 +25,7 @@ import { GoPeople } from 'react-icons/go';
 import { HiOutlineSparkles } from 'react-icons/hi2';
 import { ImCross } from 'react-icons/im';
 import { IoMdBook } from 'react-icons/io';
+import { LuGauge, LuLayers, LuMousePointerClick } from 'react-icons/lu';
 import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
 
@@ -53,6 +54,9 @@ const icons = {
   FaRegStar,
   IoMdBook,
   GoPeople,
+  LuMousePointerClick,
+  LuLayers,
+  LuGauge,
 };
 
 const IconSelector = ({ input }) => {

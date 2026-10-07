@@ -4,9 +4,23 @@ import React, { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
+export const LINK_CLASSES =
+  'underline underline-offset-4 decoration-orange-500 transition-colors duration-150 hover:text-orange-500';
+
+const gridColumnsClasses = {
+  3: 'grid-cols-[minmax(0,1fr)_30px_repeat(3,minmax(150px,1fr))]',
+  4: 'grid-cols-[minmax(0,1fr)_30px_repeat(4,minmax(150px,1fr))]',
+  5: 'grid-cols-[minmax(0,1fr)_30px_repeat(5,minmax(150px,1fr))]',
+};
+
+const gridColumnsClass = (columnCount: number) =>
+  gridColumnsClasses[columnCount] ?? gridColumnsClasses[5];
+
 const TableHeader = ({ data, scrollData, isMonthly }) => {
   return (
-    <div className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] pt-6 px-6 bg-slate-50">
+    <div
+      className={`grid ${gridColumnsClass(data.columnItems?.length)} pt-6 px-6 bg-slate-50`}
+    >
       {/* Sticky Header Column */}
       <div className="sticky top-0 left-0 z-10 bg-slate-50 pl-4 pb-2 text-gray-700 font-bold">
         {data.tableHeader}
@@ -19,11 +33,11 @@ const TableHeader = ({ data, scrollData, isMonthly }) => {
       </div>
       {/* Remaining Columns Titles */}
       {data.columnItems?.map((headerItem) => (
-        <div key={headerItem.id}>
+        <div key={headerItem.columnHeader}>
           <div
             className={`text-center font-bold ${
               headerItem.isReccomended ? 'text-orange-600' : 'text-gray-700'
-            }  underline decoration-dotted`}
+            } underline underline-offset-4`}
           >
             <Link href={`${headerItem.columnHeaderLink}`}>
               {headerItem.columnHeader} {headerItem.isReccomended ? '⭐️' : ''}
@@ -89,12 +103,25 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
             >
               {data.rowItems?.map((row, rowIndex) => (
                 <div
-                  key={row.id}
-                  className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group"
+                  key={row.rowHeader}
+                  className={`grid ${gridColumnsClass(data.columnItems?.length)} min-h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group`}
                 >
-                  <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50">
-                    <div className="pl-2 py-2 whitespace-nowrap font-medium flex items-center">
-                      {row.rowHeader}
+                  <div
+                    className={`flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50 ${infoIconHoverIndex === rowIndex ? 'z-30' : ''}`}
+                  >
+                    <div className="pl-2 py-2 font-medium flex items-center">
+                      {row.rowHeaderLink ? (
+                        <Link
+                          href={row.rowHeaderLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={LINK_CLASSES}
+                        >
+                          {row.rowHeader}
+                        </Link>
+                      ) : (
+                        row.rowHeader
+                      )}
                       {row.rowDescription && (
                         <div
                           className="relative ml-1 flex items-center"
@@ -103,7 +130,7 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
                         >
                           <IoMdInformationCircleOutline className="text-orange-500 text-xl z-20" />
                           {infoIconHoverIndex === rowIndex && (
-                            <div className="absolute top-1/2 left-full transform -translate-y-1/2 ml-2 text-sm p-2 rounded-lg shadow-lg w-[300px] break-words whitespace-normal text-center bg-white">
+                            <div className="absolute top-1/2 left-full transform -translate-y-1/2 ml-2 text-sm p-2 rounded-lg shadow-lg w-max max-w-xs break-words whitespace-normal text-center bg-white">
                               <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-white"></div>
                               {row.rowDescription}
                             </div>
@@ -134,7 +161,7 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
 
                     return (
                       <div
-                        key={cell.id}
+                        key={cell}
                         className="text-center flex items-center justify-center snap-start"
                       >
                         {cellData.isTicked ? (
