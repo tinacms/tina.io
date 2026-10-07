@@ -48,4 +48,5 @@ export interface BlogPageClientProps {
   variables: any;
   query: string;
   locale: Locale;
+  ogImage: string;
 }
