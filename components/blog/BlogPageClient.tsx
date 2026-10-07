@@ -5,10 +5,10 @@ import Giscus from '@giscus/react';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 import Image from 'next/image';
-// biome-ignore lint/style/useImportType: React is required
 import React from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import type { BlogAvatar } from 'utils/blog/blogAvatar';
 import { buildBlogLinkSlug } from 'utils/i18n/buildLinkSlug';
 import { LOCALE_ROUTE_CONFIG } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
@@ -21,7 +21,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   variables,
   query,
   locale,
-  heroImage,
+  avatar,
 }) => {
   const { data: blogPostData } = useTina({ query, variables, data });
 
@@ -40,27 +40,21 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
 
   return (
     <article>
-      <header className="max-w-4xl mx-auto px-6 pt-12">
-        {/* The image shows the title and author, so the page text for them is for screen readers only. */}
-        <h1 className="sr-only">{unclipEmoji(post.title)}</h1>
-        {/* NOTE: [7 Oct 2026] EK - unoptimized is deliberate. Vercel only optimises static
-            files and passes this route's PNG through unchanged. */}
-        <Image
-          src={heroImage}
-          alt=""
-          width={1200}
-          height={630}
-          unoptimized={true}
-          priority={true}
-          className="w-full h-auto rounded-xl border"
-        />
-      </header>
-      <div className="p-6">
-        <div className="max-w-prose mx-auto">
-          <div className="flex justify-end opacity-80 m-0">
-            <span className="sr-only">By {post.author}</span>
-            <time dateTime={post.date}>{postedDate}</time>
+      <div className="px-6">
+        <header className="max-w-3xl mx-auto pt-10 md:pt-12 flex flex-col-reverse items-center gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
+          <div className="text-center md:text-left">
+            <h1 className={blogTitleStyling}>{unclipEmoji(post.title)}</h1>
+            <p className="mt-4 opacity-80 text-lg">
+              By <strong>{post.author}</strong>
+              <span aria-hidden="true"> · </span>
+              <time dateTime={post.date}>{postedDate}</time>
+            </p>
           </div>
+          <BlogAvatarImage avatar={avatar} />
+        </header>
+      </div>
+      <div className="p-6">
+        <div className="max-w-3xl mx-auto">
           <div className=" pt-6">
             <TinaMarkdown
               content={post.body}
@@ -97,5 +91,31 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
     </article>
   );
 };
+
+const blogTitleStyling =
+  'leading-[1.3] bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 ' +
+  'text-transparent bg-clip-text font-ibm-plex text-4xl md:text-5xl';
+
+// The bottom radius matches the circle, so the photo's cropped waist sits inside it and the head pops out the top.
+function BlogAvatarImage({ avatar }: { avatar: BlogAvatar }) {
+  const [src, setSrc] = React.useState(avatar.src);
+
+  return (
+    <div className="relative shrink-0 w-36 h-44 md:w-48 md:h-60">
+      <div className="absolute bottom-0 inset-x-0 aspect-square rounded-full bg-linear-to-br from-orange-400 to-orange-600" />
+      <div className="absolute inset-0 overflow-hidden rounded-b-[72px] md:rounded-b-[96px]">
+        <Image
+          src={src}
+          alt=""
+          fill={true}
+          sizes="192px"
+          priority={true}
+          className="object-contain object-bottom"
+          onError={() => setSrc(avatar.fallbackSrc)}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default BlogPageClient;

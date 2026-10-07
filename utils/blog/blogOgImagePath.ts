@@ -1,11 +1,6 @@
 import type { Locale } from 'utils/i18n/localeRouteConfig';
 
-const prefix = (locale: Locale) => (locale === 'zh' ? '/zh' : '');
-
+// One source for the post's link-preview image and the copy shown on the page, so they never drift.
 export function blogOgImagePath(locale: Locale, slugPath: string): string {
-  return `${prefix(locale)}/blog/og/${slugPath}`;
-}
-
-export function blogHeroImagePath(locale: Locale, slugPath: string): string {
-  return `${prefix(locale)}/blog/hero/${slugPath}`;
+  return `${locale === 'zh' ? '/zh' : ''}/blog/og/${slugPath}`;
 }

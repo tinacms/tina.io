@@ -46,15 +46,12 @@ export interface BlogOgInput {
   title: string;
   author?: string | null;
   seed: string;
-  // The "New Post" chip suits a link preview, but looks wrong on an old post's own page.
-  showChip?: boolean;
 }
 
 export async function renderBlogOgImage({
   title,
   author,
   seed,
-  showChip = true,
 }: BlogOgInput): Promise<ImageResponse> {
   const mappedAvatar = authorImagePath(author);
   const avatarUri = mappedAvatar ? await pngDataUri(mappedAvatar) : null;
@@ -157,38 +154,34 @@ export async function renderBlogOgImage({
           position: 'relative',
         }}
       >
-        {showChip ? (
-          <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              backgroundColor: '#ffffff',
+              color: '#16151a',
+              fontFamily: 'IBM Plex Sans',
+              fontSize: 25,
+              lineHeight: 1,
+              padding: '13px 24px',
+              borderRadius: 9999,
+              boxShadow: '0 8px 22px rgba(0,0,0,0.45)',
+            }}
+          >
             <div
               style={{
                 display: 'flex',
-                alignItems: 'center',
-                gap: 12,
-                backgroundColor: '#ffffff',
-                color: '#16151a',
-                fontFamily: 'IBM Plex Sans',
-                fontSize: 25,
-                lineHeight: 1,
-                padding: '13px 24px',
+                width: 11,
+                height: 11,
                 borderRadius: 9999,
-                boxShadow: '0 8px 22px rgba(0,0,0,0.45)',
+                backgroundColor: '#EC4815',
               }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  width: 11,
-                  height: 11,
-                  borderRadius: 9999,
-                  backgroundColor: '#EC4815',
-                }}
-              />
-              New Post
-            </div>
+            />
+            New Post
           </div>
-        ) : (
-          <div style={{ display: 'flex' }} />
-        )}
+        </div>
 
         <div
           style={{

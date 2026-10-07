@@ -1,5 +1,6 @@
 // components/blog/BlogType.ts
 import type { TinaMarkdownContent } from 'tinacms/dist/rich-text';
+import type { BlogAvatar } from 'utils/blog/blogAvatar';
 import type { Locale } from 'utils/i18n/localeRouteConfig';
 
 interface Sys {
@@ -48,5 +49,5 @@ export interface BlogPageClientProps {
   variables: any;
   query: string;
   locale: Locale;
-  heroImage: string;
+  avatar: BlogAvatar;
 }
