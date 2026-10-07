@@ -136,7 +136,7 @@ export const RecipeBlock = ({ data }) => {
           >
             {instruction?.map((inst, idx) => (
               <div
-                key={inst.id}
+                key={`${inst.header}-${idx}`}
                 ref={(el) => {
                   instructionRefs.current[idx] = el;
                 }}
