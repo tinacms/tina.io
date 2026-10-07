@@ -1,6 +1,5 @@
 import BlogPageClient from 'components/blog/BlogPageClient';
 import { notFound } from 'next/navigation';
-import { blogAvatar } from 'utils/blog/blogAvatar';
 import { blogOgImagePath } from 'utils/blog/blogOgImagePath';
 import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
@@ -53,7 +52,7 @@ export default async function BlogPage({
         variables={variables}
         query={query}
         locale="zh"
-        avatar={blogAvatar(post.author, slugPath)}
+        slugPath={slugPath}
       />
     );
   } catch (error) {

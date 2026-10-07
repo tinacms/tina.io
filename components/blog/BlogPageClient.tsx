@@ -8,7 +8,7 @@ import Image from 'next/image';
 import React from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import type { BlogAvatar } from 'utils/blog/blogAvatar';
+import { type BlogAvatar, blogAvatar } from 'utils/blog/blogAvatar';
 import { buildBlogLinkSlug } from 'utils/i18n/buildLinkSlug';
 import { LOCALE_ROUTE_CONFIG } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
@@ -21,13 +21,14 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   variables,
   query,
   locale,
-  avatar,
+  slugPath,
 }) => {
   const { data: blogPostData } = useTina({ query, variables, data });
 
   const post = blogPostData.post;
   const strings = getUiStrings(locale);
   const postedDate = formatDate(post.date);
+  const avatar = blogAvatar(post.author, slugPath);
   const lastEditedDate = post.last_edited ? formatDate(post.last_edited) : null;
 
   const previousPage = post.prev
@@ -50,7 +51,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
               <time dateTime={post.date}>{postedDate}</time>
             </p>
           </div>
-          <BlogAvatarImage avatar={avatar} />
+          <BlogAvatarImage key={avatar.src} avatar={avatar} />
         </header>
       </div>
       <div className="p-6">
@@ -96,14 +97,13 @@ const blogTitleStyling =
   'leading-[1.3] bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 ' +
   'text-transparent bg-clip-text font-ibm-plex text-4xl md:text-5xl';
 
-// The bottom radius matches the circle, so the photo's cropped waist sits inside it and the head pops out the top.
 function BlogAvatarImage({ avatar }: { avatar: BlogAvatar }) {
   const [src, setSrc] = React.useState(avatar.src);
 
   return (
     <div className="relative shrink-0 w-36 h-44 md:w-48 md:h-60">
       <div className="absolute bottom-0 inset-x-0 aspect-square rounded-full bg-linear-to-br from-orange-400 to-orange-600" />
-      <div className="absolute inset-0 overflow-hidden rounded-b-[72px] md:rounded-b-[96px]">
+      <div className="absolute inset-0 overflow-hidden rounded-b-full">
         <Image
           src={src}
           alt=""
