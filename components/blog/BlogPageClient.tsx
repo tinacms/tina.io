@@ -5,10 +5,10 @@ import Giscus from '@giscus/react';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 import Image from 'next/image';
-// biome-ignore lint/style/useImportType: React is required
 import React from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { type BlogAvatar, blogAvatar } from 'utils/blog/blogAvatar';
 import { buildBlogLinkSlug } from 'utils/i18n/buildLinkSlug';
 import { LOCALE_ROUTE_CONFIG } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
@@ -21,13 +21,14 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   variables,
   query,
   locale,
-  ogImage,
+  slugPath,
 }) => {
   const { data: blogPostData } = useTina({ query, variables, data });
 
   const post = blogPostData.post;
   const strings = getUiStrings(locale);
   const postedDate = formatDate(post.date);
+  const avatar = blogAvatar(post.author, slugPath);
   const lastEditedDate = post.last_edited ? formatDate(post.last_edited) : null;
 
   const previousPage = post.prev
@@ -40,28 +41,21 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
 
   return (
     <article>
-      <BlogPageTitle title={post.title} />
-      <div className="p-6">
-        <div className="max-w-prose mx-auto">
-          <div className="flex justify-between items-center opacity-80 m-0">
-            <span className="flex flex-row text-lg gap-1">
-              By
-              <strong>{post.author}</strong>
-            </span>
-            <time dateTime={post.date}>{postedDate}</time>
+      <div className="px-6">
+        <header className="max-w-3xl mx-auto pt-10 md:pt-12 flex flex-col-reverse items-center gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
+          <div className="text-center md:text-left">
+            <h1 className={blogTitleStyling}>{unclipEmoji(post.title)}</h1>
+            <p className="mt-4 opacity-80 text-lg">
+              By <strong>{post.author}</strong>
+              <span aria-hidden="true"> · </span>
+              <time dateTime={post.date}>{postedDate}</time>
+            </p>
           </div>
-          {/* The image repeats the title and author shown above it, so screen readers skip it.
-              NOTE: [7 Oct 2026] EK - unoptimized is deliberate. Vercel only optimises static
-              files and passes this route's PNG through unchanged. */}
-          <Image
-            src={ogImage}
-            alt=""
-            width={1200}
-            height={630}
-            unoptimized={true}
-            priority={true}
-            className="w-full h-auto mt-6 rounded-xl border"
-          />
+          <BlogAvatarImage key={avatar.src} avatar={avatar} />
+        </header>
+      </div>
+      <div className="p-6">
+        <div className="max-w-3xl mx-auto">
           <div className=" pt-6">
             <TinaMarkdown
               content={post.body}
@@ -99,15 +93,28 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   );
 };
 
-function BlogPageTitle({ title }: { title: string }) {
-  const blogTitleStyling =
-    'leading-[1.3] max-w-3xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 ' +
-    'text-transparent bg-clip-text font-ibm-plex mx-auto text-4xl md:text-5xl';
+const blogTitleStyling =
+  'leading-[1.3] bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 ' +
+  'text-transparent bg-clip-text font-ibm-plex text-4xl md:text-5xl';
+
+function BlogAvatarImage({ avatar }: { avatar: BlogAvatar }) {
+  const [src, setSrc] = React.useState(avatar.src);
 
   return (
-    <header className="relative z-10 overflow-visible text-center px-8 pt-12 pb-4">
-      <h1 className={blogTitleStyling}>{unclipEmoji(title)}</h1>
-    </header>
+    <div className="relative shrink-0 w-36 h-44 md:w-48 md:h-60">
+      <div className="absolute bottom-0 inset-x-0 aspect-square rounded-full bg-linear-to-br from-orange-400 to-orange-600" />
+      <div className="absolute inset-0 overflow-hidden rounded-b-full">
+        <Image
+          src={src}
+          alt=""
+          fill={true}
+          sizes="192px"
+          priority={true}
+          className="object-contain object-bottom"
+          onError={() => setSrc(avatar.fallbackSrc)}
+        />
+      </div>
+    </div>
   );
 }
 
