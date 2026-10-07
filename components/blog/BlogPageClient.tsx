@@ -21,7 +21,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   variables,
   query,
   locale,
-  ogImage,
+  heroImage,
 }) => {
   const { data: blogPostData } = useTina({ query, variables, data });
 
@@ -40,28 +40,27 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
 
   return (
     <article>
-      <BlogPageTitle title={post.title} />
+      <header className="max-w-4xl mx-auto px-6 pt-12">
+        {/* The image shows the title and author, so the page text for them is for screen readers only. */}
+        <h1 className="sr-only">{unclipEmoji(post.title)}</h1>
+        {/* NOTE: [7 Oct 2026] EK - unoptimized is deliberate. Vercel only optimises static
+            files and passes this route's PNG through unchanged. */}
+        <Image
+          src={heroImage}
+          alt=""
+          width={1200}
+          height={630}
+          unoptimized={true}
+          priority={true}
+          className="w-full h-auto rounded-xl border"
+        />
+      </header>
       <div className="p-6">
         <div className="max-w-prose mx-auto">
-          <div className="flex justify-between items-center opacity-80 m-0">
-            <span className="flex flex-row text-lg gap-1">
-              By
-              <strong>{post.author}</strong>
-            </span>
+          <div className="flex justify-end opacity-80 m-0">
+            <span className="sr-only">By {post.author}</span>
             <time dateTime={post.date}>{postedDate}</time>
           </div>
-          {/* The image repeats the title and author shown above it, so screen readers skip it.
-              NOTE: [7 Oct 2026] EK - unoptimized is deliberate. Vercel only optimises static
-              files and passes this route's PNG through unchanged. */}
-          <Image
-            src={ogImage}
-            alt=""
-            width={1200}
-            height={630}
-            unoptimized={true}
-            priority={true}
-            className="w-full h-auto mt-6 rounded-xl border"
-          />
           <div className=" pt-6">
             <TinaMarkdown
               content={post.body}
@@ -98,17 +97,5 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
     </article>
   );
 };
-
-function BlogPageTitle({ title }: { title: string }) {
-  const blogTitleStyling =
-    'leading-[1.3] max-w-3xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 ' +
-    'text-transparent bg-clip-text font-ibm-plex mx-auto text-4xl md:text-5xl';
-
-  return (
-    <header className="relative z-10 overflow-visible text-center px-8 pt-12 pb-4">
-      <h1 className={blogTitleStyling}>{unclipEmoji(title)}</h1>
-    </header>
-  );
-}
 
 export default BlogPageClient;

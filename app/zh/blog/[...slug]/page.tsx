@@ -1,6 +1,6 @@
 import BlogPageClient from 'components/blog/BlogPageClient';
 import { notFound } from 'next/navigation';
-import { blogOgImagePath } from 'utils/blog/blogOgImagePath';
+import { blogHeroImagePath, blogOgImagePath } from 'utils/blog/blogOgImagePath';
 import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { getExcerpt } from 'utils/getExcerpt';
@@ -52,7 +52,7 @@ export default async function BlogPage({
         variables={variables}
         query={query}
         locale="zh"
-        ogImage={blogOgImagePath('zh', slugPath)}
+        heroImage={blogHeroImagePath('zh', slugPath)}
       />
     );
   } catch (error) {
