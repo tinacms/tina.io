@@ -16,8 +16,8 @@ export function FlyingBlock({ data, index }) {
               </h3>
             )}
             {data.text && <p className="text">{data.text}</p>}
-            {data.buttons?.map((button, _index) => (
-              <RenderButton key={button.id} button={button} />
+            {data.buttons?.map((button, index) => (
+              <RenderButton key={`${button.label}-${index}`} button={button} />
             ))}
           </div>
           <div className="learnImageWrapper">

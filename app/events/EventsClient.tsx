@@ -95,7 +95,7 @@ export default function EventsClient({
         </div>
         {upComingEvents.map((cardItem, index) => (
           <div
-            key={cardItem.title}
+            key={`${cardItem.headline}-${cardItem.startDate}`}
             data-id={`upcoming-${index}`}
             className={`event-card transform transition duration-500 ${
               visibleCards.includes(`upcoming-${index}`)
@@ -113,7 +113,7 @@ export default function EventsClient({
         </div>
         {pastEvents.map((cardItem, index) => (
           <div
-            key={cardItem.title}
+            key={`${cardItem.headline}-${cardItem.startDate}`}
             data-id={`past-${index}`}
             className={`event-card transform transition duration-500 ${
               visibleCards.includes(`past-${index}`)

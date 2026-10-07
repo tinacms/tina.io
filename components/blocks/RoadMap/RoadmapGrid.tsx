@@ -112,7 +112,7 @@ export function RoadmapGridBlock({ data, index }) {
               <Roadmap
                 data={itemData}
                 last={last}
-                key={itemData.id}
+                key={`${itemData.icon}-${index}`}
                 index={index}
               />
             );

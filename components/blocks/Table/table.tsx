@@ -18,8 +18,8 @@ const TableHeader = ({ data, scrollData, isMonthly }) => {
         )}
       </div>
       {/* Remaining Columns Titles */}
-      {data.columnItems?.map((headerItem) => (
-        <div key={headerItem.id}>
+      {data.columnItems?.map((headerItem, index) => (
+        <div key={`${headerItem.columnHeader}-${index}`}>
           <div
             className={`text-center font-bold ${
               headerItem.isReccomended ? 'text-orange-600' : 'text-gray-700'
@@ -89,7 +89,7 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
             >
               {data.rowItems?.map((row, rowIndex) => (
                 <div
-                  key={row.id}
+                  key={`${row.rowHeader}-${rowIndex}`}
                   className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group"
                 >
                   <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50">
@@ -119,7 +119,7 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
                     )}
                   </div>
 
-                  {row.rowCells?.map((cell, _cellIndex) => {
+                  {row.rowCells?.map((cell, cellIndex) => {
                     let cellData = {
                       columnHeader: '',
                       cellValue: '',
@@ -134,7 +134,7 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
 
                     return (
                       <div
-                        key={cell.id}
+                        key={`${row.rowHeader}-${cellIndex}`}
                         className="text-center flex items-center justify-center snap-start"
                       >
                         {cellData.isTicked ? (
