@@ -223,7 +223,8 @@ const PlanCard = ({ data, isMonthly, annualBillingText }) => {
             <span className="font-semibold">{data.addOn.name}</span>
             {data.addOn.monthlyPrice > 0 && (
               <span className="ml-auto font-semibold whitespace-nowrap">
-                +{formatDollars(data.addOn.monthlyPrice)}/month
+                +{formatDollars(data.addOn.monthlyPrice)}
+                {data.addOn.interval || '/month'}
               </span>
             )}
           </label>
