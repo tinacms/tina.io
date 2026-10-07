@@ -5,7 +5,7 @@ import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
 export const LINK_CLASSES =
-  'underline decoration-dotted decoration-2 underline-offset-4 decoration-orange-500 transition-colors duration-150 hover:decoration-solid hover:text-orange-500';
+  'underline underline-offset-4 decoration-orange-500 transition-colors duration-150 hover:text-orange-500';
 
 const gridColumnsClasses = {
   3: 'grid-cols-[minmax(0,1fr)_30px_repeat(3,minmax(150px,1fr))]',
@@ -37,7 +37,7 @@ const TableHeader = ({ data, scrollData, isMonthly }) => {
           <div
             className={`text-center font-bold ${
               headerItem.isReccomended ? 'text-orange-600' : 'text-gray-700'
-            }  underline decoration-dotted`}
+            } underline underline-offset-4`}
           >
             <Link href={`${headerItem.columnHeaderLink}`}>
               {headerItem.columnHeader} {headerItem.isReccomended ? '⭐️' : ''}
@@ -106,7 +106,9 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
                   key={row.rowHeader}
                   className={`grid ${gridColumnsClass(data.columnItems?.length)} min-h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group`}
                 >
-                  <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50">
+                  <div
+                    className={`flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50 ${infoIconHoverIndex === rowIndex ? 'z-30' : ''}`}
+                  >
                     <div className="pl-2 py-2 font-medium flex items-center">
                       {row.rowHeaderLink ? (
                         <Link
@@ -128,7 +130,7 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
                         >
                           <IoMdInformationCircleOutline className="text-orange-500 text-xl z-20" />
                           {infoIconHoverIndex === rowIndex && (
-                            <div className="absolute top-1/2 left-full transform -translate-y-1/2 ml-2 text-sm p-2 rounded-lg shadow-lg w-[300px] break-words whitespace-normal text-center bg-white">
+                            <div className="absolute top-1/2 left-full transform -translate-y-1/2 ml-2 text-sm p-2 rounded-lg shadow-lg w-max max-w-xs break-words whitespace-normal text-center bg-white">
                               <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-white"></div>
                               {row.rowDescription}
                             </div>
