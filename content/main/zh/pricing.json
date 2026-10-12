@@ -42,6 +42,10 @@
               "icon": "BiBadge"
             },
             {
+              "name": "命令行工具（CLI）",
+              "icon": "LuTerminal"
+            },
+            {
               "name": "社区支持",
               "icon": "BiSupport"
             },
@@ -144,6 +148,7 @@
             }
           ],
           "addOn": {
+            "isEnabled": false,
             "name": "添加 SSO",
             "monthlyPrice": 180,
             "interval": "/月"
@@ -323,11 +328,11 @@
           },
           {
             "rowHeader": "SSO",
-            "rowDescription": "Enterprise 套餐包含单点登录，Business 套餐可作为附加项购买",
+            "rowDescription": "Enterprise 套餐包含单点登录",
             "rowCells": [
               "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
               "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-              "{\"columnHeader\":\"Business\",\"cellValue\":\"附加项 $180/月\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
               "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
             ]
           },
