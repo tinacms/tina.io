@@ -1,5 +1,0 @@
-root = true
-
-[*.yml]
-indent_style = space
-space_indentation = 2
