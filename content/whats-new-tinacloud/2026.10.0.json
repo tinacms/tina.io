@@ -1,0 +1,116 @@
+{
+  "versionNumber": "2026.10.0",
+  "dateReleased": "2026-10-12T02:38:34Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "perf(content-api): write index batches 4 at a time on prod as well",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(dashboard): show a nav dropdown on phones",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat(identity): add WorkOS migration export and scan tool",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "chore: remove 14 dependency declarations nothing in the repo uses",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(identity): deny disabled users at the authorizer and remove org create-user",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(assets-api): serve robots.txt and noindex header on the assets domain",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix(identity): count the account deletion grace period in UTC",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(dashboard): send unknown signed-in paths to /projects",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "perf(content-api): declare buffer encoding so index sublevels stop throwing errors",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(dashboard): hide the Security tab when the account has nothing to manage there",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(identity): keep the stored name on WorkOS user.updated",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "🧹 Dependabot: ignore deps owned by other automation",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Check the token and its branches on the database status route without a branch",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "fix(content-api): promote silent indexer skip to WARN",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(content-api): surface indexing cause through the status endpoint",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump shell-quote from 1.10.0 to 1.12.0[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump proxy-addr from 2.0.7 to 2.0.8[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump source-map-js from 1.2.1 to 1.2.2[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group with 13 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump github.com/posthog/posthog-go from 1.29.0 to 1.32.0 in /identity in the patch-and-minor group[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}
