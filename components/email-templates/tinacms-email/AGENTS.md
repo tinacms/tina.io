@@ -6,9 +6,6 @@ This folder holds a content-neutral TinaCMS email. The header, background, and f
 
 - `template.html`: the email. Do not edit the header, background, or footer. Edit only the body region between `<!-- BODY:START -->` and `<!-- BODY:END -->`, and the placeholders listed below.
 - `base-tina-email.html`: the source email the template came from. Use it only as a reference.
-- `Background-light.png`, `Background-dark.png`: page backgrounds. Keep the file names.
-- `TinaCMS-logo-white.png`: footer logo. Keep the file name.
-- `TinaCMS-social-facebook-white.png`, `TinaCMS-social-threads-white.png`: footer icons. Keep the file names.
 
 Make one copy of `template.html` for each email. Name the copy after the email, for example `password-reset.html`. Never edit `template.html`.
 
@@ -38,6 +35,20 @@ Collect these values before you edit. Ask the user for any value you cannot find
 | `{{SUPPORT_LINK_LABEL}}` | Two or three words, for example "TinaCMS support". |
 
 The footer copyright line is fixed. Change it only when the year changes.
+
+## Step 2b. Fill the image URLs
+
+The template does not ship image files. Host these PNG files on a public `https://` URL. Then fill the placeholders.
+
+| Placeholder | Image |
+| --- | --- |
+| `{{BACKGROUND_LIGHT_URL}}` | Light page background, the large TinaCMS gradient artwork. |
+| `{{BACKGROUND_DARK_URL}}` | Dark page background. |
+| `{{FOOTER_LOGO_URL}}` | White TinaCMS logo, 150 px wide, transparent background. |
+| `{{FACEBOOK_ICON_URL}}` | White Facebook icon, 60 by 60 px, transparent background. |
+| `{{THREADS_ICON_URL}}` | White Threads icon, 60 by 60 px, transparent background. |
+
+Do not add PNG files to this folder. Email clients need hosted URLs.
 
 ## Step 3. Build the body
 
@@ -89,7 +100,7 @@ Run these checks before you give the file to the user.
 
 1. Search for `{{`. There must be no matches.
 2. Search for `BLOCK:`. Every block comment must match the blocks in the email. Delete the comments before you send the file, or keep them if the user asks.
-3. Check every `href` and `src`. Each must start with `https://` or `mailto:`. Local file names are allowed only for the footer logo and the footer icons, which the template already uses.
+3. Check every `href` and `src`. Each must start with `https://` or `mailto:`.
 4. Open the file in a browser. Check the layout at 600 pixels and at 375 pixels width.
 5. Check the button text contrast. White text on `#d13f13` passes the 4.5:1 minimum.
 

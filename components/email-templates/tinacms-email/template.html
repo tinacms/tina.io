@@ -81,7 +81,7 @@
       @media (prefers-color-scheme: dark) {
         body, .email-bg {
           background-color: #111827 !important;
-          background-image: url("Background-dark.png"), linear-gradient(135deg, #111827 0%, #1f2937 52%, #241748 100%) !important;
+          background-image: url("{{BACKGROUND_DARK_URL}}"), linear-gradient(135deg, #111827 0%, #1f2937 52%, #241748 100%) !important;
           background-position: center top !important;
           background-repeat: no-repeat !important;
           background-size: cover !important;
@@ -105,7 +105,7 @@
         .email-footer a { color: var(--color-white) !important; }
         .email-video { background-color: #374151 !important; }
       }
-      [data-ogsc] .email-bg { background-color: #111827 !important; background-image: url("Background-dark.png"), linear-gradient(135deg, #111827 0%, #1f2937 52%, #241748 100%) !important; background-position: center top !important; background-repeat: no-repeat !important; background-size: cover !important; }
+      [data-ogsc] .email-bg { background-color: #111827 !important; background-image: url("{{BACKGROUND_DARK_URL}}"), linear-gradient(135deg, #111827 0%, #1f2937 52%, #241748 100%) !important; background-position: center top !important; background-repeat: no-repeat !important; background-size: cover !important; }
       [data-ogsc] .email-card { background-color: #1f2937 !important; }
       [data-ogsc] .email-copy, [data-ogsc] .email-card td[style*="color: #30364d"] { color: #e5e7eb !important; }
       [data-ogsc] .email-heading { color: #d13f13 !important; background-image: linear-gradient(135deg, #ff724b 0%, #d13f13 100%) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; }
@@ -118,7 +118,7 @@
       [data-ogsc] .email-video { background-color: #374151 !important; }
     </style>
   </head>
-  <body class="email-bg" style="margin: 0; padding: 0; background-color: #f8fafc; background-image: url('Background-light.png'), linear-gradient(135deg, #fff7ed 0%, #f8fafc 48%, #eef2ff 100%); background-position: center top, center; background-repeat: no-repeat, no-repeat; background-size: cover, cover">
+  <body class="email-bg" style="margin: 0; padding: 0; background-color: #f8fafc; background-image: url('{{BACKGROUND_LIGHT_URL}}'), linear-gradient(135deg, #fff7ed 0%, #f8fafc 48%, #eef2ff 100%); background-position: center top, center; background-repeat: no-repeat, no-repeat; background-size: cover, cover">
     <div
       style="
         display: none;
@@ -141,7 +141,7 @@
       cellspacing="0"
       width="100%"
       class="email-bg"
-      style="background-color: #f8fafc; background-image: url('Background-light.png'), linear-gradient(135deg, #fff7ed 0%, #f8fafc 48%, #eef2ff 100%); background-position: center top, center; background-repeat: no-repeat, no-repeat; background-size: cover, cover"
+      style="background-color: #f8fafc; background-image: url('{{BACKGROUND_LIGHT_URL}}'), linear-gradient(135deg, #fff7ed 0%, #f8fafc 48%, #eef2ff 100%); background-position: center top, center; background-repeat: no-repeat, no-repeat; background-size: cover, cover"
     >
       <tr>
         <td align="center" style="padding: 32px 20px 20px">
@@ -358,7 +358,7 @@
                         <td role="contentinfo" align="center" style="padding: 24px 24px 22px; color: #ffffff; font-family: 'Inter', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 24px">
             <p style="margin: 0 0 10px">
               <a href="https://tina.io" target="_blank" style="display: inline-block; text-decoration: none">
-                <img src="TinaCMS-logo-white.png" alt="TinaCMS home" width="150" style="display: block; width: 150px; max-width: 100%; height: auto; border: 0" />
+                <img src="{{FOOTER_LOGO_URL}}" alt="TinaCMS home" width="150" style="display: block; width: 150px; max-width: 100%; height: auto; border: 0" />
               </a>
             </p>
             <h2 style="margin: 0 0 8px; color: #ffffff; font-family: 'IBM Plex Sans', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 700; line-height: 28px">Stay in touch with TinaCMS</h2>            <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto 14px">
@@ -367,11 +367,11 @@
                 <td align="center" style="padding: 0 8px"><a href="https://discord.com/invite/zumN63Ybpf" target="_blank" style="display: inline-block"><img src="https://tina.io/icon_clyde_white_RGB.svg" alt="Discord" width="24" height="24" style="display: block; width: 24px; height: 24px; border: 0" /></a></td>
                 <td align="center" style="padding: 0 8px"><a href="https://twitter.com/tinacms" target="_blank" style="display: inline-block"><img src="https://tina.io/logo.svg" alt="Twitter" width="24" height="24" style="display: block; width: 24px; height: 24px; border: 0" /></a></td>
                 <td align="center" style="padding: 0 8px"><a href="https://www.linkedin.com/company/tinacms" target="_blank" style="display: inline-block"><img src="https://tina.io/LinkedIn_icon-white1.svg" alt="LinkedIn" width="24" height="24" style="display: block; width: 24px; height: 24px; border: 0" /></a></td>
-                <td align="center" style="padding: 0 8px"><a href="https://www.facebook.com/tinacms/" target="_blank" style="display: inline-block"><img src="TinaCMS-social-facebook-white.png" alt="Facebook" width="24" height="24" style="display: block; width: 24px; height: 24px; border: 0" /></a></td>
+                <td align="center" style="padding: 0 8px"><a href="https://www.facebook.com/tinacms/" target="_blank" style="display: inline-block"><img src="{{FACEBOOK_ICON_URL}}" alt="Facebook" width="24" height="24" style="display: block; width: 24px; height: 24px; border: 0" /></a></td>
                 <td align="center" style="padding: 0 8px"><a href="https://www.youtube.com/@TinaCMS" target="_blank" style="display: inline-block"><img src="https://tina.io/youtube-logo-white1.svg" alt="YouTube" width="24" height="24" style="display: block; width: 24px; height: 24px; border: 0" /></a></td>
                 <td align="center" style="padding: 0 8px"><a href="https://bsky.app/profile/tina.io" target="_blank" style="display: inline-block"><img src="https://tina.io/svg/bluesky-logo.svg" alt="Bluesky" width="24" height="24" style="display: block; width: 24px; height: 24px; border: 0" /></a></td>
                 <td align="center" style="padding: 0 8px"><a href="https://www.instagram.com/tinacms_/" target="_blank" style="display: inline-block"><img src="https://tina.io/svg/instagram-logo.svg" alt="Instagram" width="24" height="24" style="display: block; width: 24px; height: 24px; border: 0" /></a></td>
-                <td align="center" style="padding: 0 8px"><a href="https://www.threads.com/@tinacms_" target="_blank" style="display: inline-block"><img src="TinaCMS-social-threads-white.png" alt="Threads" width="24" height="24" style="display: block; width: 24px; height: 24px; border: 0" /></a></td>
+                <td align="center" style="padding: 0 8px"><a href="https://www.threads.com/@tinacms_" target="_blank" style="display: inline-block"><img src="{{THREADS_ICON_URL}}" alt="Threads" width="24" height="24" style="display: block; width: 24px; height: 24px; border: 0" /></a></td>
               </tr>
             </table>
             <p style="margin: 0 0 12px">{{SUPPORT_LINE}} or <a href="{{SUPPORT_URL}}" target="_blank" style="color: #ffffff; text-decoration: underline">{{SUPPORT_LINK_LABEL}}</a>.</p>
