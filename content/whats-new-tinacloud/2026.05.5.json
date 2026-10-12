@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.05.5",
+  "dateReleased": "2026-05-14T06:48:17Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "chore(content-api): bump @tinacms/graphql-2.4 alias to 2.4.1",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
+        }
+      ]
+    }
+  ]
+}

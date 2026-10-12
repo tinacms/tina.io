@@ -1,0 +1,14 @@
+{
+  "versionNumber": "2.1.1",
+  "dateReleased": "2024-08-11T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "Release Notes",
+      "changesList": [
+        {
+          "changesDescription": "#### Patch Changes\n\n* c6e9afb: fix reference field selector styling\n* d9b23fc: Improve reference field selector\n* 1c69338: fix reference field search and styling\n* a1a767d: add icon to reference selector\n* @tinacms/search\\@1.0.25"
+        }
+      ]
+    }
+  ]
+}

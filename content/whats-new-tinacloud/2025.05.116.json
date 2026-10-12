@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.05.116",
+  "dateReleased": "2025-05-18T23:37:47Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🚸 UX - Improve resilience of OAuth login flow",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

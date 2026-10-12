@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2026.05.0",
+  "dateReleased": "2026-05-11T07:34:17Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat(assets-api): CloudWatch metrics for CloudFront invalidation telemetry",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Persist branch metadata in onRepoBranchModified",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}

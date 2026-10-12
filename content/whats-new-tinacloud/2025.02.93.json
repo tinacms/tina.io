@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.02.93",
+  "dateReleased": "2025-02-27T01:12:20Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🧱 CI/CD - Improvements",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

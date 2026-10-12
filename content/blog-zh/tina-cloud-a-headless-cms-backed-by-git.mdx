@@ -1,0 +1,54 @@
+---
+seo:
+  title: 'TinaCloud: 一个由Git支持的无头CMS | TinaCMS博客'
+  description: >-
+    TinaCloud结合了无头CMS的灵活性和Git的强大功能，实现了版本控制的内容管理和轻松的协作。
+title: 'TinaCloud - 一个由Git支持的无头CMS'
+date: '2021-04-21T14:06:05-03:00'
+last_edited: '2021-04-22T16:21:48.271Z'
+author: Scott Gallant
+prev: content/blog-zh/2021-q1-tinacms-updates.mdx
+next: content/blog-zh/using-graphql-with-the-filesystem.mdx
+---
+
+我们正在为团队提供在Git中存储内容的能力，但以视觉化的方式，在他们网站的上下文中进行编辑。
+
+就在一年多前，我们[宣布了TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y)，一个用于基于React的网站的开源可视化编辑器，现在我们正在添加最后的润色以实现我们的愿景。在接下来的几周内，我们将发布**一个用于您内容的开源GraphQL API**和[TinaCloud](/blog/tina-cloud-a-headless-cms-backed-by-git/)，我们新的**与Git通信的无头API**。
+
+![使用Tina的侧边栏实时编辑Next.js + Tailwind CSS网站。](/img/blog/tina-cms-visual-editing.gif "使用Tina的侧边栏实时编辑Next.js + Tailwind CSS网站。")*使用Tina的侧边栏实时编辑Next.js + TailwindCSS网站。*
+
+使用TinaCMS，您可以在网站的上下文中进行编辑，并且这些内容更改会与*任何*存储解决方案同步：GitHub中的Markdown文件、Airtable文档、Google Sheet，或者只是另一个无头CMS等。
+
+![一只可爱的TinaCMS羊驼正在同步内容](/img/blog/Before.png "在您的TinaCMS网站中编辑，这些内容更改会与任何存储解决方案同步")
+
+这种存储无关的方法保持了代码和内容的分离，并且不会将您锁定在任何特定的内容存储解决方案中。
+
+然而，与此同时，这种方法增加了设置过程的复杂性，并要求您的内容编辑者通过其他方式进行身份验证，比如GitHub（并不总是理想的）。我们希望为团队提供更快的成功路径和更丰富的协作功能，这就是为什么我们正在构建自己的后端，TinaCloud。
+
+## TinaCloud: 一个基于Git的顶级API
+
+![TinaCloud就像一个去掉了编辑界面的无头CMS，由TinaCMS提供。](/img/blog/After.png)
+
+您可以将TinaCloud视为一个去掉了编辑界面的无头CMS，由TinaCMS提供。
+
+### 一个用于您内容的GraphQL API
+
+我们坚信将您网站的内容存储在由Git支持的文件系统中（Markdown、JSON、YAML等）。不仅因为Git是一个被广泛采用的[开放标准](https://github.com/git/git)，还因为它自带了出色的内容管理功能，如分支、回滚和拉取请求。像Vercel或Netlify这样的持续部署服务依赖于Git，内容团队应该能够采用相同的工作流程。
+
+然而，当您以编程方式与内容交互时，Git和文件系统有其局限性。这就是为什么数据库存在的原因。
+
+> *由于Git-based CMS中的内容是基于文件的，因此实际上没有办法保证*[引用完整性](https://en.wikipedia.org/wiki/Referential_integrity)*——[Brian Rinaldi](https://www.stackbit.com/blog/git-based-cms-relationships)
+
+为了克服这些限制，TinaCloud为您的存储库文件提供了一个GraphQL接口，其中内容以Markdown和JSON等开放格式存储。这样，您可以像对待数据库一样与存储库文件交互：定义内容类型、关系，并使用GraphQL查询您的内容。
+
+### 使用TinaCloud为整个团队带来可视化编辑
+
+最好的网站是工程师、设计师、作家和营销人员之间协作的结果。这些人需要能够从单一的真实来源工作，而TinaCloud为管理员提供了一个简单的**仪表板**来管理网站和协作者。![TinaCloud仪表板：项目标签](/img/blog/tina-cloud-dashboard.png "TinaCloud仪表板：项目标签")
+
+TinaCloud为您的编辑团队提供用户管理、身份验证和基本角色。即使他们没有GitHub账户，也可以给您的团队成员访问权限。✨
+
+## 结论
+
+在未来，我们将回顾那些笨拙的传统CMS，想知道为什么我们忍受了这么久。内容管理可以变得更好，我们打算向世界展示现代技术栈的可能性。为了实现这一目标，我们正在倾力于可视化编辑和由Git支持的内容。
+
+我们相信可移植性，这就是为什么我们的无头CMS将您的内容存储在您控制的存储库中的开放规范文件格式中。此外，我们仍然非常致力于TinaCMS的存储无关方法，TinaCloud将是您可用的众多后端存储解决方案之一。TinaCloud是我们向世界展示由Git支持的强大可视化内容管理的基础。

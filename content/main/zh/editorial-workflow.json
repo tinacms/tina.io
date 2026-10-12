@@ -1,0 +1,92 @@
+{
+  "seo": {
+    "title": "TinaCMS 编辑工作流",
+    "description": "通过集成的 Git 工作流高效管理与审阅团队的内容改动。创建分支、保护生产环境，并借助 Pull Request 放心合并。"
+  },
+  "blocks": [
+    {
+      "headline": "编辑工作流",
+      "text": "用版本控制来审阅、批准和管理内容改动",
+      "media": [
+        {
+          "src": "/video/create-branch.webm",
+          "_template": "video"
+        }
+      ],
+      "buttons": [
+        {
+          "label": "预约演示",
+          "icon": true,
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "_template": "hero"
+    },
+    {
+      "features": [
+        {
+          "headline": "分支管理",
+          "text": "无需前往 GitHub，直接在新分支上创建内容。",
+          "media": [
+            {
+              "image": "/img/blog/editorial-workflow/create-branch-small_kzubqs.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
+          "headline": "保护分支",
+          "text": "禁止在特定分支上编辑。当内容编辑者试图向受保护分支保存时，系统会提示他们改为创建新分支。",
+          "media": [
+            {
+              "image": "/img/blog/editorial-workflow/enable-editorial-workflow.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
+          "headline": "放心合并",
+          "text": "当内容编辑者创建新分支时，系统会自动创建一个 Pull Request。这也让团队能够在内容合并到生产环境之前，确保 CI/CD 流程全部通过。",
+          "media": [
+            {
+              "image": "/img/blog/editorial-workflow/github-pr.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
+          "headline": "可分享的预览",
+          "text": "轻松访问部署在 Netlify、Vercel、AWS 等平台上的预览。编辑者可以方便地把站点预览分享给其他相关方。\n\n",
+          "media": [
+            {
+              "image": "/img/blog/editorial-workflow/share-btn_xvmxii.png",
+              "_template": "image"
+            }
+          ]
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "headline": "获取演示",
+      "text": "Tina 的编辑工作流仅在商业版和企业版套餐中提供。欢迎联系我们预约演示。",
+      "buttons": [
+        {
+          "label": "获取演示",
+          "icon": true,
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "flying"
+    }
+  ]
+}

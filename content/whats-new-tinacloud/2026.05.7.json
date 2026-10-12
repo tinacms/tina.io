@@ -1,0 +1,101 @@
+{
+  "versionNumber": "2026.05.7",
+  "dateReleased": "2026-05-24T23:50:22Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Add a link to the doco on how to configure the media root in media se…",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        },
+        {
+          "changesDescription": "docs(adr): Cognito → WorkOS user migration",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "chore: remove unused & deprecated dev dependencies (dep audit wave 1)",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore(content-api): bump sqlite-level to v2.1 + better-sqlite3 to v12",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(content-api): /v2/searchIndex multi-word + collection filter Lambda timeout",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(dashboard): unstick setup checklist when schema-added event is missing",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: replace schema-added eventlog with state-based check, fix settings warning",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Revert checklist schema-state-fallback pair (#3547 + #3553)",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(content-api): rank /v2/searchIndex results by TF-IDF score",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "docs(AGENTS.md): add issue triage and label taxonomy section",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "docs(agents): forbid direct merges to main from agents",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(dashboard): unstick setup checklist with state-based site-schema check",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(content-api): seed metadata[newBranch] from baseBranch on createBranch",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "💄 🧪 UI update and adding validation to the media tab",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix(content-api): map media-indexing flags from identity response (#3560)",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix notifications `sticky` being interrupted",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": [
+        {
+          "changesDescription": "their first contribution",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        }
+      ]
+    }
+  ]
+}

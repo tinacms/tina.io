@@ -1,0 +1,29 @@
+{
+  "versionNumber": "3.3.1",
+  "dateReleased": "2026-01-16T00:08:45Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Revert \"✨ Visual element highlighting between iframe and form (#6211)\"",
+          "pull_request_number": "6346",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6346",
+          "commit_hash": "3fa216c",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3fa216c110af6417e6b835c49a275b08981e028b",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        },
+        {
+          "changesDescription": "Branch selector - added ability to filter based off PR number",
+          "pull_request_number": "6348",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6348",
+          "commit_hash": "7352c96",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/7352c9660869d413a0f48d3fbb003d4c4c0e3d85",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}

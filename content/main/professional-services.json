@@ -1,0 +1,120 @@
+{
+  "seo": {
+    "title": "Professional Services – TinaCMS",
+    "description": "Get expert help with TinaCMS. Priority support, onboarding, and custom feature development from the team behind TinaCMS."
+  },
+  "blocks": [
+    {
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "headline": "Professional Services",
+      "text": "Whether you're launching your first project or managing content at scale, the TinaCMS team is here to help.",
+      "_template": "hero"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": true
+      },
+      "features": [
+        {
+          "headline": "Priority Support",
+          "text": "Get direct access to TinaCMS expert developers for technical blockers, troubleshooting, and architectural advice.\n\n* Priority bug fixes\n* Architecture and best-practice guidance\n* Dedicated support contact\n",
+          "buttons": [
+            {
+              "label": "Schedule Call",
+              "icon": false,
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/professional-services/priority-support-v2.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
+          "headline": "Onboarding",
+          "text": "Accelerate your TinaCMS adoption with hands-on onboarding from our team. From initial setup to editorial training, we'll get your team productive fast.\n\n* Migration assistance from other CMS platforms\n* Custom configuration\n* Team training sessions\n",
+          "buttons": [
+            {
+              "label": "Schedule Call",
+              "icon": false,
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/professional-services/onboarding-v3.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true
+        },
+        {
+          "headline": "Custom Features",
+          "text": "Need something unique? Our team builds custom plugins, integrations, and features that extend TinaCMS to fit your exact content workflow.\n\n* Custom plugin development\n* Third-party integrations\n* Tailored editing workflows\n",
+          "buttons": [
+            {
+              "label": "Schedule Call",
+              "icon": false,
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/professional-services/custom-features-new.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
+          "headline": "Full-Stack Development",
+          "text": "From the team behind TinaCMS — SSW offers full-stack consulting across .NET, React, Azure, and more.\n\n* Web application development\n* Cloud architecture and migration\n* AI and machine learning solutions\n",
+          "buttons": [
+            {
+              "label": "Contact SSW",
+              "icon": false,
+              "shape": "pill",
+              "variant": "orange",
+              "size": "medium",
+              "url": "https://www.ssw.com.au/company/contact-us",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/professional-services/fullstack-development-v2.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "title": "Talk to a Tina Expert",
+      "description": "Ready to get started? Book a call with our team to discuss your needs.",
+      "buttons": [
+        {
+          "label": "Schedule Call",
+          "icon": false,
+          "shape": "square",
+          "color": "orange",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "callToAction"
+    }
+  ]
+}

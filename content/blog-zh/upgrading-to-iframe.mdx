@@ -1,0 +1,131 @@
+---
+seo:
+  title: 升级到iFrame | TinaCMS博客
+  description: >-
+    按照本指南在TinaCMS中升级到iFrame，简化内容嵌入并提高内容结构的灵活性。
+title: 升级到0.70.0（使用基于iframe的预览）
+date: '2022-10-28T04:00:00.000Z'
+last_edited: '2022-10-28T04:00:00.000Z'
+author: James O'Halloran
+prev: content/blog-zh/tina-version-0.69.13.mdx
+next: content/blog-zh/tina-1-0-announcement.mdx
+---
+
+`tinacms@0.70.0` 是对TinaCMS的运行方式和预览渲染方式的重大改进。
+
+## 背景
+
+之前，Tina的设置要求您将您的网站包裹在一个 `TinaProvider` 组件中。Tina只能在您网站内部运行。
+
+在 `0.70.0` 中，我们引入了一个“独立的tinacms构建过程”，它在一个沙盒化的iframe中运行您网站的预览。
+
+这带来了几个好处，包括：
+
+* 消除了Tina与您网站之间的样式冲突。
+* 一致的框架无关实现。
+* 更清晰和简单的代码拆分，使您的在线网站的包大小更小。
+
+## 升级
+
+### 升级tinacms
+
+确保您使用的是最新的 `tinacms` 和 `@tinacms/cli` 包。
+
+```
+yarn upgrade tinacms @tinacms/cli
+```
+
+### 使用新的useTina钩子
+
+将任何 `useTina` 钩子的实例切换为从 `tinacms/dist/react` 引入
+
+```diff
+- import { useTina } from "tinacms/dist/edit-state";
++ import { useTina } from "tinacms/dist/react";
+```
+
+### 从您的\_app.tsx中移除Tina包装器
+
+```diff
+  return (
+-    <TinaProvider>
+      <Component {...pageProps} />
+-    </TinaProvider>
+  );
+```
+
+您现在还可以删除整个 `.tina/components` 目录。
+
+> 这个包装器不再需要，因为Tina包装器现在在iframe之外的独立进程中运行。
+
+### 移除pages/admin
+
+您的 `pages/admin` 文件现在可以删除。
+
+> 新的管理页面将由Tina的构建过程生成。
+
+### 更新您的schema.ts文件
+
+将您的 `schema.{ts,tsx,js,jsx}` 文件重命名为 `config.{ts,tsx,js,jsx}`
+
+将 `defineSchema` 替换为 `defineConfig`。这包含了您的架构和构建配置。
+
+```diff
+- const schema = defineSchema({
++ const config = defineConfig({
++     schema,
++     clientId,
++     branch,
++     token,
++     media,
++     build: {
++        publicFolder: "public", // 您框架的公共资产文件夹
++        outputFolder: "admin", // 在公共文件夹内
++    },
++}
+
+- export const tinaConfig = defineConfig({
+-   client,
+-   schema,
+-   // ...
+- });
+
+
+- export default schema;
++ export default config;
+```
+
+大多数 `defineConfig` 属性看起来会很熟悉，除了新的 `build` 属性。由于Tina管理现在在您网站的构建过程中之外构建，这是必需的。
+
+对于NextJS网站，使用这些值：
+
+```
+     build: {
+        publicFolder: "public",
+        outputFolder: "admin"
+    },
+```
+
+> 我们的 `config.{js,ts,jsx,tsx}` 文件只需要一个导出。之前，配置和架构是分别导出的。
+
+### 访问新的管理页面。
+
+管理页面目前在 `/admin/index.html` 生成并可访问。
+
+在NextJS网站上，如果您希望仅通过 `/admin` 访问，您需要更新您的 `next.config.js` 以处理重定向。
+
+```js
+//next.config.js
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/index.html',
+      },
+    ]
+  },
+}
+```
+
+这就应该完成了！如果您对迁移有任何疑问，请查看我们的[社区频道](/community/)以获取帮助。

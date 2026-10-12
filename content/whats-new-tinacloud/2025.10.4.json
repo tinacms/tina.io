@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2025.10.4",
+  "dateReleased": "2025-11-06T04:07:18Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Add Posthog",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "Opt-out Git Authoring in Registration Flow",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        }
+      ]
+    },
+    {
+      "changesTitle": "💄 UX",
+      "changesList": [
+        {
+          "changesDescription": "Standardise destructive actions",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        },
+        {
+          "changesDescription": "Standardise secondary action buttons",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        }
+      ]
+    }
+  ]
+}

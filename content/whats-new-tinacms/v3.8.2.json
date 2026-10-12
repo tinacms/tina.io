@@ -1,0 +1,81 @@
+{
+  "versionNumber": "3.8.2",
+  "dateReleased": "2026-05-25T23:29:10Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "fix(tinacms): trim whitespace from search input before querying",
+          "pull_request_number": "6940",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6940",
+          "commit_hash": "33feeac",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/33feeacf6585be2736a0a14c5a800c1b6db34e44",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        },
+        {
+          "changesDescription": "Fix typos: rename misspelled `notifiySubscribers` to `notifySubscribers` and correct \"Error occured\" to \"Error occurred\" in CLI error messages",
+          "pull_request_number": "6950",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6950",
+          "commit_hash": "8ac0776",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/8ac0776dea0c0650a5e5098c143b24c17fc25b8e",
+          "gitHubName": "RonGamzu",
+          "gitHubLink": "https://github.com/RonGamzu"
+        },
+        {
+          "changesDescription": "Fix dropdown options being hidden behind other fields.",
+          "pull_request_number": "6929",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6929",
+          "commit_hash": "b9eaf61",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b9eaf61c28c25814ae65b5fbe72d5b33df0b3596",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "Fix optional datetime fields auto-filling with the current date when no value is set",
+          "pull_request_number": "6926",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6926",
+          "commit_hash": "cf73a11",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/cf73a115c3a58fac26e2518734dd3cb49133260d",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "chore(deps): upgrade react-router-dom from 6.3.0 to ^6.30.3 to resolve GHSA-9jcx-v3wj-wh4m (unexpected external redirect via untrusted paths)",
+          "pull_request_number": "6938",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6938",
+          "commit_hash": "4757225",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/475722599ff350b45bfdb4f7a6af2e37d33c81c3",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/bridge@0.3.0",
+          "commit_hash": "0509095",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/0509095"
+        },
+        {
+          "changesDescription": "@tinacms/schema-tools@2.8.0",
+          "commit_hash": "0509095",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/0509095"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.1.5",
+          "commit_hash": "0509095",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/0509095"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.16",
+          "commit_hash": "0509095",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/0509095"
+        }
+      ]
+    }
+  ]
+}

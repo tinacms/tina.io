@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2026.02.1",
+  "dateReleased": "2026-02-08T21:49:09Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Added scripts for handling the dynamo custom scripts flow",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        },
+        {
+          "changesDescription": "Add media index operation telemetry tracking",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "💄 UX - Show no access placeholder for non-admin users without projects",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Refactor TinaCMS dependency update workflow",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Allow app-level admins to view unindexed branches warning",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

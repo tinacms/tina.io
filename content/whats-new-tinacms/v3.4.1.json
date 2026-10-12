@@ -1,0 +1,26 @@
+{
+  "versionNumber": "3.4.1",
+  "dateReleased": "2026-02-02T22:57:59Z",
+  "changesObject": [
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.5.0",
+          "commit_hash": "4eb9252",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4eb9252"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.0.5",
+          "commit_hash": "4eb9252",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4eb9252"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.2",
+          "commit_hash": "4eb9252",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4eb9252"
+        }
+      ]
+    }
+  ]
+}

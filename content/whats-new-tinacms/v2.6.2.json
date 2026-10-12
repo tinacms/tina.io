@@ -1,0 +1,14 @@
+{
+  "versionNumber": "2.6.2",
+  "dateReleased": "2025-01-28T06:26:14Z",
+  "changesObject": [
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/search@1.0.38"
+        }
+      ]
+    }
+  ]
+}

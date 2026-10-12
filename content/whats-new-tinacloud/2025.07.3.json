@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2025.07.3",
+  "dateReleased": "2025-07-06T22:31:28Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat(ui/gitauthtokens): add toggle to enable / disable git authoring",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🧱 Infrastructure - Add sourcemaps, update runtime used by Assets API",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        },
+        {
+          "changesDescription": "⚡ Resilience - Improve handling of malformatted images",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        },
+        {
+          "changesDescription": "fix(auth): reset password redirects to verification screen for unverified accounts",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}

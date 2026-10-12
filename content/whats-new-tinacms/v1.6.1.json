@@ -1,0 +1,14 @@
+{
+  "versionNumber": "1.6.1",
+  "dateReleased": "2024-03-28T13:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "216cfff0c: Add fetch options to generated client"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.12.4",
+  "dateReleased": "2025-12-11T00:58:51Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "✨ feat: Add site schema warning and enhance project setup checklist",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "🐛 Mobile Footer on Mobile Signin",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}

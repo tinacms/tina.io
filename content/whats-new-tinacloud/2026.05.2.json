@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.05.2",
+  "dateReleased": "2026-05-12T06:11:03Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "perf(assets-api): invalidate only on delete; rely on Cache-Control elsewhere",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

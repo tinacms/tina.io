@@ -1,0 +1,81 @@
+{
+  "versionNumber": "2026.03.2",
+  "dateReleased": "2026-03-27T00:22:23Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Add media indexing cleanup script and sync-all-apps-media tooling",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Fix profile name validation rejecting valid characters (e.g. brackets)",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Add pull request webhook support for branch-PR linking",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix: show account settings tabs regardless of org role",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "chore: update TinaCMS dependencies[bot]",
+          "gitHubName": "release-bot-allow-prs-and-push",
+          "gitHubLink": "https://github.com/apps/release-bot-allow-prs-and-push"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump tar from 7.5.3 to 7.5.11[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump underscore from 1.13.7 to 1.13.8[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump minimatch from 3.1.2 to 3.1.5[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump diff from 4.0.2 to 4.0.4[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump markdown-it from 14.1.0 to 14.1.1[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump bn.js from 4.12.1 to 4.12.3[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump rollup from 2.79.2 to 2.80.0[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump ajv from 8.17.1 to 8.18.0[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}

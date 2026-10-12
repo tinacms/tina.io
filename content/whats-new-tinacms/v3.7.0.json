@@ -1,0 +1,81 @@
+{
+  "versionNumber": "3.7.0",
+  "dateReleased": "2026-03-25T00:22:42Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "Add media usage dashboard through screen functionality",
+          "pull_request_number": "6508",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6508",
+          "commit_hash": "5a8ec36",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5a8ec366d35e33bea17740a1f80f81fe152680e3",
+          "gitHubName": "thomas-sepanosian",
+          "gitHubLink": "https://github.com/thomas-sepanosian"
+        },
+        {
+          "changesDescription": "support highlight feature in rich text editor",
+          "pull_request_number": "6510",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6510",
+          "commit_hash": "059f480",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/059f480697ae1af813c165df3cc8954443737488",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Resolve z-index issue for floating toolbar and modals",
+          "pull_request_number": "6532",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6532",
+          "commit_hash": "32d0471",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/32d0471356945ed9fa7b4b8b4da0937e1fafcacc",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Add `tabular-nums` styling to the elapsed timer in the editorial workflow branch creation modal to prevent layout shifts as digits change.",
+          "pull_request_number": "6520",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6520",
+          "commit_hash": "74f12fd",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/74f12fda610711bd76f43c7f6d4dc890427d3b50",
+          "gitHubName": "griffenedge",
+          "gitHubLink": "https://github.com/griffenedge"
+        },
+        {
+          "changesDescription": "🐛 Fix beforeSubmit for Editorial Workflow Branch Creation flow",
+          "pull_request_number": "6522",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6522",
+          "commit_hash": "7e34861",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/7e34861197af6ec3488277bdfafe8297f51e1c3d",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/mdx@2.1.0",
+          "commit_hash": "059f480",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/059f480"
+        },
+        {
+          "changesDescription": "@tinacms/schema-tools@2.7.0",
+          "commit_hash": "059f480",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/059f480"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.7",
+          "commit_hash": "059f480",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/059f480"
+        }
+      ]
+    }
+  ]
+}

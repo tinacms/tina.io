@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2026.06.9",
+  "dateReleased": "2026-06-25T03:19:02Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Add unit tests for dual-issuer JWT authorizer",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189"
+        },
+        {
+          "changesDescription": "⏪ Revert gitleaks hook + stray test.txt commits pushed to main",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "✨ Surface per-document last-write Timestamp from the content DynamoDB read",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🔒 Add Husky hooks: gitleaks secret scan, format check, and main-push block",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix(content-api): guard DDB iterator throttles so Lambda runtime survives",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

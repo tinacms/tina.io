@@ -1,0 +1,40 @@
+{
+  "versionNumber": "3.8.4",
+  "dateReleased": "2026-06-01T01:31:38Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "feat: add toolbar override settings \"headingLevels\" for h1,h2,etc",
+          "pull_request_number": "6974",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6974",
+          "commit_hash": "c7b366c",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c7b366c5de66b1a3f086c1f11954225e55430324",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.8.1",
+          "commit_hash": "c7b366c",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c7b366c"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.17",
+          "commit_hash": "c7b366c",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c7b366c"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.1.6",
+          "commit_hash": "c7b366c",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c7b366c"
+        }
+      ]
+    }
+  ]
+}

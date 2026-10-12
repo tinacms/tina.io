@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2024.11.35",
+  "dateReleased": "2024-11-08T01:17:55Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🗃️ Database - Improve resiliency of App record retrieval in https://github.com/tinacms/tinacloud/pull/2371",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🔥 ContentAPI - Removes unnecessary inclusion of better-sqlite module in ContentAPIRouter in https://github.com/tinacms/tinacloud/pull/2387",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "⬆️ Upgrades - (at)tinacms/graphql, better-sqlite3 and sqlite3 through lambda/nodejs layer in https://github.com/tinacms/tinacloud/pull/2369",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "versionNumber": "3.7.3",
+  "dateReleased": "2026-04-21T22:59:02Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Add 'displayOnly' field type for display-only form fields",
+          "pull_request_number": "6548",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6548",
+          "commit_hash": "cd262b3",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/cd262b311c218ea4e5b5bb8abbbe54fcff3b8054",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        },
+        {
+          "changesDescription": "Fix sidebar file tree: consolidate duplicate roots from multiple useTina() calls, prevent chevron shrinking on long filenames, add bottom padding for last item visibility",
+          "pull_request_number": "6693",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6693",
+          "commit_hash": "217bfb4",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/217bfb4ff2c1a61fa7b6df3ea460b192b5179bb7",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        },
+        {
+          "changesDescription": "fix: display editorial workflow modal on deleted branches",
+          "pull_request_number": "6678",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6678",
+          "commit_hash": "5feb18d",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5feb18d0d3032bbcd6a5aad678208c0dde19bf81",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "💄 Improve UI of Grid Item in Media Manager",
+          "pull_request_number": "6699",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6699",
+          "commit_hash": "32e145d",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/32e145d4859cbc710a222f2a01c55ca7b29a080b",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Fix React Error #31 when inserting image from Media Library with custom MediaStore",
+          "pull_request_number": "6682",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6682",
+          "commit_hash": "d998884",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d9988849ad67fb5e9d7e233c1ccca0cb0c031c3e",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Validate relativePath to reject whitespace and invalid characters",
+          "pull_request_number": "6664",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6664",
+          "commit_hash": "c75d871",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c75d87121224f91dc4e5e2aa8af60b0881b87a5b",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.7.2",
+          "commit_hash": "cd262b3",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/cd262b3"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.1.2",
+          "commit_hash": "cd262b3",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/cd262b3"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.10",
+          "commit_hash": "cd262b3",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/cd262b3"
+        }
+      ]
+    }
+  ]
+}

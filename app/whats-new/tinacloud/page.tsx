@@ -1,0 +1,37 @@
+import { client } from 'tina/__generated__/client';
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
+import WhatsNewTinaCloudPageLayout from './WhatsNewTinaCloudPageLayout';
+
+export async function generateMetadata() {
+  const vars = { last: 10, sort: 'dateReleased' };
+  const { data } = await fetchTinaCloudData(vars);
+  const _nodesData = data.WhatsNewTinaCloudConnection.edges.map(
+    (edge) => edge.node,
+  );
+
+  // Use default SEO data since the new JSON structure doesn't include SEO fields
+  const seoData = {
+    title: "What's New in TinaCloud",
+    description:
+      'Stay updated with the latest improvements and features in TinaCloud.',
+    canonicalUrl: `${settings.siteUrl}/whats-new/tinacloud`,
+  };
+
+  return getSeo(seoData);
+}
+
+export default async function TinaCloudPage() {
+  const vars = { last: 10, sort: 'dateReleased' };
+  const { data } = await fetchTinaCloudData(vars);
+
+  return <WhatsNewTinaCloudPageLayout data={data} />;
+}
+
+const fetchTinaCloudData = async (vars = {}) => {
+  const res = await client.queries.WhatsNewTinaCloudConnection(vars);
+  return {
+    data: res.data,
+    query: res.query,
+  };
+};

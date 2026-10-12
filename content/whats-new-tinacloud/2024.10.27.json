@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2024.10.27",
+  "dateReleased": "2024-10-14T10:21:21Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Add ability to bill annually in https://github.com/tinacms/tinacloud/pull/2339",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}

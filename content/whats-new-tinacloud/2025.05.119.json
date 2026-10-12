@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.05.119",
+  "dateReleased": "2025-05-21T23:57:45Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "handleSchemaSha - use default branch when bot branches are passed in",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}

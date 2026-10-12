@@ -1,0 +1,157 @@
+import type React from 'react';
+import type { Template } from 'tinacms';
+import { BADGE_COLOR_OPTIONS } from '@/component/Badge/Badge.template';
+import { actionsButtonTemplate } from '@/component/blocks/ActionButton/ActionsButton.template';
+import { codeButtonTemplate } from '@/component/blocks/CodeButton/CodeButton.template';
+import { modalButtonTemplate } from '@/component/blocks/ModalButton/ModalButton.template';
+import { IconPickerInput } from '@/component/forms/IconPicker';
+
+export const herov2Template: Template = {
+  name: 'heroV2',
+  label: 'V2 | Hero',
+  ui: {
+    previewSrc: '/img/blocks/hero-v2.png',
+  },
+  fields: [
+    {
+      type: 'string',
+      label: 'Title',
+      name: 'title',
+    },
+    {
+      name: 'subtext',
+      type: 'string',
+      label: 'Subtext',
+      ui: {
+        component: 'textarea',
+      },
+    },
+    {
+      label: 'Buttons',
+      list: true,
+      name: 'buttons',
+      type: 'object',
+      ui: {
+        visualSelector: true,
+        min: 0,
+        max: 3,
+      },
+      templates: [
+        actionsButtonTemplate as Template,
+        modalButtonTemplate as Template,
+        codeButtonTemplate as Template,
+      ],
+    },
+    {
+      name: 'buttonHorizontalAlignment',
+      type: 'string',
+      label: 'Button Horizontal Alignment',
+      options: ['left', 'center', 'right'],
+      ui: {
+        component: 'select',
+      },
+    },
+    {
+      name: 'image',
+      type: 'image',
+      label: 'Image',
+    },
+    {
+      name: 'recentNewsBanner',
+      type: 'object',
+      label: 'Recent News Banner',
+      fields: [
+        {
+          name: 'title',
+          label: 'Title',
+          type: 'string',
+        },
+        {
+          name: 'link',
+          label: 'Link',
+          type: 'string',
+        },
+        {
+          name: 'openInNewTab',
+          label: 'Open in New Tab',
+          type: 'boolean',
+        },
+        {
+          name: 'badge',
+          label: 'Badge',
+          type: 'object',
+          fields: [
+            {
+              name: 'text',
+              label: 'Badge Text',
+              type: 'string',
+              required: false,
+              description:
+                'Text to display in the badge. If empty, badge will not show.',
+            },
+            {
+              ui: {
+                component: IconPickerInput as React.FC<{ field: unknown }>,
+              },
+              name: 'icon',
+              label: 'Icon',
+              type: 'string',
+              required: false,
+              description:
+                'Icon to display in the badge. Leave empty for no icon.',
+            },
+            {
+              name: 'position',
+              label: 'Badge Position',
+              type: 'string',
+              options: [
+                { value: 'left', label: 'Left' },
+                { value: 'right', label: 'Right' },
+                { value: 'top left', label: 'Top Left' },
+                { value: 'top right', label: 'Top Right' },
+              ],
+              ui: {
+                component: 'select',
+              },
+              required: false,
+              description: 'Position of the badge on the banner',
+            },
+            {
+              name: 'color',
+              label: 'Badge Color',
+              type: 'string',
+              options: BADGE_COLOR_OPTIONS,
+              ui: {
+                component: 'select',
+              },
+              required: false,
+              description: 'Color variant for the badge',
+            },
+          ],
+        },
+        {
+          ui: {
+            component: IconPickerInput,
+          },
+          name: 'titleIcon',
+          label: 'Title Icon',
+          type: 'string',
+          required: false,
+          description:
+            'Icon to display next to the banner title. Leave empty for no icon.',
+        },
+        {
+          name: 'backgroundColor',
+          label: 'Background Color',
+          type: 'string',
+          options: BADGE_COLOR_OPTIONS,
+          ui: {
+            component: 'select',
+          },
+          required: false,
+          description: 'Background color for the recent news banner',
+        },
+      ],
+    },
+  ],
+};

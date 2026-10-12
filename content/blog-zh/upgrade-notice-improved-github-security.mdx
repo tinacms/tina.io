@@ -1,0 +1,95 @@
+---
+seo:
+  title: '升级通知：改进的GitHub安全性 | TinaCMS博客'
+  description: >-
+    TinaCMS现在包括增强的GitHub安全功能。了解这些改进以及它们如何保护TinaCMS中的内容和数据。
+title: '升级通知：改进的GitHub安全性'
+date: '2020-06-23T13:47:03-03:00'
+last_edited: '2020年7月30日'
+author: Joel Huggett
+prev: content/blog-zh/software-engineering-daily-podcast-tinacms.mdx
+next: content/blog-zh/inline-editing-project.mdx
+---
+
+我们改进了GitHub认证的整体安全性。以下是更改的说明，稍后是升级到新认证流程所需的步骤。
+
+TinaCMS通过代理与GitHub通信，因此GitHub提供的认证令牌被存储为httpOnly cookie。这阻止了客户端访问令牌，这非常好。然而，这种策略仍然容易受到[跨站请求伪造（CSRF）](https://owasp.org/www-community/attacks/csrf)攻击。这意味着只要cookie仍然存在，任何对代理的调用都会成功，这并不好。
+
+解决此问题的一种常见方法是实施[令牌同步模式](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#synchronizer-token-pattern)。问题在于这种模式需要某种形式的服务器端会话存储。这与静态网站的无状态方法不太兼容。因此，我们引入了一种我们称之为无状态令牌同步模式的变体。
+
+**无状态令牌同步**通过将CSRF令牌存储为httpOnly cookie，并发送一个由服务器的秘密*签名密钥*签名的加密令牌来工作，该令牌是CSRF令牌和GitHub提供的认证令牌的结合体。然后，这个结合的令牌被存储在客户端的本地存储中，并在承载认证头中发送到代理。然后，在服务器端，结合的令牌被解密，并比较CSRF令牌以确保它们匹配。如果一切正常，认证令牌被提取，调用完成。
+
+这种新模式有助于减轻CSRF攻击，并以加密格式提供认证令牌，所有这些都是无状态完成的。
+
+## 升级到新流程
+
+### **react-tinacms-github**
+
+无需更改。此包可以自行处理旧流程和新流程，无需进一步配置，只需确保您使用的是**最新版本**。
+
+### **next-tinacms-github**
+
+**next-tinacms-github** API路由现在需要一个秘密*签名密钥*。
+
+*签名密钥*应该是一个随机的256位密钥，用于服务器端加密和解密发送给客户端的认证令牌。
+
+您可以通过在终端中运行`openssl rand -base64 32`生成一个密钥，并将输出用作您的*签名密钥*。
+
+密钥应存储在环境变量中；不要忘记将其添加到您的托管环境配置中。
+
+`createAuthHandler`、`apiProxy`和`previewHandler`现在**需要**将*签名密钥*作为参数传递。
+
+### **所需更改：**
+
+`create-github-access-token.ts`:
+
+```diff
+import { createAuthHandler } from 'next-tinacms-github'
+
+export default createAuthHandler(
+  process.env.GITHUB_CLIENT_ID || "",
+  process.env.GITHUB_CLIENT_SECRET || "",
++ process.env.SIGNING_KEY || ""
+)
+```
+
+`preview.ts`:
+
+```diff
+import { previewHandler } from 'next-tinacms-github'
+
+- export default previewHandler
++ export default previewHandler(process.env.SIGNING_KEY)
+```
+
+`proxy-github.ts`:
+
+```diff
+import { apiProxy } from 'next-tinacms-github'
+
+- export default apiProxy
++ export default apiProxy(process.env.SIGNING_KEY)
+```
+
+**另外**，`onLogin`需要将本地存储中的新令牌作为授权头传递给`/api/preview`路由，应更改为：
+
+```diff
+const onLogin = async () => {
+  const token = localStorage.getItem('tinacms-github-token') || null
+  const headers = new Headers()
+
+  if (token) {
+    headers.append('Authorization', 'Bearer ' + token)
+  }
+
+  const resp = await fetch(`/api/preview`, { headers: headers })
+  const data = await resp.json()
+
+  if (resp.status == 200) window.location.href = window.location.pathname
+  else throw new Error(data.message)
+}
+```
+
+## 有问题吗？
+
+在我们的[社区Discord服务器](https://discord.com/invite/zumN63Ybpf)中讨论它们（请使用#help频道）。

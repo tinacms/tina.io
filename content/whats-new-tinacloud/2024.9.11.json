@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2024.9.11",
+  "dateReleased": "2024-09-05T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Fix bug where URL glob patterns were allowed but unable to be added in [https://github.com/tinacms/tinacloud/pull/2253](https://github.com/tinacms/tinacloud/pull/2253)",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "Add error messages when a URL is invalid in [https://github.com/tinacms/tinacloud/pull/2252](https://github.com/tinacms/tinacloud/pull/2252)",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}

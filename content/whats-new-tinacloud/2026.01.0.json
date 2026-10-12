@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2026.01.0",
+  "dateReleased": "2026-01-05T22:06:38Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Fix - Remove image query param for Vercel clone",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "🐛 Fix -  Fix breadcrumb separator alignment issue",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "🐛 Fix: Filter bot branches from metadata and branch status queries",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat: add labels to collaborators list",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}

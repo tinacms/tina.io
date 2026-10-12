@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.01.76",
+  "dateReleased": "2025-01-20T04:08:59Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "⚡ Throttling - Improve system performance under load",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

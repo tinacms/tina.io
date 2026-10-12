@@ -1,0 +1,41 @@
+{
+  "versionNumber": "2026.04.2",
+  "dateReleased": "2026-04-21T07:36:51Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: S3 staging→production asset fallback with shared transform cache",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: validate user count before allowing plan downgrade",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "docs: Add local dev instructions to AGENTS.md",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: correct pluralization of deployment time in footer (#3185)",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat: route media delete, sync, and pull-branch to content repo (#3408)",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "hotfix: grant AssetsApiEventHandler DDB permission to query apps table",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

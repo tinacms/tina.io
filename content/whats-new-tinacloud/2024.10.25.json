@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2024.10.25",
+  "dateReleased": "2024-10-03T23:13:54Z",
+  "changesObject": [
+    {
+      "changesTitle": "🛠️ Fixes",
+      "changesList": [
+        {
+          "changesDescription": "fix: empty site urls break cors auth in https://github.com/tinacms/tinacloud/pull/2326",
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4"
+        },
+        {
+          "changesDescription": "Users now have to manually create accounts on org acceptance in https://github.com/tinacms/tinacloud/pull/2324",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "fix: media sync media root in https://github.com/tinacms/tinacloud/pull/2332",
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4"
+        }
+      ]
+    }
+  ]
+}

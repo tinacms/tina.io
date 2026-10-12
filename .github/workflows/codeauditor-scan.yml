@@ -1,0 +1,25 @@
+name: Scheduled CodeAuditor scan
+
+# Schedule scan for tina.io at 9am every Thursday
+on: 
+  schedule:
+  - cron: "0 9 * * 4"
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions: 
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: CodeAuditor Workflow
+        uses: SSWConsulting/codeauditor-scan-site@1.0.0
+        with:
+          # Your CodeAuditor token
+          token: ${{ secrets.CODEAUDITOR_TOKEN }}
+          # Your Scan URL
+          url: https://tina.io/
+          # Your GitHub Token
+          GitHub_Token: ${{ github.token }}

@@ -1,0 +1,31 @@
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Generated files
+tina/__generated__/
+indices/out/
+rss/out/
+
+# Test outputs
+coverage/
+test-results/
+playwright-report/
+
+# Large worker files
+*.worker.js
+*.worker.ts
+
+# Cache directories
+.cache/
+.vercel/
+
+# Large content directories that don't need linting
+public/img/
+public/video/
+public/gif/

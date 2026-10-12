@@ -1,0 +1,81 @@
+/* Inter Regular */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('../../public/fonts/Inter-Regular.woff2') format('woff2'),
+    url('../../public/fonts/Inter-Regular.woff') format('woff');
+}
+
+/* Inter Italic */
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('../../public/fonts/Inter-Italic.woff2') format('woff2'),
+    url('../../public/fonts/Inter-Italic.woff') format('woff');
+}
+
+/* Inter Medium */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url('../../public/fonts/Inter-Medium.woff2') format('woff2'),
+    url('../../public/fonts/Inter-Medium.woff') format('woff');
+}
+
+/* Inter Medium Italic */
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url('../../public/fonts/Inter-MediumItalic.woff2') format('woff2'),
+    url('../../public/fonts/Inter-MediumItalic.woff') format('woff');
+}
+
+/* Inter Bold */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('../../public/fonts/Inter-Bold.woff2') format('woff2'),
+    url('../../public/fonts/Inter-Bold.woff') format('woff');
+}
+
+/* IBM Plex Sans SemiBold */
+@font-face {
+  font-family: 'IBMPlexSans-SemiBold';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../../public/fonts/IBMPlexSans-SemiBold.woff2') format('woff2');
+}
+
+/* Source Code Pro Regular */
+@font-face {
+  font-family: 'SourceCodePro-Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../public/fonts/SourceCodePro-Regular.woff2') format('woff2');
+}
+
+/* IBM Plex Sans Medium */
+@font-face {
+  font-family: 'IBMPlexSans-Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../../public/fonts/IBMPlexSans-Medium.woff2') format('woff2');
+}

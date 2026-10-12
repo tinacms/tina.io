@@ -1,0 +1,73 @@
+{
+  "versionNumber": "3.7.1",
+  "dateReleased": "2026-03-30T01:35:43Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Fix media usage tracking for files with the same filename in different directories",
+          "pull_request_number": "6553",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6553",
+          "commit_hash": "a40f52a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a40f52ae01fa2ef059fb983efd22aad42913b351",
+          "gitHubName": "thomas-sepanosian",
+          "gitHubLink": "https://github.com/thomas-sepanosian"
+        },
+        {
+          "changesDescription": "Flipping the referenced files checkbox to off by default, and updating the label.",
+          "pull_request_number": "6544",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6544",
+          "commit_hash": "a7ebbe1",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a7ebbe18a77b05c567564f8b507f76c2a2bb135e",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        },
+        {
+          "changesDescription": "🐖 Adding Telemetry around usage of slash command in rich-text editor",
+          "pull_request_number": "6558",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6558",
+          "commit_hash": "519a4c2",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/519a4c2ca8a78274fe88549d41adbe52f7c6258b",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🐛 Fix slash command popup from not being escapable",
+          "pull_request_number": "6546",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6546",
+          "commit_hash": "6e374e5",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/6e374e5975ff240807d59bfd06b3ab22264e91b1",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "\"Add react-dnd and react-dnd-html5-backend as explicit dependencies to fix starter template build failures when using Yarn v1\"",
+          "pull_request_number": "6564",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6564",
+          "commit_hash": "039e605",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/039e6052a77e4cd0ae1460e33076a0fad1864019",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189"
+        },
+        {
+          "changesDescription": "✨ UI: Added \"New\" badges to help you quickly identify recently added items",
+          "pull_request_number": "6560",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6560",
+          "commit_hash": "d1f094b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d1f094b2d1a62e9c0580a56b8a788bc0e7a0af98",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/search@1.2.8"
+        }
+      ]
+    }
+  ]
+}

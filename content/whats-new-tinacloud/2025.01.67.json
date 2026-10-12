@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.01.67",
+  "dateReleased": "2025-01-13T01:49:13Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Vercel - Fix integration",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        },
+        {
+          "changesDescription": "🧱 CI/CD - Various improvements",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

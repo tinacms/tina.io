@@ -1,0 +1,138 @@
+---
+draft: false
+consumes:
+  - file: /packages/@tinacms/api-git/src/server.ts
+    details: >-
+      解释如何配置git特定的环境变量以手动设置作者和ssh-key
+  - file: /packages/@tinacms/gatsby-tinacms-git/index.ts
+    details: >-
+      解释如何配置git特定的环境变量以手动设置作者和ssh-key
+warningMessage: >-
+  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/docs/setup-overview/)来获得更少摩擦的解决方案。
+seo:
+  title: 在Gatsby Cloud上使用TinaCMS | TinaCMS博客
+  description: >-
+    了解如何将TinaCMS与Gatsby Cloud集成，以便在Gatsby驱动的网站上实现无缝、快速和可扩展的内容管理体验。
+title: 在Gatsby Cloud上使用TinaCMS
+date: '2020-01-03T12:00:00.000Z'
+author: James O'Halloran
+prev: content/blog-zh/editing-on-the-cloud.mdx
+next: content/blog-zh/three-ways-to-edit-md.mdx
+---
+
+我们[最近写过](/blog/editing-on-the-cloud/ "TinaCMS on the cloud")关于TinaCMS如何在云端工作。Gatsby Cloud为编辑者提供了一种无需运行本地开发环境即可编辑TinaCMS网站的绝佳方式。
+
+由于Gatsby Cloud是专门为Gatsby网站从头开始构建的，它利用了*构建工件缓存*和*任务并行化*来加快速度 ⚡
+
+那么，让我们开始吧！🕺
+
+## 在Gatsby Cloud上部署预览 🚀
+
+在Gatsby Cloud上部署预览只需点击几下即可完成。一旦我们创建了一个账户，我们可以连接网站的存储库并输入一些构建信息（网站的根目录和环境变量）。
+
+然后，哒哒！✨ 我们网站的预览应该上线了！我们对存储库所做的任何提交都会自动触发Gatsby预览的重建。
+
+> 注意：此预览将作为我们的“云编辑环境”而不是我们的生产网站。您的生产网站应单独构建和部署。
+
+现在我们的**预览已上线**，我们需要进行一些额外的配置，以便Tina在云端顺利运行。
+
+## 使云环境私有化 🔒
+
+我们不希望任何陌生人从我们的云编辑环境进行提交，因此我们首先要做的事情之一就是将此环境设为私有。这可以在Gatsby Cloud的**站点设置**的**访问控制**部分中切换。
+
+## 配置Git以进行云提交 ✔️
+
+> 如果您正在使用gatsby-tinacms-git插件，请确保使用版本：0.2.16-canary.0或更高版本！
+
+要设置canary，请运行`yarn add gatsby-tinacms-git@canary`，直到此版本达到完整发布。
+
+要在Gatsby Cloud中让Tina工作，我们需要在**Gatsby Cloud站点设置**中配置一些环境变量：
+
+GIT\_AUTHOR\_EMAIL
+GIT\_AUTHOR\_NAME
+TINA\_CEE
+SSH\_KEY
+
+### `GIT_AUTHOR_NAME` & `GIT_AUTHOR_EMAIL` 🗣️
+
+这些值将定义在提交时显示在作者字段中的人。
+![tinacms-add-new-file-gif](/img/commit_author_scott.png)
+
+如果您希望作者基于登录用户而不是环境中的静态值，您可能需要查看Tina Teams！
+
+### `TINA_CEE`
+
+需要设置此项以确保Tina知道它正在*云编辑环境*中运行。将其设置为`true`。
+
+### `SSH_KEY` 🔑
+
+`SSH_KEY`是一个私钥，允许从我们的云编辑环境对您的Git存储库进行写访问。
+
+让我们从使用以下命令创建一个新的密钥对开始。（记下您的密钥路径/名称，并在提示输入密码时留空）
+
+```
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+这应该已经创建了一个**私钥**和一个**公钥**。我们需要将**公钥**添加到您的Git提供商（GitHub、GitLab、Bitbucket等）中的网站存储库。在GitHub中，这可以在“设置”>“部署密钥”中完成。确保**启用写访问。**
+
+我们可以通过在终端中运行以下命令来记录我们的公钥：
+
+```
+$ cat ~/.ssh/your_key_name.pub
+```
+
+现在让我们将**私钥**添加到Gatsby Cloud。
+
+**私钥**需要**Base64编码**并作为环境变量添加到Gatsby Cloud。
+
+我们可以通过在终端中运行以下命令来编码和记录我们的**私钥**：
+
+```
+$ cat ~/.ssh/your_key_name | base64
+```
+
+让我们在Gatsby Cloud中将其添加为环境变量：
+
+```
+SSH_KEY: [上面记录的值]
+```
+
+最后，我们需要将其添加到`gatsby-config.js`中的gatsby-tinacms-git配置中：
+
+```js
+plugins: [
+  {
+    resolve: "gatsby-plugin-tinacms",
+    options: {
+      plugins: [
+        ...
+        {
+          resolve: "gatsby-tinacms-git",
+          options: {
+            ...
+            sshKey: process.env.SSH_KEY
+          },
+        },
+      ],
+    },
+  }
+  ...
+]
+```
+
+现在，在您触发重建后，它应该能够提交到您的存储库！
+
+> 请注意，Base64编码密钥并不意味着它可以公开！**不要将此值提交到您的存储库。** 我们仅对密钥进行Base64编码以避免在将其用作环境变量时出现格式问题。
+
+## 网站配置 🔨
+
+当我们准备让编辑者在云编辑环境中编辑Tina网站时，我们需要**特别小心以防止运行时错误。** 如果数组为空或图像未定义，网站是否会崩溃？我们需要考虑这些编辑者在编辑时可能遇到的边缘情况。
+
+## 愉快的云编辑！☁️
+
+希望这能帮助您开始在云端使用Tina编辑**您的Gatsby网站。**
+
+我们将继续详细介绍如何在几个不同的服务上托管云编辑环境。您也可以注册我们的Tina Teams Alpha以尝试一些扩展的团队功能！
+
+如果您遇到问题或有任何疑问，请前往[Tina论坛](https://community.tinacms.org/)寻求帮助。对TinaCMS感到兴奋吗？请在[GitHub](https://github.com/tinacms/tinacms)上给我们⭐️，或在[Tweet我们](https://twitter.com/Tina_cms) 🐦 展示您的Tina项目。

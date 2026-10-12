@@ -1,0 +1,110 @@
+{
+  "versionNumber": "3.6.2",
+  "dateReleased": "2026-03-17T05:58:49Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "🐖 Telemetry - Seeing how many users interact with nav bar buttons (Project Config, User management, support)",
+          "pull_request_number": "6494",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6494",
+          "commit_hash": "3b44e6a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3b44e6ad9bd2ff336aa8147b016de8b9bbb6f90d",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Add PostHog event capture for Media Manager upload and delete actions",
+          "pull_request_number": "6488",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6488",
+          "commit_hash": "35385f1",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/35385f16fe9e4cb386021445c8e1cb817a03dcd3",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🐖 Telemetry - Adding Telemetry to see when users switch between rich-text and markdown mode in the rich-text editor",
+          "pull_request_number": "6495",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6495",
+          "commit_hash": "0a1049d",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/0a1049d4cc205af64e566cd86a00260a20fc7036",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "💄 UI - Fix cut-off modal title",
+          "pull_request_number": "6408",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6408",
+          "commit_hash": "960181a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/960181a4fd351eabdb69d5580a3ca79b0a905fcf",
+          "gitHubName": "tiagov8",
+          "gitHubLink": "https://github.com/tiagov8"
+        },
+        {
+          "changesDescription": "💄 Improve GraphQL Schema Mismatch Dialog Message",
+          "pull_request_number": "6491",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6491",
+          "commit_hash": "7d544d2",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/7d544d22ce17fe616010c6aba63bd43c12725806",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🐛 Fix showFloatingToolbar config not working by removing plugin correctly",
+          "pull_request_number": "6487",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6487",
+          "commit_hash": "83ed83f",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/83ed83f27624134feffa0473f02b0f6f3318441b",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🐛 Authentication - Fix Login button stuck in constant spinner state",
+          "pull_request_number": "6476",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6476",
+          "commit_hash": "8f08f49",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/8f08f49638edcecaf703681538fa46bbc53df982",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🔧 Fix missing export",
+          "pull_request_number": "6496",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6496",
+          "commit_hash": "13e953a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/13e953a92eebcbfe2a86e12a9161ac6fe52e9236",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🐛 Fixing Media Manager Breadcrumb",
+          "pull_request_number": "6505",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6505",
+          "commit_hash": "168c283",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/168c283f0f43d601ef5ecec36062463fb5f106bf",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🐖 Telemetry - View user interactions with saving and resetting forms",
+          "pull_request_number": "6498",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6498",
+          "commit_hash": "c439e75",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c439e759250e418c47a33eee7c9986d3b89131bf",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🐖 Telemetry - See when users open the Event Log Page (eventLogPageViewed event)",
+          "pull_request_number": "6493",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6493",
+          "commit_hash": "9bc4f3c",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/9bc4f3cccb1ab88cfefcc59da7ad228d250f03d3",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}

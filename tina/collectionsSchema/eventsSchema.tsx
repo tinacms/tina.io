@@ -1,0 +1,216 @@
+// biome-ignore lint/correctness/noUnusedImports: React is required
+import React from 'react';
+import { LocationField } from 'tina/customTinaFormFields/locationField';
+import { TextField, wrapFieldsWithMeta } from 'tinacms';
+import majorTimezones from '../../components/componentSuppliedData/EventsTimezones.json';
+import { seoInformation } from './sharedFields/seoInformation';
+
+type offset = { value: any; label: string };
+
+const getUtcOffsetHours = (ianaName: string): number => {
+  const formatted = new Date().toLocaleString('en-US', {
+    timeZone: ianaName,
+    timeZoneName: 'shortOffset',
+  });
+  const match = formatted.match(/GMT([+-]?\d+(?::(\d+))?)?$/);
+  if (!match) {
+    return 0;
+  }
+  if (!match[1]) {
+    return 0;
+  } // "GMT" with no offset = UTC
+  const hours = parseInt(match[1], 10);
+  const minutes = match[2] ? parseInt(match[2], 10) : 0;
+  return hours + (hours < 0 ? -minutes : minutes) / 60;
+};
+
+const dateFormat = Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+
+const _timeFormat = Intl.DateTimeFormat('en-US', {
+  hour: 'numeric',
+  minute: 'numeric',
+  timeZone: 'UTC',
+});
+
+const positiveTimezoneList = Array.from(Array(29).keys())
+  .map((value) => value / 2)
+  .reverse();
+const negativeTimezoneList = Array.from(Array(24).keys()).map(
+  (value) => (value / 2 + 0.5) * -1,
+);
+
+const addCitiesAndPrefix = (offsets: number[], _prefix = '+'): offset[] => {
+  const cityTimezoneMap = new Map();
+  //Get the timezones of major cities
+  majorTimezones.forEach((cityOffset) => {
+    const zone = getUtcOffsetHours(cityOffset.ianaName);
+    cityTimezoneMap.set(
+      zone,
+      cityTimezoneMap.get(zone)
+        ? `${cityTimezoneMap.get(zone)}, ${cityOffset.city}`
+        : cityOffset.city,
+    );
+  });
+  //Concat the city names to the offset array
+  return offsets.map((offset) => {
+    const cities = cityTimezoneMap.get(offset);
+    const displayOffset = Math.trunc(offset);
+    return {
+      value: offset,
+      label:
+        `GMT ${offset > 0 ? '+' : ''}${displayOffset}:${
+          offset % 1 ? '3' : '0'
+        }0` + `${cities ? `, ${cities}` : ''}`,
+    };
+  });
+};
+
+//Events schema
+export const eventsCollection = {
+  label: 'Events',
+  name: 'events',
+  path: 'content/events',
+  format: 'json',
+  ui: {
+    allowedActions: {
+      create: false,
+      delete: false,
+    },
+  },
+  fields: [
+    {
+      ...seoInformation,
+      description:
+        'Meta Information – if not set, the meta description will be set to the body content and title to "Title | TinaCMS Docs" as per the field below',
+    },
+    { name: 'title', label: 'Title', type: 'string' },
+    {
+      name: 'byLine',
+      label: 'ByLine',
+      type: 'string',
+      ui: { component: 'textarea' },
+    },
+    {
+      name: 'cardItems',
+      label: 'Card Items',
+      type: 'object',
+      list: true,
+      ui: {
+        itemProps: (item) => ({
+          key: item.id,
+          label: item.headline,
+        }),
+      },
+      fields: [
+        { name: 'headline', label: 'Headline', type: 'string' },
+        {
+          name: 'startDate',
+          label: 'Start Date',
+          type: 'datetime',
+          description: 'Enter date in the timezone of the event.',
+          ui: {
+            utc: true,
+            format: (value, _name, _field) =>
+              value && dateFormat.format(new Date(Date.parse(value))),
+          },
+        },
+        {
+          name: 'startTime',
+          label: 'Start Time',
+          type: 'string',
+          description:
+            "Enter start time in the timezone of the event. E.g. '9:00 AM' if the event starts at 9 in the location it's being held.",
+          ui: {
+            format: (value) => value,
+            component: wrapFieldsWithMeta(({ input }) => {
+              return (
+                <div>
+                  <input
+                    type="time"
+                    className="shadow-inner focus:shadow-outline focus:border-blue-500 focus:outline-none block text-base placeholder:text-gray-300 px-3 py-2 text-gray-600 w-full bg-white border border-gray-200 transition-all ease-out duration-150 focus:text-gray-900 rounded-md"
+                    {...input}
+                  />
+                </div>
+              );
+            }),
+          },
+        },
+        {
+          name: 'endDate',
+          label: 'End Date',
+          type: 'datetime',
+          description:
+            'Note this field is not mandatory. Leave blank for a 1 day event. Enter date in the timezone of the event.',
+          ui: {
+            utc: true,
+            format: (value, _name, _field) =>
+              value && dateFormat.format(new Date(Date.parse(value))),
+          },
+        },
+        {
+          //Note the below is just a UI aspect for clarity on how a new event can be specified
+          name: 'endTime',
+          label: 'End Time',
+          type: 'string',
+          description:
+            'This is locked to midnight on the end date of the event.',
+          ui: {
+            format: (_value) => '11:59 PM',
+            component: (props) => {
+              return (
+                <div className="mb-4 relative">
+                  <div className="z-50 absolute cursor-not-allowed w-full h-full top-0 left-0" />
+                  <div className="opacity-50">{TextField(props)}</div>
+                </div>
+              );
+            },
+          },
+        },
+        {
+          name: 'timezone',
+          label: 'Timezone',
+          type: 'number',
+          description:
+            'Please select the timezone the event is being held in. GMT and UTC are analagous.',
+          ui: {
+            parse: (value) => Number(value),
+            component: 'select',
+            options: [
+              ...addCitiesAndPrefix(positiveTimezoneList),
+              ...addCitiesAndPrefix(negativeTimezoneList, ''),
+            ],
+          },
+        },
+        { name: 'image', label: 'Image', type: 'image' },
+        { name: 'link', label: 'URL', type: 'string' },
+        {
+          name: 'location',
+          label: 'Location',
+          type: 'string',
+          ui: {
+            component: LocationField,
+          },
+        },
+        {
+          name: 'markerLAT',
+          label: 'Marker Latitude',
+          type: 'number',
+          description:
+            'Note this field corresponds to the Latitude position of the marker on the globe.',
+        },
+        {
+          name: 'markerLONG',
+          label: 'Marker Longitude',
+          type: 'number',
+          description:
+            'Note this field corresponds to the Longitude position of the marker on the globe.',
+        },
+      ],
+    },
+  ],
+};

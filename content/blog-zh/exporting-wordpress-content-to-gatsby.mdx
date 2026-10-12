@@ -1,0 +1,99 @@
+---
+draft: false
+warningMessage: >-
+  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/docs/setup-overview/)来获得更少摩擦的解决方案。
+seo:
+  title: 将WordPress内容导出到Gatsby | TinaCMS博客
+  description: >-
+    了解如何使用TinaCMS将WordPress内容导出到Gatsby，简化迁移到更快、更灵活的静态网站设置的过程。
+title: 将WordPress内容导出为Markdown和Gatsby
+date: '2020-01-13T00:00:00.000Z'
+author: Mitch MacKenzie
+prev: content/blog-zh/three-ways-to-edit-md.mdx
+next: content/blog-zh/custom-field-components.mdx
+---
+
+向[WordPress到Gatsby Markdown导出器](https://github.com/tinacms/wp-gatsby-markdown-exporter)问好！这是一个WordPress插件，用于将WordPress中的文章、页面和其他内容导出为Markdown。
+
+像[GatsbyJS](https://www.gatsbyjs.org/)这样的现代静态网站生成器可以成为替代之前用WordPress构建的网站的绝佳选择。将TinaCMS加入其中以实现实时编辑，我们就得到了一个开发者和内容创作者都会喜欢的现代网站。
+
+Gatsby提供了传统静态网站生成器的常见优势，如提高安全性、改善性能和降低维护开销。它还解决了现代问题，如增强的离线浏览和渐进式图像加载。
+
+Gatsby可以包含来自许多来源的内容，包括现有的WordPress网站。如果我们想停用一个WordPress网站，将内容导出为Markdown将确保它在未来是可编辑的（Markdown是一种被静态网站生成器广泛使用的内容格式化方式）。
+
+这就是WP Gatsby Markdown Exporter插件帮助我们的地方。
+
+## 安装导出插件
+
+安装导出WordPress插件与大多数其他插件类似。
+
+该插件已在[WordPress.org上发布](https://wordpress.org/plugins/wp-gatsby-markdown-exporter/)，因此可以通过在“添加插件”页面上搜索“WP Gatsby Markdown Exporter”来通过WordPress管理界面安装。
+
+或者手动安装：
+
+1. [下载最新版本](https://github.com/tinacms/wp-gatsby-markdown-exporter/releases/latest/download/wp-gatsby-markdown-exporter.zip)。
+2. 将文件解压到WordPress插件目录（通常是wp-content/plugins）。
+3. 从WordPress管理界面激活插件。
+
+## 使用插件
+
+![WP Gatsby Markdown Exporter插件截图](/img/blog/wp-gatsby-markdown-exporter-screenshot.png)
+
+在WordPress管理侧边栏中点击“Export to Gatsby”将带我们到一个表单，以下载网站内容的Zip文件。
+
+该表单有几个选项，允许我们自定义导出的内容，以便它适合Gatsby网站。
+
+将内容导出到新系统通常是一个迭代过程，因此我们可能需要调整导出选项并尝试几次才能正确。
+
+该插件还提供了一个可以使用[WP-CLI](https://wp-cli.org/)在CLI上运行的命令。此选项最适合内容较多的WordPress网站，并且可以绕过PHP的限制，如超时。有关CLI使用的更多详细信息，请查看[插件的readme文件](https://github.com/tinacms/wp-gatsby-markdown-exporter/blob/master/README.md)。
+
+## 将导出的内容导入Gatsby博客启动器
+
+[Gatsby的博客启动器](https://github.com/gatsbyjs/gatsby-starter-blog)是查看Markdown如何与Gatsby一起使用的简单方法。启动器的[快速入门指南](https://github.com/gatsbyjs/gatsby-starter-blog#-quick-start)提供了启动和运行的详细信息。
+
+要将导出的WordPress内容放置到位：
+
+1. 将导出的Markdown文件解压到启动器的“content/blog”目录中。
+2. 将WordPress导出的“uploads”目录放置在启动器的“content”目录中。
+3. 在gatsby-config.js的插件部分下添加以下内容，以便Gatsby可以找到从WordPress导出的任何图像和上传内容：
+
+```
+{
+  resolve: `gatsby-source-filesystem`,
+  options: {
+    path: `${__dirname}/content/uploads`,
+    name: `uploads`,
+  },
+},
+```
+
+然后运行`gatsby develop`或`gatsby build`将显示在Gatsby中新导出的内容。
+
+如果我们正在构建一个更复杂的网站，Tina Grande可能是下一个要尝试的启动器。
+
+## 将导出的内容导入Tina Grande
+
+[Tina Grande](https://github.com/tinacms/tina-starter-grande)是一个美丽的Gatsby启动器，包含TinaCMS用于实时内容编辑。
+
+通过一些简单的导出自定义，我们可以将WordPress内容导入Tina Grande并完全可编辑。
+
+Tina Grande使用一个`authors`前置字段，期望是一个作者列表，因此我们需要告诉导出插件重新构建我们的WordPress内容以适应这一点。Tina Grande还使用`path`字段，因此我们将切换从WordPress导出的字段的标签。
+
+在导出表单的“更改字段名称”中我们将添加：
+
+author,authors
+permalink,path
+
+在表单的“将字段转换为数组”中我们将添加（作者重映射字段的原始名称）：
+
+author
+
+![WP Gatsby Markdown Exporter配置用于Tina Grande](/img/blog/tina-grande-wp-export.png)
+
+## 导出到Gatsby的下一步
+
+内容导出和转换很少在第一次运行时就完美！字段可能没有正确映射，因此检查导出的内容、调整导出插件配置并再次尝试是个好主意。可能需要在这里和那里进行手动内容调整，以适应旧WordPress网站和新Gatsby网站之间的不同样式模式。
+
+如果您对导出插件有任何问题、功能增强或错误报告，请在[WordPress.org](https://wordpress.org/support/plugin/wp-gatsby-markdown-exporter/)或[GitHub](https://github.com/tinacms/wp-gatsby-markdown-exporter/issues)上联系我们。
+
+不要忘记查阅[文档](/docs/guides/converting-gatsby-to-tina)以了解更多关于TinaCMS如何与Gatsby协作的信息。

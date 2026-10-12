@@ -1,0 +1,66 @@
+{
+  "versionNumber": "2026.06.8",
+  "dateReleased": "2026-06-24T01:54:18Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "fix(content-api): retry transient 5xx from identity-v2",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Bump actions to use Node 24 and pin SHAs",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        },
+        {
+          "changesDescription": "🧹 Add Dependabot config with 3-day cooldown and grouped updates",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "✨ Show actionable build/index failure details in the Event Log",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "📝 Document the dependency cooldown policy in AGENTS.md",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "update to tinacloud logo",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Support workos backend jwt authorization for tinacloud",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189"
+        },
+        {
+          "changesDescription": "change avatar logo to initials",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "docs(adr): restructure WorkOS AuthKit migration docs into a layered ADR + action plan",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "💄 Fix squished logo and inconsistent spacing/buttons across email templates",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🐛 Send firstName/lastName to Segment so Mailchimp welcome email greeting fills",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2026.05.3",
+  "dateReleased": "2026-05-13T02:17:52Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "perf(assets-api): drop CloudFront invalidation from git-assets-deleted",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(content-api): allow org admins to reindex branches",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

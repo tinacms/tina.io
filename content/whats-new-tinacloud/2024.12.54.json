@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2024.12.54",
+  "dateReleased": "2024-12-16T02:12:52Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Bug - Unable to conduct TinaSchema checks if branch has slashes",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

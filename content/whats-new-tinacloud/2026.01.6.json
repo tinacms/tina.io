@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2026.01.6",
+  "dateReleased": "2026-02-01T21:56:47Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: add workflow to auto-update @tinacms/graphql",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
+        },
+        {
+          "changesDescription": "Update yarn install command in graphql workflow",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "✨ Add structured error codes for branch validation",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: resolve branch before attempting graphql check",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "✨ Media Management - Add Media Indexing",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

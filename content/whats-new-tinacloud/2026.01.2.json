@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2026.01.2",
+  "dateReleased": "2026-01-12T07:07:02Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: add v2 search endpoints to cors match",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        },
+        {
+          "changesDescription": "feat: improve add-collaborator table",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}

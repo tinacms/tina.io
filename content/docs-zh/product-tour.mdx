@@ -1,0 +1,129 @@
+---
+id: /docs/product-tour/
+title: TinaCMS 简介
+last_edited: '2024-12-27T06:43:45.464Z'
+tocIsHidden: true
+next: content/docs-zh/setup-overview.mdx
+previous: ''
+---
+
+这里用 **2 分钟快速概览 TinaCMS**，以及它如何融入你的网站。
+
+> 如果你只想快速上手，可以直接跳到[快速开始指南](/docs/setup-overview/)。
+
+<scrollBasedShowcase
+  showcaseItems={[
+    {
+      title: "简介",
+      image: "/img/placeholder.png",
+      content:
+        "TinaCMS 是一个开源的内容管理系统（CMS），能够无缝融入你的 Markdown 工作流。\n",
+      useAsSubsection: false
+    },
+    {
+      title: "你的网站",
+      image: "/img/docs/product-tour/headless_cms1.png",
+      content:
+        "使用 TinaCMS 时，开发者可以自由选择托管位置，并使用自己偏好的任意框架。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "无头 CMS",
+      image: "/img/docs/product-tour/headless_cms2.png",
+      content:
+        "TinaCMS 是「无头」的，意味着它与你的网站相互解耦。TinaCMS 提供一套可查询的内容 API，供你的网站代码调用。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "CMS 后端",
+      image: "/img/docs/product-tour/queryable_database.png",
+      content:
+        "TinaCMS 后端提供用于查询内容的 API，支持过滤、搜索与分页。\n",
+      useAsSubsection: false
+    },
+    {
+      title: "基于 Git 的内容",
+      image: "/img/docs/product-tour/git-backed.png",
+      content:
+        "你的所有内容都会以 JSON/Markdown/MDX 文件的形式由 Git 保存。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "TinaCloud",
+      image: "/img/docs/product-tour/tina-cloud.png",
+      content:
+        "我们开箱即用地提供了一个易于使用的后端托管版本，称为 TinaCloud。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "自托管后端",
+      image: "/img/docs/product-tour/self-host-backend.png",
+      content:
+        "对于希望获得更多控制与定制能力的用户，TinaCMS 也允许你将后端完全部署在自己的技术栈上。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "CMS 前端",
+      image: "/img/docs/your-blocks.gif",
+      content:
+        "TinaCMS 为编辑者提供直观的 CMS 界面。对于使用 React 的站点，TinaCMS 支持「可视化编辑」，让内容编辑者能够实时看到改动效果。\n",
+      useAsSubsection: false
+    },
+    {
+      title: "/admin 路由",
+      image: "/img/docs/product-tour/admin.png",
+      content:
+        "用户通过访问站点上的 `/admin` 页面来使用 CMS。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "保存",
+      image: "/img/docs/product-tour/git-save.png",
+      content:
+        "当用户在 CMS 中做出修改时，会有一次提交写回到你的 Git 仓库。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "将 TinaCMS 集成到站点中",
+      image: "/img/docs/product-tour/cli-init.png",
+      content:
+        "可以通过 `tinacms init` 在你的站点上配置 TinaCMS。该命令会安装若干 Tina 包，并添加一些样板代码。\n",
+      useAsSubsection: false
+    },
+    {
+      title: "在本地运行 TinaCMS",
+      image: "/img/docs/product-tour/local-workflow.png",
+      content:
+        "你也可以灵活地在本地运行 TinaCMS，直接读取本地文件而非调用托管 API。这为开发者带来极快的反馈循环。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "内容建模",
+      image: "/img/docs/product-tour/content-modelling.png",
+      content:
+        "TinaCMS 中的内容通过项目里的 \\`tina/config.ts\\` 文件进行建模。你可以借此定义「集合」，用来描述站点上各种内容类型。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "数据获取",
+      image: "/img/docs/product-tour/graphql-query_5.png",
+      content:
+        "TinaCMS 提供 GraphQL API，让数据获取更高效、更强大。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "客户端",
+      image: "/img/docs/product-tour/client.png",
+      content:
+        "此外，我们还会生成一个易用的客户端，简化查询内容的过程。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "类型安全",
+      image: "/img/docs/product-tour/client-typesafe.png",
+      content:
+        "TinaCMS 重视类型安全，确保你的内容查询保持无误且一致，从而提升代码的可靠性与可维护性。\n",
+      useAsSubsection: true
+    }
+  ]}
+/>
