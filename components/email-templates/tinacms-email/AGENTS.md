@@ -48,7 +48,7 @@ The template does not ship image files. Host these PNG files on a public `https:
 | `{{FACEBOOK_ICON_URL}}` | White Facebook icon, 60 by 60 px, transparent background. |
 | `{{THREADS_ICON_URL}}` | White Threads icon, 60 by 60 px, transparent background. |
 
-Do not add PNG files to this folder. Email clients need hosted URLs.
+The PNG files in this folder are temporary. A developer uploads them to cloud storage, fills the placeholders with the public links, and then deletes the PNG files from this folder in the same PR. Email clients need hosted URLs.
 
 ## Step 3. Build the body
 
