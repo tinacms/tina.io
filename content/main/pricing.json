@@ -42,6 +42,10 @@
               "icon": "BiBadge"
             },
             {
+              "name": "CLI",
+              "icon": "LuTerminal"
+            },
+            {
               "name": "Community support",
               "icon": "BiSupport"
             },
@@ -143,6 +147,7 @@
             }
           ],
           "addOn": {
+            "isEnabled": false,
             "name": "Add SSO",
             "monthlyPrice": 180
           },
@@ -321,11 +326,11 @@
           },
           {
             "rowHeader": "SSO",
-            "rowDescription": "Single Sign-On is included with Enterprise, and available on Business as an add-on",
+            "rowDescription": "Single Sign-On is included with Enterprise",
             "rowCells": [
               "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
               "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-              "{\"columnHeader\":\"Business\",\"cellValue\":\"$180/month add-on\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
               "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
             ]
           },

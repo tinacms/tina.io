@@ -108,6 +108,13 @@ export const cardTemplate: Template = {
         'Optional add-on with a checkbox on the card. Ticking it adds its price to the price and annual total shown on the card',
       fields: [
         {
+          name: 'isEnabled',
+          label: 'Show add-on',
+          type: 'boolean',
+          description:
+            'The add-on stays hidden until it can be bought. Turn this on to show it on the card',
+        },
+        {
           name: 'name',
           label: 'Name',
           type: 'string',

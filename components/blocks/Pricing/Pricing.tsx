@@ -22,7 +22,12 @@ import {
 } from 'react-icons/fa';
 import { GoPeople } from 'react-icons/go';
 import { HiOutlineSparkles } from 'react-icons/hi2';
-import { LuGauge, LuLayers, LuMousePointerClick } from 'react-icons/lu';
+import {
+  LuGauge,
+  LuLayers,
+  LuMousePointerClick,
+  LuTerminal,
+} from 'react-icons/lu';
 import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -53,6 +58,7 @@ const icons = {
   LuMousePointerClick,
   LuLayers,
   LuGauge,
+  LuTerminal,
 };
 
 const ITEM_GRID_CLASSES = 'grid grid-cols-[auto_1fr] items-center gap-x-2';
@@ -107,7 +113,10 @@ const PlanCard = ({ data, isMonthly, annualBillingText }) => {
 
   const toggleAccordion = () => setAccordionOpen(!isAccordionOpen);
 
-  const addOnPrice = isAddOnSelected ? (data.addOn?.monthlyPrice ?? 0) : 0;
+  const addOnPrice =
+    data.addOn?.isEnabled && isAddOnSelected
+      ? (data.addOn?.monthlyPrice ?? 0)
+      : 0;
   const hasPrice = typeof data.monthlyPrice === 'number';
   const monthlyPrice = data.monthlyPrice + addOnPrice;
   const yearlyPrice =
@@ -212,7 +221,7 @@ const PlanCard = ({ data, isMonthly, annualBillingText }) => {
           </div>
         )}
 
-        {data.addOn?.name && (
+        {data.addOn?.isEnabled && data.addOn?.name && (
           <label className="mt-6 flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm cursor-pointer select-none">
             <input
               type="checkbox"
