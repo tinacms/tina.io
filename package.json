@@ -54,7 +54,7 @@
     "@tinacms/search": "^1.2.25",
     "@vercel/postgres": "^0.10.0",
     "algoliasearch": "^5.43.0",
-    "axios": "^1.19.0",
+    "axios": "^1.20.0",
     "btoa": "^1.2.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
