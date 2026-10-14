@@ -16,7 +16,7 @@
       "plans": [
         {
           "name": "Free",
-          "description": "For trying Tina\n",
+          "description": "For trying TinaCMS\n",
           "monthlyPrice": 0,
           "interval": "Forever",
           "cardItem": [
@@ -59,7 +59,7 @@
             {
               "label": "Start Free",
               "icon": false,
-              "variant": "orangeWithBorder",
+              "variant": "ghostOutline",
               "size": "medium",
               "url": "https://app.tina.io/register?origin=https://app.tina.io",
               "_template": "actions"

@@ -63,6 +63,11 @@ const icons = {
 
 const ITEM_GRID_CLASSES = 'grid grid-cols-[auto_1fr] items-center gap-x-2';
 
+// In the 4-column row, every card spans the same 3 rows (header, buttons,
+// features), so the buttons line up even when one card's price line wraps.
+const CARD_ROWS_CLASSES =
+  'xl:row-span-3 xl:grid xl:grid-rows-subgrid xl:gap-y-0';
+
 const DEFAULT_ANNUAL_BILLING_TEXT = '{total} billed annually (save {saving})';
 
 const formatDollars = (amount: number) => `$${amount.toLocaleString('en-US')}`;
@@ -141,9 +146,9 @@ const PlanCard = ({ data, isMonthly, annualBillingText }) => {
   const featuresHeading = data.featuresHeading || 'Includes:';
 
   return (
-    <span className="animate-pop-in block h-full">
+    <span className={`animate-pop-in block h-full ${CARD_ROWS_CLASSES}`}>
       <div
-        className={`h-full hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl transform transition-transform duration-300 border border-transparent overflow-hidden ${
+        className={`h-full hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl transform transition-transform duration-300 border border-transparent overflow-hidden ${CARD_ROWS_CLASSES} ${
           data.isMuted
             ? 'grayscale bg-gray-50/70 text-gray-600 shadow-lg'
             : 'shadow-2xl'
@@ -155,88 +160,92 @@ const PlanCard = ({ data, isMonthly, annualBillingText }) => {
             <FaStar className="text-lg text-white absolute -translate-x-5 translate-y-5" />
           </div>
         )}
-        <h2
-          className={`font-ibm-plex text-3xl bg-linear-to-br bg-clip-text text-transparent ${
-            data.isStarred
-              ? 'from-orange-400 via-orange-600 to-orange-800'
-              : 'from-blue-600 via-blue-800 to-blue-1000'
-          }`}
-        >
-          {data.name}
-        </h2>
-        <TinaMarkdown
-          content={data.description}
-          components={pricingComponents}
-        />
-        <div className="pt-10" aria-live="polite">
-          <span className="text-3xl font-ibm-plex bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-            {price}
-          </span>
-          {data.interval && (
-            <span className="pl-2 text-lg bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-              {data.interval}
+        <div>
+          <h2
+            className={`font-ibm-plex text-3xl bg-linear-to-br bg-clip-text text-transparent ${
+              data.isStarred
+                ? 'from-orange-400 via-orange-600 to-orange-800'
+                : 'from-blue-600 via-blue-800 to-blue-1000'
+            }`}
+          >
+            {data.name}
+          </h2>
+          <TinaMarkdown
+            content={data.description}
+            components={pricingComponents}
+          />
+          <div className="pt-10" aria-live="polite">
+            <span className="text-3xl font-ibm-plex bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+              {price}
             </span>
-          )}
-        </div>
-        <div
-          className={`py-1 text-stone-600 text-sm transition-all duration-500 ${
-            isMonthly
-              ? 'animate-fadeOut opacity-0'
-              : 'animate-fadeIn opacity-100'
-          } ${!annualDescription ? 'mt-5' : ''}`}
-          aria-live="polite"
-          aria-hidden={isMonthly}
-        >
-          {annualDescription}{' '}
+            {data.interval && (
+              <span className="pl-2 text-lg bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+                {data.interval}
+              </span>
+            )}
+          </div>
+          <div
+            className={`py-1 text-stone-600 text-sm transition-all duration-500 ${
+              isMonthly
+                ? 'animate-fadeOut opacity-0'
+                : 'animate-fadeIn opacity-100'
+            } ${!annualDescription ? 'mt-5' : ''}`}
+            aria-live="polite"
+            aria-hidden={isMonthly}
+          >
+            {annualDescription}{' '}
+          </div>
         </div>
         <div className="pt-3 flex">
           {data.buttons?.map((button, _index) => (
             <RenderButton key={button.label} button={button} />
           ))}
         </div>
-        {data.cardItem?.length > 0 && (
-          <div className="pt-6">
-            <div className="accordion-content block xl:hidden">
-              <div
-                className="flex justify-between items-center font-semibold cursor-pointer"
-                onClick={toggleAccordion}
-              >
-                <p className="flex text-xl items-center">{featuresHeading}</p>
-                <span className="ml-2">
-                  {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
-                </span>
+        <div>
+          {data.cardItem?.length > 0 && (
+            <div className="pt-6">
+              <div className="accordion-content block xl:hidden">
+                <div
+                  className="flex justify-between items-center font-semibold cursor-pointer"
+                  onClick={toggleAccordion}
+                >
+                  <p className="flex text-xl items-center">{featuresHeading}</p>
+                  <span className="ml-2">
+                    {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
+                  </span>
+                </div>
+                {isAccordionOpen && (
+                  <CardItems
+                    items={data.cardItem}
+                    isMonthly={isMonthly}
+                    isLarge
+                  />
+                )}
               </div>
-              {isAccordionOpen && (
-                <CardItems
-                  items={data.cardItem}
-                  isMonthly={isMonthly}
-                  isLarge
-                />
-              )}
+              <div className="non-accordion-content hidden xl:block">
+                <p className="font-semibold">{featuresHeading}</p>
+                <CardItems items={data.cardItem} isMonthly={isMonthly} />
+              </div>
             </div>
-            <div className="non-accordion-content hidden xl:block">
-              <p className="font-semibold">{featuresHeading}</p>
-              <CardItems items={data.cardItem} isMonthly={isMonthly} />
-            </div>
-          </div>
-        )}
+          )}
 
-        {data.addOn?.isEnabled && data.addOn?.name && (
-          <label className="mt-6 flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm cursor-pointer select-none">
-            <input
-              type="checkbox"
-              className="size-4 accent-orange-500 cursor-pointer"
-              checked={isAddOnSelected}
-              onChange={(event) => setAddOnSelected(event.target.checked)}
-            />
-            <span className="font-semibold">{data.addOn.name}</span>
-            {data.addOn.monthlyPrice > 0 && (
-              <span className="ml-auto font-semibold whitespace-nowrap">
-                +{formatDollars(data.addOn.monthlyPrice)}/month
-              </span>
-            )}
-          </label>
-        )}
+          {data.addOn?.isEnabled && data.addOn?.name && (
+            <label className="mt-6 flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm cursor-pointer select-none">
+              <input
+                type="checkbox"
+                className="size-4 accent-orange-500 cursor-pointer"
+                checked={isAddOnSelected}
+                onChange={(event) => setAddOnSelected(event.target.checked)}
+              />
+              <span className="font-semibold">{data.addOn.name}</span>
+              {data.addOn.monthlyPrice > 0 && (
+                <span className="ml-auto font-semibold whitespace-nowrap">
+                  +{formatDollars(data.addOn.monthlyPrice)}/month
+                </span>
+              )}
+            </label>
+          )}
+        </div>
       </div>
     </span>
   );
@@ -328,7 +337,7 @@ export function PricingBlock({ data }) {
       />
       <div className="grid grid-cols-1 auto-rows-min items-start gap-4 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
         {data.plans?.map((plan) => (
-          <div key={plan.name} className="flex flex-col">
+          <div key={plan.name} className={`flex flex-col ${CARD_ROWS_CLASSES}`}>
             <PlanCard
               data={plan}
               isMonthly={isMonthly}
