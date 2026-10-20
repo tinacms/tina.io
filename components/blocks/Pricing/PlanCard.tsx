@@ -87,7 +87,12 @@ const CardItemName = ({ item }) =>
     <span>{item.name}</span>
   );
 
-const CardItems = ({ items, isMonthly, isLarge = false }) => (
+const CardItems = ({
+  items,
+  isMonthly,
+  isLarge = false,
+  comparison = false,
+}) => (
   <div className="pl-2">
     {items?.map((item, index) => {
       const Icon = icons[item.icon];
@@ -97,7 +102,7 @@ const CardItems = ({ items, isMonthly, isLarge = false }) => (
           className={`${ITEM_GRID_CLASSES} mt-2 ${isLarge ? 'text-lg' : ''}`}
         >
           {Icon ? <Icon /> : <span />}
-          <CardItemName item={item} />
+          {comparison ? <span>{item.name}</span> : <CardItemName item={item} />}
           {item.description && (
             <div
               className={`col-start-2 my-1 text-gray-600/70 ${isLarge ? 'text-md' : 'text-sm'}`}
@@ -240,6 +245,7 @@ export const PlanCard = ({
                     items={data.cardItem}
                     isMonthly={isMonthly}
                     isLarge
+                    comparison={comparison}
                   />
                 )}
               </div>
@@ -249,7 +255,11 @@ export const PlanCard = ({
                 }
               >
                 <p className="font-semibold">{featuresHeading}</p>
-                <CardItems items={data.cardItem} isMonthly={isMonthly} />
+                <CardItems
+                  items={data.cardItem}
+                  isMonthly={isMonthly}
+                  comparison={comparison}
+                />
               </div>
             </div>
           )}
