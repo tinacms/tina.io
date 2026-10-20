@@ -62,6 +62,11 @@ const icons = {
   LuTerminal,
 };
 
+const comparisonComponents = {
+  ...pricingComponents,
+  a: ({ children }) => <>{children}</>,
+};
+
 const ITEM_GRID_CLASSES = 'grid grid-cols-[auto_1fr] items-center gap-x-2';
 
 // In the 4-column row, every card spans the same 3 rows (header, buttons,
@@ -192,7 +197,7 @@ export const PlanCard = ({
           </Heading>
           <TinaMarkdown
             content={data.description}
-            components={pricingComponents}
+            components={comparison ? comparisonComponents : pricingComponents}
           />
           <div className="pt-10" aria-live="polite">
             <span className="text-3xl font-ibm-plex bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
