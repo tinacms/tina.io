@@ -15,6 +15,10 @@ import { unclipEmoji } from 'utils/unclipEmoji';
 import { Prism } from '../styles/Prism';
 import { AccordionBlock } from './templateComponents/accordionBlock';
 
+const PricingComparison = dynamic(() =>
+  import('./pricingComparison').then((module) => module.PricingComparison),
+);
+
 // Dynamic import for Mermaid - reduces initial bundle by ~150KB
 const MermaidElement = dynamic(() => import('./mermaid'), {
   ssr: false,
@@ -65,6 +69,7 @@ export const docAndBlogComponents: Components<{
   Codesandbox: { embedSrc: string; title: string };
   Diagram: { alt: string; src: string };
   WideImage: { alt: string; src: string };
+  PricingComparison: React.ComponentProps<typeof PricingComparison>;
   // biome-ignore lint/complexity/noBannedTypes: <TODO>
   CustomFieldComponentDemo: {};
   Button: { link: string; label: string };
@@ -687,6 +692,7 @@ export const docAndBlogComponents: Components<{
       src={src}
     />
   ),
+  PricingComparison: (props) => <PricingComparison {...props} />,
   WideImage: ({ alt, src }) => (
     <img
       alt={alt}
