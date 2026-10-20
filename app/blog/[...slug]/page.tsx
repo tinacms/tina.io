@@ -52,7 +52,7 @@ export default async function BlogPage({
         variables={variables}
         query={query}
         locale="en"
-        ogImage={blogOgImagePath('en', slugPath)}
+        slugPath={slugPath}
       />
     );
   } catch (error) {

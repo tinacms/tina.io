@@ -3,9 +3,9 @@ import { Actions } from '../blocks/ActionButton/ActionsButton';
 export const CardGrid = ({ props }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 my-8 gap-4">
-      {props.cards?.map((card) => (
+      {props.cards?.map((card, index) => (
         <a
-          key={card.id}
+          key={`${card.title}-${index}`}
           href={card.link}
           className="flex flex-col justify-between p-6 border rounded-lg group bg-transparent hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out transition-all ease-out duration-150 transition-all ease-out duration-150"
         >

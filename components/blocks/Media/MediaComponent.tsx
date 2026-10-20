@@ -30,9 +30,9 @@ const VideoGridComponent = ({ data }) => {
     return (
       <>
         {Array.isArray(mediaList) &&
-          mediaItem.map((item) => (
+          mediaItem.map((item, index) => (
             <div
-              key={item.id}
+              key={`${item.__typename}-${index}`}
               className="relative flex justify-center items-center"
             >
               {renderMedia(item)}

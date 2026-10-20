@@ -12,7 +12,7 @@ import { addToMailchimp } from '../../utils';
 import { Button } from '../ui';
 
 interface EmailFormProps {
-  isFooter: boolean;
+  isFooter?: boolean;
 }
 
 interface FormData {
@@ -88,6 +88,7 @@ export const EmailForm = (props: EmailFormProps) => {
           src={BettyWithLlama}
           alt="Betty with a llama"
           fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
           className="w-full h-full object-cover"
         />
       </div>
@@ -182,8 +183,4 @@ export const EmailForm = (props: EmailFormProps) => {
       </div>
     </div>
   );
-};
-
-EmailForm.defaultProps = {
-  isFooter: false,
 };

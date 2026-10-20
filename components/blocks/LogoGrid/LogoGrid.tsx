@@ -68,10 +68,7 @@ export function LogoGridBlock({ data, index }) {
             items={data.items.map((item) => ({
               id: item.id,
               element: (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-center h-40"
-                >
+                <div className="flex items-center justify-center h-40">
                   <Logo data={item} windowWidth={windowSize.width} />
                 </div>
               ),
