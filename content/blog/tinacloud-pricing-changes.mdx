@@ -15,7 +15,7 @@ Here’s what’s changing and what it means if you already have a TinaCloud sub
 
 The new Team plan brings together the current Team and Team Plus plans. Editorial Workflow, currently listed with Team Plus, will be included with Team. It gives editors a review step before changes are merged into a protected branch. [Read how Editorial Workflow works](https://tina.io/docs/tinacloud/editorial-workflow).
 
-Team will cost $29 per project per month with monthly billing, or $290 per project per year with annual billing. The annual charge works out to about $24.17 per month; the annual billing screenshot below rounds that monthly equivalent to $24.
+Team will cost $29 per project per month with monthly billing, or $290 per project per year with annual billing. The annual charge works out to about $24.17 per month; the annual billing view below rounds that monthly equivalent to $24.
 
 Business will cost $299 per project per month, or $2,990 per project per year. Enterprise pricing remains custom and covers the whole organisation.
 
@@ -23,15 +23,200 @@ Business will cost $299 per project per month, or $2,990 per project per year. E
 
 Team Plus is being folded into Team. Here’s how the plan lineup is changing.
 
-### Before
-
-<WideImage src="/img/blog/tinacloud-pricing-changes/pricing-before.png" alt="TinaCloud plans before the change: Free, Team, Team Plus, Business and Enterprise, with annual billing selected." />
-
-### After
-
-<WideImage src="/img/blog/tinacloud-pricing-changes/pricing-after.png" alt="TinaCloud plans after the change: Free, Team with Editorial Workflow, Business and Enterprise. Team Plus is no longer a separate plan." />
-
-*Both screenshots show annual billing in USD. The $24, $41 and $249 figures are rounded monthly equivalents; annual totals are shown underneath.*
+<PricingComparison
+  before={[
+    {
+      name: "Free",
+      description: "Includes 2 users, 2 roles, and community support.\n",
+      interval: "Forever",
+      monthlyPrice: 0
+    },
+    {
+      name: "Team",
+      description: "For growing teams\n",
+      interval: "/ project / month",
+      cardItem: [
+        { name: "1 Project", icon: "FaCodeBranch" },
+        { name: "3 Users", icon: "AiOutlineUser", description: "" },
+        { name: "2 Roles", icon: "BiBadge" },
+        { name: "Team Support", icon: "BiSupport" },
+        {
+          name: "Up to 10 Users",
+          icon: "AiOutlineUsergroupAdd",
+          description: "$9/additional seat",
+          annualDescription: "$90/additional seat per year"
+        }
+      ],
+      monthlyPrice: 29,
+      yearlyPrice: 290
+    },
+    {
+      name: "Team Plus",
+      description: "For bigger teams\n",
+      interval: "/ project / month",
+      cardItem: [
+        { name: "1 Project", icon: "FaCodeBranch" },
+        { name: "5 Users", icon: "AiOutlineUser", description: "" },
+        { name: "2 Roles", icon: "BiBadge" },
+        { name: "Team Support", icon: "BiSupport" },
+        {
+          name: "Up to 20 Users",
+          icon: "AiOutlineUsergroupAdd",
+          description: "$15/additional seat",
+          annualDescription: "$150/additional seat per year"
+        },
+        { name: "Editorial Workflow", icon: "CgCrown" },
+        { name: "AI Features (Coming Soon)", icon: "HiOutlineSparkles" }
+      ],
+      monthlyPrice: 49,
+      yearlyPrice: 490
+    },
+    {
+      name: "Business",
+      description: "For premium support\n",
+      interval: "/ project / month",
+      cardItem: [
+        { name: "1 Project", icon: "FaCodeBranch" },
+        {
+          name: "20 Users",
+          icon: "AiOutlineUser",
+          description: "",
+          annualDescription: ""
+        },
+        { name: "3 Roles (Beta)", icon: "BiBadge" },
+        { name: "Business Support", icon: "BiSupport" },
+        {
+          name: "No User Limit",
+          icon: "AiOutlineUsergroupAdd",
+          description: "$18/additional seat",
+          annualDescription: "$180/additional seat per year"
+        },
+        { name: "Editorial Workflow", icon: "CgCrown" },
+        { name: "AI Features (Coming Soon)", icon: "HiOutlineSparkles" },
+        { name: "API (Beta)", icon: "TbPlugConnected" }
+      ],
+      isStarred: true,
+      monthlyPrice: 299,
+      yearlyPrice: 2990
+    },
+    {
+      name: "Enterprise",
+      description: "For custom needs\n",
+      interval: "",
+      cardItem: [
+        {
+          name: "Entire Organization",
+          icon: "FaCodeBranch",
+          description: "One plan covers every project"
+        },
+        { name: "Custom Users", icon: "AiOutlineUser", description: "" },
+        { name: "Custom Roles", icon: "BiBadge" },
+        { name: "Enterprise Support", icon: "BiSupport" },
+        {
+          name: "No User Limit",
+          icon: "AiOutlineUsergroupAdd",
+          description: "Variable user pricing"
+        },
+        { name: "Custom Editorial Workflow", icon: "CgCrown" },
+        { name: "AI Features (Coming Soon)", icon: "HiOutlineSparkles" },
+        { name: "API (Beta)", icon: "TbPlugConnected" },
+        { name: "GitHub Enterprise Support", icon: "FaGithub" },
+        { name: "SSO", icon: "SlLock" }
+      ],
+      customPrice: "Custom"
+    }
+  ]}
+  after={[
+    {
+      name: "Free",
+      description: "For trying TinaCMS\n",
+      monthlyPrice: 0,
+      interval: "Forever",
+      cardItem: [
+        { name: "Visual Editing", icon: "LuMousePointerClick" },
+        {
+          name: "Unlimited Collections",
+          icon: "LuLayers",
+          description: "aka Content Types"
+        },
+        { name: "Unlimited projects", icon: "FaCodeBranch" },
+        { name: "2 users", icon: "AiOutlineUser" },
+        { name: "3 roles", icon: "BiBadge" },
+        { name: "CLI", icon: "LuTerminal" },
+        { name: "Community support", icon: "BiSupport" },
+        { name: "100 GB bandwidth", icon: "LuGauge", description: "per month" }
+      ],
+      isMuted: true
+    },
+    {
+      name: "Team",
+      description: "For growing teams\n",
+      monthlyPrice: 29,
+      yearlyPrice: 290,
+      interval: "/ project / month",
+      featuresHeading: "Everything in Free, plus:",
+      cardItem: [
+        { name: "3 users", icon: "AiOutlineUser" },
+        {
+          name: "Up to 10 users",
+          icon: "AiOutlineUsergroupAdd",
+          description: "$9/additional seat",
+          annualDescription: "$90/additional seat per year"
+        },
+        { name: "Team support", icon: "BiSupport" },
+        {
+          name: "Editorial Workflow",
+          icon: "CgCrown",
+          link: "/editorial-workflow"
+        },
+        { name: "AI features (coming soon)", icon: "HiOutlineSparkles" },
+        { name: "500 GB bandwidth", icon: "LuGauge", description: "per month" }
+      ]
+    },
+    {
+      name: "Business",
+      description: "For premium support\n",
+      monthlyPrice: 299,
+      yearlyPrice: 2990,
+      interval: "/ project / month",
+      featuresHeading: "Everything in Team, plus:",
+      cardItem: [
+        { name: "20 users", icon: "AiOutlineUser" },
+        {
+          name: "No user limit",
+          icon: "AiOutlineUsergroupAdd",
+          description: "$18/additional seat",
+          annualDescription: "$180/additional seat per year"
+        },
+        { name: "Business support", icon: "BiSupport" },
+        { name: "API (Beta)", icon: "TbPlugConnected" },
+        { name: "Unlimited bandwidth", icon: "LuGauge" }
+      ],
+      isStarred: true
+    },
+    {
+      name: "Enterprise",
+      description: "For custom needs\n",
+      customPrice: "Custom",
+      interval: "",
+      featuresHeading: "Everything in Business, plus:",
+      cardItem: [
+        {
+          name: "Entire organization",
+          icon: "FaCodeBranch",
+          description: "One plan covers every project"
+        },
+        { name: "Custom users", icon: "AiOutlineUser" },
+        { name: "Unlimited roles (Beta)", icon: "BiBadge" },
+        { name: "Enterprise support", icon: "BiSupport" },
+        { name: "Dedicated account manager", icon: "GoPeople" },
+        { name: "Custom Editorial Workflow", icon: "CgCrown" },
+        { name: "GitHub Enterprise support", icon: "FaGithub" },
+        { name: "SSO included", icon: "SlLock" }
+      ]
+    }
+  ]}
+/>
 
 Unlimited collections and unlimited projects on Free do not mean unlimited usage across every part of the service. The comparison lists monthly bandwidth separately: 100 GB on Free, 500 GB on Team, and unlimited on Business and Enterprise.
 
