@@ -88,11 +88,11 @@ const CardItemName = ({ item }) =>
 
 const CardItems = ({ items, isMonthly, isLarge = false }) => (
   <div className="pl-2">
-    {items?.map((item) => {
+    {items?.map((item, index) => {
       const Icon = icons[item.icon];
       return (
         <div
-          key={item.name}
+          key={`${item.name}-${index}`}
           className={`${ITEM_GRID_CLASSES} mt-2 ${isLarge ? 'text-lg' : ''}`}
         >
           {Icon ? <Icon /> : <span />}
@@ -197,8 +197,8 @@ const PlanCard = ({ data, isMonthly, annualBillingText }) => {
           </div>
         </div>
         <div className="pt-3 flex">
-          {data.buttons?.map((button, _index) => (
-            <RenderButton key={button.label} button={button} />
+          {data.buttons?.map((button, index) => (
+            <RenderButton key={`${button.label}-${index}`} button={button} />
           ))}
         </div>
         <div>
@@ -337,8 +337,11 @@ export function PricingBlock({ data }) {
         toggleText={data.pillSwitchToggleText}
       />
       <div className="grid grid-cols-1 auto-rows-min items-start gap-4 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
-        {data.plans?.map((plan) => (
-          <div key={plan.name} className={`flex flex-col ${CARD_ROWS_CLASSES}`}>
+        {data.plans?.map((plan, index) => (
+          <div
+            key={`${plan.name}-${index}`}
+            className={`flex flex-col ${CARD_ROWS_CLASSES}`}
+          >
             <PlanCard
               data={plan}
               isMonthly={isMonthly}

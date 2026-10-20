@@ -1,0 +1,67 @@
+{
+  "versionNumber": "3.15.0",
+  "dateReleased": "2026-10-19T01:25:36Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "Upgrade `react-router-dom` from 6.30 to 7.18, which fixes GHSA-wrjc-x8rr-h8h6 and GHSA-337j-9hxr-rhxg; no 6.x release carries these fixes. React Router 7 requires React 18 or later.",
+          "pull_request_number": "7606",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7606",
+          "commit_hash": "787c7a9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/787c7a9daf7740dbfb148d25a74367948bcbaade",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/apps/dependabot"
+        },
+        {
+          "changesDescription": "Rich-text fields can now colour text. A Text Color dropdown now appears next to Highlight in the default toolbar. Fields with a custom `overrides.toolbar` need `'textColor'` added to it. Coloured text saves as a `<span>` with a `color` style, inside any bold, italic, strikethrough or highlight. The palette can be set per field under `overrides.textColors` (a list of `{ label, value }`).",
+          "pull_request_number": "7683",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7683",
+          "commit_hash": "034e88f",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/034e88ff9fb8035b1443397b5d981313a44fa30f",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "The date field's time picker now follows `timeFormat`. A format with a 24-hour hour token, such as `HH:mm`, opens a 24-hour picker with no AM/PM select. 12-hour formats and `timeFormat: true` keep the 12-hour picker.",
+          "pull_request_number": "7798",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7798",
+          "commit_hash": "53ae895",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/53ae8954de8668e5eeb92d817bfbf12bf39cb17d",
+          "gitHubName": "andrewwbuilds",
+          "gitHubLink": "https://github.com/andrewwbuilds"
+        },
+        {
+          "changesDescription": "List field descriptions now wrap onto multiple lines like other field descriptions, instead of being cut off with an ellipsis.",
+          "pull_request_number": "7734",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7734",
+          "commit_hash": "abb7c15",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/abb7c153b2db6cd9bf42da6ddfaa5d2b08029861",
+          "gitHubName": "wakqasahmed",
+          "gitHubLink": "https://github.com/wakqasahmed"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/mdx@2.4.0",
+          "commit_hash": "034e88f",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/034e88f"
+        },
+        {
+          "changesDescription": "@tinacms/schema-tools@2.11.0",
+          "commit_hash": "034e88f",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/034e88f"
+        }
+      ]
+    }
+  ]
+}

@@ -21,7 +21,7 @@ export function ShowcaseBlock({ data, index }) {
     <>
       <div
         id={id}
-        key={`showcase-${index}`}
+        key={`${data.headline}-${index}`}
         className={`feature ${isReversed ? 'featureReverse' : ''}`}
       >
         <div className="featureText">
@@ -175,7 +175,13 @@ export function ShowcaseItemsBlock({ data, index }) {
           </p>
         )}
         {data.items?.map((data, index) => {
-          return <ShowcaseBlock data={data} key={data.id} index={index} />;
+          return (
+            <ShowcaseBlock
+              data={data}
+              key={`${data.headline}-${index}`}
+              index={index}
+            />
+          );
         })}
       </Container>
     </section>

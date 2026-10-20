@@ -201,7 +201,7 @@ export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
     <ReactMarkdown
       rehypePlugins={[rehypeRaw, remarkGfm]}
       remarkPlugins={[remarkDirective, remarkDirectiveRehype]}
-      skipHtml={skipHtml ? skipHtml : false}
+      skipHtml={skipHtml ?? false}
       components={{
         ul: ({ node, ...props }) => {
           return <ul className="list-disc ml-6" {...props} />;
@@ -243,8 +243,3 @@ export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
     </ReactMarkdown>
   );
 }
-
-MarkdownContent.defaultProps = {
-  escapeHtml: true,
-  skipHtml: false,
-};

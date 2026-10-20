@@ -1,6 +1,5 @@
 'use client';
 import dynamic from 'next/dynamic';
-// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 
 const OfficeMap = dynamic(() =>
@@ -161,7 +160,11 @@ export const Blocks = ({
   return blocks.map((block, index) => {
     // FooterLinkContent blocks don't use BlockWrapper
     if (block.__typename === 'PageBlocksFooterLinkContent') {
-      return blockByType(block, index, recentPosts);
+      return (
+        <React.Fragment key={`${block.__typename}-${index}`}>
+          {blockByType(block, index, recentPosts)}
+        </React.Fragment>
+      );
     }
 
     return (
