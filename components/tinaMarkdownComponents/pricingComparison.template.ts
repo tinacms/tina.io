@@ -14,7 +14,7 @@ const fields = cardTemplate.fields
       label: field.label,
       list: true,
       fields: field.fields.filter((item) => item.name !== 'link'),
-      ui: { itemProps: (item) => ({ label: item.name }) },
+      ui: { itemProps: (item) => ({ key: item.id, label: item.name }) },
     };
   });
 
