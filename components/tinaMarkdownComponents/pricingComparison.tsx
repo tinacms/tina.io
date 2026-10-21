@@ -63,9 +63,9 @@ export function PricingComparison({ before, after }: Props) {
         rounded monthly equivalents, with the yearly total below.
       </p>
       <div className="grid min-w-0 grid-cols-1 items-stretch gap-4 md:grid-cols-2">
-        {plans.map((plan) => (
+        {plans.map((plan, index) => (
           <PlanCard
-            key={`${version}-${plan.name}`}
+            key={`${version}-${plan.name}-${index}`}
             data={plan}
             isMonthly={isMonthly}
             comparison
