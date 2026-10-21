@@ -5,6 +5,7 @@ import { MarkdownContent } from 'components/layout';
 import { DynamicLink } from 'components/ui';
 import { LOCALE_ROUTE_CONFIG, type Locale } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
+import { unclipEmoji } from 'utils/unclipEmoji';
 import NewBlogPagination from '@/component/Blogs/BlogPagination';
 import { extractTextFromBody } from '@/utils/extractTextFromBody';
 import { formatDate } from '@/utils/formatDate';
@@ -58,7 +59,7 @@ export default function BlogIndexPageClient({
           >
             <DynamicLink href={`${prefix}/blog/${post._sys.filename}`} passHref>
               <h2 className="font-ibm-plex text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
-                {post.title}
+                {unclipEmoji(post.title)}
               </h2>
             </DynamicLink>
             <div className="w-full">

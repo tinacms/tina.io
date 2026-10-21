@@ -80,6 +80,10 @@
           "href": "/events"
         },
         {
+          "label": "Partners",
+          "href": "/partners"
+        },
+        {
           "label": "Certifications",
           "href": "/certifications"
         },
@@ -110,7 +114,7 @@
       "label": "About",
       "items": [
         {
-          "label": "About Tina",
+          "label": "About TinaCMS",
           "href": "/about"
         },
         {

@@ -133,6 +133,17 @@ export const compareBoxTemplate: Template = {
   },
   fields: [
     {
+      name: 'heading',
+      label: 'Heading',
+      type: 'string',
+    },
+    {
+      name: 'subheading',
+      label: 'Subheading',
+      type: 'string',
+      ui: { component: 'textarea' },
+    },
+    {
       name: 'criteriaItems',
       label: 'Criteria',
       type: 'object',
@@ -188,6 +199,13 @@ export const compareBoxTemplate: Template = {
           type: 'string',
           ui: { component: 'color' },
           description: 'Choose a background color for the company',
+        },
+        {
+          name: 'testimonialLink',
+          label: 'Testimonial Link',
+          type: 'string',
+          description:
+            'URL to the full comparison/testimonial page for this company, e.g. /tinacms-contentful-comparison. Leave blank to hide the "Learn more" link.',
         },
         {
           name: 'satisfiedCriteria',

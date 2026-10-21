@@ -13,21 +13,21 @@ next: content/blog/tina-next-i18n.mdx
 
 A/B testing can be an incredibly useful tool on any site. It allows you to increase user engagement, reduce bounce rates, increase conversion rate and effectively create content.
 
-Tina opens up the ability to A/B test, allowing marketing teams to test content without the need for the development team once it has been implemented.
+TinaCMS opens up the ability to A/B test, allowing marketing teams to test content without the need for the development team once it has been implemented.
 
 ## Introduction
 
 We are going to break this tutorial into two sections:
 
 1. Setting up A/B Tests with NextJS's middleware.
-2. Configuring our A/B Tests with Tina, so that our editors can spin up dynamic A/B Tests.
+2. Configuring our A/B Tests with TinaCMS, so that our editors can spin up dynamic A/B Tests.
 
-## Creating our Tina application
+## Creating our TinaCMS application
 
 This blog post is going to use the Tailwind Starter. Using the `create-tina-app` command, choose "Next.js Starter" as the starter template:
 
 ```bash
-# create our Tina application
+# create our TinaCMS application
 
 npx create-tina-app@latest a-b-testing
 
@@ -54,9 +54,9 @@ The home page of the starter should look like this:
 This page is already setup nicely for an A/B test, its page layout (`[slug].tsx`) renders dynamic pages by accepting a variable `slug`.
 
 Let's start by creating an alternate version of the homepage called `home-b`.
-You can do so in Tina [at http://localhost:3000/admin#/collections/page/new](http://localhost:3000/admin#/collections/page/new)
+You can do so in TinaCMS [at http://localhost:3000/admin#/collections/page/new](http://localhost:3000/admin#/collections/page/new)
 
-![Tina Add document](/img/blog/a-b-testing/add-document.png)
+![TinaCMS Add document](/img/blog/a-b-testing/add-document.png)
 
 Once that's done, go to: `http://localhost:3000/home-b` to confirm that your new `/home-b` page has been created.
 
@@ -203,11 +203,11 @@ The above code snippet does the following:
 
 That should be all for our middleware! Now, you should be able to visit the homepage at [http://localhost:3000](http://localhost:3000), and you will have a 50-50 chance of being served the contents of `home.md`, or `home-b.md`. You can reset your bucket by clearing your browser's cookies.
 
-## Using Tina to create A/B Tests
+## Using TinaCMS to create A/B Tests
 
 At this point, our editors can edit the contents of both `home.md` & `home-b.md`, however we'd like our editors to be empowered to setup new A/B tests.
 
-Let's make our `content/ab-test/index.json` file from earlier editable, by creating a Tina collection for it.
+Let's make our `content/ab-test/index.json` file from earlier editable, by creating a TinaCMS collection for it.
 
 Open up your `schema.ts` and underneath the `Pages` collection, create a new collection like this:
 
@@ -278,7 +278,7 @@ We now need to add the fields we want our content team to be able to edit, so th
     }
 ```
 
-> You may notice the `ui` prop. We are using this to give a more descriptive label to the list items. You can read about this in our [extending Tina documentation.](https://tina.io/docs/extending-tina/customize-list-ui/)
+> You may notice the `ui` prop. We are using this to give a more descriptive label to the list items. You can read about this in our [extending TinaCMS documentation.](https://tina.io/docs/extending-tina/customize-list-ui/)
 
 We also need to update our `RouteMappingPlugin` in `.tina/schema.ts` to ensure that our collection is only editable with the basic editor.
 
@@ -292,7 +292,7 @@ We also need to update our `RouteMappingPlugin` in `.tina/schema.ts` to ensure t
 
 Now, restart your dev server, and go to: [`http://localhost:3000/admin#/collections/abtest/index`](http://localhost:3000/admin#/collections/abtest/index). Your editors should be able to wire up their own A/B tests!
 
-![Tina Edit Variant](/img/blog/a-b-testing/edit-test.png)
+![TinaCMS Edit Variant](/img/blog/a-b-testing/edit-test.png)
 
 The process for editors to create new A/B tests would be as follows:
 
@@ -301,21 +301,21 @@ The process for editors to create new A/B tests would be as follows:
 
 And that's it! We hope this empowers your team to start testing out different page variants to start optimizing your content!
 
-## How to keep up to date with Tina?
+## How to keep up to date with TinaCMS?
 
-The best way to keep up with Tina is to subscribe to our newsletter. We send out updates every two weeks. Updates include new features, what we have been working on, blog posts you may have missed, and more!
+The best way to keep up with TinaCMS is to subscribe to our newsletter. We send out updates every two weeks. Updates include new features, what we have been working on, blog posts you may have missed, and more!
 
 You can subscribe by following this link and entering your email: [https://tina.io/community/](https://tina.io/community/)
 
-### Tina Community Discord
+### TinaCMS Community Discord
 
-Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) full of Jamstack lovers and Tina enthusiasts. When you join, you will find a place:
+TinaCMS has a community [Discord](https://discord.com/invite/zumN63Ybpf) full of Jamstack lovers and TinaCMS enthusiasts. When you join, you will find a place:
 
 * To get help with issues
-* Find the latest Tina news and sneak previews
-* Share your project with the Tina community, and talk about your experience
+* Find the latest TinaCMS news and sneak previews
+* Share your project with the TinaCMS community, and talk about your experience
 * Chat about the Jamstack
 
-### Tina Twitter
+### TinaCMS Twitter
 
-Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
+Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to TinaCMS. We would also be psyched if you tagged us in projects you have built.

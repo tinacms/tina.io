@@ -1,0 +1,13 @@
+{
+  "seo": {
+    "title": "预约 TinaCMS 会议 —— 安排一次演示",
+    "description": "与所在时区的 TinaCMS 专家预约通话。获取将 TinaCMS 应用到你的项目中的个性化建议，并了解我们的功能与定价。"
+  },
+  "blocks": [
+    {
+      "title": "选择你的地区",
+      "description": "与所在时区的 🦙TinaCMS 专家预约会议",
+      "_template": "booking"
+    }
+  ]
+}

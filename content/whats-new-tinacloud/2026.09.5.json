@@ -1,0 +1,171 @@
+{
+  "versionNumber": "2026.09.5",
+  "dateReleased": "2026-10-05T05:48:11Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat(identity): Self heal verified flag work os",
+          "gitHubName": "harley-j",
+          "gitHubLink": "https://github.com/harley-j"
+        },
+        {
+          "changesDescription": "docs: mark the account-activity signals as load-bearing",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "ci: scan Go only when identity changes and cancel superseded PR builds",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(ci): wait for npm to serve a new tinacms version before the auto-bump installs it",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "docs: name the deployed e2e fixture and correct the zstd note",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: alarm on spikes in failed content changes, not the content DLQ's standing depth",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: target login-screen announcements by the TinaCMS version a project declares, not its @tinacms/graphql version",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
+        },
+        {
+          "changesDescription": "fix(auth): preserve editor context when retrying login",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        },
+        {
+          "changesDescription": "fix(assets-api): stage git-push deletes when the media branch is missing",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat(identity): send TinaCloud's own password reset email from the WorkOS webhook",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore(deps): upgrade final-form to 5 and react-final-form to 7 in the dashboard",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(dashboard): full-width Create Project chooser buttons on phones",
+          "gitHubName": "designbyalex",
+          "gitHubLink": "https://github.com/designbyalex"
+        },
+        {
+          "changesDescription": "feat(identity): Unify TinaCloud WorkOS email policy",
+          "gitHubName": "harley-j",
+          "gitHubLink": "https://github.com/harley-j"
+        },
+        {
+          "changesDescription": "chore(deps): hold Amplify on 5 and abstract-level on 1 in Dependabot",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: gate bulk announcement sends on a rolling SES reputation window",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(dashboard): explain why account deletion is paused instead of hiding it",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(deps): pin brace-expansion's 2.x and 5.x copies to their patched releases",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(auth): Revoke all other WorkOS sessions",
+          "gitHubName": "harley-j",
+          "gitHubLink": "https://github.com/harley-j"
+        },
+        {
+          "changesDescription": "feat(dashboard): Add dashboard controls for signing out other sessions",
+          "gitHubName": "harley-j",
+          "gitHubLink": "https://github.com/harley-j"
+        },
+        {
+          "changesDescription": "feat(auth): Restore WorkOS auth analytics parity",
+          "gitHubName": "harley-j",
+          "gitHubLink": "https://github.com/harley-j"
+        },
+        {
+          "changesDescription": "fix(identity): cache the authorizer policy for 5 minutes and re-check access on fresh reads",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore(deps): take the October patch-and-minor group with the AWS types deduped",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "perf(content-api): write index batches to DynamoDB in parallel",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump brace-expansion from 1.1.18 to 1.1.21[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump fast-uri from 3.1.7 to 3.1.8[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group across 1 directory with 4 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump markdown-it from 14.3.0 to 14.3.2[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump dompurify from 3.4.14 to 3.4.16[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group in /identity with 2 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group across 1 directory with 22 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump vite-plugin-svgr from 4.5.0 to 5.2.0[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}

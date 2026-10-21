@@ -44,7 +44,7 @@
         },
         {
           "headline": "Develop Locally",
-          "text": "Run Tina locally and talk to your local filesystem. This makes for an amazing developer experience while building your docs site."
+          "text": "Run TinaCMS locally and talk to your local filesystem. This makes for an amazing developer experience while building your docs site."
         }
       ],
       "_template": "featureGrid"

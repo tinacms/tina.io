@@ -10,7 +10,8 @@ import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
-import { getDocId } from 'utils/docs/getDocIds';
+import { getDocId } from 'utils/getDocIds';
+import { unclipEmoji } from 'utils/unclipEmoji';
 import { Prism } from '../styles/Prism';
 import { AccordionBlock } from './templateComponents/accordionBlock';
 
@@ -286,6 +287,7 @@ export const docAndBlogComponents: Components<{
           height={`${height}px`}
           src={iframeSrc}
           title="Iframe"
+          referrerPolicy="strict-origin-when-cross-origin"
         />
       </div>
     );
@@ -558,6 +560,7 @@ export const docAndBlogComponents: Components<{
           className="absolute top-0 left-0 w-full h-full rounded-md"
           src={embedSrc}
           title="YouTube video player"
+          referrerPolicy="strict-origin-when-cross-origin"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen={true}
         ></iframe>
@@ -786,6 +789,13 @@ export const docAndBlogComponents: Components<{
   ),
 };
 
+// `_content_source` is Tina's visual-editing metadata, not formatting.
+const isPlainText = (node: any) =>
+  node?.type === 'text' &&
+  Object.keys(node).every(
+    (key) => key === 'type' || key === 'text' || key.startsWith('_'),
+  );
+
 function FormatHeaders({ children, level }) {
   const HeadingTag = `h${level}` as any;
   const id = getDocId(
@@ -799,6 +809,12 @@ function FormatHeaders({ children, level }) {
   }, []);
 
   const linkHref = `${currentUrl}#${id}`;
+
+  const content = children?.props?.content;
+  const headingChildren =
+    Array.isArray(content) && content.every(isPlainText)
+      ? unclipEmoji(content.map((node) => node.text).join(''))
+      : children;
 
   const styles = {
     1: 'bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-4xl mt-16! mb-4',
@@ -858,7 +874,7 @@ function FormatHeaders({ children, level }) {
         onClick={handleHeaderClick}
       >
         {' '}
-        {children}
+        {headingChildren}
         <FiLink
           className={`${linkColor[level]} opacity-0 group-hover:opacity-80 transition-opacity duration-200 absolute ml-1 group-hover:animate-wiggle`}
           style={{

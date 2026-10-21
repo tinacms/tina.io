@@ -6,18 +6,20 @@
 // So we serve the image from a distinct prefix (/blog/og/<slug>) and point
 // `openGraph.images` at it from the post's generateMetadata.
 //
-// force-static + generateStaticParams pre-renders one image per post at build
-// (where the fonts/photos under public/ are readable via fs).
+// Render on the first request and cache the image. Returning no static params
+// keeps image rendering out of the build. Assets load from disk or the public
+// production host at runtime (see utils/og/ogAssets).
 
-import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
+import { blogSlugSet } from 'utils/blog/blogSlugs';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { renderBlogOgImage } from 'utils/og/blogOgImage';
 
 export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = 3600;
 
 export function generateStaticParams() {
-  return generateBlogStaticParams('en');
+  return [];
 }
 
 export async function GET(
@@ -25,10 +27,16 @@ export async function GET(
   { params }: { params: { slug: string[] } },
 ) {
   const slugPath = params.slug.join('/');
+  if (!(await blogSlugSet('en')).has(slugPath)) {
+    return new Response(null, { status: 404 });
+  }
   const { post } = await getBlogPost('en', slugPath);
+  if (!post) {
+    return new Response(null, { status: 404 });
+  }
   return renderBlogOgImage({
-    title: post?.title ?? 'TinaCMS Blog',
-    author: post?.author,
+    title: post.title,
+    author: post.author,
     seed: slugPath,
   });
 }

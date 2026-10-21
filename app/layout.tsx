@@ -1,7 +1,6 @@
 import { GoogleTagManager } from '@next/third-parties/google';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
-import AdminLink from '@/component/AdminLink';
 import { CloudBanner } from '@/component/CloudBanner';
 import ConsentBanner from '@/component/ConsentBanner';
 import { SiteLayout } from '@/component/SiteLayout';
@@ -76,7 +75,6 @@ export default async function RootLayout({
             />
           </noscript>
           <CloudBanner />
-          <AdminLink />
           <ConsentBanner />
           <TinaChatBot />
           <SiteLayout footerData={footerData}>{children}</SiteLayout>

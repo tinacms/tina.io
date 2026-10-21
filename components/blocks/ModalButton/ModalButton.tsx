@@ -1,4 +1,5 @@
 import { DemoForm } from 'components/modals/BookDemo';
+import { ContactForm } from 'components/modals/ContactForm';
 import { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { tinaField } from 'tinacms/dist/react';
@@ -16,15 +17,30 @@ const getModalContent = (modal: string) => {
   if (modal === 'EmailForm.tsx') {
     return <EmailForm />;
   }
+  if (modal === 'ContactForm.tsx') {
+    return <ContactForm />;
+  }
+  if (modal === 'BecomePartner.tsx') {
+    return <ContactForm variant="partner" />;
+  }
   return null;
+};
+
+// The contact-based forms want the same roomy dialog the navbar/footer use;
+// other modals keep the compact default.
+const getModalClassName = (modal: string | null) => {
+  if (modal === 'ContactForm.tsx' || modal === 'BecomePartner.tsx') {
+    return '!max-w-2xl w-[90vw] !max-h-[90vh] !p-0 !duration-0';
+  }
+  return 'sm:max-w-lg';
 };
 
 export const ModalB = ({ items, align = 'left', className = '' }) => {
   const [open, setOpen] = useState(false);
-  const [ModalContent, setModalContent] = useState(null);
+  const [activeModal, setActiveModal] = useState<string | null>(null);
 
   const openModal = (modal) => {
-    setModalContent(getModalContent(modal));
+    setActiveModal(modal);
     setOpen(true);
   };
 
@@ -67,7 +83,9 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
       </div>
 
       <Dialog open={open} onOpenChange={(isOpen) => !isOpen && closeModal()}>
-        <DialogContent className="sm:max-w-lg">{ModalContent}</DialogContent>
+        <DialogContent className={getModalClassName(activeModal)}>
+          {activeModal && getModalContent(activeModal)}
+        </DialogContent>
       </Dialog>
     </>
   );

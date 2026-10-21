@@ -16,6 +16,7 @@ const VideoGridComponent = ({ data }) => {
             src={media.embedUrl}
             title="YouTube video player"
             className="object-cover rounded-lg"
+            referrerPolicy="strict-origin-when-cross-origin"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
@@ -29,9 +30,9 @@ const VideoGridComponent = ({ data }) => {
     return (
       <>
         {Array.isArray(mediaList) &&
-          mediaItem.map((item) => (
+          mediaItem.map((item, index) => (
             <div
-              key={item.id}
+              key={`${item.__typename}-${index}`}
               className="relative flex justify-center items-center"
             >
               {renderMedia(item)}

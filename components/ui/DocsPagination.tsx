@@ -1,6 +1,7 @@
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import RightArrowSvg from '../../public/svg/right-arrow.svg';
-import { isChineseRoute } from '../../utils/locale';
+import { hasZhPrefix, isZhHost } from '../../utils/i18n/domains';
 import { DynamicLink } from '../ui/DynamicLink';
 
 interface NextPrevPageProps {
@@ -15,7 +16,13 @@ interface PaginationProps {
 
 export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
   const pathname = usePathname();
-  const isZh = isChineseRoute(pathname);
+  // The Chinese site serves prefix-free URLs, so the hostname decides the
+  // locale; the `/zh` prefix is still honoured for local development.
+  const [isZh, setIsZh] = useState(false);
+
+  useEffect(() => {
+    setIsZh(isZhHost(window.location.host) || hasZhPrefix(pathname ?? ''));
+  }, [pathname]);
 
   const lastPageText = isZh ? '上一页' : 'Last Page';
   const nextPageText = isZh ? '下一页' : 'Next Page';

@@ -26,26 +26,26 @@ interface WhatsNewCardProps {
 
 const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
   return (
-    <li className="mb-3 flex justify-between">
-      <div className="flex items-start gap-2 mb-2">
-        {change.gitHubName && change.gitHubLink && (
-          <>
-            <Link
-              href={change.gitHubLink}
-              className="whitespace-nowrap items-center px-2 py-1 text-xs bg-orange-100 text-orange-500 rounded-md hover:bg-orange-200 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              @{change.gitHubName}
-            </Link>
-            <span>-</span>
-          </>
-        )}
-        {change.changesDescription && (
-          <p className="text-gray-700">{change.changesDescription}</p>
-        )}
-      </div>
-      <div className="flex gap-2 ">
+    <li className="flex flex-wrap items-start gap-2 sm:col-span-full sm:grid sm:grid-cols-subgrid">
+      {change.gitHubName && change.gitHubLink && (
+        <>
+          <Link
+            href={change.gitHubLink}
+            className="justify-self-start whitespace-nowrap items-center px-2 py-1 text-xs bg-orange-100 text-orange-500 rounded-md hover:bg-orange-200 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @{change.gitHubName}
+          </Link>
+          <span className="hidden sm:block">-</span>
+        </>
+      )}
+      {change.changesDescription && (
+        <p className="order-last w-full wrap-anywhere text-gray-700 sm:order-none sm:col-start-3 sm:w-auto">
+          {change.changesDescription}
+        </p>
+      )}
+      <div className="flex gap-2 sm:col-start-4">
         {change.pull_request_number && change.pull_request_link && (
           <Link
             href={change.pull_request_link}
@@ -95,7 +95,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
             {section.changesTitle}
           </h3>
           {section.changesList && section.changesList.length > 0 ? (
-            <ul className="space-y-4">
+            <ul className="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-[auto_auto_1fr_auto]">
               {section.changesList.map((change, changeIndex) => (
                 <ChangeItemComponent
                   key={`change-${changeIndex}-${change.commit_hash || change.gitHubName || 'unknown'}`}

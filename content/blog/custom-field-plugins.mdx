@@ -23,7 +23,7 @@ In the [previous post](https://tinacms.org/blog/custom-field-components), we lea
 
 ## Field Plugin vs. Field Component
 
-Plugins **extend functionality in the CMS**; field plugins allow us to create and register custom fields. *There are a few reasons why you may want to create a field plugin.* With a custom field, you can completely control the editing experience and functionality. If the primary fields provided by Tina don't fit your use case, **you can fill the gaps**.
+Plugins **extend functionality in the CMS**; field plugins allow us to create and register custom fields. *There are a few reasons why you may want to create a field plugin.* With a custom field, you can completely control the editing experience and functionality. If the primary fields provided by TinaCMS don't fit your use case, **you can fill the gaps**.
 
 A field component is just one piece of a field plugin ([more on this later](https://tinacms.org/blog/custom-field-plugins#field-plugin-interface)). A custom field component can achieve the same functionality as a plugin. But if you plan on reusing the custom field on different forms, it is recommended to take the extra steps to make a plugin 🔌.
 
@@ -33,7 +33,7 @@ Creating field plugins helps confine complex logic to a single module. This make
 
 ## Getting Started 👏
 
-To follow along, you should have a custom field component set-up with a Tina form. If not, you can get some more context from the previous post: [how to create a custom field component](https://tinacms.org/blog/custom-field-components). In the following examples, I am using the same [llama-filters](https://github.com/kendallstrautman/llama-filters) 🦙 demo from our previous post.
+To follow along, you should have a custom field component set-up with a TinaCMS form. If not, you can get some more context from the previous post: [how to create a custom field component](https://tinacms.org/blog/custom-field-components). In the following examples, I am using the same [llama-filters](https://github.com/kendallstrautman/llama-filters) 🦙 demo from our previous post.
 
 There are **two steps to adding a field plugin to the CMS**. First, we'll define the field component object and register it with the CMS. Next, we'll use the field plugin in a form definition so we can edit content in the sidebar with our fancy custom field plugin.
 
@@ -48,7 +48,7 @@ To register the custom field as a plugin with the CMS, we’ll need to head to t
 
 import React from 'react'
 import App from 'next/app'
-import { Tina, TinaCMS } from 'tinacms'
+import { TinaCMS, TinaCMS } from 'tinacms'
 import { GitClient } from '@tinacms/git-client'
 /*
  ** 1. Import the custom field component
@@ -93,7 +93,7 @@ You’ll want to import the custom field component and then register the plugin 
 
 #### Field Plugin Interface
 
-Let's break down the field plugin further. The interface below should provide some insight into all that can go into creating a field plugin. When you register a field plugin with Tina, it expects an object with a similar shape.
+Let's break down the field plugin further. The interface below should provide some insight into all that can go into creating a field plugin. When you register a field plugin with TinaCMS, it expects an object with a similar shape.
 
 ```ts
 interface FieldPlugin {
@@ -119,7 +119,7 @@ You can see that there are additional configuration functions and options. *Note
 
 ### 2. Use the custom field in a form
 
-Now that the plugin is registered with the CMS, we can use it in any form definition. Going back to the [llama-filters demo](https://github.com/kendallstrautman/llama-filters), let’s head to `index.js` where the Tina form is configured. We need to **update the form options** for our image saturation field to reference the field plugin `name`, as opposed to calling the component directly.
+Now that the plugin is registered with the CMS, we can use it in any form definition. Going back to the [llama-filters demo](https://github.com/kendallstrautman/llama-filters), let’s head to `index.js` where the TinaCMS form is configured. We need to **update the form options** for our image saturation field to reference the field plugin `name`, as opposed to calling the component directly.
 
 ```diff
 /*
@@ -153,8 +153,8 @@ Index.getInitialProps = async function() {
 }
 ```
 
-**That's it!** With the plugin defined and registered with the CMS, you can reuse this field *ad infinitum*. In my opinion, creating a field plugin helps maintain a consistent interface for defining forms. This way, the custom field works *behind the scenes* as if it were a native Tina field, which is pretty slick.
+**That's it!** With the plugin defined and registered with the CMS, you can reuse this field *ad infinitum*. In my opinion, creating a field plugin helps maintain a consistent interface for defining forms. This way, the custom field works *behind the scenes* as if it were a native TinaCMS field, which is pretty slick.
 
 ## Short and sweet, as promised 🍰
 
-This post, combined with the former, should give you all the building blocks to start making your own field plugins. Feel free to *dive into the documentation* on [fields](https://tinacms.org/docs/plugins/fields/custom-fields/) or [plugins](https://tinacms.org/docs/cms#plugins). Make sure to share your groovy custom fields with us [@tinacms](https://twitter.com/tinacms) 🖖. Or, if you feel there is a fundamental field missing from Tina, [open up a PR](https://github.com/tinacms/tinacms/) to contribute your custom field!
+This post, combined with the former, should give you all the building blocks to start making your own field plugins. Feel free to *dive into the documentation* on [fields](https://tinacms.org/docs/plugins/fields/custom-fields/) or [plugins](https://tinacms.org/docs/cms#plugins). Make sure to share your groovy custom fields with us [@tinacms](https://twitter.com/tinacms) 🖖. Or, if you feel there is a fundamental field missing from TinaCMS, [open up a PR](https://github.com/tinacms/tinacms/) to contribute your custom field!

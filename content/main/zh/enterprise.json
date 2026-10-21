@@ -5,29 +5,31 @@
   },
   "blocks": [
     {
-      "headline": "Tina 企业版",
-      "text": "降本增效，安全无忧",
-      "margin": "",
-      "spacing": "gap-10",
+      "title": "与 {TinaCMS} 一起迈向企业级",
+      "subtext": "高级安全、全球性能、合规保障与专属支持。Tina 企业版为大型团队提供所需的掌控力与可靠性，让内容规模化扩展更有底气。",
       "buttons": [
         {
-          "label": "获取产品手册",
+          "label": "获取产品单页",
           "icon": false,
-          "variant": "white",
+          "shape": "square",
+          "variant": "orange",
           "size": "medium",
-          "url": "mailto:info@tina.io?subject=TinaCMS企业版资料索取&body=您好，请发送TinaCMS企业版相关介绍资料。",
+          "url": "mailto:info@tina.io?subject=TinaCMS%20Enterprise%201-Pager&body=Hello,%20I%27d%20like%20more%20information%20about%20the%20TinaCMS%20Enterprise%20Solution",
           "_template": "actions"
         },
         {
           "label": "预约产品演示",
           "icon": false,
-          "color": "blue",
+          "shape": "square",
+          "color": "orangeWithBorder",
           "size": "medium",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }
       ],
-      "_template": "hero"
+      "buttonHorizontalAlignment": "left",
+      "image": "/ai-llamas/tina-enterprise-v2.png",
+      "_template": "heroV2"
     },
     {
       "title": "客户信赖之选",
@@ -127,114 +129,151 @@
       "_template": "logoGrid"
     },
     {
+      "heading": "覆盖全球的支持网络",
+      "content": "我们在**澳大利亚**、**中国**和**法国**设有办公室，全天候为你提供帮助。我们专职的多语言团队随时待命，确保跨时区的支持无缝衔接。无论白天黑夜，随时都可以联系我们。\n\n每天提供 19 小时的全球服务覆盖。以 UTC 时区为基准，覆盖时段为：\n\n* 22:00-08:00 → 布里斯班/悉尼 + 杭州\n* 07:00-10:00 → 杭州 + 斯特拉斯堡\n* 10:00-17:00 → 仅斯特拉斯堡\n",
+      "_template": "map"
+    },
+    {
+      "features": [
+        {
+          "headline": "编辑工作流",
+          "text": "由 GitHub 支撑的编辑工作流已内置于 TinaCloud。你的内容团队无需离开 CMS 就能提交 Pull Request（PR）。\n",
+          "buttons": [
+            {
+              "label": "了解更多",
+              "icon": false,
+              "shape": "square",
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "/editorial-workflow",
+              "_template": "actions"
+            }
+          ],
+          "alignCenter": false,
+          "media": [
+            {
+              "src": "/video/create-branch.webm",
+              "_template": "v2Video"
+            }
+          ],
+          "imageBackground": false
+        }
+      ],
+      "_template": "features"
+    },
+    {
       "items": [
         {
-          "headline": "内置版本控制",
-          "text": "基于Git构建，支持版本回溯、分支管理，确保内容更新安全可靠。"
-        },
-        {
           "headline": "降低成本",
-          "text": "采用TinaCMS的企业平均节省50%以上的许可和运营支出。"
+          "text": "多数客户从其他企业级 CMS 平台迁移到 TinaCMS 后，许可与运营成本降低超过 50%。"
         },
         {
-          "headline": "灵活部署方案",
-          "text": "支持本地化部署，满足企业级安全需求。"
-        },
-        {
-          "headline": "高效协作流程",
-          "text": "集成Git工作流，支持内容团队在CMS内直接创建和管理PR。",
+          "headline": "自托管",
+          "text": "TinaCMS 可以自托管在你的防火墙之后，以获得更高的安全性。",
           "actions": [
             {
-              "label": "查看详情",
+              "label": "了解更多",
               "icon": false,
-              "variant": "white",
+              "shape": "square",
+              "variant": "orangeWithBorder",
               "size": "small",
-              "url": "https://tina.io/editorial-workflow/"
+              "url": "/docs/self-hosted/overview"
             }
           ]
         },
         {
-          "headline": "卓越性能表现",
-          "text": "静态架构配合CDN分发，页面加载速度提升10倍，确保业务连续性。"
-        },
-        {
-          "headline": "全方位安全保障",
-          "text": "无数据库架构减少攻击面，严格的访问控制确保系统安全。"
+          "headline": "更强的安全性",
+          "text": "没有数据库、无需服务端处理，攻击面因此大幅收窄。静态文件配合严格的访问控制，把漏洞降到最低，带来更安全的架构。"
         }
       ],
       "_template": "featureGrid"
     },
     {
-      "title2": "\"Tina彻底革新了Unity的文档管理方式\"",
+      "title2": "\"Tina彻底革新了Unity的文档管理方式\"/",
       "subtext": "Anton Iancu，AI与文档产品工程经理",
       "logo": "/svg/logos/unity.svg",
       "_template": "quote"
     },
     {
+      "features": [
+        {
+          "headline": "内置版本控制",
+          "text": "你的内容存放在 Git 中，因而拥有完整的版本历史、安全的回滚能力和基于分支的工作流。每一次变更都被自动记录，审计与合规都变得轻松许多。\n",
+          "media": [
+            {
+              "src": "/video/key-features/2024-09-13-key-features-github-integration.webm",
+              "_template": "v2Video"
+            }
+          ],
+          "isReversed": true
+        }
+      ],
+      "_template": "features"
+    },
+    {
       "items": [
         {
-          "headline": "统一身份认证",
-          "text": "支持主流身份提供商（IdP），兼容SAML和OIDC协议。"
+          "headline": "性能与可扩展性",
+          "text": "借助 ISR 与 Webhook 触发的再生成，你的站点既保持动态，又能拥有完全静态资源的速度。内容更新自动传播，用户在任何规模下都能获得稳定的高速体验。",
+          "actions": [
+            {
+              "label": "了解更多",
+              "icon": false,
+              "shape": "square",
+              "variant": "orangeWithBorder",
+              "size": "small",
+              "url": "/docs/tinacloud/webhooks"
+            }
+          ]
         },
         {
-          "headline": "合规性保障",
-          "text": "积极推进SOC 2认证，全面符合GDPR规范。"
+          "headline": "单点登录",
+          "text": "兼容 Okta、Entra ID（Azure AD）和 Google Workspace 等主流身份提供商，并完整支持 SAML 与 OIDC。"
         },
         {
-          "headline": "高可用性承诺",
-          "text": "99.9%服务可用性，集成异常实时告警。"
+          "headline": "无缝的 CI/CD 集成",
+          "text": "轻松对接你现有的现代 CI/CD 流水线，自动执行检查、设置质量门禁并运行自定义部署脚本。预生产、生产等独立环境都能便捷配置，让每次发布都稳定可靠。"
         },
         {
-          "headline": "简化运维管理",
-          "text": "现代化架构降低运维复杂度，减少系统故障风险。"
+          "headline": "培训与支持",
+          "text": "直接对接 TinaCMS 背后的团队，获取培训、优先支持与定制开发服务。",
+          "actions": [
+            {
+              "label": "获取支持",
+              "icon": false,
+              "shape": "square",
+              "variant": "orangeWithBorder",
+              "size": "small",
+              "url": "/docs/support"
+            }
+          ]
         },
         {
-          "headline": "持续集成部署",
-          "text": "无缝对接CI/CD管道，支持多环境独立部署。"
+          "headline": "可用性 SLA",
+          "text": "99.9% 的服务器可用性；一旦有情况影响你的集成，我们会第一时间沟通。"
         },
         {
-          "headline": "智能缓存机制",
-          "text": "内置CDN缓存，无需额外配置，提升内容分发效率。"
+          "headline": "告别缓存烦恼",
+          "text": "不再需要复杂的缓存层。缓存已内置——静态生成的内容通过 CDN 网络分发。"
         }
       ],
       "_template": "featureGrid"
     },
     {
-      "options": {
-        "narrow": true,
-        "color": "white",
-        "align": "center"
-      },
-      "content": "## 显著降低运营成本\n\n相比传统企业级CMS，TinaCMS帮助客户平均节省50%以上的运营支出。\n",
-      "_template": "content"
-    },
-    {
-      "items": [
-        {
-          "headline": "成本效益显著",
-          "text": "相比传统解决方案，显著降低许可和基础设施成本。"
-        },
-        {
-          "headline": "专业服务支持",
-          "text": "提供专属培训、优先技术支持和定制开发服务。"
-        }
-      ],
-      "_template": "featureGrid"
-    },
-    {
-      "headline": "立即体验",
-      "text": "预约产品演示，了解TinaCMS如何助力您的业务",
+      "title": "开始吧",
+      "description": "与我们的团队聊聊，看看 TinaCMS 企业版能如何支撑你所在组织的内容工作流",
       "buttons": [
         {
           "label": "预约演示",
-          "icon": false,
-          "color": "blue",
+          "icon": true,
+          "shape": "square",
+          "color": "orange",
           "size": "medium",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }
       ],
-      "_template": "hero"
+      "_template": "callToAction"
     }
   ]
 }

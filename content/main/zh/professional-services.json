@@ -1,0 +1,120 @@
+{
+  "seo": {
+    "title": "专业服务 —— TinaCMS",
+    "description": "获取 TinaCMS 的专家支持。由 TinaCMS 背后的团队提供优先技术支持、上手辅导与定制功能开发。"
+  },
+  "blocks": [
+    {
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "headline": "专业服务",
+      "text": "无论你是刚启动第一个项目，还是在大规模管理内容，TinaCMS 团队都能为你提供帮助。",
+      "_template": "hero"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": true
+      },
+      "features": [
+        {
+          "headline": "优先技术支持",
+          "text": "直接联系 TinaCMS 资深开发者，解决技术卡点、排查故障并获取架构建议。\n\n* 优先修复缺陷\n* 架构与最佳实践指导\n* 专属支持对接人\n",
+          "buttons": [
+            {
+              "label": "预约通话",
+              "icon": false,
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/professional-services/priority-support-v2.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
+          "headline": "上手辅导",
+          "text": "在我们团队的实操辅导下加速落地 TinaCMS。从初始配置到编辑培训，让你的团队迅速形成产出。\n\n* 从其他 CMS 平台迁移的协助\n* 定制化配置\n* 团队培训课程\n",
+          "buttons": [
+            {
+              "label": "预约通话",
+              "icon": false,
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/professional-services/onboarding-v3.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true
+        },
+        {
+          "headline": "定制功能",
+          "text": "有特殊需求？我们的团队可以开发定制插件、集成与功能，扩展 TinaCMS 以贴合你的内容工作流。\n\n* 定制插件开发\n* 第三方集成\n* 量身定制的编辑工作流\n",
+          "buttons": [
+            {
+              "label": "预约通话",
+              "icon": false,
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/professional-services/custom-features-new.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
+          "headline": "全栈开发",
+          "text": "来自 TinaCMS 背后的团队 —— SSW 提供涵盖 .NET、React、Azure 等技术栈的全栈咨询服务。\n\n* Web 应用开发\n* 云架构与迁移\n* AI 与机器学习解决方案\n",
+          "buttons": [
+            {
+              "label": "联系 SSW",
+              "icon": false,
+              "shape": "pill",
+              "variant": "orange",
+              "size": "medium",
+              "url": "https://www.ssw.com.au/company/contact-us",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/professional-services/fullstack-development-v2.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "title": "与 Tina 专家聊聊",
+      "description": "准备好开始了吗？预约通话，与我们的团队讨论你的需求。",
+      "buttons": [
+        {
+          "label": "预约通话",
+          "icon": false,
+          "shape": "square",
+          "color": "orange",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "callToAction"
+    }
+  ]
+}

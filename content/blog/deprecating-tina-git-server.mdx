@@ -1,9 +1,9 @@
 ---
 draft: false
 seo:
-  title: Deprecating Tina-Git-Server | TinaCMS Blog
+  title: Deprecating TinaCMS-Git-Server | TinaCMS Blog
   description: >-
-    Learn about the deprecation of Tina-Git-Server in TinaCMS and what it means
+    Learn about the deprecation of TinaCMS-Git-Server in TinaCMS and what it means
     for your projects, along with alternative solutions for content management
 title: Updated Next.js Docs + Deprecating tina-git-server
 date: '2019-12-06T07:00:00.000Z'
@@ -12,11 +12,11 @@ prev: content/blog/using-tinacms-with-nextjs.mdx
 next: content/blog/dynamic-plugin-system.mdx
 ---
 
-We've changed our recommended approach for using Tina's Git Backend with Next.js websites. Check out [Tina's Next.js documentation](/docs/reference/self-hosted/tina-backend/nextjs) for details.
+We've changed our recommended approach for using TinaCMS's Git Backend with Next.js websites. Check out [TinaCMS's Next.js documentation](/docs/reference/self-hosted/tina-backend/nextjs) for details.
 
-To make it easy to use Tina's backend plugins, they are designed as Express middleware. These can be easily attached to Gatsby's dev server by implementing Gatsby's `onCreateDevServer` method and adding a few lines of connecting code. We reasoned that we could attach the same middleware to the dev server in other frameworks, allowing us to run the same backend code without having to rewrite it for each framework we intend to support.
+To make it easy to use TinaCMS's backend plugins, they are designed as Express middleware. These can be easily attached to Gatsby's dev server by implementing Gatsby's `onCreateDevServer` method and adding a few lines of connecting code. We reasoned that we could attach the same middleware to the dev server in other frameworks, allowing us to run the same backend code without having to rewrite it for each framework we intend to support.
 
-With Next.js, the lack of a plugin system requires developers to write a bit more code in order work with Tina. In order to use Express middleware with a Next.js site, a developer can do one of two things:
+With Next.js, the lack of a plugin system requires developers to write a bit more code in order work with TinaCMS. In order to use Express middleware with a Next.js site, a developer can do one of two things:
 
 1. Create a standalone Express app to use the middleware, or
 2. Write a [custom server](https://nextjs.org/docs#custom-server-and-routing) to run the site, creating an Express server and attaching the middleware in the process.
@@ -25,4 +25,4 @@ We previously settled on solution 1 in order to maximize compatibility with any 
 
 The main issue with solution 1 is that, while middleware is a convenient way to "plug in" server code in the absence of a proper plugin system, these middleware "plugins" could only control *other plugins*. There is no way, in this system, to attach middleware that could exert any control over the website itself. We were originally OK with this limitation, but when strategizing about possible **access control** features, we decided this solution was inadequate.
 
-Ultimately, solution 2 is both simpler and more robust. Although it requires more work on the end of the developer using Tina, this is often a side effect of software that properly [inverts control](https://kentcdodds.com/blog/inversion-of-control/).
+Ultimately, solution 2 is both simpler and more robust. Although it requires more work on the end of the developer using TinaCMS, this is often a side effect of software that properly [inverts control](https://kentcdodds.com/blog/inversion-of-control/).

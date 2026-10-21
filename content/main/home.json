@@ -215,7 +215,7 @@
     {
       "title": "{Markdown} is the Answer.",
       "subtitle": "The question is irrelevant...",
-      "subtext": "LLMs think in it. GEO runs on it. Your CMS should too.\n\nLLMs understand Markdown natively — it's the format they were trained on. Tina stores everything as Markdown in your Git repo, so your content stays clean, portable, and AI-friendly from the moment you publish.",
+      "subtext": "LLMs think in it. GEO runs on it. Your CMS should too.\n\nLLMs understand Markdown natively — it's the format they were trained on. TinaCMS stores everything as Markdown in your Git repo, so your content stays clean, portable, and AI-friendly from the moment you publish.",
       "featureTags": [
         {
           "label": "LLM-Ready"
@@ -379,7 +379,7 @@
       "featuredHeading": "Featured Video",
       "featuredPost": {
         "title": "TinaCMS for GitHub - The SSW Rules Migration ",
-        "description": "Jake walks you through the migration of the SSW\nRules site from Decap CMS and Gatsby to Tina CMS and Next.js.",
+        "description": "Jake walks you through the migration of the SSW\nRules site from Decap CMS and Gatsby to TinaCMS and Next.js.",
         "url": "https://www.youtube.com/watch?v=lqqduKKhH_o",
         "datePosted": "2026-01-16T13:00:00.000Z",
         "authorName": "Jake Bayliss",

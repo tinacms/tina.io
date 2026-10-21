@@ -158,6 +158,20 @@ export const heroTemplate: Template = {
       ],
     },
     {
+      name: 'sideImage',
+      label: 'Side Image',
+      type: 'image',
+      description:
+        'Shows this image beside the headline and text (below them on mobile). Works best with a transparent cut-out, e.g. /img/tina-llama/tina-llama-superhero.webp. Media and Mobile Text Size are not used when a Side Image is set.',
+    },
+    {
+      name: 'anchorId',
+      label: 'Anchor ID',
+      type: 'string',
+      description:
+        'Target for #links from elsewhere on the page, e.g. become-a-partner-section.',
+    },
+    {
       name: 'margin',
       description: 'Default is px-8 py-12 lg:py-16',
       label: 'Custom Margin',

@@ -2,74 +2,105 @@
   "navigationBar": "Master",
   "navItem": [
     {
-      "label": "文档",
-      "href": "/zh/docs",
-      "external": false,
-      "_template": "stringItem"
-    },
-    {
-      "label": "定价",
-      "href": "/zh/pricing",
-      "external": false,
-      "_template": "stringItem"
-    },
-    {
-      "label": "资源中心",
+      "label": "TinaCMS",
       "items": [
         {
-          "label": "关于 TinaCMS",
-          "href": "/zh/about",
+          "label": "首页",
+          "href": "/tinacms",
           "external": false
         },
         {
-          "label": "博客",
-          "href": "/zh/blog",
+          "label": "TinaCMS 文档",
+          "href": "/docs",
           "external": false
         },
         {
-          "label": "产品对比",
-          "href": "/zh/compare-tina",
+          "label": "视频",
+          "href": "https://www.youtube.com/c/tinacms",
+          "external": true
+        },
+        {
+          "label": "案例展示",
+          "href": "/showcase",
           "external": false
         },
         {
-          "label": "示例",
-          "href": "/examples",
-          "external": false
-        },
-        {
-          "label": "最新动态 - TinaCMS",
+          "label": "TinaCMS 最新动态",
           "href": "/whats-new/tinacms",
           "external": false
         },
         {
-          "label": "最新动态 - TinaCloud",
-          "href": "/whats-new/tinacloud",
+          "label": "版本列表",
+          "href": "/versions",
           "external": false
-        },
-        {
-          "label": "联系我们",
-          "href": "",
-          "modal": "ContactForm"
         }
       ],
       "_template": "groupOfStringItems"
     },
     {
+      "label": "TinaDocs",
+      "items": [
+        {
+          "label": "首页",
+          "href": "/tinadocs",
+          "external": false
+        },
+        {
+          "label": "TinaDocs 文档",
+          "href": "/tinadocs/docs",
+          "external": false
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "TinaCloud",
+      "items": [
+        {
+          "label": "定价",
+          "href": "/pricing",
+          "external": false
+        },
+        {
+          "label": "企业版",
+          "href": "/enterprise",
+          "external": false
+        },
+        {
+          "label": "快速开始",
+          "href": "https://app.tina.io/quickstart",
+          "external": true
+        },
+        {
+          "label": "TinaCloud 最新动态",
+          "href": "/whats-new/tinacloud",
+          "external": false
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "编辑工作流",
+      "href": "/editorial-workflow",
+      "external": false,
+      "_template": "stringItem"
+    },
+    {
       "label": "社区",
       "items": [
         {
-          "label": "案例展示",
-          "href": "/zh/showcase",
+          "label": "活动",
+          "href": "/events",
           "external": false
         },
         {
-          "label": "产品路线",
-          "href": "/zh/roadmap",
+          "label": "合作伙伴",
+          "href": "/partners",
           "external": false
         },
         {
-          "label": "技术支持",
-          "href": "/docs/support",
+          "label": "认证",
+          "href": "/certifications",
           "external": false
         },
         {
@@ -83,29 +114,53 @@
           "external": true
         },
         {
+          "label": "技术支持",
+          "href": "/docs/support",
+          "external": false
+        },
+        {
           "label": "论坛",
           "href": "https://github.com/tinacms/tinacms/discussions",
           "external": true
+        },
+        {
+          "label": "产品路线",
+          "href": "/roadmap",
+          "external": false
         }
       ],
       "_template": "groupOfStringItems"
     },
     {
-      "label": "企业版",
-      "href": "/zh/enterprise",
-      "external": false,
-      "_template": "stringItem"
-    },
-    {
-      "label": "我的TinaCloud",
-      "href": "https://app.tina.io/signin",
-      "external": true,
-      "_template": "stringItem"
-    },
-    {
-      "owner": "tinacms",
-      "repo": "tinacms",
-      "_template": "GitHubStarButton"
+      "label": "关于",
+      "items": [
+        {
+          "label": "关于 Tina",
+          "href": "/about",
+          "external": false
+        },
+        {
+          "label": "产品对比",
+          "href": "/compare-tina",
+          "external": false
+        },
+        {
+          "label": "博客",
+          "href": "/blog",
+          "external": false
+        },
+        {
+          "label": "示例",
+          "href": "/examples",
+          "external": false
+        },
+        {
+          "label": "联系我们",
+          "href": "/",
+          "modal": "ContactForm"
+        }
+      ],
+      "_template": "groupOfStringItems"
     }
   ]
 }

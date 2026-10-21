@@ -27,9 +27,6 @@ export function LanguageSupportAlert() {
       return 'pages';
     }
 
-    if (path.startsWith('/docs')) {
-      return 'docs';
-    }
     if (path.startsWith('/blog')) {
       return 'blog';
     }

@@ -49,6 +49,7 @@ export const LiteYouTube = ({
           title={title}
           className="absolute inset-0 w-full h-full rounded-lg shadow-lg"
           frameBorder="0"
+          referrerPolicy="strict-origin-when-cross-origin"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />

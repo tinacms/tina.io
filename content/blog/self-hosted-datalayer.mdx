@@ -4,7 +4,7 @@ seo:
   description: >-
     Learn how to set up a self-hosted Data Layer with TinaCMS, giving you full
     control over your data while improving scalability and performance.
-title: Self-Hosting the Tina Data Layer
+title: Self-Hosting the TinaCMS Data Layer
 date: '2023-01-31T04:00:00.000Z'
 last_edited: '2026-02-10T23:24:00.000Z'
 author: Scott Gallant & James O'Halloran
@@ -12,7 +12,7 @@ prev: content/blog/tina-v-1.1.3.mdx
 next: content/blog/tina-v-1.1.4.mdx
 ---
 
-**Updated 11/02/2026:** Updated the blog post with the latest Tina Data Layer diagram.
+**Updated 11/02/2026:** Updated the blog post with the latest TinaCMS Data Layer diagram.
 
 Today we're excited to announce the first iteration of TinaCMS's self-hosted Data Layer. See the in-depth walk through and demo [here](https://github.com/tinacms/tinacms/discussions/3589).
 
@@ -24,13 +24,13 @@ This has been a [highly requested feature](https://github.com/tinacms/tinacms/di
 * "We want to use our custom authentication that isn't supported in TinaCloud"
 * We want to customize/extend the behaviour used within TinaCloud"
 
-By self-hosting the Tina Data Layer, you can run TinaCMS without lock-in to TinaCloud.
+By self-hosting the TinaCMS Data Layer, you can run TinaCMS without lock-in to TinaCloud.
 
 We're excited to get this in the community's hands so that we can learn, iterate, and flesh out the self-hosted experience.
 
-## What is the Tina Data Layer
+## What is the TinaCMS Data Layer
 
-The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files backed by a database. You can think of the database as more of an ephemeral cache, since the single source of truth for your content is really your Markdown/JSON files.
+The TinaCMS Data Layer provides a GraphQL API that serves Markdown and JSON files backed by a database. You can think of the database as more of an ephemeral cache, since the single source of truth for your content is really your Markdown/JSON files.
 
 ![TinaCMS GraphQL Data Layer](/img/docs/tina-data-layer-diagram.png "TinaCMS Data Layer")
 
@@ -42,13 +42,13 @@ Also, since the Data Layer provides an API, you can fetch your content like you 
 
 ## How come I didn't know there was a Data Layer?
 
-When you’re developing your site locally, the Data Layer doesn’t need to be configured and just runs in the background. If you use TinaCloud in production, it runs your Tina Data Layer for you and syncs with GitHub. Now, you can host your own Data Layer as an alternative to using TinaCloud.
+When you’re developing your site locally, the Data Layer doesn’t need to be configured and just runs in the background. If you use TinaCloud in production, it runs your TinaCMS Data Layer for you and syncs with GitHub. Now, you can host your own Data Layer as an alternative to using TinaCloud.
 
 ## When does indexing happen in the Data Layer?
 
-If your site uses TinaCloud in production, the Data Layer is indexed every time there is a change to the associated GitHub repository using webhooks. When self-hosting, indexing occurs only when your site is built. Any content updates made by editors using Tina will be immediately reflected in the Data Layer, but any edits made directly to the GitHub repository outside of Tina won't be visible until the site is rebuilt.
+If your site uses TinaCloud in production, the Data Layer is indexed every time there is a change to the associated GitHub repository using webhooks. When self-hosting, indexing occurs only when your site is built. Any content updates made by editors using TinaCMS will be immediately reflected in the Data Layer, but any edits made directly to the GitHub repository outside of TinaCMS won't be visible until the site is rebuilt.
 
-## Is the Tina Data Layer open-source?
+## Is the TinaCMS Data Layer open-source?
 
 Yes, TinaCMS is open-source under the Apache 2.0 license.
 

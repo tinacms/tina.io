@@ -1,7 +1,7 @@
 {
   "title": "Community",
   "headline": "Join the club",
-  "description": "Tina is open source, extensible and community driven. Join the club.",
+  "description": "TinaCMS is open source, extensible and community driven. Join the club.",
   "gif": {
     "src": "/img/rico-replacement.jpg",
     "alt": "Join the club"
@@ -28,7 +28,7 @@
       "supporting_body": ""
     }
   },
-  "newsletter_header": "Tina Newsletter",
+  "newsletter_header": "TinaCMS Newsletter",
   "newsletter_cta": "We move quick. Stay up to date.",
   "img": {
     "src": "/img/rico-replacement.jpg",

@@ -13,27 +13,27 @@ prev: content/blog/introducing-tina-grande.mdx
 next: content/blog/deprecating-tina-git-server.mdx
 ---
 
-## Tina + Next: Part II
+## TinaCMS + Next: Part II
 
-This blog is a part of a series exploring the use of Next.js + Tina. In [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/), you learned how to create a simple markdown-based blog with Next. In this post you’ll add content editing capacity by configuring the site with TinaCMS.
+This blog is a part of a series exploring the use of Next.js + TinaCMS. In [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/), you learned how to create a simple markdown-based blog with Next. In this post you’ll add content editing capacity by configuring the site with TinaCMS.
 
 ### Next.js Recap ▲
 
 [Next.js](https://nextjs.org/) is **a React “meta-framework”** (a framework built on a framework) for developing web applications, built by the team at [Vercel](https://vercel.com/). Read [Part I](/blog/simple-markdown-blog-nextjs/) to get familiar with Next.js basics.
 
-### Tina Overview 🦙
+### TinaCMS Overview 🦙
 
-[Tina](https://tina.io/) is a Git-backed headless content management system that enables developers and content creators to collaborate seamlessly. With Tina, developers can create a custom visual editing experience that is perfectly tailored to their site.
+[TinaCMS](https://tina.io/) is a Git-backed headless content management system that enables developers and content creators to collaborate seamlessly. With TinaCMS, developers can create a custom visual editing experience that is perfectly tailored to their site.
 
-The best way to get a feel for how Tina works is to use it. We hope that by the end of this tutorial, you’ll not only learn how to use Tina, but also how Tina rethinks the way a CMS should work.
+The best way to get a feel for how TinaCMS works is to use it. We hope that by the end of this tutorial, you’ll not only learn how to use TinaCMS, but also how TinaCMS rethinks the way a CMS should work.
 
 ## Let’s Get Started
 
 ![tinacms editing gif](/gif/tina-nextjs.gif)
 
-This tutorial will show you how to install and **configure Tina for editing content on a simple markdown-based blog** that was created in last week’s post. If you want to dig into how the base blog was made, read [Part I](/blog/simple-markdown-blog-nextjs/) of this series.
+This tutorial will show you how to install and **configure TinaCMS for editing content on a simple markdown-based blog** that was created in last week’s post. If you want to dig into how the base blog was made, read [Part I](/blog/simple-markdown-blog-nextjs/) of this series.
 
-> Jump ahead and check out the [Tina documentation](/docs/setup-overview/) here
+> Jump ahead and check out the [TinaCMS documentation](/docs/setup-overview/) here
 
 ### Set up Locally 🏡
 
@@ -46,7 +46,7 @@ $ git clone https://github.com/tinalabs/brevifolia-next-2022 next-tina-blog
 # navigate to the directory
 $ cd next-tina-blog
 
-# install dependencies & init Tina
+# install dependencies & init TinaCMS
 $ yarn install
 $ npx @tinacms/cli@latest init
 
@@ -55,15 +55,15 @@ $ do you want us to override your _app.js? Yes
 
 The `npx @tinacms/cli@latest init` command does a few things in your Next.js application:
 
-* Install all required dependencies for Tina
+* Install all required dependencies for TinaCMS
 * Define a basic schema that is easily extendable, in the .tina directory
-* Wrap your next.js application with Tina so that any page can be easily edited.
+* Wrap your next.js application with TinaCMS so that any page can be easily edited.
 * Create example content in the demo directory.
 * Edit the package.json to add scripts to launch tina (dev, build, start)
 
 ### A quick test
 
-Now that you have a basic Tina setup you can launch your application using the following command:
+Now that you have a basic TinaCMS setup you can launch your application using the following command:
 
 ```bash
 yarn dev
@@ -74,7 +74,7 @@ Once you have launched the application you have a couple of new URLS:
 * `http://localhost:3000/demo/blog/HelloWorld`
 * `http://localhost:4001/altair/`
 
-The first URL brings you to a demo of TinaCMS, it will show you the power of Tina and also give you some informational links to check out. If you navigate to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld), you won't be able to edit right away. First, you need to enter edit mode. To enter edit mode, navigate to [http://localhost:3000/admin](http://localhost:3000/admin), select login. Then navigate back to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld). Selecting the pencil in the top left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
+The first URL brings you to a demo of TinaCMS, it will show you the power of TinaCMS and also give you some informational links to check out. If you navigate to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld), you won't be able to edit right away. First, you need to enter edit mode. To enter edit mode, navigate to [http://localhost:3000/admin](http://localhost:3000/admin), select login. Then navigate back to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld). Selecting the pencil in the top left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
 
 > Want to see your changes? Open up the file located at `/content/posts/HelloWorld.md` and the changes you've made will be there! This works by using our Content API which will go into greater depth during this guide.
 
@@ -82,7 +82,7 @@ The second URL [http://localhost:4001/altair/](http://localhost:4001/altair/) wi
 
 ## Defining the shape of our content
 
-One key element of Tina is defining a schema that allows you to shape and interact with the content on the page. Opening up the project, you will see a folder called `.tina` which contains a `schema.ts` file. This file allows you to instruct Tina's Content API which content type to look for, how it should be labeled, and much more!
+One key element of TinaCMS is defining a schema that allows you to shape and interact with the content on the page. Opening up the project, you will see a folder called `.tina` which contains a `schema.ts` file. This file allows you to instruct TinaCMS's Content API which content type to look for, how it should be labeled, and much more!
 
 Before you look at your current project, let's discuss how the content is shaped. Our schema can be broken down into three concepts: `collections`, `fields` and `references`. Each one of them has its role:
 
@@ -144,7 +144,7 @@ As you can see, you have a few fields that you want to be able to edit as well a
 
 ### Making changes to the Schema
 
-Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with underneath the object we provided, you need to replace the current collection with the content you want:
+Open up the TinaCMS `schema.ts` file located at `/.tina/schema.ts` To begin with underneath the object we provided, you need to replace the current collection with the content you want:
 
 ```diff
 {
@@ -222,7 +222,7 @@ Second, there's a `string` field called `body` with `isBody` set to true. By set
 
 Your Markdown files are now backed by a well-defined schema, this paves the way for us to query file content with GraphQL. You will notice that nothing has changed when navigating around the Next.js blog starter, this is because you need to update the starter to use your GraphQL layer instead of directly accessing the Markdown files. In the next section you will handle converting the frontend to use TinaCMS.
 
-Currently, the Next Blog Starter grabs content from the file system. But since Tina comes with a GraphQL API on top of the filesystem, you’re going to query that instead. Using the GraphQL API will allow you to use the power of TinaCMS, you will be able to retrieve the content and also edit and save the content directly.
+Currently, the Next Blog Starter grabs content from the file system. But since TinaCMS comes with a GraphQL API on top of the filesystem, you’re going to query that instead. Using the GraphQL API will allow you to use the power of TinaCMS, you will be able to retrieve the content and also edit and save the content directly.
 
 ## Creating the getStaticPaths query
 
@@ -304,7 +304,7 @@ Remove all the code inside of this function and you can update it to use your ow
 
 > It's just a helper function which supplies a query to your locally-running GraphQL server, which is started on port 4001. You can just as easily use fetch or an http client of your choice.
 
-Inside of the `getStaticPaths` function you can construct your request to our content-api. When making a request Tina expects a query or mutation and then variables to be passed to the query, here is an example:
+Inside of the `getStaticPaths` function you can construct your request to our content-api. When making a request TinaCMS expects a query or mutation and then variables to be passed to the query, here is an example:
 
 ```javascript
 staticRequest({
@@ -352,7 +352,7 @@ Go ahead and test that your blog posts are still readable by navigating to one, 
 
 ## Creating the `getStaticProps` query
 
-The `getStaticProps` query is going to deliver all the content to the blog, which is how it works currently. When you use the GraphQL API Tina will both deliver the content and give the content team the ability to edit it right in the browser.
+The `getStaticProps` query is going to deliver all the content to the blog, which is how it works currently. When you use the GraphQL API TinaCMS will both deliver the content and give the content team the ability to edit it right in the browser.
 
 You need to query the following items from your content api:
 
@@ -402,7 +402,7 @@ import { useTina } from 'tinacms/dist/edit-state';
 
 > What is `useTina`?
 
-> `useTina` is a hook that can be used to make a piece of Tina content contextually editable. It is code-split, so that in production, this hook will simply pass through its data value. In edit-mode, it registers an editable form in the sidebar, and contextually updates its value as the user types.
+> `useTina` is a hook that can be used to make a piece of TinaCMS content contextually editable. It is code-split, so that in production, this hook will simply pass through its data value. In edit-mode, it registers an editable form in the sidebar, and contextually updates its value as the user types.
 
 You can now use your query that you created as a variable, this variable will be used both in your `getStaticProps` and in your `useTina` hook.
 
@@ -481,7 +481,7 @@ const { data } = useTina({
   })
 ```
 
-This now means you have the ability to edit your content using Tina, but before you do that you need to update all of your elements to use your new Tina powered data.
+This now means you have the ability to edit your content using TinaCMS, but before you do that you need to update all of your elements to use your new TinaCMS powered data.
 
 ```diff
 - if (!frontmatter) return <></>
@@ -520,7 +520,7 @@ This now means you have the ability to edit your content using Tina, but before 
 
 ### Test & Edit Content ✨
 
-If all went well, your blog posts will now be editable by Tina. Let's see it in action!
+If all went well, your blog posts will now be editable by TinaCMS. Let's see it in action!
 
 Start up the dev server by running `yarn dev`, and open up a blog post in the browser. Go ahead and make edits, and then check the source file in a text editor. If you keep the browser and code editor open side-by-side, you should be able to watch the changes reflect in real time in both places!
 
@@ -530,12 +530,12 @@ You had a problem though, your body is a tiny input box that doesn't support Mar
 
 To add markdown support you need to do two things.
 
-1. Tell Tina how to use a different component.
+1. Tell TinaCMS how to use a different component.
 2. Dynamically load the markdown component.
 
-#### Update Tina Schema
+#### Update TinaCMS Schema
 
-Open up your `schema.ts` located in the `.tina` folder. The great thing about Tina is you can extend the UI field for your exact needs, to do this you use `ui` object and tell Tina the component you'd like to use.
+Open up your `schema.ts` located in the `.tina` folder. The great thing about TinaCMS is you can extend the UI field for your exact needs, to do this you use `ui` object and tell TinaCMS the component you'd like to use.
 
 ```typescript
 ui: {
@@ -559,7 +559,7 @@ You want to use the markdown component so you can override your body and it shou
 
 #### Updating `_app.js`
 
-Before opening up your `_app.js` file, you need to install the markdown plugin from Tina.
+Before opening up your `_app.js` file, you need to install the markdown plugin from TinaCMS.
 
 ```bash,cp
 yarn add react-tinacms-editor
@@ -594,21 +594,21 @@ Your TinaCMS should now look like this:
 
 #### Testing
 
-Go ahead and launch your blog and you should be able to see a new markdown editor that allows you to pass in data. Well done! With some config and calling a few hooks, you can now edit all our blog posts with Tina.
+Go ahead and launch your blog and you should be able to see a new markdown editor that allows you to pass in data. Well done! With some config and calling a few hooks, you can now edit all our blog posts with TinaCMS.
 
-## Where can you keep up to date with Tina?
+## Where can you keep up to date with TinaCMS?
 
-You know that you will want to be part of this creative, innovative, supportive community of developers (and even some editors and designers) who are experimenting and implementing Tina daily.
+You know that you will want to be part of this creative, innovative, supportive community of developers (and even some editors and designers) who are experimenting and implementing TinaCMS daily.
 
-### Tina Community Discord
+### TinaCMS Community Discord
 
-Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
+TinaCMS has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and TinaCMS enthusiasts. When you join you will find a place:
 
 * To get help with issues
-* Find the latest Tina news and sneak previews
-* Share your project with Tina community, and talk about your experience
+* Find the latest TinaCMS news and sneak previews
+* Share your project with TinaCMS community, and talk about your experience
 * Chat about the Jamstack
 
-### Tina Twitter
+### TinaCMS Twitter
 
-Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
+Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to TinaCMS. We would also be psyched if you tagged us in projects you have built.

@@ -23,6 +23,7 @@ import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import TableBox from '../Table/table';
 
 const icons = {
   FaClock,
@@ -67,8 +68,8 @@ const FreeTier = ({ data }) => (
           components={pricingComponents}
         />
         <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-start">
-          {data.freeTier?.buttons?.map((button, _index) => (
-            <RenderButton key={button.id} button={button} />
+          {data.freeTier?.buttons?.map((button, index) => (
+            <RenderButton key={`${button.label}-${index}`} button={button} />
           ))}
         </div>
       </div>
@@ -83,7 +84,7 @@ const PaidTier = ({ data, isMonthly }) => {
 
   return (
     <span className="animate-pop-in">
-      <div className="hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden">
+      <div className="hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden">
         {data.isStarred && (
           <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
             <div className="w-24 h-24 bg-orange-400 transform rotate-45"></div>
@@ -123,8 +124,8 @@ const PaidTier = ({ data, isMonthly }) => {
           {data.annualDescription}{' '}
         </div>
         <div className="pt-3 flex">
-          {data.buttons?.map((button, _index) => (
-            <RenderButton key={button.id} button={button} />
+          {data.buttons?.map((button, index) => (
+            <RenderButton key={`${button.label}-${index}`} button={button} />
           ))}
         </div>
         <div className="pt-6">
@@ -140,11 +141,11 @@ const PaidTier = ({ data, isMonthly }) => {
             </div>
             {isAccordionOpen && (
               <div className="pl-2">
-                {data.cardItem?.map((item) => {
+                {data.cardItem?.map((item, index) => {
                   const Icon = icons[item.icon];
                   return (
                     <div
-                      key={item.id}
+                      key={`${item.name}-${index}`}
                       className="flex flex-col items-start mt-2"
                     >
                       <div className="flex items-center text-lg">
@@ -167,10 +168,13 @@ const PaidTier = ({ data, isMonthly }) => {
           <div className="non-accordion-content">
             <p className="font-semibold">Includes:</p>
             <div className="pl-2">
-              {data.cardItem?.map((item) => {
+              {data.cardItem?.map((item, index) => {
                 const Icon = icons[item.icon];
                 return (
-                  <div key={item.id} className="flex flex-col items-start mt-2">
+                  <div
+                    key={`${item.name}-${index}`}
+                    className="flex flex-col items-start mt-2"
+                  >
                     <div className="flex items-center">
                       {Icon && <Icon className="mr-2" />}
                       <span>{item.name}</span>
@@ -301,12 +305,17 @@ export function PricingBlock({ data }) {
         toggleText={data.pillSwitchToggleText}
       />
       <div className="responsive-grid">
-        {data.plans?.map((plan, _index) => (
-          <div key={plan.id} className="flex flex-col">
+        {data.plans?.map((plan, index) => (
+          <div key={`${plan.name}-${index}`} className="flex flex-col">
             <PaidTier data={plan} isMonthly={isMonthly} />
           </div>
         ))}
       </div>
+      {data.comparisonTable && (
+        <div className="pt-20">
+          <TableBox data={data.comparisonTable} isMonthly={isMonthly} />
+        </div>
+      )}
       <style jsx>{`
         .responsive-grid {
           display: grid;

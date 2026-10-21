@@ -1,0 +1,130 @@
+{
+  "seo": {
+    "title": "TinaCMS 合作伙伴 | 寻找服务商或成为合作伙伴",
+    "description": "与经过审核的 TinaCMS 合作服务商携手，构建快速、基于 Git 且拥有一流编辑体验的网站；也欢迎加入伙伴计划，助力你的团队成长。"
+  },
+  "blocks": [
+    {
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "headline": "与 TinaCMS 合作伙伴一起构建。",
+      "text": "寻找经过审核的服务商或自由开发者，也可以成为其中一员。",
+      "buttons": [
+        {
+          "label": "寻找合作伙伴",
+          "icon": true,
+          "shape": "pill",
+          "variant": "blue",
+          "size": "medium",
+          "url": "#find-a-partner-section",
+          "_template": "actions"
+        },
+        {
+          "label": "成为合作伙伴",
+          "icon": false,
+          "shape": "pill",
+          "color": "blueOutline",
+          "size": "medium",
+          "modal": "BecomePartner.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "hero"
+    },
+    {
+      "brandColorIcons": true,
+      "highlightColumn": [
+        {
+          "heading": "为什么选择合作伙伴？",
+          "highlights": [
+            {
+              "name": "直接对接开发团队",
+              "icon": "AiOutlineCustomerService"
+            },
+            {
+              "name": "有保障的 TinaCMS 开发经验",
+              "icon": "AiOutlineStar"
+            },
+            {
+              "name": "无供应商锁定，基于 Git 且开源",
+              "icon": "AiOutlineBranches"
+            },
+            {
+              "name": "持续的支持与维护",
+              "icon": "AiOutlineClockCircle"
+            }
+          ]
+        },
+        {
+          "heading": "为什么要成为合作伙伴？",
+          "highlights": [
+            {
+              "name": "联合市场推广机会",
+              "icon": "AiOutlineShareAlt"
+            },
+            {
+              "name": "认证合作伙伴徽章",
+              "icon": "AiOutlineSafetyCertificate"
+            },
+            {
+              "name": "自有网站可免费使用 TinaCloud 授权",
+              "icon": "AiOutlineCrown"
+            },
+            {
+              "name": "技术协助与优先功能需求",
+              "icon": "AiOutlineApi"
+            }
+          ]
+        }
+      ],
+      "_template": "highlightsSection"
+    },
+    {
+      "title": "寻找合作伙伴",
+      "subText": "经过审核的服务商，随时可以承接你的下一个 TinaCMS 项目。欢迎直接与他们联系。",
+      "anchorId": "find-a-partner-section",
+      "contactCardTitle": "不确定谁更合适？",
+      "contactCardText": "如果你想了解其他认证合作伙伴，请给我们发邮件，我们会把完整名单发给你。",
+      "contactCardEmail": "info@tina.io",
+      "items": [
+        {
+          "name": "SSW",
+          "logo": "/svg/logos/ssw.svg",
+          "tier": "Premier",
+          "location": "澳大利亚，悉尼",
+          "description": "提供全流程咨询服务，使用 TinaCMS、Next.js 与 Astro 交付企业级 Web 应用和以内容为核心的站点。",
+          "services": [
+            "Next.js",
+            "企业级",
+            "迁移"
+          ],
+          "website": "https://www.ssw.com.au"
+        }
+      ],
+      "_template": "partnerGrid"
+    },
+    {
+      "image": "/img/partners/tina-team.jpg",
+      "alt": "TinaCMS 团队在大会上抱着羊驼玩偶，身后是 tina.io 的展台横幅",
+      "caption": "加入羊驼群，用 TinaCMS 一起构建。",
+      "_template": "imageBand"
+    },
+    {
+      "title": "准备好与 Tina 合作了吗？",
+      "description": "告诉我们你的团队情况和业务方向，我们会就加入 TinaCMS 合作伙伴计划与你联系。",
+      "buttons": [
+        {
+          "label": "申请成为合作伙伴",
+          "icon": true,
+          "shape": "square",
+          "color": "orange",
+          "size": "medium",
+          "modal": "BecomePartner.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "callToAction"
+    }
+  ]
+}

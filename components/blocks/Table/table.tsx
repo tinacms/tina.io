@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
-const TableHeader = ({ data, scrollData }) => {
+const TableHeader = ({ data, scrollData, isMonthly }) => {
   return (
     <div className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] pt-6 px-6 bg-slate-50">
       {/* Sticky Header Column */}
@@ -18,8 +18,8 @@ const TableHeader = ({ data, scrollData }) => {
         )}
       </div>
       {/* Remaining Columns Titles */}
-      {data.columnItems?.map((headerItem) => (
-        <div key={headerItem.id}>
+      {data.columnItems?.map((headerItem, index) => (
+        <div key={`${headerItem.columnHeader}-${index}`}>
           <div
             className={`text-center font-bold ${
               headerItem.isReccomended ? 'text-orange-600' : 'text-gray-700'
@@ -30,7 +30,9 @@ const TableHeader = ({ data, scrollData }) => {
             </Link>
           </div>
           <div className="text-center font-normal text-xs text-slate-400">
-            {headerItem.columnByLine}
+            {isMonthly === false && headerItem.columnByLineAnnual
+              ? headerItem.columnByLineAnnual
+              : headerItem.columnByLine}
           </div>
         </div>
       ))}
@@ -38,7 +40,7 @@ const TableHeader = ({ data, scrollData }) => {
   );
 };
 
-const TableBox = ({ data, index }) => {
+const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
   const [infoIconHoverIndex, setInfoHoveredIndex] = useState(null);
   const [scrollData, setScrollData] = useState(null);
   const scrollContainerRef = useRef(null);
@@ -74,7 +76,11 @@ const TableBox = ({ data, index }) => {
 
             {/* Sticky Table Header */}
             <div className=" bg-slate-50 pb-4">
-              <TableHeader data={data} scrollData={scrollData} />
+              <TableHeader
+                data={data}
+                scrollData={scrollData}
+                isMonthly={isMonthly}
+              />
             </div>
             {/* Table Rows */}
             <div
@@ -83,7 +89,7 @@ const TableBox = ({ data, index }) => {
             >
               {data.rowItems?.map((row, rowIndex) => (
                 <div
-                  key={row.id}
+                  key={`${row.rowHeader}-${rowIndex}`}
                   className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group"
                 >
                   <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50">
@@ -113,7 +119,7 @@ const TableBox = ({ data, index }) => {
                     )}
                   </div>
 
-                  {row.rowCells?.map((cell, _cellIndex) => {
+                  {row.rowCells?.map((cell, cellIndex) => {
                     let cellData = {
                       columnHeader: '',
                       cellValue: '',
@@ -128,7 +134,7 @@ const TableBox = ({ data, index }) => {
 
                     return (
                       <div
-                        key={cell.id}
+                        key={`${row.rowHeader}-${cellIndex}`}
                         className="text-center flex items-center justify-center snap-start"
                       >
                         {cellData.isTicked ? (

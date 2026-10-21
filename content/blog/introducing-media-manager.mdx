@@ -14,13 +14,13 @@ next: content/blog/more-changes-coming-to-inline-editing.mdx
 
 Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
 
-Up until now, media changes with Tina have been handled through image fields. By clicking on the field, editors could upload new images from their local filesystem. Developers would register a [Media Store](/docs/reference/media/overview) to the CMS that would handle uploading files. However, there was no way to view images that had already been uploaded to use them in a piece of content.
+Up until now, media changes with TinaCMS have been handled through image fields. By clicking on the field, editors could upload new images from their local filesystem. Developers would register a [Media Store](/docs/reference/media/overview) to the CMS that would handle uploading files. However, there was no way to view images that had already been uploaded to use them in a piece of content.
 
 Our latest release has addressed this limitation, and added a **Media Management Interface!**
 
 ![media-manager-image](/img/media-manager-ui.png)
 
-Over [the last several weeks](https://github.com/tinacms/tinacms/blob/master/ROADMAP.md#process), the Tina team has been focused on improving media management. This media manager allows editors to upload, delete, and browse media files and directories. File upload can occur via drag and drop directly onto the media list or by clicking the **Upload** button.
+Over [the last several weeks](https://github.com/tinacms/tinacms/blob/master/ROADMAP.md#process), the TinaCMS team has been focused on improving media management. This media manager allows editors to upload, delete, and browse media files and directories. File upload can occur via drag and drop directly onto the media list or by clicking the **Upload** button.
 
 Along the way, we've made some significant changes to the media and image field APIs to improve the overall experience of working with media. This post outlines all of the new features and breaking changes.
 
@@ -171,7 +171,7 @@ The breaking change is that the additional arguments are now passed to `previewS
 }
 ```
 
-Media stores can implement a catch-all `previewSrc` method that will be run if a field does not define its own `previewSrc`. If you're using a media store provided by a Tina package, or using one that otherwise defines a `previewSrc`, you can probably remove your field's custom `previewSrc` method entirely.
+Media stores can implement a catch-all `previewSrc` method that will be run if a field does not define its own `previewSrc`. If you're using a media store provided by a TinaCMS package, or using one that otherwise defines a `previewSrc`, you can probably remove your field's custom `previewSrc` method entirely.
 
 ### *parse*
 
@@ -235,4 +235,4 @@ While making all these changes, we also revisited the previous media stores for 
 
 Check out the [`NextGithubMediaStore`](https://github.com/tinacms/tinacms/blob/main/packages/next-tinacms-dos/src/dos-media-store.ts), the [PlaceCage media store](https://github.com/ncphillips/tinacms-placecage), or the [Cloudinary media store](https://github.com/tinalabs/media-manager-prototype/blob/8f766ff7d421a9f6dd8fb8ea40d2f08da9537de3/pages/gh/posts/%5Bslug%5D.tsx#L28-L81) prototypes for some inspiration on creating or extending your own media stores. And stay tuned for follow-up thoughts on this pattern in an upcoming blog post!
 
-Hopefully, this post arms you with all the information needed to upgrade your Tina packages and start playing with the media manager. As usual, we'd love feedback and ideas in the [Discord](https://discord.com/invite/zumN63Ybpf) or [bug reports](https://github.com/tinacms/tinacms/issues) on the repository. Thanks and happy media managing 🦙 🌅!
+Hopefully, this post arms you with all the information needed to upgrade your TinaCMS packages and start playing with the media manager. As usual, we'd love feedback and ideas in the [Discord](https://discord.com/invite/zumN63Ybpf) or [bug reports](https://github.com/tinacms/tinacms/issues) on the repository. Thanks and happy media managing 🦙 🌅!

@@ -12,21 +12,21 @@ next: content/blog-zh/tina-next-i18n.mdx
 
 A/B测试可以成为任何网站上非常有用的工具。它可以帮助你提高用户参与度，降低跳出率，提高转化率，并有效地创建内容。
 
-Tina提供了A/B测试的能力，使营销团队在实现后无需开发团队即可测试内容。
+TinaCMS提供了A/B测试的能力，使营销团队在实现后无需开发团队即可测试内容。
 
 ## 介绍
 
 我们将把本教程分为两个部分：
 
 1. 使用NextJS的中间件设置A/B测试。
-2. 使用Tina配置我们的A/B测试，以便我们的编辑可以启动动态A/B测试。
+2. 使用TinaCMS配置我们的A/B测试，以便我们的编辑可以启动动态A/B测试。
 
-## 创建我们的Tina应用
+## 创建我们的TinaCMS应用
 
 这篇博客文章将使用Tailwind Starter。使用`create-tina-app`命令，选择“Next.js Starter”作为起始模板：
 
 ```bash
-# 创建我们的Tina应用
+# 创建我们的TinaCMS应用
 
 npx create-tina-app@latest a-b-testing
 
@@ -53,9 +53,9 @@ yarn dev
 这个页面已经很好地设置为A/B测试，其页面布局(`[slug].tsx`)通过接受变量`slug`来渲染动态页面。
 
 让我们从创建一个名为`home-b`的主页替代版本开始。
-你可以在Tina中这样做：[http://localhost:3000/admin#/collections/page/new](http://localhost:3000/admin#/collections/page/new)
+你可以在TinaCMS中这样做：[http://localhost:3000/admin#/collections/page/new](http://localhost:3000/admin#/collections/page/new)
 
-![Tina Add document](/img/blog/a-b-testing/add-document.png)
+![TinaCMS Add document](/img/blog/a-b-testing/add-document.png)
 
 完成后，访问：`http://localhost:3000/home-b`以确认你的新`/home-b`页面已创建。
 
@@ -201,11 +201,11 @@ function cryptoRandom() {
 
 这应该就是我们中间件的全部内容！现在，你应该可以访问主页[http://localhost:3000](http://localhost:3000)，你将有50-50的机会被提供`home.md`或`home-b.md`的内容。你可以通过清除浏览器的cookie来重置你的bucket。
 
-## 使用Tina创建A/B测试
+## 使用TinaCMS创建A/B测试
 
 此时，我们的编辑可以编辑`home.md`和`home-b.md`的内容，但我们希望我们的编辑能够设置新的A/B测试。
 
-让我们通过为其创建一个Tina集合，使我们之前的`content/ab-test/index.json`文件可编辑。
+让我们通过为其创建一个TinaCMS集合，使我们之前的`content/ab-test/index.json`文件可编辑。
 
 打开你的`schema.ts`，在`Pages`集合下，创建一个新的集合，如下所示：
 
@@ -276,7 +276,7 @@ function cryptoRandom() {
     }
 ```
 
-> 你可能注意到了`ui`属性。我们使用它来为列表项提供更具描述性的标签。你可以在我们的[扩展Tina文档](https://tina.io/docs/extending-tina/customize-list-ui/)中了解更多。
+> 你可能注意到了`ui`属性。我们使用它来为列表项提供更具描述性的标签。你可以在我们的[扩展TinaCMS文档](https://tina.io/docs/extending-tina/customize-list-ui/)中了解更多。
 
 我们还需要更新`.tina/schema.ts`中的`RouteMappingPlugin`，以确保我们的集合只能使用基本编辑器进行编辑。
 
@@ -290,7 +290,7 @@ function cryptoRandom() {
 
 现在，重启你的开发服务器，然后访问：[http://localhost:3000/admin#/collections/abtest/index](http://localhost:3000/admin#/collections/abtest/index)。你的编辑应该能够连接他们自己的A/B测试！
 
-![Tina Edit Variant](/img/blog/a-b-testing/edit-test.png)
+![TinaCMS Edit Variant](/img/blog/a-b-testing/edit-test.png)
 
 编辑创建新A/B测试的过程如下：
 
@@ -299,21 +299,21 @@ function cryptoRandom() {
 
 就是这样！我们希望这能让你的团队开始测试不同的页面变体，以优化你的内容！
 
-## 如何保持与Tina的同步？
+## 如何保持与TinaCMS的同步？
 
-保持与Tina同步的最佳方式是订阅我们的新闻通讯。我们每两周发送一次更新。更新包括新功能、我们正在进行的工作、你可能错过的博客文章等等！
+保持与TinaCMS同步的最佳方式是订阅我们的新闻通讯。我们每两周发送一次更新。更新包括新功能、我们正在进行的工作、你可能错过的博客文章等等！
 
 你可以通过访问此链接并输入你的电子邮件来订阅：[https://tina.io/community/](https://tina.io/community/)
 
-### Tina社区Discord
+### TinaCMS社区Discord
 
-Tina有一个社区[Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了Jamstack爱好者和Tina爱好者。加入后，你会发现一个地方：
+TinaCMS有一个社区[Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了Jamstack爱好者和TinaCMS爱好者。加入后，你会发现一个地方：
 
 * 获取问题帮助
-* 找到最新的Tina新闻和预览
-* 与Tina社区分享你的项目，并讨论你的经验
+* 找到最新的TinaCMS新闻和预览
+* 与TinaCMS社区分享你的项目，并讨论你的经验
 * 聊天关于Jamstack
 
-### Tina Twitter
+### TinaCMS Twitter
 
-我们的Twitter账号（[@tinacms](https://twitter.com/tinacms)）宣布最新的功能、改进和Tina的预览。如果你在项目中使用了我们，我们也会很高兴你能标记我们。
+我们的Twitter账号（[@tinacms](https://twitter.com/tinacms)）宣布最新的功能、改进和TinaCMS的预览。如果你在项目中使用了我们，我们也会很高兴你能标记我们。

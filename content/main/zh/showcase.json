@@ -5,14 +5,12 @@
   },
   "blocks": [
     {
-      "headline": "案例展示",
-      "text": "使用TinaCMS的精选网站",
-      "_template": "hero"
-    },
-    {
       "blockSettings": {
-        "isFullscreen": true
+        "isFullscreen": true,
+        "isHeadingOne": true
       },
+      "title": "案例展示",
+      "subText": "使用 TinaCMS 的精选网站",
       "items": [
         {
           "headline": "NDC Conferences",
@@ -31,8 +29,17 @@
           }
         },
         {
+          "headline": "SSW Rules",
+          "text": "SSW 将 **4000 多个**页面从 Decap CMS 迁移到了 TinaCMS。[SSW Rules](https://www.ssw.com.au/rules) 是 SSW 用来沉淀软件开发行业最佳实践的站点，内容源自他们 **30 年**的开发经验。",
+          "url": "/",
+          "media": {
+            "youtubeUrl": "https://www.youtube.com/watch?v=lqqduKKhH_o",
+            "src": "/"
+          }
+        },
+        {
           "headline": "Smashing Magazine",
-          "text": "Smashing Magazine使用TinaCMS编辑成千上万的帖子和页面内容。查看他们的[文章](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)，了解他们如何使用分支和Git通过Tina的[编辑工作流](https://tina.io/editorial-workflow)管理内容。",
+          "text": "Smashing Magazine使用TinaCMS编辑成千上万的帖子和页面内容。查看他们的[文章](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)，了解他们如何使用分支和Git通过Tina的[编辑工作流](/editorial-workflow)管理内容。",
           "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
           "media": {
             "src": "/gif/smashingmagazine-tinacms.gif"
@@ -124,6 +131,14 @@
           "url": "https://bunny.net/",
           "media": {
             "src": "/img/tina-showcase/bunny-net.png"
+          }
+        },
+        {
+          "headline": "Korean Patch",
+          "text": "Korean Patch 这个名字来自韩语母语者的一种说法——形容某位学习者说得太好，好像给自己打了个软件更新补丁。他们通过教学内容、创新的软件工具和在线课程，希望重塑韩语学习体验：让学习者真正成为韩语世界的一员，而不只是学会这门语言。",
+          "url": "https://koreanpatch.co/",
+          "media": {
+            "src": "/gif/korean-patch-showcase.gif"
           }
         },
         {

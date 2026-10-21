@@ -15,21 +15,21 @@ next: content/blog-zh/editing-on-the-cloud.mdx
 
 这个[归因于Phil Karlton](http://www.tbray.org/ongoing/When/200x/2005/12/23/UPI)的公理，与任何花时间从事软件工作的人都有共鸣。您正在阅读的这篇文章在某种程度上是关于后一个问题的。
 
-我们急于向Tina介绍的一个概念是我们称之为**Blocks字段**的东西。我们首先在Forestry中引入了这个概念，我们认为这是一个强大的想法。Blocks的挑战在于它是一种抽象的概念，因此被标记为一个同样抽象的名称。
+我们急于向TinaCMS介绍的一个概念是我们称之为**Blocks字段**的东西。我们首先在Forestry中引入了这个概念，我们认为这是一个强大的想法。Blocks的挑战在于它是一种抽象的概念，因此被标记为一个同样抽象的名称。
 
-**什么是Blocks？** 简而言之，Blocks指的是由*不相同对象的数组*组成的数据结构。如果您不太理解，请继续阅读，我会尽力解释为什么我们将Blocks概念引入Tina以及它与其他类型字段的关系。
+**什么是Blocks？** 简而言之，Blocks指的是由*不相同对象的数组*组成的数据结构。如果您不太理解，请继续阅读，我会尽力解释为什么我们将Blocks概念引入TinaCMS以及它与其他类型字段的关系。
 
 ## 简单字段和复合字段
 
-我们在Tina中实现的字段类型可以大致分为两类：**简单字段**和**复合字段**。字段是简单还是复合的指定与字段表示的数据类型有关。
+我们在TinaCMS中实现的字段类型可以大致分为两类：**简单字段**和**复合字段**。字段是简单还是复合的指定与字段表示的数据类型有关。
 
-**简单字段**是可以表示为单个值的数据字段，如字符串或数字。在计算机科学术语中，这些被称为[标量值](https://softwareengineering.stackexchange.com/questions/238033/what-does-it-mean-when-data-is-scalar)。Tina中的简单字段示例包括文本字段、颜色字段或切换。即使是[markdown WYSIWYG](/docs/editing/markdown)也可以被视为简单字段，尽管其前端行为复杂，因为它导出的值只是一个大块文本。
+**简单字段**是可以表示为单个值的数据字段，如字符串或数字。在计算机科学术语中，这些被称为[标量值](https://softwareengineering.stackexchange.com/questions/238033/what-does-it-mean-when-data-is-scalar)。TinaCMS中的简单字段示例包括文本字段、颜色字段或切换。即使是[markdown WYSIWYG](/docs/editing/markdown)也可以被视为简单字段，尽管其前端行为复杂，因为它导出的值只是一个大块文本。
 
-**复合字段**是不能用单个值表示的字段。复合字段导出的数据是*结构化的*。保存时，复合字段的数据将由非标量数据类型表示，如数组或对象。复合字段是**由其他字段组成的字段**。Tina中的复合字段包括Group、Group List和Blocks。
+**复合字段**是不能用单个值表示的字段。复合字段导出的数据是*结构化的*。保存时，复合字段的数据将由非标量数据类型表示，如数组或对象。复合字段是**由其他字段组成的字段**。TinaCMS中的复合字段包括Group、Group List和Blocks。
 
 ## 组和组列表
 
-Tina的**Group**字段是**简单字段**的集合。组成Group字段的字段可以是相同类型，也可以是不同类型。Group字段适合表示由较小数据片段组成的单个*实体*。
+TinaCMS的**Group**字段是**简单字段**的集合。组成Group字段的字段可以是相同类型，也可以是不同类型。Group字段适合表示由较小数据片段组成的单个*实体*。
 
 考虑在JSON中存储名称的两种方式。我们可以将全名存储为一个简单的字符串：
 
@@ -98,7 +98,7 @@ Grande使用Blocks的另一种方式是在其嵌入式表单构建器中。与�
 
 ## 给Blocks一个机会
 
-到现在，您应该对我们在Tina中谈论Blocks时的意思有了更好的理解。
+到现在，您应该对我们在TinaCMS中谈论Blocks时的意思有了更好的理解。
 
 如果您想看看基于Blocks的内容策略可以做些什么，请fork [Tina Grande](https://github.com/tinacms/tina-starter-grande)并试一试。
 
