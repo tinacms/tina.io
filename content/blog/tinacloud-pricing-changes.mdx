@@ -1,0 +1,180 @@
+---
+title: "TinaCloud pricing changes: one Team plan for the herd"
+date: "2026-10-20T03:58:58.301Z"
+author: "Ian Hoffman"
+seo:
+  title: "TinaCloud pricing changes: one Team plan for the herd"
+  description: "See the new TinaCloud plan prices and what the changes mean for existing Team and Team Plus customers."
+---
+
+We're bringing Team and Team Plus into one herd: a single TinaCloud Team plan with Editorial Workflow. The price will be $29 per project per month, or $290 per project per year. All prices are in USD.
+
+Here’s what’s changing and what it means if you already have a TinaCloud subscription.
+
+## One Team plan, with Editorial Workflow
+
+The new Team plan brings together the current Team and Team Plus plans. Editorial Workflow, currently listed with Team Plus, will be included with Team. It gives editors a review step before changes are merged into a protected branch. [Read how Editorial Workflow works](https://tina.io/docs/tinacloud/editorial-workflow).
+
+Team will cost $29 per project per month with monthly billing, or $290 per project per year with annual billing. The annual charge works out to about $24.17 per month; the annual billing view below rounds that monthly equivalent to $24.
+
+Business will cost $299 per project per month, or $2,990 per project per year. Enterprise pricing remains custom and covers the whole organisation.
+
+## The plans, before and after
+
+Team Plus is being folded into Team. The comparison below shows Free, Team and Business, with Team Plus included in the Before view.
+
+<PricingComparison
+  before={[
+    {
+      name: "Free",
+      description: "Includes 2 users, 2 roles, and community support.\n",
+      interval: "Forever",
+      monthlyPrice: 0
+    },
+    {
+      name: "Team",
+      description: "For growing teams\n",
+      interval: "/ project / month",
+      cardItem: [
+        { name: "1 Project", icon: "FaCodeBranch" },
+        { name: "3 Users", icon: "AiOutlineUser", description: "" },
+        { name: "2 Roles", icon: "BiBadge" },
+        { name: "Team Support", icon: "BiSupport" },
+        {
+          name: "Up to 10 Users",
+          icon: "AiOutlineUsergroupAdd",
+          description: "$9/additional seat",
+          annualDescription: "$90/additional seat per year"
+        }
+      ],
+      monthlyPrice: 29,
+      yearlyPrice: 290
+    },
+    {
+      name: "Team Plus",
+      description: "For bigger teams\n",
+      interval: "/ project / month",
+      cardItem: [
+        { name: "1 Project", icon: "FaCodeBranch" },
+        { name: "5 Users", icon: "AiOutlineUser", description: "" },
+        { name: "2 Roles", icon: "BiBadge" },
+        { name: "Team Support", icon: "BiSupport" },
+        {
+          name: "Up to 20 Users",
+          icon: "AiOutlineUsergroupAdd",
+          description: "$15/additional seat",
+          annualDescription: "$150/additional seat per year"
+        },
+        { name: "Editorial Workflow", icon: "CgCrown" },
+        { name: "AI Features (Coming Soon)", icon: "HiOutlineSparkles" }
+      ],
+      monthlyPrice: 49,
+      yearlyPrice: 490
+    },
+    {
+      name: "Business",
+      description: "For premium support\n",
+      interval: "/ project / month",
+      cardItem: [
+        { name: "1 Project", icon: "FaCodeBranch" },
+        {
+          name: "20 Users",
+          icon: "AiOutlineUser",
+          description: "",
+          annualDescription: ""
+        },
+        { name: "3 Roles (Beta)", icon: "BiBadge" },
+        { name: "Business Support", icon: "BiSupport" },
+        {
+          name: "No User Limit",
+          icon: "AiOutlineUsergroupAdd",
+          description: "$18/additional seat",
+          annualDescription: "$180/additional seat per year"
+        },
+        { name: "Editorial Workflow", icon: "CgCrown" },
+        { name: "AI Features (Coming Soon)", icon: "HiOutlineSparkles" },
+        { name: "API (Beta)", icon: "TbPlugConnected" }
+      ],
+      isStarred: true,
+      monthlyPrice: 299,
+      yearlyPrice: 2990
+    }
+  ]}
+  after={[
+    {
+      name: "Free",
+      description: "For trying TinaCMS\n",
+      monthlyPrice: 0,
+      interval: "Forever",
+      cardItem: [
+        { name: "Visual Editing", icon: "LuMousePointerClick" },
+        {
+          name: "Unlimited Collections",
+          icon: "LuLayers",
+          description: "aka Content Types"
+        },
+        { name: "Unlimited projects", icon: "FaCodeBranch" },
+        { name: "2 users", icon: "AiOutlineUser" },
+        { name: "3 roles", icon: "BiBadge" },
+        { name: "CLI", icon: "LuTerminal" },
+        { name: "Community support", icon: "BiSupport" },
+        { name: "100 GB bandwidth", icon: "LuGauge", description: "per month" }
+      ],
+      isMuted: true
+    },
+    {
+      name: "Team",
+      description: "For growing teams\n",
+      monthlyPrice: 29,
+      yearlyPrice: 290,
+      interval: "/ project / month",
+      featuresHeading: "Everything in Free, plus:",
+      cardItem: [
+        { name: "3 users", icon: "AiOutlineUser" },
+        {
+          name: "Up to 10 users",
+          icon: "AiOutlineUsergroupAdd",
+          description: "$9/additional seat",
+          annualDescription: "$90/additional seat per year"
+        },
+        { name: "Team support", icon: "BiSupport" },
+        { name: "Editorial Workflow", icon: "CgCrown" },
+        { name: "AI features (coming soon)", icon: "HiOutlineSparkles" },
+        { name: "500 GB bandwidth", icon: "LuGauge", description: "per month" }
+      ]
+    },
+    {
+      name: "Business",
+      description: "For premium support\n",
+      monthlyPrice: 299,
+      yearlyPrice: 2990,
+      interval: "/ project / month",
+      featuresHeading: "Everything in Team, plus:",
+      cardItem: [
+        { name: "20 users", icon: "AiOutlineUser" },
+        {
+          name: "No user limit",
+          icon: "AiOutlineUsergroupAdd",
+          description: "$18/additional seat",
+          annualDescription: "$180/additional seat per year"
+        },
+        { name: "Business support", icon: "BiSupport" },
+        { name: "API (Beta)", icon: "TbPlugConnected" },
+        { name: "Unlimited bandwidth", icon: "LuGauge" }
+      ],
+      isStarred: true
+    }
+  ]}
+/>
+
+Unlimited collections and unlimited projects on Free do not mean unlimited usage across every part of the service. The comparison lists monthly bandwidth separately: 100 GB on Free, 500 GB on Team, and unlimited on Business.
+
+## What existing customers can expect
+
+If you’re on Team today, you’ll gain Editorial Workflow. Your price and billing cycle will stay the same, and you won’t need to take any action.
+
+If you’re on Team Plus and your actual usage fits the new Team plan, your subscription will downgrade to Team from your next billing cycle. You’ll pay less and keep the features you use today. You won’t need to take any action.
+
+If your Team Plus usage exceeds the new Team plan, we’ll contact you directly to arrange a plan that fits your needs and make sure you’re looked after.
+
+We’ll email existing subscribers with the details for their account. Questions about your plan? [Talk to the Tina team](mailto\:info@tina.io).
