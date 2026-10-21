@@ -1,47 +1,107 @@
 ---
-title: 'TinaCMS October 2026 so far: colour, references and upgrades'
-date: '2026-10-22T00:00:00.000Z'
 seo:
-  title: 'TinaCMS October 2026 so far: colour, references and upgrades'
-  description: 'October month to date: TinaCMS text colour, reference indexing fixes and the steps to check before a self-hosted upgrade.'
+  title: 'Spit Happens: October 2026 News - Colour and faster indexing'
+  description: 'October so far: text colour in the editor, references that survive renames, faster TinaCloud indexing and clearer errors when it fails.'
+title: 'Spit Happens: October 2026 News - Colour and faster indexing'
+date: '2026-10-22T00:00:00.000Z'
+author: The TinaCMS Team
+prev: content/blog/2026-09-updates.mdx
+next: ''
 ---
 
-If you're planning a TinaCMS upgrade, October's changes give you a few things to check before handing the editor back to your team: custom rich-text toolbars, existing reference indexes and self-hosted sign-in.
+The herd has been busy again 🦙. So far in October (1 to 22 October, Brisbane time) we've merged 122 pull requests across TinaCMS and TinaCloud and published 34 package releases.
 
-This **month-to-date** roundup covers **1 to 22 October 2026, Australia/Brisbane**, using public evidence available when researched on 22 October. It highlights published TinaCMS package releases, rather than a full-month release total or a claim that every deployment has upgraded.
+## 📦 TinaCMS: 25 updates
 
-## Text colour arrives in TinaCMS 3.15.0
+### 🎨 Text colour in the editor
 
-[TinaCMS 3.15.0, released on 19 October](https://github.com/tinacms/tinacms/releases/tag/tinacms%403.15.0), adds a Text Color dropdown beside Highlight in the default rich-text toolbar. You can set a palette for each field with `overrides.textColors`. If you've defined a custom `overrides.toolbar`, add `textColor` to that list to show the button.
+[TinaCMS 3.15.0](https://github.com/tinacms/tinacms/releases/tag/tinacms%403.15.0) adds a Text Color dropdown next to Highlight in the rich-text toolbar. Give a field a palette with `overrides.textColors`. If you've defined your own `overrides.toolbar`, add `textColor` to the list to show the button ([#7683](https://github.com/tinacms/tinacms/pull/7683)). The [rich-text docs](https://tina.io/docs/reference/types/rich-text#text-color) cover the setup and the markup it saves.
 
-The [rich-text documentation](https://tina.io/docs/reference/types/rich-text#text-color) explains the configuration and saved markup. Colour is stored in a span inside surrounding formatting such as bold or italic. The release also fixes a case where adjacent text picked up a neighbour's formatting when saved.
+Two things to know first. Bold, italic or strikethrough that starts or ends mid-word next to coloured text can reload with the formatting characters showing. And on TinaCloud projects, text colour also needs a TinaCloud-side GraphQL update, which hadn't been merged as of 22 October. Test it on your own content before you roll it out.
 
-There are limits to check before enabling it. The [merged implementation](https://github.com/tinacms/tinacms/pull/7683) records a remaining problem with bold, italic or strikethrough that begins or ends mid-word next to coloured text. That combination can reload with literal formatting characters.
+The same release makes the date picker follow `timeFormat`. A format like `HH:mm` now gives you a 24-hour picker with no AM/PM ([#7798](https://github.com/tinacms/tinacms/pull/7798)). List field descriptions wrap instead of getting cut off ([#7734](https://github.com/tinacms/tinacms/pull/7734)).
 
-For TinaCloud projects, the [release discussion](https://github.com/tinacms/tinacms/pull/7683#issuecomment-6026705799) also identifies a required update to TinaCloud's pinned GraphQL package. The package release alone does not confirm that deployment. Confirm the cloud update before relying on text colour surviving a save.
+### 🔗 References that keep up
 
-## Reference indexing reaches inside blocks and rich text
+A reference inside a templated list item or an MDX component in rich text used to slip past the index, so a rename or delete could leave it pointing at the old path. [@tinacms/graphql 4.0.1](https://github.com/tinacms/tinacms/releases/tag/%40tinacms/graphql%404.0.1) now finds references by walking the document against your schema, and the lookup behind rename and delete no longer stops at 50 results ([#7851](https://github.com/tinacms/tinacms/pull/7851)).
 
-A reference can sit inside a templated list item or an MDX component in rich text. The previous index could miss those references, so a rename or delete could leave them pointing at an old path.
+**Reindex after you upgrade.** Existing indexes won't pick up the references they missed, or drop stale entries, on their own.
 
-Released on 19 October, [@tinacms/graphql 4.0.1](https://github.com/tinacms/tinacms/releases/tag/%40tinacms/graphql%404.0.1) changes reference discovery to walk a document against its schema. The [implementation](https://github.com/tinacms/tinacms/pull/7851) also removes the default 50-result limit from the reference lookup used for rename and delete updates.
+We also fixed a collection that sorts by a field whose index still listed a deleted document. The query skips it and logs a warning, instead of failing the whole list ([#7133](https://github.com/tinacms/tinacms/pull/7133)).
 
-**Existing indexes need a reindex to pick up previously missed references and clear stale entries.** Upgrading the package or writing one document does not replace all the old entries. Plan that step alongside the upgrade, then check references in your own content.
+### 🔐 Self-hosted sign-in
 
-## Self-hosted sites need a regenerated database client
+Self-hosted sites get a new [`authCollection` database option](https://github.com/tinacms/tinacms/pull/7718) and an [admin list](https://github.com/tinacms/tinacms/pull/7719), `authCollection.admins`, for the users who can add, edit and remove users. Other users can still change their own passwords ([#7722](https://github.com/tinacms/tinacms/pull/7722)).
 
-The 12 October releases of [@tinacms/graphql 4.0.0](https://github.com/tinacms/tinacms/releases/tag/%40tinacms/graphql%404.0.0) and [@tinacms/datalayer 3.0.0](https://github.com/tinacms/tinacms/releases/tag/%40tinacms/datalayer%403.0.0) carry an upgrade requirement: sign-in needs a database client generated by the matching CLI.
+The catch is that sign-in now needs a database client generated by the matching CLI. Update `@tinacms/cli` alongside `@tinacms/graphql` 4.0.0 and `@tinacms/datalayer` 3.0.0, then run `tinacms build` or `tinacms dev` to regenerate `tina/__generated__/databaseClient`.
 
-Update `@tinacms/cli` with those packages, then run `tinacms build` or `tinacms dev` to regenerate `tina/__generated__/databaseClient` before deployment. An older generated client cannot sign in with the new authentication handler.
+Self-hosted Next.js App Router projects also get [@tinacms/cli 4.0.3](https://github.com/tinacms/tinacms/releases/tag/%40tinacms/cli%404.0.3), which returns plain objects from the database client. That fixes the error when results cross from a Server Component to a Client Component ([#7741](https://github.com/tinacms/tinacms/pull/7741)).
 
-On self-hosted sites **with an auth collection**, list the users who need to add, edit or remove users from the admin in `authCollection.admins`. Other users can still change their own passwords. This is the self-hosted upgrade described in [the release changeset](https://github.com/tinacms/tinacms/pull/7722), separate from the TinaCloud authentication migration covered in September.
+### 🩹 Fewer snags
 
-For self-hosted Next.js App Router projects, [@tinacms/cli 4.0.3](https://github.com/tinacms/tinacms/releases/tag/%40tinacms/cli%404.0.3), released on 19 October, also normalises generated database-client results into plain objects before returning them. That addresses the null-prototype result objects rejected at the Server Component to Client Component boundary ([#7741](https://github.com/tinacms/tinacms/pull/7741)).
+When TinaCloud fails to index a branch, `tinacms build` prints the reason it gives instead of a bare "Unable to seed" ([#7786](https://github.com/tinacms/tinacms/pull/7786)).
 
-## Smaller fixes editors will notice
+`tinacms build` regenerates `tina/tina-lock.json` the way `dev` does, so CI-only pushes reach TinaCloud's indexer ([#7051](https://github.com/tinacms/tinacms/pull/7051)). The "Indexing local files" spinner no longer hangs forever when the CLI loses a connection race ([#7295](https://github.com/tinacms/tinacms/pull/7295)).
 
-TinaCMS 3.15.0 also makes the date picker follow `timeFormat`: a format such as `HH:mm` opens a 24-hour picker without an AM/PM selector. Twelve-hour formats and `timeFormat: true` retain the 12-hour picker ([#7798](https://github.com/tinacms/tinacms/pull/7798)). List-field descriptions wrap instead of being cut off with an ellipsis ([#7734](https://github.com/tinacms/tinacms/pull/7734)).
+Error modals get their own titles and a descriptive help link ([#7738](https://github.com/tinacms/tinacms/pull/7738)). The saved/unsaved indicator has an accessible name, so it doesn't rely on colour alone ([#7791](https://github.com/tinacms/tinacms/pull/7791)).
 
-In [TinaCMS 3.14.4, released on 12 October](https://github.com/tinacms/tinacms/releases/tag/tinacms%403.14.4), the saved/unsaved indicator gains an accessible name, so its state is no longer communicated by colour alone ([#7791](https://github.com/tinacms/tinacms/pull/7791)).
+In rich text, adjacent lists are separated by alternating bullets instead of an HTML comment ([#7861](https://github.com/tinacms/tinacms/pull/7861)). Empty optional image fields stay out of your frontmatter ([#7863](https://github.com/tinacms/tinacms/pull/7863)), and an image field with `list: true` parses instead of crashing ([#7319](https://github.com/tinacms/tinacms/pull/7319)).
 
-Before upgrading to 3.15.0, check your React version too. The release moves React Router to version 7, which requires React 18 or later. Read the [release notes](https://github.com/tinacms/tinacms/releases/tag/tinacms%403.15.0) alongside your project's package versions, and test the editor, sign-in and content saves in your own environment before deployment.
+One upgrade note: 3.15.0 moves React Router to v7, which needs React 18 or later ([#7606](https://github.com/tinacms/tinacms/pull/7606)).
+
+### 🚀 V4 keeps taking shape
+
+V4 is still in progress. This month it gained a [media contract](https://github.com/tinacms/tinacms/pull/7708) and a [Media Manager screen plugin](https://github.com/tinacms/tinacms/pull/7737), an [image field](https://github.com/tinacms/tinacms/pull/7796), and arrays that hold [templates (blocks) or single values](https://github.com/tinacms/tinacms/pull/7800).
+
+The `tinaCloud()` plugin arrived too, providing [media](https://github.com/tinacms/tinacms/pull/7775), [auth](https://github.com/tinacms/tinacms/pull/7783) and [content](https://github.com/tinacms/tinacms/pull/7853).
+
+## ☁️ TinaCloud: 19 updates
+
+### ⚡ Faster indexing
+
+On a full SSW.Rules index, about 117 of roughly 120 seconds went on 6,800 DynamoDB writes sent one at a time. Index writes now go out in parallel ([#4407](https://github.com/tinacms/tinacloud/pull/4407)), four at a time on production too ([#4417](https://github.com/tinacms/tinacloud/pull/4417)).
+
+We also stopped index sublevels from throwing and catching errors on every write, which was eating CPU on new-branch saves ([#4446](https://github.com/tinacms/tinacloud/pull/4446)). We haven't published before-and-after timings for production yet.
+
+### 🔎 Indexing that tells you what went wrong
+
+When indexing fails, the status endpoint now returns the underlying reason, so older CLI versions print it too ([#3822](https://github.com/tinacms/tinacloud/pull/3822)). If a push changes your schema but the indexer skips it, we log a warning that names the project, branch and commit ([#3654](https://github.com/tinacms/tinacloud/pull/3654)).
+
+Multi-repo projects index pull branches against the generator repo's schema, so the branch is actually indexed instead of quietly skipped ([#4102](https://github.com/tinacms/tinacloud/pull/4102)).
+
+### 🔐 Accounts and sign-in
+
+Accounts on the new AuthKit sign-in can sign out all their other sessions from the dashboard's Security tab. The browser you're in stays signed in ([#4289](https://github.com/tinacms/tinacloud/pull/4289), [#4290](https://github.com/tinacms/tinacloud/pull/4290)). Accounts with nothing to manage there no longer see an empty Security tab ([#4418](https://github.com/tinacms/tinacloud/pull/4418)).
+
+While account deletion is paused for the sign-in move, the Request Account Deletion section now says so and points to support, instead of vanishing ([#4373](https://github.com/tinacms/tinacloud/pull/4373)).
+
+A few safety nets landed too:
+
+* You can't demote a project's last admin to Editor, and both role editors show why ([#4495](https://github.com/tinacms/tinacloud/pull/4495)).
+* Disabled accounts are refused straight away, not when their token expires ([#4399](https://github.com/tinacms/tinacloud/pull/4399)).
+* Syncing from WorkOS never marks a verified user as unverified ([#4469](https://github.com/tinacms/tinacloud/pull/4469)).
+* Signed-in visitors who land on `/login` or another unknown path go to Projects, not a blank page ([#4448](https://github.com/tinacms/tinacloud/pull/4448)).
+
+### 📱 A friendlier dashboard
+
+On phones the dashboard nav is now a dropdown, so tabs like Leaderboard aren't hidden off the side ([#4422](https://github.com/tinacms/tinacloud/pull/4422)). Visitors in the EU, EEA and UK are asked for consent before the dashboard loads its tracking scripts ([#4478](https://github.com/tinacms/tinacloud/pull/4478)).
+
+### 🖼️ Assets
+
+Images served from assets.tina.io keep their `Cache-Control` header, so browsers stop refetching the same SVG, PNG and WebP files ([#4496](https://github.com/tinacms/tinacloud/pull/4496)). The assets domain now also sends a `noindex` header and serves a `robots.txt`, so customer files stop turning up in search results ([#4444](https://github.com/tinacms/tinacloud/pull/4444)).
+
+### 🛠️ Steadier APIs
+
+The Identity API caches its authorizer answer for 5 minutes instead of 10 seconds, to cut the handful of calls that hang and return a 500. Checks that grant access still run on every request. We'll know whether it fully fixes the hangs once it's had more time in production ([#4374](https://github.com/tinacms/tinacloud/pull/4374)).
+
+## Keep up with socials
+
+We post product updates, tutorials and team news here:
+
+* X: [@tinacms](https://x.com/tinacms)
+* LinkedIn: [TinaCMS](https://www.linkedin.com/company/tinacms)
+* YouTube: [@TinaCMS](https://youtube.com/@TinaCMS)
+* Bluesky: [@tina.io](https://bsky.app/profile/tina.io)
+* Discord: [Come chat with us!](https://tina.io/discord)
+
+Till next time 👋🦙
