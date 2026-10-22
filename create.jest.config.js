@@ -4,11 +4,6 @@ module.exports = function createJestConfig(pack) {
     transform: {
       '.(ts|tsx)': 'ts-jest',
     },
-    globals: {
-      'ts-jest': {
-        tsConfig: { jsx: 'react-jsx' },
-      },
-    },
     testRegex: '(\\.test)\\.(ts|tsx|js)$',
     modulePaths: ['<rootDir>/', '<rootDir>/node_modules/'],
     moduleFileExtensions: ['ts', 'tsx', 'js'],

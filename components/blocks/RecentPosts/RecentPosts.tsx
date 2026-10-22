@@ -182,17 +182,15 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
                     {post.title}
                   </h3>
                 </DynamicLink>
-                {post.author && (
-                  <RichTextWrapper>
-                    <div className="flex flex-row mb-3 text-center justify-between">
-                      <div className="flex">
-                        <span className="text-neutral-text-secondary">
-                          By {post.author.toUpperCase()}
-                        </span>{' '}
-                      </div>
+                <RichTextWrapper>
+                  <div className="flex flex-row mb-3 text-center justify-between">
+                    <div className="flex">
+                      <span className="text-neutral-text-secondary">
+                        By {post.author.toUpperCase()}
+                      </span>{' '}
                     </div>
-                  </RichTextWrapper>
-                )}
+                  </div>
+                </RichTextWrapper>
               </div>
             );
           })}
