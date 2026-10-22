@@ -9,9 +9,9 @@ prev: content/blog/2026-09-updates.mdx
 next: ''
 ---
 
-The herd has been busy again 🦙. So far in October (1 to 22 October, Brisbane time) we've merged 122 pull requests across TinaCMS and TinaCloud and published 34 package releases.
+The herd has been busy again 🦙. So far in October (1 to 22 October, Brisbane time) we've merged 122 pull requests across TinaCMS and TinaCloud and published 34 releases across individual TinaCMS packages. Here's a selection of that work, with published package changes distinguished from later merges awaiting a verified rollout.
 
-## 📦 TinaCMS: 25 updates
+## 📦 TinaCMS: 25 linked PRs
 
 ### 🎨 Text colour in the editor
 
@@ -45,7 +45,7 @@ When TinaCloud fails to index a branch, `tinacms build` prints the reason it giv
 
 Error modals get their own titles and a descriptive help link ([#7738](https://github.com/tinacms/tinacms/pull/7738)). The saved/unsaved indicator has an accessible name, so it doesn't rely on colour alone ([#7791](https://github.com/tinacms/tinacms/pull/7791)).
 
-In rich text, adjacent lists are separated by alternating bullets instead of an HTML comment ([#7861](https://github.com/tinacms/tinacms/pull/7861)). Empty optional image fields stay out of your frontmatter ([#7863](https://github.com/tinacms/tinacms/pull/7863)), and an image field with `list: true` parses instead of crashing ([#7319](https://github.com/tinacms/tinacms/pull/7319)).
+Three more fixes merged on 21 October, after the latest inspected package releases on 19 October; they are not established as available in those packages. The MDX serializer switches list markers instead of inserting an HTML comment between adjacent lists. Existing files containing the old `<!---->` separator still need that line removed manually; the regular Markdown parser is unchanged ([#7861](https://github.com/tinacms/tinacms/pull/7861)). Another fix omits empty optional, non-list image fields from frontmatter, including when an existing image is cleared ([#7863](https://github.com/tinacms/tinacms/pull/7863)). The third fixes image lists embedded in rich-text templates ([#7319](https://github.com/tinacms/tinacms/pull/7319)).
 
 One upgrade note: 3.15.0 moves React Router to v7, which needs React 18 or later ([#7606](https://github.com/tinacms/tinacms/pull/7606)).
 
@@ -55,36 +55,38 @@ V4 is still in progress. This month it gained a [media contract](https://github.
 
 The `tinaCloud()` plugin arrived too, providing [media](https://github.com/tinacms/tinacms/pull/7775), [auth](https://github.com/tinacms/tinacms/pull/7783) and [content](https://github.com/tinacms/tinacms/pull/7853).
 
-## ☁️ TinaCloud: 14 updates
+## ☁️ TinaCloud: 14 linked PRs
+
+The inspected GitHub releases include the earlier changes below: [2026.09.5](https://github.com/tinacms/tinacloud/releases/tag/2026.09.5), [2026.10.0](https://github.com/tinacms/tinacloud/releases/tag/2026.10.0) and [2026.10.1](https://github.com/tinacms/tinacloud/releases/tag/2026.10.1). Release inclusion does not confirm every account's feature flags or current deployment. Later merges are marked separately.
 
 ### ⚡ Faster indexing
 
-TinaCloud now writes index data in parallel instead of one request at a time, so big indexes spend less time waiting on storage ([#4407](https://github.com/tinacms/tinacloud/pull/4407), [#4417](https://github.com/tinacms/tinacloud/pull/4417)). We also removed a source of wasted work when TinaCloud indexes a new branch ([#4446](https://github.com/tinacms/tinacloud/pull/4446)). We haven't published before-and-after timings yet.
+The changes included in the inspected TinaCloud releases add parallel index writes ([#4407](https://github.com/tinacms/tinacloud/pull/4407), [#4417](https://github.com/tinacms/tinacloud/pull/4417)) and remove repeatedly caught encoding errors during new-branch indexing ([#4446](https://github.com/tinacms/tinacloud/pull/4446)). These changes target time spent waiting on storage and repeated CPU work; this recap does not claim a measured speed-up for every project.
 
 ### 🔎 Indexing that tells you what went wrong
 
 When indexing fails, the status endpoint now returns the underlying reason, so older CLI versions print it too ([#3822](https://github.com/tinacms/tinacloud/pull/3822)).
 
-Multi-repo projects index pull branches against the generator repo's schema, so the branch is actually indexed instead of quietly skipped ([#4102](https://github.com/tinacms/tinacloud/pull/4102)).
+A later merged fix makes multi-repo pull-branch indexing use the generator repo's schema rather than quietly skipping the branch ([#4102](https://github.com/tinacms/tinacloud/pull/4102)). It merged after the latest inspected TinaCloud GitHub release, so rollout is not established here.
 
 ### 🔐 Accounts and sign-in
 
-Accounts on the new AuthKit sign-in can sign out all their other sessions from the dashboard's Security tab. The browser you're in stays signed in ([#4289](https://github.com/tinacms/tinacloud/pull/4289), [#4290](https://github.com/tinacms/tinacloud/pull/4290)). Accounts with nothing to manage there no longer see an empty Security tab ([#4418](https://github.com/tinacms/tinacloud/pull/4418)).
+Accounts on the new AuthKit sign-in can sign out all their other sessions from the dashboard's Security tab. The browser you're in stays signed in, and existing access tokens in the other sessions can remain valid for up to five minutes ([#4289](https://github.com/tinacms/tinacloud/pull/4289), [#4290](https://github.com/tinacms/tinacloud/pull/4290)). Accounts with nothing to manage there no longer see an empty Security tab ([#4418](https://github.com/tinacms/tinacloud/pull/4418)).
 
 While account deletion is paused for the sign-in move, the Request Account Deletion section now says so and points to support, instead of vanishing ([#4373](https://github.com/tinacms/tinacloud/pull/4373)).
 
 A few safety nets landed too:
 
-* You can't demote a project's last admin to Editor, and both role editors show why ([#4495](https://github.com/tinacms/tinacloud/pull/4495)).
+* A later merged change prevents demoting a project's last admin to Editor and shows the reason in both role editors. Its rollout after the latest inspected cloud release is not verified here ([#4495](https://github.com/tinacms/tinacloud/pull/4495)).
 * Signed-in visitors who land on `/login` or another unknown path go to Projects, not a blank page ([#4448](https://github.com/tinacms/tinacloud/pull/4448)).
 
 ### 📱 A friendlier dashboard
 
-On phones the dashboard nav is now a dropdown, so tabs like Leaderboard aren't hidden off the side ([#4422](https://github.com/tinacms/tinacloud/pull/4422)). Visitors in the EU, EEA and UK are asked for consent before the dashboard loads its tracking scripts ([#4478](https://github.com/tinacms/tinacloud/pull/4478)).
+On phones the dashboard nav is now a dropdown, so tabs like Leaderboard aren't hidden off the side ([#4422](https://github.com/tinacms/tinacloud/pull/4422)). A later merged consent change asks before loading tracking scripts when the browser reports a Europe/ timezone, one of the additional configured regional zones, or an unknown/UTC zone. Timezone approximates location; this is not verified geolocation. Its rollout after the latest inspected cloud release is not established here ([#4478](https://github.com/tinacms/tinacloud/pull/4478)).
 
 ### 🖼️ Assets
 
-Images served from assets.tina.io keep their `Cache-Control` header, so browsers stop refetching the same SVG, PNG and WebP files ([#4496](https://github.com/tinacms/tinacloud/pull/4496)).
+A merged assets fix preserves `Cache-Control` on original SVG, PNG and WebP copies and adds a CDN fallback for files without the header. It is intended to let browsers cache those files. It merged after the latest inspected cloud release, and its deployment-level verification remains pending ([#4496](https://github.com/tinacms/tinacloud/pull/4496)).
 
 ## Keep up with socials
 
