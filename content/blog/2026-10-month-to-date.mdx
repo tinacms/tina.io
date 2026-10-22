@@ -57,36 +57,36 @@ V4's `tinaCloud()` work adds [media](https://github.com/tinacms/tinacms/pull/777
 
 ## ☁️ TinaCloud: 14 linked PRs
 
-The inspected GitHub releases include the earlier changes below: [2026.09.5](https://github.com/tinacms/tinacloud/releases/tag/2026.09.5), [2026.10.0](https://github.com/tinacms/tinacloud/releases/tag/2026.10.0) and [2026.10.1](https://github.com/tinacms/tinacloud/releases/tag/2026.10.1). Release inclusion does not confirm every account's feature flags or current deployment. Later merges are marked separately.
+The inspected GitHub releases include the earlier changes below: 2026.09.5, 2026.10.0 and 2026.10.1. Release inclusion does not confirm every account's feature flags or current deployment. Later merges are marked separately.
 
 ### ⚡ Faster indexing
 
-The changes included in the inspected TinaCloud releases add parallel index writes ([#4407](https://github.com/tinacms/tinacloud/pull/4407), [#4417](https://github.com/tinacms/tinacloud/pull/4417)) and remove repeatedly caught encoding errors during new-branch indexing ([#4446](https://github.com/tinacms/tinacloud/pull/4446)). These changes target time spent waiting on storage and repeated CPU work; this recap does not claim a measured speed-up for every project.
+The changes included in the inspected TinaCloud releases add parallel index writes and remove repeatedly caught encoding errors during new-branch indexing. These changes target time spent waiting on storage and repeated CPU work; this recap does not claim a measured speed-up for every project.
 
 ### 🔎 Indexing that tells you what went wrong
 
-When indexing fails, the status endpoint now returns the underlying reason, so older CLI versions print it too ([#3822](https://github.com/tinacms/tinacloud/pull/3822)).
+When indexing fails, the status endpoint now returns the underlying reason, so older CLI versions print it too.
 
-A later merged fix makes multi-repo pull-branch indexing use the generator repo's schema rather than quietly skipping the branch ([#4102](https://github.com/tinacms/tinacloud/pull/4102)). It merged after the latest inspected non-prerelease TinaCloud release, so rollout is not established here.
+A later merged fix makes multi-repo pull-branch indexing use the generator repo's schema rather than quietly skipping the branch. It merged after the latest inspected non-prerelease TinaCloud release, so rollout is not established here.
 
 ### 🔐 Accounts and sign-in
 
-Accounts on the new AuthKit sign-in can sign out all their other sessions from the dashboard's Security tab. The browser you're in stays signed in, and existing access tokens in the other sessions can remain valid for up to five minutes ([#4289](https://github.com/tinacms/tinacloud/pull/4289), [#4290](https://github.com/tinacms/tinacloud/pull/4290)). Accounts with nothing to manage there no longer see an empty Security tab ([#4418](https://github.com/tinacms/tinacloud/pull/4418)).
+Accounts on the new AuthKit sign-in can sign out all their other sessions from the dashboard's Security tab. The browser you're in stays signed in, and existing access tokens in the other sessions can remain valid for up to five minutes. Accounts with nothing to manage there no longer see an empty Security tab.
 
-While account deletion is paused for the sign-in move, the Request Account Deletion section now says so and points to support, instead of vanishing ([#4373](https://github.com/tinacms/tinacloud/pull/4373)).
+While account deletion is paused for the sign-in move, the Request Account Deletion section now says so and points to support, instead of vanishing.
 
 A few safety nets landed too:
 
-* A later merged change prevents demoting a project's last admin to Editor and shows the reason in both role editors. Its rollout after the latest inspected non-prerelease cloud release is not verified here ([#4495](https://github.com/tinacms/tinacloud/pull/4495)).
-* Signed-in visitors who land on `/login` or another unknown path go to Projects, not a blank page ([#4448](https://github.com/tinacms/tinacloud/pull/4448)).
+* A later merged change prevents demoting a project's last admin to Editor and shows the reason in both role editors. Its rollout after the latest inspected non-prerelease cloud release is not verified here.
+* Signed-in visitors who land on `/login` or another unknown path go to Projects, not a blank page.
 
 ### 📱 A friendlier dashboard
 
-On phones the dashboard nav is now a dropdown, so tabs like Leaderboard aren't hidden off the side ([#4422](https://github.com/tinacms/tinacloud/pull/4422)). A later merged consent change asks before loading tracking scripts when the browser reports a Europe/ timezone, one of the additional configured regional zones, or an unknown/UTC zone. Timezone approximates location; this is not verified geolocation. Its rollout after the latest inspected non-prerelease cloud release is not established here ([#4478](https://github.com/tinacms/tinacloud/pull/4478)).
+On phones the dashboard nav is now a dropdown, so tabs like Leaderboard aren't hidden off the side. A later merged consent change asks before loading tracking scripts when the browser reports a Europe/ timezone, one of the additional configured regional zones, or an unknown/UTC zone. Timezone approximates location; this is not verified geolocation. Its rollout after the latest inspected non-prerelease cloud release is not established here.
 
 ### 🖼️ Assets
 
-A merged assets fix preserves `Cache-Control` on original SVG, PNG and WebP copies and adds a CDN fallback for files without the header. It is intended to let browsers cache those files. It merged after the latest inspected non-prerelease cloud release, and its deployment-level verification remains pending ([#4496](https://github.com/tinacms/tinacloud/pull/4496)).
+A merged assets fix preserves `Cache-Control` on original SVG, PNG and WebP copies and adds a CDN fallback for files without the header. It is intended to let browsers cache those files. It merged after the latest inspected non-prerelease cloud release, and its deployment-level verification remains pending.
 
 ## Keep up with socials
 
