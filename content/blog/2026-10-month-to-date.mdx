@@ -41,7 +41,7 @@ Self-hosted Next.js App Router projects also get [@tinacms/cli 4.0.3](https://gi
 
 When TinaCloud fails to index a branch, `tinacms build` prints the reason it gives instead of a bare "Unable to seed" ([#7786](https://github.com/tinacms/tinacms/pull/7786)).
 
-`tinacms build` regenerates `tina/tina-lock.json` the way `dev` does, so CI-only pushes reach TinaCloud's indexer ([#7051](https://github.com/tinacms/tinacms/pull/7051)). The "Indexing local files" spinner no longer hangs forever when the CLI loses a connection race ([#7295](https://github.com/tinacms/tinacms/pull/7295)).
+`tinacms build` now regenerates `tina/tina-lock.json` as `dev` does. After schema changes, run either command locally and commit and push the regenerated file so TinaCloud can read it; a CI build does not commit it for you ([#7051](https://github.com/tinacms/tinacms/pull/7051)). The "Indexing local files" spinner no longer hangs forever when the CLI loses a connection race ([#7295](https://github.com/tinacms/tinacms/pull/7295)).
 
 Error modals get their own titles and a descriptive help link ([#7738](https://github.com/tinacms/tinacms/pull/7738)). The saved/unsaved indicator has an accessible name, so it doesn't rely on colour alone ([#7791](https://github.com/tinacms/tinacms/pull/7791)).
 
@@ -53,7 +53,7 @@ One upgrade note: 3.15.0 moves React Router to v7, which needs React 18 or later
 
 V4 is still in progress. This month it gained a [media contract](https://github.com/tinacms/tinacms/pull/7708) and a [Media Manager screen plugin](https://github.com/tinacms/tinacms/pull/7737), an [image field](https://github.com/tinacms/tinacms/pull/7796), and arrays that hold [templates (blocks) or single values](https://github.com/tinacms/tinacms/pull/7800).
 
-The `tinaCloud()` plugin arrived too, providing [media](https://github.com/tinacms/tinacms/pull/7775), [auth](https://github.com/tinacms/tinacms/pull/7783) and [content](https://github.com/tinacms/tinacms/pull/7853).
+V4's `tinaCloud()` work adds [media](https://github.com/tinacms/tinacms/pull/7775) and [content](https://github.com/tinacms/tinacms/pull/7853), alongside the provider-neutral [client auth contract and sign-in gate](https://github.com/tinacms/tinacms/pull/7783).
 
 ## ☁️ TinaCloud: 14 linked PRs
 
@@ -67,7 +67,7 @@ The changes included in the inspected TinaCloud releases add parallel index writ
 
 When indexing fails, the status endpoint now returns the underlying reason, so older CLI versions print it too ([#3822](https://github.com/tinacms/tinacloud/pull/3822)).
 
-A later merged fix makes multi-repo pull-branch indexing use the generator repo's schema rather than quietly skipping the branch ([#4102](https://github.com/tinacms/tinacloud/pull/4102)). It merged after the latest inspected TinaCloud GitHub release, so rollout is not established here.
+A later merged fix makes multi-repo pull-branch indexing use the generator repo's schema rather than quietly skipping the branch ([#4102](https://github.com/tinacms/tinacloud/pull/4102)). It merged after the latest inspected non-prerelease TinaCloud release, so rollout is not established here.
 
 ### 🔐 Accounts and sign-in
 
@@ -77,16 +77,16 @@ While account deletion is paused for the sign-in move, the Request Account Delet
 
 A few safety nets landed too:
 
-* A later merged change prevents demoting a project's last admin to Editor and shows the reason in both role editors. Its rollout after the latest inspected cloud release is not verified here ([#4495](https://github.com/tinacms/tinacloud/pull/4495)).
+* A later merged change prevents demoting a project's last admin to Editor and shows the reason in both role editors. Its rollout after the latest inspected non-prerelease cloud release is not verified here ([#4495](https://github.com/tinacms/tinacloud/pull/4495)).
 * Signed-in visitors who land on `/login` or another unknown path go to Projects, not a blank page ([#4448](https://github.com/tinacms/tinacloud/pull/4448)).
 
 ### 📱 A friendlier dashboard
 
-On phones the dashboard nav is now a dropdown, so tabs like Leaderboard aren't hidden off the side ([#4422](https://github.com/tinacms/tinacloud/pull/4422)). A later merged consent change asks before loading tracking scripts when the browser reports a Europe/ timezone, one of the additional configured regional zones, or an unknown/UTC zone. Timezone approximates location; this is not verified geolocation. Its rollout after the latest inspected cloud release is not established here ([#4478](https://github.com/tinacms/tinacloud/pull/4478)).
+On phones the dashboard nav is now a dropdown, so tabs like Leaderboard aren't hidden off the side ([#4422](https://github.com/tinacms/tinacloud/pull/4422)). A later merged consent change asks before loading tracking scripts when the browser reports a Europe/ timezone, one of the additional configured regional zones, or an unknown/UTC zone. Timezone approximates location; this is not verified geolocation. Its rollout after the latest inspected non-prerelease cloud release is not established here ([#4478](https://github.com/tinacms/tinacloud/pull/4478)).
 
 ### 🖼️ Assets
 
-A merged assets fix preserves `Cache-Control` on original SVG, PNG and WebP copies and adds a CDN fallback for files without the header. It is intended to let browsers cache those files. It merged after the latest inspected cloud release, and its deployment-level verification remains pending ([#4496](https://github.com/tinacms/tinacloud/pull/4496)).
+A merged assets fix preserves `Cache-Control` on original SVG, PNG and WebP copies and adds a CDN fallback for files without the header. It is intended to let browsers cache those files. It merged after the latest inspected non-prerelease cloud release, and its deployment-level verification remains pending ([#4496](https://github.com/tinacms/tinacloud/pull/4496)).
 
 ## Keep up with socials
 
