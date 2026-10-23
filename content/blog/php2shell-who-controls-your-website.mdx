@@ -1,0 +1,98 @@
+---
+seo:
+  title: 'PHP2Shell: who controls your website when something breaks? | TinaCMS Blog'
+  description: 'Two critical PHP flaws put WordPress sites at risk this week. Patch first. Then ask how much control you have over your content, your stack and your exit.'
+  canonicalUrl: 'https://tina.io/blog/php2shell-who-controls-your-website'
+title: 'PHP2Shell: who controls your website when something breaks?'
+date: '2026-10-23T00:00:00.000Z'
+last_edited: '2026-10-23T00:00:00.000Z'
+author: Josh Berman
+prev: content/blog/2026-09-updates.mdx
+next: ''
+---
+
+On 21 October, the PHP project shipped emergency fixes for two critical flaws, **CVE-2026-109618** and **CVE-2026-109619**. People are calling them PHP2Shell. Both allow unauthenticated remote code execution, so an attacker does not need a login.
+
+**TL;DR:** Patch PHP today. Then ask how much control you have over your content, your hosting and your way out.
+
+If you run WordPress, you run PHP. This one is yours to fix.
+
+## Patch first
+
+**Heads up:** a new CMS will not protect a site that is exposed right now. Follow the CISA guidance before you read anything else: [Critical Vulnerabilities in PHP Require Immediate Patching](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching).
+
+## What you don't control in a crisis
+
+AWS reported that its honeypot saw an exploit attempt on 17 October. That is four days before the public disclosure.
+
+AWS says it is unclear whether the attempt would have worked on a real system. We also don't know who sent it, or how they knew. But it shows a hard truth: you don't choose when the next flaw lands.
+
+What you do choose is how ready you are. In a week like this one, a few questions decide how bad it gets:
+
+* Do you know who has access to your site, and where it runs?
+* Can your team change the hosting without rebuilding the content?
+* Can you move your content to another tool if you need to?
+* Does a second developer know how to build and deploy the site?
+
+If the answer to any of these is "only our agency knows", an incident is a bad time to find out.
+
+## Your content, in your repo
+
+TinaCMS stores your content as readable files (Markdown, MDX and JSON) in a Git repo that your team controls. An article is a file with a history. You can open it, copy it and reuse it without the original editor.
+
+Editors get visual editing on top. Developers keep control of the components that render the pages.
+
+TinaCMS works with frameworks like Next.js and Astro, so you choose the stack and where it is hosted. You can also [self-host TinaCMS](https://tina.io/docs/self-hosted/overview) if you want to run the backend yourself.
+
+**TinaCloud keeps a database-backed index of your content.** It keeps queries fast. The files in your repo are the source of truth, and the index can be rebuilt from them. That's a useful difference, but it isn't "no database".
+
+TinaCloud can also send content changes through branches and draft pull requests, so your team can review them before they go live. This needs a paid plan and some setup.
+
+## An option: deploy static
+
+Control also covers what runs on your public site. With TinaCMS you can choose to build your site as static pages. Visitors then get files from a CDN, and the editing system sits apart from the public site.
+
+**Heads up:** TinaCMS is not static by default. If you want a static site, you build for it on purpose. Dynamic features like forms, search and personalised pages need their own plan.
+
+## When WordPress is still the right call
+
+We're not telling you WordPress is finished. It isn't. WordPress can also export your content, so ownership is not a one-sided story.
+
+WordPress is a good fit when:
+
+* A managed host patches PHP for you and gives you restore access.
+* You rely on plugins that have no good replacement.
+* WordPress is your application, with commerce, accounts or memberships, and not just your CMS.
+
+In those cases, moving CMS is a product migration. Don't do it in a panic during an incident.
+
+A rebuild has its own risks too. GitHub and TinaCloud are still service providers. npm packages and third-party services have vulnerabilities as well. Keep your own backup of the repo, and audit what you add.
+
+## Check your exit
+
+Before you decide anything, test how portable your site really is:
+
+1. Ask a second developer to build, edit and deploy the site from the documented access.
+2. Open a sample article and its media on a clean clone, without the original editor.
+3. Restore a changed page from history, and time how long it takes.
+4. List where leads, orders and customer records live. A CMS move changes where content is stored. It doesn't move your business data.
+
+If these are hard, that's worth knowing before the next advisory.
+
+## If you want to try TinaCMS
+
+You don't have to move the whole site. Run a small pilot instead:
+
+1. Pick a representative set of pages, including the awkward ones.
+2. Convert the content and media. Our [WordPress to TinaCMS guide](https://tina.io/docs/guides/converting-wordpress-to-tina) shows the path.
+3. Keep your URLs, and map redirects for any that change.
+4. Have a real editor do real tasks.
+5. Check what breaks.
+
+Then decide with evidence.
+
+## The takeaway
+
+PHP2Shell is a patch job today. It's also a good moment to ask how much control you have over your website.
+
+Got questions about moving off WordPress? Swing by our community Discord and we'll be happy to help. Join here: [https://tina.io/discord](https://tina.io/discord)
