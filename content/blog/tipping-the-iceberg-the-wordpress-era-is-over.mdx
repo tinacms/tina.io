@@ -11,24 +11,26 @@ prev: content/blog/2026-09-updates.mdx
 next: ''
 ---
 
-On 21 October, the PHP project shipped emergency fixes for two critical flaws, **CVE-2026-109618** and **CVE-2026-109619**. People are calling them PHP2Shell. Both allow unauthenticated remote code execution, so an attacker does not need a login.
+On 21 October, the PHP project shipped emergency fixes for two critical flaws, **CVE-2026-109618** and **CVE-2026-109619**. People are calling them PHP2Shell. Both flaws let an attacker run code on an unpatched server without even logging in.
 
-**TL;DR:** Patch PHP today. Then ask how much control you have over your content, your hosting and your way out.
-
-If you run WordPress, you run PHP. This one is yours to fix.
+**TL;DR:** Patch PHP today. Then, use the incident to reflect: can your team reach, maintain, and move the site without depending on one person or agency?
 
 ## Patch first
 
 **Heads up:** a new CMS will not protect a site that is exposed right now. Follow the CISA guidance before you read anything else: [Critical Vulnerabilities in PHP Require Immediate Patching](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching).
 
-## What you don't control in a crisis
+## What can a security alert reveal about your site's resilience?
+
+A patch notice can turn into a scramble: Who has the hosting login? Who knows which PHP version is running? Once we figure those things out, who can deploy a fix, restore the site, or move it if the current setup becomes a problem?
+
+Ask your team:
 
 * Do you know who has access to your site, and where it runs?
 * Can your team change the hosting without rebuilding the content?
 * Can you move your content to another tool if you need to?
 * Does a second developer know how to build and deploy the site?
 
-If the answer to any of these is "only our agency knows", an incident is a bad time to find out.
+If the answer to any of these is "only our agency knows", that's an issue worth addressing *before* the next emergency. A security incident is a hard time to discover that nobody else can get the site back on its feet.
 
 ## Your content, in your repo
 
@@ -57,7 +59,7 @@ Before you decide anything, test how portable your site really is:
 3. Restore a changed page from history, and time how long it takes.
 4. List where leads, orders and customer records live. A CMS move changes where content is stored. It doesn't move your business data.
 
-If these are hard, that's worth knowing before the next advisory.
+If these prove to be difficult, that's worth knowing before the next advisory - because it *will* come.
 
 ## If you want to try TinaCMS
 
