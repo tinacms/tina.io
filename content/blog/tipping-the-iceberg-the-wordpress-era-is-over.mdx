@@ -39,11 +39,11 @@ That is a difficult story for anyone responsible for software other people depen
 
 PHP2Shell affects the runtime underneath WordPress. An affected installation can be vulnerable even when its theme and plugins are maintained.
 
-PHP's security advisory identifies PHP installations serving web requests as at risk. Risk is highest for Apache's mod_php configuration, where a demonstrated attack can trigger before application code runs. A WordPress login cannot protect vulnerable PHP before WordPress gets involved.
+PHP's security advisory identifies PHP installations serving web requests as at risk. Risk is highest for Apache's mod_php configuration, where a demonstrated attack can trigger before application code runs. The vulnerability triggers before any WordPress code runs, so a WordPress login can't protect you.
 
 Exposure is a reason to patch, rather than evidence a site has been compromised. Exploitation depends on the environment.
 
-**Patch the PHP runtime serving your site, or confirm that your host has applied the fix.** Fixed PHP releases are 8.5.12, 8.4.27, 8.3.36 and 8.2.35; older installations need vendor guidance. Follow the PHP advisory and [CISA alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching). A WordPress update alone does not establish that PHP is patched.
+**Patch the PHP runtime serving your site, or confirm that your host has applied the fix.** Fixed PHP releases are 8.5.12, 8.4.27, 8.3.36 and 8.2.35; older installations need vendor guidance. Follow the PHP advisory and [CISA alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching). A WordPress update alone doesn't patch PHP.
 
 ## When the fix belongs to someone else
 
@@ -112,7 +112,7 @@ Portability takes some discipline. Plain Markdown and structured data generally 
 
 Still, replacing a frontend is easier to plan when it does not also require extracting the content from the CMS you are replacing. For a consultant handing a site over, that is a practical benefit you can demonstrate.
 
-Content changes can also go through branches and draft pull requests with TinaCloud's [Editorial Workflow](https://tina.io/docs/tinacloud/editorial-workflow), available on select paid plans with configuration. The files and the review history stay within a workflow developers can explain to the next team.
+Content changes can also go through branches and draft pull requests with TinaCloud's [Editorial Workflow](https://tina.io/docs/tinacloud/editorial-workflow), available on select paid plans. The files and the review history stay within a workflow developers can explain to the next team.
 
 ## The next vulnerability could be in your new stack
 
@@ -124,7 +124,7 @@ For sites that can be published as static files, you can serve public pages from
 
 Static delivery is a choice you make when building with TinaCMS. Forms, search and personalized pages need their own plan. You get to make those choices around the features the site actually requires.
 
-For a Tina deployment with no PHP runtime, the response to PHP2Shell can be refreshingly boring: check the stack, go back to bed and sleep like a baby.
+For a TinaCMS deployment with no PHP runtime, the response to PHP2Shell can be refreshingly boring: check the stack, go back to bed and sleep like a baby.
 
 ## Find out what leaving WordPress would cost
 
