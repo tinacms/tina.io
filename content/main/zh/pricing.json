@@ -9,32 +9,33 @@
         "isFullscreen": false
       },
       "headline": "套餐与定价",
-      "freeTier": {
-        "name": "Free",
-        "description": "包含 2 名用户、2 种角色以及社区支持。\n",
-        "price": "$0",
-        "interval": "永久免费",
-        "buttons": [
-          {
-            "label": "免费开始",
-            "icon": false,
-            "variant": "orangeWithBorder",
-            "size": "medium",
-            "url": "https://app.tina.io/register?origin=https://app.tina.io",
-            "_template": "actions"
-          }
-        ]
-      },
       "intro": "需要扩容？没问题！Tina 采用**按项目**计费的定价模式，随你的需求一同成长。\n\n切换为年付更划算！所有价格均以**美元**计。\n",
       "pillSwitchVisibileText": "所有价格均为**按项目**计费，且以**美元**计。\n",
       "pillSwitchToggleText": "选择年付可**免费获得 2 个月**\n",
+      "annualBillingText": "年付 {total}（节省 {saving}）",
       "plans": [
+        {
+          "name": "Free",
+          "description": "包含 2 名用户、2 种角色以及社区支持。\n",
+          "monthlyPrice": 0,
+          "interval": "永久免费",
+          "buttons": [
+            {
+              "label": "免费开始",
+              "icon": false,
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
+              "_template": "actions"
+            }
+          ],
+          "isMuted": true
+        },
         {
           "name": "Team",
           "description": "适合成长中的团队\n",
-          "price": "$29",
-          "annualPrice": "$24",
-          "annualDescription": "年付 $290（节省 $58）",
+          "monthlyPrice": 29,
+          "yearlyPrice": 290,
           "interval": "/ 月",
           "cardItem": [
             {
@@ -71,9 +72,8 @@
         {
           "name": "Team Plus",
           "description": "适合规模更大的团队\n",
-          "price": "$49",
-          "annualPrice": "$41",
-          "annualDescription": "年付 $490（节省 $98）",
+          "monthlyPrice": 49,
+          "yearlyPrice": 490,
           "interval": "/ 月",
           "cardItem": [
             {
@@ -118,9 +118,8 @@
         {
           "name": "Business",
           "description": "适合需要高级支持的用户\n",
-          "price": "$299",
-          "annualPrice": "$249",
-          "annualDescription": "年付 $2,990（节省 $598）",
+          "monthlyPrice": 299,
+          "yearlyPrice": 2990,
           "interval": "/ 月",
           "cardItem": [
             {
@@ -171,8 +170,7 @@
         {
           "name": "Enterprise",
           "description": "适合定制化需求\n",
-          "price": "定制",
-          "annualPrice": "定制",
+          "customPrice": "定制",
           "interval": "/",
           "cardItem": [
             {
