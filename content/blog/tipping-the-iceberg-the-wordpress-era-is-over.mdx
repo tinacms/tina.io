@@ -11,7 +11,9 @@ prev: content/blog/2026-09-updates.mdx
 next: ''
 ---
 
-On 21 October 2026, the PHP project released emergency fixes for two critical vulnerabilities: CVE-2026-109618 and CVE-2026-109619, collectively known as PHP2Shell. Both can allow an attacker to run code on an affected server without logging in. The [PHP security advisory](https://www.php.net/archive/2026.php) urges users to update immediately.
+On 21 October 2026, the PHP project released emergency fixes for two critical vulnerabilities: CVE-2026-109618 and CVE-2026-109619, collectively known as **PHP2Shell**. 
+
+Both can allow an attacker to run code on an affected server without logging in. The [PHP security advisory](https://www.php.net/archive/2026.php) urges users to update immediately.
 
 For one operator, responding meant switching part of a working product off.
 
@@ -29,7 +31,7 @@ The public warning followed weeks of work behind the scenes. Researcher Ryan Aus
 
 Then a Hacker News user, petecooper, [posted a warning](https://news.ycombinator.com/item?id=50167754) about two incoming vulnerabilities - breaking the story publicly before the fix was ready. They later returned with an apology: "At the time of posting, I didn't know about any embargo." [The user's follow-up](https://news.ycombinator.com/item?id=50193416) describes an attempt to help that added pressure to a difficult rollout.
 
-The PHP Foundation's [retrospective](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-ph… acknowledges warning signs from 2024, with fixes delayed by compatibility decisions, performance concerns and limited resources. It calls the delay a "structural failure" and describes security staff working full time, including weekends, once the full impact became clear.
+The PHP Foundation's [retrospective](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/) acknowledges warning signs from 2024, with fixes delayed by compatibility decisions, performance concerns and limited resources. It calls the delay a "structural failure" and describes security staff working full time, including weekends, once the full impact became clear.
 
 That is a difficult story for anyone responsible for software other people depend on. Maintainers have to fix a dangerous problem without breaking the applications built on their work. Operators then have to get that fix into their own environments. A release announcement is only one part of the response.
 
@@ -47,7 +49,7 @@ Exposure is a reason to patch, rather than evidence a site has been compromised.
 
 On Reddit, the distance between knowing about a fix and being able to deploy it was easy to see.
 
-In r/sysadmin, u/Thrwingawaymylife945 [put the problem simply](https://www.reddit.com/r/sysadmin/comments/1xc4rjx/php2shell_and_your_security_team/): "I'm on WordPress, and I can't patch my websites." Their host had not released the update to their environment.
+In r/sysadmin, u/Thrwingawaymylife945 [put the problem simply](https://www.reddit.com/r/sysadmin/comments/1xc4rjx/php2shell_and_your_security_team/): *"I'm on WordPress, and I can't patch my websites"*. Their host had not released the update to their environment.
 
 You may have built the site and handed over the editor. Your client can publish an article, change a headline and install a plugin. But replacing the PHP runtime can require another account, another team and another provider's release schedule. When responsibility is unclear, the consultant becomes the person chasing an answer while the client carries the risk.
 
@@ -55,7 +57,7 @@ Other teams were prepared. In r/ExperiencedDevs, u/tommyk1210 [described upgradi
 
 These are individual accounts, but the distinction matters. Regular maintenance and good managed hosting can make an emergency much easier to handle. They also represent work someone has to keep doing, whether it appears in your own backlog or a provider's bill.
 
-Ask whoever manages the environment: "Have you applied the fixes for both CVEs to the PHP environment serving our site, and restarted any affected services?"
+Ask whoever manages the environment: *"Have you applied the fixes for both CVEs to the PHP environment serving our site, and restarted any affected services?"*
 
 Get a clear answer and secure the current site. Replacing its CMS is a project to plan after the immediate response.
 
@@ -87,7 +89,7 @@ That is the cost worth investigating. How much of the content is useful on its o
 
 The ability to choose who operates a stack is useful. Being able to replace the stack while keeping your content usable gives you another kind of control. A security incident is a good reason to find out how much of that control your client actually has.
 
-## Keep the content. Change what runs it.
+## Keep the content. Change what runs it
 
 TinaCMS stores content as readable Markdown, MDX and JSON files in Git. Editors get a CMS interface, and saved changes are committed to the repository your team controls. An article is a file with a history that you can inspect, copy and restore.
 
