@@ -6,7 +6,7 @@ seo:
 title: 'Tipping the iceberg: the WordPress era is over'
 date: '2026-10-23T00:00:00.000Z'
 last_edited: '2026-10-23T00:00:00.000Z'
-author: Josh Berman
+author: Hark Singh
 prev: content/blog/2026-09-updates.mdx
 next: ''
 ---
@@ -21,46 +21,44 @@ Both flaws affect PHP's memory and error handling, used by nearly every request.
 An attacker triggers a failure at a chosen point, such as the memory limit, then exploits what remains in memory.
 The PHP Foundation's [retrospective](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/) has the details.
 
-On October 21, [CISA's alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching) said organizations unable to update immediately *"should take PHP-based systems offline until they can be patched or updated"*.
-The [Dutch government](https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/aantal-websites-rijksoverheid-preventief-offline-na-kwetsbaarheden-php) took Overheid.nl, MijnOverheid and DigiD offline as a precaution.
-Among smaller services, email alias service [addy.io](https://status.addy.io) shut down its web systems for about 3.5 hours *"due to the PHP2Shell vulnerability"*.
-Its own code wasn't broken.
+The advice was to go offline, and some did:
 
-Your client's site looks fine, and they changed nothing.
-A dependency needs an urgent fix, and your afternoon is gone.
-If the host can't patch today, would you take it offline?
+- On October 21, [CISA's alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching) said organizations that can't update right away *"should take PHP-based systems offline until they can be patched or updated"*
+- The [Dutch government](https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/aantal-websites-rijksoverheid-preventief-offline-na-kwetsbaarheden-php) took Overheid.nl, MijnOverheid and DigiD offline as a precaution
+- Email alias service [addy.io](https://status.addy.io) shut down its web systems for about 3.5 hours *"due to the PHP2Shell vulnerability"*. Its own code wasn't broken.
 
 ## PHP fix: Patch now
 
-[WordPress requires PHP](https://wordpress.org/about/requirements/), so its sites stay exposed until PHP is patched.
-What you do depends on who runs PHP:
+[WordPress runs on PHP](https://wordpress.org/about/requirements/), so you patch PHP itself.
+There are 2 ways, depending on who runs PHP:
 
-- **A managed host runs it.** Ask: *"Have you applied the fixes for both CVEs to the PHP environment serving our site, and restarted any affected services?"* In `r/sysadmin`, a developer [said](https://www.reddit.com/r/sysadmin/comments/1xc4rjx/php2shell_and_your_security_team/): *"I'm on WordPress, and I can't patch my websites"*. Their host had no update yet.
-- **You run the server.** Update PHP to **8.5.12**, **8.4.27**, **8.3.36** or **8.2.35**, and restart the services that use it. PHP 8.1 and older get no fix from the PHP project, so get vendor guidance.
+- **A managed host runs it.** Ask your host to confirm they applied both fixes and restarted PHP.
+- **You run the server.** Update PHP to the fixed release for your version, then restart the services that use it:
+  - **8.5.12**
+  - **8.4.27**
+  - **8.3.36**
+  - **8.2.35**
+  - PHP 8.1 and older get no fix from the PHP project, so get vendor guidance
 
-Check **Tools > Site Health > Info > Server** in WordPress for the site's PHP version.
-Risk is highest on Apache's mod_php.
-Researchers showed an attack there that runs before application code, so a WordPress login can't protect you.
+To see a site's PHP version, open **Tools > Site Health > Info > Server** in WordPress.
+
+Risk is highest on Apache with `mod_php`.
+Researchers showed an attack there that runs before any application code, so a WordPress login can't protect you.
 Exposure is a reason to patch, not proof of a break-in.
 See the [PHP security advisory](https://www.php.net/archive/2026.php) for details.
 
 ## The bigger question: does this site still need PHP?
 
-Clients know the WordPress editor; your team knows how to deliver sites with it.
-Over time, you also maintain everything under the pages:
-
-- The PHP runtime, WordPress core and the plugins
-- Which updates need care
-- Which integration someone added years ago
-- Which account can restore a backup
+Clients know the WordPress editor, and your team knows how to deliver sites with it.
+But you also maintain everything under the pages.
 
 ![Two icebergs. The WordPress iceberg shows pages above the water and a large mass below it: PHP runtime, WordPress core, plugins and theme, hosting and patches, backups and old integrations. An arrow points to a smaller TinaCMS iceberg: pages above the water, and only content files in Git, frontend and build, static hosting, and TinaCloud or your own backend below it. The Tina llama stands on the TinaCMS tip.](/img/blog/tipping-the-iceberg-the-wordpress-era-is-over/wordpress-to-tinacms-iceberg-v3.jpg)
 
-**Figure: On a static TinaCMS site, visitors only reach the pages. TinaCloud serves the editor and the build.**
+**Figure: The same pages, but the WordPress iceberg is much bigger than the TinaCMS iceberg**
 
 WordPress is open source, and you can [export your content](https://wordpress.org/documentation/article/tools-export-screen/).
 Changing hosts doesn't remove PHP.
-Using WordPress headlessly with [Astro](https://astro.build/) or [Next.js](https://nextjs.org/) keeps PHP because WordPress remains the content backend.
+Using WordPress headlessly with Astro or Next.js keeps PHP because WordPress remains the content backend.
 Removing PHP means replacing WordPress.
 That can involve untangling themes, page-builder layouts, custom fields and publishing workflows.
 
@@ -71,26 +69,21 @@ To size that cost, ask:
 
 ## Better solution: Keep the content, change what runs it
 
-TinaCMS stores content as Markdown, MDX and JSON files in Git.
-Editors use a CMS interface; each save commits to your repository.
-[TinaCloud](https://tina.io/docs/tinacloud) connects the editor and content API to that repository, which stays the source of truth.
-TinaCloud can rebuild its query index from those files.
-You can also [self-host the backend](https://tina.io/docs/self-hosted/overview).
+TinaCMS stores content as Markdown, MDX and JSON files in your Git repository.
+Editors get a CMS interface, and each save is a commit.
+[TinaCloud](https://tina.io/docs/tinacloud) runs the editor backend, or you can self-host it.
 
-Build the frontend with Astro, Next.js or another React integration.
-The [framework guide](https://tina.io/docs/integration/frameworks) lists integrations; the editing experience varies by framework.
-Content can live in a [separate content repository](https://tina.io/docs/guides/separate-content-repo).
-Moving from Next.js to Astro means rebuilding templates and components, not migrating content.
+You build the frontend with Astro, Next.js or another React framework.
+The editing experience varies by framework, as the [framework guide](https://tina.io/docs/integration/frameworks) shows.
+Because the content is plain files, a later frontend change means new templates, not a content migration.
 Plain Markdown moves easily; MDX with custom React components needs more work.
-
-TinaCloud's [Editorial Workflow](https://tina.io/docs/tinacloud/editorial-workflow) adds branches and draft pull requests for content changes on select paid plans.
 
 ### A new stack still needs care
 
 - TinaCMS, your frontend, hosting and build tools need updates
 - A static site can serve pages from a CDN without running the CMS on each visitor request. Editing and build systems still need protection.
 - A static site keeps serving pages if TinaCloud or your self-hosted backend goes down. Editing and new builds wait until it returns.
-- Forms, search and personalized pages need their own plan
+- Forms, site search and personalized pages need their own plan
 
 Without a PHP runtime, respond to PHP2Shell by checking the stack, then get back to work.
 
