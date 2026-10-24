@@ -11,32 +11,43 @@ prev: content/blog/2026-09-updates.mdx
 next: ''
 ---
 
-On 21 October 2026, the PHP project released emergency fixes for two critical vulnerabilities: CVE-2026-109618 and CVE-2026-109619, known together as **PHP2Shell**.
-
-**In short:**
+On October 21, 2026, the PHP project released emergency fixes for 2 critical vulnerabilities: CVE-2026-109618 and CVE-2026-109619, known together as **PHP2Shell**.
 
 - Both flaws can let an attacker run code on your server without logging in
-- They are in PHP itself, not in WordPress or a plugin. A WordPress update doesn't fix them.
-- Update PHP, or get your host to. Then ask a bigger question: does this site still need PHP?
+- The flaws are in PHP, not WordPress or a plugin. A WordPress update doesn't fix them.
+- Update PHP, or ask your host to
 
-Both flaws are in PHP's memory and error handling, which nearly every request uses. An attacker makes a request fail at a chosen point, such as the memory limit, then uses what it leaves in memory to run code. The PHP Foundation's [retrospective](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/) has the details.
+Both flaws affect PHP's memory and error handling, used by nearly every request.
+An attacker triggers a failure at a chosen point, such as the memory limit, then exploits what remains in memory.
+The PHP Foundation's [retrospective](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/) has the details.
 
-On 21 October, [CISA's alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching) said organizations that can't update right away *"should take PHP-based systems offline until they can be patched or updated"*. The [Dutch government](https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/aantal-websites-rijksoverheid-preventief-offline-na-kwetsbaarheden-php) took Overheid.nl, MijnOverheid and DigiD offline as a precaution. Smaller services went offline too. [addy.io](https://status.addy.io), an email alias service, shut down its web systems for about 3.5 hours *"due to the PHP2Shell vulnerability"*. Nothing in its own code was broken.
+On October 21, [CISA's alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching) said organizations unable to update immediately *"should take PHP-based systems offline until they can be patched or updated"*.
+The [Dutch government](https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/aantal-websites-rijksoverheid-preventief-offline-na-kwetsbaarheden-php) took Overheid.nl, MijnOverheid and DigiD offline as a precaution.
+Among smaller services, email alias service [addy.io](https://status.addy.io) shut down its web systems for about 3.5 hours *"due to the PHP2Shell vulnerability"*.
+Its own code wasn't broken.
 
-If you maintain client sites, you know the call. The site looks fine. Your client changed nothing. A dependency underneath it needs an urgent fix, and your afternoon is gone. If the host can't patch today, would you switch the site off?
+Your client's site looks fine, and they changed nothing.
+A dependency needs an urgent fix, and your afternoon is gone.
+If the host can't patch today, would you take it offline?
 
 ## PHP fix: Patch now
 
-[WordPress requires PHP](https://wordpress.org/about/requirements/), so a WordPress site is exposed until its PHP is patched. What you do depends on who runs PHP:
+[WordPress requires PHP](https://wordpress.org/about/requirements/), so its sites stay exposed until PHP is patched.
+What you do depends on who runs PHP:
 
-- **A managed host runs it.** Ask them: *"Have you applied the fixes for both CVEs to the PHP environment serving our site, and restarted any affected services?"* Do not assume. In `r/sysadmin`, one developer [put it simply](https://www.reddit.com/r/sysadmin/comments/1xc4rjx/php2shell_and_your_security_team/): *"I'm on WordPress, and I can't patch my websites"*. Their host had no update yet.
+- **A managed host runs it.** Ask: *"Have you applied the fixes for both CVEs to the PHP environment serving our site, and restarted any affected services?"* In `r/sysadmin`, a developer [said](https://www.reddit.com/r/sysadmin/comments/1xc4rjx/php2shell_and_your_security_team/): *"I'm on WordPress, and I can't patch my websites"*. Their host had no update yet.
 - **You run the server.** Update PHP to **8.5.12**, **8.4.27**, **8.3.36** or **8.2.35**, and restart the services that use it. PHP 8.1 and older get no fix from the PHP project, so get vendor guidance.
 
-To find a site's PHP version, open **Tools > Site Health > Info > Server** in WordPress. Risk is highest on Apache's mod_php. There, researchers showed an attack that runs before any application code, so a WordPress login can't protect you. Exposure is a reason to patch, not proof of a break-in. The [PHP security advisory](https://www.php.net/archive/2026.php) has the full details.
+Check **Tools > Site Health > Info > Server** in WordPress for the site's PHP version.
+Risk is highest on Apache's mod_php.
+Researchers showed an attack there that runs before application code, so a WordPress login can't protect you.
+Exposure is a reason to patch, not proof of a break-in.
+See the [PHP security advisory](https://www.php.net/archive/2026.php) for details.
 
 ## The bigger question: does this site still need PHP?
 
-WordPress enters projects for good reasons: the client knows the editor, and your team knows how to deliver it. Over time, though, you also maintain everything under the pages:
+Clients know the WordPress editor; your team knows how to deliver sites with it.
+Over time, you also maintain everything under the pages:
 
 - The PHP runtime, WordPress core and the plugins
 - Which updates need care
@@ -47,43 +58,54 @@ WordPress enters projects for good reasons: the client knows the editor, and you
 
 **Figure: On a static TinaCMS site, visitors only reach the pages. TinaCloud serves the editor and the build.**
 
-WordPress is open source, and you can [export your content](https://wordpress.org/documentation/article/tools-export-screen/). But changing hosts doesn't remove PHP. Neither does a headless setup with [Astro](https://astro.build/) or [Next.js](https://nextjs.org/), because WordPress stays the content backend, and that backend needs PHP. To remove PHP, you replace WordPress. That can mean untangling themes, page-builder layouts, custom fields and publishing workflows.
+WordPress is open source, and you can [export your content](https://wordpress.org/documentation/article/tools-export-screen/).
+Changing hosts doesn't remove PHP.
+Using WordPress headlessly with [Astro](https://astro.build/) or [Next.js](https://nextjs.org/) keeps PHP because WordPress remains the content backend.
+Removing PHP means replacing WordPress.
+That can involve untangling themes, page-builder layouts, custom fields and publishing workflows.
 
 To size that cost, ask:
 
-- How much of the content is useful outside the current theme and plugins?
+- How much content is useful outside the current theme and plugins?
 - Can another developer rebuild the site from documented access, or does it depend on one person's memory?
 
 ## Better solution: Keep the content, change what runs it
 
-TinaCMS stores content as Markdown, MDX and JSON files in Git. Editors get a CMS interface, and each save is a commit to your repository. [TinaCloud](https://tina.io/docs/tinacloud) connects the editor and content API to that repository, which stays the source of truth. TinaCloud can rebuild its query index from the files. You can also [self-host the backend](https://tina.io/docs/self-hosted/overview).
+TinaCMS stores content as Markdown, MDX and JSON files in Git.
+Editors use a CMS interface; each save commits to your repository.
+[TinaCloud](https://tina.io/docs/tinacloud) connects the editor and content API to that repository, which stays the source of truth.
+TinaCloud can rebuild its query index from those files.
+You can also [self-host the backend](https://tina.io/docs/self-hosted/overview).
 
-Build the frontend with Astro, Next.js or another React integration. The [framework guide](https://tina.io/docs/integration/frameworks) lists them, and the editing experience varies by framework. Content can also live in a [separate content repository](https://tina.io/docs/guides/separate-content-repo). A later move from Next.js to Astro means rebuilding templates and components, not migrating content. Plain Markdown moves easily; MDX full of custom React components needs more work.
+Build the frontend with Astro, Next.js or another React integration.
+The [framework guide](https://tina.io/docs/integration/frameworks) lists integrations; the editing experience varies by framework.
+Content can live in a [separate content repository](https://tina.io/docs/guides/separate-content-repo).
+Moving from Next.js to Astro means rebuilding templates and components, not migrating content.
+Plain Markdown moves easily; MDX with custom React components needs more work.
 
-For content changes, TinaCloud's [Editorial Workflow](https://tina.io/docs/tinacloud/editorial-workflow) adds branches and draft pull requests, on select paid plans.
+TinaCloud's [Editorial Workflow](https://tina.io/docs/tinacloud/editorial-workflow) adds branches and draft pull requests for content changes on select paid plans.
 
 ### A new stack still needs care
 
-- TinaCMS, your frontend, hosting and build tools all need updates
+- TinaCMS, your frontend, hosting and build tools need updates
 - A static site can serve pages from a CDN without running the CMS on each visitor request. Editing and build systems still need protection.
-- If TinaCloud or your self-hosted backend goes down, a static site keeps serving pages. Editing and new builds wait until it is back.
+- A static site keeps serving pages if TinaCloud or your self-hosted backend goes down. Editing and new builds wait until it returns.
 - Forms, search and personalized pages need their own plan
 
-With no PHP runtime, the response to PHP2Shell is simple: check the stack and get back to work.
+Without a PHP runtime, respond to PHP2Shell by checking the stack, then get back to work.
 
 ### Try it with a pilot
 
-1. Start a TinaCMS project with one command: `npx create-tina-app@latest`
+1. Start a TinaCMS project: `npx create-tina-app@latest`
 2. Pick 2 or 3 representative pages, including an awkward layout
-3. Move the content and media with our [WordPress to TinaCMS guide](https://tina.io/docs/guides/converting-wordpress-to-tina). Design and plugin behavior need their own work.
+3. Move content and media with our [WordPress to TinaCMS guide](https://tina.io/docs/guides/converting-wordpress-to-tina). Design and plugin behavior need separate work.
 4. Keep existing URLs, or map redirects
 5. Have a real editor do their normal tasks on a preview deployment
-6. Ask another developer to build and deploy it from the docs, then restore an earlier version of a page
+6. Ask another developer to build and deploy from the docs, then restore an earlier page version
 7. List where leads, orders and customer records live. They need their own migration plan.
 8. Compare the maintenance cost with the current site
 
-An AI coding assistant can scaffold the pilot from a screenshot. Our [vibe blogging walkthrough](https://tina.io/blog/vibe-blogging-with-tinacms) shows how.
+An AI coding assistant can scaffold the pilot from a screenshot.
+Our [vibe blogging walkthrough](https://tina.io/blog/vibe-blogging-with-tinacms) shows how.
 
-WordPress has to earn the next recommendation. If you've been waiting for a moment to propose a simpler content site, use this one.
-
-For help with the move, join the [TinaCMS community on Discord](https://tina.io/discord).
+For help, join the [TinaCMS community on Discord](https://tina.io/discord).
