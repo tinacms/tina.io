@@ -19,13 +19,21 @@ On October 21, 2026, the PHP project released emergency fixes for 2 critical vul
 
 Both flaws affect PHP's memory and error handling, used by nearly every request.
 An attacker triggers a failure at a chosen point, such as the memory limit, then exploits what remains in memory.
-The PHP Foundation's [retrospective](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/) has the details.
+Unfortunately, the news broke earlier than responders had planned.
+Researcher Ryan Austin reports that Calif [discovered the scale of the PHP issue](https://calif.io/php2shell/) in August of this year, and reported it to PHP within a week. Before the coordinated disclosure and remediation was ready, a Hacker News user [posted about the two incoming vulnerabilities](https://news.ycombinator.com/item?id=50167754), blowing the cover of the secret operation. (They have since apologised, saying *"at the time of posting, [they] didn't know about any embargo."*)
+The PHP Foundation's [retrospective](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/) acknowledges warning signs from 2024 and calls the delay a *"structural failure"*.
 
 The advice was to go offline, and some did:
 
 - On October 21, [CISA's alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching) said organizations that can't update right away *"should take PHP-based systems offline until they can be patched or updated"*
 - The [Dutch government](https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/aantal-websites-rijksoverheid-preventief-offline-na-kwetsbaarheden-php) took Overheid.nl, MijnOverheid and DigiD offline as a precaution
-- Email alias service [addy.io](https://status.addy.io) shut down its web systems for about 3.5 hours *"due to the PHP2Shell vulnerability"*. Its own code wasn't broken.
+- Email alias service [addy.io](https://status.addy.io) took its website and web app offline for about 3.5 hours *"due to the PHP2Shell vulnerability"*. Email forwarding kept working, and its own code wasn't broken.
+
+If you maintain sites for clients, picture explaining that call: the site _looks_ fine and nothing seems to have changed - but your afternoon is gone.
+
+Two individual accounts show the gap between knowing about a fix and deploying it.
+In Reddit's r/sysadmin, u/Thrwingawaymylife945 [put it simply](https://www.reddit.com/r/sysadmin/comments/1xc4rjx/php2shell_and_your_security_team/): *"I'm on WordPress, and I can't patch my websites"*. Their host hadn't released the update.
+In r/ExperiencedDevs, u/tommyk1210 [described upgrading PHP's major version every year](https://www.reddit.com/r/ExperiencedDevs/comments/1xcvnb9/comment/19ri480c9l5ky/) and patching that evening: *"The business has questioned why for years: this was their answer."*
 
 ## PHP fix: Patch now
 
@@ -49,7 +57,8 @@ See the [PHP security advisory](https://www.php.net/archive/2026.php) for detail
 
 ## The bigger question: does this site still need PHP?
 
-Clients know the WordPress editor, and your team knows how to deliver sites with it.
+WordPress enters projects for good reasons: clients know the editor, and your team knows how to deliver sites with it.
+It's also basically _everywhere:_ [W3Techs measured it at 39.6% of all websites](https://w3techs.com/technologies/details/cm-wordpress) on October 23, 2026.
 But you also maintain everything under the pages.
 
 ![Two icebergs. The WordPress iceberg shows pages above the water and a large mass below it: PHP runtime, WordPress core, plugins and theme, hosting and patches, backups and old integrations. An arrow points to a smaller TinaCMS iceberg: pages above the water, and only content files in Git, frontend and build, static hosting, and TinaCloud or your own backend below it. The Tina llama stands on the TinaCMS tip.](/img/blog/tipping-the-iceberg-the-wordpress-era-is-over/wordpress-to-tinacms-iceberg-v3.jpg)
@@ -85,7 +94,7 @@ Plain Markdown moves easily; MDX with custom React components needs more work.
 - A static site keeps serving pages if TinaCloud or your self-hosted backend goes down. Editing and new builds wait until it returns.
 - Forms, site search and personalized pages need their own plan
 
-Without a PHP runtime, respond to PHP2Shell by checking the stack, then get back to work.
+For a TinaCMS deployment with no PHP runtime, the response to PHP2Shell is simple: check the stack, go back to bed and sleep like a baby.
 
 ### Try it with a pilot
 
@@ -101,4 +110,7 @@ Without a PHP runtime, respond to PHP2Shell by checking the stack, then get back
 An AI coding assistant can scaffold the pilot from a screenshot.
 Our [vibe blogging walkthrough](https://tina.io/blog/vibe-blogging-with-tinacms) shows how.
 
-For help, join the [TinaCMS community on Discord](https://tina.io/discord).
+WordPress has to earn the next recommendation.
+PHP2Shell is a good reason to reopen that conversation, so bring a working pilot and a maintenance plan you can explain.
+
+For help with the move, join the [TinaCMS community on Discord](https://tina.io/discord).
