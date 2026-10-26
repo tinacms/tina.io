@@ -34,7 +34,7 @@ export function FeatureBlock({ data }) {
       >
         {data.headingOne && data.headline && (
           <h1
-            className="font-ibm-plex inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight text-balance text-left"
+            className="font-ibm-plex text-heading inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight text-balance text-left"
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}

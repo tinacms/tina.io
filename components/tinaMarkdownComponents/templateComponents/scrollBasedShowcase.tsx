@@ -216,7 +216,7 @@ export default function ScrollBasedShowcase(data: {
                   >
                     <div
                       className={`text-xl font-medium mt-2 mb-2 ${
-                        isFocused ? 'text-heading' : 'text-subtle'
+                        isFocused ? 'text-body' : 'text-subtle'
                       }`}
                     >
                       {item.title}

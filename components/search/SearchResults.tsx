@@ -26,7 +26,9 @@ export const SearchHeader = ({ query }: { query: string }) => {
   return (
     <div className="flex justify-between relative pt-4">
       <div className="flex items-center gap-3">
-        <h1 className="font-ibm-plex text-3xl">Results for "{displayQuery}"</h1>
+        <h1 className="font-ibm-plex text-heading text-3xl">
+          Results for "{displayQuery}"
+        </h1>
         {isExactSearch && (
           <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
             Exact Match
@@ -147,7 +149,7 @@ export const SearchBody = ({ results }: { results: any }) => {
       {results?.blogs?.results.map((item: any) => (
         <div key={item.objectID} className="py-4 px-4 border-b group">
           <Link href={`/blog/${item.slug}`}>
-            <h2 className="text-xl font-inter font-semibold group-hover:text-heading break-words">
+            <h2 className="text-xl font-inter font-semibold group-hover:text-brand-primary break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
             <p className="text-subtle group-hover:text-foreground text-sm font-normal line-clamp-3 break-words">

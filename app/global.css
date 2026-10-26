@@ -73,7 +73,7 @@
      What a colour is *for*. These are the only colours a component or a
      type role should name. Every one points at a primitive — never a hex.
      ────────────────────────────────────────────────────────────────────── */
-  --text-heading: var(--orange-600);
+  --text-heading: var(--orange-500);
   --text-body: var(--ink-900);
   --text-subtle: var(--slate-500);
 
@@ -110,7 +110,7 @@
   --brand-primary: var(--orange-500);
   --brand-primary-hover: var(--orange-600);
   --brand-primary-light: var(--orange-200);
-  --brand-primary-text: var(--text-heading);
+  --brand-primary-text: var(--orange-600);
   --brand-primary-contrast: var(--orange-800);
 
   --brand-primary-gradient-start: var(--orange-400);

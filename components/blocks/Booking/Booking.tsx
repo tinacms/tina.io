@@ -98,9 +98,12 @@ const BookingBlock = ({ data }) => {
           </div>
         </div>
         <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
-          {data.isHeadingOne ? (
+          {/* The block's schema has no isHeadingOne field, so this was always
+          undefined and the page shipped without an h1. It is only ever the
+          first block on its page, so default to the page title. */}
+          {data.isHeadingOne !== false ? (
             <h1
-              className={`${SECTION_TITLE} w-full text-center inline-block m-0 whitespace-nowrap lg:leading-tight`}
+              className={`${SECTION_TITLE} text-heading w-full text-center inline-block m-0 whitespace-nowrap lg:leading-tight`}
             >
               {data.title}
             </h1>

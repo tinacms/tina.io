@@ -21,7 +21,7 @@ export function FooterLinkContentBlock({ data }) {
               </h1>
             ) : (
               <h2
-                className="text-4xl md:text-5xl font-bold text-heading leading-tight"
+                className="text-4xl md:text-5xl font-bold leading-tight"
                 data-tina-field={tinaField(data, 'title')}
               >
                 {data.title}

@@ -102,9 +102,7 @@ export const RecipeBlock = ({ data }) => {
   return (
     <div className="recipe-block-container relative w-full">
       <div className="title-description px-10">
-        <h2 className="font-ibm-plex text-heading text-2xl">
-          {title || 'Default Title'}
-        </h2>
+        <h2 className="font-ibm-plex text-2xl">{title || 'Default Title'}</h2>
         <p className="font-normal py-2 text-base">
           {description || 'Default Description'}
         </p>

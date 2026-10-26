@@ -36,8 +36,8 @@ const ROLES = [
   {
     name: 'SECTION_TITLE',
     label: 'Section title',
-    note: 'Opens a band of the page. Orange, because these are the signposts a scanning reader uses.',
-    token: 'text-heading',
+    note: 'Opens a band of the page. Ink, so the page title stays the only orange thing on screen.',
+    token: 'inherits text-body',
   },
   {
     name: 'CARD_TITLE',
@@ -111,12 +111,12 @@ const SCALE = [
 const COLOURS = [
   {
     swatch: 'bg-heading',
-    primitive: '--orange-600',
-    value: '#D13F13',
+    primitive: '--orange-500',
+    value: '#EC4815',
     token: '--text-heading',
     cls: 'text-heading',
-    ratio: '4.74:1',
-    use: 'Page and section titles.',
+    ratio: '3.82:1',
+    use: 'Page titles only. The official brand orange — matches the logo. Passes as large text, so it stays at title sizes (36px and up).',
   },
   {
     swatch: 'bg-body',
@@ -142,13 +142,13 @@ const LAYERS = [
   {
     name: 'Primitives',
     where: 'app/global.css',
-    example: '--orange-600: #d13f13',
+    example: '--orange-500: #ec4815',
     rule: 'Raw values, named for what they are. The only place a hex code should appear.',
   },
   {
     name: 'Semantic tokens',
     where: 'app/global.css',
-    example: '--text-heading: var(--orange-600)',
+    example: '--text-heading: var(--orange-500)',
     rule: 'Named for what they are for. Always point at a primitive, never a hex.',
   },
   {
@@ -185,8 +185,8 @@ export default function DesignPage() {
       <section className="mt-16">
         <h2 className={SECTION_TITLE}>The rule</h2>
         <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
-          Five roles. Two are orange, and only one of those appears more than
-          once on a page.
+          Five roles. Only one is orange — the page title — and it appears once
+          per page.
         </p>
         <div className="mt-6 rounded-2xl border border-neutral-border-subtle bg-white px-6">
           {ROLES.map((role) => (

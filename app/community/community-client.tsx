@@ -11,7 +11,7 @@ export default function CommunityPageClient(data) {
   return (
     <div className="flex flex-col">
       <div className="text-center my-10">
-        <h1 className="text-5xl font-ibm-plex">{data.headline}</h1>
+        <h1 className="text-5xl text-heading font-ibm-plex">{data.headline}</h1>
       </div>
 
       {/* Info Section */}

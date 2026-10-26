@@ -267,7 +267,10 @@ export function PricingBlock({ data }) {
 
   return (
     <div className="max-w-7xl w-full px-8 mx-auto">
-      {data.isHeadingOne ? (
+      {/* The block's schema has no isHeadingOne field, so this was always
+          undefined and the page shipped without an h1. It is only ever the
+          first block on its page, so default to the page title. */}
+      {data.isHeadingOne !== false ? (
         <h1
           className={`${PAGE_TITLE} text-center justify-center lg:leading-tight`}
         >

@@ -393,9 +393,7 @@ export const docAndBlogComponents: Components<{
           props.title ? 'pt-6' : 'pt-2'
         }`}
       >
-        {props.title && (
-          <h2 className="text-3xl text-heading mb-6">{props.title}</h2>
-        )}
+        {props.title && <h2 className="text-3xl mb-6">{props.title}</h2>}
 
         {/* Process properties in order, grouping only adjacent items with same groupName */}
         {(() => {
@@ -820,8 +818,8 @@ function FormatHeaders({ children, level }) {
   // hierarchy as the marketing blocks, so colour does not invert when a reader
   // moves from a feature page into a post. See /design.
   const styles = {
-    1: 'text-heading text-4xl font-bold mt-16! mb-4',
-    2: 'text-heading text-3xl font-bold mt-12! mb-2',
+    1: 'text-4xl font-bold mt-16! mb-4',
+    2: 'text-3xl font-bold mt-12! mb-2',
     3: 'text-xl font-semibold mt-8! mb-2',
     4: 'text-xl font-medium mt-2! mb-2',
     5: 'text-lg font-medium mt-2! mb-1',
@@ -829,8 +827,8 @@ function FormatHeaders({ children, level }) {
   };
 
   const linkColor = {
-    1: 'text-heading',
-    2: 'text-heading',
+    1: 'text-subtle',
+    2: 'text-subtle',
     3: 'text-subtle',
     4: 'text-subtle',
     5: 'text-subtle',

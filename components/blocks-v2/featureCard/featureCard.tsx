@@ -75,7 +75,7 @@ function FeatureCardItem(data: {
   const subheadingColourMap = {
     black: 'text-black',
     blue: 'text-blue-600',
-    tinaOrange: 'text-heading',
+    tinaOrange: 'text-body',
   };
 
   const hexagonClass = hexagonColourMap[themeColour] || 'text-black';

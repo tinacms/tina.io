@@ -23,7 +23,7 @@ const HeaderBanner = ({
       <h1 className="font-ibm-plex text-4xl pb-4 text-heading">
         {tinaData.bannerTitle}
       </h1>
-      <h2 className="text-2xl max-w-4xl text-heading font-ibm-plex pb-4">
+      <h2 className="text-2xl max-w-4xl font-ibm-plex pb-4">
         {tinaData.bannerTagline}
       </h2>
       <h3 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h3>
