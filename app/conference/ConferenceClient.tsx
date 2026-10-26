@@ -20,10 +20,10 @@ const HeaderBanner = ({
 }) => {
   return (
     <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br from-seafoam-100 to-seafoam-200 text-black">
-      <h1 className="font-ibm-plex text-4xl pb-4 text-orange-600">
+      <h1 className="font-ibm-plex text-4xl pb-4 text-heading">
         {tinaData.bannerTitle}
       </h1>
-      <h2 className="text-2xl max-w-4xl text-orange-600 font-ibm-plex pb-4">
+      <h2 className="text-2xl max-w-4xl text-heading font-ibm-plex pb-4">
         {tinaData.bannerTagline}
       </h2>
       <h3 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h3>
@@ -167,7 +167,7 @@ const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
               />
             </Link>
             <h3 className="font-bold text-lg pt-5">{speaker.name}</h3>
-            <h4 className="text-neutral-text-secondary text-lg pb-2 -pt-1">
+            <h4 className="text-subtle text-lg pb-2 -pt-1">
               {speaker.position}
             </h4>
           </div>
@@ -281,7 +281,7 @@ function Agenda({
                         <h3 className="text-lg font-bold">
                           {breakSession.speechTitle}
                         </h3>
-                        <p className="text-neutral-text-secondary text-sm">
+                        <p className="text-subtle text-sm">
                           {breakSession.speechDescription}
                         </p>
                       </div>
@@ -314,7 +314,7 @@ function Agenda({
                               </span>
                             </div>
                           )}
-                          <p className="text-neutral-text-secondary text-sm pt-2">
+                          <p className="text-subtle text-sm pt-2">
                             {talk.speechDescription}
                           </p>
                         </div>
@@ -351,7 +351,7 @@ function Agenda({
                     <h3 className="text-lg leading-5 font-bold">
                       {breakSession.speechTitle}
                     </h3>
-                    <p className="text-neutral-text-secondary text-sm pt-1">
+                    <p className="text-subtle text-sm pt-1">
                       {breakSession.speechDescription}
                     </p>
                   </div>
@@ -388,7 +388,7 @@ function Agenda({
                         <span className="text-sm">{talk.talkSpeakerName}</span>
                       </div>
                     )}
-                    <p className="text-neutral-text-secondary text-sm pt-2">
+                    <p className="text-subtle text-sm pt-2">
                       {talk.speechDescription}
                     </p>
                   </div>

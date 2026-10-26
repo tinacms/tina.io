@@ -41,7 +41,7 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
         </>
       )}
       {change.changesDescription && (
-        <p className="order-last w-full wrap-anywhere text-neutral-text-secondary sm:order-none sm:col-start-3 sm:w-auto">
+        <p className="order-last w-full wrap-anywhere text-subtle sm:order-none sm:col-start-3 sm:w-auto">
           {change.changesDescription}
         </p>
       )}
@@ -79,7 +79,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
     >
       <div className="flex justify-between items-baseline mb-6">
         <h2 className="text-2xl font-semibold">Version {item.versionNumber}</h2>
-        <p className="text-sm text-neutral-text-secondary">
+        <p className="text-sm text-subtle">
           Released on {new Date(item.dateReleased).toLocaleDateString()}
         </p>
       </div>
@@ -102,9 +102,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
               ))}
             </ul>
           ) : (
-            <p className="text-neutral-text-secondary italic">
-              No changes in this section
-            </p>
+            <p className="text-subtle italic">No changes in this section</p>
           )}
         </div>
       ))}

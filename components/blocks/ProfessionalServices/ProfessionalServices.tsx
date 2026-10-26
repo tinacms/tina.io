@@ -39,7 +39,7 @@ export function ProfessionalServices({
           </h2>
         )}
         {description && (
-          <p className="max-w-[62ch] text-center text-neutral-text-secondary font-normal leading-relaxed text-lg">
+          <p className="max-w-[62ch] text-center text-subtle font-normal leading-relaxed text-lg">
             {description}
           </p>
         )}
@@ -59,7 +59,7 @@ export function ProfessionalServices({
             <h3 className="mt-3 text-2xl font-semibold font-ibm-plex">
               {service?.title}
             </h3>
-            <p className="mt-4 text-sm text-neutral-text-secondary min-h-[90px]">
+            <p className="mt-4 text-sm text-subtle min-h-[90px]">
               {service?.description}
             </p>
             {service?.features && service.features.length > 0 && (
@@ -72,9 +72,7 @@ export function ProfessionalServices({
                     <span className="w-6 h-6 bg-slate-400 text-zinc-50 rounded flex items-center justify-center flex-shrink-0 text-sm font-medium">
                       {idx + 1}
                     </span>
-                    <span className="text-sm text-neutral-text-secondary">
-                      {feature}
-                    </span>
+                    <span className="text-sm text-subtle">{feature}</span>
                   </div>
                 ))}
               </div>
@@ -82,7 +80,7 @@ export function ProfessionalServices({
             {service?.link && (
               <Link
                 href={service.link}
-                className="mt-auto pt-6 inline-flex items-center gap-2 py-2 text-sm text-neutral-text-secondary hover:text-orange-500 transition-colors duration-150 uppercase"
+                className="mt-auto pt-6 inline-flex items-center gap-2 py-2 text-sm text-subtle hover:text-orange-500 transition-colors duration-150 uppercase"
               >
                 Read more
                 <span className="sr-only">about {service.title}</span>

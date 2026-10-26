@@ -183,7 +183,7 @@ const ConsentBanner = () => {
           onClick={handleBackdropClick}
         >
           <div className="bg-white p-10 rounded-lg w-11/12 sm:w-96 md:w-2/3 lg:w-1/3">
-            <h2 className="text-xl md:text-xl lg:text-3xl text-orange-600 font-ibm-plex mb-4 text-center">
+            <h2 className="text-xl md:text-xl lg:text-3xl text-heading font-ibm-plex mb-4 text-center">
               Customize your Consent Preferences
             </h2>
             <div className="lg:flex lg:justify-center lg:ml-auto lg:mr-auto">

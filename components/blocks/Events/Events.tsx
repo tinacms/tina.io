@@ -120,7 +120,7 @@ export const Card = ({ cardItem, onHover }) => {
         </div>
         <p
           className={`text-base ${
-            isLiveOrPastEvent ? 'text-neutral-text-secondary' : 'text-black'
+            isLiveOrPastEvent ? 'text-subtle' : 'text-black'
           }`}
         >
           {cardItem.location}
@@ -215,7 +215,7 @@ const EventsBlock = () => {
         {eventsData.title}
       </h2>
       <div className="max-w-[62ch] mx-auto">
-        <p className="text-center text-neutral-text-secondary font-normal leading-relaxed text-lg">
+        <p className="text-center text-subtle font-normal leading-relaxed text-lg">
           {eventsData.byLine}
         </p>
       </div>

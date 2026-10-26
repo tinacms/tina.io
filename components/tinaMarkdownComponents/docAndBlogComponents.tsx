@@ -394,7 +394,7 @@ export const docAndBlogComponents: Components<{
         }`}
       >
         {props.title && (
-          <h2 className="text-3xl text-orange-600 mb-6">{props.title}</h2>
+          <h2 className="text-3xl text-heading mb-6">{props.title}</h2>
         )}
 
         {/* Process properties in order, grouping only adjacent items with same groupName */}
@@ -474,7 +474,7 @@ export const docAndBlogComponents: Components<{
         {props.property?.some((property) => property.required) && (
           <div className=" mx-6 mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
             <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 shrink-0" />
-            <p className="text-sm text-neutral-text-secondary">
+            <p className="text-sm text-subtle">
               All properties marked as{' '}
               <span className="text-[#FF5533] font-medium">REQUIRED</span> must
               be specified for the field to work properly.
@@ -820,21 +820,21 @@ function FormatHeaders({ children, level }) {
   // hierarchy as the marketing blocks, so colour does not invert when a reader
   // moves from a feature page into a post. See /design.
   const styles = {
-    1: 'text-orange-600 text-4xl font-bold mt-16! mb-4',
-    2: 'text-orange-600 text-3xl font-bold mt-12! mb-2',
+    1: 'text-heading text-4xl font-bold mt-16! mb-4',
+    2: 'text-heading text-3xl font-bold mt-12! mb-2',
     3: 'text-xl font-semibold mt-8! mb-2',
     4: 'text-xl font-medium mt-2! mb-2',
     5: 'text-lg font-medium mt-2! mb-1',
-    6: 'text-neutral-text-secondary text-base font-normal mt-2 mb-1',
+    6: 'text-subtle text-base font-normal mt-2 mb-1',
   };
 
   const linkColor = {
-    1: 'text-orange-600',
-    2: 'text-orange-600',
-    3: 'text-neutral-text-secondary',
-    4: 'text-neutral-text-secondary',
-    5: 'text-neutral-text-secondary',
-    6: 'text-neutral-text-secondary',
+    1: 'text-heading',
+    2: 'text-heading',
+    3: 'text-subtle',
+    4: 'text-subtle',
+    5: 'text-subtle',
+    6: 'text-subtle',
   };
 
   const handleHeaderClick = (event) => {

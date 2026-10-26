@@ -26,6 +26,62 @@
 :root {
   scroll-behavior: smooth;
   scroll-padding-top: 200px;
+
+  /* ──────────────────────────────────────────────────────────────────────
+     LAYER 1 — PRIMITIVES
+     Raw values, named after what they are. Nothing outside Layer 2 should
+     reference these; a component reaching for `orange-600` is reaching past
+     the meaning to the number. tailwind.config.js maps the colour ladders
+     onto these, so this block is the single source of every brand value.
+     ────────────────────────────────────────────────────────────────────── */
+  --orange-50: #fff8f3;
+  --orange-100: #ffede4;
+  --orange-200: #ffd3c1;
+  --orange-300: #ffab8b;
+  --orange-400: #ff724b;
+  --orange-500: #ec4815;
+  --orange-600: #d13f13;
+  --orange-700: #a5310f;
+  --orange-800: #7a230b;
+  --orange-900: #4c1507;
+
+  --blue-50: #dceeff;
+  --blue-100: #b4dbff;
+  --blue-200: #85c5fe;
+  --blue-300: #4eabfe;
+  --blue-400: #2296fe;
+  --blue-500: #0084ff;
+  --blue-600: #0574e4;
+  --blue-700: #0d5dbd;
+  --blue-800: #144696;
+  --blue-900: #1d2c6c;
+
+  --seafoam-50: #eefdf9;
+  --seafoam-100: #e9fbf4;
+  --seafoam-150: #c1f5eb;
+  --seafoam-200: #cff5e6;
+  --seafoam-300: #b4efd9;
+  --seafoam-400: #99e9cb;
+  --seafoam-500: #93e9be;
+  --seafoam-700: #529c7b;
+
+  --ink-900: #1c1b2e;
+  --slate-500: #64748b;
+
+  /* ──────────────────────────────────────────────────────────────────────
+     LAYER 2 — SEMANTIC TOKENS
+     What a colour is *for*. These are the only colours a component or a
+     type role should name. Every one points at a primitive — never a hex.
+     ────────────────────────────────────────────────────────────────────── */
+  --text-heading: var(--orange-600);
+  --text-body: var(--ink-900);
+  --text-subtle: var(--slate-500);
+
+  /* ──────────────────────────────────────────────────────────────────────
+     LEGACY — pre-redesign colours, still raw hex and outside the layers
+     above. Kept because older blocks reference them; migrate to semantic
+     tokens rather than adding to this list.
+     ────────────────────────────────────────────────────────────────────── */
   --color-tina-blue-light: #2296fe;
   --color-tina-blue: #2296fe;
   --color-tina-blue-dark: #0574e4;
@@ -34,7 +90,7 @@
   --color-orange-dark: #d94217;
   --color-yellow: #f2c94c;
   --color-green: #6fcf97;
-  --color-black: #1c1b2e;
+  --color-black: var(--ink-900);
   --color-blue: #241748;
   --color-blue-light: #31215e;
   --color-white: #ffffff;
@@ -51,32 +107,32 @@
   --container-padding: 2rem;
 
   /* Tina Design Library */
-  --brand-primary: #EC4815;
-  --brand-primary-hover: #D13F13;
-  --brand-primary-light: #FFD3c1;
-  --brand-primary-text: #D13F13;
-  --brand-primary-contrast: #7a230b;
+  --brand-primary: var(--orange-500);
+  --brand-primary-hover: var(--orange-600);
+  --brand-primary-light: var(--orange-200);
+  --brand-primary-text: var(--text-heading);
+  --brand-primary-contrast: var(--orange-800);
 
-  --brand-primary-gradient-start: #FF724B;
-  --brand-primary-gradient-end: #D13F13;
+  --brand-primary-gradient-start: var(--orange-400);
+  --brand-primary-gradient-end: var(--orange-600);
 
-  --brand-secondary: #0084FF;
-  --brand-secondary-hover: #0574E4;
-  --brand-secondary-light: #DCEEFF;
-  --brand-secondary-text: #0574e4;
-  --brand-secondary-contrast: #1d2c6c;
+  --brand-secondary: var(--blue-500);
+  --brand-secondary-hover: var(--blue-600);
+  --brand-secondary-light: var(--blue-50);
+  --brand-secondary-text: var(--blue-600);
+  --brand-secondary-contrast: var(--blue-900);
 
-  --brand-secondary-gradient-start: #144696;
-  --brand-secondary-gradient-end: #1d2c6c;
+  --brand-secondary-gradient-start: var(--blue-800);
+  --brand-secondary-gradient-end: var(--blue-900);
 
-  --brand-tertiary: #93E9BE;
+  --brand-tertiary: var(--seafoam-500);
   --brand-tertiary-hover: #72c39b;
-  --brand-tertiary-light: #EEFDF9;
+  --brand-tertiary-light: var(--seafoam-50);
   --brand-tertiary-text: #39745c;
   --brand-tertiary-contrast: #214c3d;
 
-  --brand-tertiary-gradient-start:  #B4EFD9;
-  --brand-tertiary-gradient-end: #72C39b;
+  --brand-tertiary-gradient-start: var(--seafoam-300);
+  --brand-tertiary-gradient-end: #72c39b;
 
   --glass-gradient-start: rgba(255, 255, 255, 0.1);
   --glass-gradient-end: rgba(255, 255, 255, 0.4);
@@ -86,8 +142,6 @@
   --neutral-background-quaternary: #E2E8F0;
   --neutral-background-quinary: #F1F5F9;
   --neutral-surface: #faebe5;
-  --neutral-text: #0f172a;
-  --neutral-text-secondary: #64748b;
   --neutral-border: #CBD5E1;
   --neutral-border-subtle: #e2e8f0;
 

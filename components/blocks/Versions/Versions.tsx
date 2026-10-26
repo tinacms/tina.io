@@ -77,9 +77,9 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
     <div className="relative overflow-hidden">
       <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
         <header className="relative pt-20 pb-10 md:pt-28 md:pb-14">
-          <h1 className="font-ibm-plex text-4xl leading-tight tracking-tight text-orange-600 md:text-6xl">
+          <h1 className="font-ibm-plex text-4xl leading-tight tracking-tight text-heading md:text-6xl">
             {titleHead && <>{titleHead} </>}
-            <span className="text-orange-600">{titleTail}</span>
+            <span className="text-heading">{titleTail}</span>
           </h1>
           {description && (
             <p className={`mt-4 max-w-2xl text-balance ${LEDE}`}>

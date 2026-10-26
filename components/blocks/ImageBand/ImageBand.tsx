@@ -27,7 +27,7 @@ export function ImageBandBlock({ data, index }) {
           </div>
           {data.caption && (
             <figcaption
-              className="mt-3 text-center text-sm text-neutral-text-secondary"
+              className="mt-3 text-center text-sm text-subtle"
               data-tina-field={tinaField(data, 'caption')}
             >
               {data.caption}

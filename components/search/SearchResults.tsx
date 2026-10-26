@@ -147,10 +147,10 @@ export const SearchBody = ({ results }: { results: any }) => {
       {results?.blogs?.results.map((item: any) => (
         <div key={item.objectID} className="py-4 px-4 border-b group">
           <Link href={`/blog/${item.slug}`}>
-            <h2 className="text-xl font-inter font-semibold group-hover: group-hover: group-hover: break-words">
+            <h2 className="text-xl font-inter font-semibold group-hover:text-heading break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
-            <p className="text-neutral-text-secondary group-hover:text-foreground text-sm font-normal line-clamp-3 break-words">
+            <p className="text-subtle group-hover:text-foreground text-sm font-normal line-clamp-3 break-words">
               {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>

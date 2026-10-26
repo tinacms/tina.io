@@ -75,7 +75,7 @@ function FeatureCardItem(data: {
   const subheadingColourMap = {
     black: 'text-black',
     blue: 'text-blue-600',
-    tinaOrange: 'text-orange-600',
+    tinaOrange: 'text-heading',
   };
 
   const hexagonClass = hexagonColourMap[themeColour] || 'text-black';
@@ -93,7 +93,7 @@ function FeatureCardItem(data: {
           {featureHeadline}
         </h4>
         <div className="flex-1" />
-        <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-[62ch] py-4">
+        <p className="text-subtle font-normal leading-relaxed text-lg max-w-[62ch] py-4">
           {featureText}
         </p>
         <div className="flex flex-col sm:flex-row gap-2 w-full">

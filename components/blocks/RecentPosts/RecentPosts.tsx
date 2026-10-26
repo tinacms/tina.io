@@ -55,9 +55,7 @@ const VideoCard = ({
   return (
     <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2 animate-row-in">
       <YouTubeEmbed src={embedUrl} />
-      <span className="text-neutral-text-secondary text-sm">
-        {formatDate(dateReleased)}
-      </span>
+      <span className="text-subtle text-sm">{formatDate(dateReleased)}</span>
       <Link
         href={`https://www.youtube.com/watch?v=${videoId}`}
         target="_blank"
@@ -67,10 +65,10 @@ const VideoCard = ({
           {title}
         </h3>
       </Link>
-      <span className="text-neutral-text-secondary text-sm">
+      <span className="text-subtle text-sm">
         By{' '}
         <Link
-          className="underline hover:text-neutral-text transition-colors duration-300"
+          className="underline hover:text-body transition-colors duration-300"
           href={authorUrl}
         >
           {authorName.toUpperCase()}
@@ -171,7 +169,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
                 key={slug}
                 className="group flex-1 flex flex-col gap-2  min-w-[20rem]"
               >
-                <span className="text-neutral-text-secondary text-sm">
+                <span className="text-subtle text-sm">
                   {formatDate(post.date)}
                 </span>
                 <DynamicLink href={href} passHref>
@@ -182,7 +180,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
                 <RichTextWrapper>
                   <div className="flex flex-row mb-3 text-center justify-between">
                     <div className="flex">
-                      <span className="text-neutral-text-secondary">
+                      <span className="text-subtle">
                         By {post.author.toUpperCase()}
                       </span>{' '}
                     </div>

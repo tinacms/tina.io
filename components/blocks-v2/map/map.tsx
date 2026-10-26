@@ -276,7 +276,7 @@ export const OfficeMap = ({ data }: { data: PageBlocksMap }) => {
     <div className="flex flex-col gap-8 items-center justify-center p-10 max-w-7xl mx-auto relative">
       {heading && <h2 className={`${SECTION_TITLE}`}>{heading}</h2>}
       {content && (
-        <div className="text-neutral-text-secondary">
+        <div className="text-subtle">
           <TinaMarkdown content={content} components={docAndBlogComponents} />
         </div>
       )}

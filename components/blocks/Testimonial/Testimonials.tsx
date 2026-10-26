@@ -52,14 +52,10 @@ const TestimonialCard = ({ ...data }) => {
               <p className="text-sm text-black">
                 {data.username && <>@{data.username}</>}
                 {data.username && data.date && (
-                  <span className="mx-1.5 text-neutral-text-secondary">
-                    &ndash;
-                  </span>
+                  <span className="mx-1.5 text-subtle">&ndash;</span>
                 )}
                 {data.date && (
-                  <span className="text-neutral-text-secondary">
-                    {formatDate(data.date)}
-                  </span>
+                  <span className="text-subtle">{formatDate(data.date)}</span>
                 )}
               </p>
             )}

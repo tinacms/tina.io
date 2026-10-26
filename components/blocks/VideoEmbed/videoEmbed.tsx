@@ -24,9 +24,7 @@ export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
           className,
         )}
       >
-        <p className="text-neutral-text-secondary">
-          Video URL is invalid or missing
-        </p>
+        <p className="text-subtle">Video URL is invalid or missing</p>
       </div>
     );
   }
@@ -78,7 +76,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
             <YouTubeEmbed src={externalVideoLink || ''} />
           </div>
           {figureCaption && (
-            <p className="text-sm text-neutral-text-secondary mt-2 text-left">
+            <p className="text-sm text-subtle mt-2 text-left">
               {figureCaption}
             </p>
           )}

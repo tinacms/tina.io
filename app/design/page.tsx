@@ -31,31 +31,31 @@ const ROLES = [
     name: 'PAGE_TITLE',
     label: 'Page title',
     note: 'The one orange moment at the top. Once per page, never twice — it pairs with the wordmark above it.',
-    token: 'text-orange-600',
+    token: 'text-heading',
   },
   {
     name: 'SECTION_TITLE',
     label: 'Section title',
     note: 'Opens a band of the page. Orange, because these are the signposts a scanning reader uses.',
-    token: 'text-orange-600',
+    token: 'text-heading',
   },
   {
     name: 'CARD_TITLE',
     label: 'Card title',
     note: 'A heading inside a card, tier or grid item. Ink, so a grid of nine reads as a grid.',
-    token: 'inherits ink',
+    token: 'inherits text-body',
   },
   {
     name: 'SUB_HEADING',
     label: 'Sub-heading',
     note: 'A heading inside running copy, mostly blog posts and docs. Ink.',
-    token: 'inherits ink',
+    token: 'inherits text-body',
   },
   {
     name: 'EYEBROW',
     label: 'Eyebrow',
     note: 'The small uppercase label above a title. Uppercased in CSS, not in the copy.',
-    token: 'text-neutral-text-secondary',
+    token: 'text-subtle',
   },
 ];
 
@@ -105,27 +105,57 @@ const SCALE = [
   },
 ];
 
+// Each row is one chain through the three layers. Components and roles may
+// only use the right-hand column; the primitive is there so you can see what
+// a token resolves to, not so you can reach for it.
 const COLOURS = [
   {
-    swatch: 'bg-orange-600',
-    name: 'orange-600',
+    swatch: 'bg-heading',
+    primitive: '--orange-600',
     value: '#D13F13',
+    token: '--text-heading',
+    cls: 'text-heading',
     ratio: '4.74:1',
-    use: 'Page and section titles. Passes at every size, which is why it replaces orange-500.',
+    use: 'Page and section titles.',
   },
   {
-    swatch: 'bg-foreground',
-    name: 'ink',
+    swatch: 'bg-body',
+    primitive: '--ink-900',
     value: '#1C1B2E',
+    token: '--text-body',
+    cls: 'text-body',
     ratio: '16.4:1',
-    use: 'Every other heading, and every paragraph. Set as --foreground.',
+    use: 'Every other heading, every paragraph. The site default, so it rarely needs writing.',
   },
   {
-    swatch: 'bg-neutral-text-secondary',
-    name: 'neutral-text-secondary',
+    swatch: 'bg-subtle',
+    primitive: '--slate-500',
     value: '#64748B',
+    token: '--text-subtle',
+    cls: 'text-subtle',
     ratio: '4.8:1',
-    use: 'Muted only — captions, eyebrows, footer links, form hints.',
+    use: 'Supporting text only — captions, eyebrows, footer links, form hints.',
+  },
+];
+
+const LAYERS = [
+  {
+    name: 'Primitives',
+    where: 'app/global.css',
+    example: '--orange-600: #d13f13',
+    rule: 'Raw values, named for what they are. The only place a hex code should appear.',
+  },
+  {
+    name: 'Semantic tokens',
+    where: 'app/global.css',
+    example: '--text-heading: var(--orange-600)',
+    rule: 'Named for what they are for. Always point at a primitive, never a hex.',
+  },
+  {
+    name: 'Classes',
+    where: 'components/styles/typography.ts',
+    example: 'PAGE_TITLE → text-heading',
+    rule: 'Size, weight and colour together. Name semantic tokens only.',
   },
 ];
 
@@ -133,12 +163,10 @@ const Rule = ({ role }: { role: (typeof ROLES)[number] }) => (
   <div className="grid grid-cols-1 gap-2 border-b border-neutral-border-subtle py-5 last:border-b-0 md:grid-cols-[14rem_1fr_14rem] md:gap-6">
     <div>
       <p className="font-ibm-plex font-semibold">{role.label}</p>
-      <p className="font-mono text-xs text-neutral-text-secondary">
-        {role.name}
-      </p>
+      <p className="font-mono text-xs text-subtle">{role.name}</p>
     </div>
     <p className={`${BODY_MUTED} min-w-0`}>{role.note}</p>
-    <p className="min-w-0 self-start rounded-lg bg-seafoam-50 px-3 py-2 font-mono text-xs text-neutral-text-secondary">
+    <p className="min-w-0 self-start rounded-lg bg-seafoam-50 px-3 py-2 font-mono text-xs text-subtle">
       {role.token}
     </p>
   </div>
@@ -186,7 +214,7 @@ export default function DesignPage() {
               <p className={`${row.cls} min-w-0 flex-1 wrap-anywhere`}>
                 {row.sample}
               </p>
-              <p className="font-mono text-xs whitespace-nowrap text-neutral-text-secondary">
+              <p className="font-mono text-xs whitespace-nowrap text-subtle">
                 {row.name} · {row.size}
               </p>
             </div>
@@ -208,12 +236,10 @@ export default function DesignPage() {
               Body is the default for every paragraph someone is meant to read.
               It needs no colour class — it is what text already is.
             </p>
-            <p className="mt-3 font-mono text-xs text-neutral-text-secondary">
-              BODY
-            </p>
+            <p className="mt-3 font-mono text-xs text-subtle">BODY</p>
           </div>
           <div className="rounded-2xl border border-neutral-border-subtle bg-white p-6">
-            <p className="mb-3 inline-block rounded-full border border-neutral-border-subtle px-3 py-1 font-ibm-plex text-xs font-semibold tracking-wider text-neutral-text-secondary uppercase">
+            <p className="mb-3 inline-block rounded-full border border-neutral-border-subtle px-3 py-1 font-ibm-plex text-xs font-semibold tracking-wider text-subtle uppercase">
               Exception
             </p>
             <p className={BODY_MUTED}>
@@ -221,9 +247,7 @@ export default function DesignPage() {
               Never a paragraph that carries meaning, and never a whole block of
               copy.
             </p>
-            <p className="mt-3 font-mono text-xs text-neutral-text-secondary">
-              BODY_MUTED
-            </p>
+            <p className="mt-3 font-mono text-xs text-subtle">BODY_MUTED</p>
           </div>
         </div>
       </section>
@@ -231,46 +255,87 @@ export default function DesignPage() {
       <section className="mt-16">
         <h2 className={SECTION_TITLE}>Colour</h2>
         <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
-          Only the tokens type depends on. Buttons and fills are a separate
-          piece of work.
+          Three layers, each only allowed to point at the one before it.
+          Changing the brand orange is one edit to a primitive; every token and
+          class follows.
+        </p>
+
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          {LAYERS.map((layer, i) => (
+            <div
+              key={layer.name}
+              className="rounded-2xl border border-neutral-border-subtle bg-white p-6"
+            >
+              <p className={EYEBROW}>Layer {i + 1}</p>
+              <p className="mt-1 font-ibm-plex text-xl font-semibold">
+                {layer.name}
+              </p>
+              <p className="mt-1 font-mono text-xs text-subtle wrap-anywhere">
+                {layer.where}
+              </p>
+              <p className="mt-4 rounded-lg bg-seafoam-50 px-3 py-2 font-mono text-xs wrap-anywhere">
+                {layer.example}
+              </p>
+              <p className={`${BODY_SMALL} mt-4 text-subtle`}>{layer.rule}</p>
+            </div>
+          ))}
+        </div>
+
+        <h3 className={`${CARD_TITLE} mt-12`}>Type colours</h3>
+        <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
+          The three tokens type uses. Buttons and fills are issue #4964.
         </p>
         <div className="mt-6 overflow-x-auto rounded-2xl border border-neutral-border-subtle">
           <table className="w-full bg-white text-left">
             <thead>
               <tr className="bg-seafoam-50">
-                <th className={`${BODY_SMALL} px-5 py-3 font-ibm-plex`}>
-                  Token
-                </th>
-                <th className={`${BODY_SMALL} px-5 py-3 font-ibm-plex`}>
-                  Value
-                </th>
-                <th className={`${BODY_SMALL} px-5 py-3 font-ibm-plex`}>
-                  On white
-                </th>
-                <th className={`${BODY_SMALL} px-5 py-3 font-ibm-plex`}>
-                  Role
-                </th>
+                {[
+                  'Primitive',
+                  'Semantic token',
+                  'Class',
+                  'On white',
+                  'Use',
+                ].map((h) => (
+                  <th
+                    key={h}
+                    className={`${BODY_SMALL} px-5 py-3 font-ibm-plex whitespace-nowrap`}
+                  >
+                    {h}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
               {COLOURS.map((c) => (
                 <tr
-                  key={c.name}
+                  key={c.token}
                   className="border-t border-neutral-border-subtle"
                 >
                   <td className={`${BODY_SMALL} px-5 py-3 whitespace-nowrap`}>
                     <span
                       className={`${c.swatch} mr-2 inline-block size-3 rounded-sm align-middle`}
                     />
-                    <span className="font-mono">{c.name}</span>
+                    <span className="font-mono">{c.primitive}</span>
+                    <span className="ml-2 font-mono text-subtle">
+                      {c.value}
+                    </span>
                   </td>
-                  <td className={`${BODY_SMALL} px-5 py-3 font-mono`}>
-                    {c.value}
+                  <td
+                    className={`${BODY_SMALL} px-5 py-3 font-mono whitespace-nowrap`}
+                  >
+                    {c.token}
+                  </td>
+                  <td
+                    className={`${BODY_SMALL} px-5 py-3 font-mono whitespace-nowrap`}
+                  >
+                    {c.cls}
                   </td>
                   <td className={`${BODY_SMALL} px-5 py-3 font-mono`}>
                     {c.ratio}
                   </td>
-                  <td className={`${BODY_SMALL} px-5 py-3`}>{c.use}</td>
+                  <td className={`${BODY_SMALL} min-w-64 px-5 py-3`}>
+                    {c.use}
+                  </td>
                 </tr>
               ))}
             </tbody>

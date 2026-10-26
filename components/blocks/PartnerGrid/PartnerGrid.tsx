@@ -57,7 +57,7 @@ const PartnerCard = ({ data }) => {
 
       {data.location && (
         <p
-          className="text-sm text-neutral-text-secondary"
+          className="text-sm text-subtle"
           data-tina-field={tinaField(data, 'location')}
         >
           {data.location}
@@ -66,7 +66,7 @@ const PartnerCard = ({ data }) => {
 
       {data.description && (
         <p
-          className="grow text-neutral-text-secondary"
+          className="grow text-subtle"
           data-tina-field={tinaField(data, 'description')}
         >
           {data.description}
@@ -124,7 +124,7 @@ const GetInContactCard = ({ data }) => (
     )}
     {data.contactCardText && (
       <p
-        className="grow text-neutral-text-secondary"
+        className="grow text-subtle"
         data-tina-field={tinaField(data, 'contactCardText')}
       >
         {data.contactCardText}
@@ -178,7 +178,7 @@ export function PartnerGridBlock({ data, index }) {
             </h2>
           ))}
         {data.subText && (
-          <p className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center mx-auto py-4">
+          <p className="text-lg lg:text-xl lg:leading-normal text-subtle max-w-60ch text-balance text-center mx-auto py-4">
             {data.subText}
           </p>
         )}

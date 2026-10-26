@@ -52,7 +52,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
           <div className="flex items-center gap-2">
             {featuredPost.datePosted && (
               <p
-                className="text-sm text-neutral-text-secondary w-fit"
+                className="text-sm text-subtle w-fit"
                 data-tina-field={tinaField(featuredPost, 'datePosted')}
               >
                 {formatDate(featuredPost.datePosted)}
@@ -73,7 +73,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
 
           {featuredPost.description && (
             <p
-              className="text-xs text-neutral-text-secondary"
+              className="text-xs text-subtle"
               data-tina-field={tinaField(featuredPost, 'description')}
             >
               {featuredPost.description}
@@ -81,11 +81,11 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
           )}
 
           {featuredPost.authorName && (
-            <p className="text-neutral-text-secondary text-sm">
+            <p className="text-subtle text-sm">
               By{' '}
               {featuredPost.authorUrl ? (
                 <Link
-                  className="relative hover:text-neutral-text z-2 uppercase underline transition-colors"
+                  className="relative hover:text-body z-2 uppercase underline transition-colors"
                   href={featuredPost.authorUrl}
                   data-tina-field={tinaField(featuredPost, 'authorName')}
                 >

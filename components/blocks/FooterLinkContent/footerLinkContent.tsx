@@ -14,14 +14,14 @@ export function FooterLinkContentBlock({ data }) {
           <Container width="narrow">
             {data.isHeadingOne !== false ? (
               <h1
-                className="text-4xl md:text-5xl font-bold text-orange-600 leading-tight"
+                className="text-4xl md:text-5xl font-bold text-heading leading-tight"
                 data-tina-field={tinaField(data, 'title')}
               >
                 {data.title}
               </h1>
             ) : (
               <h2
-                className="text-4xl md:text-5xl font-bold text-orange-600 leading-tight"
+                className="text-4xl md:text-5xl font-bold text-heading leading-tight"
                 data-tina-field={tinaField(data, 'title')}
               >
                 {data.title}

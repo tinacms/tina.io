@@ -52,7 +52,7 @@ const FreeTier = ({ data }) => (
           <h2 className="font-ibm-plex text-3xl">{data.freeTier?.name}</h2>
           <div className="flex items-baseline mt-2 sm:mt-0">
             <h2 className="font-ibm-plex text-3xl">{data.freeTier?.price}</h2>
-            <span className="text-lg ml-2 text-neutral-text-secondary">
+            <span className="text-lg ml-2 text-subtle">
               {data.freeTier?.interval}
             </span>
           </div>

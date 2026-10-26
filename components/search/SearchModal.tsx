@@ -53,10 +53,10 @@ export const SearchResultsOverflowBody = ({
           className="py-3 px-4 border-b border-gray-100 group hover:bg-gray-50 transition-colors"
         >
           <Link href={`/blog/${item.slug}`} onClick={onResultClick}>
-            <h2 className="text-base font-inter font-semibold group-hover: group-hover: group-hover: break-words">
+            <h2 className="text-base font-inter font-semibold group-hover:text-heading break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
-            <p className="text-neutral-text-secondary group-hover:text-foreground text-xs font-normal line-clamp-2 break-words mt-1">
+            <p className="text-subtle group-hover:text-foreground text-xs font-normal line-clamp-2 break-words mt-1">
               {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>
@@ -69,7 +69,7 @@ export const SearchResultsOverflowBody = ({
             href={`/search?query=${encodeURIComponent(query)}`}
             onClick={onResultClick}
           >
-            <div className="pt-3 pb-3 px-4 text-base font-inter font-semibold hover: hover: hover: border-t border-gray-100 text-orange-600">
+            <div className="pt-3 pb-3 px-4 text-base font-inter font-semibold hover:text-heading border-t border-gray-100">
               See All {numberOfResults} Results
             </div>
           </Link>
@@ -212,7 +212,7 @@ export const SearchModal = ({
                 <p className="text-lg font-inter font-medium">
                   Start typing to search...
                 </p>
-                <p className="text-sm text-neutral-text-secondary mt-2">
+                <p className="text-sm text-subtle mt-2">
                   Search through blog posts
                 </p>
               </div>

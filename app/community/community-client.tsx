@@ -101,9 +101,7 @@ export default function CommunityPageClient(data) {
           <h2 className="text-3xl lg:text-4xl font-ibm-plex lg:leading-tight mb-2">
             {data.newsletter_header}
           </h2>
-          <p className="text-neutral-text-secondary mt-2">
-            {data.newsletter_cta}
-          </p>
+          <p className="text-subtle mt-2">{data.newsletter_cta}</p>
           <div className="flex justify-center mt-6">
             <div className="w-full">
               <EmailForm />
