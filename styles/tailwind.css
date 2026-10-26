@@ -93,3 +93,25 @@ pre.prism-code.language-json {
     @apply bg-background text-foreground;
   }
 }
+
+/* Page title colour. A gradient can't be a Tailwind colour, so the semantic
+   heading token is exposed as utilities instead — components still write
+   `text-heading` and never name the orange stops directly. */
+@utility text-heading {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--text-heading-start),
+    var(--text-heading-end)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-heading {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--text-heading-start),
+    var(--text-heading-end)
+  );
+}

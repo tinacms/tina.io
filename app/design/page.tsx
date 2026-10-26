@@ -30,7 +30,7 @@ const ROLES = [
   {
     name: 'PAGE_TITLE',
     label: 'Page title',
-    note: 'The one orange moment at the top. Once per page, never twice — it pairs with the wordmark above it.',
+    note: 'The one orange moment at the top, in the brand gradient. Once per page, never twice — it pairs with the wordmark above it.',
     token: 'text-heading',
   },
   {
@@ -111,12 +111,12 @@ const SCALE = [
 const COLOURS = [
   {
     swatch: 'bg-heading',
-    primitive: '--orange-500',
-    value: '#EC4815',
-    token: '--text-heading',
+    primitive: '--orange-500 → 600',
+    value: '#EC4815 → #D13F13',
+    token: '--text-heading-start / -end',
     cls: 'text-heading',
-    ratio: '3.82:1',
-    use: 'Page titles only. The official brand orange — matches the logo. Passes as large text, so it stays at title sizes (36px and up).',
+    ratio: '3.82 → 4.74:1',
+    use: 'Page titles only. A gradient that starts on the official brand orange — the logo colour — and darkens one step. Both stops pass as large text, so it stays at title sizes (36px and up).',
   },
   {
     swatch: 'bg-body',
@@ -124,7 +124,7 @@ const COLOURS = [
     value: '#1C1B2E',
     token: '--text-body',
     cls: 'text-body',
-    ratio: '16.4:1',
+    ratio: '16.9:1',
     use: 'Every other heading, every paragraph. The site default, so it rarely needs writing.',
   },
   {
@@ -148,7 +148,7 @@ const LAYERS = [
   {
     name: 'Semantic tokens',
     where: 'app/global.css',
-    example: '--text-heading: var(--orange-500)',
+    example: '--text-heading-start: var(--orange-500)',
     rule: 'Named for what they are for. Always point at a primitive, never a hex.',
   },
   {

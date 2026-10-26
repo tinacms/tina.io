@@ -323,7 +323,8 @@ module.exports = {
 
         // Semantic type colours — what the type roles in
         // components/styles/typography.ts are allowed to name.
-        heading: 'var(--text-heading)',
+        // `heading` is a gradient, so it is a utility in styles/tailwind.css
+        // rather than a flat colour here.
         body: 'var(--text-body)',
         subtle: 'var(--text-subtle)',
         'neutral-border': 'var(--neutral-border)',

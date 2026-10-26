@@ -2,7 +2,7 @@
  * Type roles for tina.io — Layer 3 of the colour system.
  *
  *   primitives        app/global.css      --orange-500: #ec4815
- *   semantic tokens   app/global.css      --text-heading: var(--orange-500)
+ *   semantic tokens   app/global.css      --text-heading-start: var(--orange-500)
  *   roles             here                PAGE_TITLE -> text-heading
  *
  * A role names a semantic colour (`text-heading`, `text-body`, `text-subtle`)
@@ -30,8 +30,9 @@ export const SECTION_HEADINGS_SIZE = 'text-xl md:text-2xl lg:text-3xl';
 /**
  * The one orange moment at the top. Once per page, never twice.
  *
- * The only role allowed `text-heading`. Brand orange is 3.82:1 on white, which
- * passes as large text but not body text — so it stays at title sizes.
+ * The only role allowed `text-heading` — a gradient from the brand orange
+ * (orange-500) to orange-600. Brand orange is 3.82:1 on white, which passes as
+ * large text but not body text, so it stays at title sizes.
  */
 export const PAGE_TITLE = `font-ibm-plex font-bold text-balance text-heading ${H1_HEADINGS_SIZE}`;
 
