@@ -22,7 +22,7 @@ import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import TableBox from '../Table/table';
 
 const icons = {
@@ -49,14 +49,10 @@ const FreeTier = ({ data }) => (
     <div className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/40 to-cyan-100">
       {data.freeTier && (
         <div className="flex flex-col sm:flex-row justify-between pb-2">
-          <h2 className="font-ibm-plex text-3xl bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-            {data.freeTier?.name}
-          </h2>
+          <h2 className="font-ibm-plex text-3xl">{data.freeTier?.name}</h2>
           <div className="flex items-baseline mt-2 sm:mt-0">
-            <h2 className="font-ibm-plex text-3xl bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-              {data.freeTier?.price}
-            </h2>
-            <span className="text-lg ml-2 bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+            <h2 className="font-ibm-plex text-3xl">{data.freeTier?.price}</h2>
+            <span className="text-lg ml-2 text-neutral-text-secondary">
               {data.freeTier?.interval}
             </span>
           </div>
@@ -91,27 +87,17 @@ const PaidTier = ({ data, isMonthly }) => {
             <FaStar className="text-lg text-white absolute -translate-x-5 translate-y-5" />
           </div>
         )}
-        <h2
-          className={`font-ibm-plex text-3xl bg-linear-to-br bg-clip-text text-transparent ${
-            data.isStarred
-              ? 'from-orange-400 via-orange-600 to-orange-800'
-              : 'from-blue-600 via-blue-800 to-blue-1000'
-          }`}
-        >
-          {data.name}
-        </h2>
+        <h2 className="font-ibm-plex text-3xl">{data.name}</h2>
         <TinaMarkdown
           content={data.description}
           components={pricingComponents}
         />
         <div className="pt-10">
-          <span className="text-3xl font-ibm-plex bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+          <span className="text-3xl font-ibm-plex">
             {isMonthly ? data.price : data.annualPrice}
           </span>
           {data.interval && (
-            <span className="pl-2 text-lg bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-              {data.interval}
-            </span>
+            <span className="pl-2 text-lg">{data.interval}</span>
           )}
         </div>
         <div
@@ -153,7 +139,7 @@ const PaidTier = ({ data, isMonthly }) => {
                         <span>{item.name}</span>
                       </div>
                       {item.description && (
-                        <div className="my-1 ml-5 text-md text-gray-600/70">
+                        <div className="my-1 ml-5 text-base text-gray-600/70">
                           {!isMonthly
                             ? (item.annualDescription ?? item.description)
                             : item.description}
@@ -283,13 +269,13 @@ export function PricingBlock({ data }) {
     <div className="max-w-7xl w-full px-8 mx-auto">
       {data.isHeadingOne ? (
         <h1
-          className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+          className={`${PAGE_TITLE} text-center justify-center lg:leading-tight`}
         >
           {data.headline}
         </h1>
       ) : (
         <h2
-          className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+          className={`${SECTION_TITLE} text-center justify-center lg:leading-tight`}
         >
           {data.headline}
         </h2>

@@ -8,7 +8,7 @@ import {
 } from 'utils/fetchPackageInfo';
 import { formatPublishedDate } from 'utils/formatPublishedDate';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { BODY_TEXT } from '@/component/styles/typography';
+import { LEDE } from '@/component/styles/typography';
 import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import { TINA_PACKAGES, type TinaPackage } from './packages';
 
@@ -77,14 +77,12 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
     <div className="relative overflow-hidden">
       <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
         <header className="relative pt-20 pb-10 md:pt-28 md:pb-14">
-          <h1 className="font-ibm-plex text-4xl leading-tight tracking-tight text-gray-900 md:text-6xl">
+          <h1 className="font-ibm-plex text-4xl leading-tight tracking-tight text-orange-600 md:text-6xl">
             {titleHead && <>{titleHead} </>}
-            <span className="bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
-              {titleTail}
-            </span>
+            <span className="text-orange-600">{titleTail}</span>
           </h1>
           {description && (
-            <p className={`mt-4 max-w-2xl text-balance ${BODY_TEXT}`}>
+            <p className={`mt-4 max-w-2xl text-balance ${LEDE}`}>
               {description}
             </p>
           )}

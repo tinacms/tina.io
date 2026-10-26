@@ -14,16 +14,14 @@ function CarouselFeatureMobileItem(data) {
     >
       <div className="flex mb-2 text-left">
         {headline && (
-          <h3
-            className={`md:text-2xl text-xl font-ibm-plex cursor-pointer text-transparent bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text`}
-          >
+          <h3 className={`md:text-2xl text-xl font-ibm-plex cursor-pointer `}>
             {headline}
           </h3>
         )}
       </div>
       {text && (
         <p
-          className={`pl-[1px] lg:text-lg md:text-md text-sm font-medium slide-up mb-4`}
+          className={`pl-[1px] lg:text-lg md:text-base text-sm font-medium slide-up mb-4`}
         >
           {text}
         </p>
@@ -51,7 +49,7 @@ export function CarouselFeatureMobile(props: CarouselFeatureMobileProps) {
   ));
   return items.length > 0 ? (
     <>
-      <h2 className="text-center font-ibm-plex text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+      <h2 className="text-center font-ibm-plex text-3xl md:text-4xl lg:text-5xl lg:leading-tight">
         {data.blockHeadline}
       </h2>
       <EmblaCarousel slides={items} />

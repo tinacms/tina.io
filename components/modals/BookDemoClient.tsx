@@ -22,7 +22,7 @@ export function DemoFormClient({
   return (
     <div className="py-10 h-full flex flex-col !w-full">
       <div className="flex justify-center pb-8">
-        <h2 className="inline-block m-0 font-ibm-plex lg:text-3xl md:text-2xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+        <h2 className="inline-block m-0 font-ibm-plex lg:text-3xl md:text-2xl lg:leading-tight">
           Choose your location
         </h2>
       </div>
@@ -60,7 +60,7 @@ export function DemoFormClient({
                   )}
                   <div className="grow text-center md:text-left lg:text-left">
                     <div className="font-medium text-lg">{person.name}</div>
-                    <div className="text-muted-foreground text-md">
+                    <div className="text-muted-foreground text-base">
                       {person.description}
                     </div>
                   </div>

@@ -1,4 +1,4 @@
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { SECTION_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import RenderButton from '@/utils/renderButtonArrayHelper';
 
@@ -35,7 +35,7 @@ export default function CallToAction(data: any) {
         </div>
 
         <div className="relative z-10 flex flex-col gap-6 items-start text-left max-w-full">
-          <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h2>
+          <h2 className={`${SECTION_TITLE}`}>{title}</h2>
           <p className="text-neutral-text-secondary max-w-md font-normal leading-relaxed text-lg">
             {description}
           </p>

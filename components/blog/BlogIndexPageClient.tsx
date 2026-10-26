@@ -46,7 +46,7 @@ export default function BlogIndexPageClient({
   return (
     <section className="p-6">
       <header className="text-center pt-8 pb-4">
-        <h1 className="font-ibm-plex text-4xl md:text-5xl lg:text-6xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+        <h1 className="font-ibm-plex text-4xl md:text-5xl lg:text-6xl">
           {strings.blogIndex.heading}
           {strings.blogIndex.pageSuffix(pageIndex)}
         </h1>
@@ -58,7 +58,7 @@ export default function BlogIndexPageClient({
             className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8"
           >
             <DynamicLink href={`${prefix}/blog/${post._sys.filename}`} passHref>
-              <h2 className="font-ibm-plex text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+              <h2 className="font-ibm-plex text-3xl lg:text-4xl lg:leading-tight group-hover: group-hover: group-hover:">
                 {unclipEmoji(post.title)}
               </h2>
             </DynamicLink>

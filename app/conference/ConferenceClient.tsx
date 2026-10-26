@@ -20,10 +20,10 @@ const HeaderBanner = ({
 }) => {
   return (
     <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br from-seafoam-100 to-seafoam-200 text-black">
-      <h1 className="font-ibm-plex text-4xl pb-4 text-orange-500">
+      <h1 className="font-ibm-plex text-4xl pb-4 text-orange-600">
         {tinaData.bannerTitle}
       </h1>
-      <h2 className="text-2xl max-w-4xl text-orange-500 font-ibm-plex pb-4">
+      <h2 className="text-2xl max-w-4xl text-orange-600 font-ibm-plex pb-4">
         {tinaData.bannerTagline}
       </h2>
       <h3 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h3>
@@ -150,9 +150,7 @@ interface Session {
 const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
   return (
     <div className="flex flex-col items-center text-center p-6 md:p-16">
-      <h2 className="text-3xl font-bold py-16 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
-        Open Source Expert Speakers
-      </h2>
+      <h2 className="text-3xl font-bold py-16">Open Source Expert Speakers</h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14">
         {speakers.map((speaker) => (
           <div
@@ -169,7 +167,7 @@ const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
               />
             </Link>
             <h3 className="font-bold text-lg pt-5">{speaker.name}</h3>
-            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
+            <h4 className="text-neutral-text-secondary text-lg pb-2 -pt-1">
               {speaker.position}
             </h4>
           </div>
@@ -239,25 +237,17 @@ function Agenda({
   if (timeSlots.length === 0) {
     return (
       <div className="flex flex-col items-center" ref={agendaRef}>
-        <h2
-          id="agenda"
-          className="text-3xl font-bold pt-16 pb-8 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
-        >
+        <h2 id="agenda" className="text-3xl font-bold pt-16 pb-8">
           Agenda
         </h2>
-        <p className="text-lg text-gray-600 pb-16">
-          The full agenda is coming soon.
-        </p>
+        <p className="text-lg pb-16">The full agenda is coming soon.</p>
       </div>
     );
   }
 
   return (
     <div className="flex flex-col items-center" ref={agendaRef}>
-      <h2
-        id="agenda"
-        className="text-3xl font-bold pt-16 pb-8 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
-      >
+      <h2 id="agenda" className="text-3xl font-bold pt-16 pb-8">
         Agenda
       </h2>
 
@@ -291,7 +281,7 @@ function Agenda({
                         <h3 className="text-lg font-bold">
                           {breakSession.speechTitle}
                         </h3>
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-neutral-text-secondary text-sm">
                           {breakSession.speechDescription}
                         </p>
                       </div>
@@ -324,7 +314,7 @@ function Agenda({
                               </span>
                             </div>
                           )}
-                          <p className="text-gray-600 text-sm pt-2">
+                          <p className="text-neutral-text-secondary text-sm pt-2">
                             {talk.speechDescription}
                           </p>
                         </div>
@@ -361,7 +351,7 @@ function Agenda({
                     <h3 className="text-lg leading-5 font-bold">
                       {breakSession.speechTitle}
                     </h3>
-                    <p className="text-gray-600 text-sm pt-1">
+                    <p className="text-neutral-text-secondary text-sm pt-1">
                       {breakSession.speechDescription}
                     </p>
                   </div>
@@ -398,7 +388,7 @@ function Agenda({
                         <span className="text-sm">{talk.talkSpeakerName}</span>
                       </div>
                     )}
-                    <p className="text-gray-600 text-sm pt-2">
+                    <p className="text-neutral-text-secondary text-sm pt-2">
                       {talk.speechDescription}
                     </p>
                   </div>
@@ -471,7 +461,7 @@ function ConferencePage({
         scrollToAgenda={scrollToAgenda}
       />
       <div className="flex flex-col justify-center items-center text-center p-16">
-        <h2 className="text-3xl font-bold pb-4 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
+        <h2 className="text-3xl font-bold pb-4">
           {tinaData.data?.conference?.about?.heading}
         </h2>
         <div className="text-lg max-w-4xl">

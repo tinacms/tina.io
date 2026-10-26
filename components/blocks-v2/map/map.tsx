@@ -8,7 +8,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa6';
 import type { PageBlocksMap } from 'tina/__generated__/types';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { SECTION_TITLE } from '@/component/styles/typography';
 import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import { allCountries } from './worldmapData';
 
@@ -274,9 +274,7 @@ export const OfficeMap = ({ data }: { data: PageBlocksMap }) => {
 
   return (
     <div className="flex flex-col gap-8 items-center justify-center p-10 max-w-7xl mx-auto relative">
-      {heading && (
-        <h2 className={` font-ibm-plex ${H1_HEADINGS_SIZE}`}>{heading}</h2>
-      )}
+      {heading && <h2 className={`${SECTION_TITLE}`}>{heading}</h2>}
       {content && (
         <div className="text-neutral-text-secondary">
           <TinaMarkdown content={content} components={docAndBlogComponents} />

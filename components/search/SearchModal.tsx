@@ -53,10 +53,10 @@ export const SearchResultsOverflowBody = ({
           className="py-3 px-4 border-b border-gray-100 group hover:bg-gray-50 transition-colors"
         >
           <Link href={`/blog/${item.slug}`} onClick={onResultClick}>
-            <h2 className="text-md font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
+            <h2 className="text-base font-inter font-semibold group-hover: group-hover: group-hover: break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
-            <p className="text-gray-600 group-hover:text-gray-800 text-xs font-normal line-clamp-2 break-words mt-1">
+            <p className="text-neutral-text-secondary group-hover:text-foreground text-xs font-normal line-clamp-2 break-words mt-1">
               {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>
@@ -69,13 +69,13 @@ export const SearchResultsOverflowBody = ({
             href={`/search?query=${encodeURIComponent(query)}`}
             onClick={onResultClick}
           >
-            <div className="pt-3 pb-3 px-4 text-md font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent hover:from-orange-300 hover:via-orange-400 hover:to-orange-600 border-t border-gray-100">
+            <div className="pt-3 pb-3 px-4 text-base font-inter font-semibold hover: hover: hover: border-t border-gray-100 text-orange-600">
               See All {numberOfResults} Results
             </div>
           </Link>
         ) : (
           !isLoading && (
-            <div className="pt-8 px-4 text-center text-md font-inter font-semibold text-gray-500">
+            <div className="pt-8 px-4 text-center text-base font-inter font-semibold text-gray-500">
               No Llamas Found...
             </div>
           )
@@ -123,7 +123,7 @@ export const SearchResultsOverflowTabs = ({
         </div>
       </div>
       {isLoading && (
-        <div className="pt-8 px-6 text-center text-md bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-ibm-plex">
+        <div className="pt-8 px-6 text-center text-base font-ibm-plex text-orange-600">
           Mustering all the Llamas...
         </div>
       )}
@@ -212,7 +212,7 @@ export const SearchModal = ({
                 <p className="text-lg font-inter font-medium">
                   Start typing to search...
                 </p>
-                <p className="text-sm text-gray-400 mt-2">
+                <p className="text-sm text-neutral-text-secondary mt-2">
                   Search through blog posts
                 </p>
               </div>

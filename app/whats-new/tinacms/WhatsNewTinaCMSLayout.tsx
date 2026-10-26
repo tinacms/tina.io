@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FaGithub, FaNewspaper } from 'react-icons/fa';
-import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { PAGE_TITLE } from '@/component/styles/typography';
 
 interface ChangeItem {
   pull_request_number?: string;
@@ -41,7 +41,7 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
         </>
       )}
       {change.changesDescription && (
-        <p className="order-last w-full wrap-anywhere text-gray-700 sm:order-none sm:col-start-3 sm:w-auto">
+        <p className="order-last w-full wrap-anywhere text-neutral-text-secondary sm:order-none sm:col-start-3 sm:w-auto">
           {change.changesDescription}
         </p>
       )}
@@ -78,10 +78,8 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
       className="mb-6 p-10 shadow-xl rounded-lg bg-linear-to-br from-white/25 via-white/50 to-white/75"
     >
       <div className="flex justify-between items-baseline mb-6">
-        <h2 className="text-2xl bg-linear-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent font-semibold">
-          Version {item.versionNumber}
-        </h2>
-        <p className="text-sm text-gray-500">
+        <h2 className="text-2xl font-semibold">Version {item.versionNumber}</h2>
+        <p className="text-sm text-neutral-text-secondary">
           Released on {new Date(item.dateReleased).toLocaleDateString()}
         </p>
       </div>
@@ -91,7 +89,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
           key={`section-${section.changesTitle}-${sectionIndex}`}
           className="mb-6"
         >
-          <h3 className="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-2">
+          <h3 className="text-lg font-semibold mb-3 border-b border-gray-200 pb-2">
             {section.changesTitle}
           </h3>
           {section.changesList && section.changesList.length > 0 ? (
@@ -104,7 +102,9 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
               ))}
             </ul>
           ) : (
-            <p className="text-gray-500 italic">No changes in this section</p>
+            <p className="text-neutral-text-secondary italic">
+              No changes in this section
+            </p>
           )}
         </div>
       ))}
@@ -118,7 +118,7 @@ const WhatsNewTinaCMSPageLayout = ({ data }) => {
   return (
     <div className="p-6 py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-5xl md:mx-auto">
       <h1
-        className={`${H1_HEADINGS_SIZE} text-center justify-center font-ibm-plex lg:leading-tight`}
+        className={`${PAGE_TITLE} text-center justify-center lg:leading-tight`}
       >
         What's new with <span className="text-orange-500">TinaCMS</span>
       </h1>

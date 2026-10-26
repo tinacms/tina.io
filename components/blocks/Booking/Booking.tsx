@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { SECTION_TITLE } from '@/component/styles/typography';
 
 export type BookingItem = {
   name: string;
@@ -31,7 +31,7 @@ const BookingCard = ({ cardItem }) => {
         )}
         <div className="grow text-center md:text-left lg:pl-4 lg:text-left">
           <div className="font-medium text-3xl">{cardItem.name}</div>
-          <div className="text-muted-foreground text-md">
+          <div className="text-muted-foreground text-base">
             {cardItem.description}
           </div>
         </div>
@@ -100,18 +100,18 @@ const BookingBlock = ({ data }) => {
         <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
           {data.isHeadingOne ? (
             <h1
-              className={`${BLOCK_HEADINGS_SIZE} w-full text-center inline-block m-0 font-ibm-plex whitespace-nowrap lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
+              className={`${SECTION_TITLE} w-full text-center inline-block m-0 whitespace-nowrap lg:leading-tight`}
             >
               {data.title}
             </h1>
           ) : (
             <h2
-              className={`${BLOCK_HEADINGS_SIZE} w-full text-center inline-block m-0 font-ibm-plex whitespace-nowrap lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
+              className={`${SECTION_TITLE} w-full text-center inline-block m-0 whitespace-nowrap lg:leading-tight`}
             >
               {data.title}
             </h2>
           )}
-          <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight text-black">
+          <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight">
             {data.description}
           </h3>
           {meetingPeople.map((cardItem, index) => (

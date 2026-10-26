@@ -2,10 +2,7 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import {
-  BLOCK_HEADINGS_SIZE,
-  H1_HEADINGS_SIZE,
-} from '@/component/styles/typography';
+import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 import { LiteYouTube } from '../VideoEmbed/LiteYouTube';
@@ -26,7 +23,7 @@ export function ShowcaseBlock({ data, index }) {
       >
         <div className="featureText">
           {data.headline && (
-            <h3 className="text-3xl lg:text-4xl font-ibm-plex lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent mb-2">
+            <h3 className="text-3xl lg:text-4xl font-ibm-plex lg:leading-tight mb-2">
               {data.headline}
             </h3>
           )}
@@ -158,13 +155,13 @@ export function ShowcaseItemsBlock({ data, index }) {
         {data.title &&
           (data.blockSettings.isHeadingOne ? (
             <h1
-              className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+              className={`${PAGE_TITLE} text-center justify-center lg:leading-tight`}
             >
               {data.title}
             </h1>
           ) : (
             <h2
-              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+              className={`${SECTION_TITLE} text-center justify-center lg:leading-tight`}
             >
               {data.title}
             </h2>

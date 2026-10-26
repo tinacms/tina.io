@@ -2,10 +2,7 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: React is required for JSX
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import {
-  BLOCK_HEADINGS_SIZE,
-  H1_HEADINGS_SIZE,
-} from '@/component/styles/typography';
+import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { ModalB } from '../ModalButton/ModalButton';
 
@@ -37,7 +34,7 @@ const PartnerCard = ({ data }) => {
             />
           ) : (
             <span
-              className="text-xl font-ibm-plex text-blue-1000"
+              className="text-xl font-ibm-plex text-blue-700"
               data-tina-field={tinaField(data, 'name')}
             >
               {data.name}
@@ -119,7 +116,7 @@ const GetInContactCard = ({ data }) => (
   <div className="flex h-full flex-col gap-4 rounded-lg border-2 border-dashed border-blue-200 bg-blue-50/40 p-6 md:p-8">
     {data.contactCardTitle && (
       <h3
-        className="text-xl font-ibm-plex text-blue-1000"
+        className="text-xl font-ibm-plex"
         data-tina-field={tinaField(data, 'contactCardTitle')}
       >
         {data.contactCardTitle}
@@ -169,13 +166,13 @@ export function PartnerGridBlock({ data, index }) {
         {data.title &&
           (data.blockSettings?.isHeadingOne ? (
             <h1
-              className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+              className={`${PAGE_TITLE} text-center justify-center lg:leading-tight`}
             >
               {data.title}
             </h1>
           ) : (
             <h2
-              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+              className={`${SECTION_TITLE} text-center justify-center lg:leading-tight`}
             >
               {data.title}
             </h2>

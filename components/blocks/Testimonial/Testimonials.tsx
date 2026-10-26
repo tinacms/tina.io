@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { SECTION_TITLE } from '@/component/styles/typography';
 import Marquee from '@/components/ui/marquee';
 import { cn } from '@/lib/utils';
 
@@ -24,7 +24,7 @@ const TestimonialCard = ({ ...data }) => {
         <Image src="/quotation.svg" alt="quotation" width={24} height={24} />
         <blockquote className="text-sm text-black leading-relaxed">
           {data.testimonial && (
-            <div className="text-base lg:text-md line-clamp-3">
+            <div className="text-base lg:text-base line-clamp-3">
               <TinaMarkdown content={data.testimonial} />
             </div>
           )}
@@ -47,9 +47,7 @@ const TestimonialCard = ({ ...data }) => {
             onError={() => setImageError(true)}
           />
           <div className="flex flex-col">
-            {data.name && (
-              <h4 className="text-lg text-orange-500">{data.name}</h4>
-            )}
+            {data.name && <h4 className="text-lg">{data.name}</h4>}
             {(data.username || data.date) && (
               <p className="text-sm text-black">
                 {data.username && <>@{data.username}</>}
@@ -81,7 +79,7 @@ export default function TestimonialsBlock({ data }) {
     <div className="max-w-[1500px] m-auto">
       <div className="flex flex-col items-center justify-center">
         <h2
-          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex m-auto inline-block pb-8 lg:leading-tight text-black text-balance text-center lg:text-left`}
+          className={`${SECTION_TITLE} m-auto inline-block pb-8 lg:leading-tight text-balance text-center lg:text-left`}
           data-tina-field={tinaField(data, 'title')}
           ref={titleRef}
         >

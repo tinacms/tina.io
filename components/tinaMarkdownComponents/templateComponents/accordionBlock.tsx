@@ -64,7 +64,7 @@ export const AccordionBlock = ({
               className="flex cursor-pointer items-center justify-between px-6 py-6"
               onClick={() => toggleExpand(index)}
             >
-              <h4 className="text-gray-900 text-lg font-ibm-plex mt-0.5">
+              <h4 className="text-lg font-ibm-plex mt-0.5">
                 {item.heading || 'Click to expand'}
               </h4>
               <div>

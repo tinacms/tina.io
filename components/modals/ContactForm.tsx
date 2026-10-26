@@ -253,7 +253,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
           height={48}
           className="w-12 h-12"
         />
-        <h2 className="inline-block m-0 md:text-4xl font-ibm-plex text-2xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+        <h2 className="inline-block m-0 md:text-4xl font-ibm-plex text-2xl lg:text-3xl lg:leading-tight">
           {config.heading}
         </h2>
       </div>

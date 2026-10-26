@@ -7,7 +7,9 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    /* The single ink: #1C1B2E, matching --color-black in app/global.css so
+       headings and body copy are one colour rather than two near-identical darks. */
+    --foreground: 243 26% 14.3%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;

@@ -102,7 +102,7 @@ export const EmailForm = (props: EmailFormProps) => {
             props.isFooter ? 'w-auto' : ''
           }`}
         >
-          <h2 className="inline-block lg:text-left md:text-left sm:text-center m-0 md:text-4xl font-ibm-plex lg:text-3xl text-2xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+          <h2 className="inline-block lg:text-left md:text-left sm:text-center m-0 md:text-4xl font-ibm-plex lg:text-3xl text-2xl lg:leading-tight">
             Join the Herd! 🦙
           </h2>
           <p className="text-left w-full mt-2 mb-4">

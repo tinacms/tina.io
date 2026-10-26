@@ -219,7 +219,7 @@ export const docAndBlogComponents: Components<{
   h1: (props) => <FormatHeaders level={1} {...props} />,
   h2: (props) => <FormatHeaders level={2} {...props} />,
   h3: (props) => <FormatHeaders level={3} {...props} />,
-  h4: (props) => <FormatHeaders level={5} {...props} />,
+  h4: (props) => <FormatHeaders level={4} {...props} />,
   h5: (props) => <FormatHeaders level={5} {...props} />,
   h6: (props) => <FormatHeaders level={6} {...props} />,
   img: (props) => {
@@ -322,7 +322,7 @@ export const docAndBlogComponents: Components<{
                 components={docAndBlogComponents}
               />
               {property.default && (
-                <div className="text-slate-900 text-md">
+                <div className="text-slate-900 text-base">
                   Default is{' '}
                   <span className="font-source-code-pro text-orange-500">
                     {property.default}
@@ -356,7 +356,7 @@ export const docAndBlogComponents: Components<{
               {required && (
                 <p className="text-orange-500 font-medium text-sm">REQUIRED</p>
               )}
-              <h3 className="text-md font-medium text-blue-500 font-ibm-plex">
+              <h3 className="text-base font-medium font-ibm-plex">
                 {groupName || 'Object'}
               </h3>
             </div>
@@ -394,7 +394,7 @@ export const docAndBlogComponents: Components<{
         }`}
       >
         {props.title && (
-          <h2 className="text-3xl text-blue-600 mb-6">{props.title}</h2>
+          <h2 className="text-3xl text-orange-600 mb-6">{props.title}</h2>
         )}
 
         {/* Process properties in order, grouping only adjacent items with same groupName */}
@@ -474,7 +474,7 @@ export const docAndBlogComponents: Components<{
         {props.property?.some((property) => property.required) && (
           <div className=" mx-6 mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
             <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 shrink-0" />
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-neutral-text-secondary">
               All properties marked as{' '}
               <span className="text-[#FF5533] font-medium">REQUIRED</span> must
               be specified for the field to work properly.
@@ -816,22 +816,25 @@ function FormatHeaders({ children, level }) {
       ? unclipEmoji(content.map((node) => node.text).join(''))
       : children;
 
+  // Section titles are orange, everything below them is ink — the same
+  // hierarchy as the marketing blocks, so colour does not invert when a reader
+  // moves from a feature page into a post. See /design.
   const styles = {
-    1: 'bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-4xl mt-16! mb-4',
-    2: 'bg-linear-to-br from-blue-800 via-blue-900 to-blue-1000 bg-clip-text text-transparent text-3xl mt-12! mb-2',
-    3: 'bg-linear-to-br from-blue-800 via-blue-900 to-blue-1000 bg-clip-text text-transparent text-xl font-medium mt-8! mb-2 !important',
-    4: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-xl font-medium mt-2! mb-2',
-    5: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg font-medium mt-2! mb-1',
-    6: 'text-gray-500 text-base font-normal mt-2 mb-1',
+    1: 'text-orange-600 text-4xl font-bold mt-16! mb-4',
+    2: 'text-orange-600 text-3xl font-bold mt-12! mb-2',
+    3: 'text-xl font-semibold mt-8! mb-2',
+    4: 'text-xl font-medium mt-2! mb-2',
+    5: 'text-lg font-medium mt-2! mb-1',
+    6: 'text-neutral-text-secondary text-base font-normal mt-2 mb-1',
   };
 
   const linkColor = {
-    1: 'text-orange-500',
-    2: 'text-orange-500',
-    3: 'text-blue-900',
-    4: 'text-orange-500',
-    5: 'text-orange-500',
-    6: 'text-gray-500',
+    1: 'text-orange-600',
+    2: 'text-orange-600',
+    3: 'text-neutral-text-secondary',
+    4: 'text-neutral-text-secondary',
+    5: 'text-neutral-text-secondary',
+    6: 'text-neutral-text-secondary',
   };
 
   const handleHeaderClick = (event) => {

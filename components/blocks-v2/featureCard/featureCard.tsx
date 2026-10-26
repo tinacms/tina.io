@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import type { PageBlocksFeatureCard } from 'tina/__generated__/types';
 import {
-  BLOCK_HEADINGS_SIZE,
-  SECTION_HEADINGS_SIZE,
+  CARD_TITLE,
+  EYEBROW,
+  SECTION_TITLE,
 } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
@@ -70,16 +71,15 @@ function FeatureCardItem(data: {
     tinaOrange: 'text-orange-500',
   };
 
-  const subheadingGradientMap = {
-    black:
-      'bg-gradient-to-l from-black/80 to-black/40 bg-clip-text text-transparent',
-    blue: 'bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent',
-    tinaOrange:
-      'bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent',
+  // Ink for the neutral themes; orange only where the card is the orange one.
+  const subheadingColourMap = {
+    black: 'text-black',
+    blue: 'text-blue-600',
+    tinaOrange: 'text-orange-600',
   };
 
   const hexagonClass = hexagonColourMap[themeColour] || 'text-black';
-  const subheadingClass = subheadingGradientMap[themeColour] || 'text-black';
+  const subheadingClass = subheadingColourMap[themeColour] || 'text-black';
 
   return (
     <div
@@ -88,10 +88,8 @@ function FeatureCardItem(data: {
     >
       <HexagonBackground headlineClass={`hidden lg:block ${hexagonClass}`} />
       <div className="relative z-10 flex flex-col gap-2 w-full flex-1">
-        <h3 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h3>
-        <h4
-          className={`${SECTION_HEADINGS_SIZE} font-ibm-plex-[400] ${subheadingClass}`}
-        >
+        <h3 className={`${SECTION_TITLE}`}>{title}</h3>
+        <h4 className={`${CARD_TITLE} -[400] ${subheadingClass}`}>
           {featureHeadline}
         </h4>
         <div className="flex-1" />
@@ -129,10 +127,8 @@ export default function FeatureCard(data: { data: PageBlocksFeatureCard }) {
 
   return (
     <Container className="flex flex-col items-center gap-6">
-      <h3 className="font-ibm-plex font-semibold text-orange-500">
-        {sectionEyebrow}
-      </h3>
-      <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h2>
+      <h3 className={EYEBROW}>{sectionEyebrow}</h3>
+      <h2 className={`${SECTION_TITLE}`}>{title}</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-10 py-10">
         {cards?.map((card) => (
           <FeatureCardItem key={card.title} data={card} />

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import type { PageBlocksHeroV2 } from 'tina/__generated__/types';
 import { tinaField } from 'tinacms/dist/react';
-import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { PAGE_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { cn } from '@/lib/utils';
@@ -36,7 +36,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           )}
           {title && (
             <h1
-              className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
+              className={`${PAGE_TITLE} max-w-md md:max-w-none`}
               data-tina-field={tinaField(data.data, 'title')}
             >
               {curlyBracketFormatter(title)}

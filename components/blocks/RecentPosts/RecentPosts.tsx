@@ -6,10 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { tinaField } from 'tinacms/dist/react';
-import {
-  BLOCK_HEADINGS_SIZE,
-  SECTION_HEADINGS_SIZE,
-} from '@/component/styles/typography';
+import { CARD_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import Container from '@/component/util/Container';
 import { extractYouTubeId } from '../VideoEmbed/utils';
@@ -136,7 +133,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
       <section className="col-span-3 text-3xl lg:col-span-2 flex flex-col gap-8 items-center md:items-start">
         {featuredPost && <FeaturedPost featuredPost={featuredPost} />}
         <h2
-          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex lg:leading-tight col-span-3 text-black text-balance`}
+          className={`${SECTION_TITLE} lg:leading-tight col-span-3 text-balance`}
           data-tina-field={tinaField(data, 'title')}
         >
           {data?.title || 'Recent Posts'}
@@ -161,7 +158,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
         className={'relative z-10 col-span-3 lg:col-span-1'}
       >
         <h3
-          className={`block text-center md:text-left ${SECTION_HEADINGS_SIZE} font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
+          className={`${CARD_TITLE} block text-center md:text-left pb-8 lg:leading-tight text-balance`}
         >
           Blog Posts
         </h3>

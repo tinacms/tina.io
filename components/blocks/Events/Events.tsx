@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
-import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { SECTION_TITLE } from '@/component/styles/typography';
 import eventsData from '../../../content/events/master-events.json';
 import {
   calculateEventStatus,
@@ -108,11 +108,9 @@ export const Card = ({ cardItem, onHover }) => {
                 } to go`}
           </span>
         )}
-        <h3 className="font-ibm-plex text-2xl mb-1 text-black">
-          {cardItem.headline}
-        </h3>
+        <h3 className="font-ibm-plex text-2xl mb-1">{cardItem.headline}</h3>
         <div
-          className={`flex items-center text-md ${
+          className={`flex items-center text-base ${
             isLiveOrPastEvent ? 'text-gray-500' : 'text-black'
           }`}
         >
@@ -121,8 +119,8 @@ export const Card = ({ cardItem, onHover }) => {
           </p>
         </div>
         <p
-          className={`text-md ${
-            isLiveOrPastEvent ? 'text-gray-500' : 'text-black'
+          className={`text-base ${
+            isLiveOrPastEvent ? 'text-neutral-text-secondary' : 'text-black'
           }`}
         >
           {cardItem.location}
@@ -212,7 +210,7 @@ const EventsBlock = () => {
   return (
     <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8 flex flex-col gap-8">
       <h2
-        className={`${H1_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight text-black text-balance text-center`}
+        className={`${SECTION_TITLE} inline-block lg:leading-tight text-balance text-center`}
       >
         {eventsData.title}
       </h2>

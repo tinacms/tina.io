@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import css from 'styled-jsx/css';
 import { tinaField } from 'tinacms/dist/react';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { SECTION_TITLE } from '@/component/styles/typography';
 import { splitOneAndJoin } from './CompareBox.template';
 
 function hexToRgba(hex, alpha) {
@@ -47,9 +47,7 @@ const CompanyItem = ({ company, onClick }) => {
       )}
       <span
         className={`font-ibm-plex  ${
-          company.active
-            ? 'bg-linear-to-br text-black bg-clip-text'
-            : 'text-gray-500'
+          company.active ? 'text-black' : 'text-gray-500'
         }`}
       >
         <div className="lg:text-xl md:text-sm text-xs">{company.headline}</div>
@@ -122,7 +120,7 @@ const CompanyCard = ({ company, criteria }) => {
           />
         )}
 
-        <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-md text-xs font-bold text-white whitespace-nowrap">
+        <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-base text-xs font-bold text-white whitespace-nowrap">
           {company.headline}
         </h3>
       </div>
@@ -320,14 +318,14 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
       <div className="px-8 py-8 md:px-8 bg-linear-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
         <h2
           data-tina-field={tinaField(data, 'heading')}
-          className={`${BLOCK_HEADINGS_SIZE} pl-3 font-ibm-plex flex items-center text-center justify-center lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8`}
+          className={`${SECTION_TITLE} pl-3 flex items-center text-center justify-center lg:leading-tight text-balance px-2 mt-10 pb-8`}
         >
           {data.heading}
         </h2>
 
         <p
           data-tina-field={tinaField(data, 'subheading')}
-          className="text-center text-gray-600 text-sm font-semibold md:text-base -mt-4 mb-8"
+          className="text-center text-neutral-text-secondary text-sm font-semibold md:text-base -mt-4 mb-8"
         >
           {data.subheading}
         </p>

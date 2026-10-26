@@ -26,9 +26,7 @@ export const SearchHeader = ({ query }: { query: string }) => {
   return (
     <div className="flex justify-between relative pt-4">
       <div className="flex items-center gap-3">
-        <h1 className="font-ibm-plex text-3xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
-          Results for "{displayQuery}"
-        </h1>
+        <h1 className="font-ibm-plex text-3xl">Results for "{displayQuery}"</h1>
         {isExactSearch && (
           <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
             Exact Match
@@ -128,7 +126,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
           </div>
         </div>
         {isLoading && (
-          <div className="pt-10 text-2xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-ibm-plex">
+          <div className="pt-10 text-2xl text-orange-600 font-ibm-plex">
             Mustering all the Llamas...
           </div>
         )}
@@ -149,10 +147,10 @@ export const SearchBody = ({ results }: { results: any }) => {
       {results?.blogs?.results.map((item: any) => (
         <div key={item.objectID} className="py-4 px-4 border-b group">
           <Link href={`/blog/${item.slug}`}>
-            <h2 className="text-xl font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
+            <h2 className="text-xl font-inter font-semibold group-hover: group-hover: group-hover: break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
-            <p className="text-gray-600 group-hover:text-gray-800 text-sm font-normal line-clamp-3 break-words">
+            <p className="text-neutral-text-secondary group-hover:text-foreground text-sm font-normal line-clamp-3 break-words">
               {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>

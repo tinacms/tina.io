@@ -7,10 +7,7 @@ export const curlyBracketFormatter = (byLine: string) => {
     if (part.startsWith('{') && part.endsWith('}')) {
       const content = part.slice(1, -1);
       return (
-        <span
-          key={`${index}-${part}`}
-          className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent"
-        >
+        <span key={`${index}-${part}`} className="text-orange-600">
           {content}
         </span>
       );

@@ -1,9 +1,6 @@
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import {
-  BLOCK_HEADINGS_SIZE,
-  H1_HEADINGS_SIZE,
-} from '@/component/styles/typography';
+import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
 import { SideImageHero } from './SideImageHero';
@@ -36,14 +33,14 @@ export const HeroFeature = ({ item, spacing, children }) => {
       <div className="flex flex-col gap-2">
         {item.headline && item.blockSettings?.isHeadingOne ? (
           <h1
-            className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center font-bold text-balance`}
+            className={`${PAGE_TITLE} text-center`}
             data-tina-field={tinaField(item, 'headline')}
           >
             {item.headline}
           </h1>
         ) : (
           <h2
-            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-black text-center font-bold text-balance`}
+            className={`${SECTION_TITLE} text-center`}
             data-tina-field={tinaField(item, 'headline')}
           >
             {item.headline}
@@ -51,7 +48,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
         )}
         {item.headline2 && (
           <h2
-            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-black text-center font-bold text-balance`}
+            className={`${SECTION_TITLE} text-center`}
             data-tina-field={tinaField(item, 'headline2')}
           >
             {item.headline2}

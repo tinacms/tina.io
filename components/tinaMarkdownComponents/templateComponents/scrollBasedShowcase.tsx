@@ -215,11 +215,11 @@ export default function ScrollBasedShowcase(data: {
                     }}
                   >
                     <div
-                      className={`bg-linear-to-br bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 ${
+                      className={`text-xl font-medium mt-2 mb-2 ${
                         isFocused
-                          ? 'from-orange-400 via-orange-500 to-orange-600'
-                          : 'from-gray-800 to-gray-700'
-                      } !important`}
+                          ? 'text-orange-600'
+                          : 'text-neutral-text-secondary'
+                      }`}
                     >
                       {item.title}
                     </div>
@@ -233,11 +233,7 @@ export default function ScrollBasedShowcase(data: {
                     }}
                   >
                     <h2
-                      className={`bg-linear-to-br  bg-clip-text text-transparent text-3xl mt-4 mb-3 ${
-                        isFocused
-                          ? 'from-orange-400 via-orange-500 to-orange-600'
-                          : 'from-gray-800 to-gray-700'
-                      }`}
+                      className={` text-3xl mt-4 mb-3 ${isFocused ? ' ' : ' '}`}
                     >
                       {item.title}
                     </h2>

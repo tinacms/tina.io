@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FaNewspaper } from 'react-icons/fa';
-import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { PAGE_TITLE } from '@/component/styles/typography';
 import { WhatsNewCard } from '../tinacms/WhatsNewTinaCMSLayout';
 
 export const WhatsNewTinaCloudPageLayout = ({ data }) => {
@@ -9,7 +9,7 @@ export const WhatsNewTinaCloudPageLayout = ({ data }) => {
   return (
     <div className="p-6 py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-5xl md:mx-auto">
       <h1
-        className={`${H1_HEADINGS_SIZE} text-center justify-center font-ibm-plex lg:leading-tight`}
+        className={`${PAGE_TITLE} text-center justify-center lg:leading-tight`}
       >
         What's new with <span className="text-orange-500">TinaCloud</span>
       </h1>

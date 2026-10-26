@@ -2,7 +2,7 @@ import type { IconType } from 'react-icons';
 import { FaHourglassHalf, FaRegCheckCircle, FaRegClock } from 'react-icons/fa';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { BLOCK_HEADINGS_SIZE, BODY_TEXT } from '@/component/styles/typography';
+import { LEDE, SECTION_TITLE } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
@@ -22,15 +22,12 @@ const iconColorClasses: Record<string, string> = {
   FaRegClock: 'text-blue-500',
 };
 
-// The headline uses a gradient `bg-clip-text` fill, which renders text (and a
-// strikethrough line) transparent. Restore a visible fill on struck text so
-// crossed-out items read clearly.
+// The headline is a flat fill now, so struck text needs no transparency
+// workaround — only a decoration colour that reads against it.
 const headlineComponents = {
   p: (props: any) => <>{props.children}</>,
   strikethrough: (props: any) => (
-    <s className="[-webkit-text-fill-color:#144696] decoration-blue-800">
-      {props.children}
-    </s>
+    <s className="decoration-orange-600">{props.children}</s>
   ),
 };
 
@@ -64,7 +61,7 @@ const Roadmap = ({ data, last = false, index }) => {
             )}
             <h3
               data-tina-field={tinaField(data, 'heading')}
-              className="text-2xl lg:text-3xl font-ibm-plex lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent"
+              className="text-2xl lg:text-3xl font-ibm-plex lg:leading-tight"
             >
               <TinaMarkdown
                 content={data.heading}
@@ -75,7 +72,7 @@ const Roadmap = ({ data, last = false, index }) => {
         )}
         {data.content && (
           <div
-            className={`lg:max-w-prose ${BODY_TEXT}`}
+            className={`lg:max-w-prose ${LEDE}`}
             data-tina-field={tinaField(data, 'content')}
           >
             <TinaMarkdown content={data.content} />
@@ -101,7 +98,7 @@ export function RoadmapGridBlock({ data, index }) {
       <Container width="medium">
         <h2
           data-tina-field={tinaField(data, 'headline')}
-          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight  mb-4`}
+          className={`${SECTION_TITLE} inline-block lg:leading-tight mb-4`}
         >
           {data.headline}
         </h2>

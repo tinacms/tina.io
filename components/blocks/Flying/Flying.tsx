@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { SECTION_TITLE } from '@/component/styles/typography';
 import CloudsOne from '../../../public/svg/clouds-1.svg';
 import CloudsTwo from '../../../public/svg/clouds-2.svg';
 
@@ -11,9 +11,7 @@ export function FlyingBlock({ data, index }) {
         <div className="learnContainer">
           <div>
             {data.headline && (
-              <h3 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>
-                {data.headline}
-              </h3>
+              <h3 className={`${SECTION_TITLE}`}>{data.headline}</h3>
             )}
             {data.text && <p className="text">{data.text}</p>}
             {data.buttons?.map((button, index) => (

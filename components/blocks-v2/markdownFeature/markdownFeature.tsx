@@ -1,6 +1,6 @@
 import { FaCheckCircle } from 'react-icons/fa';
 import type { PageBlocksMarkdownFeature } from 'tina/__generated__/types';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { SECTION_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { TerminalPanel } from './TerminalPanel';
@@ -31,7 +31,7 @@ export default function MarkdownFeature(data: {
       </div>
       <div className="flex flex-col gap-6 order-2 md:order-2">
         {title && (
-          <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>
+          <h2 className={`${SECTION_TITLE}`}>
             {curlyBracketFormatter(title)}
             {subtitle && (
               <>
