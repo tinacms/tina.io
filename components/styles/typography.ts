@@ -1,105 +1,144 @@
 /**
- * Type roles for tina.io — the class layer of the design system.
+ * Type roles for tina.io — the names components use.
  *
- *   primitives        app/global.css      --orange-500: #ec4815
- *   semantic tokens   app/global.css      --text-heading-start: var(--orange-500)
- *   roles             here                PAGE_TITLE -> text-heading
+ *   primitives        app/global.css        --orange-500: #ec4815
+ *   semantic tokens   app/global.css        --text-heading-start: var(--orange-500)
+ *   role specs        styles/tailwind.css   @utility role-page-title { … }
+ *   role names        here                  PAGE_TITLE = 'role-page-title'
  *
- * Each role carries everything about how its text looks: family, size at
- * every breakpoint, weight, line height, letter spacing, wrapping and colour.
- * A component should never need to add another typography class next to a
- * role — reaching for one is a sign a role is missing, so add it here rather
- * than working around it in a component.
+ * Every role is a named utility in styles/tailwind.css that sets family, size
+ * at every breakpoint, weight, line height, letter spacing, case, wrapping and
+ * colour. The spec lives there once, so markdown stylesheets can @apply the
+ * same role a component uses. Read the full set, rendered, at /design.
  *
- * What a role deliberately leaves out is layout: margins, alignment, width
- * and wrapping limits like `whitespace-nowrap` depend on where the text sits,
- * so those stay with the component.
- *
- * Colour follows what a heading *does*, not which tag it uses — a plan name
- * inside a pricing card is a card title whether it is marked up as h2 or h3.
- * Heading level stays for document structure and search.
- *
- * Weights match the font files that actually ship: IBM Plex Sans is loaded
- * at 600 (SemiBold) and 500 (Medium) only, so no heading asks for bold —
- * that would make the browser fake it. Inter (`font-sans`) has 400/500/700.
- * IBM Plex Mono (`font-mono`) has 400/500/600 and an italic.
+ * The rules:
+ * - Use a role and nothing else for type. Never add a size, weight, family,
+ *   line-height, tracking, case or text colour class next to one. Needing one
+ *   means a role is missing: add it to styles/tailwind.css and here.
+ * - Layout classes (margin, alignment, width, truncation) are fine.
+ * - LINK is the one class that combines with a role (it only adds colour and
+ *   underline).
+ * - Colour follows the surface: on a dark container use ON_DARK, on a chip or
+ *   coloured row use a SURFACE. Roles inside both recolour themselves.
+ * - Colour follows what text does, not the tag: a plan name in a pricing card
+ *   is CARD_TITLE whether it is an h2 or an h3.
  */
 
-// The ramp, for layouts that need a size on its own.
-export const H1_HEADINGS_SIZE = 'text-4xl md:text-5xl lg:text-6xl';
+// ─── Headings ────────────────────────────────────────────────────────────
 
-export const BLOCK_HEADINGS_SIZE = 'text-3xl md:text-4xl lg:text-5xl';
+/** The page's one h1. Brand orange gradient, the only orange text. 36 → 48 → 60px. */
+export const PAGE_TITLE = 'role-page-title';
 
-export const SECTION_HEADINGS_SIZE = 'text-xl md:text-2xl lg:text-3xl';
+/** Page title for blog posts and legal pages, whose titles run long. 36 → 48px. */
+export const ARTICLE_TITLE = 'role-article-title';
 
-// Headings.
+/** Opens a band of the page. Strong ink. 30 → 36 → 48px. */
+export const SECTION_TITLE = 'role-section-title';
+
+/** A heading in a card, tier, tile or grid item, and h1–h2 in rich text. Also prices. 20 → 24 → 30px. */
+export const CARD_TITLE = 'role-card-title';
+
+/** A heading inside copy, names in dense grids, office names, h3–h6 in rich text. 18 → 20px. */
+export const SUB_HEADING = 'role-sub-heading';
+
+/** Testimonial and pull quotes. IBM Plex Sans Medium, no italics. 24 → 30px. */
+export const QUOTE = 'role-quote';
+
+// ─── Labels ──────────────────────────────────────────────────────────────
 
 /**
- * The one orange moment at the top. Once per page, never twice.
- *
- * The only role allowed `text-heading` — a gradient from the brand orange
- * (orange-500) to orange-600. Brand orange is 3.82:1 on white, which passes as
- * large text but not body text, so it stays at title sizes.
+ * SLUB (Smaller, Lighter, Uppercase, Bold): the small uppercase label above a
+ * title, table column headers, pills. Short labels only, never names,
+ * sentences, prices or addresses. Uppercased here, not in the copy. 14px.
  */
-export const PAGE_TITLE = `font-ibm-plex font-semibold ${H1_HEADINGS_SIZE} leading-tight tracking-tight text-balance text-heading`;
+export const EYEBROW = 'role-eyebrow';
+
+/** A standalone “Read more →” / “See all” link: SLUB in the link colour, underlined. */
+export const EYEBROW_LINK = 'role-eyebrow-link';
 
 /**
- * A page title for long-form pages — blog posts and legal pages — whose titles
- * run long. Same treatment as PAGE_TITLE, capped a size lower so a long title
- * doesn't wrap to four lines.
+ * Short UI text that needs a little weight: chips, tags, status pills, table
+ * row labels and values, times, step labels, “Page 1 of 15”. Inter Medium 14px.
  */
-export const ARTICLE_TITLE =
-  'font-ibm-plex font-semibold text-4xl md:text-5xl leading-tight tracking-tight text-balance text-heading';
+export const LABEL = 'role-label';
 
-/** Opens a band of the page. Strong ink, so the page title stays the only orange. */
-export const SECTION_TITLE = `font-ibm-plex font-semibold ${BLOCK_HEADINGS_SIZE} leading-tight tracking-tight text-balance text-strong`;
+// ─── Reading text ────────────────────────────────────────────────────────
 
-/** A heading inside a card, tier, tile or grid item. Strong ink, so a grid reads as a grid. */
-export const CARD_TITLE = `font-ibm-plex font-semibold ${SECTION_HEADINGS_SIZE} leading-snug text-balance text-strong`;
+/** Every paragraph someone is meant to read. 16 → 18px. A bare <p> in <main> already looks like this. */
+export const BODY = 'role-body';
 
-/** A heading inside running copy, mostly blog posts and docs. Strong ink. */
-export const SUB_HEADING =
-  'font-ibm-plex font-semibold text-xl leading-snug text-balance text-strong';
+/** Dense copy: card blurbs, lists, descriptions, checklist items. 14 → 16px. */
+export const BODY_SMALL = 'role-body-small';
+
+/** Dates, bylines, captions, units, hints. Supporting text only, never a paragraph. Subtle grey, 14 → 16px. */
+export const BODY_MUTED = 'role-body-muted';
+
+/** Small fixed-size text that sits tight under other content: billing notes, address lines. 14px at every width. */
+export const CAPTION = 'role-caption';
+
+/** Inline code, terminal output, package names, versions, commit hashes, published dates. IBM Plex Mono, 14 → 16px. */
+export const CODE = 'role-code';
+
+// ─── Navigation, links and forms ─────────────────────────────────────────
+
+/** Top-level nav items. Link blue. 18px in the mobile menu, 16px from xl. */
+export const NAV_LINK = 'role-nav-link';
+
+/** Items inside a nav menu. Body ink, link blue on hover. 18px in the mobile menu, 16px from xl. */
+export const NAV_MENU_LINK = 'role-nav-menu-link';
+
+/** Footer column links. IBM Plex Sans SemiBold 16px, uppercase. Use inside ON_DARK. */
+export const FOOTER_LINK = 'role-footer-link';
+
+/** The small legal links under the footer. White at 75% on dark, white on hover. Use inside ON_DARK. */
+export const FOOTER_LEGAL_LINK = 'role-footer-legal-link';
 
 /**
- * The small uppercase label above a title — designers call it SLUB text
- * (Smaller, Lighter, Uppercase, Bold). Uppercased here, not in the copy.
+ * A link inside text. Adds the link colour and underline and keeps the size of
+ * the role around it, e.g. `${BODY_SMALL} ${LINK}`. On ON_DARK it turns white.
  */
-export const EYEBROW =
-  'font-ibm-plex-medium font-medium text-sm leading-normal tracking-widest uppercase text-label';
+export const LINK = 'link';
 
-// Body. One reading size for every paragraph, one step smaller for dense copy
-// and captions. Phones keep the smaller size; from tablet width (md) up, body
-// text steps up one size. An unstyled <p> inside <main> already gets BODY's
-// size, family and line height from styles/tailwind.css, so these roles are
-// for when you need to be explicit or need the small/muted/code variants.
+/** Text inputs, selects and text areas. 16px so phones don't zoom. Placeholder in the label grey. */
+export const FIELD = 'role-field';
 
-/** Default for every paragraph someone is meant to read. 16px, 18px from md. */
-export const BODY =
-  'font-sans font-normal text-base md:text-lg leading-relaxed text-pretty text-body';
-
-/** Dense copy: card blurbs, talk descriptions, lists. 14px, 16px from md. */
-export const BODY_SMALL =
-  'font-sans font-normal text-sm md:text-base leading-relaxed text-pretty text-body';
+// ─── Containers ──────────────────────────────────────────────────────────
 
 /**
- * Captions, dates, bylines, search snippets, form hints. Supporting text only,
- * so it sits at the small size in the subtle grey. 14px, 16px from md.
- */
-export const BODY_MUTED =
-  'font-sans font-normal text-sm md:text-base leading-relaxed text-pretty text-subtle';
-
-// Code.
-
-/** Inline code, terminal output and technical labels. 14px, 16px from md. */
-export const CODE =
-  'font-mono font-normal text-sm md:text-base leading-relaxed text-strong';
-
-// Surfaces.
-
-/**
- * Put on a dark or brand-orange container (the footer, the newsletter form)
- * and every role inside it switches to light text. Use the normal roles
- * inside — don't add `text-white` by hand.
+ * Put on a dark or brand-orange container (footer, newsletter) and every role
+ * inside switches to white (SLUB and legal links to white at 75%). Use the
+ * normal roles inside, never `text-white` by hand.
  */
 export const ON_DARK = 'on-dark';
+
+/**
+ * Fill + text pairs for chips, pills, badges and coloured table rows. Put one
+ * on the chip and give its text a role (usually LABEL, EYEBROW or CODE); the
+ * role picks up the paired ink. All pass AA at 14px.
+ */
+export const SURFACE = {
+  /** Slate-100 with ink. Tags, commit hashes, inline code. */
+  neutral: 'surface-neutral',
+  /** Orange-100 with orange-700. Contributors, breaks, “Closed”. */
+  brand: 'surface-brand',
+  /** Blue-50 with blue-800. Talks, table header rows. */
+  info: 'surface-info',
+  /** Seafoam-100 with seafoam-900. “Open”, success. */
+  success: 'surface-success',
+  /** Yellow-100 with yellow-800. Warnings, like the “English only” alert. */
+  warning: 'surface-warning',
+  /** Slate-500 with white. Finished events, step numbers. */
+  neutralSolid: 'surface-neutral-solid',
+  /** Orange-600 with white. “Featured”, “new”. */
+  brandSolid: 'surface-brand-solid',
+} as const;
+
+/** A matched search term: brand tint and bold, keeping the size of the text around it. */
+export const HIGHLIGHT = 'highlight';
+
+/**
+ * Put on a wrapper around markdown output. Bare h1–h2 become CARD_TITLE,
+ * h3–h6 SUB_HEADING, paragraphs BODY, links LINK, inline code CODE,
+ * table headers EYEBROW.
+ */
+export const RICH_TEXT = 'rich-text';

@@ -329,6 +329,8 @@ module.exports = {
         body: 'var(--text-body)',
         subtle: 'var(--text-subtle)',
         label: 'var(--text-label)',
+        link: 'var(--text-link)',
+        'link-hover': 'var(--text-link-hover)',
         'neutral-border': 'var(--neutral-border)',
         'neutral-border-subtle': 'var(--neutral-border-subtle)',
 

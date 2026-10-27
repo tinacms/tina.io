@@ -135,12 +135,18 @@ pre.prism-code.language-json {
 
 /* Running text inside page content defaults to BODY's family, size and line
    height, so a plain <p> is already correct. Scoped to <main> so navigation
-   and the footer keep their own sizing; :where() keeps specificity at zero so
-   any role or utility class still wins. Colour is left to inheritance, so
-   text on dark sections stays light. */
+   and the footer keep their own sizing, and skipped inside anything that
+   already has a role or RICH_TEXT, so a bare <p> under a BODY_SMALL or CODE
+   wrapper inherits that role instead of jumping back to body size. :where()
+   keeps specificity at zero so any role still wins. Colour is left to
+   inheritance, so text on dark sections stays light. */
 @layer base {
-  :where(main) :where(p, li, blockquote, dd, figcaption) {
+  :where(main) :where(p, li, blockquote, dd, figcaption):where(:not([class*='role-'] *, .rich-text *)) {
     @apply font-sans text-base md:text-lg leading-relaxed;
+  }
+  /* A bare <code>, <kbd> or <samp> anywhere on a page is CODE. */
+  :where(main) :where(code, kbd, samp):where(:not([class])) {
+    @apply role-code;
   }
 }
 
@@ -152,5 +158,209 @@ pre.prism-code.language-json {
   --text-body: var(--text-on-dark);
   --text-subtle: var(--text-on-dark);
   --text-label: var(--text-on-dark-label);
+  --text-link: var(--text-on-dark);
+  --text-link-hover: var(--text-on-dark);
   color: var(--text-body);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   SURFACES — a fill plus the text colour that belongs on it. Put one on a
+   chip, pill, badge or coloured table row and every role inside it picks up
+   the paired ink, the same way on-dark works. Never colour text on a fill by
+   hand. SURFACE in components/styles/typography.ts names these.
+   ────────────────────────────────────────────────────────────────────────── */
+@utility surface-neutral {
+  background-color: var(--surface-neutral);
+  --text-strong: var(--on-surface-neutral);
+  --text-body: var(--on-surface-neutral);
+  --text-subtle: var(--on-surface-neutral);
+  --text-label: var(--on-surface-neutral);
+  color: var(--on-surface-neutral);
+}
+@utility surface-brand {
+  background-color: var(--surface-brand);
+  border-color: var(--border-brand);
+  --text-strong: var(--on-surface-brand);
+  --text-body: var(--on-surface-brand);
+  --text-subtle: var(--on-surface-brand);
+  --text-label: var(--on-surface-brand);
+  color: var(--on-surface-brand);
+}
+@utility surface-info {
+  background-color: var(--surface-info);
+  --text-strong: var(--on-surface-info);
+  --text-body: var(--on-surface-info);
+  --text-subtle: var(--on-surface-info);
+  --text-label: var(--on-surface-info);
+  color: var(--on-surface-info);
+}
+@utility surface-success {
+  background-color: var(--surface-success);
+  border-color: var(--border-success);
+  --text-strong: var(--on-surface-success);
+  --text-body: var(--on-surface-success);
+  --text-subtle: var(--on-surface-success);
+  --text-label: var(--on-surface-success);
+  color: var(--on-surface-success);
+}
+@utility surface-warning {
+  background-color: var(--surface-warning);
+  border-color: var(--border-warning);
+  --text-strong: var(--on-surface-warning);
+  --text-body: var(--on-surface-warning);
+  --text-subtle: var(--on-surface-warning);
+  --text-label: var(--on-surface-warning);
+  color: var(--on-surface-warning);
+}
+@utility surface-neutral-solid {
+  background-color: var(--surface-neutral-solid);
+  --text-strong: var(--on-surface-neutral-solid);
+  --text-body: var(--on-surface-neutral-solid);
+  --text-subtle: var(--on-surface-neutral-solid);
+  --text-label: var(--on-surface-neutral-solid);
+  color: var(--on-surface-neutral-solid);
+}
+@utility surface-brand-solid {
+  background-color: var(--surface-brand-solid);
+  --text-strong: var(--on-surface-brand-solid);
+  --text-body: var(--on-surface-brand-solid);
+  --text-subtle: var(--on-surface-brand-solid);
+  --text-label: var(--on-surface-brand-solid);
+  color: var(--on-surface-brand-solid);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   ROLES — every text style on the site, defined once. Components use the
+   constants in components/styles/typography.ts (PAGE_TITLE -> role-page-title)
+   and rich-text stylesheets @apply the same utilities, so a spec only ever
+   lives here. Each role sets family, size at every breakpoint, weight, line
+   height, letter spacing, case, wrapping and colour. See /design.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Headings. IBM Plex Sans ships at 600 (font-ibm-plex) and 500
+   (font-ibm-plex-medium) only — never ask it for bold. */
+@utility role-page-title {
+  @apply font-ibm-plex font-semibold text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight text-balance text-heading;
+}
+@utility role-article-title {
+  @apply font-ibm-plex font-semibold text-4xl md:text-5xl leading-tight tracking-tight text-balance text-heading;
+}
+@utility role-section-title {
+  @apply font-ibm-plex font-semibold text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight text-balance text-strong;
+}
+@utility role-card-title {
+  @apply font-ibm-plex font-semibold text-xl md:text-2xl lg:text-3xl leading-snug tracking-normal text-balance text-strong;
+}
+/* 18px on phones so it stays a step below CARD_TITLE (20px there). */
+@utility role-sub-heading {
+  @apply font-ibm-plex font-semibold text-lg md:text-xl leading-snug tracking-normal text-balance text-strong;
+}
+@utility role-quote {
+  @apply font-ibm-plex-medium font-medium not-italic text-2xl md:text-3xl leading-snug tracking-normal text-balance text-strong;
+}
+
+/* Labels. */
+@utility role-eyebrow {
+  @apply font-ibm-plex-medium font-medium text-sm leading-normal tracking-widest uppercase text-label;
+}
+@utility role-eyebrow-link {
+  @apply font-ibm-plex-medium font-medium text-sm leading-normal tracking-widest uppercase text-link underline decoration-1 underline-offset-4 transition-colors hover:text-link-hover hover:decoration-2;
+}
+@utility role-label {
+  @apply font-sans font-medium text-sm leading-[1.43] tracking-normal normal-case text-strong;
+}
+
+/* Reading text. */
+@utility role-body {
+  @apply font-sans font-normal text-base md:text-lg leading-relaxed tracking-normal normal-case text-pretty text-body;
+}
+@utility role-body-small {
+  @apply font-sans font-normal text-sm md:text-base leading-relaxed tracking-normal normal-case text-pretty text-body;
+}
+@utility role-body-muted {
+  @apply font-sans font-normal text-sm md:text-base leading-relaxed tracking-normal normal-case text-pretty text-subtle;
+}
+@utility role-caption {
+  @apply font-sans font-normal text-sm leading-[1.43] tracking-normal normal-case text-pretty text-body;
+}
+@utility role-code {
+  @apply font-mono font-normal text-sm md:text-base leading-relaxed tracking-normal normal-case text-strong;
+}
+
+/* Navigation. The nav switches to the slide-out menu below xl, where items
+   are a step larger for tapping. */
+@utility role-nav-link {
+  @apply font-sans font-medium text-lg xl:text-base leading-normal tracking-normal normal-case text-link transition-colors hover:text-link-hover;
+}
+@utility role-nav-menu-link {
+  @apply font-sans font-medium text-lg xl:text-base leading-normal tracking-normal normal-case text-body transition-colors hover:text-link-hover;
+}
+@utility role-footer-link {
+  @apply font-ibm-plex font-semibold text-base leading-normal tracking-wide uppercase text-strong;
+}
+/* Legal links under the footer: white at 75% on dark (agreed below AA,
+   Oct 2026), solid white on hover. */
+@utility role-footer-legal-link {
+  @apply font-sans font-normal text-base leading-normal tracking-normal normal-case text-label transition-colors hover:text-strong;
+}
+
+/* Form fields. 16px stops iOS zooming on focus. A select still showing its
+   placeholder option takes `data-empty` and reads in the placeholder grey. */
+@utility role-field {
+  @apply font-sans font-normal text-base leading-normal tracking-normal normal-case text-strong placeholder:text-label data-empty:text-label;
+}
+
+/* Links are a treatment, not a size: LINK keeps the size of the text around
+   it and only adds colour and underline. It is the one class that may sit
+   next to a role. */
+@utility link {
+  @apply text-link underline decoration-1 underline-offset-3 transition-colors hover:text-link-hover hover:decoration-2;
+}
+
+/* A matched search term: the brand surface plus bold, inside whatever role
+   surrounds it. Weight 700 is real in Inter; IBM Plex Sans has no 700, so
+   synthesis is off and headings keep their 600 instead of a faked bold. */
+@utility highlight {
+  @apply surface-brand rounded-sm px-0.5;
+  font-weight: 700;
+  font-synthesis-weight: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   RICH TEXT — markdown output (blog posts, docs, Content and Columns blocks,
+   legal pages). RICH_TEXT on the wrapper maps bare elements onto the roles.
+   Headings: h1–h2 are CARD_TITLE, h3–h6 SUB_HEADING. Spacing stays with the
+   wrapper's own stylesheet.
+   ────────────────────────────────────────────────────────────────────────── */
+@layer components {
+  .rich-text :where(h1, h2) {
+    @apply role-card-title;
+  }
+  .rich-text :where(h3, h4, h5, h6) {
+    @apply role-sub-heading;
+  }
+  .rich-text :where(p, li, dd, blockquote) {
+    @apply role-body;
+  }
+  .rich-text :where(figcaption) {
+    @apply role-body-muted;
+  }
+  .rich-text :where(th) {
+    @apply role-eyebrow;
+  }
+  .rich-text :where(td) {
+    @apply role-body-small;
+  }
+  .rich-text :where(a:not([class])) {
+    @apply link;
+  }
+  .rich-text :where(:not(pre) > code) {
+    @apply role-code surface-neutral rounded px-1;
+  }
+  .rich-text :where(pre) {
+    @apply role-code;
+  }
+  .rich-text :where(strong, b) {
+    font-weight: 700;
+  }
 }
