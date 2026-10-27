@@ -208,6 +208,10 @@
   --surface-warning: var(--yellow-100);
   --on-surface-warning: var(--yellow-800); /* 6.4:1 */
   --border-warning: var(--yellow-300);
+  /* A chosen option in a list of cards (the language picker). Blue-500 is
+     3.4:1 on white, above the 3:1 minimum for non-text marks that show
+     selection. It replaces a surface's own border when both are set. */
+  --border-selected: var(--blue-500);
   --surface-neutral-solid: var(--slate-500);
   --on-surface-neutral-solid: var(--white); /* 4.8:1 */
   --surface-brand-solid: var(--orange-600);

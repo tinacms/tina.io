@@ -1,16 +1,12 @@
 'use client';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { FaChevronRight } from 'react-icons/fa';
 import {
-  BODY_SMALL,
-  CARD_TITLE,
   LABEL,
   PAGE_TITLE,
   SECTION_TITLE,
   SUB_HEADING,
 } from '@/component/styles/typography';
+import { ChooserCard } from '@/component/ui/ChooserCard';
 
 export type BookingItem = {
   name: string;
@@ -19,34 +15,8 @@ export type BookingItem = {
   url: string;
 };
 
-const BookingCard = ({ cardItem }) => {
-  const isValidImage = (url) => {
-    return url && (url.startsWith('http') || url.startsWith('/'));
-  };
-
-  return (
-    <Link href={cardItem.url || '#'}>
-      <div className="relative mb-4 rounded-md group flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring bg-linear-to-br from-white/25 via-white/50 to-white/75 sm:pt-1">
-        {isValidImage(cardItem.image) && (
-          <Image
-            src={cardItem.image}
-            alt={`${cardItem.name} Portrait`}
-            className="hidden md:block w-24 h-24 aspect-square object-cover rounded-full mr-4"
-            width={96}
-            height={96}
-          />
-        )}
-        <div className="grow text-center md:text-left lg:pl-4 lg:text-left">
-          <div className={CARD_TITLE}>{cardItem.name}</div>
-          <div className={BODY_SMALL}>{cardItem.description}</div>
-        </div>
-        <div className="shrink-0 sm:self-center">
-          <FaChevronRight className="h-10 w-10 text-muted-foreground pr-6" />
-        </div>
-      </div>
-    </Link>
-  );
-};
+const isValidImage = (url: string) =>
+  url && (url.startsWith('http') || url.startsWith('/'));
 
 const BookingBlock = ({ data }) => {
   const [meetingPeople, setMeetingPeople] = useState<BookingItem[]>([]);
@@ -128,12 +98,26 @@ const BookingBlock = ({ data }) => {
           >
             {data.description}
           </h3>
-          {meetingPeople.map((cardItem, index) => (
-            <BookingCard
-              key={`booking-${cardItem.name}-${index}`}
-              cardItem={cardItem}
-            />
-          ))}
+          <div className="grid gap-7 pb-4">
+            {meetingPeople.map((cardItem, index) => (
+              <ChooserCard
+                key={`booking-${cardItem.name}-${index}`}
+                href={cardItem.url || '#'}
+                name={cardItem.name}
+                description={cardItem.description}
+                image={
+                  isValidImage(cardItem.image)
+                    ? {
+                        src: cardItem.image,
+                        alt: `${cardItem.name} Portrait`,
+                        kind: 'photo',
+                      }
+                    : undefined
+                }
+                stackOnMobile
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

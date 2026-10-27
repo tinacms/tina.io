@@ -333,6 +333,7 @@ module.exports = {
         'link-hover': 'var(--text-link-hover)',
         'neutral-border': 'var(--neutral-border)',
         'neutral-border-subtle': 'var(--neutral-border-subtle)',
+        selected: 'var(--border-selected)',
 
         // Code Block Background
         'background-brand-code': 'var(--background-brand-code)',

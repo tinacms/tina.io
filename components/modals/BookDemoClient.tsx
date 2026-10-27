@@ -1,16 +1,9 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
 /* biome-ignore lint/correctness/noUnusedImports: may need to use React for future compatibility */
 import React from 'react';
-import { FaChevronRight } from 'react-icons/fa';
-import {
-  BODY,
-  BODY_MUTED,
-  CARD_TITLE,
-  SUB_HEADING,
-} from '@/component/styles/typography';
+import { BODY, BODY_MUTED, CARD_TITLE } from '@/component/styles/typography';
+import { ChooserCard } from '@/component/ui/ChooserCard';
 
 // Client component that renders the UI
 export function DemoFormClient({
@@ -50,28 +43,22 @@ export function DemoFormClient({
               className="flex justify-center w-full items-center h-full"
             >
               <div className="w-full max-w-sm h-full">
-                <Link
+                <ChooserCard
                   href={person.url}
-                  className="flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between rounded-lg border border-input bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring"
                   prefetch={false}
-                >
-                  {person.image && (
-                    <Image
-                      src={person.image}
-                      alt={`${person.name} Portrait`}
-                      className="hidden md:block w-18 h-18 aspect-square object-cover rounded-full lg:mr-4 md:mr-4"
-                      width={72}
-                      height={72}
-                    />
-                  )}
-                  <div className="grow text-center md:text-left lg:text-left">
-                    <div className={SUB_HEADING}>{person.name}</div>
-                    <div className={BODY_MUTED}>{person.description}</div>
-                  </div>
-                  <div className="shrink-0">
-                    <FaChevronRight className="h-6 w-6 text-muted-foreground" />
-                  </div>
-                </Link>
+                  name={person.name}
+                  description={person.description}
+                  image={
+                    person.image
+                      ? {
+                          src: person.image,
+                          alt: `${person.name} Portrait`,
+                          kind: 'photo',
+                        }
+                      : undefined
+                  }
+                  stackOnMobile
+                />
               </div>
             </div>
           ))}
