@@ -100,7 +100,7 @@ const FooterLink = React.memo(
     return (
       <Link
         href={link || ''}
-        className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] whitespace-nowrap text-label"
+        className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] whitespace-nowrap text-label hover:text-strong"
         passHref
       >
         {label}
