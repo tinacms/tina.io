@@ -121,7 +121,6 @@ const DocsRichText = css`
   pre {
     background-color: var(--neutral-background);
     border: 1px solid var(--neutral-border-subtle);
-    font-family: var(--font-mono);
     text-align: left;
     word-spacing: normal;
     word-break: normal;
