@@ -115,3 +115,17 @@ pre.prism-code.language-json {
     var(--text-heading-end)
   );
 }
+
+/* Headings default to the strong ink; paragraphs take the lighter body ink
+   from text-foreground. Role utilities (text-heading, text-white) sit in the
+   utilities layer, so they still win where a heading needs something else. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-strong);
+  }
+}

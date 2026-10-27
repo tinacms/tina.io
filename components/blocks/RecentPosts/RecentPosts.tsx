@@ -68,7 +68,7 @@ const VideoCard = ({
       <span className="text-subtle text-sm">
         By{' '}
         <Link
-          className="underline hover:text-body transition-colors duration-300"
+          className="underline hover:text-strong transition-colors duration-300"
           href={authorUrl}
         >
           {authorName.toUpperCase()}

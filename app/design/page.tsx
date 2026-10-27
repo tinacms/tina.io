@@ -37,19 +37,19 @@ const ROLES = [
     name: 'SECTION_TITLE',
     label: 'Section title',
     note: 'Opens a band of the page. Ink, so the page title stays the only orange thing on screen.',
-    token: 'inherits text-body',
+    token: 'inherits text-strong',
   },
   {
     name: 'CARD_TITLE',
     label: 'Card title',
     note: 'A heading inside a card, tier or grid item. Ink, so a grid of nine reads as a grid.',
-    token: 'inherits text-body',
+    token: 'inherits text-strong',
   },
   {
     name: 'SUB_HEADING',
     label: 'Sub-heading',
     note: 'A heading inside running copy, mostly blog posts and docs. Ink.',
-    token: 'inherits text-body',
+    token: 'inherits text-strong',
   },
   {
     name: 'EYEBROW',
@@ -119,13 +119,22 @@ const COLOURS = [
     use: 'Page titles only. A gradient that starts on the official brand orange — the logo colour — and darkens one step. Both stops pass as large text, so it stays at title sizes (36px and up).',
   },
   {
-    swatch: 'bg-body',
+    swatch: 'bg-strong',
     primitive: '--ink-900',
     value: '#1C1B2E',
+    token: '--text-strong',
+    cls: 'text-strong',
+    ratio: '16.9:1',
+    use: 'Every heading that is not the page title. Headings default to it, so it rarely needs writing.',
+  },
+  {
+    swatch: 'bg-body',
+    primitive: '--slate-700',
+    value: '#334155',
     token: '--text-body',
     cls: 'text-body',
-    ratio: '16.9:1',
-    use: 'Every other heading, every paragraph. The site default, so it rarely needs writing.',
+    ratio: '10.4:1',
+    use: 'Every paragraph. A step lighter than headings so running text reads softer. The site default.',
   },
   {
     swatch: 'bg-subtle',
@@ -178,7 +187,7 @@ export default function DesignPage() {
       <p className={EYEBROW}>tina.io · internal reference</p>
       <h1 className={`${PAGE_TITLE} mt-3`}>Type Rules</h1>
       <p className={`${LEDE} mt-5 max-w-2xl text-balance`}>
-        One heading scale, one body scale, one dark. Colour follows what a
+        One heading scale, one body scale, two inks. Colour follows what a
         heading does on the page, not which tag it uses.
       </p>
 
@@ -283,7 +292,7 @@ export default function DesignPage() {
 
         <h3 className={`${CARD_TITLE} mt-12`}>Type colours</h3>
         <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
-          The three tokens type uses. Buttons and fills are issue #4964.
+          The four tokens type uses. Buttons and fills are issue #4964.
         </p>
         <div className="mt-6 overflow-x-auto rounded-2xl border border-neutral-border-subtle">
           <table className="w-full bg-white text-left">

@@ -66,6 +66,7 @@
   --seafoam-700: #529c7b;
 
   --ink-900: #1c1b2e;
+  --slate-700: #334155;
   --slate-500: #64748b;
 
   /* ──────────────────────────────────────────────────────────────────────
@@ -78,7 +79,10 @@
      clear 3:1 on white, so the gradient passes as large text throughout. */
   --text-heading-start: var(--orange-500);
   --text-heading-end: var(--orange-600);
-  --text-body: var(--ink-900);
+  /* Headings sit on the darkest ink; running text is a step lighter, so
+     paragraphs read softer without losing the heading hierarchy. */
+  --text-strong: var(--ink-900);
+  --text-body: var(--slate-700);
   --text-subtle: var(--slate-500);
 
   /* ──────────────────────────────────────────────────────────────────────

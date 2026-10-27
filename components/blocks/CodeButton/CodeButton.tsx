@@ -101,7 +101,7 @@ export const CodeButton = ({
           {hasTemplates && (
             <div className="px-4 pt-4 pb-2">
               <div className="flex items-center justify-between px-2 pb-2">
-                <span className="font-mono text-xs text-body">
+                <span className="font-mono text-xs text-strong">
                   or deploy instantly...
                 </span>
                 <button
@@ -132,7 +132,7 @@ export const CodeButton = ({
                   >
                     <div className="flex items-center gap-2">
                       {template.icon && (
-                        <div className="size-4 rounded-full overflow-hidden bg-body flex items-center justify-center shrink-0">
+                        <div className="size-4 rounded-full overflow-hidden bg-strong flex items-center justify-center shrink-0">
                           <Image
                             src={template.icon}
                             alt={template.title || ''}

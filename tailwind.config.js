@@ -325,6 +325,7 @@ module.exports = {
         // components/styles/typography.ts are allowed to name.
         // `heading` is a gradient, so it is a utility in styles/tailwind.css
         // rather than a flat colour here.
+        strong: 'var(--text-strong)',
         body: 'var(--text-body)',
         subtle: 'var(--text-subtle)',
         'neutral-border': 'var(--neutral-border)',
