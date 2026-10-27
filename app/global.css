@@ -169,7 +169,7 @@
   --text-body: var(--slate-700);
   --text-subtle: var(--slate-500);
   /* SLUB / eyebrow labels. Same grey as subtle on light surfaces; on dark
-     they get their own warm off-white so they read apart from white links. */
+     they turn white at 75% so they read apart from white links. */
   --text-label: var(--slate-500);
   /* Text on dark and brand-orange surfaces: white, with opacity only for the
      SLUB / secondary-link level below. Main text stays solid white because
@@ -219,9 +219,10 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* ──────────────────────────────────────────────────────────────────────
-     LEGACY — pre-redesign colours, still raw hex and outside the layers
-     above. Kept because older blocks reference them; migrate to semantic
-     tokens rather than adding to this list.
+     LEGACY — pre-redesign colours outside the layers above. Most of the
+     brand tokens now point at primitives; the rest are still raw hex. Kept
+     because older blocks reference them; migrate to semantic tokens rather
+     than adding to this list.
      ────────────────────────────────────────────────────────────────────── */
   --color-tina-blue-light: #2296fe;
   --color-tina-blue: #2296fe;
