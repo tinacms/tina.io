@@ -27,13 +27,8 @@ The advice was to go offline, and some did:
 
 - On October 21, [CISA's alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching) said organizations that can't update right away *"should take PHP-based systems offline until they can be patched or updated"*
 - The [Dutch government](https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/aantal-websites-rijksoverheid-preventief-offline-na-kwetsbaarheden-php) took Overheid.nl, MijnOverheid and DigiD offline as a precaution
-- Email alias service [addy.io](https://status.addy.io) took its website and web app offline for about 3.5 hours *"due to the PHP2Shell vulnerability"*. Email forwarding kept working, and its own code wasn't broken.
 
 If you maintain sites for clients, picture explaining that call: the site _looks_ fine and nothing seems to have changed - but PHP needs an urgent patch, and your afternoon is gone.
-
-Two individual accounts show the gap between knowing about a fix and deploying it.
-In Reddit's r/sysadmin, u/Thrwingawaymylife945 [put it simply](https://www.reddit.com/r/sysadmin/comments/1xc4rjx/php2shell_and_your_security_team/): *"I'm on WordPress, and I can't patch my websites"*. Their host hadn't released the update.
-In r/ExperiencedDevs, u/tommyk1210 [described upgrading PHP's major version every year](https://www.reddit.com/r/ExperiencedDevs/comments/1xcvnb9/comment/19ri480c9l5ky/) and patching that evening: *"The business has questioned why for years: this was their answer."*
 
 ## PHP fix: Patch now
 
