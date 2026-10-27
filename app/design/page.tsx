@@ -4,208 +4,342 @@ import {
   BODY,
   BODY_MUTED,
   BODY_SMALL,
+  CAPTION,
   CARD_TITLE,
   CODE,
   EYEBROW,
+  EYEBROW_LINK,
+  FIELD,
+  FOOTER_LEGAL_LINK,
+  FOOTER_LINK,
+  HIGHLIGHT,
+  LABEL,
+  LINK,
+  NAV_LINK,
+  NAV_MENU_LINK,
   ON_DARK,
   PAGE_TITLE,
+  QUOTE,
+  RICH_TEXT,
   SECTION_TITLE,
   SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 
 export const metadata: Metadata = {
   title: 'Type Rules | TinaCMS',
   description:
-    'The heading and body rules every page on tina.io follows, and the tokens behind them.',
+    'Every text style on tina.io, when to use it, and the tokens behind it.',
   robots: { index: false, follow: false },
 };
 
 /**
  * Internal type reference, served at /design and kept out of the index.
  *
- * Every specimen below renders through the same constants the site uses, so
- * this page cannot drift from the code — change a role in typography.ts and
- * this page changes with it.
+ * Every specimen renders through the same constants the site uses, so this
+ * page can't drift from the code: change a role in styles/tailwind.css and
+ * this page changes with it. This page follows its own rules — roles only.
  */
 
-const ROLES = [
+type Role = {
+  name: string;
+  cls: string;
+  spec: string;
+  use: string;
+  never?: string;
+  sample: string;
+};
+
+const GROUPS: { title: string; intro: string; roles: Role[] }[] = [
   {
-    name: 'PAGE_TITLE',
-    label: 'Page title',
-    note: 'The one orange moment at the top, in the brand gradient. Once per page, never twice — it pairs with the wordmark above it.',
-    token: 'text-heading',
+    title: 'Headings',
+    intro:
+      'IBM Plex Sans at 600. Only the page title is orange; everything else is ink, so colour follows what a heading does, not its tag.',
+    roles: [
+      {
+        name: 'PAGE_TITLE',
+        cls: PAGE_TITLE,
+        spec: 'Plex 600 · 36 / 48 / 60px · leading tight · tracking tight · orange gradient',
+        use: 'The page’s one h1.',
+        never: 'Twice on a page, or anywhere below the top.',
+        sample: 'Meet TinaCMS',
+      },
+      {
+        name: 'ARTICLE_TITLE',
+        cls: ARTICLE_TITLE,
+        spec: 'Plex 600 · 36 / 48px · leading tight · tracking tight · orange gradient',
+        use: 'The page title on blog posts and legal pages, whose titles run long.',
+        sample: 'Tipping the iceberg: the WordPress era is over',
+      },
+      {
+        name: 'SECTION_TITLE',
+        cls: SECTION_TITLE,
+        spec: 'Plex 600 · 30 / 36 / 48px · leading tight · tracking tight · ink',
+        use: 'Opens a band of the page.',
+        sample: 'Built for marketers and developers',
+      },
+      {
+        name: 'CARD_TITLE',
+        cls: CARD_TITLE,
+        spec: 'Plex 600 · 20 / 24 / 30px · leading snug · ink',
+        use: 'Headings in cards, tiers and tiles; prices; h1–h2 in rich text.',
+        sample: 'Visual editing',
+      },
+      {
+        name: 'SUB_HEADING',
+        cls: SUB_HEADING,
+        spec: 'Plex 600 · 18 / 20px · leading snug · ink',
+        use: 'Headings inside copy; names in dense grids; office names; talk titles; h3–h6 in rich text.',
+        sample: 'Editorial workflow',
+      },
+      {
+        name: 'QUOTE',
+        cls: QUOTE,
+        spec: 'Plex 500 · 24 / 30px · leading snug · ink · no italics',
+        use: 'Testimonials and pull quotes. Attribution underneath is BODY_MUTED.',
+        sample: '“Tina is transforming the way we do docs at Unity”',
+      },
+    ],
   },
   {
-    name: 'ARTICLE_TITLE',
-    label: 'Article title',
-    note: 'The page title for blog posts and legal pages, whose titles run long. Same gradient, one size smaller at the top end.',
-    token: 'text-heading',
+    title: 'Labels',
+    intro:
+      'Short text that names or tags something. SLUB is uppercase and spaced; Label is the plain, slightly heavier option.',
+    roles: [
+      {
+        name: 'EYEBROW (SLUB)',
+        cls: EYEBROW,
+        spec: 'Plex 500 · 14px · uppercase · tracking widest · label grey',
+        use: 'The label above a title, table column headers, pills.',
+        never:
+          'Names, sentences, prices or addresses. Uppercase it in CSS, not in the copy.',
+        sample: 'Trusted by teams shipping at scale',
+      },
+      {
+        name: 'EYEBROW_LINK',
+        cls: EYEBROW_LINK,
+        spec: 'Plex 500 · 14px · uppercase · tracking widest · link blue · underlined',
+        use: 'Standalone links: “Read more →”, “See all events →”.',
+        sample: 'Read more →',
+      },
+      {
+        name: 'LABEL',
+        cls: LABEL,
+        spec: 'Inter 500 · 14px · ink',
+        use: 'Chips, tags, status pills, table row labels and values, times, “Page 1 of 15”, step labels.',
+        never: 'Paragraphs or anything longer than a phrase.',
+        sample: 'Included users',
+      },
+    ],
   },
   {
-    name: 'SECTION_TITLE',
-    label: 'Section title',
-    note: 'Opens a band of the page. Ink, so the page title stays the only orange thing on screen.',
-    token: 'inherits text-strong',
+    title: 'Reading text',
+    intro:
+      'Inter. One reading size, one step smaller for dense copy, and a muted grey for supporting text only.',
+    roles: [
+      {
+        name: 'BODY',
+        cls: BODY,
+        spec: 'Inter 400 · 16 / 18px · leading relaxed · body ink',
+        use: 'Every paragraph someone is meant to read. A bare <p> inside <main> already looks like this.',
+        sample:
+          'Store content as Markdown or MDX in your repo, and edit it visually without leaving the page.',
+      },
+      {
+        name: 'BODY_SMALL',
+        cls: BODY_SMALL,
+        spec: 'Inter 400 · 14 / 16px · leading relaxed · body ink',
+        use: 'Dense copy: card blurbs, lists, descriptions, checklist items.',
+        sample: 'Drafts, branches and approvals, backed by your Git provider.',
+      },
+      {
+        name: 'BODY_MUTED',
+        cls: BODY_MUTED,
+        spec: 'Inter 400 · 14 / 16px · leading relaxed · subtle grey',
+        use: 'Dates, bylines, captions, units, hints, attributions.',
+        never: 'A paragraph that carries meaning, or anything you can click.',
+        sample: 'Published 23 October 2026 · 6 min read',
+      },
+      {
+        name: 'CAPTION',
+        cls: CAPTION,
+        spec: 'Inter 400 · 14px at every width · leading 1.43 · body ink',
+        use: 'Small text that sits tight under other content: billing notes, address lines.',
+        sample: '$290 billed annually (save $58)',
+      },
+      {
+        name: 'CODE',
+        cls: CODE,
+        spec: 'IBM Plex Mono 400 · 14 / 16px · leading relaxed · ink',
+        use: 'Inline code, terminal output, package names, versions, commit hashes.',
+        sample: 'npx create-tina-app@latest',
+      },
+    ],
   },
   {
-    name: 'CARD_TITLE',
-    label: 'Card title',
-    note: 'A heading inside a card, tier or grid item. Ink, so a grid of nine reads as a grid.',
-    token: 'inherits text-strong',
-  },
-  {
-    name: 'SUB_HEADING',
-    label: 'Sub-heading',
-    note: 'A heading inside running copy, mostly blog posts and docs. Ink.',
-    token: 'inherits text-strong',
-  },
-  {
-    name: 'EYEBROW',
-    label: 'Eyebrow',
-    note: 'The small uppercase label above a title. Uppercased in CSS, not in the copy.',
-    token: 'text-subtle',
+    title: 'Navigation, links and forms',
+    intro:
+      'Links are blue (#0D5DBD, 6.3:1) so orange stays with the page title. The nav switches to its slide-out menu below xl, where items are a step larger for tapping.',
+    roles: [
+      {
+        name: 'NAV_LINK',
+        cls: NAV_LINK,
+        spec: 'Inter 500 · 18px in the mobile menu, 16px from xl · link blue',
+        use: 'Top-level nav items.',
+        sample: 'TinaCMS',
+      },
+      {
+        name: 'NAV_MENU_LINK',
+        cls: NAV_MENU_LINK,
+        spec: 'Inter 500 · 18 / 16px · body ink · link blue on hover',
+        use: 'Items inside a nav menu.',
+        sample: 'Docs for TinaCMS',
+      },
+      {
+        name: 'FIELD',
+        cls: FIELD,
+        spec: 'Inter 400 · 16px · ink · placeholder in the label grey',
+        use: 'Inputs, selects and text areas. 16px stops phones zooming in.',
+        sample: 'name@example.com',
+      },
+    ],
   },
 ];
 
-const SCALE = [
+const SURFACES = [
   {
-    cls: PAGE_TITLE,
-    name: 'PAGE_TITLE',
-    size: 'IBM Plex Sans 600 · 36 / 48 / 60px · leading tight · tracking tight',
-    sample: 'Meet TinaCMS',
+    name: 'SURFACE.neutral',
+    cls: SURFACE.neutral,
+    text: 'Next.js',
+    role: LABEL,
+    ratio: '15.4:1',
+    use: 'Tags, commit hashes, inline code',
   },
   {
-    cls: ARTICLE_TITLE,
-    name: 'ARTICLE_TITLE',
-    size: 'IBM Plex Sans 600 · 36 / 48px · leading tight · tracking tight',
-    sample: 'Tipping the iceberg: the WordPress era is over',
+    name: 'SURFACE.brand',
+    cls: SURFACE.brand,
+    text: '@dependabot',
+    role: LABEL,
+    ratio: '6.1:1',
+    use: 'Contributors, breaks, “Closed”',
   },
   {
-    cls: SECTION_TITLE,
-    name: 'SECTION_TITLE',
-    size: 'IBM Plex Sans 600 · 30 / 36 / 48px · leading tight · tracking tight',
-    sample: 'Built for marketers and developers',
+    name: 'SURFACE.info',
+    cls: SURFACE.info,
+    text: 'Talk',
+    role: LABEL,
+    ratio: '7.6:1',
+    use: 'Talks, table header rows',
   },
   {
-    cls: CARD_TITLE,
-    name: 'CARD_TITLE',
-    size: 'IBM Plex Sans 600 · 20 / 24 / 30px · leading snug',
-    sample: 'Visual editing',
+    name: 'SURFACE.success',
+    cls: SURFACE.success,
+    text: 'Open',
+    role: LABEL,
+    ratio: '9.0:1',
+    use: '“Open”, success',
   },
   {
-    cls: SUB_HEADING,
-    name: 'SUB_HEADING',
-    size: 'IBM Plex Sans 600 · 20px · leading snug',
-    sample: 'Editorial workflow',
+    name: 'SURFACE.warning',
+    cls: SURFACE.warning,
+    text: 'English only',
+    role: LABEL,
+    ratio: '6.4:1',
+    use: 'Warnings',
   },
   {
-    cls: EYEBROW,
-    name: 'EYEBROW',
-    size: 'IBM Plex Sans Medium 500 · 14px · tracking widest · uppercase',
-    sample: 'Trusted by teams shipping at scale',
+    name: 'SURFACE.neutralSolid',
+    cls: SURFACE.neutralSolid,
+    text: 'Event Finished',
+    role: LABEL,
+    ratio: '4.8:1',
+    use: 'Finished events, step numbers',
   },
   {
-    cls: BODY,
-    name: 'BODY',
-    size: 'Inter 400 · 16px, 18px from tablet · leading relaxed',
-    sample:
-      'Store content as Markdown or MDX in your repo, and edit it visually without leaving the page.',
-  },
-  {
-    cls: BODY_SMALL,
-    name: 'BODY_SMALL',
-    size: 'Inter 400 · 14px, 16px from tablet · leading relaxed',
-    sample: 'Drafts, branches and approvals, backed by your Git provider.',
-  },
-  {
-    cls: BODY_MUTED,
-    name: 'BODY_MUTED',
-    size: 'Inter 400 · 14px, 16px from tablet · leading relaxed · subtle',
-    sample: 'Published 23 October 2026 · 6 min read',
-  },
-  {
-    cls: CODE,
-    name: 'CODE',
-    size: 'IBM Plex Mono 400 · 14px, 16px from tablet · leading relaxed',
-    sample: 'npx create-tina-app@latest',
+    name: 'SURFACE.brandSolid',
+    cls: SURFACE.brandSolid,
+    text: 'Featured',
+    role: EYEBROW,
+    ratio: '4.7:1',
+    use: '“Featured”, “new”',
   },
 ];
 
-// Each row is one chain through the three layers. Components and roles may
-// only use the right-hand column; the primitive is there so you can see what
-// a token resolves to, not so you can reach for it.
+// Each row is one chain through the layers. Components only ever name the
+// right-hand side; the primitive shows what a token resolves to.
 const COLOURS = [
   {
     swatch: 'bg-heading',
     primitive: '--orange-500 → 600',
-    value: '#EC4815 → #D13F13',
     token: '--text-heading-start / -end',
-    cls: 'text-heading',
-    ratio: '3.82 → 4.74:1',
-    use: 'Page titles only. A gradient that starts on the official brand orange — the logo colour — and darkens one step. Both stops pass as large text, so it stays at title sizes (36px and up).',
+    ratio: '3.8 → 4.7:1',
+    use: 'Page titles only (36px and up).',
   },
   {
     swatch: 'bg-strong',
     primitive: '--ink-900',
-    value: '#1C1B2E',
     token: '--text-strong',
-    cls: 'text-strong',
     ratio: '16.9:1',
-    use: 'Every heading that is not the page title. Headings default to it, so it rarely needs writing.',
+    use: 'Headings, labels, code.',
   },
   {
     swatch: 'bg-body',
     primitive: '--slate-700',
-    value: '#334155',
     token: '--text-body',
-    cls: 'text-body',
     ratio: '10.4:1',
-    use: 'Every paragraph. A step lighter than headings so running text reads softer. The site default.',
+    use: 'Paragraphs, captions. The site default.',
   },
   {
     swatch: 'bg-subtle',
     primitive: '--slate-500',
-    value: '#64748B',
-    token: '--text-subtle',
-    cls: 'text-subtle',
+    token: '--text-subtle / --text-label',
     ratio: '4.8:1',
-    use: 'Supporting text only — captions, eyebrows, footer links, form hints.',
+    use: 'Muted text and SLUB.',
+  },
+  {
+    swatch: 'bg-link',
+    primitive: '--blue-700 → 800',
+    token: '--text-link / -hover',
+    ratio: '6.3 → 9.0:1',
+    use: 'Links and top-level nav.',
   },
 ];
 
-const LAYERS = [
-  {
-    name: 'Primitives',
-    where: 'app/global.css',
-    example: '--orange-500: #ec4815',
-    rule: 'Raw values, named for what they are. The only place a hex code should appear.',
-  },
-  {
-    name: 'Semantic tokens',
-    where: 'app/global.css',
-    example: '--text-heading-start: var(--orange-500)',
-    rule: 'Named for what they are for. Always point at a primitive, never a hex.',
-  },
-  {
-    name: 'Classes',
-    where: 'components/styles/typography.ts',
-    example: 'PAGE_TITLE → text-heading',
-    rule: 'Size, weight and colour together. Name semantic tokens only.',
-  },
+const RULES = [
+  'Pick a role and use nothing else for type. Never add a size, weight, font, line-height, letter-spacing, case or text-colour class next to one.',
+  'Layout classes are fine: margin, padding, alignment, width, truncation.',
+  'LINK is the one class that combines with a role: it adds colour and underline and keeps the size around it.',
+  'On a dark or orange container, put ON_DARK on the container and use the normal roles inside. Never write text-white.',
+  'On a chip, pill, badge or coloured row, put a SURFACE on it and give the text a role. Never colour text on a fill by hand.',
+  'Markdown output goes in a RICH_TEXT wrapper; it maps headings, paragraphs, links and code onto the roles.',
+  'Nothing fits? Add a role to styles/tailwind.css and typography.ts, show it here, and use it.',
 ];
 
-const Rule = ({ role }: { role: (typeof ROLES)[number] }) => (
-  <div className="grid grid-cols-1 gap-2 border-b border-neutral-border-subtle py-5 last:border-b-0 md:grid-cols-[14rem_1fr_14rem] md:gap-6">
-    <div>
-      <h3 className={SUB_HEADING}>{role.label}</h3>
-      <p className={CODE}>{role.name}</p>
+const EXCEPTIONS = [
+  'Buttons (issue #4964).',
+  'Syntax-highlighting colours in code blocks and the homepage terminal. Their family and size still come from CODE.',
+  'Data-driven brand colours, like partner tier badges.',
+  'Icons sized or coloured with text classes, social icons, logos.',
+  'Two-tone homepage headings, until the team decides.',
+  'TinaCMS admin field components, which render inside the editor.',
+];
+
+const Spec = ({ role }: { role: Role }) => (
+  <div className="grid grid-cols-1 gap-3 border-b border-neutral-border-subtle py-6 last:border-b-0 md:grid-cols-[1fr_18rem] md:gap-8">
+    <div className="min-w-0">
+      <p className={`${role.cls} wrap-anywhere`}>{role.sample}</p>
+      <p className={`${BODY_MUTED} mt-2`}>{role.spec}</p>
     </div>
-    <p className={`${BODY_SMALL} min-w-0`}>{role.note}</p>
-    <p
-      className={`${CODE} min-w-0 self-start rounded-lg bg-seafoam-50 px-3 py-2`}
-    >
-      {role.token}
-    </p>
+    <div className="min-w-0">
+      <p className={CODE}>{role.name}</p>
+      <p className={`${BODY_SMALL} mt-1`}>{role.use}</p>
+      {role.never && (
+        <p className={`${BODY_SMALL} mt-1`}>
+          <span className={LABEL}>Never: </span>
+          {role.never}
+        </p>
+      )}
+    </div>
   </div>
 );
 
@@ -215,144 +349,153 @@ export default function DesignPage() {
       <p className={EYEBROW}>tina.io · internal reference</p>
       <h1 className={`${PAGE_TITLE} mt-3`}>Type Rules</h1>
       <p className={`${BODY} mt-5 max-w-2xl`}>
-        One heading scale, one body scale, two inks. Colour follows what a
-        heading does on the page, not which tag it uses.
+        Every piece of text on the site uses one of the styles below. Each
+        carries its full spec — font, size at every breakpoint, weight, line
+        height, spacing, case and colour — so a component only adds layout.
       </p>
 
       <section className="mt-16">
-        <h2 className={SECTION_TITLE}>The rule</h2>
-        <p className={`${BODY} mt-2 max-w-2xl`}>
-          Six heading roles. Only the page title is orange — the article title
-          is its long-form version — and it appears once per page. Headings are
-          set in IBM Plex Sans; everything people read is set in Inter; code is
-          set in IBM Plex Mono.
-        </p>
-        <div className="mt-6 rounded-2xl border border-neutral-border-subtle bg-white px-6">
-          {ROLES.map((role) => (
-            <Rule key={role.name} role={role} />
+        <h2 className={SECTION_TITLE}>The rules</h2>
+        <ol className="mt-6 grid list-decimal gap-3 pl-6">
+          {RULES.map((rule) => (
+            <li key={rule} className={BODY}>
+              {rule}
+            </li>
           ))}
-        </div>
-        <p className={`${BODY} mt-4 max-w-2xl`}>
-          Each role carries everything — font, size at every breakpoint, weight,
-          line height, letter spacing, wrapping and colour — so a component only
-          adds layout. Headings with no role still default to IBM Plex Sans in
-          the strong ink.
+        </ol>
+      </section>
+
+      {GROUPS.map((group) => (
+        <section key={group.title} className="mt-16">
+          <h2 className={SECTION_TITLE}>{group.title}</h2>
+          <p className={`${BODY} mt-2 max-w-2xl`}>{group.intro}</p>
+          <div className="mt-6 rounded-2xl border border-neutral-border-subtle bg-white px-6">
+            {group.roles.map((role) => (
+              <Spec key={role.name} role={role} />
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <section className="mt-16">
+        <h2 className={SECTION_TITLE}>Links</h2>
+        <p className={`${BODY} mt-2 max-w-2xl`}>
+          <code className={CODE}>LINK</code> keeps the size of the text around
+          it. Inside a paragraph:{' '}
+          <a className={LINK} href="#links">
+            read the editorial workflow guide
+          </a>
+          . Inside small copy:
+        </p>
+        <p className={`${BODY_SMALL} mt-2`}>
+          A matched search term is <code className={CODE}>HIGHLIGHT</code>: the
+          best <span className={HIGHLIGHT}>Markdown</span> CMS.
+        </p>
+        <p className={`${BODY_SMALL} mt-2`}>
+          Questions? Start a{' '}
+          <a className={LINK} href="#links">
+            GitHub Discussion
+          </a>
+          .
         </p>
       </section>
 
       <section className="mt-16">
-        <h2 className={SECTION_TITLE}>The scale</h2>
+        <h2 className={SECTION_TITLE}>Surfaces</h2>
         <p className={`${BODY} mt-2 max-w-2xl`}>
-          Every specimen here is rendered with the constant beside it, so this
-          page always shows what the site actually uses.
+          A surface is a fill and the text colour that belongs on it. Put one on
+          the chip and give its text a role; the role recolours itself. Every
+          pair passes AA at 14px.
         </p>
-        <div className="mt-6 rounded-2xl border border-neutral-border-subtle bg-white px-6">
-          {SCALE.map((row) => (
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {SURFACES.map((s) => (
             <div
-              key={row.name}
-              className="flex flex-col gap-2 border-b border-neutral-border-subtle py-5 last:border-b-0"
+              key={s.name}
+              className="rounded-2xl border border-neutral-border-subtle bg-white p-5"
             >
-              <p className={`${row.cls} wrap-anywhere`}>{row.sample}</p>
-              <p className="font-mono text-xs text-subtle">
-                {row.name} · {row.size}
+              <span
+                className={`${s.cls} inline-block rounded-full border px-3 py-0.5 ${s.role}`}
+              >
+                {s.text}
+              </span>
+              <p className={`${CODE} mt-3`}>{s.name}</p>
+              <p className={`${BODY_MUTED} mt-1`}>
+                {s.ratio} · {s.use}
               </p>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="mt-16">
-        <h2 className={SECTION_TITLE}>Body and muted</h2>
-        <p className={`${BODY} mt-2 max-w-2xl`}>
-          Two paragraph colours. The default is the plain one, not the grey.
-        </p>
-        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-neutral-border-subtle bg-white p-6">
-            <p className="mb-3 inline-block rounded-full bg-seafoam-100 px-3 py-1 font-ibm-plex text-xs font-semibold tracking-wider text-seafoam-700 uppercase">
-              Use this
-            </p>
-            <p className={BODY}>
-              Body is the default for every paragraph someone is meant to read.
-              It needs no colour class — it is what text already is.
-            </p>
-            <p className={`${CODE} mt-3`}>BODY</p>
-          </div>
-          <div className="rounded-2xl border border-neutral-border-subtle bg-white p-6">
-            <p className="mb-3 inline-block rounded-full border border-neutral-border-subtle px-3 py-1 font-ibm-plex text-xs font-semibold tracking-wider text-subtle uppercase">
-              Exception
-            </p>
-            <p className={BODY_MUTED}>
-              Muted is for captions, timestamps, footer links and form hints.
-              Never a paragraph that carries meaning, and never a whole block of
-              copy.
-            </p>
-            <p className={`${CODE} mt-3`}>BODY_MUTED</p>
-          </div>
         </div>
       </section>
 
       <section className="mt-16">
         <h2 className={SECTION_TITLE}>On dark</h2>
         <p className={`${BODY} mt-2 max-w-2xl`}>
-          On the orange footer or any dark surface, put <code>ON_DARK</code> on
-          the container and use the normal roles inside. Every text level turns
-          solid white: on brand orange, any faded white drops below a readable
-          contrast, so hierarchy comes from size and weight instead.
+          Put <code className={CODE}>ON_DARK</code> on the container and use the
+          normal roles inside. Text turns solid white; SLUB and legal links are
+          white at 75% (agreed below AA for short labels). Links turn white.
         </p>
         <div
-          className={`${ON_DARK} mt-6 rounded-2xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
+          className={`${ON_DARK} mt-6 grid gap-8 rounded-2xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8 md:grid-cols-2`}
         >
-          <p className={EYEBROW}>Resources</p>
-          <h3 className={`${SUB_HEADING} mt-2`}>Join the Herd!</h3>
-          <p className={`${BODY_SMALL} mt-2 max-w-md`}>
-            Join our coding community for the latest tips and news.
+          <div className="grid content-start gap-2">
+            <p className={EYEBROW}>Product</p>
+            <span className={FOOTER_LINK}>Showcase</span>
+            <span className={FOOTER_LINK}>Roadmap</span>
+            <p className={`${CODE} mt-2`}>EYEBROW · FOOTER_LINK</p>
+          </div>
+          <div className="grid content-start gap-3">
+            <h3 className={SUB_HEADING}>Join the Herd!</h3>
+            <p className={BODY_SMALL}>
+              Join our coding community for the latest tips and news.
+            </p>
+            <input
+              className={`${FIELD} h-10 rounded-md border border-white/80 bg-white/10 px-3`}
+              placeholder="Email"
+              aria-label="Email (example)"
+            />
+            <p className="flex flex-wrap gap-x-5">
+              <span className={FOOTER_LEGAL_LINK}>Privacy</span>
+              <span className={FOOTER_LEGAL_LINK}>Terms of Service</span>
+            </p>
+            <p className={CODE}>SUB_HEADING · BODY_SMALL · FIELD</p>
+            <p className={CODE}>FOOTER_LEGAL_LINK</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-16">
+        <h2 className={SECTION_TITLE}>Rich text</h2>
+        <p className={`${BODY} mt-2 max-w-2xl`}>
+          Markdown goes inside <code className={CODE}>RICH_TEXT</code>: h1–h2
+          become CARD_TITLE, h3–h6 SUB_HEADING, paragraphs BODY, links LINK,
+          inline code CODE, table headers EYEBROW.
+        </p>
+        <div
+          className={`${RICH_TEXT} mt-6 grid gap-4 rounded-2xl border border-neutral-border-subtle bg-white p-6`}
+        >
+          <h2>Simple fields and compound fields</h2>
+          <p>
+            Simple fields hold <a href="#rich-text">one value</a>, like a
+            string. Compound fields such as <code>group</code> hold others.
           </p>
-          <p className={`${BODY_MUTED} mt-4`}>© TinaCMS 2019–2026</p>
+          <h3>Group lists</h3>
+          <p>A group list is a list of groups with the same fields.</p>
         </div>
       </section>
 
       <section className="mt-16">
         <h2 className={SECTION_TITLE}>Colour</h2>
         <p className={`${BODY} mt-2 max-w-2xl`}>
-          Three layers, each only allowed to point at the one before it.
-          Changing the brand orange is one edit to a primitive; every token and
-          class follows.
-        </p>
-
-        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-          {LAYERS.map((layer, i) => (
-            <div
-              key={layer.name}
-              className="rounded-2xl border border-neutral-border-subtle bg-white p-6"
-            >
-              <p className={EYEBROW}>Layer {i + 1}</p>
-              <h3 className={`${SUB_HEADING} mt-1`}>{layer.name}</h3>
-              <p className={`${CODE} mt-1 wrap-anywhere`}>{layer.where}</p>
-              <p
-                className={`${CODE} mt-4 rounded-lg bg-seafoam-50 px-3 py-2 wrap-anywhere`}
-              >
-                {layer.example}
-              </p>
-              <p className={`${BODY_SMALL} mt-4`}>{layer.rule}</p>
-            </div>
-          ))}
-        </div>
-
-        <h3 className={`${CARD_TITLE} mt-12`}>Type colours</h3>
-        <p className={`${BODY} mt-2 max-w-2xl`}>
-          The four tokens type uses. Buttons and fills are issue #4964.
+          Primitives (raw values) → semantic tokens (what a colour is for) →
+          roles. Components only name roles, surfaces and ON_DARK; tokens live
+          in <code className={CODE}>app/global.css</code>, role specs in{' '}
+          <code className={CODE}>styles/tailwind.css</code>.
         </p>
         <div className="mt-6 overflow-x-auto rounded-2xl border border-neutral-border-subtle">
           <table className="w-full bg-white text-left">
             <thead>
-              <tr className="bg-seafoam-50">
-                {[
-                  'Primitive',
-                  'Semantic token',
-                  'Class',
-                  'On white',
-                  'Use',
-                ].map((h) => (
+              <tr className={SURFACE.neutral}>
+                {['Primitive', 'Token', 'On white', 'Use'].map((h) => (
                   <th
                     key={h}
                     className={`${EYEBROW} px-5 py-3 whitespace-nowrap`}
@@ -368,23 +511,17 @@ export default function DesignPage() {
                   key={c.token}
                   className="border-t border-neutral-border-subtle"
                 >
-                  <td className={`${BODY_SMALL} px-5 py-3 whitespace-nowrap`}>
+                  <td className={`${CODE} px-5 py-3 whitespace-nowrap`}>
                     <span
                       className={`${c.swatch} mr-2 inline-block size-3 rounded-sm align-middle`}
                     />
-                    <span className="font-mono">{c.primitive}</span>
-                    <span className="ml-2 font-mono text-subtle">
-                      {c.value}
-                    </span>
+                    {c.primitive}
                   </td>
                   <td className={`${CODE} px-5 py-3 whitespace-nowrap`}>
                     {c.token}
                   </td>
-                  <td className={`${CODE} px-5 py-3 whitespace-nowrap`}>
-                    {c.cls}
-                  </td>
                   <td className={`${CODE} px-5 py-3`}>{c.ratio}</td>
-                  <td className={`${BODY_SMALL} min-w-64 px-5 py-3`}>
+                  <td className={`${BODY_SMALL} min-w-56 px-5 py-3`}>
                     {c.use}
                   </td>
                 </tr>
@@ -395,18 +532,14 @@ export default function DesignPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className={SECTION_TITLE}>How it holds</h2>
-        <p className={`${BODY} mt-2 max-w-2xl`}>
-          Nine heading variants appeared because building a heading meant
-          copying a class string out of whichever component was open, and every
-          copy drifted. The roles above live in one file and are imported by
-          name, so the easy path is the correct one.
-        </p>
-        <p className={`${BODY} mt-3 max-w-2xl`}>
-          Anything still needing a one-off is a sign a role is missing. Add it
-          to <code>components/styles/typography.ts</code> rather than working
-          around it in a component.
-        </p>
+        <h2 className={SECTION_TITLE}>Agreed exceptions</h2>
+        <ul className="mt-6 grid list-disc gap-2 pl-6">
+          {EXCEPTIONS.map((e) => (
+            <li key={e} className={BODY}>
+              {e}
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   );
