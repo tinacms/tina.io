@@ -585,7 +585,7 @@ export const docAndBlogComponents: Components<{
   ),
 
   CreateAppCta: ({ ctaText, cliText }) => (
-    <>
+    <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
       <a
         href="/docs/introduction/using-starter/"
         style={{
@@ -603,20 +603,11 @@ export const docAndBlogComponents: Components<{
       </a>
 
       <div
-        className={CODE}
-        style={{
-          padding: '1rem 1.5rem',
-          whiteSpace: 'nowrap',
-          width: 'auto',
-          display: 'inline-block',
-          border: '1px solid #8080803b',
-          borderRadius: '10px',
-          marginLeft: '20px',
-        }}
+        className={`${CODE} inline-block whitespace-nowrap px-6 py-4 border border-neutral-border-subtle rounded-lg`}
       >
         {cliText}
       </div>
-    </>
+    </div>
   ),
   WarningCallout: ({ body }) => (
     <blockquote
