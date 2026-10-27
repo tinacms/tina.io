@@ -286,6 +286,13 @@ pre.prism-code.language-json {
 @utility role-code {
   @apply font-mono font-normal text-sm md:text-base leading-relaxed tracking-normal normal-case text-strong;
 }
+/* Agreed exception (Oct 2026): decorative terminal and code mockups, like the
+   homepage terminal, read as a picture of code rather than code to read, so
+   they sit smaller than CODE. 13px at every width, the one size below 14px.
+   Never use it for code a reader needs. */
+@utility role-code-illustration {
+  @apply font-mono font-normal text-[13px] leading-[1.7] tracking-normal normal-case text-strong;
+}
 
 /* Navigation. The nav switches to the slide-out menu below xl, where items
    are a step larger for tapping. */

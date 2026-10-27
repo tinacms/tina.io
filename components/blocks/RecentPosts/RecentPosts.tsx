@@ -184,9 +184,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
                 <RichTextWrapper>
                   <div className="flex flex-row mb-3 text-center justify-between">
                     <div className="flex">
-                      <span className={BODY_MUTED}>
-                        By {post.author}
-                      </span>{' '}
+                      <span className={BODY_MUTED}>By {post.author}</span>{' '}
                     </div>
                   </div>
                 </RichTextWrapper>

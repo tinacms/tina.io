@@ -317,7 +317,8 @@ const RULES = [
 
 const EXCEPTIONS = [
   'Buttons (issue #4964).',
-  'Syntax-highlighting colours in code blocks and the homepage terminal. Their family and size still come from CODE.',
+  'Syntax-highlighting colours in code blocks and the homepage terminal.',
+  'Decorative terminal and code mockups (the homepage terminal) use CODE_ILLUSTRATION: IBM Plex Mono at 13px, a picture of code rather than code to read. Real code uses CODE.',
   'Data-driven brand colours, like partner tier badges.',
   'Icons sized or coloured with text classes, social icons, logos.',
   'Two-tone homepage headings, until the team decides.',

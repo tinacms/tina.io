@@ -79,6 +79,13 @@ export const CAPTION = 'role-caption';
 /** Inline code, terminal output, package names, versions, commit hashes, published dates. IBM Plex Mono, 14 → 16px. */
 export const CODE = 'role-code';
 
+/**
+ * Agreed exception: decorative terminal and code mockups (the homepage
+ * terminal). IBM Plex Mono 13px at every width, line height 1.7. A picture of
+ * code, not code to read — real code uses CODE.
+ */
+export const CODE_ILLUSTRATION = 'role-code-illustration';
+
 // ─── Navigation, links and forms ─────────────────────────────────────────
 
 /** Top-level nav items. Link blue. 18px in the mobile menu, 16px from xl. */
