@@ -469,5 +469,5 @@ module.exports = {
     './app/**/**/*.{js,ts,jsx,tsx}', // Nested components in app/
     './src/**/*.{js,ts,jsx,tsx}',
   ],
-  safelist: ['font-ibm-plex-semibold', 'font-source-code-pro'],
+  safelist: ['font-ibm-plex-semibold'],
 };
