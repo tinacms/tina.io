@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import {
-  ARTICLE_TITLE,
   BODY_SMALL,
   CARD_TITLE,
   LABEL,
+  PAGE_TITLE,
   SECTION_TITLE,
   SUB_HEADING,
 } from '@/component/styles/typography';
@@ -113,9 +113,7 @@ const BookingBlock = ({ data }) => {
           undefined and the page shipped without an h1. It is only ever the
           first block on its page, so default to the page title. */}
           {data.isHeadingOne !== false ? (
-            <h1
-              className={`${ARTICLE_TITLE} w-full text-center inline-block m-0`}
-            >
+            <h1 className={`${PAGE_TITLE} w-full text-center inline-block m-0`}>
               {data.title}
             </h1>
           ) : (
