@@ -201,6 +201,7 @@
   --border-brand: var(--orange-300);
   --surface-info: var(--blue-50);
   --on-surface-info: var(--blue-800); /* 7.6:1 */
+  --border-info: var(--blue-200);
   --surface-success: var(--seafoam-100);
   --on-surface-success: var(--seafoam-900); /* 9.0:1 */
   --border-success: var(--seafoam-400);

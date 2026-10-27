@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 // tint; Ghost Orange is the light orange tint. The CMS keeps all five values so
 // existing content still renders. Text takes LABEL in the banner-sized badge and
 // EYEBROW (SLUB) in the small pills.
-const INFO = `${SURFACE.info} border-brand-secondary`;
+const INFO = SURFACE.info;
 
 const badgeVariants = cva('flex gap-2 items-center w-fit rounded-full border', {
   variants: {

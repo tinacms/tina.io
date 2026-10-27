@@ -191,6 +191,7 @@ pre.prism-code.language-json {
 }
 @utility surface-info {
   background-color: var(--surface-info);
+  border-color: var(--border-info);
   --text-strong: var(--on-surface-info);
   --text-body: var(--on-surface-info);
   --text-subtle: var(--on-surface-info);
