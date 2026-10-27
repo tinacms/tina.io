@@ -320,6 +320,7 @@ const EXCEPTIONS = [
   'Syntax-highlighting colours in code blocks and the homepage terminal.',
   'Decorative terminal and code mockups (the homepage terminal) use CODE_ILLUSTRATION: IBM Plex Mono at 13px, a picture of code rather than code to read. Real code uses CODE.',
   'Data-driven brand colours, like partner tier badges.',
+  'The recommended pricing plan: its name and price use CARD_TITLE_FEATURED, CARD_TITLE in the brand orange gradient. Every other card title is ink.',
   'Icons sized or coloured with text classes, social icons, logos.',
   'Two-tone homepage headings, until the team decides.',
   'TinaCMS admin field components, which render inside the editor.',

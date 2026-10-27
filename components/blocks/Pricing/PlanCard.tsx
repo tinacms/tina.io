@@ -38,6 +38,7 @@ import {
   BODY_SMALL,
   CAPTION,
   CARD_TITLE,
+  CARD_TITLE_FEATURED,
   LABEL,
   LINK,
 } from '@/component/styles/typography';
@@ -174,6 +175,7 @@ export const PlanCard = ({
           .replace('{total}', formatDollars(yearlyPrice))
           .replace('{saving}', formatDollars(monthlyPrice * 12 - yearlyPrice));
   const featuresHeading = data.featuresHeading || 'Includes:';
+  const titleRole = data.isStarred ? CARD_TITLE_FEATURED : CARD_TITLE;
 
   return (
     <span className={`animate-pop-in block h-full ${cardRows}`}>
@@ -193,15 +195,16 @@ export const PlanCard = ({
           </div>
         )}
         <div>
-          {/* Plan names are card titles: ink, so the page title stays the only
-              orange text. The starred plan is marked by its corner badge. */}
-          <Heading className={CARD_TITLE}>{data.name}</Heading>
+          {/* Plan names are card titles in ink. The recommended (starred)
+              plan is the one agreed exception: its name and price use the
+              brand orange gradient. */}
+          <Heading className={titleRole}>{data.name}</Heading>
           <TinaMarkdown
             content={data.description}
             components={comparison ? comparisonComponents : pricingComponents}
           />
           <div className="pt-10" aria-live="polite">
-            <span className={CARD_TITLE}>{price}</span>
+            <span className={titleRole}>{price}</span>
             {data.interval && (
               <span className={`${BODY_MUTED} pl-2`}>{data.interval}</span>
             )}

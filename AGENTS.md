@@ -129,7 +129,7 @@ Every piece of text uses a type role. Role names live in `components/styles/typo
 - **Fonts:** IBM Plex Sans for headings and labels (only 600 `font-ibm-plex` and 500 `font-ibm-plex-medium` ship, so never `font-bold` on it), Inter for reading text, IBM Plex Mono for code. These come with the roles; don't name them in components.
 - **Tokens:** components name roles, `SURFACE.*`, `ON_DARK` and `LINK` only, never colour tokens, palette shades or hex values. Primitives → semantic tokens → roles, each layer pointing only at the one before.
 - **Nothing fits?** Add a role to `styles/tailwind.css` and `typography.ts`, show it on `/design`, then use it. Don't hand-roll classes in a component.
-- **Agreed exceptions:** buttons (issue #4964); syntax-highlighting colours in code blocks and the homepage terminal; decorative terminal and code mockups use `CODE_ILLUSTRATION` (IBM Plex Mono 13px, a picture of code, never real code); data-driven brand colours (partner tiers); icons, social icons and logos; the two-tone homepage headings (pending a team decision); TinaCMS admin field components.
+- **Agreed exceptions:** buttons (issue #4964); syntax-highlighting colours in code blocks and the homepage terminal; decorative terminal and code mockups use `CODE_ILLUSTRATION` (IBM Plex Mono 13px, a picture of code, never real code); data-driven brand colours (partner tiers); the recommended pricing plan's name and price (`CARD_TITLE_FEATURED`, CARD_TITLE in the orange gradient — nowhere else); icons, social icons and logos; the two-tone homepage headings (pending a team decision); TinaCMS admin field components.
 
 ## CI Pipeline
 

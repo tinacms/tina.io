@@ -251,6 +251,15 @@ pre.prism-code.language-json {
 @utility role-card-title {
   @apply font-ibm-plex font-semibold text-xl md:text-2xl lg:text-3xl leading-snug tracking-normal text-balance text-strong;
 }
+/* Agreed exception (Oct 2026): the recommended pricing plan's name and
+   price. CARD_TITLE's type in the brand orange gradient, so the plan the
+   page recommends stands out. Nowhere else: every other card title is ink. */
+@utility role-card-title-featured {
+  @apply role-card-title text-heading;
+  /* @apply reorders utilities, so CARD_TITLE's ink can land after the
+     gradient's transparent colour; the fill colour settles it. */
+  -webkit-text-fill-color: transparent;
+}
 /* 18px on phones so it stays a step below CARD_TITLE (20px there). */
 @utility role-sub-heading {
   @apply font-ibm-plex font-semibold text-lg md:text-xl leading-snug tracking-normal text-balance text-strong;

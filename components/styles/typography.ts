@@ -38,6 +38,12 @@ export const SECTION_TITLE = 'role-section-title';
 /** A heading in a card, tier, tile or grid item, and h1–h2 in rich text. Also prices. 20 → 24 → 30px. */
 export const CARD_TITLE = 'role-card-title';
 
+/**
+ * Agreed exception: the recommended (starred) pricing plan's name and price.
+ * CARD_TITLE's type in the brand orange gradient. Nowhere else.
+ */
+export const CARD_TITLE_FEATURED = 'role-card-title-featured';
+
 /** A heading inside copy, names in dense grids, office names, h3–h6 in rich text. 18 → 20px. */
 export const SUB_HEADING = 'role-sub-heading';
 
