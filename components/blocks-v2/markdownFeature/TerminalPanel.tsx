@@ -119,7 +119,7 @@ export function TerminalPanel({ secondaryImage }: TerminalPanelProps) {
                 'border border-black/10',
               )}
             />
-            <span className={`${CODE_ILLUSTRATION} text-[#ec4815]`}>
+            <span className={`${CODE_ILLUSTRATION} text-orange-500`}>
               AI + GEO ready
             </span>
           </div>
