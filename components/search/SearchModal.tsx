@@ -53,7 +53,7 @@ export const SearchResultsOverflowBody = ({
           className="py-3 px-4 border-b border-gray-100 group hover:bg-gray-50 transition-colors"
         >
           <Link href={`/blog/${item.slug}`} onClick={onResultClick}>
-            <h2 className="text-base font-inter font-semibold group-hover:text-brand-primary break-words">
+            <h2 className="text-base font-semibold group-hover:text-brand-primary break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
             <p className="text-subtle group-hover:text-foreground text-xs font-normal line-clamp-2 break-words mt-1">
@@ -69,13 +69,13 @@ export const SearchResultsOverflowBody = ({
             href={`/search?query=${encodeURIComponent(query)}`}
             onClick={onResultClick}
           >
-            <div className="pt-3 pb-3 px-4 text-base font-inter font-semibold hover:text-brand-primary border-t border-gray-100">
+            <div className="pt-3 pb-3 px-4 text-base font-semibold hover:text-brand-primary border-t border-gray-100">
               See All {numberOfResults} Results
             </div>
           </Link>
         ) : (
           !isLoading && (
-            <div className="pt-8 px-4 text-center text-base font-inter font-semibold text-gray-500">
+            <div className="pt-8 px-4 text-center text-base font-semibold text-gray-500">
               No Llamas Found...
             </div>
           )
@@ -116,7 +116,7 @@ export const SearchResultsOverflowTabs = ({
       <div className="border-b border-gray-200">
         <div className="flex justify-between items-center">
           <nav className="relative flex gap-16 px-6">
-            <span className="font-inter font-semibold text-sm py-4 text-blue-800">
+            <span className=" font-semibold text-sm py-4 text-blue-800">
               BLOGS ({numberOfResults})
             </span>
           </nav>
@@ -209,9 +209,7 @@ export const SearchModal = ({
             ) : (
               <div className="p-12 text-center text-gray-500">
                 <HiMagnifyingGlass className="mx-auto text-5xl mb-4 text-gray-300" />
-                <p className="text-lg font-inter font-medium">
-                  Start typing to search...
-                </p>
+                <p className="text-lg font-medium">Start typing to search...</p>
                 <p className="text-sm text-subtle mt-2">
                   Search through blog posts
                 </p>

@@ -99,9 +99,7 @@ const HighlightsSection = ({ data }) => {
                             className={`text-3xl mr-2 ${iconColorClass} inline`}
                           />
                         )}
-                        <span className={`font-inter ${LEDE}`}>
-                          {iconItem.name}
-                        </span>
+                        <span className={`${LEDE}`}>{iconItem.name}</span>
                       </div>
                     );
                   })}

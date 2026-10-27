@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import {
+  ARTICLE_TITLE,
   BODY,
   BODY_MUTED,
   BODY_SMALL,
@@ -34,6 +35,12 @@ const ROLES = [
     token: 'text-heading',
   },
   {
+    name: 'ARTICLE_TITLE',
+    label: 'Article title',
+    note: 'The page title for blog posts and legal pages, whose titles run long. Same gradient, one size smaller at the top end.',
+    token: 'text-heading',
+  },
+  {
     name: 'SECTION_TITLE',
     label: 'Section title',
     note: 'Opens a band of the page. Ink, so the page title stays the only orange thing on screen.',
@@ -63,45 +70,63 @@ const SCALE = [
   {
     cls: PAGE_TITLE,
     name: 'PAGE_TITLE',
-    size: '36 / 48 / 60px',
+    size: 'IBM Plex Sans 600 · 36 / 48 / 60px · leading tight · tracking tight',
     sample: 'Meet TinaCMS',
+  },
+  {
+    cls: ARTICLE_TITLE,
+    name: 'ARTICLE_TITLE',
+    size: 'IBM Plex Sans 600 · 36 / 48px · leading tight · tracking tight',
+    sample: 'Tipping the iceberg: the WordPress era is over',
   },
   {
     cls: SECTION_TITLE,
     name: 'SECTION_TITLE',
-    size: '30 / 36 / 48px',
+    size: 'IBM Plex Sans 600 · 30 / 36 / 48px · leading tight · tracking tight',
     sample: 'Built for marketers and developers',
   },
   {
     cls: CARD_TITLE,
     name: 'CARD_TITLE',
-    size: '20 / 24 / 30px',
+    size: 'IBM Plex Sans 600 · 20 / 24 / 30px · leading snug',
     sample: 'Visual editing',
   },
   {
     cls: SUB_HEADING,
     name: 'SUB_HEADING',
-    size: '20px',
+    size: 'IBM Plex Sans 600 · 20px · leading snug',
     sample: 'Editorial workflow',
+  },
+  {
+    cls: EYEBROW,
+    name: 'EYEBROW',
+    size: 'IBM Plex Sans Medium 500 · 13px · tracking widest · uppercase',
+    sample: 'Trusted by teams shipping at scale',
   },
   {
     cls: LEDE,
     name: 'LEDE',
-    size: '20px',
+    size: 'Inter 400 · 20px · leading relaxed',
     sample: 'The open-source, Git-backed CMS with visual editing.',
   },
   {
     cls: BODY,
     name: 'BODY',
-    size: '16px',
+    size: 'Inter 400 · 16px · leading relaxed',
     sample:
       'Store content as Markdown or MDX in your repo, and edit it visually without leaving the page.',
   },
   {
     cls: BODY_SMALL,
     name: 'BODY_SMALL',
-    size: '14px',
+    size: 'Inter 400 · 14px · leading relaxed',
     sample: 'Drafts, branches and approvals, backed by your Git provider.',
+  },
+  {
+    cls: BODY_MUTED,
+    name: 'BODY_MUTED',
+    size: 'Inter 400 · 16px · leading relaxed · subtle',
+    sample: 'Published 23 October 2026 · 6 min read',
   },
 ];
 
@@ -186,7 +211,7 @@ export default function DesignPage() {
     <main className="mx-auto w-full max-w-5xl px-6 py-16 lg:px-8">
       <p className={EYEBROW}>tina.io · internal reference</p>
       <h1 className={`${PAGE_TITLE} mt-3`}>Type Rules</h1>
-      <p className={`${LEDE} mt-5 max-w-2xl text-balance`}>
+      <p className={`${LEDE} mt-5 max-w-2xl`}>
         One heading scale, one body scale, two inks. Colour follows what a
         heading does on the page, not which tag it uses.
       </p>
@@ -194,8 +219,9 @@ export default function DesignPage() {
       <section className="mt-16">
         <h2 className={SECTION_TITLE}>The rule</h2>
         <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
-          Five roles. Only one is orange — the page title — and it appears once
-          per page.
+          Six heading roles. Only the page title is orange — the article title
+          is its long-form version — and it appears once per page. Headings are
+          set in IBM Plex Sans; everything people read is set in Inter.
         </p>
         <div className="mt-6 rounded-2xl border border-neutral-border-subtle bg-white px-6">
           {ROLES.map((role) => (
@@ -203,8 +229,10 @@ export default function DesignPage() {
           ))}
         </div>
         <p className={`${BODY_MUTED} mt-4 max-w-2xl`}>
-          Ink needs no class. Because <code>--foreground</code> is the ink, a
-          correct card title carries no colour class at all.
+          Each role carries everything — font, size at every breakpoint, weight,
+          line height, letter spacing, wrapping and colour — so a component only
+          adds layout. Headings with no role still default to IBM Plex Sans in
+          the strong ink.
         </p>
       </section>
 
@@ -218,12 +246,10 @@ export default function DesignPage() {
           {SCALE.map((row) => (
             <div
               key={row.name}
-              className="flex flex-wrap items-baseline gap-x-6 gap-y-2 border-b border-neutral-border-subtle py-5 last:border-b-0"
+              className="flex flex-col gap-2 border-b border-neutral-border-subtle py-5 last:border-b-0"
             >
-              <p className={`${row.cls} min-w-0 flex-1 wrap-anywhere`}>
-                {row.sample}
-              </p>
-              <p className="font-mono text-xs whitespace-nowrap text-subtle">
+              <p className={`${row.cls} wrap-anywhere`}>{row.sample}</p>
+              <p className="font-mono text-xs text-subtle">
                 {row.name} · {row.size}
               </p>
             </div>
@@ -307,7 +333,7 @@ export default function DesignPage() {
                 ].map((h) => (
                   <th
                     key={h}
-                    className={`${BODY_SMALL} px-5 py-3 font-ibm-plex whitespace-nowrap`}
+                    className={`${EYEBROW} px-5 py-3 whitespace-nowrap`}
                   >
                     {h}
                   </th>

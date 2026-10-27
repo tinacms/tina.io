@@ -9,7 +9,7 @@ export const CardGrid = ({ props }) => {
           href={card.link}
           className="flex flex-col justify-between p-6 border rounded-lg group bg-transparent hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out transition-all ease-out duration-150 transition-all ease-out duration-150"
         >
-          <h2 className="font-bold text-2xl leading-snug font-ibm-plex mb-2">
+          <h2 className="font-semibold text-2xl leading-snug font-ibm-plex mb-2">
             {card.title}
           </h2>
 

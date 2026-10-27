@@ -7,11 +7,12 @@ import TinaIconSvg from 'public/svg/tina-icon.svg';
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 import { EmailForm } from '@/component/modals/EmailForm';
 
+import { PAGE_TITLE } from '@/component/styles/typography';
 export default function CommunityPageClient(data) {
   return (
     <div className="flex flex-col">
       <div className="text-center my-10">
-        <h1 className="text-5xl text-heading font-ibm-plex">{data.headline}</h1>
+        <h1 className={PAGE_TITLE}>{data.headline}</h1>
       </div>
 
       {/* Info Section */}

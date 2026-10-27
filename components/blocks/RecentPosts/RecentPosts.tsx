@@ -131,7 +131,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
       <section className="col-span-3 text-3xl lg:col-span-2 flex flex-col gap-8 items-center md:items-start">
         {featuredPost && <FeaturedPost featuredPost={featuredPost} />}
         <h2
-          className={`${SECTION_TITLE} lg:leading-tight col-span-3 text-balance`}
+          className={`${SECTION_TITLE} col-span-3`}
           data-tina-field={tinaField(data, 'title')}
         >
           {data?.title || 'Recent Posts'}
@@ -155,9 +155,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
         key={`recent-posts-${index}`}
         className={'relative z-10 col-span-3 lg:col-span-1'}
       >
-        <h3
-          className={`${CARD_TITLE} block text-center md:text-left pb-8 lg:leading-tight text-balance`}
-        >
+        <h3 className={`${CARD_TITLE} block text-center md:text-left pb-8`}>
           Blog Posts
         </h3>
         <div className=" flex flex-col md:flex-wrap lg:flex-col gap-10 lg:gap-16 max-w-md mx-auto md:max-w-none">

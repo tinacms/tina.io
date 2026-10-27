@@ -209,9 +209,7 @@ const EventsBlock = () => {
 
   return (
     <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8 flex flex-col gap-8">
-      <h2
-        className={`${SECTION_TITLE} inline-block lg:leading-tight text-balance text-center`}
-      >
+      <h2 className={`${SECTION_TITLE} inline-block text-center`}>
         {eventsData.title}
       </h2>
       <div className="max-w-[62ch] mx-auto">

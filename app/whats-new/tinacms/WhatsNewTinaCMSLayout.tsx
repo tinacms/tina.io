@@ -115,9 +115,7 @@ const WhatsNewTinaCMSPageLayout = ({ data }) => {
 
   return (
     <div className="p-6 py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-5xl md:mx-auto">
-      <h1
-        className={`${PAGE_TITLE} text-center justify-center lg:leading-tight`}
-      >
+      <h1 className={`${PAGE_TITLE} text-center justify-center`}>
         What's new with <span className="text-orange-500">TinaCMS</span>
       </h1>
       <div className="mt-8">

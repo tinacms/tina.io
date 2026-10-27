@@ -271,15 +271,11 @@ export function PricingBlock({ data }) {
           undefined and the page shipped without an h1. It is only ever the
           first block on its page, so default to the page title. */}
       {data.isHeadingOne !== false ? (
-        <h1
-          className={`${PAGE_TITLE} text-center justify-center lg:leading-tight`}
-        >
+        <h1 className={`${PAGE_TITLE} text-center justify-center`}>
           {data.headline}
         </h1>
       ) : (
-        <h2
-          className={`${SECTION_TITLE} text-center justify-center lg:leading-tight`}
-        >
+        <h2 className={`${SECTION_TITLE} text-center justify-center`}>
           {data.headline}
         </h2>
       )}

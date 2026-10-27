@@ -23,6 +23,54 @@
   src: url('/fonts/IBMPlexSans-Medium.woff2') format('woff2');
 }
 
+/* Inter — the body face (`font-sans`). The files have always shipped in
+   public/fonts but were never declared, so visitors without Inter installed
+   got their system font instead. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-Regular.woff2') format('woff2'),
+    url('/fonts/Inter-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-Italic.woff2') format('woff2'),
+    url('/fonts/Inter-Italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Inter-Medium.woff2') format('woff2'),
+    url('/fonts/Inter-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Inter-MediumItalic.woff2') format('woff2'),
+    url('/fonts/Inter-MediumItalic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Inter-Bold.woff2') format('woff2'),
+    url('/fonts/Inter-Bold.woff') format('woff');
+}
+
 :root {
   scroll-behavior: smooth;
   scroll-padding-top: 200px;
@@ -83,6 +131,11 @@
   --text-strong: var(--ink-900);
   --text-body: var(--slate-700);
   --text-subtle: var(--slate-500);
+
+  /* Type families. Headings are IBM Plex Sans; everything people read is
+     Inter. Match the font-ibm-plex and font-sans classes in tailwind.config.js. */
+  --font-heading: 'IBMPlexSans-SemiBold', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   /* ──────────────────────────────────────────────────────────────────────
      LEGACY — pre-redesign colours, still raw hex and outside the layers

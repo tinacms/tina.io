@@ -120,7 +120,7 @@ const CompanyCard = ({ company, criteria }) => {
           />
         )}
 
-        <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-base text-xs font-bold text-white whitespace-nowrap">
+        <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-base text-xs font-semibold text-white whitespace-nowrap">
           {company.headline}
         </h3>
       </div>
@@ -318,7 +318,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
       <div className="px-8 py-8 md:px-8 bg-linear-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
         <h2
           data-tina-field={tinaField(data, 'heading')}
-          className={`${SECTION_TITLE} pl-3 flex items-center text-center justify-center lg:leading-tight text-balance px-2 mt-10 pb-8`}
+          className={`${SECTION_TITLE} pl-3 flex items-center text-center justify-center px-2 mt-10 pb-8`}
         >
           {data.heading}
         </h2>

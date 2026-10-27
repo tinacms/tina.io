@@ -10,9 +10,7 @@ export function ExamplesPageClient({ tinaProps }: { tinaProps: { data } }) {
 
   return (
     <Container width="medium">
-      <h1
-        className={`${PAGE_TITLE} inline-block lg:leading-tight text-balance text-center mt-20`}
-      >
+      <h1 className={`${PAGE_TITLE} inline-block text-center mt-20`}>
         Examples
       </h1>
       <section className="relative px-8 py-12 lg:py-16 columns-xs gap-6">

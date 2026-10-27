@@ -278,7 +278,7 @@ export default function CarouselFeatureBlock({ data, index }) {
         <div className="flex flex-col h-auto lg:flex-row gap-6 w-full rounded-xl overflow-visible pb-20 ">
           <div className="flex flex-col order-2 min-h-[880px] lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible ">
             <h2
-              className={`${SECTION_TITLE} inline-block py-4 lg:leading-tight text-balance text-center lg:text-left`}
+              className={`${SECTION_TITLE} inline-block py-4 text-center lg:text-left`}
               data-tina-field={tinaField(data, 'blockHeadline')}
             >
               {data.blockHeadline}

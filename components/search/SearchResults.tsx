@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
+import { PAGE_TITLE } from '@/component/styles/typography';
 import { highlightText } from './SearchModal';
-
 export const SearchHeader = ({ query }: { query: string }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -26,9 +26,7 @@ export const SearchHeader = ({ query }: { query: string }) => {
   return (
     <div className="flex justify-between relative pt-4">
       <div className="flex items-center gap-3">
-        <h1 className="font-ibm-plex text-heading text-3xl">
-          Results for "{displayQuery}"
-        </h1>
+        <h1 className={PAGE_TITLE}>Results for "{displayQuery}"</h1>
         {isExactSearch && (
           <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
             Exact Match
@@ -117,13 +115,13 @@ export const SearchTabs = ({ query }: { query: string }) => {
       <div className="max-w-(--breakpoint-xl) mx-auto pb-2">
         <div className="flex justify-between items-center">
           <nav className="relative flex gap-16 px-4">
-            <span className="font-inter text-lg text-blue-800">
+            <span className=" text-lg text-blue-800">
               BLOGS ({algoliaSearchResults?.blogs?.count})
             </span>
           </nav>
 
           {/* Search Results Count */}
-          <div className="ml-auto text-end text-lg font-inter text-blue-800">
+          <div className="ml-auto text-end text-lg text-blue-800">
             {numberOfResults} Results
           </div>
         </div>
@@ -134,7 +132,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
         )}
         <SearchBody results={algoliaSearchResults} />
         {numberOfResults === 0 && isLoading === false && (
-          <div className="font-inter font-semibold text-gray-500 text-xl">
+          <div className=" font-semibold text-gray-500 text-xl">
             No Results Found...
           </div>
         )}
@@ -149,7 +147,7 @@ export const SearchBody = ({ results }: { results: any }) => {
       {results?.blogs?.results.map((item: any) => (
         <div key={item.objectID} className="py-4 px-4 border-b group">
           <Link href={`/blog/${item.slug}`}>
-            <h2 className="text-xl font-inter font-semibold group-hover:text-brand-primary break-words">
+            <h2 className="text-xl font-semibold group-hover:text-brand-primary break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
             <p className="text-subtle group-hover:text-foreground text-sm font-normal line-clamp-3 break-words">

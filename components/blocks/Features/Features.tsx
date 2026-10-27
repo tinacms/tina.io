@@ -6,7 +6,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
-import { SECTION_TITLE } from '@/component/styles/typography';
+import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import PlayIcon from '@/public/svg/play-button.svg';
 
@@ -34,7 +34,7 @@ export function FeatureBlock({ data }) {
       >
         {data.headingOne && data.headline && (
           <h1
-            className="font-ibm-plex text-heading inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight text-balance text-left"
+            className={`${PAGE_TITLE} inline-block py-4 text-left`}
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}
@@ -42,7 +42,7 @@ export function FeatureBlock({ data }) {
         )}
         {data.headline && !data.headingOne && (
           <h2
-            className={`${SECTION_TITLE} inline-block py-4 lg:leading-tight text-balance text-left`}
+            className={`${SECTION_TITLE} inline-block py-4 text-left`}
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}

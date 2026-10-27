@@ -3,10 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
-import {
-  BLOCK_HEADINGS_SIZE,
-  SECTION_TITLE,
-} from '@/component/styles/typography';
+import { ARTICLE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 
 export type BookingItem = {
   name: string;
@@ -106,13 +103,13 @@ const BookingBlock = ({ data }) => {
           first block on its page, so default to the page title. */}
           {data.isHeadingOne !== false ? (
             <h1
-              className={`font-ibm-plex font-bold text-balance text-heading ${BLOCK_HEADINGS_SIZE} w-full text-center inline-block m-0 whitespace-nowrap lg:leading-tight`}
+              className={`${ARTICLE_TITLE} w-full text-center inline-block m-0`}
             >
               {data.title}
             </h1>
           ) : (
             <h2
-              className={`${SECTION_TITLE} w-full text-center inline-block m-0 whitespace-nowrap lg:leading-tight`}
+              className={`${SECTION_TITLE} w-full text-center inline-block m-0 whitespace-nowrap`}
             >
               {data.title}
             </h2>

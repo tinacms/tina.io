@@ -7,6 +7,7 @@ import { LOCALE_ROUTE_CONFIG, type Locale } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
 import { unclipEmoji } from 'utils/unclipEmoji';
 import NewBlogPagination from '@/component/Blogs/BlogPagination';
+import { PAGE_TITLE } from '@/component/styles/typography';
 import { extractTextFromBody } from '@/utils/extractTextFromBody';
 import { formatDate } from '@/utils/formatDate';
 
@@ -46,7 +47,7 @@ export default function BlogIndexPageClient({
   return (
     <section className="p-6">
       <header className="text-center pt-8 pb-4">
-        <h1 className="font-ibm-plex text-heading text-4xl md:text-5xl lg:text-6xl">
+        <h1 className={PAGE_TITLE}>
           {strings.blogIndex.heading}
           {strings.blogIndex.pageSuffix(pageIndex)}
         </h1>

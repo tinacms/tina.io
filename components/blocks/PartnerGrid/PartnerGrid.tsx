@@ -159,15 +159,11 @@ export function PartnerGridBlock({ data, index }) {
       <Container width="wide">
         {data.title &&
           (data.blockSettings?.isHeadingOne ? (
-            <h1
-              className={`${PAGE_TITLE} text-center justify-center lg:leading-tight`}
-            >
+            <h1 className={`${PAGE_TITLE} text-center justify-center`}>
               {data.title}
             </h1>
           ) : (
-            <h2
-              className={`${SECTION_TITLE} text-center justify-center lg:leading-tight`}
-            >
+            <h2 className={`${SECTION_TITLE} text-center justify-center`}>
               {data.title}
             </h2>
           ))}

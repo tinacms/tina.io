@@ -75,7 +75,7 @@ export default function TestimonialsBlock({ data }) {
     <div className="max-w-[1500px] m-auto">
       <div className="flex flex-col items-center justify-center">
         <h2
-          className={`${SECTION_TITLE} m-auto inline-block pb-8 lg:leading-tight text-balance text-center lg:text-left`}
+          className={`${SECTION_TITLE} m-auto inline-block pb-8 text-center lg:text-left`}
           data-tina-field={tinaField(data, 'title')}
           ref={titleRef}
         >

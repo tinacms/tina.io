@@ -55,7 +55,7 @@ const MediaComponent = ({ data }) => {
   return (
     <div className="media-component md:px-8 xl:px-8 lg:px-8 px-3 max-w-(--breakpoint-xl) mx-auto pb-4 pt-8">
       <h2
-        className={`${SECTION_TITLE} text-center sm:pt-10 md:pt-4 lg:pt-0 lg:leading-tight pb-10`}
+        className={`${SECTION_TITLE} text-center sm:pt-10 md:pt-4 lg:pt-0 pb-10`}
       >
         {headline}
       </h2>

@@ -13,6 +13,7 @@ import { buildBlogLinkSlug } from 'utils/i18n/buildLinkSlug';
 import { LOCALE_ROUTE_CONFIG } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
 import { unclipEmoji } from 'utils/unclipEmoji';
+import { ARTICLE_TITLE } from '@/component/styles/typography';
 import { formatDate } from '@/utils/formatDate';
 import type { BlogPageClientProps } from './BlogType';
 
@@ -95,8 +96,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
 
 // The page title role, but capped at text-5xl — a post title runs far longer
 // than a marketing headline and text-6xl wrapped it to four lines.
-const blogTitleStyling =
-  'leading-[1.3] text-heading font-ibm-plex font-bold text-4xl md:text-5xl';
+const blogTitleStyling = ARTICLE_TITLE;
 
 function BlogAvatarImage({ avatar }: { avatar: BlogAvatar }) {
   const [src, setSrc] = React.useState(avatar.src);

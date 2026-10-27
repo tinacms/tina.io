@@ -1,10 +1,10 @@
 import { contentComponents } from 'components/tinaMarkdownComponents/contentComponents';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { ARTICLE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import { DocsTextWrapper } from '../../layout/DocsTextWrapper';
 import { Section } from '../../layout/Section';
 import { Container } from '../Container';
-
 export function FooterLinkContentBlock({ data }) {
   return (
     <section>
@@ -14,14 +14,14 @@ export function FooterLinkContentBlock({ data }) {
           <Container width="narrow">
             {data.isHeadingOne !== false ? (
               <h1
-                className="text-4xl md:text-5xl font-bold text-heading leading-tight"
+                className={ARTICLE_TITLE}
                 data-tina-field={tinaField(data, 'title')}
               >
                 {data.title}
               </h1>
             ) : (
               <h2
-                className="text-4xl md:text-5xl font-bold leading-tight"
+                className={SECTION_TITLE}
                 data-tina-field={tinaField(data, 'title')}
               >
                 {data.title}

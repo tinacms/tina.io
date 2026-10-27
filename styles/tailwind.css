@@ -116,9 +116,10 @@ pre.prism-code.language-json {
   );
 }
 
-/* Headings default to the strong ink; paragraphs take the lighter body ink
-   from text-foreground. Role utilities (text-heading, text-white) sit in the
-   utilities layer, so they still win where a heading needs something else. */
+/* Headings with no role still look like headings: IBM Plex Sans at its real
+   SemiBold weight, in the strong ink. Everything else inherits Inter from
+   body (font-sans) in the lighter body ink. Role classes sit in the utilities
+   layer, so a role always wins over these defaults. */
 @layer base {
   h1,
   h2,
@@ -126,6 +127,8 @@ pre.prism-code.language-json {
   h4,
   h5,
   h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
     color: var(--text-strong);
   }
 }

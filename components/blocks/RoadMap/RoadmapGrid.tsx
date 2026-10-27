@@ -98,7 +98,7 @@ export function RoadmapGridBlock({ data, index }) {
       <Container width="medium">
         <h2
           data-tina-field={tinaField(data, 'headline')}
-          className={`${SECTION_TITLE} inline-block lg:leading-tight mb-4`}
+          className={`${SECTION_TITLE} inline-block mb-4`}
         >
           {data.headline}
         </h2>

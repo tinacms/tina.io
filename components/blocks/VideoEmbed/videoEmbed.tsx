@@ -60,7 +60,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
         {title && (
           <>
             <h2
-              className={`${SECTION_TITLE} inline-block pb-8 lg:leading-tight text-balance text-center lg:text-left`}
+              className={`${SECTION_TITLE} inline-block pb-8 text-center lg:text-left`}
               data-tina-field={tinaField(data, 'title')}
             >
               {title}

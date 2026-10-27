@@ -818,8 +818,8 @@ function FormatHeaders({ children, level }) {
   // hierarchy as the marketing blocks, so colour does not invert when a reader
   // moves from a feature page into a post. See /design.
   const styles = {
-    1: 'text-4xl font-bold mt-16! mb-4',
-    2: 'text-3xl font-bold mt-12! mb-2',
+    1: 'text-4xl font-semibold mt-16! mb-4',
+    2: 'text-3xl font-semibold mt-12! mb-2',
     3: 'text-xl font-semibold mt-8! mb-2',
     4: 'text-xl font-medium mt-2! mb-2',
     5: 'text-lg font-medium mt-2! mb-1',

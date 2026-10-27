@@ -56,7 +56,7 @@ export function LogoGridBlock({ data, index }) {
       <div className="flex flex-col items-center w-full justify-center">
         {data.title && (
           <h2
-            className={`${SECTION_TITLE} inline w-fit m-auto lg:leading-tight text-balance text-center mt-10`}
+            className={`${SECTION_TITLE} inline w-fit m-auto text-center mt-10`}
           >
             {data.title}
           </h2>
