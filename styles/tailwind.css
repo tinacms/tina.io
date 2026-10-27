@@ -304,7 +304,7 @@ pre.prism-code.language-json {
    they sit smaller than CODE. 13px at every width, the one size below 14px.
    Never use it for code a reader needs. */
 @utility role-code-illustration {
-  @apply font-mono font-normal text-[13px] leading-[1.7] tracking-normal normal-case text-strong;
+  @apply font-mono font-normal text-[13px] leading-relaxed tracking-normal normal-case text-strong;
 }
 
 /* Navigation. The nav switches to the slide-out menu below xl, where items
