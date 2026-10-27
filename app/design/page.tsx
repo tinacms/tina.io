@@ -285,7 +285,7 @@ export default function DesignPage() {
               <p className="mt-4 rounded-lg bg-seafoam-50 px-3 py-2 font-mono text-xs wrap-anywhere">
                 {layer.example}
               </p>
-              <p className={`${BODY_SMALL} mt-4 text-subtle`}>{layer.rule}</p>
+              <p className="mt-4 text-sm text-subtle">{layer.rule}</p>
             </div>
           ))}
         </div>

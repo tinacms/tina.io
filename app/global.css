@@ -74,7 +74,6 @@
      What a colour is *for*. These are the only colours a component or a
      type role should name. Every one points at a primitive — never a hex.
      ────────────────────────────────────────────────────────────────────── */
-  --text-heading: var(--orange-500);
   /* Page titles fade from the brand orange to one step darker. Both stops
      clear 3:1 on white, so the gradient passes as large text throughout. */
   --text-heading-start: var(--orange-500);

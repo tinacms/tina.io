@@ -38,29 +38,30 @@ export const SECTION_HEADINGS_SIZE = 'text-xl md:text-2xl lg:text-3xl';
 export const PAGE_TITLE = `font-ibm-plex font-bold text-balance text-heading ${H1_HEADINGS_SIZE}`;
 
 /** Opens a band of the page. Strong ink, so the page title stays the only orange. */
-export const SECTION_TITLE = `font-ibm-plex font-bold text-balance ${BLOCK_HEADINGS_SIZE}`;
+export const SECTION_TITLE = `font-ibm-plex font-bold text-balance text-strong ${BLOCK_HEADINGS_SIZE}`;
 
 /** A heading inside a card, tier, tile or grid item. Strong ink, so a grid reads as a grid. */
-export const CARD_TITLE = `font-ibm-plex font-semibold ${SECTION_HEADINGS_SIZE}`;
+export const CARD_TITLE = `font-ibm-plex font-semibold text-strong ${SECTION_HEADINGS_SIZE}`;
 
 /** A heading inside running copy, mostly blog posts and docs. Strong ink. */
-export const SUB_HEADING = 'font-ibm-plex font-semibold text-xl';
+export const SUB_HEADING = 'font-ibm-plex font-semibold text-xl text-strong';
 
 /** The small uppercase label above a title. Uppercased here, not in the copy. */
 export const EYEBROW =
   'font-ibm-plex text-xs font-medium uppercase tracking-wider text-subtle';
 
-// Body. Headings default to strong ink (styles/tailwind.css); paragraphs default
-// to the lighter body ink. Neither needs a colour class — muted is the exception.
+// Body. Every role names its colour token, so a role renders correctly on any
+// element. Headings without a role fall back to strong ink (styles/tailwind.css)
+// and other text to body ink, via text-foreground.
 
 /** Opening paragraph under a title. */
-export const LEDE = 'text-xl';
+export const LEDE = 'text-xl text-body';
 
 /** Default for every paragraph someone is meant to read. */
-export const BODY = 'text-base';
+export const BODY = 'text-base text-body';
 
 /** Card copy and dense lists. */
-export const BODY_SMALL = 'text-sm';
+export const BODY_SMALL = 'text-sm text-body';
 
 /** Captions, timestamps, footer links, form hints. Supporting text only. */
 export const BODY_MUTED = 'text-base text-subtle';
