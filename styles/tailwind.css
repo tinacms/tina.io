@@ -324,6 +324,27 @@ pre.prism-code.language-json {
   @apply text-link underline decoration-1 underline-offset-3 transition-colors hover:text-link-hover hover:decoration-2;
 }
 
+/* Decorative shimmer on short promo text (the homepage news banner). The
+   text keeps its role and surface ink as the base colour, and a lighter band
+   of the same hue sweeps across it. text-fill-color does the hiding, so a
+   role's colour can't cover the effect. */
+@utility shimmer {
+  -webkit-text-fill-color: transparent;
+  background-color: var(--text-strong);
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--text-strong) 40%, var(--white)),
+    transparent
+  );
+  background-size: var(--shiny-width, 100px) 100%;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: var(--animate-shiny-text);
+}
+
 /* A matched search term: the brand surface plus bold, inside whatever role
    surrounds it. Weight 700 is real in Inter; IBM Plex Sans has no 700, so
    synthesis is off and headings keep their 600 instead of a faked bold. */

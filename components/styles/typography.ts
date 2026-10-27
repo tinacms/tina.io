@@ -140,6 +140,9 @@ export const SURFACE = {
   brandSolid: 'surface-brand-solid',
 } as const;
 
+/** Decorative shimmer for short promo text, like the homepage news banner. Keeps the role and surface ink. */
+export const SHIMMER = 'shimmer';
+
 /** A matched search term: brand tint and bold, keeping the size of the text around it. */
 export const HIGHLIGHT = 'highlight';
 

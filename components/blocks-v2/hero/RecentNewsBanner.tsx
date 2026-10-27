@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { tinaField } from 'tinacms/dist/react';
 import { Badge, type BadgeColor } from '@/component/Badge/Badge';
 import { IconOptions } from '@/component/forms/IconPicker';
-import { LABEL, LINK } from '@/component/styles/typography';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 import { cn } from '@/lib/utils';
 
@@ -115,9 +114,9 @@ export const RecentNewsBanner = ({
                 'px-2',
             )}
           >
-            <span
-              className={`${LABEL} ${LINK} inline-flex gap-2 md:text-nowrap items-center`}
-            >
+            {/* The badge supplies LABEL; the pill and border already draw the
+                eye, so the text shimmers rather than carrying a link underline. */}
+            <span className="inline-flex gap-2 md:text-nowrap items-center">
               {BadgeIconComponent && !recentNewsBanner.badge?.text && (
                 <BadgeIconComponent className="size-5" />
               )}

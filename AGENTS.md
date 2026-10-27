@@ -119,6 +119,7 @@ Every piece of text uses a type role. Role names live in `components/styles/typo
   - Reading: `BODY` (paragraphs; a bare `<p>` in `<main>` already gets it), `BODY_SMALL` (dense copy, lists, descriptions), `BODY_MUTED` (dates, bylines, captions, units, hints; never a paragraph, never something clickable), `CAPTION` (fixed 14px notes: billing notes, addresses), `CODE` (code, terminal output, package names, versions, hashes).
   - Navigation and forms: `NAV_LINK`, `NAV_MENU_LINK`, `FOOTER_LINK`, `FOOTER_LEGAL_LINK`, `FIELD` (inputs, selects, text areas; 16px so phones don't zoom).
 - **Search highlights:** `HIGHLIGHT` marks a matched term inside any role (brand tint and bold, size from the surrounding text).
+- **Shimmer:** `SHIMMER` is a decorative sweep for short promo text (the homepage news banner). It keeps the role and takes its colours from the surface, so never add text colours to it.
 - **Links:** `LINK` is the one class that combines with a role (`${BODY_SMALL} ${LINK}`). It adds link blue (`--text-link`, blue-700) and an underline and keeps the size around it.
 - **Colour follows the surface, not the tag.**
   - On a dark or brand-orange container, put `ON_DARK` on the container and use the normal roles inside. Everything turns white; SLUB and footer legal links turn white at 75% (agreed below AA). Never write `text-white`.
