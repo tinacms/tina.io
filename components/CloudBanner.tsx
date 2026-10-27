@@ -4,6 +4,7 @@ import Link from 'next/link';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
+import { BODY_SMALL, LABEL, LINK } from '@/component/styles/typography';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import '../styles/tailwind.css';
 
@@ -27,11 +28,10 @@ export function CloudBanner() {
     <div
       className="
         relative z-10 w-full flex flex-col items-center justify-center 
-        py-3 px-4 text-base leading-[1.2] 
+        py-3 px-4
         bg-[linear-gradient(90deg,white,#f2fdfc_33.3%,#e6faf8_100%)] 
         shadow-[0_0_8px_2px_rgba(0,0,0,0.03)] 
         border-b border-[#d1faf6] 
-        text-(--color-tina-blue)
         lg:flex-row lg:pl-8 lg:pr-10
       "
     >
@@ -42,7 +42,7 @@ export function CloudBanner() {
         "
       >
         <Link
-          className="pr-2 text-slate-700 hover:text-slate-950 transition-colors duration-200 flex items-center gap-1 "
+          className={`${BODY_SMALL} ${LINK} pr-2 flex items-center gap-1`}
           href={`https://github.com/tinacms/tinacms`}
           target="_blank"
           rel="noopener noreferrer"
@@ -67,7 +67,7 @@ export function CloudBanner() {
               />
             </svg>
 
-            <span className="text-sm font-medium ml-1">
+            <span className={`${LABEL} ml-1`}>
               {formatStarCount(starCount)}
             </span>
           </span>

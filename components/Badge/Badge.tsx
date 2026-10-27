@@ -1,31 +1,36 @@
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { EYEBROW, LABEL, SURFACE } from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
 
-const badgeVariants = cva(
-  'flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border',
-  {
-    variants: {
-      size: {
-        default: 'px-3.5 py-1.5 text-base',
-        medium: 'px-3 text-sm',
-        small: 'px-1 text-[10px]',
-      },
-      color: {
-        blue: 'bg-brand-secondary text-white border-brand-secondary',
-        ghostBlue: 'text-brand-secondary border-brand-secondary bg-white',
-        orange: 'bg-brand-primary text-white border-brand-primary',
-        ghostOrange: 'border-brand-primary text-brand-primary bg-white',
-        blueSecondary:
-          'border-brand-secondary bg-brand-secondary-light text-blue-800',
-      },
+// Badge colours come from the CMS (BADGE_COLOR_OPTIONS). The five options
+// collapse onto three surfaces, so every badge reads as a chip: Orange is the
+// solid “new” pill; Blue, Blue Secondary and Ghost Blue are the light blue
+// tint; Ghost Orange is the light orange tint. The CMS keeps all five values so
+// existing content still renders. Text takes LABEL in the banner-sized badge and
+// EYEBROW (SLUB) in the small pills.
+const INFO = `${SURFACE.info} border-brand-secondary`;
+
+const badgeVariants = cva('flex gap-2 items-center w-fit rounded-full border', {
+  variants: {
+    size: {
+      default: `px-3.5 py-1.5 ${LABEL}`,
+      medium: `px-3 ${EYEBROW}`,
+      small: `px-1 ${EYEBROW}`,
     },
-    defaultVariants: {
-      size: 'default',
-      color: 'blue',
+    color: {
+      blue: INFO,
+      ghostBlue: INFO,
+      blueSecondary: INFO,
+      orange: `${SURFACE.brandSolid} border-transparent`,
+      ghostOrange: SURFACE.brand,
     },
   },
-);
+  defaultVariants: {
+    size: 'default',
+    color: 'blue',
+  },
+});
 
 export type BadgeColor =
   | 'blue'

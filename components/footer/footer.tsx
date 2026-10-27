@@ -11,6 +11,8 @@ import {
   BODY_MUTED,
   BODY_SMALL,
   EYEBROW,
+  FOOTER_LEGAL_LINK,
+  FOOTER_LINK,
   ON_DARK,
 } from '@/component/styles/typography';
 import { hasZhPrefix, isZhHost } from '@/utils/i18n/domains';
@@ -21,8 +23,7 @@ import { footerLinksZh, footerNavZh } from './constants';
 import { SocialIcon } from './social-icon';
 import { SubscriptionForm } from './subscription-form';
 
-const linkStyles =
-  'inline-block drop-shadow-sm relative text-white uppercase text-lg lg:text-xl font-ibm-plex font-semibold transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px';
+const linkStyles = `inline-block drop-shadow-sm relative transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px ${FOOTER_LINK}`;
 
 interface FooterItem {
   id?: string;
@@ -100,7 +101,7 @@ const FooterLink = React.memo(
     return (
       <Link
         href={link || ''}
-        className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] whitespace-nowrap text-label hover:text-strong"
+        className={`transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] whitespace-nowrap ${FOOTER_LEGAL_LINK}`}
         passHref
       >
         {label}
@@ -212,7 +213,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
             </div>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto flex flex-col items-center lg:flex-row lg:justify-between w-full lg:items-start py-8 gap-6 px-6 lg:px-8 text-white">
+        <div className="max-w-7xl mx-auto flex flex-col items-center lg:flex-row lg:justify-between w-full lg:items-start py-8 gap-6 px-6 lg:px-8">
           <SocialIcon socialLinks={socialLinks} />
           <div className="flex drop-shadow-sm flex-wrap justify-center gap-x-6 gap-y-2 lg:justify-end">
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
@@ -236,13 +237,13 @@ export function Footer({ footerData }: { footerData: FooterData }) {
             </div>
             {isZhPath && (
               <div>
-                <p>
+                <p className={BODY_MUTED}>
                   网站备案号:{' '}
                   <a
                     href="https://beian.miit.gov.cn/#/Integrated/index"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="transition-all duration-200 hover:underline hover:opacity-100 opacity-80"
+                    className={FOOTER_LEGAL_LINK}
                   >
                     浙ICP备20009588号-8
                   </a>

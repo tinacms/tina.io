@@ -3,6 +3,12 @@ import Image from 'next/image';
 // biome-ignore lint/style/useImportType: <TODO>
 import React, { useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import {
+  BODY_MUTED,
+  CARD_TITLE,
+  LABEL,
+  SURFACE,
+} from '@/component/styles/typography';
 
 interface Language {
   code: string;
@@ -51,7 +57,7 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
   return (
     <div className="p-6 md:py-10 mx-4">
       <div className="flex justify-center pb-8">
-        <h2 className="inline-block m-0 text-2xl md:text-3xl lg:leading-tight">
+        <h2 className={`${CARD_TITLE} inline-block m-0`}>
           {languageTitles[currentLanguage] || languageTitles.en}
         </h2>
       </div>
@@ -67,9 +73,9 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
                 onClick={() => handleLanguageSelect(language.code)}
                 className={`flex flex-row w-full h-full items-center justify-between rounded-lg border ${
                   selectedLanguage === language.code
-                    ? 'border-blue-500 bg-blue-50'
+                    ? `border-blue-500 ${SURFACE.info}`
                     : 'border-input bg-background'
-                } p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700`}
+                } p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring`}
               >
                 <Image
                   src={language.flag}
@@ -79,10 +85,8 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
                   height={40}
                 />
                 <div className="grow text-left">
-                  <div className="font-medium text-lg">{language.name}</div>
-                  <div className="text-muted-foreground text-xs">
-                    {language.nativeName}
-                  </div>
+                  <div className={LABEL}>{language.name}</div>
+                  <div className={BODY_MUTED}>{language.nativeName}</div>
                 </div>
                 <div className="shrink-0">
                   <FaChevronRight className="h-6 w-6 text-muted-foreground" />

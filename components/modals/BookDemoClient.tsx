@@ -5,6 +5,12 @@ import Link from 'next/link';
 /* biome-ignore lint/correctness/noUnusedImports: may need to use React for future compatibility */
 import React from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import {
+  BODY,
+  BODY_MUTED,
+  CARD_TITLE,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 
 // Client component that renders the UI
 export function DemoFormClient({
@@ -22,18 +28,18 @@ export function DemoFormClient({
   return (
     <div className="py-10 h-full flex flex-col !w-full">
       <div className="flex justify-center pb-8">
-        <h2 className="inline-block m-0 font-ibm-plex lg:text-3xl md:text-2xl lg:leading-tight">
+        <h2 className={`inline-block m-0 ${CARD_TITLE}`}>
           Choose your location
         </h2>
       </div>
       {error && (
         <div className="flex justify-center items-center py-10">
-          <p className="text-red-600">{error}</p>
+          <p className={BODY}>{error}</p>
         </div>
       )}
       {!error && meetingPeople.length === 0 && (
         <div className="flex justify-center items-center py-10">
-          <p className="text-muted-foreground">No meeting links available.</p>
+          <p className={BODY_MUTED}>No meeting links available.</p>
         </div>
       )}
       {!error && meetingPeople.length > 0 && (
@@ -46,7 +52,7 @@ export function DemoFormClient({
               <div className="w-full max-w-sm h-full">
                 <Link
                   href={person.url}
-                  className="flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between rounded-lg border border-input bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700"
+                  className="flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between rounded-lg border border-input bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring"
                   prefetch={false}
                 >
                   {person.image && (
@@ -59,10 +65,8 @@ export function DemoFormClient({
                     />
                   )}
                   <div className="grow text-center md:text-left lg:text-left">
-                    <div className="font-medium text-lg">{person.name}</div>
-                    <div className="text-muted-foreground text-base">
-                      {person.description}
-                    </div>
+                    <div className={SUB_HEADING}>{person.name}</div>
+                    <div className={BODY_MUTED}>{person.description}</div>
                   </div>
                   <div className="shrink-0">
                     <FaChevronRight className="h-6 w-6 text-muted-foreground" />
