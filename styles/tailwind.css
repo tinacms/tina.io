@@ -98,14 +98,10 @@ pre.prism-code.language-json {
    heading tokens are exposed as utilities instead — components still write
    `text-heading` and never name the orange stops directly.
    The gradient repeats once per line (1lh tall, starting at the content box),
-   so a three-line title gets three lit lines rather than one long fade. */
+   so a three-line title gets three lit lines rather than one long fade.
+   The gradient itself is defined once, in bg-heading below. */
 @utility text-heading {
-  background-image: linear-gradient(
-    to bottom,
-    var(--text-heading-highlight) 0%,
-    var(--text-heading-start) 45%,
-    var(--text-heading-end) 100%
-  );
+  @apply bg-heading;
   background-size: 100% 1lh;
   background-repeat: repeat;
   background-origin: content-box;
