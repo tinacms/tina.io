@@ -143,3 +143,13 @@ pre.prism-code.language-json {
     @apply font-sans text-base md:text-lg leading-relaxed;
   }
 }
+
+/* Put `on-dark` (ON_DARK in typography.ts) on a dark or brand-orange
+   container and every role inside it switches to light text — BODY, BODY_MUTED,
+   EYEBROW, headings — with no new classes to learn. */
+@utility on-dark {
+  --text-strong: var(--text-on-dark);
+  --text-body: var(--text-on-dark);
+  --text-subtle: var(--text-on-dark);
+  color: var(--text-body);
+}

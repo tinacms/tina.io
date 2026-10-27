@@ -6,6 +6,13 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import '../../styles/tailwind.css';
+
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  EYEBROW,
+  ON_DARK,
+} from '@/component/styles/typography';
 import { hasZhPrefix, isZhHost } from '@/utils/i18n/domains';
 import { TinaIcon } from '../logo';
 import { ContactForm } from '../modals/ContactForm';
@@ -15,7 +22,7 @@ import { SocialIcon } from './social-icon';
 import { SubscriptionForm } from './subscription-form';
 
 const linkStyles =
-  'inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-ibm-plex transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px';
+  'inline-block drop-shadow-sm relative text-white uppercase text-lg lg:text-xl font-ibm-plex font-semibold transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px';
 
 interface FooterItem {
   id?: string;
@@ -93,7 +100,7 @@ const FooterLink = React.memo(
     return (
       <Link
         href={link || ''}
-        className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap"
+        className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] whitespace-nowrap"
         passHref
       >
         {label}
@@ -142,7 +149,9 @@ export function Footer({ footerData }: { footerData: FooterData }) {
   return (
     <footer>
       {/* Footer Top */}
-      <div className="bg-[url('/svg/orange-bg.svg')] bg-cover bg-center">
+      <div
+        className={`${ON_DARK} bg-[url('/svg/orange-bg.svg')] bg-cover bg-center`}
+      >
         {modalButton && modalButton._template === 'modalButton' && (
           <div className="px-6 md:mx-auto max-w-7xl w-full pt-8 pb-6 lg:hidden">
             <SubscriptionForm props={modalButton} />
@@ -161,9 +170,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
                     key={`footer-nav-${header}-${item.id}`}
                     className="flex flex-col items-stretch justify-start gap-2"
                   >
-                    <p className="uppercase text-orange-300/70 text-xs font-semibold tracking-wider -mt-1">
-                      {header}
-                    </p>
+                    <p className={`${EYEBROW} -mt-1`}>{header}</p>
                     {footerItem.map((item, itemIndex) => {
                       if (item._template === 'modalButton') {
                         return (
@@ -254,7 +261,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
 
       {/* SSW Banner */}
       <div
-        className="group relative flex flex-wrap items-center justify-center gap-x-4 gap-y-2 overflow-hidden px-8 py-6 md:px-48 md:justify-between"
+        className={`${ON_DARK} group relative flex flex-wrap items-center justify-center gap-x-4 gap-y-2 overflow-hidden px-8 py-6 md:px-48 md:justify-between`}
         style={{
           backgroundImage:
             'linear-gradient(to right, #CC4141 0%, #000000 100%)',
@@ -271,7 +278,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           href="https://www.ssw.com.au"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative z-10 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-center md:justify-start md:text-left text-white text-sm md:text-base font-bold no-underline hover:no-underline"
+          className={`${BODY_SMALL} relative z-10 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-center md:justify-start md:text-left no-underline hover:no-underline`}
         >
           TinaCMS is actively developed by
           <svg
@@ -297,7 +304,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           <span className="-ml-1">{', '}</span>
           Australia&apos;s leading software consultants.
         </a>
-        <p className="relative z-10 text-center md:text-left text-white/65 text-sm md:text-base font-bold">
+        <p className={`${BODY_MUTED} relative z-10 text-center md:text-left`}>
           &copy; TinaCMS 2019–
           {new Date().getFullYear()}
         </p>

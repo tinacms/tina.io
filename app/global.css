@@ -139,6 +139,7 @@
   --seafoam-500: #93e9be;
   --seafoam-700: #529c7b;
 
+  --white: #ffffff;
   --ink-900: #1c1b2e;
   --slate-700: #334155;
   --slate-500: #64748b;
@@ -157,6 +158,11 @@
   --text-strong: var(--ink-900);
   --text-body: var(--slate-700);
   --text-subtle: var(--slate-500);
+  /* Text on dark and brand-orange surfaces. Solid white for every level: on
+     the orange footer any translucent white drops below 4.5:1, so hierarchy
+     on dark comes from size and weight, not opacity. Applied by the on-dark
+     utility, which swaps the three text tokens above inside its container. */
+  --text-on-dark: var(--white);
 
   /* Type families. Headings are IBM Plex Sans; everything people read is
      Inter; code and technical labels are IBM Plex Mono. Match the font-ibm-plex and font-sans classes in tailwind.config.js. */

@@ -125,7 +125,7 @@ Text styles live in `components/styles/typography.ts`. The full reference, with 
 - **Fonts:** IBM Plex Sans for headings, Inter for reading text, IBM Plex Mono for code. IBM Plex Sans only ships at 600 and 500. Never use `font-bold` on it, or the browser fakes the weight.
 - **Colours:** name semantic tokens (`text-heading`, `text-strong`, `text-body`, `text-subtle`), never palette shades (`text-orange-600`) or hex values. Tokens are defined in `app/global.css`: primitives → semantic tokens → roles.
 - **Nothing fits?** Add a role to `typography.ts` and show it on `/design`. Don't hand-roll classes in a component.
-- **Not covered yet:** text on dark backgrounds (footer, newsletter form). Those keep their own classes until there is an on-dark variant.
+- **On dark or brand-orange surfaces:** put `ON_DARK` on the container and use the normal roles inside. Every text level becomes solid white. Don't add `text-white` or `text-white/70` by hand, because translucent white fails contrast on the orange footer.
 
 
 

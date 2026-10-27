@@ -63,7 +63,7 @@ export const SUB_HEADING =
 
 /** The small uppercase label above a title. Uppercased here, not in the copy. */
 export const EYEBROW =
-  'font-ibm-plex-medium font-medium text-xs leading-normal tracking-widest uppercase text-subtle';
+  'font-ibm-plex-medium font-medium text-sm leading-normal tracking-widest uppercase text-subtle';
 
 // Body. One reading size for every paragraph, one step smaller for dense copy
 // and captions. Phones keep the smaller size; from tablet width (md) up, body
@@ -91,3 +91,12 @@ export const BODY_MUTED =
 /** Inline code, terminal output and technical labels. 14px, 16px from md. */
 export const CODE =
   'font-mono font-normal text-sm md:text-base leading-relaxed text-strong';
+
+// Surfaces.
+
+/**
+ * Put on a dark or brand-orange container (the footer, the newsletter form)
+ * and every role inside it switches to light text. Use the normal roles
+ * inside — don't add `text-white` by hand.
+ */
+export const ON_DARK = 'on-dark';

@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
+import {
+  BODY_SMALL,
+  ON_DARK,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 import { addToMailchimp } from '@/utils/mailchimp_helper';
 
 interface FormData {
@@ -76,11 +81,11 @@ export const SubscriptionForm = ({ props }) => {
   return (
     <div className="flex flex-col mt-4 md:mt-0">
       <form
-        className="flex flex-col text-left gap-1.5 items-start w-full"
+        className={`${ON_DARK} flex flex-col text-left gap-1.5 items-start w-full`}
         onSubmit={handleSubmit}
       >
-        <h2 className=" md:text-xl font-ibm-plex text-white">Join the Herd!</h2>
-        <p className="text-sm text-white/80 pb-1.5">
+        <h2 className={SUB_HEADING}>Join the Herd!</h2>
+        <p className={`${BODY_SMALL} pb-1.5`}>
           Join our coding community for the latest tips and news.
         </p>
         <div className="flex flex-col gap-2.5 w-full">

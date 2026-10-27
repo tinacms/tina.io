@@ -7,6 +7,7 @@ import {
   CARD_TITLE,
   CODE,
   EYEBROW,
+  ON_DARK,
   PAGE_TITLE,
   SECTION_TITLE,
   SUB_HEADING,
@@ -100,7 +101,7 @@ const SCALE = [
   {
     cls: EYEBROW,
     name: 'EYEBROW',
-    size: 'IBM Plex Sans Medium 500 · 13px · tracking widest · uppercase',
+    size: 'IBM Plex Sans Medium 500 · 14px · tracking widest · uppercase',
     sample: 'Trusted by teams shipping at scale',
   },
   {
@@ -287,6 +288,26 @@ export default function DesignPage() {
             </p>
             <p className={`${CODE} mt-3`}>BODY_MUTED</p>
           </div>
+        </div>
+      </section>
+
+      <section className="mt-16">
+        <h2 className={SECTION_TITLE}>On dark</h2>
+        <p className={`${BODY} mt-2 max-w-2xl`}>
+          On the orange footer or any dark surface, put <code>ON_DARK</code> on
+          the container and use the normal roles inside. Every text level turns
+          solid white: on brand orange, any faded white drops below a readable
+          contrast, so hierarchy comes from size and weight instead.
+        </p>
+        <div
+          className={`${ON_DARK} mt-6 rounded-2xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
+        >
+          <p className={EYEBROW}>Resources</p>
+          <h3 className={`${SUB_HEADING} mt-2`}>Join the Herd!</h3>
+          <p className={`${BODY_SMALL} mt-2 max-w-md`}>
+            Join our coding community for the latest tips and news.
+          </p>
+          <p className={`${BODY_MUTED} mt-4`}>© TinaCMS 2019–2026</p>
         </div>
       </section>
 
