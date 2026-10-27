@@ -14,13 +14,13 @@ next: ''
 On October 21, 2026, the PHP project released emergency fixes for 2 critical vulnerabilities: CVE-2026-109618 and CVE-2026-109619, known together as **PHP2Shell**.
 
 - Both flaws can let an attacker run code on your server without logging in
-- The flaws are in PHP, not WordPress or a plugin. A WordPress update doesn't fix them.
+- The flaws are in PHP, not WordPress or a plugin, so a WordPress update doesn't fix them
 - Update PHP, or ask your host to
 
 Both flaws affect PHP's memory and error handling, used by nearly every request.
 An attacker triggers a failure at a chosen point, such as the memory limit, then exploits what remains in memory.
 Unfortunately, the news broke earlier than responders had planned.
-Researcher Ryan Austin reports that Calif [discovered the scale of the PHP issue](https://calif.io/php2shell/) in August of this year, and reported it to PHP within a week. Before the coordinated disclosure and remediation was ready, a Hacker News user [posted about the two incoming vulnerabilities](https://news.ycombinator.com/item?id=50167754), blowing the cover of the secret operation. (They have since apologised, saying *"at the time of posting, [they] didn't know about any embargo."*)
+Researcher Ryan Austin reports that Calif [discovered the scale of the PHP issue](https://calif.io/php2shell/) in August of this year, and reported it to PHP within a week. Before the coordinated disclosure and remediation was ready, a Hacker News user [posted about the two incoming vulnerabilities](https://news.ycombinator.com/item?id=50167754), blowing the cover of the secret operation. They have since apologised, saying *"at the time of posting, [they] didn't know about any embargo."*
 The PHP Foundation's [retrospective](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/) acknowledges warning signs from 2024 and calls the delay a *"structural failure"*.
 
 The advice was to go offline, and some did:
@@ -29,7 +29,7 @@ The advice was to go offline, and some did:
 - The [Dutch government](https://www.rijksoverheid.nl/actueel/nieuws/2026/10/21/aantal-websites-rijksoverheid-preventief-offline-na-kwetsbaarheden-php) took Overheid.nl, MijnOverheid and DigiD offline as a precaution
 - Email alias service [addy.io](https://status.addy.io) took its website and web app offline for about 3.5 hours *"due to the PHP2Shell vulnerability"*. Email forwarding kept working, and its own code wasn't broken.
 
-If you maintain sites for clients, picture explaining that call: the site _looks_ fine and nothing seems to have changed - but your afternoon is gone.
+If you maintain sites for clients, picture explaining that call: the site _looks_ fine and nothing seems to have changed - but PHP needs an urgent patch, and your afternoon is gone.
 
 Two individual accounts show the gap between knowing about a fix and deploying it.
 In Reddit's r/sysadmin, u/Thrwingawaymylife945 [put it simply](https://www.reddit.com/r/sysadmin/comments/1xc4rjx/php2shell_and_your_security_team/): *"I'm on WordPress, and I can't patch my websites"*. Their host hadn't released the update.
@@ -38,7 +38,7 @@ In r/ExperiencedDevs, u/tommyk1210 [described upgrading PHP's major version ever
 ## PHP fix: Patch now
 
 [WordPress runs on PHP](https://wordpress.org/about/requirements/), so you patch PHP itself.
-There are 2 ways, depending on who runs PHP:
+There are 2 ways, depending on who manages your PHP installation:
 
 - **A managed host runs it.** Ask your host to confirm they applied both fixes and restarted PHP.
 - **You run the server.** Update PHP to the fixed release for your version, then restart the services that use it:
@@ -55,9 +55,9 @@ Researchers showed an attack there that runs before any application code, so a W
 Exposure is a reason to patch, not proof of a break-in.
 See the [PHP security advisory](https://www.php.net/archive/2026.php) for details.
 
-## The bigger question: does this site still need PHP?
+## The bigger question: does your site still need PHP?
 
-WordPress enters projects for good reasons: clients know the editor, and your team knows how to deliver sites with it.
+Teams choose WordPress for good reasons: clients are familiar with its editor, and developers know how to build and deliver sites with it.
 It's also basically _everywhere:_ [W3Techs measured it at 39.6% of all websites](https://w3techs.com/technologies/details/cm-wordpress) on October 23, 2026.
 But you also maintain everything under the pages.
 
@@ -68,6 +68,8 @@ But you also maintain everything under the pages.
 WordPress is open source, and you can [export your content](https://wordpress.org/documentation/article/tools-export-screen/).
 Changing hosts doesn't remove PHP.
 Using WordPress headlessly with Astro or Next.js keeps PHP because WordPress remains the content backend.
+
+
 Removing PHP means replacing WordPress.
 That can involve untangling themes, page-builder layouts, custom fields and publishing workflows.
 
