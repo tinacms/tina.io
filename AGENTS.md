@@ -105,7 +105,7 @@ Two locales: English (`en`, default) and Chinese (`zh`). Middleware handles loca
 - Block statements required (no single-line `if` without braces)
 - `noUnusedVariables: error`, `useOptionalChain: error`, `noArrayIndexKey: error`
 - `noExplicitAny` and `noNonNullAssertion` are allowed (off)
-- Magic Numbers are a big no no! i.e: text-[15px] is bad, use text-md for example. Another bad example is w-[14%] on a component... why 14%!? make it a standard
+- Magic Numbers are a big no no! i.e: text-[15px] is bad, for type use a role from `typography.ts` instead. Another bad example is w-[14%] on a component... why 14%!? make it a standard
 - to conditionally render html use {variable} && ( <...>) rather than {variable} ? <> : null 
 
 ## Typography
