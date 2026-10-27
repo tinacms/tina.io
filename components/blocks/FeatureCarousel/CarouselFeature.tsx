@@ -78,12 +78,13 @@ const CarouselItem = ({
               : 'scale-y-75 opacity-0'
           }`}
         >
-          {textDisplayCondition && (
-            <p className={`${BODY} md:pl-12 lg:pl-13 pl-9 slide-up`}>{text}</p>
-          )}
-          {buttonDisplayCondition && (
-            <div className={`md:pl-6 lg:pl-6 pl-3 slide-up flex justify-start`}>
-              <Actions items={actionsArray} />
+          {/* Body text and its link share one container, so the link lines
+              up with the text under the title instead of relying on button
+              padding. */}
+          {(textDisplayCondition || buttonDisplayCondition) && (
+            <div className="md:pl-12 lg:pl-13 pl-9 slide-up flex flex-col items-start gap-1">
+              {textDisplayCondition && <p className={BODY}>{text}</p>}
+              {buttonDisplayCondition && <Actions items={actionsArray} />}
             </div>
           )}
         </div>
