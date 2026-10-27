@@ -61,9 +61,12 @@ export const CARD_TITLE = `font-ibm-plex font-semibold ${SECTION_HEADINGS_SIZE} 
 export const SUB_HEADING =
   'font-ibm-plex font-semibold text-xl leading-snug text-balance text-strong';
 
-/** The small uppercase label above a title. Uppercased here, not in the copy. */
+/**
+ * The small uppercase label above a title — designers call it SLUB text
+ * (Smaller, Lighter, Uppercase, Bold). Uppercased here, not in the copy.
+ */
 export const EYEBROW =
-  'font-ibm-plex-medium font-medium text-sm leading-normal tracking-widest uppercase text-subtle';
+  'font-ibm-plex-medium font-medium text-sm leading-normal tracking-widest uppercase text-label';
 
 // Body. One reading size for every paragraph, one step smaller for dense copy
 // and captions. Phones keep the smaller size; from tablet width (md) up, body

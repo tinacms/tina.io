@@ -328,6 +328,7 @@ module.exports = {
         strong: 'var(--text-strong)',
         body: 'var(--text-body)',
         subtle: 'var(--text-subtle)',
+        label: 'var(--text-label)',
         'neutral-border': 'var(--neutral-border)',
         'neutral-border-subtle': 'var(--neutral-border-subtle)',
 

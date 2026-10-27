@@ -151,5 +151,6 @@ pre.prism-code.language-json {
   --text-strong: var(--text-on-dark);
   --text-body: var(--text-on-dark);
   --text-subtle: var(--text-on-dark);
+  --text-label: var(--text-on-dark-label);
   color: var(--text-body);
 }

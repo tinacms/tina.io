@@ -158,11 +158,18 @@
   --text-strong: var(--ink-900);
   --text-body: var(--slate-700);
   --text-subtle: var(--slate-500);
+  /* SLUB / eyebrow labels. Same grey as subtle on light surfaces; on dark
+     they get their own warm off-white so they read apart from white links. */
+  --text-label: var(--slate-500);
   /* Text on dark and brand-orange surfaces. Solid white for every level: on
      the orange footer any translucent white drops below 4.5:1, so hierarchy
      on dark comes from size and weight, not opacity. Applied by the on-dark
      utility, which swaps the three text tokens above inside its container. */
   --text-on-dark: var(--white);
+  /* SLUB labels on dark: a step off white so they don't read as links.
+     Trade-off: 3.36:1 on brand orange, 2.79:1 on the palest part of the
+     footer — below 4.5:1, accepted as a design decision for short labels. */
+  --text-on-dark-label: var(--orange-100);
 
   /* Type families. Headings are IBM Plex Sans; everything people read is
      Inter; code and technical labels are IBM Plex Mono. Match the font-ibm-plex and font-sans classes in tailwind.config.js. */
