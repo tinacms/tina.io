@@ -156,10 +156,13 @@
      What a colour is *for*. These are the only colours a component or a
      type role should name. Every one points at a primitive — never a hex.
      ────────────────────────────────────────────────────────────────────── */
-  /* Page titles fade from the brand orange to one step darker. Both stops
-     clear 3:1 on white, so the gradient passes as large text throughout. */
+  /* Page titles are “lit from above”: every line runs from a light highlight
+     through the brand orange to a deep orange, so the type reads as raised.
+     Picked by design (Oct 2026). The body of each letter stays at 3.8:1 or
+     more on white; only the thin highlight at the top of a line is 2.9:1. */
+  --text-heading-highlight: var(--orange-400);
   --text-heading-start: var(--orange-500);
-  --text-heading-end: var(--orange-600);
+  --text-heading-end: var(--orange-700);
   /* Headings sit on the darkest ink; running text is a step lighter, so
      paragraphs read softer without losing the heading hierarchy. */
   --text-strong: var(--ink-900);

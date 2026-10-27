@@ -95,14 +95,20 @@ pre.prism-code.language-json {
 }
 
 /* Page title colour. A gradient can't be a Tailwind colour, so the semantic
-   heading token is exposed as utilities instead — components still write
-   `text-heading` and never name the orange stops directly. */
+   heading tokens are exposed as utilities instead — components still write
+   `text-heading` and never name the orange stops directly.
+   The gradient repeats once per line (1lh tall, starting at the content box),
+   so a three-line title gets three lit lines rather than one long fade. */
 @utility text-heading {
   background-image: linear-gradient(
-    to bottom right,
-    var(--text-heading-start),
-    var(--text-heading-end)
+    to bottom,
+    var(--text-heading-highlight) 0%,
+    var(--text-heading-start) 45%,
+    var(--text-heading-end) 100%
   );
+  background-size: 100% 1lh;
+  background-repeat: repeat;
+  background-origin: content-box;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -110,9 +116,10 @@ pre.prism-code.language-json {
 
 @utility bg-heading {
   background-image: linear-gradient(
-    to bottom right,
-    var(--text-heading-start),
-    var(--text-heading-end)
+    to bottom,
+    var(--text-heading-highlight) 0%,
+    var(--text-heading-start) 45%,
+    var(--text-heading-end) 100%
   );
 }
 

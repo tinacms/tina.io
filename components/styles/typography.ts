@@ -26,7 +26,7 @@
 
 // ─── Headings ────────────────────────────────────────────────────────────
 
-/** The page's one h1. Brand orange gradient, the only orange text. 36 → 48 → 60px. */
+/** The page's one h1. Brand orange gradient, lit from above line by line. 36 → 48 → 60px. */
 export const PAGE_TITLE = 'role-page-title';
 
 /** Page title for blog posts and legal pages, whose titles run long. 36 → 48px. */

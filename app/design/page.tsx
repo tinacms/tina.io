@@ -59,7 +59,7 @@ const GROUPS: { title: string; intro: string; roles: Role[] }[] = [
       {
         name: 'PAGE_TITLE',
         cls: PAGE_TITLE,
-        spec: 'Plex 600 · 36 / 48 / 60px · leading tight · tracking tight · orange gradient',
+        spec: 'Plex 600 · 36 / 48 / 60px · leading tight · tracking tight · orange gradient, lit from above',
         use: 'The page’s one h1.',
         never: 'Twice on a page, or anywhere below the top.',
         sample: 'Meet TinaCMS',
@@ -67,7 +67,7 @@ const GROUPS: { title: string; intro: string; roles: Role[] }[] = [
       {
         name: 'ARTICLE_TITLE',
         cls: ARTICLE_TITLE,
-        spec: 'Plex 600 · 36 / 48px · leading tight · tracking tight · orange gradient',
+        spec: 'Plex 600 · 36 / 48px · leading tight · tracking tight · orange gradient, lit from above',
         use: 'The page title on blog posts and legal pages, whose titles run long.',
         sample: 'Tipping the iceberg: the WordPress era is over',
       },
@@ -270,10 +270,10 @@ const SURFACES = [
 const COLOURS = [
   {
     swatch: 'bg-heading',
-    primitive: '--orange-500 → 600',
-    token: '--text-heading-start / -end',
-    ratio: '3.8 → 4.7:1',
-    use: 'Page titles only (36px and up).',
+    primitive: '--orange-400 → 500 → 700',
+    token: '--text-heading-highlight / -start / -end',
+    ratio: '2.9 (highlight) · 3.8 → 6.1:1',
+    use: 'Page titles, lit from above: each line runs light to deep. Large text only (36px and up), plus the recommended plan.',
   },
   {
     swatch: 'bg-strong',
