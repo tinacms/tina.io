@@ -281,7 +281,7 @@ function Agenda({
                         <h3 className="text-lg font-bold">
                           {breakSession.speechTitle}
                         </h3>
-                        <p className="text-subtle text-sm">
+                        <p className="text-sm">
                           {breakSession.speechDescription}
                         </p>
                       </div>
@@ -314,7 +314,7 @@ function Agenda({
                               </span>
                             </div>
                           )}
-                          <p className="text-subtle text-sm pt-2">
+                          <p className="text-sm pt-2">
                             {talk.speechDescription}
                           </p>
                         </div>
@@ -351,7 +351,7 @@ function Agenda({
                     <h3 className="text-lg leading-5 font-bold">
                       {breakSession.speechTitle}
                     </h3>
-                    <p className="text-subtle text-sm pt-1">
+                    <p className="text-sm pt-1">
                       {breakSession.speechDescription}
                     </p>
                   </div>
@@ -388,9 +388,7 @@ function Agenda({
                         <span className="text-sm">{talk.talkSpeakerName}</span>
                       </div>
                     )}
-                    <p className="text-subtle text-sm pt-2">
-                      {talk.speechDescription}
-                    </p>
+                    <p className="text-sm pt-2">{talk.speechDescription}</p>
                   </div>
                 ))}
               </div>

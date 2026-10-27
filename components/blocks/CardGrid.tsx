@@ -13,7 +13,7 @@ export const CardGrid = ({ props }) => {
             {card.title}
           </h2>
 
-          <p className="text-subtle">{card.description}</p>
+          <p>{card.description}</p>
           <div className="flex-1"></div>
           {card.linkText && (
             <Actions

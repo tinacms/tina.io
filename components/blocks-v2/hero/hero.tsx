@@ -44,7 +44,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           )}
           {subtext && (
             <p
-              className="text-subtle duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md"
+              className="duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md"
               data-tina-field={tinaField(data.data, 'subtext')}
             >
               {subtext}

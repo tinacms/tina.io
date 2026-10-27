@@ -41,7 +41,7 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
         </>
       )}
       {change.changesDescription && (
-        <p className="order-last w-full wrap-anywhere text-subtle sm:order-none sm:col-start-3 sm:w-auto">
+        <p className="order-last w-full wrap-anywhere sm:order-none sm:col-start-3 sm:w-auto">
           {change.changesDescription}
         </p>
       )}

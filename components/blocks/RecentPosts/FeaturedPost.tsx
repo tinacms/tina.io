@@ -73,7 +73,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
 
           {featuredPost.description && (
             <p
-              className="text-xs text-subtle"
+              className="text-xs"
               data-tina-field={tinaField(featuredPost, 'description')}
             >
               {featuredPost.description}

@@ -65,10 +65,7 @@ const PartnerCard = ({ data }) => {
       )}
 
       {data.description && (
-        <p
-          className="grow text-subtle"
-          data-tina-field={tinaField(data, 'description')}
-        >
+        <p className="grow" data-tina-field={tinaField(data, 'description')}>
           {data.description}
         </p>
       )}
@@ -123,10 +120,7 @@ const GetInContactCard = ({ data }) => (
       </h3>
     )}
     {data.contactCardText && (
-      <p
-        className="grow text-subtle"
-        data-tina-field={tinaField(data, 'contactCardText')}
-      >
+      <p className="grow" data-tina-field={tinaField(data, 'contactCardText')}>
         {data.contactCardText}
       </p>
     )}
@@ -178,7 +172,7 @@ export function PartnerGridBlock({ data, index }) {
             </h2>
           ))}
         {data.subText && (
-          <p className="text-lg lg:text-xl lg:leading-normal text-subtle max-w-60ch text-balance text-center mx-auto py-4">
+          <p className="text-lg lg:text-xl lg:leading-normal max-w-60ch text-balance text-center mx-auto py-4">
             {data.subText}
           </p>
         )}

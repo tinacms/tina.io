@@ -42,7 +42,7 @@ export default function MarkdownFeature(data: {
           </h2>
         )}
         {subtext && (
-          <p className="text-subtle font-normal leading-relaxed text-lg max-w-prose">
+          <p className="font-normal leading-relaxed text-lg max-w-prose">
             {subtext}
           </p>
         )}

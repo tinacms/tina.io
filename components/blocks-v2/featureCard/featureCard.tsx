@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import type { PageBlocksFeatureCard } from 'tina/__generated__/types';
 import {
-  CARD_TITLE,
   EYEBROW,
+  SECTION_HEADINGS_SIZE,
   SECTION_TITLE,
 } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
@@ -89,11 +89,13 @@ function FeatureCardItem(data: {
       <HexagonBackground headlineClass={`hidden lg:block ${hexagonClass}`} />
       <div className="relative z-10 flex flex-col gap-2 w-full flex-1">
         <h3 className={`${SECTION_TITLE}`}>{title}</h3>
-        <h4 className={`${CARD_TITLE} -[400] ${subheadingClass}`}>
+        <h4
+          className={`font-ibm-plex font-normal ${SECTION_HEADINGS_SIZE} ${subheadingClass}`}
+        >
           {featureHeadline}
         </h4>
         <div className="flex-1" />
-        <p className="text-subtle font-normal leading-relaxed text-lg max-w-[62ch] py-4">
+        <p className="font-normal leading-relaxed text-lg max-w-[62ch] py-4">
           {featureText}
         </p>
         <div className="flex flex-col sm:flex-row gap-2 w-full">

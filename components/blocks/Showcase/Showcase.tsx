@@ -167,7 +167,7 @@ export function ShowcaseItemsBlock({ data, index }) {
             </h2>
           ))}
         {data.subText && (
-          <p className="text-lg lg:text-xl lg:leading-normal text-subtle max-w-60ch text-balance text-center py-4">
+          <p className="text-lg lg:text-xl lg:leading-normal max-w-60ch text-balance text-center py-4">
             {data.subText}
           </p>
         )}

@@ -66,7 +66,7 @@ export default function TripleBox({ data }: { data: PageBlocksTripleBox }) {
       <div className="flex flex-col lg:flex-row gap-4 justify-between lg:items-center items-start">
         <h2 className="text-2xl font-semibold font-ibm-plex">{data.title}</h2>
         <div className="flex gap-6 items-center">
-          <h3 className="text-xl font-normal text-subtle">{data.tagLine}</h3>
+          <h3 className="text-xl font-normal">{data.tagLine}</h3>
           {data.buttons && data.buttons.length > 0 && (
             <div className="flex gap-2 items-center">
               {data.buttons.map((button) => (

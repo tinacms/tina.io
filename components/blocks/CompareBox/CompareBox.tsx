@@ -325,7 +325,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
 
         <p
           data-tina-field={tinaField(data, 'subheading')}
-          className="text-center text-subtle text-sm font-semibold md:text-base -mt-4 mb-8"
+          className="text-center text-sm font-semibold md:text-base -mt-4 mb-8"
         >
           {data.subheading}
         </p>
