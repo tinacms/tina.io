@@ -5,6 +5,7 @@ import {
   BODY_MUTED,
   BODY_SMALL,
   CARD_TITLE,
+  CODE,
   EYEBROW,
   LEDE,
   PAGE_TITLE,
@@ -128,6 +129,12 @@ const SCALE = [
     size: 'Inter 400 · 16px · leading relaxed · subtle',
     sample: 'Published 23 October 2026 · 6 min read',
   },
+  {
+    cls: CODE,
+    name: 'CODE',
+    size: 'IBM Plex Mono 400 · 14px · leading relaxed',
+    sample: 'npx create-tina-app@latest',
+  },
 ];
 
 // Each row is one chain through the three layers. Components and roles may
@@ -221,7 +228,8 @@ export default function DesignPage() {
         <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
           Six heading roles. Only the page title is orange — the article title
           is its long-form version — and it appears once per page. Headings are
-          set in IBM Plex Sans; everything people read is set in Inter.
+          set in IBM Plex Sans; everything people read is set in Inter; code is
+          set in IBM Plex Mono.
         </p>
         <div className="mt-6 rounded-2xl border border-neutral-border-subtle bg-white px-6">
           {ROLES.map((role) => (

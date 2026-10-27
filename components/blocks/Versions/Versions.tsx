@@ -30,14 +30,14 @@ type RowState =
 type RowMap = Record<string, RowState>;
 
 const HEADER_CELL_CLASS =
-  'py-4 font-source-code-pro text-xxs font-medium uppercase tracking-widest text-gray-500';
+  'py-4 font-mono text-xxs font-medium uppercase tracking-widest text-gray-500';
 const CARD_CLASS =
   'rounded-2xl border border-gray-200/80 bg-white/60 shadow-lg backdrop-blur-sm';
 const PACKAGE_LINK_BASE =
-  'font-source-code-pro text-xs text-gray-900 hover:text-orange-600';
+  'font-mono text-xs text-gray-900 hover:text-orange-600';
 const PILL_CLASS =
-  'animate-row-in inline-flex items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-xs font-medium text-orange-700';
-const PLACEHOLDER_CLASS = 'font-source-code-pro text-xs text-gray-400';
+  'animate-row-in inline-flex items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-mono text-xs font-medium text-orange-700';
+const PLACEHOLDER_CLASS = 'font-mono text-xs text-gray-400';
 
 export function VersionsBlock({ data }: { data: VersionsBlockData }) {
   const [rows, setRows] = useState<RowMap>(() =>
@@ -105,7 +105,7 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
           </div>
         </div>
 
-        <footer className="pt-10 pb-24 font-source-code-pro text-xs uppercase tracking-widest text-gray-400">
+        <footer className="pt-10 pb-24 font-mono text-xs uppercase tracking-widest text-gray-400">
           <span className="mr-2 text-orange-500">{'//'}</span>
           Source: registry.npmjs.org &nbsp;·&nbsp; {TINA_PACKAGES.length}{' '}
           packages
@@ -258,13 +258,13 @@ function PublishedField({
   const formatted = formatPublishedDate(row.info.publishedAt);
   if (variant === 'compact') {
     return (
-      <span className="animate-row-in ml-3 shrink-0 font-source-code-pro text-xxs text-gray-500">
+      <span className="animate-row-in ml-3 shrink-0 font-mono text-xxs text-gray-500">
         {formatted}
       </span>
     );
   }
   return (
-    <span className="animate-row-in font-source-code-pro text-xs text-gray-600">
+    <span className="animate-row-in font-mono text-xs text-gray-600">
       {formatted}
     </span>
   );

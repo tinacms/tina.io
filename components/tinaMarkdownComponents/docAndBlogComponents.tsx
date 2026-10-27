@@ -182,7 +182,7 @@ export const docAndBlogComponents: Components<{
   ),
   code: (props) => (
     <code
-      className="px-1 text-orange-500 p-0.5  bg-orange-500/5 rounded font-source-code-pro"
+      className="px-1 text-orange-500 p-0.5  bg-orange-500/5 rounded font-mono"
       {...props}
     />
   ),
@@ -324,7 +324,7 @@ export const docAndBlogComponents: Components<{
               {property.default && (
                 <div className="text-slate-900 text-base">
                   Default is{' '}
-                  <span className="font-source-code-pro text-orange-500">
+                  <span className="font-mono text-orange-500">
                     {property.default}
                   </span>
                   .
@@ -592,7 +592,7 @@ export const docAndBlogComponents: Components<{
       <div
         style={{
           padding: '1rem 1.5rem',
-          fontFamily: 'monospace',
+          fontFamily: 'var(--font-mono)',
           whiteSpace: 'nowrap',
           width: 'auto',
           display: 'inline-block',
@@ -723,7 +723,7 @@ export const docAndBlogComponents: Components<{
         <button
           type="button"
           onClick={handleCopy}
-          className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded font-source-code-pro"
+          className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded font-mono"
         >
           {hasCopied ? (
             <CheckIcon className="h-4 w-4" />

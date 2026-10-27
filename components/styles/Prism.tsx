@@ -23,8 +23,7 @@ export const Prism = (props: {
           className={className}
           style={{
             ...style,
-            fontFamily:
-              'SourceCodePro-Regular, Monaco, Menlo, "Ubuntu Mono", Consolas, "source-code-pro", monospace',
+            fontFamily: 'var(--font-mono)',
             width: '100%',
             border: 'none',
             marginBottom: 0,
@@ -48,8 +47,7 @@ export const Prism = (props: {
                       {...tokenProps}
                       style={{
                         ...tokenProps.style,
-                        fontFamily:
-                          'SourceCodePro-Regular, Monaco, Menlo, "Ubuntu Mono", Consolas, "source-code-pro", monospace',
+                        fontFamily: 'var(--font-mono)',
                         paddingRight: j === line.length - 1 ? '3em' : '0px',
                       }}
                     />

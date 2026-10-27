@@ -22,6 +22,7 @@
  * Weights match the font files that actually ship: IBM Plex Sans is loaded
  * at 600 (SemiBold) and 500 (Medium) only, so no heading asks for bold —
  * that would make the browser fake it. Inter (`font-sans`) has 400/500/700.
+ * IBM Plex Mono (`font-mono`) has 400/500/600 and an italic.
  */
 
 // The ramp, for layouts that need a size on its own.
@@ -83,3 +84,8 @@ export const BODY_SMALL =
 /** Captions, timestamps, footer links, form hints. Supporting text only. */
 export const BODY_MUTED =
   'font-sans font-normal text-base leading-relaxed text-pretty text-subtle';
+
+// Code.
+
+/** Inline code, terminal output and technical labels such as file paths. */
+export const CODE = 'font-mono font-normal text-sm leading-relaxed text-strong';

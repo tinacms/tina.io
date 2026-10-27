@@ -6,14 +6,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "SourceCodePro-Regular";
-  src: url("/fonts/SourceCodePro-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* IBM Plex Sans Medium */
 @font-face {
   font-family: 'IBMPlexSans-Medium';
@@ -21,6 +13,40 @@
   font-weight: 500;
   font-display: swap;
   src: url('/fonts/IBMPlexSans-Medium.woff2') format('woff2');
+}
+
+/* IBM Plex Mono — code, terminal output and technical labels (`font-mono`).
+   From IBM's @ibm/plex-mono 2.5.0, SIL OFL 1.1 (public/fonts/IBMPlexMono-LICENSE.txt). */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-SemiBold.woff2') format('woff2');
 }
 
 /* Inter — the body face (`font-sans`). The files have always shipped in
@@ -133,9 +159,10 @@
   --text-subtle: var(--slate-500);
 
   /* Type families. Headings are IBM Plex Sans; everything people read is
-     Inter. Match the font-ibm-plex and font-sans classes in tailwind.config.js. */
+     Inter; code and technical labels are IBM Plex Mono. Match the font-ibm-plex and font-sans classes in tailwind.config.js. */
   --font-heading: 'IBMPlexSans-SemiBold', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* ──────────────────────────────────────────────────────────────────────
      LEGACY — pre-redesign colours, still raw hex and outside the layers

@@ -335,8 +335,7 @@ const Pane = ({ data, position, ...props }) => {
           padding: 1.5em;
           color: var(--blue-250);
           font-weight: medium;
-          font-family: SFMono-Regular, Menlo, Monaco, Consolas,
-            'Liberation Mono', 'Courier New', monospace;
+          font-family: var(--font-mono);
           text-shadow: 0 0 7px rgba(var(--blue-250-rgb), 0.15),
             0 0 12px rgba(var(--blue-250-rgb), 0.2),
             0 0 32px rgba(var(--blue-250-rgb), 0.3);

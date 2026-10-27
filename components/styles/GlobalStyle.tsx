@@ -231,8 +231,7 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --font-ibm-plex-semibold: 'IBMPlexSans-SemiBold', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
         "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
         "Helvetica Neue", sans-serif;
-    --font-source-code-pro: 'SourceCodePro-Regular', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 
-        'source-code-pro', monospace;
+    --font-source-code-pro: var(--font-mono);
 
     * {
       box-sizing: inherit;

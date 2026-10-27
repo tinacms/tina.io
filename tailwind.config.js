@@ -420,10 +420,8 @@ module.exports = {
           'IBMPlexSans-Medium',
           ...defaultTheme.fontFamily.sans,
         ],
-        'source-code-pro': [
-          'SourceCodePro-Regular',
-          ...defaultTheme.fontFamily.mono,
-        ],
+        // Code and technical labels. Matches --font-mono in app/global.css.
+        mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
       },
       gridTemplateColumns: {
         'auto-sm': 'repeat(auto-fit, minmax(300px, 1fr))',
