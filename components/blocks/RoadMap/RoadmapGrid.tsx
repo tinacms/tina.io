@@ -87,7 +87,7 @@ const Roadmap = ({ data, last = false, index }) => {
         {data.status && (
           <span
             data-tina-field={tinaField(data, 'status')}
-            className={`${SURFACE.info} ${LABEL} rounded-full w-auto grow-0 flex items-center whitespace-nowrap px-4 pt-[7px] pb-[5px] border`}
+            className={`${SURFACE.info} ${LABEL} rounded-full w-auto grow-0 flex items-center whitespace-nowrap px-4 py-1.5 border`}
           >
             {data.status}
           </span>
