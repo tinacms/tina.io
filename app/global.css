@@ -161,17 +161,19 @@
   /* SLUB / eyebrow labels. Same grey as subtle on light surfaces; on dark
      they get their own warm off-white so they read apart from white links. */
   --text-label: var(--slate-500);
-  /* Text on dark and brand-orange surfaces. Solid white for every level: on
-     the orange footer any translucent white drops below 4.5:1, so hierarchy
-     on dark comes from size and weight, not opacity. Applied by the on-dark
+  /* Text on dark and brand-orange surfaces: white, with opacity only for the
+     SLUB / secondary-link level below. Main text stays solid white because
+     on the orange footer any translucent white drops below 4.5:1. Applied by the on-dark
      utility, which swaps the three text tokens above inside its container. */
   --text-on-dark: var(--white);
-  /* SLUB labels and footer legal links on dark: two steps off white, so they
-     read apart from the white primary links. Deliberately below WCAG AA —
+  /* SLUB labels and footer legal links on dark: white at 75% opacity, so
+     they read apart from the white primary links and let the surface show
+     through. On-dark text is always white or white-with-opacity, never a
+     tinted colour. Deliberately below WCAG AA —
      roughly 2.3–4.5:1 against the footer gradient — approved by design
      (Oct 2026) for short labels and secondary links. Don't "fix" this
      without checking with design. */
-  --text-on-dark-label: var(--orange-200);
+  --text-on-dark-label: color-mix(in srgb, var(--white) 75%, transparent);
 
   /* Type families. Headings are IBM Plex Sans; everything people read is
      Inter; code and technical labels are IBM Plex Mono. Match the font-ibm-plex and font-sans classes in tailwind.config.js. */
