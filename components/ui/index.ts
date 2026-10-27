@@ -1,5 +1,3 @@
-export * from './ArrowList';
-export * from './BlogPagination';
 export * from './Button';
 export * from './DesktopLabel';
 export * from './DocsPagination';
