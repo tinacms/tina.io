@@ -33,7 +33,7 @@ export function PricingComparison({ before, after, labels }: Props) {
   const label = (key: keyof typeof defaultLabels) =>
     labels?.[key] || defaultLabels[key];
   const [version, setVersion] = useState<'before' | 'after'>('before');
-  const [isMonthly, setIsMonthly] = useState(false);
+  const [isMonthly, setIsMonthly] = useState(true);
   const plans = (version === 'before' ? before : after) ?? [];
 
   return (
