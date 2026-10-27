@@ -8,7 +8,7 @@ import { FlushButton, LinkButton } from '../../ui';
 // Ghost Blue has no fill and no border, so it reads as a standalone text link
 // (“READ MORE →”), not a button: it takes EYEBROW_LINK like every other
 // standalone link. Ghost Outline and the filled variants stay buttons (#4964).
-const TEXT_LINK_VARIANTS = ['ghostBlue'];
+const TEXT_LINK_VARIANT = 'ghostBlue';
 
 export const Actions = ({
   items,
@@ -38,7 +38,7 @@ export const Actions = ({
             const externalUrlPattern = /^((http|https|ftp):\/\/)/;
             const external = externalUrlPattern.test(url);
             const link = url || '#';
-            if (TEXT_LINK_VARIANTS.includes(variant)) {
+            if (variant === TEXT_LINK_VARIANT) {
               return (
                 <Link
                   key={sanitizeLabel(label) || `action-link-${index}`}
