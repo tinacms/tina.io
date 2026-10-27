@@ -283,7 +283,7 @@ pre.prism-code.language-json {
   @apply font-ibm-plex-medium font-medium text-sm leading-normal tracking-widest uppercase text-link underline decoration-1 underline-offset-4 transition-colors hover:text-link-hover hover:decoration-2;
 }
 @utility role-label {
-  @apply font-sans font-medium text-sm leading-[1.43] tracking-normal normal-case text-strong;
+  @apply font-sans font-medium text-sm leading-5 tracking-normal normal-case text-strong;
 }
 
 /* Reading text. */
@@ -297,7 +297,7 @@ pre.prism-code.language-json {
   @apply font-sans font-normal text-sm md:text-base leading-relaxed tracking-normal normal-case text-pretty text-subtle;
 }
 @utility role-caption {
-  @apply font-sans font-normal text-sm leading-[1.43] tracking-normal normal-case text-pretty text-body;
+  @apply font-sans font-normal text-sm leading-5 tracking-normal normal-case text-pretty text-body;
 }
 @utility role-code {
   @apply font-mono font-normal text-sm md:text-base leading-relaxed tracking-normal normal-case text-strong;
