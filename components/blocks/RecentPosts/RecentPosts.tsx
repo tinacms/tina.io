@@ -77,7 +77,7 @@ const VideoCard = ({
       <span className={BODY_MUTED}>
         By{' '}
         <Link className={`${BODY_MUTED} ${LINK}`} href={authorUrl}>
-          {authorName.toUpperCase()}
+          {authorName}
         </Link>
       </span>
     </div>
@@ -185,7 +185,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
                   <div className="flex flex-row mb-3 text-center justify-between">
                     <div className="flex">
                       <span className={BODY_MUTED}>
-                        By {post.author.toUpperCase()}
+                        By {post.author}
                       </span>{' '}
                     </div>
                   </div>
