@@ -836,15 +836,6 @@ function FormatHeaders({ children, level }) {
     6: `${SUB_HEADING} mt-2 mb-1`,
   };
 
-  const linkColor = {
-    1: 'text-subtle',
-    2: 'text-subtle',
-    3: 'text-subtle',
-    4: 'text-subtle',
-    5: 'text-subtle',
-    6: 'text-subtle',
-  };
-
   const handleHeaderClick = (event) => {
     event.preventDefault();
     scrollToElement(id);
@@ -887,7 +878,7 @@ function FormatHeaders({ children, level }) {
         {' '}
         {headingChildren}
         <FiLink
-          className={`${linkColor[level]} opacity-0 group-hover:opacity-80 transition-opacity duration-200 absolute ml-1 group-hover:animate-wiggle`}
+          className="text-subtle opacity-0 group-hover:opacity-80 transition-opacity duration-200 absolute ml-1 group-hover:animate-wiggle"
           style={{
             display: 'inline-block',
             marginTop: '0.25rem',
