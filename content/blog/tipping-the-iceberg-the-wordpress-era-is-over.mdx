@@ -1,0 +1,149 @@
+---
+seo:
+  title: 'Tipping the iceberg: the WordPress era is over | TinaCMS Blog'
+  description: 'Two critical PHP flaws put WordPress sites at risk this week. Patch first. Then ask how much control you have over your content, your stack and your exit.'
+  canonicalUrl: 'https://tina.io/blog/tipping-the-iceberg-the-wordpress-era-is-over'
+title: 'Tipping the iceberg: the WordPress era is over'
+date: '2026-10-23T00:00:00.000Z'
+last_edited: '2026-10-23T00:00:00.000Z'
+author: Josh Berman
+prev: content/blog/2026-09-updates.mdx
+next: ''
+---
+
+On 21 October 2026, the PHP project released emergency fixes for two critical vulnerabilities: CVE-2026-109618 and CVE-2026-109619, collectively known as **PHP2Shell**. 
+
+Both can allow an attacker to run code on an affected server without logging in. The [PHP security advisory](https://www.php.net/archive/2026.php) urges users to update immediately.
+
+For one operator, responding meant switching part of a working product off.
+
+At 12:07 BST that day, addy.io took its website and web app offline. Email forwarding continued, but users temporarily lost access to the controls around it. The website returned at 15:18; the app followed at 15:33, after patching. The service, run by developer [Will Browning](https://addy.io/faq/), [published an account of the shutdown](https://addy.io/blog/addy-io-went-offline-for-the-php2shell-vulnerability/). It was a precaution taken by a PHP application, rather than a reported break-in or a WordPress outage.
+
+If you maintain websites for clients, you can picture having to explain that decision. The site looks fine. Your client has changed nothing. A dependency underneath it needs an urgent fix, and the afternoon you planned has disappeared.
+
+WordPress developers have a reason to pay attention: [WordPress requires PHP](https://wordpress.org/about/requirements/). If someone else manages the hosting, the fix may sit outside your control.
+
+Once the immediate risk is handled, that is a reasonable moment to ask a bigger question: how much of this website would you have to rebuild to stop depending on the technology that now needs urgent attention?
+
+## How PHP2Shell became an emergency
+
+The public warning followed weeks of work behind the scenes. Researcher Ryan Austin's [account at Calif](https://calif.io/php2shell/) describes reporting a PHP issue in August and providing a demonstration of remote code execution. By October, a coordinated release was in preparation.
+
+Then a Hacker News user, petecooper, [posted a warning](https://news.ycombinator.com/item?id=50167754) about two incoming vulnerabilities - breaking the story publicly before the fix was ready. They later returned with an apology: *"At the time of posting, I didn't know about any embargo."* [The user's follow-up](https://news.ycombinator.com/item?id=50193416) describes an attempt to help that added pressure to a difficult rollout.
+
+The PHP Foundation's [retrospective](https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/) acknowledges warning signs from 2024, with fixes delayed by compatibility decisions, performance concerns and limited resources. It calls the delay a *"structural failure"* and describes security staff working full time, including weekends, once the full impact became clear.
+
+That is a difficult story for anyone responsible for software other people depend on. Maintainers have to fix a dangerous problem without breaking the applications built on their work. Operators then have to get that fix into their own environments. A release announcement is only one part of the response.
+
+## Why WordPress sites are exposed
+
+PHP2Shell affects the runtime underneath WordPress. An affected installation can be vulnerable even when its theme and plugins are maintained.
+
+PHP's security advisory identifies PHP installations serving web requests as at risk. Risk is highest for Apache's mod_php configuration, where a demonstrated attack can trigger before application code runs. The vulnerability triggers before any WordPress code runs, so a WordPress login can't protect you.
+
+Exposure is a reason to patch, rather than evidence a site has been compromised. Exploitation depends on the environment.
+
+**Patch the PHP runtime serving your site, or confirm that your host has applied the fix.** Fixed PHP releases are 8.5.12, 8.4.27, 8.3.36 and 8.2.35; older installations need vendor guidance. Follow the PHP advisory and [CISA alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching). A WordPress update alone doesn't patch PHP.
+
+## When the fix belongs to someone else
+
+On Reddit, the distance between knowing about a fix and being able to deploy it was easy to see.
+
+In `r/sysadmin`, `u/Thrwingawaymylife945` [put the problem simply](https://www.reddit.com/r/sysadmin/comments/1xc4rjx/php2shell_and_your_security_team/): *"I'm on WordPress, and I can't patch my websites"*. Their host had not released the update to their environment.
+
+You may have built the site and handed over the editor. Your client can publish an article, change a headline and install a plugin. But replacing the PHP runtime can require another account, another team and another provider's release schedule. When responsibility is unclear, the consultant becomes the person chasing an answer while the client carries the risk.
+
+Other teams were prepared. In `r/ExperiencedDevs`, `u/tommyk1210` [described upgrading PHP's major version every year](https://www.reddit.com/r/ExperiencedDevs/comments/1xcvnb9/comment/19ri480c9l5ky/) and patching their services that evening. *"The business has questioned why for years: this was their answer."*
+
+These are individual accounts, but the distinction matters. Regular maintenance and good managed hosting can make an emergency much easier to handle. They also represent work someone has to keep doing, whether it appears in your own backlog or a provider's bill.
+
+Ask whoever manages the environment: *"Have you applied the fixes for both CVEs to the PHP environment serving our site, and restarted any affected services?"*
+
+Get a clear answer and secure the current site. Replacing its CMS is a project to plan after the immediate response.
+
+## How the default choice becomes a permanent obligation
+
+WordPress can enter a project for sensible reasons. The client knows the editor. Your team knows how to deliver it. A theme gets the project moving, and a plugin covers a requirement without a custom build.
+
+Its reach helps explain why it comes up so often. On 23 October 2026, [W3Techs measured WordPress at 39.6% of all websites and 58.3% of sites with an identifiable CMS](https://w3techs.com/technologies/details/cm-wordpress). Those figures measure websites, rather than the share of all content published online.
+
+For a consultant already supporting WordPress, recommending it again can feel like the least disruptive choice. An inherited installation stays put because a migration needs a budget. Another plugin solves the immediate request, while reviewing the whole setup waits for a quieter month.
+
+Over time, you become responsible for more than the pages the client sees. There is the runtime, the CMS and the extensions. There is the knowledge of which updates need care, which integration someone added years ago and which account can restore a backup.
+
+PHP2Shell gives you a concrete reason to count that work. The PHP flaws belong to the runtime; the decision about whether a particular website still needs that runtime belongs in your next recommendation.
+
+For an application such as addy.io, maintaining the underlying software is part of delivering the service. A site whose main job is publishing articles and landing pages deserves its own assessment:
+
+- How much application infrastructure does that job require?
+- What would a simpler arrangement cost to build and maintain?
+
+We should be able to tell a client that a previous recommendation was sensible, and that a different recommendation makes sense for the next version. Familiarity has value. So does reducing a maintenance obligation the project no longer needs.
+
+## WordPress gives you choices, with one big condition
+
+WordPress is open source. You can change hosts, hire a different agency and [export your content](https://wordpress.org/documentation/article/tools-export-screen/). You can own a WordPress site's content and infrastructure.
+
+Changing hosts, though, still leaves you running WordPress on PHP. A headless setup can use [Astro](https://astro.build/) or [Next.js](https://nextjs.org/) to render the public website while WordPress remains the content backend. That backend still needs PHP.
+
+Removing the dependency means replacing WordPress in that role. Depending on the site, the work can include untangling themes, page-builder layouts, custom fields and publishing workflows alongside moving the words and images.
+
+That is the cost worth investigating:
+
+- How much of the content is useful on its own?
+- How much only makes sense inside the current theme or a particular plugin?
+- Can another developer rebuild the site from documented access, or does the process depend on one person's memory?
+
+The ability to choose who operates a stack is useful. Being able to replace the stack while keeping your content usable gives you another kind of control. A security incident is a good reason to find out how much of that control your client actually has.
+
+## Keep the content. Change what runs it
+
+TinaCMS stores content as readable Markdown, MDX and JSON files in Git. Editors get a CMS interface, and saved changes are committed to the repository your team controls. An article is a file with a history that you can inspect, copy and restore.
+
+[TinaCloud connects the editor and content API to your repository](https://tina.io/docs/tinacloud), which remains the source of truth. Its database-backed data layer indexes the files for queries; that index can be rebuilt from the content. You can also [self-host the backend](https://tina.io/docs/self-hosted/overview) if you want to operate it yourself.
+
+The content can live alongside the application code or in a [separate content repository](https://tina.io/docs/guides/separate-content-repo). That gives you a useful boundary between the content the client has invested in and the software chosen to display it.
+
+You can build the frontend with Astro or Next.js, or use another React integration. Tina's [framework guide](https://tina.io/docs/integration/frameworks) explains the available integrations; the editing experience varies with the framework and configuration.
+
+Suppose a Next.js site eventually needs to become an Astro site. Your team still has to rebuild templates, routing, data fetching and framework-specific components. The content files can stay in the repository while you replace the code that reads them.
+
+Portability takes some discipline. Plain Markdown and structured data generally travel more easily than MDX full of custom React components. The more presentation logic you put into the content, the more you will need to adapt during a move.
+
+Still, replacing a frontend is easier to plan when it does not also require extracting the content from the CMS you are replacing. For a consultant handing a site over, that is a practical benefit you can demonstrate.
+
+Content changes can also go through branches and draft pull requests with TinaCloud's [Editorial Workflow](https://tina.io/docs/tinacloud/editorial-workflow), available on select paid plans. The files and the review history stay within a workflow developers can explain to the next team.
+
+## The next vulnerability could be in your new stack
+
+A different stack will have its own updates and security issues. TinaCMS, your frontend, hosting and build tools all need maintenance. Owning content helps you recover and move it; the security of the systems around it still needs attention.
+
+The benefit is having more room to change those systems. You can assess a replacement frontend while keeping the content, or change how you publish without asking editors to start their archive again.
+
+For sites that can be published as static files, you can serve public pages from a CDN without running the CMS or a page-rendering application for each visitor request. Editing and build systems still need protection, but they can sit apart from the public page-serving path.
+
+Static delivery is a choice you make when building with TinaCMS. Forms, search and personalized pages need their own plan. You get to make those choices around the features the site actually requires.
+
+For a TinaCMS deployment with no PHP runtime, the response to PHP2Shell can be refreshingly boring: check the stack, go back to bed and sleep like a baby.
+
+## Find out what leaving WordPress would cost
+
+You can test the alternative before proposing a whole rebuild. Pick a representative set of pages, including an awkward layout, an article with media and a page with a real business function. Our [WordPress to TinaCMS guide](https://tina.io/docs/guides/converting-wordpress-to-tina) covers moving content and media. Design and plugin behavior need their own work.
+
+Keep existing URLs where possible and map redirects for changes. Have a real editor do their normal tasks. Ask another developer to build and deploy the result from the documentation, then restore an earlier version of a page. The pilot should show whether the new site would be easier to maintain and hand over.
+
+Also list where leads, orders and customer records live. Moving a CMS changes the content system; those records and the services around them need a separate migration decision.
+
+You can start a Tina project with one simple command:
+
+```bash
+npx create-tina-app@latest
+```
+
+An AI coding assistant can help scaffold the pilot and reproduce parts of the design. A screenshot can provide a starting reference, followed by checks of the actual content and behavior. Our [vibe blogging walkthrough](https://tina.io/blog/vibe-blogging-with-tinacms) shows a project built and restyled through prompts, and our [custom component walkthrough](https://tina.io/blog/vibecodingcomponents_blog) shows an editor extension developed the same way.
+
+Keep the experiment on a branch and a separate preview deployment. Give the client something they can edit, and put the maintenance costs beside those of the current site.
+
+WordPress has to earn the next recommendation. PHP2Shell is a good reason to reopen that conversation and ask what leaving would actually involve. Your client's content may need to outlive several frameworks, hosting providers and agencies. The next architecture should make that easier.
+
+If you have been waiting for a moment to propose a simpler content site, use this one. Bring a working pilot and a maintenance plan you can explain. If you want help with the move, join the [TinaCMS community on Discord](https://tina.io/discord). 
