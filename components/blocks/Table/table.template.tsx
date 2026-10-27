@@ -60,6 +60,12 @@ export const tableTemplate: Template = {
       fields: [
         { name: 'rowHeader', label: 'Row Header', type: 'string' },
         {
+          name: 'rowHeaderLink',
+          label: 'Row Header Link',
+          type: 'string',
+          description: 'Optional URL that turns the row header into a link',
+        },
+        {
           name: 'rowDescription',
           label: 'Row Description',
           type: 'string',
