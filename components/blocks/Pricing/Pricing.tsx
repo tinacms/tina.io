@@ -22,7 +22,15 @@ import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { BODY, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  CAPTION,
+  CARD_TITLE,
+  LABEL,
+  PAGE_TITLE,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
 import TableBox from '../Table/table';
 
 const icons = {
@@ -49,10 +57,10 @@ const FreeTier = ({ data }) => (
     <div className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/40 to-cyan-100">
       {data.freeTier && (
         <div className="flex flex-col sm:flex-row justify-between pb-2">
-          <h2 className="font-ibm-plex text-3xl">{data.freeTier?.name}</h2>
+          <h2 className={CARD_TITLE}>{data.freeTier?.name}</h2>
           <div className="flex items-baseline mt-2 sm:mt-0">
-            <h2 className="font-ibm-plex text-3xl">{data.freeTier?.price}</h2>
-            <span className="text-lg ml-2 text-subtle">
+            <h2 className={CARD_TITLE}>{data.freeTier?.price}</h2>
+            <span className={`${BODY_MUTED} ml-2`}>
               {data.freeTier?.interval}
             </span>
           </div>
@@ -87,21 +95,21 @@ const PaidTier = ({ data, isMonthly }) => {
             <FaStar className="text-lg text-white absolute -translate-x-5 translate-y-5" />
           </div>
         )}
-        <h2 className="font-ibm-plex text-3xl">{data.name}</h2>
+        <h2 className={CARD_TITLE}>{data.name}</h2>
         <TinaMarkdown
           content={data.description}
           components={pricingComponents}
         />
         <div className="pt-10">
-          <span className="text-3xl font-ibm-plex">
+          <span className={CARD_TITLE}>
             {isMonthly ? data.price : data.annualPrice}
           </span>
           {data.interval && (
-            <span className="pl-2 text-lg">{data.interval}</span>
+            <span className={`${BODY_MUTED} pl-2`}>{data.interval}</span>
           )}
         </div>
         <div
-          className={`py-1 text-stone-600 text-sm transition-all duration-500 ${
+          className={`${CAPTION} py-1 transition-all duration-500 ${
             isMonthly
               ? 'animate-fadeOut opacity-0'
               : 'animate-fadeIn opacity-100'
@@ -117,10 +125,10 @@ const PaidTier = ({ data, isMonthly }) => {
         <div className="pt-6">
           <div className="accordion-content">
             <div
-              className="flex justify-between items-center font-semibold cursor-pointer"
+              className="flex justify-between items-center cursor-pointer"
               onClick={toggleAccordion}
             >
-              <p className={`${BODY} flex items-center`}>Includes:</p>
+              <p className={`${LABEL} flex items-center`}>Includes:</p>
               <span className="ml-2">
                 {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
               </span>
@@ -134,12 +142,12 @@ const PaidTier = ({ data, isMonthly }) => {
                       key={`${item.name}-${index}`}
                       className="flex flex-col items-start mt-2"
                     >
-                      <div className="flex items-center text-lg">
+                      <div className={`${BODY_SMALL} flex items-center`}>
                         {Icon && <Icon className="mr-2" />}
                         <span>{item.name}</span>
                       </div>
                       {item.description && (
-                        <div className="my-1 ml-5 text-base text-gray-600/70">
+                        <div className={`${CAPTION} my-1 ml-5`}>
                           {!isMonthly
                             ? (item.annualDescription ?? item.description)
                             : item.description}
@@ -152,7 +160,7 @@ const PaidTier = ({ data, isMonthly }) => {
             )}
           </div>
           <div className="non-accordion-content">
-            <p className="font-semibold">Includes:</p>
+            <p className={LABEL}>Includes:</p>
             <div className="pl-2">
               {data.cardItem?.map((item, index) => {
                 const Icon = icons[item.icon];
@@ -161,12 +169,12 @@ const PaidTier = ({ data, isMonthly }) => {
                     key={`${item.name}-${index}`}
                     className="flex flex-col items-start mt-2"
                   >
-                    <div className="flex items-center">
+                    <div className={`${BODY_SMALL} flex items-center`}>
                       {Icon && <Icon className="mr-2" />}
                       <span>{item.name}</span>
                     </div>
                     {item.description && (
-                      <div className="my-1 ml-5 text-sm text-gray-600/70">
+                      <div className={`${CAPTION} my-1 ml-5`}>
                         {!isMonthly
                           ? (item.annualDescription ?? item.description)
                           : item.description}
@@ -249,7 +257,7 @@ export function PillSwitch({
             />
           </div>
           {isMonthly && (
-            <div className="flex items-center pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out text-black opacity-100">
+            <div className="flex items-center pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out opacity-100">
               <TinaMarkdown
                 components={docAndBlogComponents}
                 content={toggleText}

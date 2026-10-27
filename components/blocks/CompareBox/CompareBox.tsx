@@ -8,7 +8,15 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import css from 'styled-jsx/css';
 import { tinaField } from 'tinacms/dist/react';
-import { BODY, SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY,
+  BODY_SMALL,
+  LABEL,
+  LINK,
+  ON_DARK,
+  SECTION_TITLE,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 import { splitOneAndJoin } from './CompareBox.template';
 
 function hexToRgba(hex, alpha) {
@@ -21,7 +29,6 @@ function hexToRgba(hex, alpha) {
 const commonHeightStyle = {
   height: '50px',
   marginBottom: '8px',
-  lineHeight: '16px',
 };
 
 const CompanyItem = ({ company, onClick }) => {
@@ -45,12 +52,8 @@ const CompanyItem = ({ company, onClick }) => {
           height={40}
         />
       )}
-      <span
-        className={`font-ibm-plex  ${
-          company.active ? 'text-black' : 'text-gray-500'
-        }`}
-      >
-        <div className="lg:text-xl md:text-sm text-xs">{company.headline}</div>
+      <span>
+        <div className={SUB_HEADING}>{company.headline}</div>
       </span>
     </div>
   );
@@ -69,7 +72,9 @@ const CriteriaCard = ({ criteriaItems }) => {
           <div className="group relative flex-shrink-0 flex items-center mr-1">
             <IoMdInformationCircleOutline className="mr-1 text-orange-500 text-xl" />
             <div className="hidden group-hover:block absolute left-0 top-full pt-2 z-20">
-              <div className="relative shadow-xl bg-white text-sm p-2 rounded-lg xl:w-72 w-40 break-words text-center">
+              <div
+                className={`${BODY_SMALL} relative shadow-xl bg-white p-2 rounded-lg xl:w-72 w-40 break-words text-center`}
+              >
                 {item.description}
               </div>
             </div>
@@ -77,7 +82,7 @@ const CriteriaCard = ({ criteriaItems }) => {
 
           <h3
             data-tina-field={tinaField(item, 'criteria')}
-            className="min-w-0 flex-1 flex items-center sm:leading-5 md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs"
+            className={`${SUB_HEADING} min-w-0 flex-1 flex items-center`}
           >
             <span className="min-w-0">{item.criteria}</span>
           </h3>
@@ -98,7 +103,7 @@ const CompanyCard = ({ company, criteria }) => {
   return (
     <div className="rounded-lg flex flex-col items-center w-full company-card">
       <div
-        className="w-full flex justify-center items-center text-center px-2 py-4 opacity-100 rounded-t-lg"
+        className={`${ON_DARK} w-full flex justify-center items-center text-center px-2 py-4 opacity-100 rounded-t-lg`}
         style={{
           ...commonHeightStyle,
           background: `linear-gradient(225deg, ${hexToRgba(
@@ -120,7 +125,7 @@ const CompanyCard = ({ company, criteria }) => {
           />
         )}
 
-        <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-base text-xs font-semibold text-white whitespace-nowrap">
+        <h3 className={`${SUB_HEADING} hidden sm:block whitespace-nowrap`}>
           {company.headline}
         </h3>
       </div>
@@ -163,7 +168,7 @@ const CompanyCard = ({ company, criteria }) => {
       {company.testimonialLink && (
         <Link
           href={company?.testimonialLink}
-          className="inline-block py-4 text-center text-sm font-bold text-gray-700 hover:text-orange-600 underline"
+          className={`${LABEL} ${LINK} inline-block py-4 text-center`}
         >
           How {company?.headline} stacks up with TinaCMS →
         </Link>

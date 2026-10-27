@@ -65,7 +65,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
           </div>
 
           {lastEditedDate && (
-            <div className="mt-2 text-sm opacity-50">
+            <div className={`${BODY_MUTED} mt-2`}>
               {strings.blogPost.lastEdited}:{' '}
               <time dateTime={post.last_edited}>{lastEditedDate}</time>
             </div>
@@ -94,8 +94,8 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   );
 };
 
-// The page title role, but capped at text-5xl — a post title runs far longer
-// than a marketing headline and text-6xl wrapped it to four lines.
+// ARTICLE_TITLE stops a step below PAGE_TITLE — a post title runs far longer
+// than a marketing headline and the larger size wrapped it to four lines.
 const blogTitleStyling = ARTICLE_TITLE;
 
 function BlogAvatarImage({ avatar }: { avatar: BlogAvatar }) {

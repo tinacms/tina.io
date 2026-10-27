@@ -1,7 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { tinaField } from 'tinacms/dist/react';
-import { BODY_MUTED, BODY_SMALL } from '@/component/styles/typography';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  EYEBROW,
+  LINK,
+  SUB_HEADING,
+  SURFACE,
+} from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
 import { formatDate } from './RecentPosts';
 
@@ -59,13 +66,15 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
                 {formatDate(featuredPost.datePosted)}
               </p>
             )}
-            <span className="uppercase bg-orange-500 text-white px-3 py-0.5 rounded-full text-sm font-li w-fit">
+            <span
+              className={`${SURFACE.brandSolid} ${EYEBROW} px-3 py-0.5 rounded-full w-fit`}
+            >
               Featured
             </span>
           </div>
           {featuredPost.title && (
             <h3
-              className="text-lg"
+              className={SUB_HEADING}
               data-tina-field={tinaField(featuredPost, 'title')}
             >
               {featuredPost.title}
@@ -86,17 +95,14 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
               By{' '}
               {featuredPost.authorUrl ? (
                 <Link
-                  className="relative hover:text-strong z-2 uppercase underline transition-colors"
+                  className={`${BODY_MUTED} ${LINK} relative z-2`}
                   href={featuredPost.authorUrl}
                   data-tina-field={tinaField(featuredPost, 'authorName')}
                 >
                   {featuredPost.authorName}
                 </Link>
               ) : (
-                <span
-                  className="uppercase"
-                  data-tina-field={tinaField(featuredPost, 'authorName')}
-                >
+                <span data-tina-field={tinaField(featuredPost, 'authorName')}>
                   {featuredPost.authorName}
                 </span>
               )}

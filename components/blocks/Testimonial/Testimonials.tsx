@@ -7,6 +7,7 @@ import {
   BODY_MUTED,
   BODY_SMALL,
   SECTION_TITLE,
+  SUB_HEADING,
 } from '@/component/styles/typography';
 import Marquee from '@/components/ui/marquee';
 import { cn } from '@/lib/utils';
@@ -28,7 +29,7 @@ const TestimonialCard = ({ ...data }) => {
         <Image src="/quotation.svg" alt="quotation" width={24} height={24} />
         <blockquote className={BODY_SMALL}>
           {data.testimonial && (
-            <div className="text-base lg:text-base line-clamp-3">
+            <div className="line-clamp-3">
               <TinaMarkdown content={data.testimonial} />
             </div>
           )}
@@ -51,16 +52,14 @@ const TestimonialCard = ({ ...data }) => {
             onError={() => setImageError(true)}
           />
           <div className="flex flex-col">
-            {data.name && <h4 className="text-lg">{data.name}</h4>}
+            {data.name && <h4 className={SUB_HEADING}>{data.name}</h4>}
             {(data.username || data.date) && (
               <p className={BODY_MUTED}>
                 {data.username && <>@{data.username}</>}
                 {data.username && data.date && (
-                  <span className="mx-1.5 text-subtle">&ndash;</span>
+                  <span className="mx-1.5">&ndash;</span>
                 )}
-                {data.date && (
-                  <span className="text-subtle">{formatDate(data.date)}</span>
-                )}
+                {data.date && <span>{formatDate(data.date)}</span>}
               </p>
             )}
           </div>

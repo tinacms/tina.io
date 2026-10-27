@@ -11,7 +11,21 @@ import { IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
-import { BODY, BODY_SMALL, PAGE_TITLE } from '@/component/styles/typography';
+import {
+  BODY,
+  BODY_MUTED,
+  BODY_SMALL,
+  CARD_TITLE,
+  EYEBROW,
+  EYEBROW_LINK,
+  LABEL,
+  LINK,
+  PAGE_TITLE,
+  RICH_TEXT,
+  SECTION_TITLE,
+  SUB_HEADING,
+  SURFACE,
+} from '@/component/styles/typography';
 
 const HeaderBanner = ({
   tinaData,
@@ -21,18 +35,18 @@ const HeaderBanner = ({
   scrollToAgenda: () => void;
 }) => {
   return (
-    <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br from-seafoam-100 to-seafoam-200 text-black">
+    <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br from-seafoam-100 to-seafoam-200">
       <h1 className={`${PAGE_TITLE} pb-4`}>{tinaData.bannerTitle}</h1>
-      <h2 className="text-2xl max-w-4xl font-ibm-plex pb-4">
+      <h2 className={`${CARD_TITLE} max-w-4xl pb-4`}>
         {tinaData.bannerTagline}
       </h2>
-      <h3 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h3>
+      <h3 className={`${BODY} max-w-4xl`}>{tinaData.bannerDescription}</h3>
       <div className="flex flex-col md:flex-row py-6 gap-6  md:gap-10">
         <div className="flex gap-2 items-center">
-          <FaRegCalendar /> <span>{tinaData.date}</span>
+          <FaRegCalendar /> <span className={BODY_SMALL}>{tinaData.date}</span>
         </div>
         <div className="flex gap-2 items-center">
-          <FaRegClock /> <span>{tinaData.time}</span>
+          <FaRegClock /> <span className={BODY_SMALL}>{tinaData.time}</span>
         </div>
         <div className="flex gap-2 items-center">
           <FaRegMap />{' '}
@@ -40,12 +54,12 @@ const HeaderBanner = ({
             <Link
               href={tinaData.locationLink}
               target="_blank"
-              className="underline"
+              className={`${BODY_SMALL} ${LINK}`}
             >
               {tinaData.location}
             </Link>
           ) : (
-            <span>{tinaData.location}</span>
+            <span className={BODY_SMALL}>{tinaData.location}</span>
           )}
         </div>
       </div>
@@ -101,7 +115,7 @@ interface KeyHighlightsProps {
 }
 const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
   return (
-    <div className="flex flex-col md:flex-row py-12 gap-10 max-w-4xl text-lg">
+    <div className="flex flex-col md:flex-row py-12 gap-10 max-w-4xl">
       {[
         ['headerLeft', 'descriptionLeft', 'iconLeft'],
         ['headerMiddle', 'descriptionMiddle', 'iconMiddle'],
@@ -112,10 +126,12 @@ const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
           className="flex flex-col gap-2 items-center w-full md:w-1/3"
         >
           {icons[highlights[icon as keyof typeof highlights]]}
-          <h3 className="font-semibold">
+          <h3 className={SUB_HEADING}>
             {highlights[header as keyof typeof highlights]}
           </h3>
-          <p>{highlights[description as keyof typeof highlights]}</p>
+          <p className={BODY_SMALL}>
+            {highlights[description as keyof typeof highlights]}
+          </p>
         </div>
       ))}
     </div>
@@ -124,7 +140,7 @@ const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
 
 const conferenceMarkdownComponents = {
   a: ({ children, url }: { children: React.ReactNode; url: string }) => (
-    <Link href={url} target="_blank" className="underline">
+    <Link href={url} target="_blank" className={LINK}>
       {children}
     </Link>
   ),
@@ -150,9 +166,7 @@ interface Session {
 const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
   return (
     <div className="flex flex-col items-center text-center p-6 md:p-16">
-      <h2 className="text-3xl font-semibold py-16">
-        Open Source Expert Speakers
-      </h2>
+      <h2 className={`${SECTION_TITLE} py-16`}>Open Source Expert Speakers</h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14">
         {speakers.map((speaker) => (
           <div
@@ -168,10 +182,8 @@ const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
                 className="rounded-full shadow-xl"
               />
             </Link>
-            <h3 className="font-semibold text-lg pt-5">{speaker.name}</h3>
-            <h4 className="text-subtle text-lg pb-2 -pt-1">
-              {speaker.position}
-            </h4>
+            <h3 className={`${SUB_HEADING} pt-5`}>{speaker.name}</h3>
+            <h4 className={`${BODY_MUTED} pb-2 -pt-1`}>{speaker.position}</h4>
           </div>
         ))}
       </div>
@@ -239,7 +251,7 @@ function Agenda({
   if (timeSlots.length === 0) {
     return (
       <div className="flex flex-col items-center" ref={agendaRef}>
-        <h2 id="agenda" className="text-3xl font-semibold pt-16 pb-8">
+        <h2 id="agenda" className={`${SECTION_TITLE} pt-16 pb-8`}>
           Agenda
         </h2>
         <p className={`${BODY} pb-16`}>The full agenda is coming soon.</p>
@@ -249,7 +261,7 @@ function Agenda({
 
   return (
     <div className="flex flex-col items-center" ref={agendaRef}>
-      <h2 id="agenda" className="text-3xl font-semibold pt-16 pb-8">
+      <h2 id="agenda" className={`${SECTION_TITLE} pt-16 pb-8`}>
         Agenda
       </h2>
 
@@ -257,16 +269,18 @@ function Agenda({
       <div className="w-full max-w-5xl overflow-x-auto hidden md:block rounded-xl">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-blue-100">
-              <th className="border p-4 w-1/6 text-left">Time</th>
-              <th className="border p-4 w-4/5 text-center">Talks</th>
+            <tr className={SURFACE.info}>
+              <th className={`${EYEBROW} border p-4 w-1/6 text-left`}>Time</th>
+              <th className={`${EYEBROW} border p-4 w-4/5 text-center`}>
+                Talks
+              </th>
             </tr>
           </thead>
           <tbody>
             {timeSlots.map((slot) => (
               <tr key={slot.timeStart}>
                 <td className="border p-4 align-top text-left">
-                  <div className="font-bold leading-6">
+                  <div className={LABEL}>
                     {formatTime(slot.timeStart)} -
                     <br />
                     {slot.timeEnd ? formatTime(slot.timeEnd) : ''}
@@ -280,7 +294,7 @@ function Agenda({
                         key={breakSession.speechTitle}
                         className="mb-4 last:mb-0"
                       >
-                        <h3 className="text-lg font-semibold">
+                        <h3 className={SUB_HEADING}>
                           {breakSession.speechTitle}
                         </h3>
                         <p className={BODY_SMALL}>
@@ -297,11 +311,9 @@ function Agenda({
                         className="mb-4 last:mb-0 flex"
                       >
                         <div>
-                          <h3 className="text-lg leading-6 font-semibold">
-                            {talk.speechTitle}
-                          </h3>
+                          <h3 className={SUB_HEADING}>{talk.speechTitle}</h3>
                           {talk.talkSpeakerName && (
-                            <div className="flex items-center gap-2 text-gray-600 mt-1">
+                            <div className="flex items-center gap-2 mt-1">
                               <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
                                 <Image
                                   src={talk.talkSpeakerImage}
@@ -311,7 +323,7 @@ function Agenda({
                                   className="w-full h-full object-cover"
                                 />
                               </div>
-                              <span className="text-sm">
+                              <span className={LABEL}>
                                 {talk.talkSpeakerName}
                               </span>
                             </div>
@@ -334,7 +346,7 @@ function Agenda({
       <div className="w-full max-w-6xl md:hidden text-left">
         {timeSlots.map((slot, _slotIndex) => (
           <div key={slot.timeStart} className="mb-8">
-            <div className="bg-blue-100 py-3 px-4 rounded-t-lg font-bold">
+            <div className={`${SURFACE.info} ${LABEL} py-3 px-4 rounded-t-lg`}>
               {formatTime(slot.timeStart)} -{' '}
               {slot.timeEnd ? formatTime(slot.timeEnd) : ''}
             </div>
@@ -347,12 +359,12 @@ function Agenda({
                     key={breakSession.speechTitle}
                     className="mb-4 last:mb-0"
                   >
-                    <div className="bg-orange-100 text-orange-500 text-sm rounded-full px-2 w-14 mb-2">
+                    <div
+                      className={`${SURFACE.brand} ${LABEL} rounded-full px-2 w-14 mb-2`}
+                    >
                       Break
                     </div>
-                    <h3 className="text-lg leading-5 font-semibold">
-                      {breakSession.speechTitle}
-                    </h3>
+                    <h3 className={SUB_HEADING}>{breakSession.speechTitle}</h3>
                     <p className={`${BODY_SMALL} pt-1`}>
                       {breakSession.speechDescription}
                     </p>
@@ -370,14 +382,14 @@ function Agenda({
                     key={talk.speechTitle}
                     className="pb-4 border-b last:border-b-0 last:pb-0"
                   >
-                    <div className="bg-blue-100 text-blue-500 text-sm rounded-full px-2 w-11 mb-2">
+                    <div
+                      className={`${SURFACE.info} ${LABEL} rounded-full px-2 w-11 mb-2`}
+                    >
                       Talk
                     </div>
-                    <h3 className="text-lg font-semibold leading-5">
-                      {talk.speechTitle}
-                    </h3>
+                    <h3 className={SUB_HEADING}>{talk.speechTitle}</h3>
                     {talk.talkSpeakerName && (
-                      <div className="flex items-center gap-2 text-gray-600 mt-1">
+                      <div className="flex items-center gap-2 mt-1">
                         <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
                           <Image
                             src={talk.talkSpeakerImage}
@@ -387,7 +399,7 @@ function Agenda({
                             className="w-full h-full object-cover"
                           />
                         </div>
-                        <span className="text-sm">{talk.talkSpeakerName}</span>
+                        <span className={LABEL}>{talk.talkSpeakerName}</span>
                       </div>
                     )}
                     <p className={`${BODY_SMALL} pt-2`}>
@@ -463,10 +475,10 @@ function ConferencePage({
         scrollToAgenda={scrollToAgenda}
       />
       <div className="flex flex-col justify-center items-center text-center p-16">
-        <h2 className="text-3xl font-semibold pb-4">
+        <h2 className={`${SECTION_TITLE} pb-4`}>
           {tinaData.data?.conference?.about?.heading}
         </h2>
-        <div className="text-lg max-w-4xl">
+        <div className={`${RICH_TEXT} max-w-4xl`}>
           <TinaMarkdown
             content={tinaData.data?.conference?.about?.description}
             components={conferenceMarkdownComponents}
@@ -483,12 +495,10 @@ function ConferencePage({
         <Agenda filteredSessions={filteredSessions} agendaRef={agendaRef} />
         <Link
           href="/events"
-          className="mt-16 font-bold flex items-center w-fit gap-2 group underline hover:no-underline transition-all duration-300"
+          className={`${EYEBROW_LINK} mt-16 flex items-center w-fit gap-2 group`}
         >
-          <span className="text-black group-hover:text-blue-600">
-            SEE ALL EVENTS
-          </span>
-          <FaArrowRightLong className="text-black group-hover:text-blue-600" />
+          <span>SEE ALL EVENTS</span>
+          <FaArrowRightLong />
         </Link>
       </div>
     </div>

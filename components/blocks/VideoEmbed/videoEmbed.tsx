@@ -24,7 +24,7 @@ export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
           className,
         )}
       >
-        <p className="text-subtle">Video URL is invalid or missing</p>
+        <p className={BODY_MUTED}>Video URL is invalid or missing</p>
       </div>
     );
   }

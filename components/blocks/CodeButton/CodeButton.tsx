@@ -4,18 +4,13 @@ import { BiCheck, BiCopy } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
+import { BODY_MUTED, LABEL, LINK } from '@/component/styles/typography';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
 // biome-ignore lint/complexity/noBannedTypes: <TODO>
 export const CodeButtonMarkdownStyle: Components<{}> = {
   a: (props) => {
-    return (
-      <a
-        href={props.url}
-        {...props}
-        className="underline opacity-80 transition-all duration-200 ease-out hover:text-orange-500"
-      />
-    );
+    return <a href={props.url} {...props} className={LINK} />;
   },
 };
 
@@ -101,9 +96,7 @@ export const CodeButton = ({
           {hasTemplates && (
             <div className="px-4 pt-4 pb-2">
               <div className="flex items-center justify-between px-2 pb-2">
-                <span className="font-mono text-xs text-strong">
-                  or deploy instantly...
-                </span>
+                <span className={BODY_MUTED}>or deploy instantly...</span>
                 <button
                   onClick={() => {
                     setShowHelpText(false);
@@ -142,12 +135,10 @@ export const CodeButton = ({
                           />
                         </div>
                       )}
-                      <span className="font-ibm-plex text-sm text-black">
-                        {template.title}
-                      </span>
+                      <span className={LABEL}>{template.title}</span>
                     </div>
                     {hoveredTemplate === index && (
-                      <span className="text-black text-sm">&#x21B5;</span>
+                      <span className={LABEL}>&#x21B5;</span>
                     )}
                   </a>
                 ))}
@@ -155,7 +146,9 @@ export const CodeButton = ({
             </div>
           )}
           {helpText?.children?.length > 0 && (
-            <div className="bg-white/50 text-xs border-t border-brand-primary rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 max-h-[500px] max-w-min min-w-full">
+            <div
+              className={`${BODY_MUTED} bg-white/50 border-t border-brand-primary rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 max-h-[500px] max-w-min min-w-full`}
+            >
               <TinaMarkdown
                 content={helpText}
                 components={CodeButtonMarkdownStyle}

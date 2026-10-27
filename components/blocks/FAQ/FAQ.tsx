@@ -1,5 +1,5 @@
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { SECTION_TITLE } from '@/component/styles/typography';
+import { BODY, SECTION_TITLE } from '@/component/styles/typography';
 import BlobBackground from '../../../public/svg/blob-bg.svg';
 import { RichTextWrapper } from '../../layout/RichTextWrapper';
 import { Container } from '../Container';
@@ -18,7 +18,7 @@ export function FaqBlock({ data, index }) {
                 <h3 className={`${SECTION_TITLE} mb-8`}>{data.title}</h3>
               )}
               {data.intro && (
-                <div className="text-xl">
+                <div className={BODY}>
                   <TinaMarkdown content={data.intro} />
                 </div>
               )}

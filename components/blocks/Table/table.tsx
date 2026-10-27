@@ -3,12 +3,21 @@ import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  LABEL,
+  LINK,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 
 const TableHeader = ({ data, scrollData, isMonthly }) => {
   return (
     <div className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] pt-6 px-6 bg-slate-50">
       {/* Sticky Header Column */}
-      <div className="sticky top-0 left-0 z-10 bg-slate-50 pl-4 pb-2 text-gray-700 font-bold">
+      <div
+        className={`${SUB_HEADING} sticky top-0 left-0 z-10 bg-slate-50 pl-4 pb-2`}
+      >
         {data.tableHeader}
       </div>
       {/* Sticky void column */}
@@ -20,16 +29,15 @@ const TableHeader = ({ data, scrollData, isMonthly }) => {
       {/* Remaining Columns Titles */}
       {data.columnItems?.map((headerItem, index) => (
         <div key={`${headerItem.columnHeader}-${index}`}>
-          <div
-            className={`text-center font-bold ${
-              headerItem.isReccomended ? 'text-orange-600' : 'text-gray-700'
-            }  underline decoration-dotted`}
-          >
-            <Link href={`${headerItem.columnHeaderLink}`}>
+          <div className="text-center">
+            <Link
+              href={`${headerItem.columnHeaderLink}`}
+              className={`${LABEL} ${LINK}`}
+            >
               {headerItem.columnHeader} {headerItem.isReccomended ? '⭐️' : ''}
             </Link>
           </div>
-          <div className="text-center font-normal text-xs text-slate-400">
+          <div className={`${BODY_MUTED} text-center`}>
             {isMonthly === false && headerItem.columnByLineAnnual
               ? headerItem.columnByLineAnnual
               : headerItem.columnByLine}
@@ -93,7 +101,9 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
                   className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group"
                 >
                   <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50">
-                    <div className="pl-2 py-2 whitespace-nowrap font-medium flex items-center">
+                    <div
+                      className={`${LABEL} pl-2 py-2 whitespace-nowrap flex items-center`}
+                    >
                       {row.rowHeader}
                       {row.rowDescription && (
                         <div
@@ -103,7 +113,9 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
                         >
                           <IoMdInformationCircleOutline className="text-orange-500 text-xl z-20" />
                           {infoIconHoverIndex === rowIndex && (
-                            <div className="absolute top-1/2 left-full transform -translate-y-1/2 ml-2 text-sm p-2 rounded-lg shadow-lg w-[300px] break-words whitespace-normal text-center bg-white">
+                            <div
+                              className={`${BODY_SMALL} absolute top-1/2 left-full transform -translate-y-1/2 ml-2 p-2 rounded-lg shadow-lg w-[300px] break-words whitespace-normal text-center bg-white`}
+                            >
                               <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-white"></div>
                               {row.rowDescription}
                             </div>
@@ -135,7 +147,7 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
                     return (
                       <div
                         key={`${row.rowHeader}-${cellIndex}`}
-                        className="text-center flex items-center justify-center snap-start"
+                        className={`${LABEL} text-center flex items-center justify-center snap-start`}
                       >
                         {cellData.isTicked ? (
                           <FiCheck />

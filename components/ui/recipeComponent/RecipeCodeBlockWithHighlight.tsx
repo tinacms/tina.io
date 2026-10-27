@@ -7,6 +7,7 @@ import 'prism-themes/themes/prism-night-owl.css';
 import 'prismjs/plugins/line-highlight/prism-line-highlight';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
 
+import { CODE } from '@/component/styles/typography';
 import { CodeToolbar } from './RecipeCodeToolBar';
 
 interface CodeBlockProps {
@@ -56,7 +57,7 @@ const CodeBlockWithHighlightLines = ({
       </div>
       <pre
         ref={preRef}
-        className="line-numbers"
+        className={`line-numbers ${CODE}`}
         data-line={highlightLines}
         style={{
           overflowX: 'hidden',

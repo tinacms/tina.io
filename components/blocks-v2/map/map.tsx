@@ -8,7 +8,15 @@ import { useEffect, useMemo, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa6';
 import type { PageBlocksMap } from 'tina/__generated__/types';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY_SMALL,
+  CAPTION,
+  LABEL,
+  LINK,
+  SECTION_TITLE,
+  SUB_HEADING,
+  SURFACE,
+} from '@/component/styles/typography';
 import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import { allCountries } from './worldmapData';
 
@@ -187,11 +195,11 @@ const OpenStatus = ({ office }: { office: Office }) => {
     <span
       className={clsx(
         {
-          'bg-green-500/20 text-green-800 border-green-800': status === 'Open',
-          'bg-[#ea6d43]/20 text-[#ea6d43] border-[#ea6d43]':
-            status === 'Closed',
+          [SURFACE.success]: status === 'Open',
+          [SURFACE.brand]: status === 'Closed',
         },
-        'text-xs ml-2 p-1 uppercase rounded-md border',
+        LABEL,
+        'ml-2 p-1 rounded-md border',
       )}
     >
       {status}
@@ -230,7 +238,7 @@ const AccordionItem = ({
         onClick={handleSelectOffice}
       >
         <div className="group flex cursor-pointer pl-2 justify-between w-full">
-          <div className="uppercase text-black">{office.addressLocality}</div>
+          <div className={BODY_SMALL}>{office.addressLocality}</div>
           <div className="flex items-center justify-center text-black">
             <FaChevronRight
               className={`transition-transform duration-300 ${currentlySelected ? 'rotate-90' : ''}`}
@@ -291,26 +299,28 @@ export const OfficeMap = ({ data }: { data: PageBlocksMap }) => {
                 selectedOffice={selectedOffice}
                 setSelectedOffice={setSelectedOffice}
               >
-                <div className="text-sm pl-2 pt-2">
-                  <div className="font-semibold mb-2">{office.name}</div>
-                  <div className="space-y-1 text-gray-700">
-                    <div>{office.streetAddress}</div>
-                    {office.suburb && <div>{office.suburb}</div>}
-                    <div>
+                <div className="pl-2 pt-2">
+                  <div className={`${SUB_HEADING} mb-2`}>{office.name}</div>
+                  <div className="space-y-1">
+                    <div className={CAPTION}>{office.streetAddress}</div>
+                    {office.suburb && (
+                      <div className={CAPTION}>{office.suburb}</div>
+                    )}
+                    <div className={CAPTION}>
                       {office.addressLocality}, {office.addressRegion}
                     </div>
-                    <div>
+                    <div className={CAPTION}>
                       {office.addressCountry} {office.postalCode}
                     </div>
                     <div className="mt-2">
                       <a
                         href={`tel:${office.phone}`}
-                        className="text-[#ea6d43] hover:underline"
+                        className={`${CAPTION} ${LINK}`}
                       >
                         {office.phone}
                       </a>
                     </div>
-                    <div className="text-gray-600">
+                    <div className={LABEL}>
                       Hours: {office.hours}
                       <OpenStatus office={office} />
                       <br />

@@ -6,7 +6,14 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
-import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY,
+  BODY_MUTED,
+  CODE,
+  ON_DARK,
+  PAGE_TITLE,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
 import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import PlayIcon from '@/public/svg/play-button.svg';
 
@@ -52,7 +59,7 @@ export function FeatureBlock({ data }) {
           <hr className="my-0! w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
         </div>
         <div
-          className="text-lg lg:text-xl lg:leading-normal max-w-60ch text-pretty text-left py-4"
+          className={`${BODY} max-w-60ch text-left py-4`}
           data-tina-field={tinaField(data, 'text')}
         >
           {data.text && (
@@ -145,7 +152,9 @@ export const RenderMedia = ({ data }) => {
     return (
       <div className="flex flex-col justify-start items-start">
         {data.media[0].file && (
-          <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-linear-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-ibm-plex">
+          <div
+            className={`${ON_DARK} ${CODE} inline-block rounded-t-lg overflow-hidden border-2 border-b-0 border-gray-700 bg-linear-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3`}
+          >
             {data.media[0].file}
           </div>
         )}
@@ -184,7 +193,7 @@ export const RenderMedia = ({ data }) => {
         {isPlaying ? (
           <div className="flex flex-col justify-center w-full h-full pb-4 group">
             <YouTubeEmbed videoId={data.media[0].videoEmbedId} />
-            <span className="text-sm text-gray-400 mt-2 text-left">
+            <span className={`${BODY_MUTED} mt-2 text-left`}>
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -211,7 +220,7 @@ export const RenderMedia = ({ data }) => {
                 </div>
               </div>
             </button>
-            <span className="text-sm text-gray-400 mt-2 text-left">
+            <span className={`${BODY_MUTED} mt-2 text-left`}>
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -230,7 +239,7 @@ export const RenderMedia = ({ data }) => {
         {isPlaying ? (
           <div className="flex flex-col justify-center w-full h-full pb-4 group">
             <YouTubeEmbed videoId={data.media[0].videoEmbedId} />
-            <span className="text-sm text-gray-400 mt-2 text-left">
+            <span className={`${BODY_MUTED} mt-2 text-left`}>
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -263,7 +272,7 @@ export const RenderMedia = ({ data }) => {
                 </div>
               </div>
             </button>
-            <span className="text-sm text-gray-400 mt-2 text-left">
+            <span className={`${BODY_MUTED} mt-2 text-left`}>
               {data.media[0].figureCaption}
             </span>
           </div>

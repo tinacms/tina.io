@@ -1,13 +1,13 @@
 import { useState } from 'react';
+import { LABEL, ON_DARK } from '@/component/styles/typography';
 import { Prism } from '../styles/Prism';
 
 export const GraphQLQueryResponseTabs = ({ ...props }) => {
   const [isQuery, setIsQuery] = useState(!props.preselectResponse);
 
-  const buttonStyling =
-    'flex justify-center relative leading-tight text-white mx-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 font-ibm-plex whitespace-nowrap px-2';
+  const buttonStyling = `${LABEL} flex justify-center relative mx-6 pt-[12px] pb-[10px] transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 whitespace-nowrap px-2`;
   const activeButtonStyling =
-    ' hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px hover:text-gray-50 opacity-50 hover:opacity-100';
+    ' hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px opacity-50 hover:opacity-100';
   const overlay = (
     <div
       className="w-full grow rounded-md"
@@ -24,7 +24,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
   return (
     <div className="mb-1">
       <div
-        className="flex w-full py-0 relative top-3 pt-1 z-10 rounded-t-md border-b border-b-orange-400/30"
+        className={`${ON_DARK} flex w-full py-0 relative top-3 pt-1 z-10 rounded-t-md border-b border-b-orange-400/30`}
         style={{
           backgroundColor: 'rgb(1, 22, 39)',
         }}
@@ -54,7 +54,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
       </div>
       <div className="h-fit grid grid-cols-1 w-full">
         <div
-          className={`${containerStyling} rounded-b-xl font-mono`}
+          className={`${containerStyling} rounded-b-xl`}
           style={{
             zIndex: isQuery ? 5 : 1,
           }}

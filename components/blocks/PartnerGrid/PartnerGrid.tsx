@@ -5,8 +5,13 @@ import { tinaField } from 'tinacms/dist/react';
 import {
   BODY,
   BODY_MUTED,
+  BODY_SMALL,
+  LABEL,
+  LINK,
   PAGE_TITLE,
   SECTION_TITLE,
+  SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { ModalB } from '../ModalButton/ModalButton';
@@ -39,7 +44,7 @@ const PartnerCard = ({ data }) => {
             />
           ) : (
             <span
-              className="text-xl font-ibm-plex text-blue-700"
+              className={SUB_HEADING}
               data-tina-field={tinaField(data, 'name')}
             >
               {data.name}
@@ -48,10 +53,11 @@ const PartnerCard = ({ data }) => {
         </div>
         {data.tier && (
           <span
-            className={`shrink-0 rounded-full px-3 py-1 text-sm font-medium ${
+            className={`${LABEL} shrink-0 rounded-full px-3 py-1 ${
               isPremier
-                ? 'bg-linear-to-r from-amber-200 via-yellow-300 to-amber-400 text-amber-900 shadow-sm ring-1 ring-amber-300/60'
-                : 'bg-blue-50 text-blue-700'
+                ? // Premier keeps its brand gradient (data-driven tier colour).
+                  'bg-linear-to-r from-amber-200 via-yellow-300 to-amber-400 text-amber-900 shadow-sm ring-1 ring-amber-300/60'
+                : SURFACE.info
             }`}
             data-tina-field={tinaField(data, 'tier')}
           >
@@ -67,7 +73,10 @@ const PartnerCard = ({ data }) => {
       )}
 
       {data.description && (
-        <p className="grow" data-tina-field={tinaField(data, 'description')}>
+        <p
+          className={`${BODY_SMALL} grow`}
+          data-tina-field={tinaField(data, 'description')}
+        >
           {data.description}
         </p>
       )}
@@ -77,7 +86,7 @@ const PartnerCard = ({ data }) => {
           {data.services.map((service) => (
             <li
               key={service}
-              className="rounded-md bg-gray-100 px-3 py-1 text-sm text-gray-700"
+              className={`${SURFACE.neutral} ${LABEL} rounded-md px-3 py-1`}
             >
               {service}
             </li>
@@ -90,7 +99,7 @@ const PartnerCard = ({ data }) => {
           href={website}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-auto inline-flex items-center gap-1 font-medium text-blue-500 hover:text-blue-700"
+          className={`${BODY_SMALL} ${LINK} mt-auto inline-flex items-center gap-1`}
           data-tina-field={tinaField(data, 'website')}
         >
           {websiteLabel}
@@ -115,14 +124,17 @@ const GetInContactCard = ({ data }) => (
   <div className="flex h-full flex-col gap-4 rounded-lg border-2 border-dashed border-blue-200 bg-blue-50/40 p-6 md:p-8">
     {data.contactCardTitle && (
       <h3
-        className="text-xl font-ibm-plex"
+        className={SUB_HEADING}
         data-tina-field={tinaField(data, 'contactCardTitle')}
       >
         {data.contactCardTitle}
       </h3>
     )}
     {data.contactCardText && (
-      <p className="grow" data-tina-field={tinaField(data, 'contactCardText')}>
+      <p
+        className={`${BODY_SMALL} grow`}
+        data-tina-field={tinaField(data, 'contactCardText')}
+      >
         {data.contactCardText}
       </p>
     )}

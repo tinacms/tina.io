@@ -1,6 +1,10 @@
 import EmblaCarousel from 'components/ui/EmblaCarousel/EmblaCarousel';
 import { tinaField } from 'tinacms/dist/react';
-import { BODY_SMALL } from '@/component/styles/typography';
+import {
+  BODY_SMALL,
+  CARD_TITLE,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 
 function CarouselFeatureMobileItem(data) {
@@ -15,9 +19,7 @@ function CarouselFeatureMobileItem(data) {
     >
       <div className="flex mb-2 text-left">
         {headline && (
-          <h3 className={`md:text-2xl text-xl font-ibm-plex cursor-pointer `}>
-            {headline}
-          </h3>
+          <h3 className={`${CARD_TITLE} cursor-pointer`}>{headline}</h3>
         )}
       </div>
       {text && <p className={`${BODY_SMALL} pl-[1px] slide-up mb-4`}>{text}</p>}
@@ -44,9 +46,7 @@ export function CarouselFeatureMobile(props: CarouselFeatureMobileProps) {
   ));
   return items.length > 0 ? (
     <>
-      <h2 className="text-center font-ibm-plex text-3xl md:text-4xl lg:text-5xl lg:leading-tight">
-        {data.blockHeadline}
-      </h2>
+      <h2 className={`${SECTION_TITLE} text-center`}>{data.blockHeadline}</h2>
       <EmblaCarousel slides={items} />
     </>
   ) : null;

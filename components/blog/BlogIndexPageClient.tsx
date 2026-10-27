@@ -7,7 +7,12 @@ import { LOCALE_ROUTE_CONFIG, type Locale } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
 import { unclipEmoji } from 'utils/unclipEmoji';
 import NewBlogPagination from '@/component/Blogs/BlogPagination';
-import { PAGE_TITLE } from '@/component/styles/typography';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  PAGE_TITLE,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 import { extractTextFromBody } from '@/utils/extractTextFromBody';
 import { formatDate } from '@/utils/formatDate';
 
@@ -59,21 +64,19 @@ export default function BlogIndexPageClient({
             className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8"
           >
             <DynamicLink href={`${prefix}/blog/${post._sys.filename}`} passHref>
-              <h2 className="font-ibm-plex text-3xl lg:text-4xl lg:leading-tight group-hover:text-brand-primary">
-                {unclipEmoji(post.title)}
-              </h2>
+              <h2 className={SUB_HEADING}>{unclipEmoji(post.title)}</h2>
             </DynamicLink>
             <div className="w-full">
               <div className="flex justify-between items-center w-full mb-6 -mt-2">
-                <p className="opacity-70">
+                <p className={BODY_MUTED}>
                   <span className="mr-1">By</span>
                   <strong>{post.author}</strong>
                 </p>
-                <time className="opacity-70" dateTime={post.date}>
+                <time className={BODY_MUTED} dateTime={post.date}>
                   {formatDate(post.date || '')}
                 </time>
               </div>
-              <div className=" font-normal mb-6">
+              <div className={`${BODY_SMALL} mb-6`}>
                 <MarkdownContent
                   skipHtml={true}
                   content={extractTextFromBody(post.body)}

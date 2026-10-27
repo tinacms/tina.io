@@ -6,7 +6,11 @@ import {
   BODY,
   BODY_MUTED,
   BODY_SMALL,
+  CARD_TITLE,
+  EYEBROW_LINK,
+  LABEL,
   SECTION_TITLE,
+  SURFACE,
 } from '@/component/styles/typography';
 import eventsData from '../../../content/events/master-events.json';
 import {
@@ -95,15 +99,21 @@ export const Card = ({ cardItem, onHover }) => {
       </div>
       <div className="grow flex flex-col overflow-hidden py-2">
         {isLiveEvent ? (
-          <span className="bg-[#0574E4] px-2 mb-1.5 rounded text-sm text-white font-semibold shadow-lg w-fit ">
+          <span
+            className={`${SURFACE.info} ${LABEL} px-2 mb-1.5 rounded shadow-lg w-fit`}
+          >
             Event Started
           </span>
         ) : isLiveOrPastEvent ? (
-          <span className="bg-slate-500 px-2 mb-1.5 rounded text-sm text-white font-semibold shadow-lg w-fit">
+          <span
+            className={`${SURFACE.neutralSolid} ${LABEL} px-2 mb-1.5 rounded shadow-lg w-fit`}
+          >
             Event Finished
           </span>
         ) : (
-          <span className="bg-[#0574E4] px-2 mb-1.5 rounded text-sm text-white font-semibold shadow-lg w-fit">
+          <span
+            className={`${SURFACE.info} ${LABEL} px-2 mb-1.5 rounded shadow-lg w-fit`}
+          >
             {hoursUntilEvent >= 24
               ? `${Math.floor(hoursUntilEvent / 24)} Day${
                   hoursUntilEvent >= 48 ? 's' : ''
@@ -113,26 +123,20 @@ export const Card = ({ cardItem, onHover }) => {
                 } to go`}
           </span>
         )}
-        <h3 className="font-ibm-plex text-2xl mb-1">{cardItem.headline}</h3>
-        <div
-          className={`flex items-center text-base ${
-            isLiveOrPastEvent ? 'text-gray-500' : 'text-black'
-          }`}
-        >
-          <p className="mr-2">
+        <h3 className={`${CARD_TITLE} mb-1`}>{cardItem.headline}</h3>
+        <div className="flex items-center">
+          <p className={`${BODY_MUTED} mr-2`}>
             {formattedDate} {endYear}
           </p>
         </div>
-        <p className={isLiveOrPastEvent ? BODY_MUTED : BODY_SMALL}>
-          {cardItem.location}
-        </p>
+        <p className={BODY_SMALL}>{cardItem.location}</p>
         <Link
           href={cardItem.link}
-          className="flex gap-2 pt-2 items-center text-black hover:text-blue-600 uppercase"
+          className={`${EYEBROW_LINK} flex gap-2 pt-2 items-center`}
         >
           Read more
           <span className="sr-only">about {cardItem.headline}</span>
-          <FaArrowRightLong className="text-black hover:text-blue-600 pr-1" />
+          <FaArrowRightLong className="pr-1" />
         </Link>
       </div>
       <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
@@ -225,9 +229,7 @@ const EventsBlock = () => {
           {isGlobeVisible && (
             <GlobeErrorBoundary>
               <Suspense
-                fallback={
-                  <div className="font-ibm-plex text-2xl">Loading Globe...</div>
-                }
+                fallback={<div className={BODY_MUTED}>Loading Globe...</div>}
               >
                 <LazyGlobe
                   activeGlobeId={activeGlobeId}
@@ -250,12 +252,10 @@ const EventsBlock = () => {
 
           <Link
             href="/events"
-            className="pl-4 pt-10 font-bold flex items-center w-fit justify-end gap-2 group pr-1 underline hover:no-underline transition-all duration-300"
+            className={`${EYEBROW_LINK} pl-4 pt-10 flex items-center w-fit justify-end gap-2 group pr-1`}
           >
-            <span className="text-black group-hover:text-blue-600">
-              SEE ALL EVENTS
-            </span>
-            <FaArrowRightLong className="text-black group-hover:text-blue-600" />
+            <span>SEE ALL EVENTS</span>
+            <FaArrowRightLong />
           </Link>
         </div>
       </div>

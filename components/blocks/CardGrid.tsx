@@ -1,3 +1,4 @@
+import { BODY_SMALL, CARD_TITLE } from '@/component/styles/typography';
 import { Actions } from '../blocks/ActionButton/ActionsButton';
 
 export const CardGrid = ({ props }) => {
@@ -9,11 +10,9 @@ export const CardGrid = ({ props }) => {
           href={card.link}
           className="flex flex-col justify-between p-6 border rounded-lg group bg-transparent hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out transition-all ease-out duration-150 transition-all ease-out duration-150"
         >
-          <h2 className="font-semibold text-2xl leading-snug font-ibm-plex mb-2">
-            {card.title}
-          </h2>
+          <h2 className={`${CARD_TITLE} mb-2`}>{card.title}</h2>
 
-          <p>{card.description}</p>
+          <p className={BODY_SMALL}>{card.description}</p>
           <div className="flex-1"></div>
           {card.linkText && (
             <Actions

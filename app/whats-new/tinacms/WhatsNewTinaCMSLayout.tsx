@@ -1,6 +1,16 @@
 import Link from 'next/link';
 import { FaGithub, FaNewspaper } from 'react-icons/fa';
-import { BODY_MUTED, PAGE_TITLE } from '@/component/styles/typography';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  CARD_TITLE,
+  CODE,
+  EYEBROW_LINK,
+  LABEL,
+  PAGE_TITLE,
+  SUB_HEADING,
+  SURFACE,
+} from '@/component/styles/typography';
 
 interface ChangeItem {
   pull_request_number?: string;
@@ -31,17 +41,19 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
         <>
           <Link
             href={change.gitHubLink}
-            className="justify-self-start whitespace-nowrap items-center px-2 py-1 text-xs bg-orange-100 text-orange-500 rounded-md hover:bg-orange-200 transition-colors"
+            className={`${SURFACE.brand} ${LABEL} justify-self-start whitespace-nowrap items-center px-2 py-1 rounded-md`}
             target="_blank"
             rel="noopener noreferrer"
           >
             @{change.gitHubName}
           </Link>
-          <span className="hidden sm:block">-</span>
+          <span className={`${BODY_SMALL} hidden sm:block`}>-</span>
         </>
       )}
       {change.changesDescription && (
-        <p className="order-last w-full wrap-anywhere sm:order-none sm:col-start-3 sm:w-auto">
+        <p
+          className={`${BODY_SMALL} order-last w-full wrap-anywhere sm:order-none sm:col-start-3 sm:w-auto`}
+        >
           {change.changesDescription}
         </p>
       )}
@@ -49,7 +61,7 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
         {change.pull_request_number && change.pull_request_link && (
           <Link
             href={change.pull_request_link}
-            className="h-fit items-center px-2 py-1 text-xs bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors font-mono"
+            className={`${SURFACE.neutral} ${CODE} h-fit items-center px-2 py-1 rounded-md`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -59,7 +71,7 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
         {change.commit_hash && change.commit_link && (
           <Link
             href={change.commit_link}
-            className="h-fit items-center px-2 py-1 text-xs bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors font-mono"
+            className={`${SURFACE.neutral} ${CODE} h-fit items-center px-2 py-1 rounded-md`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -78,7 +90,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
       className="mb-6 p-10 shadow-xl rounded-lg bg-linear-to-br from-white/25 via-white/50 to-white/75"
     >
       <div className="flex justify-between items-baseline mb-6">
-        <h2 className="text-2xl font-semibold">Version {item.versionNumber}</h2>
+        <h2 className={CARD_TITLE}>Version {item.versionNumber}</h2>
         <p className={BODY_MUTED}>
           Released on {new Date(item.dateReleased).toLocaleDateString()}
         </p>
@@ -89,7 +101,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
           key={`section-${section.changesTitle}-${sectionIndex}`}
           className="mb-6"
         >
-          <h3 className="text-lg font-semibold mb-3 border-b border-gray-200 pb-2">
+          <h3 className={`${SUB_HEADING} mb-3 border-b border-gray-200 pb-2`}>
             {section.changesTitle}
           </h3>
           {section.changesList && section.changesList.length > 0 ? (
@@ -102,7 +114,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
               ))}
             </ul>
           ) : (
-            <p className="text-subtle italic">No changes in this section</p>
+            <p className={BODY_MUTED}>No changes in this section</p>
           )}
         </div>
       ))}
@@ -116,23 +128,23 @@ const WhatsNewTinaCMSPageLayout = ({ data }) => {
   return (
     <div className="p-6 py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-5xl md:mx-auto">
       <h1 className={`${PAGE_TITLE} text-center justify-center`}>
-        What's new with <span className="text-orange-500">TinaCMS</span>
+        What's new with TinaCMS
       </h1>
       <div className="mt-8">
         {items.map((item) => (
           <WhatsNewCard key={item.id} item={item} />
         ))}
       </div>
-      <div className="font-ibm-plex text-lg text-center text-blue-700">
+      <div className="text-center">
         <Link
           href="https://github.com/tinacms/tinacms/blob/main/packages/tinacms/CHANGELOG.md"
-          className="flex items-center justify-center hover:text-blue-800"
+          className={`${EYEBROW_LINK} flex items-center justify-center`}
         >
           See more on GitHub <FaGithub className="ml-2" />
         </Link>
         <Link
           href="https://us20.campaign-archive.com/home/?u=1fea337bee20e7270d025ea8a&id=c1062536a1"
-          className="flex items-center justify-center hover:text-blue-800"
+          className={`${EYEBROW_LINK} flex items-center justify-center`}
         >
           See Newsletters <FaNewspaper className="ml-2" />
         </Link>

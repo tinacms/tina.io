@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 
 interface AccordionItem {
   heading?: string;
@@ -43,7 +48,9 @@ export const AccordionBlock = ({
 
   if (!accordionItems || accordionItems.length === 0) {
     return (
-      <div className="flex flex-col justify-center items-center rounded-lg bg-white/40 shadow-sm mb-5 p-4 border border-gray-200">
+      <div
+        className={`${BODY_MUTED} flex flex-col justify-center items-center rounded-lg bg-white/40 shadow-sm mb-5 p-4 border border-gray-200`}
+      >
         No accordion items
       </div>
     );
@@ -64,7 +71,7 @@ export const AccordionBlock = ({
               className="flex cursor-pointer items-center justify-between px-6 py-6"
               onClick={() => toggleExpand(index)}
             >
-              <h4 className="text-lg font-ibm-plex mt-0.5">
+              <h4 className={`${SUB_HEADING} mt-0.5`}>
                 {item.heading || 'Click to expand'}
               </h4>
               <div>
@@ -82,7 +89,7 @@ export const AccordionBlock = ({
                   : 'max-h-0 overflow-hidden opacity-0'
               } ${image ? 'sm:grid-cols-2' : ''}`}
             >
-              <div className="min-w-0 px-4 pb-4 break-words">
+              <div className={`${BODY_SMALL} min-w-0 px-4 pb-4 break-words`}>
                 <TinaMarkdown
                   content={item.docText as any}
                   components={components}

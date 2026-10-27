@@ -8,7 +8,16 @@ import {
 } from 'utils/fetchPackageInfo';
 import { formatPublishedDate } from 'utils/formatPublishedDate';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { BODY, PAGE_TITLE } from '@/component/styles/typography';
+import {
+  BODY,
+  BODY_MUTED,
+  BODY_SMALL,
+  CODE,
+  EYEBROW,
+  LINK,
+  PAGE_TITLE,
+  SURFACE,
+} from '@/component/styles/typography';
 import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import { TINA_PACKAGES, type TinaPackage } from './packages';
 
@@ -29,15 +38,12 @@ type RowState =
 
 type RowMap = Record<string, RowState>;
 
-const HEADER_CELL_CLASS =
-  'py-4 font-mono text-xxs font-medium uppercase tracking-widest text-gray-500';
+const HEADER_CELL_CLASS = `py-4 ${EYEBROW}`;
 const CARD_CLASS =
   'rounded-2xl border border-gray-200/80 bg-white/60 shadow-lg backdrop-blur-sm';
-const PACKAGE_LINK_BASE =
-  'font-mono text-xs text-gray-900 hover:text-orange-600';
-const PILL_CLASS =
-  'animate-row-in inline-flex items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-mono text-xs font-medium text-orange-700';
-const PLACEHOLDER_CLASS = 'font-mono text-xs text-gray-400';
+const PACKAGE_LINK_BASE = `${CODE} ${LINK}`;
+const PILL_CLASS = `${SURFACE.brand} ${CODE} animate-row-in inline-flex items-center rounded-md border px-2 py-0.5`;
+const PLACEHOLDER_CLASS = BODY_MUTED;
 
 export function VersionsBlock({ data }: { data: VersionsBlockData }) {
   const [rows, setRows] = useState<RowMap>(() =>
@@ -105,8 +111,8 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
           </div>
         </div>
 
-        <footer className="pt-10 pb-24 font-mono text-xs uppercase tracking-widest text-gray-400">
-          <span className="mr-2 text-orange-500">{'//'}</span>
+        <footer className={`${BODY_MUTED} pt-10 pb-24`}>
+          <span className="mr-2">{'//'}</span>
           Source: registry.npmjs.org &nbsp;·&nbsp; {TINA_PACKAGES.length}{' '}
           packages
         </footer>
@@ -148,10 +154,7 @@ function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
     <tr className="group relative border-b border-gray-100 last:border-b-0 transition-colors duration-150 hover:bg-orange-50/40">
       <td className="relative py-4 pl-6 pr-4">
         <span className="pointer-events-none absolute left-0 top-1/2 h-6 w-0.5 -translate-y-1/2 bg-orange-500 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
-        <PackageLink
-          name={pkg.name}
-          className={`${PACKAGE_LINK_BASE} decoration-orange-400/60 underline-offset-4 hover:underline`}
-        />
+        <PackageLink name={pkg.name} className={PACKAGE_LINK_BASE} />
       </td>
       <td className="py-4 pr-4 align-middle">
         <VersionField row={row} skeletonWidth="w-16" />
@@ -160,7 +163,7 @@ function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
         <PublishedField row={row} skeletonWidth="w-24" />
       </td>
       <td className="py-4 pr-6">
-        <span className="text-sm text-gray-600">{pkg.description}</span>
+        <span className={BODY_SMALL}>{pkg.description}</span>
       </td>
     </tr>
   );
@@ -179,7 +182,7 @@ function MobileList({ rows }: { rows: RowMap }) {
             <VersionField row={rows[pkg.name]} skeletonWidth="w-14" shrink />
           </div>
           <div className="mt-2 flex items-center justify-between">
-            <span className="text-sm text-gray-600">{pkg.description}</span>
+            <span className={BODY_SMALL}>{pkg.description}</span>
             <PublishedField
               row={rows[pkg.name]}
               skeletonWidth="w-20"
@@ -253,19 +256,15 @@ function PublishedField({
     if (variant === 'compact') {
       return null;
     }
-    return <span className="text-sm text-gray-400">unavailable</span>;
+    return <span className={BODY_MUTED}>unavailable</span>;
   }
   const formatted = formatPublishedDate(row.info.publishedAt);
   if (variant === 'compact') {
     return (
-      <span className="animate-row-in ml-3 shrink-0 font-mono text-xxs text-gray-500">
+      <span className={`${CODE} animate-row-in ml-3 shrink-0`}>
         {formatted}
       </span>
     );
   }
-  return (
-    <span className="animate-row-in font-mono text-xs text-gray-600">
-      {formatted}
-    </span>
-  );
+  return <span className={`${CODE} animate-row-in`}>{formatted}</span>;
 }

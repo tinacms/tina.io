@@ -5,7 +5,12 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { BODY, SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY,
+  CARD_TITLE,
+  EYEBROW_LINK,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
 import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
@@ -63,15 +68,7 @@ const CarouselItem = ({
             />
           )}
           {headline && (
-            <h3
-              className={` md:text-3xl text-2xl font-ibm-plex leading-tight cursor-pointer pl-3 ${
-                isHovered && !isSmallOrMediumScreen
-                  ? ' lg:text-3xl '
-                  : ' lg:text-xl'
-              }`}
-            >
-              {headline}
-            </h3>
+            <h3 className={`${CARD_TITLE} cursor-pointer pl-3`}>{headline}</h3>
           )}
         </div>
         <div
@@ -319,7 +316,7 @@ export default function CarouselFeatureBlock({ data, index }) {
             {!isShowingAll && isTouchScreen ? (
               <button
                 type="button"
-                className="text-blue-500 text-lg font-ibm-plex cursor-pointer"
+                className={`${EYEBROW_LINK} cursor-pointer`}
                 onClick={() => setIsShowingAll(true)}
               >
                 See all
@@ -328,7 +325,7 @@ export default function CarouselFeatureBlock({ data, index }) {
             {isShowingAll && isTouchScreen ? (
               <button
                 type="button"
-                className="text-blue-500 text-lg font-ibm-plex cursor-pointer"
+                className={`${EYEBROW_LINK} cursor-pointer`}
                 onClick={() => {
                   setTimeout(() => {
                     setIsShowingAll(false);

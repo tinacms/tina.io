@@ -6,7 +6,14 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { tinaField } from 'tinacms/dist/react';
-import { CARD_TITLE, SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY_MUTED,
+  CARD_TITLE,
+  EYEBROW_LINK,
+  LINK,
+  SECTION_TITLE,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import Container from '@/component/util/Container';
 import { extractYouTubeId } from '../VideoEmbed/utils';
@@ -55,22 +62,21 @@ const VideoCard = ({
   return (
     <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2 animate-row-in">
       <YouTubeEmbed src={embedUrl} />
-      <span className="text-subtle text-sm">{formatDate(dateReleased)}</span>
+      <span className={BODY_MUTED}>{formatDate(dateReleased)}</span>
       <Link
         href={`https://www.youtube.com/watch?v=${videoId}`}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <h3 className="text-base md:text-xl inline-block hover:underline transition-all duration-300">
+        <h3
+          className={`${SUB_HEADING} inline-block hover:underline transition-all duration-300`}
+        >
           {title}
         </h3>
       </Link>
-      <span className="text-subtle text-sm">
+      <span className={BODY_MUTED}>
         By{' '}
-        <Link
-          className="underline hover:text-strong transition-colors duration-300"
-          href={authorUrl}
-        >
+        <Link className={`${BODY_MUTED} ${LINK}`} href={authorUrl}>
           {authorName.toUpperCase()}
         </Link>
       </span>
@@ -128,7 +134,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
 
   return (
     <Container size="medium" className="grid grid-cols-3 gap-16 py-16">
-      <section className="col-span-3 text-3xl lg:col-span-2 flex flex-col gap-8 items-center md:items-start">
+      <section className="col-span-3 lg:col-span-2 flex flex-col gap-8 items-center md:items-start">
         {featuredPost && <FeaturedPost featuredPost={featuredPost} />}
         <h2
           className={`${SECTION_TITLE} col-span-3`}
@@ -167,18 +173,18 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
                 key={slug}
                 className="group flex-1 flex flex-col gap-2  min-w-[20rem]"
               >
-                <span className="text-subtle text-sm">
-                  {formatDate(post.date)}
-                </span>
+                <span className={BODY_MUTED}>{formatDate(post.date)}</span>
                 <DynamicLink href={href} passHref>
-                  <h3 className="text-base md:text-xl inline-block hover:underline transition-all duration-300">
+                  <h3
+                    className={`${SUB_HEADING} inline-block hover:underline transition-all duration-300`}
+                  >
                     {post.title}
                   </h3>
                 </DynamicLink>
                 <RichTextWrapper>
                   <div className="flex flex-row mb-3 text-center justify-between">
                     <div className="flex">
-                      <span className="text-subtle">
+                      <span className={BODY_MUTED}>
                         By {post.author.toUpperCase()}
                       </span>{' '}
                     </div>
@@ -189,7 +195,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
           })}
           <Link
             href="/blog"
-            className="underline hover:no-underline transition-all duration-300 flex gap-2 pt-2 items-center text-black hover:text-blue-600 font-bold -mt-4 lg:-mt-10"
+            className={`${EYEBROW_LINK} flex gap-2 pt-2 items-center -mt-4 lg:-mt-10`}
           >
             READ MORE BLOGS
             <FaArrowRightLong className="pr-1" />

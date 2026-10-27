@@ -2,8 +2,8 @@ import Image from 'next/image';
 import type { PageBlocksFeatureCard } from 'tina/__generated__/types';
 import {
   BODY,
+  CARD_TITLE,
   EYEBROW,
-  SECTION_HEADINGS_SIZE,
   SECTION_TITLE,
 } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
@@ -72,15 +72,7 @@ function FeatureCardItem(data: {
     tinaOrange: 'text-orange-500',
   };
 
-  // Ink for the neutral themes; orange only where the card is the orange one.
-  const subheadingColourMap = {
-    black: 'text-black',
-    blue: 'text-blue-600',
-    tinaOrange: 'text-strong',
-  };
-
   const hexagonClass = hexagonColourMap[themeColour] || 'text-black';
-  const subheadingClass = subheadingColourMap[themeColour] || 'text-black';
 
   return (
     <div
@@ -90,11 +82,7 @@ function FeatureCardItem(data: {
       <HexagonBackground headlineClass={`hidden lg:block ${hexagonClass}`} />
       <div className="relative z-10 flex flex-col gap-2 w-full flex-1">
         <h3 className={`${SECTION_TITLE}`}>{title}</h3>
-        <h4
-          className={`font-ibm-plex font-normal ${SECTION_HEADINGS_SIZE} ${subheadingClass}`}
-        >
-          {featureHeadline}
-        </h4>
+        <h4 className={CARD_TITLE}>{featureHeadline}</h4>
         <div className="flex-1" />
         <p className={`${BODY} max-w-[62ch] py-4`}>{featureText}</p>
         <div className="flex flex-col sm:flex-row gap-2 w-full">

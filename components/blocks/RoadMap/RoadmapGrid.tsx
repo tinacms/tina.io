@@ -2,7 +2,13 @@ import type { IconType } from 'react-icons';
 import { FaHourglassHalf, FaRegCheckCircle, FaRegClock } from 'react-icons/fa';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { BODY, SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY,
+  CARD_TITLE,
+  LABEL,
+  SECTION_TITLE,
+  SURFACE,
+} from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
@@ -61,7 +67,7 @@ const Roadmap = ({ data, last = false, index }) => {
             )}
             <h3
               data-tina-field={tinaField(data, 'heading')}
-              className="text-2xl lg:text-3xl font-ibm-plex lg:leading-tight"
+              className={CARD_TITLE}
             >
               <TinaMarkdown
                 content={data.heading}
@@ -81,7 +87,7 @@ const Roadmap = ({ data, last = false, index }) => {
         {data.status && (
           <span
             data-tina-field={tinaField(data, 'status')}
-            className="rounded-full w-auto grow-0 flex items-center font-ibm-plex whitespace-nowrap leading-snug text-blue-800 px-4 pt-[7px] pb-[5px] text-sm font-medium border border-blue-100 bg-linear-to-br from-white to-blue-50"
+            className={`${SURFACE.info} ${LABEL} rounded-full w-auto grow-0 flex items-center whitespace-nowrap px-4 pt-[7px] pb-[5px] border border-blue-100`}
           >
             {data.status}
           </span>

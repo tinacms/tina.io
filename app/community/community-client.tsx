@@ -7,7 +7,7 @@ import TinaIconSvg from 'public/svg/tina-icon.svg';
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 import { EmailForm } from '@/component/modals/EmailForm';
 
-import { PAGE_TITLE } from '@/component/styles/typography';
+import { BODY, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 export default function CommunityPageClient(data) {
   return (
     <div className="flex flex-col">
@@ -19,10 +19,10 @@ export default function CommunityPageClient(data) {
       <div className="grid gap-16 lg:grid-cols-2 lg:items-center lg:gap-8 my-16 px-6 lg:px-20">
         {/* Info Content */}
         <div className="space-y-6">
-          <h2 className="text-4xl font-ibm-plex">{data.supporting_headline}</h2>
+          <h2 className={SECTION_TITLE}>{data.supporting_headline}</h2>
           <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[10px] w-full my-8" />
           <RichTextWrapper>
-            <div className="text-gray-700 tracking-wide leading-relaxed">
+            <div className={BODY}>
               <MarkdownContent content={data.supporting_body} />
             </div>
           </RichTextWrapper>
@@ -99,10 +99,8 @@ export default function CommunityPageClient(data) {
       {/* Newsletter Section */}
       <div className="py-12">
         <div className="text-center px-6 lg:px-20">
-          <h2 className="text-3xl lg:text-4xl font-ibm-plex lg:leading-tight mb-2">
-            {data.newsletter_header}
-          </h2>
-          <p className="mt-2">{data.newsletter_cta}</p>
+          <h2 className={`${SECTION_TITLE} mb-2`}>{data.newsletter_header}</h2>
+          <p className={`${BODY} mt-2`}>{data.newsletter_cta}</p>
           <div className="flex justify-center mt-6">
             <div className="w-full">
               <EmailForm />

@@ -3,7 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
-import { ARTICLE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
+import {
+  ARTICLE_TITLE,
+  BODY_SMALL,
+  CARD_TITLE,
+  LABEL,
+  SECTION_TITLE,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 
 export type BookingItem = {
   name: string;
@@ -19,7 +26,7 @@ const BookingCard = ({ cardItem }) => {
 
   return (
     <Link href={cardItem.url || '#'}>
-      <div className="relative mb-4 rounded-md group flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700 bg-linear-to-br from-white/25 via-white/50 to-white/75 sm:pt-1">
+      <div className="relative mb-4 rounded-md group flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring bg-linear-to-br from-white/25 via-white/50 to-white/75 sm:pt-1">
         {isValidImage(cardItem.image) && (
           <Image
             src={cardItem.image}
@@ -30,10 +37,8 @@ const BookingCard = ({ cardItem }) => {
           />
         )}
         <div className="grow text-center md:text-left lg:pl-4 lg:text-left">
-          <div className="font-medium text-3xl">{cardItem.name}</div>
-          <div className="text-muted-foreground text-base">
-            {cardItem.description}
-          </div>
+          <div className={CARD_TITLE}>{cardItem.name}</div>
+          <div className={BODY_SMALL}>{cardItem.description}</div>
         </div>
         <div className="shrink-0 sm:self-center">
           <FaChevronRight className="h-10 w-10 text-muted-foreground pr-6" />
@@ -78,21 +83,27 @@ const BookingBlock = ({ data }) => {
         <div className="flex justify-center mb-6 step-indicator items-center">
           <div className="step flex flex-col items-center relative z-10">
             <div className="step-icon w-6 h-6 border-2 border-orange-300 flex items-center justify-center rounded-full"></div>
-            <p className="text-center absolute bottom-[-20px] text-xxs md:text-xs whitespace-nowrap">
+            <p
+              className={`${LABEL} text-center absolute bottom-[-20px] whitespace-nowrap`}
+            >
               CHOOSE LOCATION
             </p>
           </div>
           <div className="indicator-line h-0.5 w-20 md:w-40 bg-gray-300"></div>
           <div className="step flex flex-col items-center relative z-10">
             <div className="step-icon w-6 h-6 border-2 border-gray-300 flex items-center justify-center rounded-full"></div>
-            <p className="text-center absolute bottom-[-20px] text-xxs md:text-xs whitespace-nowrap">
+            <p
+              className={`${LABEL} text-center absolute bottom-[-20px] whitespace-nowrap`}
+            >
               CHOOSE TIME
             </p>
           </div>
           <div className="indicator-line h-0.5 w-20 md:w-40 bg-gray-300"></div>
           <div className="step flex flex-col items-center relative z-10">
             <div className="step-icon w-6 h-6 border-2 border-gray-300 flex items-center justify-center rounded-full"></div>
-            <p className="text-center absolute bottom-[-20px] text-xxs md:text-xs whitespace-nowrap">
+            <p
+              className={`${LABEL} text-center absolute bottom-[-20px] whitespace-nowrap`}
+            >
               YOUR INFO
             </p>
           </div>
@@ -114,7 +125,9 @@ const BookingBlock = ({ data }) => {
               {data.title}
             </h2>
           )}
-          <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight">
+          <h3
+            className={`${SUB_HEADING} w-full text-center mb-6 inline-block m-0 pb-4 md:whitespace-nowrap`}
+          >
             {data.description}
           </h3>
           {meetingPeople.map((cardItem, index) => (
