@@ -8,7 +8,7 @@ import {
 } from 'utils/fetchPackageInfo';
 import { formatPublishedDate } from 'utils/formatPublishedDate';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { LEDE, PAGE_TITLE } from '@/component/styles/typography';
+import { BODY, PAGE_TITLE } from '@/component/styles/typography';
 import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import { TINA_PACKAGES, type TinaPackage } from './packages';
 
@@ -82,7 +82,7 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
             <span>{titleTail}</span>
           </h1>
           {description && (
-            <p className={`mt-4 max-w-2xl ${LEDE}`}>{description}</p>
+            <p className={`mt-4 max-w-2xl ${BODY}`}>{description}</p>
           )}
           {buttons.length > 0 && (
             <div className="mt-6 flex flex-wrap items-center gap-4">

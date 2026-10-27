@@ -1,6 +1,6 @@
 import { FaCheckCircle } from 'react-icons/fa';
 import type { PageBlocksMarkdownFeature } from 'tina/__generated__/types';
-import { SECTION_TITLE } from '@/component/styles/typography';
+import { BODY, SECTION_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { TerminalPanel } from './TerminalPanel';
@@ -41,11 +41,7 @@ export default function MarkdownFeature(data: {
             )}
           </h2>
         )}
-        {subtext && (
-          <p className="font-normal leading-relaxed text-lg max-w-prose">
-            {subtext}
-          </p>
-        )}
+        {subtext && <p className={`${BODY} max-w-prose`}>{subtext}</p>}
         {featureTags && featureTags.length > 0 && (
           <div className="flex flex-wrap gap-x-6 gap-y-2 py-1">
             {featureTags.map((tag) =>

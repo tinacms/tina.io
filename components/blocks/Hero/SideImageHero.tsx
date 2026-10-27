@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { LEDE, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
+import { BODY, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 
 // Entrance: the text rises in, then the image flies in from the right and
 // hovers. Visitors who prefer reduced motion get a short fade instead.
@@ -43,7 +43,7 @@ export const SideImageHero = ({ data }) => {
 
           {data.text && (
             <p
-              className={`${LEDE} max-w-xl ${RISE} motion-safe:animate-delay-200`}
+              className={`${BODY} max-w-xl ${RISE} motion-safe:animate-delay-200`}
               data-tina-field={tinaField(data, 'text')}
             >
               {data.text}

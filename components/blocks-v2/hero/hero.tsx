@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import type { PageBlocksHeroV2 } from 'tina/__generated__/types';
 import { tinaField } from 'tinacms/dist/react';
-import { PAGE_TITLE } from '@/component/styles/typography';
+import { BODY, PAGE_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { cn } from '@/lib/utils';
@@ -44,7 +44,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           )}
           {subtext && (
             <p
-              className="duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md"
+              className={`${BODY} duration-75 md:max-w-[62ch] max-w-md`}
               data-tina-field={tinaField(data.data, 'subtext')}
             >
               {subtext}

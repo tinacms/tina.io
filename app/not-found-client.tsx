@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useState } from 'react';
-import { PAGE_TITLE } from '@/component/styles/typography';
+import { BODY, PAGE_TITLE } from '@/component/styles/typography';
 import { Button } from '../components/ui';
 import { DynamicLink } from '../components/ui/DynamicLink';
 import { DEFAULT_LOCALE, SupportedLocales } from '../middleware';
@@ -30,9 +30,7 @@ const PageLayout = ({
         <div className="mb-7">
           <h1 className={PAGE_TITLE}>{title}</h1>
           <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
-          <p className="text-lg lg:text-xl lg:leading-normal block -mb-1">
-            {description}
-          </p>
+          <p className={`${BODY} block -mb-1`}>{description}</p>
         </div>
         {children}
       </div>

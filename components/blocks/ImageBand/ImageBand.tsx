@@ -2,8 +2,8 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: React is required for JSX
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
+import { BODY_MUTED } from '@/component/styles/typography';
 import { Container } from '../Container';
-
 export function ImageBandBlock({ data, index }) {
   if (!data.image) {
     return null;
@@ -27,7 +27,7 @@ export function ImageBandBlock({ data, index }) {
           </div>
           {data.caption && (
             <figcaption
-              className="mt-3 text-center text-sm text-subtle"
+              className={`${BODY_MUTED} mt-3 text-center`}
               data-tina-field={tinaField(data, 'caption')}
             >
               {data.caption}

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { tinaField } from 'tinacms/dist/react';
+import { BODY_MUTED, BODY_SMALL } from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
 import { formatDate } from './RecentPosts';
 
@@ -52,7 +53,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
           <div className="flex items-center gap-2">
             {featuredPost.datePosted && (
               <p
-                className="text-sm text-subtle w-fit"
+                className={`${BODY_MUTED} w-fit`}
                 data-tina-field={tinaField(featuredPost, 'datePosted')}
               >
                 {formatDate(featuredPost.datePosted)}
@@ -73,7 +74,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
 
           {featuredPost.description && (
             <p
-              className="text-xs"
+              className={BODY_SMALL}
               data-tina-field={tinaField(featuredPost, 'description')}
             >
               {featuredPost.description}
@@ -81,7 +82,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
           )}
 
           {featuredPost.authorName && (
-            <p className="text-subtle text-sm">
+            <p className={BODY_MUTED}>
               By{' '}
               {featuredPost.authorUrl ? (
                 <Link

@@ -1,6 +1,6 @@
+import { BODY } from '@/component/styles/typography';
 import HeroBg from '../../public/svg/hero-bg.svg';
 import { Container } from '../blocks/Container';
-
 export function HeroBlock({ data, index }) {
   return (
     <section
@@ -32,7 +32,7 @@ export const HeroFeature = ({ item }) => {
     <>
       <div className="feature">
         {item.headline && <h2 className="heading">{item.headline}</h2>}
-        {item.text && <p className="text-xl mt-6">{item.text}</p>}
+        {item.text && <p className={`${BODY} mt-6`}>{item.text}</p>}
       </div>
       <style jsx>{`
         .heading {

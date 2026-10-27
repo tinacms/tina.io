@@ -4,6 +4,7 @@ import type {
   PageBlocksTripleBox,
   PageBlocksTripleBoxBoxes,
 } from 'tina/__generated__/types';
+import { BODY_SMALL } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
 import RenderButton from '@/utils/renderButtonArrayHelper';
@@ -43,7 +44,7 @@ function TripleBoxItemCard({ data }: { data: PageBlocksTripleBoxBoxes }) {
     >
       <Image src={image} alt={title} width={40} height={40} />
       <h3 className="text-2xl font-ibm-plex font-semibold h-">{title}</h3>
-      <p className="text-sm">{description}</p>
+      <p className={BODY_SMALL}>{description}</p>
       {badges && badges.length > 0 && (
         <div className="flex gap-2 items-end mt-auto">
           {badges.map((badge) => (

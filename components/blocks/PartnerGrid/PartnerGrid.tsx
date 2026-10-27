@@ -2,7 +2,12 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: React is required for JSX
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY,
+  BODY_MUTED,
+  PAGE_TITLE,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
 import { Container } from '../Container';
 import { ModalB } from '../ModalButton/ModalButton';
 
@@ -56,10 +61,7 @@ const PartnerCard = ({ data }) => {
       </div>
 
       {data.location && (
-        <p
-          className="text-sm text-subtle"
-          data-tina-field={tinaField(data, 'location')}
-        >
+        <p className={BODY_MUTED} data-tina-field={tinaField(data, 'location')}>
           {data.location}
         </p>
       )}
@@ -168,7 +170,7 @@ export function PartnerGridBlock({ data, index }) {
             </h2>
           ))}
         {data.subText && (
-          <p className="text-lg lg:text-xl lg:leading-normal max-w-60ch text-balance text-center mx-auto py-4">
+          <p className={`${BODY} max-w-60ch text-center mx-auto py-4`}>
             {data.subText}
           </p>
         )}

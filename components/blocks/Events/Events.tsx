@@ -2,7 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
-import { SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY,
+  BODY_MUTED,
+  BODY_SMALL,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
 import eventsData from '../../../content/events/master-events.json';
 import {
   calculateEventStatus,
@@ -118,11 +123,7 @@ export const Card = ({ cardItem, onHover }) => {
             {formattedDate} {endYear}
           </p>
         </div>
-        <p
-          className={`text-base ${
-            isLiveOrPastEvent ? 'text-subtle' : 'text-black'
-          }`}
-        >
+        <p className={isLiveOrPastEvent ? BODY_MUTED : BODY_SMALL}>
           {cardItem.location}
         </p>
         <Link
@@ -213,9 +214,7 @@ const EventsBlock = () => {
         {eventsData.title}
       </h2>
       <div className="max-w-[62ch] mx-auto">
-        <p className="text-center font-normal leading-relaxed text-lg">
-          {eventsData.byLine}
-        </p>
+        <p className={`${BODY} text-center`}>{eventsData.byLine}</p>
       </div>
 
       <div className="flex flex-col lg:flex-row lg:gap-4">

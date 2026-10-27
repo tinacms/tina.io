@@ -1,6 +1,6 @@
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
+import { BODY, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
 import { SideImageHero } from './SideImageHero';
@@ -56,12 +56,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
         )}
       </div>
       {item.text && (
-        <p
-          className={
-            item.smallerMobileBodyText ? 'text-lg lg:text-xl' : 'text-xl'
-          }
-          data-tina-field={tinaField(item, 'text')}
-        >
+        <p className={BODY} data-tina-field={tinaField(item, 'text')}>
           {item.text}
         </p>
       )}

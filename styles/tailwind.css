@@ -132,3 +132,14 @@ pre.prism-code.language-json {
     color: var(--text-strong);
   }
 }
+
+/* Running text inside page content defaults to BODY's family, size and line
+   height, so a plain <p> is already correct. Scoped to <main> so navigation
+   and the footer keep their own sizing; :where() keeps specificity at zero so
+   any role or utility class still wins. Colour is left to inheritance, so
+   text on dark sections stays light. */
+@layer base {
+  :where(main) :where(p, li, blockquote, dd, figcaption) {
+    @apply font-sans text-base md:text-lg leading-relaxed;
+  }
+}

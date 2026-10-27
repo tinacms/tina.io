@@ -1,14 +1,12 @@
 import type { Components } from 'tinacms/dist/rich-text';
 
+import { BODY } from '@/component/styles/typography';
 // biome-ignore lint/complexity/noBannedTypes: <TODO>
 export const textAndMediaColumnsComponent: Components<{}> = {
   p: (props) => (
     <>
       {props.children.props.content.map((content, index) => (
-        <p
-          key={`${content.text}-${index}`}
-          className="text-lg lg:text-xl text-black"
-        >
+        <p key={`${content.text}-${index}`} className={BODY}>
           {' '}
           {content.text}{' '}
         </p>

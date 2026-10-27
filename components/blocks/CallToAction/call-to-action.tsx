@@ -1,4 +1,4 @@
-import { SECTION_TITLE } from '@/component/styles/typography';
+import { BODY, SECTION_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import RenderButton from '@/utils/renderButtonArrayHelper';
 
@@ -36,9 +36,7 @@ export default function CallToAction(data: any) {
 
         <div className="relative z-10 flex flex-col gap-6 items-start text-left max-w-full">
           <h2 className={`${SECTION_TITLE}`}>{title}</h2>
-          <p className="max-w-md font-normal leading-relaxed text-lg">
-            {description}
-          </p>
+          <p className={`${BODY} max-w-md`}>{description}</p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             {buttons?.map((button: any, index: number) => (
               <RenderButton

@@ -22,7 +22,7 @@ import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
+import { BODY, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import TableBox from '../Table/table';
 
 const icons = {
@@ -120,7 +120,7 @@ const PaidTier = ({ data, isMonthly }) => {
               className="flex justify-between items-center font-semibold cursor-pointer"
               onClick={toggleAccordion}
             >
-              <p className="flex text-xl items-center">Includes:</p>
+              <p className={`${BODY} flex items-center`}>Includes:</p>
               <span className="ml-2">
                 {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
               </span>

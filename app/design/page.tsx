@@ -7,7 +7,6 @@ import {
   CARD_TITLE,
   CODE,
   EYEBROW,
-  LEDE,
   PAGE_TITLE,
   SECTION_TITLE,
   SUB_HEADING,
@@ -105,34 +104,28 @@ const SCALE = [
     sample: 'Trusted by teams shipping at scale',
   },
   {
-    cls: LEDE,
-    name: 'LEDE',
-    size: 'Inter 400 · 20px · leading relaxed',
-    sample: 'The open-source, Git-backed CMS with visual editing.',
-  },
-  {
     cls: BODY,
     name: 'BODY',
-    size: 'Inter 400 · 16px · leading relaxed',
+    size: 'Inter 400 · 16px, 18px from tablet · leading relaxed',
     sample:
       'Store content as Markdown or MDX in your repo, and edit it visually without leaving the page.',
   },
   {
     cls: BODY_SMALL,
     name: 'BODY_SMALL',
-    size: 'Inter 400 · 14px · leading relaxed',
+    size: 'Inter 400 · 14px, 16px from tablet · leading relaxed',
     sample: 'Drafts, branches and approvals, backed by your Git provider.',
   },
   {
     cls: BODY_MUTED,
     name: 'BODY_MUTED',
-    size: 'Inter 400 · 16px · leading relaxed · subtle',
+    size: 'Inter 400 · 14px, 16px from tablet · leading relaxed · subtle',
     sample: 'Published 23 October 2026 · 6 min read',
   },
   {
     cls: CODE,
     name: 'CODE',
-    size: 'IBM Plex Mono 400 · 14px · leading relaxed',
+    size: 'IBM Plex Mono 400 · 14px, 16px from tablet · leading relaxed',
     sample: 'npx create-tina-app@latest',
   },
 ];
@@ -203,11 +196,13 @@ const LAYERS = [
 const Rule = ({ role }: { role: (typeof ROLES)[number] }) => (
   <div className="grid grid-cols-1 gap-2 border-b border-neutral-border-subtle py-5 last:border-b-0 md:grid-cols-[14rem_1fr_14rem] md:gap-6">
     <div>
-      <p className="font-ibm-plex font-semibold">{role.label}</p>
-      <p className="font-mono text-xs text-subtle">{role.name}</p>
+      <h3 className={SUB_HEADING}>{role.label}</h3>
+      <p className={CODE}>{role.name}</p>
     </div>
-    <p className={`${BODY_MUTED} min-w-0`}>{role.note}</p>
-    <p className="min-w-0 self-start rounded-lg bg-seafoam-50 px-3 py-2 font-mono text-xs text-subtle">
+    <p className={`${BODY_SMALL} min-w-0`}>{role.note}</p>
+    <p
+      className={`${CODE} min-w-0 self-start rounded-lg bg-seafoam-50 px-3 py-2`}
+    >
       {role.token}
     </p>
   </div>
@@ -218,14 +213,14 @@ export default function DesignPage() {
     <main className="mx-auto w-full max-w-5xl px-6 py-16 lg:px-8">
       <p className={EYEBROW}>tina.io · internal reference</p>
       <h1 className={`${PAGE_TITLE} mt-3`}>Type Rules</h1>
-      <p className={`${LEDE} mt-5 max-w-2xl`}>
+      <p className={`${BODY} mt-5 max-w-2xl`}>
         One heading scale, one body scale, two inks. Colour follows what a
         heading does on the page, not which tag it uses.
       </p>
 
       <section className="mt-16">
         <h2 className={SECTION_TITLE}>The rule</h2>
-        <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
+        <p className={`${BODY} mt-2 max-w-2xl`}>
           Six heading roles. Only the page title is orange — the article title
           is its long-form version — and it appears once per page. Headings are
           set in IBM Plex Sans; everything people read is set in Inter; code is
@@ -236,7 +231,7 @@ export default function DesignPage() {
             <Rule key={role.name} role={role} />
           ))}
         </div>
-        <p className={`${BODY_MUTED} mt-4 max-w-2xl`}>
+        <p className={`${BODY} mt-4 max-w-2xl`}>
           Each role carries everything — font, size at every breakpoint, weight,
           line height, letter spacing, wrapping and colour — so a component only
           adds layout. Headings with no role still default to IBM Plex Sans in
@@ -246,7 +241,7 @@ export default function DesignPage() {
 
       <section className="mt-16">
         <h2 className={SECTION_TITLE}>The scale</h2>
-        <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
+        <p className={`${BODY} mt-2 max-w-2xl`}>
           Every specimen here is rendered with the constant beside it, so this
           page always shows what the site actually uses.
         </p>
@@ -267,7 +262,7 @@ export default function DesignPage() {
 
       <section className="mt-16">
         <h2 className={SECTION_TITLE}>Body and muted</h2>
-        <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
+        <p className={`${BODY} mt-2 max-w-2xl`}>
           Two paragraph colours. The default is the plain one, not the grey.
         </p>
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -279,7 +274,7 @@ export default function DesignPage() {
               Body is the default for every paragraph someone is meant to read.
               It needs no colour class — it is what text already is.
             </p>
-            <p className="mt-3 font-mono text-xs text-subtle">BODY</p>
+            <p className={`${CODE} mt-3`}>BODY</p>
           </div>
           <div className="rounded-2xl border border-neutral-border-subtle bg-white p-6">
             <p className="mb-3 inline-block rounded-full border border-neutral-border-subtle px-3 py-1 font-ibm-plex text-xs font-semibold tracking-wider text-subtle uppercase">
@@ -290,14 +285,14 @@ export default function DesignPage() {
               Never a paragraph that carries meaning, and never a whole block of
               copy.
             </p>
-            <p className="mt-3 font-mono text-xs text-subtle">BODY_MUTED</p>
+            <p className={`${CODE} mt-3`}>BODY_MUTED</p>
           </div>
         </div>
       </section>
 
       <section className="mt-16">
         <h2 className={SECTION_TITLE}>Colour</h2>
-        <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
+        <p className={`${BODY} mt-2 max-w-2xl`}>
           Three layers, each only allowed to point at the one before it.
           Changing the brand orange is one edit to a primitive; every token and
           class follows.
@@ -310,22 +305,20 @@ export default function DesignPage() {
               className="rounded-2xl border border-neutral-border-subtle bg-white p-6"
             >
               <p className={EYEBROW}>Layer {i + 1}</p>
-              <p className="mt-1 font-ibm-plex text-xl font-semibold">
-                {layer.name}
-              </p>
-              <p className="mt-1 font-mono text-xs text-subtle wrap-anywhere">
-                {layer.where}
-              </p>
-              <p className="mt-4 rounded-lg bg-seafoam-50 px-3 py-2 font-mono text-xs wrap-anywhere">
+              <h3 className={`${SUB_HEADING} mt-1`}>{layer.name}</h3>
+              <p className={`${CODE} mt-1 wrap-anywhere`}>{layer.where}</p>
+              <p
+                className={`${CODE} mt-4 rounded-lg bg-seafoam-50 px-3 py-2 wrap-anywhere`}
+              >
                 {layer.example}
               </p>
-              <p className="mt-4 text-sm text-subtle">{layer.rule}</p>
+              <p className={`${BODY_SMALL} mt-4`}>{layer.rule}</p>
             </div>
           ))}
         </div>
 
         <h3 className={`${CARD_TITLE} mt-12`}>Type colours</h3>
-        <p className={`${BODY_MUTED} mt-2 max-w-2xl`}>
+        <p className={`${BODY} mt-2 max-w-2xl`}>
           The four tokens type uses. Buttons and fills are issue #4964.
         </p>
         <div className="mt-6 overflow-x-auto rounded-2xl border border-neutral-border-subtle">
@@ -363,19 +356,13 @@ export default function DesignPage() {
                       {c.value}
                     </span>
                   </td>
-                  <td
-                    className={`${BODY_SMALL} px-5 py-3 font-mono whitespace-nowrap`}
-                  >
+                  <td className={`${CODE} px-5 py-3 whitespace-nowrap`}>
                     {c.token}
                   </td>
-                  <td
-                    className={`${BODY_SMALL} px-5 py-3 font-mono whitespace-nowrap`}
-                  >
+                  <td className={`${CODE} px-5 py-3 whitespace-nowrap`}>
                     {c.cls}
                   </td>
-                  <td className={`${BODY_SMALL} px-5 py-3 font-mono`}>
-                    {c.ratio}
-                  </td>
+                  <td className={`${CODE} px-5 py-3`}>{c.ratio}</td>
                   <td className={`${BODY_SMALL} min-w-64 px-5 py-3`}>
                     {c.use}
                   </td>

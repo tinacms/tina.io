@@ -13,7 +13,7 @@ import { buildBlogLinkSlug } from 'utils/i18n/buildLinkSlug';
 import { LOCALE_ROUTE_CONFIG } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
 import { unclipEmoji } from 'utils/unclipEmoji';
-import { ARTICLE_TITLE } from '@/component/styles/typography';
+import { ARTICLE_TITLE, BODY_MUTED } from '@/component/styles/typography';
 import { formatDate } from '@/utils/formatDate';
 import type { BlogPageClientProps } from './BlogType';
 
@@ -46,7 +46,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
         <header className="max-w-3xl mx-auto pt-10 md:pt-12 flex flex-col-reverse items-center gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
           <div className="text-center md:text-left">
             <h1 className={blogTitleStyling}>{unclipEmoji(post.title)}</h1>
-            <p className="mt-4 opacity-80 text-lg">
+            <p className={`${BODY_MUTED} mt-4`}>
               By <strong>{post.author}</strong>
               <span aria-hidden="true"> · </span>
               <time dateTime={post.date}>{postedDate}</time>

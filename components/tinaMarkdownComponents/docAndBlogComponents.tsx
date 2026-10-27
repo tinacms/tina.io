@@ -12,6 +12,7 @@ import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/getDocIds';
 import { unclipEmoji } from 'utils/unclipEmoji';
+import { BODY_MUTED } from '@/component/styles/typography';
 import { Prism } from '../styles/Prism';
 import { AccordionBlock } from './templateComponents/accordionBlock';
 
@@ -472,7 +473,7 @@ export const docAndBlogComponents: Components<{
         {props.property?.some((property) => property.required) && (
           <div className=" mx-6 mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
             <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 shrink-0" />
-            <p className="text-sm text-subtle">
+            <p className={BODY_MUTED}>
               All properties marked as{' '}
               <span className="text-[#FF5533] font-medium">REQUIRED</span> must
               be specified for the field to work properly.

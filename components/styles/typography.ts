@@ -65,27 +65,29 @@ export const SUB_HEADING =
 export const EYEBROW =
   'font-ibm-plex-medium font-medium text-xs leading-normal tracking-widest uppercase text-subtle';
 
-// Body. Headings with no role fall back to strong ink (styles/tailwind.css)
-// and other text to body ink via text-foreground, but a role always names its
-// own colour so it renders correctly on any element.
+// Body. One reading size for every paragraph, one step smaller for dense copy
+// and captions. Phones keep the smaller size; from tablet width (md) up, body
+// text steps up one size. An unstyled <p> inside <main> already gets BODY's
+// size, family and line height from styles/tailwind.css, so these roles are
+// for when you need to be explicit or need the small/muted/code variants.
 
-/** Opening paragraph under a title. */
-export const LEDE =
-  'font-sans font-normal text-xl leading-relaxed text-pretty text-body';
-
-/** Default for every paragraph someone is meant to read. */
+/** Default for every paragraph someone is meant to read. 16px, 18px from md. */
 export const BODY =
-  'font-sans font-normal text-base leading-relaxed text-pretty text-body';
+  'font-sans font-normal text-base md:text-lg leading-relaxed text-pretty text-body';
 
-/** Card copy and dense lists. */
+/** Dense copy: card blurbs, talk descriptions, lists. 14px, 16px from md. */
 export const BODY_SMALL =
-  'font-sans font-normal text-sm leading-relaxed text-pretty text-body';
+  'font-sans font-normal text-sm md:text-base leading-relaxed text-pretty text-body';
 
-/** Captions, timestamps, footer links, form hints. Supporting text only. */
+/**
+ * Captions, dates, bylines, search snippets, form hints. Supporting text only,
+ * so it sits at the small size in the subtle grey. 14px, 16px from md.
+ */
 export const BODY_MUTED =
-  'font-sans font-normal text-base leading-relaxed text-pretty text-subtle';
+  'font-sans font-normal text-sm md:text-base leading-relaxed text-pretty text-subtle';
 
 // Code.
 
-/** Inline code, terminal output and technical labels such as file paths. */
-export const CODE = 'font-mono font-normal text-sm leading-relaxed text-strong';
+/** Inline code, terminal output and technical labels. 14px, 16px from md. */
+export const CODE =
+  'font-mono font-normal text-sm md:text-base leading-relaxed text-strong';

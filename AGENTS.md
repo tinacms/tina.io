@@ -108,6 +108,25 @@ Two locales: English (`en`, default) and Chinese (`zh`). Middleware handles loca
 - Magic Numbers are a big no no! i.e: text-[15px] is bad, use text-md for example. Another bad example is w-[14%] on a component... why 14%!? make it a standard
 - to conditionally render html use {variable} && ( <...>) rather than {variable} ? <> : null 
 
+## Typography
+
+Text styles live in `components/styles/typography.ts`. The full reference, with every style rendered, is at `/design` (noindex).
+
+- **Don't style text by hand.** Pick a role. A role sets font, size at every breakpoint, weight, line height, letter spacing, wrapping and colour, so never add `text-lg`, `font-bold`, `leading-*`, `tracking-*` or a text colour next to one. Add only layout classes (margin, alignment, width).
+- **Plain elements are already right.** A bare `<p>`, `<li>` or `<blockquote>` inside `<main>` is body text; a bare `<h1>`–`<h6>` is IBM Plex Sans in the strong ink. Reach for a role only when you need something else.
+- **The roles:**
+  - `PAGE_TITLE`: the page's one `h1`, brand-orange gradient. Once per page.
+  - `ARTICLE_TITLE`: page title for blog posts and legal pages (long titles).
+  - `SECTION_TITLE`, `CARD_TITLE`, `SUB_HEADING`: section, card and in-copy headings.
+  - `EYEBROW`: small uppercase label above a title.
+  - `BODY`: any paragraph. `BODY_SMALL`: dense copy. `BODY_MUTED`: captions, dates, bylines and hints only, never a paragraph.
+  - `CODE`: inline code, terminal output, file paths.
+- **Colour follows the role, not the tag.** A plan name inside a card is `CARD_TITLE` even if it is an `h2`.
+- **Fonts:** IBM Plex Sans for headings, Inter for reading text, IBM Plex Mono for code. IBM Plex Sans only ships at 600 and 500. Never use `font-bold` on it, or the browser fakes the weight.
+- **Colours:** name semantic tokens (`text-heading`, `text-strong`, `text-body`, `text-subtle`), never palette shades (`text-orange-600`) or hex values. Tokens are defined in `app/global.css`: primitives → semantic tokens → roles.
+- **Nothing fits?** Add a role to `typography.ts` and show it on `/design`. Don't hand-roll classes in a component.
+- **Not covered yet:** text on dark backgrounds (footer, newsletter form). Those keep their own classes until there is an on-dark variant.
+
 
 
 ## CI Pipeline

@@ -2,7 +2,7 @@ import type { IconType } from 'react-icons';
 import { FaHourglassHalf, FaRegCheckCircle, FaRegClock } from 'react-icons/fa';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { LEDE, SECTION_TITLE } from '@/component/styles/typography';
+import { BODY, SECTION_TITLE } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
@@ -72,7 +72,7 @@ const Roadmap = ({ data, last = false, index }) => {
         )}
         {data.content && (
           <div
-            className={`lg:max-w-prose ${LEDE}`}
+            className={`lg:max-w-prose ${BODY}`}
             data-tina-field={tinaField(data, 'content')}
           >
             <TinaMarkdown content={data.content} />

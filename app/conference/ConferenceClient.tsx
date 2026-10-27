@@ -11,7 +11,7 @@ import { IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
-import { PAGE_TITLE } from '@/component/styles/typography';
+import { BODY, BODY_SMALL, PAGE_TITLE } from '@/component/styles/typography';
 
 const HeaderBanner = ({
   tinaData,
@@ -242,7 +242,7 @@ function Agenda({
         <h2 id="agenda" className="text-3xl font-semibold pt-16 pb-8">
           Agenda
         </h2>
-        <p className="text-lg pb-16">The full agenda is coming soon.</p>
+        <p className={`${BODY} pb-16`}>The full agenda is coming soon.</p>
       </div>
     );
   }
@@ -283,7 +283,7 @@ function Agenda({
                         <h3 className="text-lg font-semibold">
                           {breakSession.speechTitle}
                         </h3>
-                        <p className="text-sm">
+                        <p className={BODY_SMALL}>
                           {breakSession.speechDescription}
                         </p>
                       </div>
@@ -316,7 +316,7 @@ function Agenda({
                               </span>
                             </div>
                           )}
-                          <p className="text-sm pt-2">
+                          <p className={`${BODY_SMALL} pt-2`}>
                             {talk.speechDescription}
                           </p>
                         </div>
@@ -353,7 +353,7 @@ function Agenda({
                     <h3 className="text-lg leading-5 font-semibold">
                       {breakSession.speechTitle}
                     </h3>
-                    <p className="text-sm pt-1">
+                    <p className={`${BODY_SMALL} pt-1`}>
                       {breakSession.speechDescription}
                     </p>
                   </div>
@@ -390,7 +390,9 @@ function Agenda({
                         <span className="text-sm">{talk.talkSpeakerName}</span>
                       </div>
                     )}
-                    <p className="text-sm pt-2">{talk.speechDescription}</p>
+                    <p className={`${BODY_SMALL} pt-2`}>
+                      {talk.speechDescription}
+                    </p>
                   </div>
                 ))}
               </div>

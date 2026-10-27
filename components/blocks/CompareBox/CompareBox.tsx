@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import css from 'styled-jsx/css';
 import { tinaField } from 'tinacms/dist/react';
-import { SECTION_TITLE } from '@/component/styles/typography';
+import { BODY, SECTION_TITLE } from '@/component/styles/typography';
 import { splitOneAndJoin } from './CompareBox.template';
 
 function hexToRgba(hex, alpha) {
@@ -325,7 +325,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
 
         <p
           data-tina-field={tinaField(data, 'subheading')}
-          className="text-center text-sm font-semibold md:text-base -mt-4 mb-8"
+          className={`${BODY} text-center -mt-4 mb-8`}
         >
           {data.subheading}
         </p>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FaGithub, FaNewspaper } from 'react-icons/fa';
-import { PAGE_TITLE } from '@/component/styles/typography';
+import { BODY_MUTED, PAGE_TITLE } from '@/component/styles/typography';
 
 interface ChangeItem {
   pull_request_number?: string;
@@ -79,7 +79,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
     >
       <div className="flex justify-between items-baseline mb-6">
         <h2 className="text-2xl font-semibold">Version {item.versionNumber}</h2>
-        <p className="text-sm text-subtle">
+        <p className={BODY_MUTED}>
           Released on {new Date(item.dateReleased).toLocaleDateString()}
         </p>
       </div>

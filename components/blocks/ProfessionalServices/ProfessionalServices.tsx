@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 import type { PageBlocksProfessionalServices } from 'tina/__generated__/types';
 import { IconOptions } from '@/component/forms/IconPicker';
+import { BODY, BODY_SMALL, EYEBROW } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 
 function ServiceIcon({
@@ -28,20 +29,14 @@ export function ProfessionalServices({
   return (
     <Container size="medium" className="flex flex-col gap-6">
       <div className="flex flex-col items-center gap-3.5">
-        {eyebrow && (
-          <p className="text-center text-orange-500 text-lg font-semibold font-ibm-plex leading-7">
-            {eyebrow}
-          </p>
-        )}
+        {eyebrow && <p className={`${EYEBROW} text-center`}>{eyebrow}</p>}
         {title && (
           <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold font-ibm-plex">
             {title}
           </h2>
         )}
         {description && (
-          <p className="max-w-[62ch] text-center font-normal leading-relaxed text-lg">
-            {description}
-          </p>
+          <p className={`${BODY} max-w-[62ch] text-center`}>{description}</p>
         )}
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-9">
@@ -59,7 +54,9 @@ export function ProfessionalServices({
             <h3 className="mt-3 text-2xl font-semibold font-ibm-plex">
               {service?.title}
             </h3>
-            <p className="mt-4 text-sm min-h-[90px]">{service?.description}</p>
+            <p className={`${BODY_SMALL} mt-4 min-h-[90px]`}>
+              {service?.description}
+            </p>
             {service?.features && service.features.length > 0 && (
               <div className="mt-4 flex flex-col gap-2">
                 {service.features.map((feature, idx) => (

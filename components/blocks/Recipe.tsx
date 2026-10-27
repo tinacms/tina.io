@@ -2,9 +2,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaChevronCircleDown } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { BODY } from '@/component/styles/typography';
 import { customHighlightCSS } from '../styles/RecipeCSS';
 import CodeBlockWithHighlightLines from '../ui/recipeComponent/RecipeCodeBlockWithHighlight';
-
 export const RecipeBlock = ({ data }) => {
   const { title, description, codeblock, code, instruction } = data;
 
@@ -103,9 +103,7 @@ export const RecipeBlock = ({ data }) => {
     <div className="recipe-block-container relative w-full">
       <div className="title-description px-10">
         <h2 className="font-ibm-plex text-2xl">{title || 'Default Title'}</h2>
-        <p className="font-normal py-2 text-base">
-          {description || 'Default Description'}
-        </p>
+        <p className={`${BODY} py-2`}>{description || 'Default Description'}</p>
       </div>
 
       <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">

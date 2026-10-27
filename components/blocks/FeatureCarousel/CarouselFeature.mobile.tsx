@@ -1,5 +1,6 @@
 import EmblaCarousel from 'components/ui/EmblaCarousel/EmblaCarousel';
 import { tinaField } from 'tinacms/dist/react';
+import { BODY_SMALL } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 
 function CarouselFeatureMobileItem(data) {
@@ -19,13 +20,7 @@ function CarouselFeatureMobileItem(data) {
           </h3>
         )}
       </div>
-      {text && (
-        <p
-          className={`pl-[1px] lg:text-lg md:text-base text-sm font-medium slide-up mb-4`}
-        >
-          {text}
-        </p>
-      )}
+      {text && <p className={`${BODY_SMALL} pl-[1px] slide-up mb-4`}>{text}</p>}
       {button && (
         <div className={`pl-[1px] slide-up flex mt-auto`}>
           <Actions items={actionsArray} className="p-0!" />

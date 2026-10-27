@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
-import { PAGE_TITLE } from '@/component/styles/typography';
+import { BODY_MUTED, PAGE_TITLE } from '@/component/styles/typography';
 import { highlightText } from './SearchModal';
 export const SearchHeader = ({ query }: { query: string }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -150,7 +150,9 @@ export const SearchBody = ({ results }: { results: any }) => {
             <h2 className="text-xl font-semibold group-hover:text-brand-primary break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
-            <p className="text-subtle group-hover:text-foreground text-sm font-normal line-clamp-3 break-words">
+            <p
+              className={`${BODY_MUTED} group-hover:text-foreground line-clamp-3 break-words`}
+            >
               {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>

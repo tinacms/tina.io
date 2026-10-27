@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import type { PageBlocksFeatureCard } from 'tina/__generated__/types';
 import {
+  BODY,
   EYEBROW,
   SECTION_HEADINGS_SIZE,
   SECTION_TITLE,
@@ -95,9 +96,7 @@ function FeatureCardItem(data: {
           {featureHeadline}
         </h4>
         <div className="flex-1" />
-        <p className="font-normal leading-relaxed text-lg max-w-[62ch] py-4">
-          {featureText}
-        </p>
+        <p className={`${BODY} max-w-[62ch] py-4`}>{featureText}</p>
         <div className="flex flex-col sm:flex-row gap-2 w-full">
           {buttons?.map((button, _index) => (
             <RenderButton

@@ -2,7 +2,7 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
+import { BODY, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 import { LiteYouTube } from '../VideoEmbed/LiteYouTube';
@@ -163,7 +163,7 @@ export function ShowcaseItemsBlock({ data, index }) {
             </h2>
           ))}
         {data.subText && (
-          <p className="text-lg lg:text-xl lg:leading-normal max-w-60ch text-balance text-center py-4">
+          <p className={`${BODY} max-w-60ch text-center py-4`}>
             {data.subText}
           </p>
         )}

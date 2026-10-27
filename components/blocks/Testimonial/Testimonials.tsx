@@ -3,7 +3,11 @@ import { useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
-import { SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
 import Marquee from '@/components/ui/marquee';
 import { cn } from '@/lib/utils';
 
@@ -22,7 +26,7 @@ const TestimonialCard = ({ ...data }) => {
         )}
       >
         <Image src="/quotation.svg" alt="quotation" width={24} height={24} />
-        <blockquote className="text-sm text-black leading-relaxed">
+        <blockquote className={BODY_SMALL}>
           {data.testimonial && (
             <div className="text-base lg:text-base line-clamp-3">
               <TinaMarkdown content={data.testimonial} />
@@ -49,7 +53,7 @@ const TestimonialCard = ({ ...data }) => {
           <div className="flex flex-col">
             {data.name && <h4 className="text-lg">{data.name}</h4>}
             {(data.username || data.date) && (
-              <p className="text-sm text-black">
+              <p className={BODY_MUTED}>
                 {data.username && <>@{data.username}</>}
                 {data.username && data.date && (
                   <span className="mx-1.5 text-subtle">&ndash;</span>

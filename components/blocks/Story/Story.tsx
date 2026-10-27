@@ -2,6 +2,7 @@ import DocsRichText from 'components/styles/DocsRichText';
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
+import { BODY } from '@/component/styles/typography';
 import { Prism } from '../../styles/Prism';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
@@ -419,7 +420,7 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
             </h2>
           </div>
           <hr className="my-0!" />
-          <p className="text-lg lg:text-xl lg:leading-normal block -mb-2 max-w-prose">
+          <p className={`${BODY} block -mb-2 max-w-prose`}>
             {item.description}
           </p>
           <div className="-mx-0.5">

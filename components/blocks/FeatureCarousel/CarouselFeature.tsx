@@ -5,7 +5,7 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { SECTION_TITLE } from '@/component/styles/typography';
+import { BODY, SECTION_TITLE } from '@/component/styles/typography';
 import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
@@ -82,11 +82,7 @@ const CarouselItem = ({
           }`}
         >
           {textDisplayCondition && (
-            <p
-              className={`md:pl-12 lg:pl-13 pl-9 text-lg font-medium slide-up`}
-            >
-              {text}
-            </p>
+            <p className={`${BODY} md:pl-12 lg:pl-13 pl-9 slide-up`}>{text}</p>
           )}
           {buttonDisplayCondition && (
             <div className={`md:pl-6 lg:pl-6 pl-3 slide-up flex justify-start`}>
