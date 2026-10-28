@@ -1,7 +1,7 @@
 /**
  * Every date on the site (post cards, the blog feed and post page, release
  * dates, testimonials, /versions): "23 Oct 2026". Read in UTC so the server
- * and the browser always agree on the day. Picked by design (Oct 2026).
+ * and the browser always agree on the day.
  * Event times are the one exception: they show in the reader's own time
  * zone, so they keep their own formatter in Events/dates-calculations.ts.
  */

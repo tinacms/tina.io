@@ -181,8 +181,6 @@ export const PlanCard = ({
     <span className={`animate-pop-in block h-full ${cardRows}`}>
       <div
         className={`h-full ${comparison ? '' : 'hover:scale-[1.03]'} hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl transform transition-transform duration-300 border border-transparent overflow-hidden ${cardRows} ${
-          // A muted plan reads as secondary through the fill and opacity,
-          // not a hand-set text grey, so its roles stay intact.
           data.isMuted
             ? 'grayscale bg-gray-50/70 opacity-75 shadow-lg'
             : 'shadow-2xl'
@@ -195,9 +193,8 @@ export const PlanCard = ({
           </div>
         )}
         <div>
-          {/* Plan names are card titles in ink. The recommended (starred)
-              plan is the one agreed exception: its name and price use the
-              brand orange gradient. */}
+          {/* The recommended (starred) plan is the one agreed exception:
+              its name and price use the brand orange gradient. */}
           <Heading className={titleRole}>{data.name}</Heading>
           <TinaMarkdown
             content={data.description}

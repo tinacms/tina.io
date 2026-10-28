@@ -15,7 +15,7 @@ const ICON = {
 /**
  * The result of a form action, in a tinted box: success, warning or error.
  * The surface sets the fill, border and text colour, and the icon follows the
- * text, so a message can't pass for body copy. Picked by design (Oct 2026).
+ * text, so a message can't pass for body copy.
  */
 export const StatusMessage = ({
   type,

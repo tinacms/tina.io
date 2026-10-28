@@ -21,8 +21,7 @@ export const AnimatedShinyText: FC<AnimatedShinyTextProps> = ({
           '--shiny-width': `${shimmerWidth}px`,
         } as CSSProperties
       }
-      // SHIMMER takes its colours from the surface the text sits on, so the
-      // effect follows the role and surface tokens. See styles/tailwind.css.
+      // SHIMMER takes its colours from the surface the text sits on.
       className={cn('mx-auto max-w-md', SHIMMER, className)}
       {...props}
     >

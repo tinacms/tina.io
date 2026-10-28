@@ -49,9 +49,7 @@
   src: url('/fonts/IBMPlexMono-SemiBold.woff2') format('woff2');
 }
 
-/* Inter — the body face (`font-sans`). The files have always shipped in
-   public/fonts but were never declared, so visitors without Inter installed
-   got their system font instead. */
+/* Inter — the body face (`font-sans`). */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -162,8 +160,8 @@
      ────────────────────────────────────────────────────────────────────── */
   /* Page titles are “lit from above”: every line runs from a light highlight
      through the brand orange to a deep orange, so the type reads as raised.
-     Picked by design (Oct 2026). The body of each letter stays at 3.8:1 or
-     more on white; only the thin highlight at the top of a line is 2.9:1. */
+     The body of each letter stays at 3.8:1 or more on white; only the thin
+     highlight at the top of a line is 2.9:1. */
   --text-heading-highlight: var(--orange-400);
   --text-heading-start: var(--orange-500);
   --text-heading-end: var(--orange-700);
@@ -175,18 +173,15 @@
   /* SLUB / eyebrow labels. Same grey as subtle on light surfaces; on dark
      they turn white at 75% so they read apart from white links. */
   --text-label: var(--slate-500);
-  /* Text on dark and brand-orange surfaces: white, with opacity only for the
-     SLUB / secondary-link level below. Main text stays solid white because
-     on the orange footer any translucent white drops below 4.5:1. Applied by the on-dark
-     utility, which swaps the three text tokens above inside its container. */
+  /* Text on dark and brand-orange surfaces: solid white, because on the
+     orange footer any translucent white drops below 4.5:1. The on-dark
+     utility swaps the text tokens above for this inside its container. */
   --text-on-dark: var(--white);
   /* SLUB labels and footer legal links on dark: white at 75% opacity, so
-     they read apart from the white primary links and let the surface show
-     through. On-dark text is always white or white-with-opacity, never a
-     tinted colour. Deliberately below WCAG AA —
-     roughly 2.3–4.5:1 against the footer gradient — approved by design
-     (Oct 2026) for short labels and secondary links. Don't "fix" this
-     without checking with design. */
+     they read apart from the white primary links. Deliberately below WCAG
+     AA (roughly 2.3–4.5:1 against the footer gradient) and approved by
+     design for short labels and secondary links. Don't "fix" this without
+     checking with design. */
   --text-on-dark-label: color-mix(in srgb, var(--white) 75%, transparent);
   /* Links: blue-700 is 6.3:1 on white; hover goes a step darker. Blue keeps
      orange for the page title. The top-level nav items share this token. */
@@ -212,8 +207,8 @@
   --surface-warning: var(--yellow-100);
   --on-surface-warning: var(--yellow-800); /* 6.4:1 */
   --border-warning: var(--yellow-300);
-  /* Form errors. Picked by design (Oct 2026): a tinted box, like the other
-     status messages, so an error can't pass for body text. */
+  /* Form errors: a tinted box, like the other status messages, so an error
+     can't pass for body text. */
   --surface-error: var(--red-50);
   --on-surface-error: var(--red-800); /* 7.6:1 */
   --border-error: var(--red-200);
@@ -227,7 +222,8 @@
   --on-surface-brand-solid: var(--white); /* 4.7:1 */
 
   /* Type families. Headings are IBM Plex Sans; everything people read is
-     Inter; code and technical labels are IBM Plex Mono. Match the font-ibm-plex and font-sans classes in tailwind.config.js. */
+     Inter; code and technical labels are IBM Plex Mono. They match the
+     font-ibm-plex, font-sans and font-mono classes in tailwind.config.js. */
   --font-heading: 'IBMPlexSans-SemiBold', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;

@@ -5,9 +5,8 @@ import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { EYEBROW_LINK } from '@/component/styles/typography';
 import { FlushButton, LinkButton } from '../../ui';
 
-// Ghost Blue has no fill and no border, so it reads as a standalone text link
-// (“READ MORE →”), not a button: it takes EYEBROW_LINK like every other
-// standalone link. Ghost Outline and the filled variants stay buttons (#4964).
+// Ghost Blue has no fill and no border, so it is a standalone text link
+// (“READ MORE →”) and takes EYEBROW_LINK. The other variants stay buttons (#4964).
 const TEXT_LINK_VARIANT = 'ghostBlue';
 
 export const Actions = ({

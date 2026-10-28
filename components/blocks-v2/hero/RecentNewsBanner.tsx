@@ -88,7 +88,7 @@ export const RecentNewsBanner = ({
               <Badge
                 color={recentNewsBanner.badge?.color as BadgeColor}
                 size="medium"
-                className={cn('self-stretch flex items-center gap-1')}
+                className="self-stretch flex items-center gap-1"
                 dataTinaField={tinaField(recentNewsBanner?.badge, 'text')}
               >
                 {BadgeIconComponent && (
@@ -114,8 +114,6 @@ export const RecentNewsBanner = ({
                 'px-2',
             )}
           >
-            {/* The badge supplies LABEL; the pill and border already draw the
-                eye, so the text shimmers rather than carrying a link underline. */}
             <span className="inline-flex gap-2 md:text-nowrap items-center">
               {BadgeIconComponent && !recentNewsBanner.badge?.text && (
                 <BadgeIconComponent className="size-5" />

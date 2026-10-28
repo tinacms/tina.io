@@ -5,10 +5,9 @@ export type BadgeOption = {
   value: BadgeColor;
 };
 
-// Three looks, one option each (picked by design, Oct 2026). Blue, Ghost Blue
-// and Blue Secondary looked the same, so they're one "Blue" option now. It
-// keeps the blueSecondary value because existing content uses it; Badge still
-// renders the retired blue and ghostBlue values for older content.
+// Blue, Ghost Blue and Blue Secondary looked the same, so there is one "Blue"
+// option. It keeps the blueSecondary value because existing content uses it;
+// Badge still renders the retired blue and ghostBlue values.
 export const BADGE_COLOR_OPTIONS: BadgeOption[] = [
   { label: 'Blue', value: 'blueSecondary' },
   { label: 'Orange', value: 'orange' },

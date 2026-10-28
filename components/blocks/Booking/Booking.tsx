@@ -10,11 +10,11 @@ export type BookingItem = {
   url: string;
 };
 
-// The booking flow. Only the first step happens on this page; the other two
-// happen in the booking tool, so the stepper always shows step 1. The current
-// step is a filled brand-orange circle (3.8:1 on white) and its label reads in
-// ink (aria-current, see styles/tailwind.css). Picked by design (Oct 2026).
-// Kept short so each label fits its column on a phone without wrapping.
+// Only the first step happens on this page; the other two happen in the
+// booking tool, so the stepper always shows step 1. The current step is a
+// filled brand-orange circle (3.8:1 on white) and its label reads in ink
+// (aria-current, see styles/tailwind.css). Labels are short so each fits its
+// column on a phone without wrapping.
 const BOOKING_STEPS = ['Location', 'Time', 'Your info'];
 const CURRENT_STEP = 0;
 
@@ -83,10 +83,9 @@ const BookingBlock = ({ data }) => {
           ))}
         </ol>
         <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
-          {/* The block's schema has no isHeadingOne field and the block is
-          only ever the first on its page, so its title is the page's h1. It
-          sits in a narrow card, so it takes ARTICLE_TITLE, a step below
-          PAGE_TITLE (picked by design, Oct 2026). */}
+          {/* The schema has no isHeadingOne field and this block is always
+          first on its page, so its title is the h1. It sits in a narrow card,
+          so it takes ARTICLE_TITLE, a step below PAGE_TITLE. */}
           <h1
             className={`${ARTICLE_TITLE} w-full text-center inline-block m-0`}
           >

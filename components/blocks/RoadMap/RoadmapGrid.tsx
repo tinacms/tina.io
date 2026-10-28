@@ -28,8 +28,6 @@ const iconColorClasses: Record<string, string> = {
   FaRegClock: 'text-blue-500',
 };
 
-// The headline is a flat fill now, so struck text needs no transparency
-// workaround — only a decoration colour that reads against it.
 const headlineComponents = {
   p: (props: any) => <>{props.children}</>,
   strikethrough: (props: any) => <s>{props.children}</s>,

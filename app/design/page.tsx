@@ -49,8 +49,6 @@ export const metadata: Metadata = {
  * real roles; the page itself uses roles only.
  */
 
-// ── Building blocks ───────────────────────────────────────────────────────
-
 /** Kebab-case id from a group title, so an example can link to its own table. */
 const slug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
@@ -243,8 +241,6 @@ const Group = ({
     {children}
   </div>
 );
-
-// ── Page ──────────────────────────────────────────────────────────────────
 
 export default function StyleGuidePage() {
   return (

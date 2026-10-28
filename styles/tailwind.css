@@ -148,7 +148,7 @@ pre.prism-code.language-json {
     @apply font-sans text-base md:text-lg leading-relaxed;
   }
   /* The step you're on in a stepper: its SLUB label reads in ink instead of
-     grey, alongside the filled marker. Picked by design (Oct 2026). */
+     grey, alongside the filled marker. */
   :where([aria-current='step']) {
     --text-label: var(--text-strong);
   }
@@ -271,7 +271,7 @@ pre.prism-code.language-json {
 @utility role-card-title {
   @apply font-ibm-plex font-semibold text-xl md:text-2xl lg:text-3xl leading-snug tracking-normal text-balance text-strong;
 }
-/* Agreed exception (Oct 2026): the recommended pricing plan's name and
+/* Agreed exception: the recommended pricing plan's name and
    price. CARD_TITLE's type in the brand orange gradient, so the plan the
    page recommends stands out. Nowhere else: every other card title is ink. */
 @utility role-card-title-featured {
@@ -315,7 +315,7 @@ pre.prism-code.language-json {
 @utility role-code {
   @apply font-mono font-normal text-sm md:text-base leading-relaxed tracking-normal normal-case text-strong;
 }
-/* Agreed exception (Oct 2026): decorative terminal and code mockups, like the
+/* Agreed exception: decorative terminal and code mockups, like the
    homepage terminal, read as a picture of code rather than code to read, so
    they sit smaller than CODE. 13px at every width, the one size below 14px.
    Never use it for code a reader needs. */
@@ -334,8 +334,8 @@ pre.prism-code.language-json {
 @utility role-footer-link {
   @apply font-ibm-plex font-semibold text-base leading-normal tracking-wide uppercase text-strong;
 }
-/* Legal links under the footer: white at 75% on dark (agreed below AA,
-   Oct 2026), solid white on hover. */
+/* Legal links under the footer: white at 75% on dark (agreed below AA),
+   solid white on hover. */
 @utility role-footer-legal-link {
   @apply font-sans font-normal text-base leading-normal tracking-normal normal-case text-label transition-colors hover:text-strong;
 }
@@ -354,14 +354,14 @@ pre.prism-code.language-json {
 }
 
 /* A heading that is a link, like a post title in a list. It keeps its role
-   and ink, and turns link blue on hover. Picked by design (Oct 2026). */
+   and ink, and turns link blue on hover. */
 @utility title-link {
   @apply transition-colors hover:text-link;
 }
 
 /* A standalone link that should stay quiet, like the GitHub stars line in
    the top banner. It keeps its role's colour, no underline, and darkens to
-   ink on hover. Picked by design (Oct 2026). */
+   ink on hover. */
 @utility subtle-link {
   @apply transition-colors hover:text-strong;
 }

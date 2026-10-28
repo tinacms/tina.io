@@ -20,7 +20,6 @@ import {
   formatEventDate,
 } from './dates-calculations';
 
-// The status chip on each event card. The surface sets fill, ink and border.
 const EVENT_CHIP = `${LABEL} border px-2 mb-1.5 rounded shadow-lg w-fit`;
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
