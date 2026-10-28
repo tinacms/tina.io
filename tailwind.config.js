@@ -297,15 +297,6 @@ module.exports = {
           'var(--brand-secondary-gradient-start)',
         'brand-secondary-gradient-end': 'var(--brand-secondary-gradient-end)',
 
-        'brand-tertiary': 'var(--brand-tertiary)',
-        'brand-tertiary-hover': 'var(--brand-tertiary-hover)',
-        'brand-tertiary-light': 'var(--brand-tertiary-light)',
-        'brand-tertiary-text': 'var(--brand-tertiary-text)',
-        'brand-tertiary-contrast': 'var(--brand-tertiary-contrast)',
-
-        'brand-tertiary-gradient-start': 'var(--brand-tertiary-gradient-start)',
-        'brand-tertiary-gradient-end': 'var(--brand-tertiary-gradient-end)',
-
         // Background gradients and glass
         'glass-gradient-start': 'var(--glass-gradient-start)',
         'glass-gradient-end': 'var(--glass-gradient-end)',

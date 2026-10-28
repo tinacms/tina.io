@@ -272,15 +272,6 @@
   --brand-secondary-gradient-start: var(--blue-800);
   --brand-secondary-gradient-end: var(--blue-900);
 
-  --brand-tertiary: var(--seafoam-500);
-  --brand-tertiary-hover: #72c39b;
-  --brand-tertiary-light: var(--seafoam-50);
-  --brand-tertiary-text: #39745c;
-  --brand-tertiary-contrast: var(--seafoam-900);
-
-  --brand-tertiary-gradient-start: var(--seafoam-300);
-  --brand-tertiary-gradient-end: #72c39b;
-
   --glass-gradient-start: rgba(255, 255, 255, 0.1);
   --glass-gradient-end: rgba(255, 255, 255, 0.4);
 
