@@ -29,7 +29,7 @@
 /** The page's one h1. Brand orange gradient, lit from above line by line. 36 → 48 → 60px. */
 export const PAGE_TITLE = 'role-page-title';
 
-/** Page title for blog posts and legal pages, whose titles run long. 36 → 48px. */
+/** Page title for blog posts and legal pages, whose titles run long, and for a page title in a narrow card, like /meetings. 36 → 48px. */
 export const ARTICLE_TITLE = 'role-article-title';
 
 /** Opens a band of the page. Strong ink. 30 → 36 → 48px. */

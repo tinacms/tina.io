@@ -1,10 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import {
-  EYEBROW,
-  PAGE_TITLE,
-  SUB_HEADING,
-} from '@/component/styles/typography';
+import { ARTICLE_TITLE, BODY, EYEBROW } from '@/component/styles/typography';
 import { ChooserCard } from '@/component/ui/ChooserCard';
 
 export type BookingItem = {
@@ -87,13 +83,15 @@ const BookingBlock = ({ data }) => {
         </ol>
         <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
           {/* The block's schema has no isHeadingOne field and the block is
-          only ever the first on its page, so its title is the page title. */}
-          <h1 className={`${PAGE_TITLE} w-full text-center inline-block m-0`}>
+          only ever the first on its page, so its title is the page's h1. It
+          sits in a narrow card, so it takes ARTICLE_TITLE, a step below
+          PAGE_TITLE (picked by design, Oct 2026). */}
+          <h1
+            className={`${ARTICLE_TITLE} w-full text-center inline-block m-0`}
+          >
             {data.title}
           </h1>
-          <p
-            className={`${SUB_HEADING} w-full text-center mb-6 inline-block m-0 pb-4 md:whitespace-nowrap`}
-          >
+          <p className={`${BODY} w-full text-center mb-6 m-0 pb-4`}>
             {data.description}
           </p>
           <div className="grid gap-7 pb-4">

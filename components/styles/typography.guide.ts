@@ -61,7 +61,8 @@ export const ROLE_GROUPS: RoleGroup[] = [
       {
         name: 'ARTICLE_TITLE',
         example: 'Tipping the iceberg',
-        useFor: 'The h1 on blog posts and legal pages, whose titles run long.',
+        useFor:
+          'The h1 on blog posts and legal pages, whose titles run long, and a page title in a narrow card, like /meetings.',
         notFor: { job: 'Landing and block pages', instead: 'PAGE_TITLE' },
       },
       {
