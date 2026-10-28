@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import {
   ARTICLE_TITLE,
   BODY,
@@ -6,7 +7,9 @@ import {
   BODY_SMALL,
   CAPTION,
   CARD_TITLE,
+  CARD_TITLE_FEATURED,
   CODE,
+  CODE_ILLUSTRATION,
   EYEBROW,
   EYEBROW_LINK,
   FIELD,
@@ -22,6 +25,7 @@ import {
   QUOTE,
   RICH_TEXT,
   SECTION_TITLE,
+  SHIMMER,
   SUB_HEADING,
   SURFACE,
   TITLE_LINK,
@@ -48,7 +52,8 @@ type Role = {
   spec: string;
   use: string;
   never?: string;
-  sample: string;
+  /** Plain text renders in the role; pass markup when the role needs its surface around it. */
+  sample: ReactNode;
 };
 
 const GROUPS: { title: string; intro: string; roles: Role[] }[] = [
@@ -164,7 +169,7 @@ const GROUPS: { title: string; intro: string; roles: Role[] }[] = [
       {
         name: 'CAPTION',
         cls: CAPTION,
-        spec: 'Inter 400 · 14px at every width · leading 1.43 · body ink',
+        spec: 'Inter 400 · 14px at every width · leading 20px · body ink',
         use: 'Small text that sits tight under other content: billing notes, address lines.',
         sample: '$290 billed annually (save $58)',
       },
@@ -309,7 +314,7 @@ const COLOURS = [
 const RULES = [
   'Pick a role and use nothing else for type. Never add a size, weight, font, line-height, letter-spacing, case or text-colour class next to one.',
   'Layout classes are fine: margin, padding, alignment, width, truncation.',
-  'LINK is the one class that combines with a role: it adds colour and underline and keeps the size around it.',
+  'LINK and TITLE_LINK are the only classes that combine with a role. LINK adds colour and underline and keeps the size around it; TITLE_LINK turns a linked heading link blue on hover.',
   'On a dark or orange container, put ON_DARK on the container and use the normal roles inside. Never write text-white.',
   'On a chip, pill, badge or coloured row, put a SURFACE on it and give the text a role. Never colour text on a fill by hand.',
   'Markdown output goes in a RICH_TEXT wrapper; it maps headings, paragraphs, links and code onto the roles.',
@@ -319,18 +324,57 @@ const RULES = [
 const EXCEPTIONS = [
   'Buttons (issue #4964).',
   'Syntax-highlighting colours in code blocks and the homepage terminal.',
-  'Decorative terminal and code mockups (the homepage terminal) use CODE_ILLUSTRATION: IBM Plex Mono at 13px, a picture of code rather than code to read. Real code uses CODE.',
+  'Decorative terminal and code mockups use CODE_ILLUSTRATION (shown above). Real code uses CODE.',
   'Data-driven brand colours, like partner tier badges.',
-  'The recommended pricing plan: its name and price use CARD_TITLE_FEATURED, CARD_TITLE in the brand orange gradient. Every other card title is ink.',
+  'The recommended pricing plan’s name and price use CARD_TITLE_FEATURED (shown above). Every other card title is ink.',
   'Icons sized or coloured with text classes, social icons, logos.',
   'Two-tone homepage headings, until the team decides.',
   'TinaCMS admin field components, which render inside the editor.',
 ];
 
+// Roles that exist for one job each. They're shown so people recognise
+// them, not so they get reused elsewhere.
+const EXCEPTION_ROLES: Role[] = [
+  {
+    name: 'CARD_TITLE_FEATURED',
+    cls: CARD_TITLE_FEATURED,
+    spec: 'CARD_TITLE · Plex 600 · 20 / 24 / 30px · orange gradient, lit from above',
+    use: 'The recommended pricing plan’s name and price.',
+    never: 'Any other card title or price. Every other card title is ink.',
+    sample: 'Business · $299',
+  },
+  {
+    name: 'CODE_ILLUSTRATION',
+    cls: CODE_ILLUSTRATION,
+    spec: 'Plex Mono 400 · 13px at every width · leading relaxed · ink',
+    use: 'Decorative terminal and code mockups, like the homepage terminal: a picture of code, not code to read.',
+    never: 'Code a reader needs to read or copy. That’s CODE.',
+    sample: '$ npx create-tina-app@latest my-blog',
+  },
+  {
+    name: 'SHIMMER',
+    cls: SHIMMER,
+    spec: 'Adds a light sweep to the role it sits in · colours from the surface',
+    use: 'Short promo text in the homepage news banner.',
+    never: 'Body copy, headings, or with a text colour added.',
+    sample: (
+      <span
+        className={`${SURFACE.info} ${LABEL} inline-flex rounded-full border px-3.5 py-1.5`}
+      >
+        <span className={SHIMMER}>What we’re planning for TinaCMS v4</span>
+      </span>
+    ),
+  },
+];
+
 const Spec = ({ role }: { role: Role }) => (
   <div className="grid grid-cols-1 gap-3 border-b border-neutral-border-subtle py-6 last:border-b-0 md:grid-cols-[1fr_18rem] md:gap-8">
     <div className="min-w-0">
-      <p className={`${role.cls} wrap-anywhere`}>{role.sample}</p>
+      {typeof role.sample === 'string' ? (
+        <p className={`${role.cls} wrap-anywhere`}>{role.sample}</p>
+      ) : (
+        role.sample
+      )}
       <p className={`${BODY_MUTED} mt-2`}>{role.spec}</p>
     </div>
     <div className="min-w-0">
@@ -546,7 +590,19 @@ export default function DesignPage() {
 
       <section className="mt-16">
         <h2 className={SECTION_TITLE}>Agreed exceptions</h2>
-        <ul className="mt-6 grid list-disc gap-2 pl-6">
+        <p className={`${BODY} mt-2 max-w-2xl`}>
+          Three roles exist for one job each. They’re here so you recognise
+          them, not so you reuse them.
+        </p>
+        <div className="mt-6 rounded-2xl border border-neutral-border-subtle bg-white px-6">
+          {EXCEPTION_ROLES.map((role) => (
+            <Spec key={role.name} role={role} />
+          ))}
+        </div>
+        <p className={`${BODY} mt-8 max-w-2xl`}>
+          Everything else outside the roles:
+        </p>
+        <ul className="mt-4 grid list-disc gap-2 pl-6">
           {EXCEPTIONS.map((e) => (
             <li key={e} className={BODY}>
               {e}
