@@ -2,8 +2,9 @@
 
 /* biome-ignore lint/correctness/noUnusedImports: may need to use React for future compatibility */
 import React from 'react';
-import { BODY, BODY_MUTED, CARD_TITLE } from '@/component/styles/typography';
+import { BODY_MUTED, CARD_TITLE } from '@/component/styles/typography';
 import { ChooserCard } from '@/component/ui/ChooserCard';
+import { StatusMessage } from '@/component/ui/StatusMessage';
 
 // Client component that renders the UI
 export function DemoFormClient({
@@ -27,7 +28,7 @@ export function DemoFormClient({
       </div>
       {error && (
         <div className="flex justify-center items-center py-10">
-          <p className={BODY}>{error}</p>
+          <StatusMessage type="error">{error}</StatusMessage>
         </div>
       )}
       {!error && meetingPeople.length === 0 && (

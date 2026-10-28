@@ -6,7 +6,6 @@ import {
   isPackageInfoError,
   type PackageInfo,
 } from 'utils/fetchPackageInfo';
-import { formatPublishedDate } from 'utils/formatPublishedDate';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import {
   BODY,
@@ -19,6 +18,7 @@ import {
   SURFACE,
 } from '@/component/styles/typography';
 import { SkeletonBar } from '@/component/ui/SkeletonBar';
+import { formatDate } from '@/utils/formatDate';
 import { TINA_PACKAGES, type TinaPackage } from './packages';
 
 type VersionsBlockData = {
@@ -258,7 +258,7 @@ function PublishedField({
     }
     return <span className={BODY_MUTED}>unavailable</span>;
   }
-  const formatted = formatPublishedDate(row.info.publishedAt);
+  const formatted = formatDate(row.info.publishedAt);
   if (variant === 'compact') {
     return (
       <span className={`${CODE} animate-row-in ml-3 shrink-0`}>

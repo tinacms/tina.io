@@ -383,7 +383,7 @@ function Agenda({
                     className="pb-4 border-b last:border-b-0 last:pb-0"
                   >
                     <div
-                      className={`${SURFACE.info} ${LABEL} rounded-full px-2 w-11 mb-2`}
+                      className={`${SURFACE.info} ${LABEL} rounded-full border px-2 w-fit mb-2`}
                     >
                       Talk
                     </div>

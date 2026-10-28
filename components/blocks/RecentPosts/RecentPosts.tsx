@@ -158,7 +158,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
             return (
               <div
                 key={slug}
-                className="group flex-1 flex flex-col gap-2  min-w-[20rem]"
+                className="flex-1 flex flex-col gap-2 min-w-[20rem]"
               >
                 <span className={BODY_MUTED}>{formatDate(post.date)}</span>
                 <DynamicLink href={href} passHref>

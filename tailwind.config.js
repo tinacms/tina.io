@@ -367,7 +367,7 @@ module.exports = {
         error: '#EF4444',
         background: 'hsl(var(--background))',
         // Default text colour follows the body token rather than shadcn's own
-        // --foreground, so the site has one ink and it lives in the primitives.
+        // --foreground, so unstyled text reads as body copy, not heading ink.
         foreground: 'var(--text-body)',
         card: {
           DEFAULT: 'hsl(var(--card))',

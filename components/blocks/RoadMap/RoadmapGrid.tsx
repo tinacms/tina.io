@@ -32,9 +32,7 @@ const iconColorClasses: Record<string, string> = {
 // workaround — only a decoration colour that reads against it.
 const headlineComponents = {
   p: (props: any) => <>{props.children}</>,
-  strikethrough: (props: any) => (
-    <s className="decoration-orange-600">{props.children}</s>
-  ),
+  strikethrough: (props: any) => <s>{props.children}</s>,
 };
 
 // biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>

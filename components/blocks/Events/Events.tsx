@@ -20,6 +20,9 @@ import {
   formatEventDate,
 } from './dates-calculations';
 
+// The status chip on each event card. The surface sets fill, ink and border.
+const EVENT_CHIP = `${LABEL} border px-2 mb-1.5 rounded shadow-lg w-fit`;
+
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
 const GlobeFallback = () => (
@@ -99,21 +102,13 @@ export const Card = ({ cardItem, onHover }) => {
       </div>
       <div className="grow flex flex-col overflow-hidden py-2">
         {isLiveEvent ? (
-          <span
-            className={`${SURFACE.info} ${LABEL} px-2 mb-1.5 rounded shadow-lg w-fit`}
-          >
-            Event Started
-          </span>
+          <span className={`${SURFACE.info} ${EVENT_CHIP}`}>Event Started</span>
         ) : isLiveOrPastEvent ? (
-          <span
-            className={`${SURFACE.neutralSolid} ${LABEL} px-2 mb-1.5 rounded shadow-lg w-fit`}
-          >
+          <span className={`${SURFACE.neutralSolid} ${EVENT_CHIP}`}>
             Event Finished
           </span>
         ) : (
-          <span
-            className={`${SURFACE.info} ${LABEL} px-2 mb-1.5 rounded shadow-lg w-fit`}
-          >
+          <span className={`${SURFACE.info} ${EVENT_CHIP}`}>
             {hoursUntilEvent >= 24
               ? `${Math.floor(hoursUntilEvent / 24)} Day${
                   hoursUntilEvent >= 48 ? 's' : ''

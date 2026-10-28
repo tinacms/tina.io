@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { formatDate } from '../../utils/blog_helpers';
+import { formatDate } from '../../utils/formatDate';
 import { BODY_MUTED } from '../styles/typography';
 
 export const LastEdited = styled(({ date, className, ...styleProps }) => {
@@ -8,7 +8,7 @@ export const LastEdited = styled(({ date, className, ...styleProps }) => {
     return <></>;
   }
 
-  const formattedDate = formatDate(new Date(date));
+  const formattedDate = formatDate(date);
 
   return (
     <p {...styleProps} className={`${className ?? ''} ${BODY_MUTED}`}>

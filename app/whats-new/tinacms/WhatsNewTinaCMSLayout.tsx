@@ -11,6 +11,7 @@ import {
   SUB_HEADING,
   SURFACE,
 } from '@/component/styles/typography';
+import { formatDate } from '@/utils/formatDate';
 
 interface ChangeItem {
   pull_request_number?: string;
@@ -92,7 +93,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
       <div className="flex justify-between items-baseline mb-6">
         <h2 className={CARD_TITLE}>Version {item.versionNumber}</h2>
         <p className={BODY_MUTED}>
-          Released on {new Date(item.dateReleased).toLocaleDateString()}
+          Released on {formatDate(item.dateReleased)}
         </p>
       </div>
 

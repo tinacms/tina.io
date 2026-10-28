@@ -3,12 +3,12 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { EYEBROW, LABEL, SURFACE } from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
 
-// Badge colours come from the CMS (BADGE_COLOR_OPTIONS). The five options
-// collapse onto three surfaces, so every badge reads as a chip: Orange is the
-// solid “new” pill; Blue, Blue Secondary and Ghost Blue are the light blue
-// tint; Ghost Orange is the light orange tint. The CMS keeps all five values so
-// existing content still renders. Text takes LABEL in the banner-sized badge and
-// EYEBROW (SLUB) in the small pills.
+// Badge colours come from the CMS (BADGE_COLOR_OPTIONS): three looks, one
+// option each, picked by design (Oct 2026). Orange is the solid “new” pill,
+// Blue the light blue tint, Ghost Orange the light orange tint. blue and
+// ghostBlue are retired CMS values, kept so older content still renders.
+// Text takes LABEL in the banner-sized badge and EYEBROW (SLUB) in the small
+// pills.
 const INFO = SURFACE.info;
 
 const badgeVariants = cva('flex gap-2 items-center w-fit rounded-full border', {
@@ -22,13 +22,13 @@ const badgeVariants = cva('flex gap-2 items-center w-fit rounded-full border', {
       blue: INFO,
       ghostBlue: INFO,
       blueSecondary: INFO,
-      orange: `${SURFACE.brandSolid} border-transparent`,
+      orange: SURFACE.brandSolid,
       ghostOrange: SURFACE.brand,
     },
   },
   defaultVariants: {
     size: 'default',
-    color: 'blue',
+    color: 'blueSecondary',
   },
 });
 

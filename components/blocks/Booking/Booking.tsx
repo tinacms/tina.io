@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import {
   EYEBROW,
   PAGE_TITLE,
-  SECTION_TITLE,
   SUB_HEADING,
 } from '@/component/styles/typography';
 import { ChooserCard } from '@/component/ui/ChooserCard';
@@ -16,7 +15,9 @@ export type BookingItem = {
 };
 
 // The booking flow. Only the first step happens on this page; the other two
-// happen in the booking tool, so the stepper always shows step 1.
+// happen in the booking tool, so the stepper always shows step 1. The current
+// step is a filled brand-orange circle (3.8:1 on white) and its label reads in
+// ink (aria-current, see styles/tailwind.css). Picked by design (Oct 2026).
 const BOOKING_STEPS = ['Choose location', 'Choose time', 'Your info'];
 const CURRENT_STEP = 0;
 
@@ -71,13 +72,13 @@ const BookingBlock = ({ data }) => {
             >
               <span className="flex w-full items-center" aria-hidden="true">
                 <span
-                  className={`h-0.5 grow ${index === 0 ? 'bg-transparent' : 'bg-gray-300'}`}
+                  className={`h-0.5 grow ${index === 0 ? 'bg-transparent' : 'bg-neutral-border'}`}
                 />
                 <span
-                  className={`size-6 shrink-0 rounded-full border-2 ${index === CURRENT_STEP ? 'border-orange-300' : 'border-gray-300'}`}
+                  className={`size-6 shrink-0 rounded-full border-2 ${index === CURRENT_STEP ? 'border-brand-primary bg-brand-primary' : 'border-neutral-border'}`}
                 />
                 <span
-                  className={`h-0.5 grow ${index === BOOKING_STEPS.length - 1 ? 'bg-transparent' : 'bg-gray-300'}`}
+                  className={`h-0.5 grow ${index === BOOKING_STEPS.length - 1 ? 'bg-transparent' : 'bg-neutral-border'}`}
                 />
               </span>
               <span className={`${EYEBROW} px-1`}>{step}</span>
@@ -85,25 +86,16 @@ const BookingBlock = ({ data }) => {
           ))}
         </ol>
         <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
-          {/* The block's schema has no isHeadingOne field, so this was always
-          undefined and the page shipped without an h1. It is only ever the
-          first block on its page, so default to the page title. */}
-          {data.isHeadingOne !== false ? (
-            <h1 className={`${PAGE_TITLE} w-full text-center inline-block m-0`}>
-              {data.title}
-            </h1>
-          ) : (
-            <h2
-              className={`${SECTION_TITLE} w-full text-center inline-block m-0 whitespace-nowrap`}
-            >
-              {data.title}
-            </h2>
-          )}
-          <h3
+          {/* The block's schema has no isHeadingOne field and the block is
+          only ever the first on its page, so its title is the page title. */}
+          <h1 className={`${PAGE_TITLE} w-full text-center inline-block m-0`}>
+            {data.title}
+          </h1>
+          <p
             className={`${SUB_HEADING} w-full text-center mb-6 inline-block m-0 pb-4 md:whitespace-nowrap`}
           >
             {data.description}
-          </h3>
+          </p>
           <div className="grid gap-7 pb-4">
             {meetingPeople.map((cardItem, index) => (
               <ChooserCard

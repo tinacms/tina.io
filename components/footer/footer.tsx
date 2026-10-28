@@ -279,7 +279,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           href="https://www.ssw.com.au"
           target="_blank"
           rel="noopener noreferrer"
-          className={`${BODY_SMALL} relative z-10 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-center md:justify-start md:text-left no-underline hover:no-underline`}
+          className={`${BODY_SMALL} relative z-10 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-center md:justify-start md:text-left`}
         >
           TinaCMS is actively developed by
           <svg

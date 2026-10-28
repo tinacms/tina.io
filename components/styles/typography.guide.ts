@@ -1,34 +1,13 @@
 /**
  * Which type role to use, and which to use instead.
  *
- * The single source of truth for picking a role. The style guide at /design
- * renders these tables, and AGENTS.md points here, so a change to a role's
- * guidance is a one-place edit. The role specs themselves (size, weight,
- * colour) live in styles/tailwind.css; nothing here restates them.
+ * The single source of truth for picking a role, a text colour or a surface.
+ * The style guide at /design renders these tables, and AGENTS.md points here,
+ * so a change to the guidance is a one-place edit. The role specs themselves
+ * (size, weight, colour) live in styles/tailwind.css and the colour values in
+ * app/global.css; nothing here restates them.
  */
-import {
-  ARTICLE_TITLE,
-  BODY,
-  BODY_MUTED,
-  BODY_SMALL,
-  CAPTION,
-  CARD_TITLE,
-  CARD_TITLE_FEATURED,
-  CODE,
-  CODE_ILLUSTRATION,
-  EYEBROW,
-  EYEBROW_LINK,
-  FIELD,
-  FOOTER_LEGAL_LINK,
-  FOOTER_LINK,
-  LABEL,
-  NAV_LINK,
-  NAV_MENU_LINK,
-  PAGE_TITLE,
-  QUOTE,
-  SECTION_TITLE,
-  SUB_HEADING,
-} from './typography';
+import * as typography from './typography';
 
 /**
  * How /design draws a role's example. Most roles are plain text in the role;
@@ -45,11 +24,19 @@ export type ExampleKind =
   | 'shimmer'
   | 'field';
 
+type Typography = typeof typography;
+
+/** A class-name constant exported by components/styles/typography.ts. */
+export type RoleName = {
+  [K in keyof Typography]: Typography[K] extends string ? K : never;
+}[keyof Typography];
+
+/** The class behind a role's name, so a guide entry can't name one role and draw another. */
+export const roleClass = (name: RoleName): string => typography[name];
+
 export type RoleGuide = {
   /** The constant to import from components/styles/typography.ts. */
-  name: string;
-  /** Its class, for drawing the example. Link helpers leave this empty. */
-  cls: string;
+  name: RoleName;
   example: string;
   exampleKind?: ExampleKind;
   useFor: string;
@@ -67,35 +54,30 @@ export const ROLE_GROUPS: RoleGroup[] = [
     roles: [
       {
         name: 'PAGE_TITLE',
-        cls: PAGE_TITLE,
         example: 'Meet TinaCMS',
         useFor: 'The page’s one h1.',
         notFor: { job: 'Any heading below the top', instead: 'SECTION_TITLE' },
       },
       {
         name: 'ARTICLE_TITLE',
-        cls: ARTICLE_TITLE,
         example: 'Tipping the iceberg',
         useFor: 'The h1 on blog posts and legal pages, whose titles run long.',
         notFor: { job: 'Landing and block pages', instead: 'PAGE_TITLE' },
       },
       {
         name: 'SECTION_TITLE',
-        cls: SECTION_TITLE,
         example: 'Built for developers',
         useFor: 'The heading that opens a band of the page.',
         notFor: { job: 'Headings inside cards', instead: 'CARD_TITLE' },
       },
       {
         name: 'CARD_TITLE',
-        cls: CARD_TITLE,
         example: 'Visual editing',
         useFor: 'Card, tier and tile headings; prices; markdown h1–h2.',
         notFor: { job: 'Names in a grid', instead: 'SUB_HEADING' },
       },
       {
         name: 'SUB_HEADING',
-        cls: SUB_HEADING,
         example: 'Editorial workflow',
         useFor:
           'Headings inside copy; names in grids and chooser cards; markdown h3–h6.',
@@ -103,7 +85,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'QUOTE',
-        cls: QUOTE,
         example: '“Tina changed how we do docs”',
         useFor: 'Testimonials and pull quotes.',
         notFor: { job: 'The attribution under a quote', instead: 'BODY_MUTED' },
@@ -115,10 +96,9 @@ export const ROLE_GROUPS: RoleGroup[] = [
     roles: [
       {
         name: 'EYEBROW',
-        cls: EYEBROW,
         example: 'Trusted by teams',
         useFor:
-          'SLUB: a short label above a title, table headers, pills, step labels. Write the copy in sentence case; the role uppercases it.',
+          'SLUB: a short label above a title, table headers, pills, step labels. Write the copy in sentence case; the role uppercases it. The current step (aria-current="step") reads in ink.',
         notFor: {
           job: 'Names, sentences, prices, addresses',
           instead: 'LABEL',
@@ -126,7 +106,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'LABEL',
-        cls: LABEL,
         example: 'Included users',
         useFor: 'Chips, tags, status pills, table values, times.',
         notFor: { job: 'Anything longer than a phrase', instead: 'BODY_SMALL' },
@@ -135,24 +114,22 @@ export const ROLE_GROUPS: RoleGroup[] = [
   },
   {
     title: 'Reading text',
+    intro: 'HIGHLIGHT goes on top of a role and keeps its size.',
     roles: [
       {
         name: 'BODY',
-        cls: BODY,
         example: 'Edit Markdown visually, right in your repo.',
         useFor: 'Paragraphs. A bare <p> inside <main> already gets it.',
         notFor: { job: 'Card blurbs and lists', instead: 'BODY_SMALL' },
       },
       {
         name: 'BODY_SMALL',
-        cls: BODY_SMALL,
         example: 'Drafts, branches and approvals.',
         useFor: 'Dense copy: card blurbs, lists, descriptions.',
         notFor: { job: 'A page’s main paragraphs', instead: 'BODY' },
       },
       {
         name: 'BODY_MUTED',
-        cls: BODY_MUTED,
         example: '23 Oct 2026 · By Josh Berman',
         useFor: 'Dates, bylines, captions, units, hints.',
         notFor: {
@@ -162,20 +139,25 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'CAPTION',
-        cls: CAPTION,
         example: '$290 billed annually',
         useFor: 'Notes that sit tight under content: billing notes, addresses.',
         notFor: { job: 'Dates and bylines', instead: 'BODY_MUTED' },
       },
       {
         name: 'CODE',
-        cls: CODE,
         example: 'npx create-tina-app',
         useFor: 'Inline code, terminal output, package names, versions.',
         notFor: {
           job: 'Decorative terminal mockups',
           instead: 'CODE_ILLUSTRATION',
         },
+      },
+      {
+        name: 'HIGHLIGHT',
+        example: 'Markdown',
+        exampleKind: 'highlight',
+        useFor: 'A matched search term, inside any role.',
+        notFor: { job: 'Emphasis in copy', instead: '<strong>' },
       },
     ],
   },
@@ -186,7 +168,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
     roles: [
       {
         name: 'LINK',
-        cls: '',
         example: 'GitHub Discussion',
         exampleKind: 'inline-link',
         useFor: 'A link inside text.',
@@ -197,7 +178,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'EYEBROW_LINK',
-        cls: EYEBROW_LINK,
         example: 'Read more →',
         exampleKind: 'link',
         useFor: 'A standalone link: “Read more →”, “See all events →”.',
@@ -205,7 +185,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'TITLE_LINK',
-        cls: '',
         example: 'Tipping the iceberg',
         exampleKind: 'heading-link',
         useFor:
@@ -214,7 +193,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'SUBTLE_LINK',
-        cls: '',
         example: 'Star us on GitHub',
         exampleKind: 'subtle-link',
         useFor:
@@ -223,14 +201,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
           job: 'A link that should stand out',
           instead: 'EYEBROW_LINK',
         },
-      },
-      {
-        name: 'HIGHLIGHT',
-        cls: '',
-        example: 'Markdown',
-        exampleKind: 'highlight',
-        useFor: 'A matched search term, inside any role.',
-        notFor: { job: 'Emphasis in copy', instead: '<strong>' },
       },
     ],
   },
@@ -241,7 +211,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
     roles: [
       {
         name: 'NAV_LINK',
-        cls: NAV_LINK,
         example: 'TinaCMS',
         exampleKind: 'link',
         useFor: 'Top-level nav items.',
@@ -249,7 +218,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'NAV_MENU_LINK',
-        cls: NAV_MENU_LINK,
         example: 'Docs for TinaCMS',
         exampleKind: 'link',
         useFor: 'Items inside a nav menu.',
@@ -257,7 +225,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'FIELD',
-        cls: FIELD,
         example: 'name@example.com',
         exampleKind: 'field',
         useFor:
@@ -266,7 +233,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'FOOTER_LINK',
-        cls: FOOTER_LINK,
         example: 'Showcase',
         exampleKind: 'link',
         useFor: 'Footer column links.',
@@ -277,7 +243,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'FOOTER_LEGAL_LINK',
-        cls: FOOTER_LEGAL_LINK,
         example: 'Privacy',
         exampleKind: 'link',
         useFor: 'The legal links under the footer.',
@@ -292,14 +257,12 @@ export const ROLE_GROUPS: RoleGroup[] = [
     roles: [
       {
         name: 'CARD_TITLE_FEATURED',
-        cls: CARD_TITLE_FEATURED,
         example: 'Business · $299',
         useFor: 'The recommended pricing plan’s name and price.',
         notFor: { job: 'Any other card title or price', instead: 'CARD_TITLE' },
       },
       {
         name: 'CODE_ILLUSTRATION',
-        cls: CODE_ILLUSTRATION,
         example: '$ npx create-tina-app my-blog',
         useFor:
           'Decorative terminal and code mockups, like the homepage terminal.',
@@ -307,7 +270,6 @@ export const ROLE_GROUPS: RoleGroup[] = [
       },
       {
         name: 'SHIMMER',
-        cls: '',
         example: 'What’s new in v4',
         exampleKind: 'shimmer',
         useFor: 'Short promo text in the homepage news banner. Keeps its role.',
@@ -335,4 +297,120 @@ export const TYPE_EXCEPTIONS = [
   'Icons, social icons and logos.',
   'The two-tone homepage headings, until the team decides.',
   'TinaCMS admin field components, which render inside the editor.',
+];
+
+/** Text colour tokens, for reference when adding a role. Values live in app/global.css. */
+export const TEXT_COLOURS: {
+  token: string;
+  /** A bg-* class that fills a swatch with the token. */
+  swatch: string;
+  usedBy: RoleName[];
+  useFor: string;
+}[] = [
+  {
+    token: '--text-heading-*',
+    swatch: 'bg-heading',
+    usedBy: ['PAGE_TITLE', 'ARTICLE_TITLE', 'CARD_TITLE_FEATURED'],
+    useFor:
+      'The orange gradient. Page titles, plus the recommended pricing plan as the one agreed exception.',
+  },
+  {
+    token: '--text-strong',
+    swatch: 'bg-strong',
+    usedBy: [
+      'SECTION_TITLE',
+      'CARD_TITLE',
+      'SUB_HEADING',
+      'QUOTE',
+      'LABEL',
+      'CODE',
+      'CODE_ILLUSTRATION',
+      'FIELD',
+      'FOOTER_LINK',
+    ],
+    useFor: 'Every other heading and short UI text.',
+  },
+  {
+    token: '--text-body',
+    swatch: 'bg-body',
+    usedBy: ['BODY', 'BODY_SMALL', 'CAPTION', 'NAV_MENU_LINK'],
+    useFor: 'Reading text. The site default.',
+  },
+  {
+    token: '--text-subtle',
+    swatch: 'bg-subtle',
+    usedBy: ['BODY_MUTED'],
+    useFor: 'Supporting text: dates, bylines, hints.',
+  },
+  {
+    token: '--text-label',
+    swatch: 'bg-label',
+    usedBy: ['EYEBROW', 'FOOTER_LEGAL_LINK', 'FIELD'],
+    useFor:
+      'SLUB, field placeholders and legal links. The same grey as subtle on light; white at 75% on dark.',
+  },
+  {
+    token: '--text-link',
+    swatch: 'bg-link',
+    usedBy: ['LINK', 'EYEBROW_LINK', 'NAV_LINK', 'TITLE_LINK'],
+    useFor: 'Links. TITLE_LINK only turns this colour on hover.',
+  },
+];
+
+/** The SURFACE pairs: a fill and the ink that belongs on it. */
+export const SURFACE_GUIDE: {
+  name: keyof Typography['SURFACE'];
+  example: string;
+  /** The role the example text takes. */
+  role: RoleName;
+  useFor: string;
+}[] = [
+  {
+    name: 'neutral',
+    example: 'Next.js',
+    role: 'LABEL',
+    useFor: 'Tags, commit hashes, inline code.',
+  },
+  {
+    name: 'brand',
+    example: '@dependabot',
+    role: 'LABEL',
+    useFor: 'Contributors, breaks, “Closed”, “Required”.',
+  },
+  {
+    name: 'info',
+    example: 'Talk',
+    role: 'LABEL',
+    useFor: 'Talks, event countdowns, “Experimental”, table header rows.',
+  },
+  {
+    name: 'success',
+    example: 'Open',
+    role: 'LABEL',
+    useFor: '“Open”, form success messages.',
+  },
+  {
+    name: 'warning',
+    example: 'English only',
+    role: 'LABEL',
+    useFor: 'Warnings, like the “English only” alert and form warnings.',
+  },
+  {
+    name: 'error',
+    example: 'Please try again',
+    role: 'LABEL',
+    useFor: 'Form errors, through StatusMessage.',
+  },
+  {
+    name: 'neutralSolid',
+    example: 'Event Finished',
+    role: 'LABEL',
+    useFor: 'Finished events, step numbers.',
+  },
+  {
+    name: 'brandSolid',
+    example: 'Featured',
+    role: 'EYEBROW',
+    useFor: '“Featured”, “new”.',
+  },
 ];

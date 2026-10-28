@@ -145,6 +145,10 @@
   --yellow-300: #fde047;
   --yellow-800: #854d0e;
 
+  --red-50: #fef2f2;
+  --red-200: #fecaca;
+  --red-800: #991b1b;
+
   --white: #ffffff;
   --ink-900: #1c1b2e;
   --slate-700: #334155;
@@ -208,6 +212,11 @@
   --surface-warning: var(--yellow-100);
   --on-surface-warning: var(--yellow-800); /* 6.4:1 */
   --border-warning: var(--yellow-300);
+  /* Form errors. Picked by design (Oct 2026): a tinted box, like the other
+     status messages, so an error can't pass for body text. */
+  --surface-error: var(--red-50);
+  --on-surface-error: var(--red-800); /* 7.6:1 */
+  --border-error: var(--red-200);
   /* A chosen option in a list of cards (the language picker). Blue-500 is
      3.4:1 on white, above the 3:1 minimum for non-text marks that show
      selection. It replaces a surface's own border when both are set. */

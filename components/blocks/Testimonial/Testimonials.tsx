@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { formatDate } from 'utils';
 import {
   BODY_MUTED,
   BODY_SMALL,
@@ -11,6 +10,7 @@ import {
 } from '@/component/styles/typography';
 import Marquee from '@/components/ui/marquee';
 import { cn } from '@/lib/utils';
+import { formatDate } from '@/utils/formatDate';
 
 const TestimonialCard = ({ ...data }) => {
   const Elem = data?.link ? 'a' : 'div';

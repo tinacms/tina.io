@@ -45,9 +45,9 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
       <div className="px-6">
         <header className="max-w-3xl mx-auto pt-10 md:pt-12 flex flex-col-reverse items-center gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
           <div className="text-center md:text-left">
-            <h1 className={blogTitleStyling}>{unclipEmoji(post.title)}</h1>
+            <h1 className={ARTICLE_TITLE}>{unclipEmoji(post.title)}</h1>
             <p className={`${BODY_MUTED} mt-4`}>
-              By <strong>{post.author}</strong>
+              By {post.author}
               <span aria-hidden="true"> · </span>
               <time dateTime={post.date}>{postedDate}</time>
             </p>
@@ -93,10 +93,6 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
     </article>
   );
 };
-
-// ARTICLE_TITLE stops a step below PAGE_TITLE — a post title runs far longer
-// than a marketing headline and the larger size wrapped it to four lines.
-const blogTitleStyling = ARTICLE_TITLE;
 
 function BlogAvatarImage({ avatar }: { avatar: BlogAvatar }) {
   const [src, setSrc] = React.useState(avatar.src);

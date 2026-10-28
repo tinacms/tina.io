@@ -74,14 +74,24 @@ export const ChooserCard = (props: ChooserCardProps) => {
 
   if (props.href !== undefined) {
     return (
-      <Link href={props.href} prefetch={props.prefetch} className={className}>
+      <Link
+        href={props.href}
+        prefetch={props.prefetch}
+        className={className}
+        aria-current={selected ? 'true' : undefined}
+      >
         {content}
       </Link>
     );
   }
 
   return (
-    <button type="button" onClick={props.onClick} className={className}>
+    <button
+      type="button"
+      onClick={props.onClick}
+      className={className}
+      aria-current={selected ? 'true' : undefined}
+    >
       {content}
     </button>
   );

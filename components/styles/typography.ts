@@ -87,7 +87,7 @@ export const CODE = 'role-code';
 
 /**
  * Agreed exception: decorative terminal and code mockups (the homepage
- * terminal). IBM Plex Mono 13px at every width, line height 1.7. A picture of
+ * terminal). IBM Plex Mono 13px at every width, line height 1.625. A picture of
  * code, not code to read — real code uses CODE.
  */
 export const CODE_ILLUSTRATION = 'role-code-illustration';
@@ -153,6 +153,8 @@ export const SURFACE = {
   success: 'surface-success',
   /** Yellow-100 with yellow-800. Warnings, like the “English only” alert. */
   warning: 'surface-warning',
+  /** Red-50 with red-800. Form errors. */
+  error: 'surface-error',
   /** Slate-500 with white. Finished events, step numbers. */
   neutralSolid: 'surface-neutral-solid',
   /** Orange-600 with white. “Featured”, “new”. */

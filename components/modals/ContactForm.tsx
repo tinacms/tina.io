@@ -4,8 +4,6 @@ import Image from 'next/image';
 import type React from 'react';
 import { useState } from 'react';
 import { BiCopy } from 'react-icons/bi';
-import { ImCross } from 'react-icons/im';
-import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
 import {
   BODY,
@@ -14,6 +12,7 @@ import {
   FIELD,
   LABEL,
 } from '@/component/styles/typography';
+import { StatusMessage, type StatusType } from '@/component/ui/StatusMessage';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { addToMailchimp } from '@/utils/mailchimp_helper';
@@ -166,7 +165,10 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
     : config.messagePlaceholder;
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [message, setMessage] = useState({ text: '', type: '' });
+  const [message, setMessage] = useState<{
+    text: string;
+    type: StatusType | '';
+  }>({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
 
   const copyEmail = () => {
@@ -261,35 +263,31 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
       </div>
       <p className={`text-left w-full ${BODY}`}>{config.intro}</p>
       {message.type && (
-        <div className={`${BODY_SMALL} flex items-center gap-2`}>
-          {message.type === 'success' && <TiTick className="text-green-500" />}
-          {message.type === 'warning' && (
-            <IoIosWarning className="text-orange-500" />
-          )}
-          {message.type === 'error' && (
-            <ImCross className="shrink-0 text-red-500" />
-          )}
+        <StatusMessage type={message.type}>
           {message.type === 'error' ? (
-            <span>
+            <>
               There was an error with the form. Please email us directly at{' '}
               <span className={LABEL}>info@tina.io</span>
               <button
                 type="button"
                 onClick={copyEmail}
-                className="ml-1 align-middle inline-flex items-center text-gray-500 hover:text-black transition-colors"
+                className="ml-1 align-middle inline-flex items-center opacity-75 hover:opacity-100 transition-opacity"
                 title="Copy email address"
+                aria-label={
+                  copied ? 'Email address copied' : 'Copy email address'
+                }
               >
                 {copied ? (
-                  <TiTick className="text-green-500 w-4 h-4" />
+                  <TiTick className="w-4 h-4" />
                 ) : (
                   <BiCopy className="w-3.5 h-3.5" />
                 )}
               </button>
-            </span>
+            </>
           ) : (
-            <span>{message.text}</span>
+            message.text
           )}
-        </div>
+        </StatusMessage>
       )}
       <div className="flex flex-col gap-4 md:flex-row w-full">
         <Input

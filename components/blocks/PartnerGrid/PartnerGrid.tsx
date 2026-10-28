@@ -57,7 +57,7 @@ const PartnerCard = ({ data }) => {
               isPremier
                 ? // Premier keeps its brand gradient (data-driven tier colour).
                   'bg-linear-to-r from-amber-200 via-yellow-300 to-amber-400 text-amber-900 shadow-sm ring-1 ring-amber-300/60'
-                : SURFACE.info
+                : `${SURFACE.info} border`
             }`}
             data-tina-field={tinaField(data, 'tier')}
           >

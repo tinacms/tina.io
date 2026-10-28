@@ -25,6 +25,9 @@ import {
 import {
   ROLE_GROUPS,
   type RoleGuide,
+  roleClass,
+  SURFACE_GUIDE,
+  TEXT_COLOURS,
   TYPE_EXCEPTIONS,
   TYPE_RULES,
 } from '@/component/styles/typography.guide';
@@ -40,98 +43,11 @@ export const metadata: Metadata = {
  * The tina.io style guide, served at /design and kept out of the index.
  *
  * Written for the developers (and agents) building pages: which role to use,
- * and which to use instead. The typography tables render
+ * and which to use instead. Every table renders
  * components/styles/typography.guide.ts, the single source for that guidance,
  * so this page and AGENTS.md can't drift apart. Examples render through the
  * real roles; the page itself uses roles only.
  */
-
-// ── Colour ────────────────────────────────────────────────────────────────
-
-const TEXT_COLOURS = [
-  {
-    swatch: 'bg-heading',
-    token: '--text-heading-*',
-    usedBy: 'PAGE_TITLE, ARTICLE_TITLE, CARD_TITLE_FEATURED',
-    useFor: 'Page titles only: the orange gradient.',
-  },
-  {
-    swatch: 'bg-strong',
-    token: '--text-strong',
-    usedBy: 'Every other heading, LABEL, CODE',
-    useFor: 'Headings and short UI text.',
-  },
-  {
-    swatch: 'bg-body',
-    token: '--text-body',
-    usedBy: 'BODY, BODY_SMALL, CAPTION',
-    useFor: 'Reading text. The site default.',
-  },
-  {
-    swatch: 'bg-subtle',
-    token: '--text-subtle',
-    usedBy: 'BODY_MUTED, EYEBROW',
-    useFor: 'Supporting text and SLUB.',
-  },
-  {
-    swatch: 'bg-link',
-    token: '--text-link',
-    usedBy: 'LINK, EYEBROW_LINK, NAV_LINK',
-    useFor: 'Links.',
-  },
-];
-
-const SURFACES = [
-  {
-    name: 'neutral',
-    cls: SURFACE.neutral,
-    text: 'Next.js',
-    role: LABEL,
-    useFor: 'Tags, commit hashes, inline code.',
-  },
-  {
-    name: 'brand',
-    cls: SURFACE.brand,
-    text: '@dependabot',
-    role: LABEL,
-    useFor: 'Contributors, breaks, “Closed”.',
-  },
-  {
-    name: 'info',
-    cls: SURFACE.info,
-    text: 'Talk',
-    role: LABEL,
-    useFor: 'Talks, info chips, table header rows.',
-  },
-  {
-    name: 'success',
-    cls: SURFACE.success,
-    text: 'Open',
-    role: LABEL,
-    useFor: '“Open”, success.',
-  },
-  {
-    name: 'warning',
-    cls: SURFACE.warning,
-    text: 'English only',
-    role: LABEL,
-    useFor: 'Warnings.',
-  },
-  {
-    name: 'neutralSolid',
-    cls: SURFACE.neutralSolid,
-    text: 'Event Finished',
-    role: LABEL,
-    useFor: 'Finished events, step numbers.',
-  },
-  {
-    name: 'brandSolid',
-    cls: SURFACE.brandSolid,
-    text: 'Featured',
-    role: EYEBROW,
-    useFor: '“Featured”, “new”.',
-  },
-];
 
 // ── Building blocks ───────────────────────────────────────────────────────
 
@@ -143,10 +59,11 @@ const slug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
  * site is a real link here too, so it shows the pointer and its hover state.
  */
 const Example = ({ role, href }: { role: RoleGuide; href: string }) => {
+  const cls = roleClass(role.name);
   switch (role.exampleKind) {
     case 'link':
       return (
-        <a className={role.cls} href={href}>
+        <a className={cls} href={href}>
           {role.example}
         </a>
       );
@@ -189,13 +106,13 @@ const Example = ({ role, href }: { role: RoleGuide; href: string }) => {
     case 'field':
       return (
         <input
-          className={`${role.cls} h-10 w-full max-w-xs rounded-md border border-neutral-border-subtle px-3`}
+          className={`${cls} h-10 w-full max-w-xs rounded-md border border-neutral-border-subtle px-3`}
           placeholder={role.example}
           aria-label="Example field"
         />
       );
     default:
-      return <p className={role.cls}>{role.example}</p>;
+      return <p className={cls}>{role.example}</p>;
   }
 };
 
@@ -410,7 +327,7 @@ export default function StyleGuidePage() {
                   {c.token}
                 </p>,
                 <p key="used" className={CODE}>
-                  {c.usedBy}
+                  {c.usedBy.join(', ')}
                 </p>,
                 <p key="use" className={BODY_SMALL}>
                   {c.useFor}
@@ -426,14 +343,14 @@ export default function StyleGuidePage() {
         >
           <GuideTable
             columns={['Example', 'Surface', 'Use for']}
-            rows={SURFACES.map((s) => ({
+            rows={SURFACE_GUIDE.map((s) => ({
               key: s.name,
               cells: [
                 <span
                   key="example"
-                  className={`${s.cls} ${s.role} inline-block rounded-full border px-3 py-0.5`}
+                  className={`${SURFACE[s.name]} ${roleClass(s.role)} inline-block rounded-full border px-3 py-0.5`}
                 >
-                  {s.text}
+                  {s.example}
                 </span>,
                 <p key="name" className={CODE}>
                   SURFACE.{s.name}
@@ -460,7 +377,7 @@ export default function StyleGuidePage() {
             </a>
             <span className={BODY_SMALL}>Join the herd for tips and news.</span>
             <input
-              className={`${FIELD} h-10 rounded-md border border-white/80 bg-white/10 px-3`}
+              className={`${FIELD} h-10 rounded-sm border border-white bg-white/10 px-3`}
               placeholder="Email"
               aria-label="Example field on dark"
             />

@@ -312,12 +312,16 @@ export const docAndBlogComponents: Components<{
             <div className="w-full md:w-1/3">
               <div className="mb-1">
                 {property.required && (
-                  <span className={`${LABEL} ${SURFACE.brand} rounded px-1.5`}>
+                  <span
+                    className={`${LABEL} ${SURFACE.brand} rounded border px-1.5`}
+                  >
                     REQUIRED
                   </span>
                 )}
                 {property.experimental && (
-                  <span className={`${LABEL} ${SURFACE.info} rounded px-1.5`}>
+                  <span
+                    className={`${LABEL} ${SURFACE.info} rounded border px-1.5`}
+                  >
                     EXPERIMENTAL
                   </span>
                 )}
@@ -861,11 +865,7 @@ function FormatHeaders({ children, level }) {
       id={id}
       className={`${styles[level]} relative cursor-pointer group`}
     >
-      <a
-        href={linkHref}
-        className="no-underline inline-block"
-        onClick={handleHeaderClick}
-      >
+      <a href={linkHref} className="inline-block" onClick={handleHeaderClick}>
         {' '}
         {headingChildren}
         <FiLink

@@ -178,7 +178,7 @@ const ConsentBanner = () => {
           </div>
           <button
             type="button"
-            className="underline font-ibm-plex text-sm cursor-pointer"
+            className={`${BODY_SMALL} ${LINK} cursor-pointer`}
             onClick={openModal}
           >
             Manage cookies

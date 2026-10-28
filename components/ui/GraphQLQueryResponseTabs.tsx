@@ -5,7 +5,7 @@ import { Prism } from '../styles/Prism';
 export const GraphQLQueryResponseTabs = ({ ...props }) => {
   const [isQuery, setIsQuery] = useState(!props.preselectResponse);
 
-  const buttonStyling = `${LABEL} flex justify-center relative mx-6 pt-[12px] pb-[10px] transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 whitespace-nowrap px-2`;
+  const buttonStyling = `${LABEL} flex justify-center relative mx-6 pt-3 pb-2.5 transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 whitespace-nowrap px-2`;
   const activeButtonStyling =
     ' hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px opacity-50 hover:opacity-100';
   const overlay = (

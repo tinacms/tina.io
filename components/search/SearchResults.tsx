@@ -36,7 +36,9 @@ export const SearchHeader = ({ query }: { query: string }) => {
       <div className="flex items-center gap-3">
         <h1 className={PAGE_TITLE}>Results for "{displayQuery}"</h1>
         {isExactSearch && (
-          <span className={`${SURFACE.info} ${LABEL} px-2 py-1 rounded-full`}>
+          <span
+            className={`${SURFACE.info} ${LABEL} px-2 py-1 rounded-full border`}
+          >
             Exact Match
           </span>
         )}

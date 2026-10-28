@@ -103,7 +103,7 @@ const CompanyCard = ({ company, criteria }) => {
   return (
     <div className="rounded-lg flex flex-col items-center w-full company-card">
       <div
-        className={`${ON_DARK} w-full flex justify-center items-center text-center px-2 py-4 opacity-100 rounded-t-lg`}
+        className={`${ON_DARK} w-full flex justify-center items-center text-center px-2 py-4 rounded-t-lg`}
         style={{
           ...commonHeightStyle,
           background: `linear-gradient(225deg, ${hexToRgba(

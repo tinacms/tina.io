@@ -147,6 +147,11 @@ pre.prism-code.language-json {
   :where(main) :where(p, li, blockquote, dd, figcaption):where(:not([class*='role-'] *, .rich-text *)) {
     @apply font-sans text-base md:text-lg leading-relaxed;
   }
+  /* The step you're on in a stepper: its SLUB label reads in ink instead of
+     grey, alongside the filled marker. Picked by design (Oct 2026). */
+  :where([aria-current='step']) {
+    --text-label: var(--text-strong);
+  }
   /* A bare <code>, <kbd> or <samp> anywhere on a page is CODE. */
   :where(main) :where(code, kbd, samp):where(:not([class])) {
     @apply role-code;
@@ -216,8 +221,18 @@ pre.prism-code.language-json {
   --text-label: var(--on-surface-warning);
   color: var(--on-surface-warning);
 }
+@utility surface-error {
+  background-color: var(--surface-error);
+  border-color: var(--border-error);
+  --text-strong: var(--on-surface-error);
+  --text-body: var(--on-surface-error);
+  --text-subtle: var(--on-surface-error);
+  --text-label: var(--on-surface-error);
+  color: var(--on-surface-error);
+}
 @utility surface-neutral-solid {
   background-color: var(--surface-neutral-solid);
+  border-color: transparent;
   --text-strong: var(--on-surface-neutral-solid);
   --text-body: var(--on-surface-neutral-solid);
   --text-subtle: var(--on-surface-neutral-solid);
@@ -226,6 +241,7 @@ pre.prism-code.language-json {
 }
 @utility surface-brand-solid {
   background-color: var(--surface-brand-solid);
+  border-color: transparent;
   --text-strong: var(--on-surface-brand-solid);
   --text-body: var(--on-surface-brand-solid);
   --text-subtle: var(--on-surface-brand-solid);
@@ -331,8 +347,8 @@ pre.prism-code.language-json {
 }
 
 /* Links are a treatment, not a size: LINK keeps the size of the text around
-   it and only adds colour and underline. It is the one class that may sit
-   next to a role. */
+   it and only adds colour and underline. LINK, TITLE_LINK and SUBTLE_LINK
+   are the only classes, besides layout, that may sit next to a role. */
 @utility link {
   @apply text-link underline decoration-1 underline-offset-3 transition-colors hover:text-link-hover hover:decoration-2;
 }
