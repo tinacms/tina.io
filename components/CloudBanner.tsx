@@ -4,7 +4,7 @@ import Link from 'next/link';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-import { BODY_SMALL, LABEL, LINK } from '@/component/styles/typography';
+import { BODY_SMALL, SUBTLE_LINK } from '@/component/styles/typography';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import '../styles/tailwind.css';
 
@@ -42,7 +42,7 @@ export function CloudBanner() {
         "
       >
         <Link
-          className={`${BODY_SMALL} ${LINK} pr-2 flex items-center gap-1`}
+          className={`${BODY_SMALL} ${SUBTLE_LINK} pr-2 flex items-center gap-1`}
           href={`https://github.com/tinacms/tinacms`}
           target="_blank"
           rel="noopener noreferrer"
@@ -67,9 +67,7 @@ export function CloudBanner() {
               />
             </svg>
 
-            <span className={`${LABEL} ml-1`}>
-              {formatStarCount(starCount)}
-            </span>
+            <span className="ml-1">{formatStarCount(starCount)}</span>
           </span>
         </Link>
       </div>

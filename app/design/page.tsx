@@ -27,6 +27,7 @@ import {
   SECTION_TITLE,
   SHIMMER,
   SUB_HEADING,
+  SUBTLE_LINK,
   SURFACE,
   TITLE_LINK,
 } from '@/component/styles/typography';
@@ -314,7 +315,7 @@ const COLOURS = [
 const RULES = [
   'Pick a role and use nothing else for type. Never add a size, weight, font, line-height, letter-spacing, case or text-colour class next to one.',
   'Layout classes are fine: margin, padding, alignment, width, truncation.',
-  'LINK and TITLE_LINK are the only classes that combine with a role. LINK adds colour and underline and keeps the size around it; TITLE_LINK turns a linked heading link blue on hover.',
+  'LINK, TITLE_LINK and SUBTLE_LINK are the only classes that combine with a role. LINK adds colour and underline and keeps the size around it; TITLE_LINK turns a linked heading link blue on hover; SUBTLE_LINK keeps a quiet standalone link in its own colour and darkens it on hover.',
   'On a dark or orange container, put ON_DARK on the container and use the normal roles inside. Never write text-white.',
   'On a chip, pill, badge or coloured row, put a SURFACE on it and give the text a role. Never colour text on a fill by hand.',
   'Markdown output goes in a RICH_TEXT wrapper; it maps headings, paragraphs, links and code onto the roles.',
@@ -454,6 +455,17 @@ export default function DesignPage() {
           <h3 className={`${CARD_TITLE} ${TITLE_LINK}`}>
             Tipping the iceberg: the WordPress era is over
           </h3>
+        </a>
+        <p className={`${BODY} mt-6 max-w-2xl`}>
+          <code className={CODE}>SUBTLE_LINK</code> is for a standalone link
+          that should stay quiet, like the GitHub stars line in the top banner.
+          It keeps its colour with no underline and darkens on hover:
+        </p>
+        <a
+          className={`${BODY_SMALL} ${SUBTLE_LINK} mt-2 inline-block`}
+          href="#links"
+        >
+          Loving Tina? Star us on GitHub 13.8k
         </a>
       </section>
 

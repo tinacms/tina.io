@@ -343,6 +343,13 @@ pre.prism-code.language-json {
   @apply transition-colors hover:text-link;
 }
 
+/* A standalone link that should stay quiet, like the GitHub stars line in
+   the top banner. It keeps its role's colour, no underline, and darkens to
+   ink on hover. Picked by design (Oct 2026). */
+@utility subtle-link {
+  @apply transition-colors hover:text-strong;
+}
+
 /* Decorative shimmer on short promo text (the homepage news banner). The
    text keeps its role and surface ink as the base colour, and a lighter band
    of the same hue sweeps across it. text-fill-color does the hiding, so a
