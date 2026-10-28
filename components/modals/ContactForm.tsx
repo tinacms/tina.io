@@ -4,9 +4,15 @@ import Image from 'next/image';
 import type React from 'react';
 import { useState } from 'react';
 import { BiCopy } from 'react-icons/bi';
-import { ImCross } from 'react-icons/im';
-import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
+import {
+  BODY,
+  BODY_SMALL,
+  CARD_TITLE,
+  FIELD,
+  LABEL,
+} from '@/component/styles/typography';
+import { StatusMessage, type StatusType } from '@/component/ui/StatusMessage';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { addToMailchimp } from '@/utils/mailchimp_helper';
@@ -36,7 +42,8 @@ const availabilityOptions = ['Full-time', 'Part-time', 'Project-based'];
 // text fields — Radix's Select renders a hidden native select that browsers
 // won't report validity on (radix-ui/primitives#1592), which left it as the
 // only control in the form that could be submitted empty.
-// Styling mirrors `Input`; the empty first option is the placeholder.
+// Styling mirrors `Input`; the empty first option is the placeholder. A select
+// has no ::placeholder, so the empty state takes FIELD's placeholder colour.
 const FormSelect = ({
   name,
   placeholder,
@@ -63,19 +70,15 @@ const FormSelect = ({
       disabled={disabled}
       // `bg-none` drops the chevron @tailwindcss/forms paints onto every
       // select, which would otherwise sit under the icon below.
-      className={`flex h-10 w-full appearance-none rounded-[5px] border-0 bg-white bg-none pl-4 pr-10 text-base font-ibm-plex shadow-input transition-shadow duration-[85ms] ease-out hover:shadow-input-hover focus:shadow-input-focus outline-none ring-0 disabled:cursor-not-allowed disabled:opacity-50 ${
-        value ? 'text-[var(--color-secondary)]' : 'text-gray-400'
-      }`}
+      className={`flex h-10 w-full appearance-none rounded-[5px] border-0 bg-white bg-none pl-4 pr-10 ${FIELD} shadow-input transition-shadow duration-[85ms] ease-out hover:shadow-input-hover focus:shadow-input-focus outline-none ring-0 disabled:cursor-not-allowed disabled:opacity-50`}
+      // FIELD shows an empty select in the placeholder grey.
+      data-empty={value ? undefined : ''}
     >
       <option value="" disabled>
         {placeholder}
       </option>
       {options.map((option) => (
-        <option
-          key={option}
-          value={option}
-          className="text-[var(--color-secondary)]"
-        >
+        <option key={option} value={option} className={FIELD}>
           {option}
         </option>
       ))}
@@ -162,7 +165,10 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
     : config.messagePlaceholder;
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [message, setMessage] = useState({ text: '', type: '' });
+  const [message, setMessage] = useState<{
+    text: string;
+    type: StatusType | '';
+  }>({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
 
   const copyEmail = () => {
@@ -253,45 +259,35 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
           height={48}
           className="w-12 h-12"
         />
-        <h2 className="inline-block m-0 md:text-4xl font-ibm-plex text-2xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
-          {config.heading}
-        </h2>
+        <h2 className={`inline-block m-0 ${CARD_TITLE}`}>{config.heading}</h2>
       </div>
-      <p className="text-left w-full">{config.intro}</p>
+      <p className={`text-left w-full ${BODY}`}>{config.intro}</p>
       {message.type && (
-        <div
-          className={`font-ibm-plex text-sm flex items-center gap-2 ${
-            message.type === 'success'
-              ? 'text-green-500'
-              : message.type === 'warning'
-                ? 'text-orange-500'
-                : 'text-red-500'
-          }`}
-        >
-          {message.type === 'success' && <TiTick />}
-          {message.type === 'warning' && <IoIosWarning />}
-          {message.type === 'error' && <ImCross className="shrink-0" />}
+        <StatusMessage type={message.type}>
           {message.type === 'error' ? (
-            <span>
+            <>
               There was an error with the form. Please email us directly at{' '}
-              <span className="text-black font-semibold">info@tina.io</span>
+              <span className={LABEL}>info@tina.io</span>
               <button
                 type="button"
                 onClick={copyEmail}
-                className="ml-1 align-middle inline-flex items-center text-gray-500 hover:text-black transition-colors"
+                className="ml-1 align-middle inline-flex items-center opacity-75 hover:opacity-100 transition-opacity"
                 title="Copy email address"
+                aria-label={
+                  copied ? 'Email address copied' : 'Copy email address'
+                }
               >
                 {copied ? (
-                  <TiTick className="text-green-500 w-4 h-4" />
+                  <TiTick className="w-4 h-4" />
                 ) : (
                   <BiCopy className="w-3.5 h-3.5" />
                 )}
               </button>
-            </span>
+            </>
           ) : (
-            <span>{message.text}</span>
+            message.text
           )}
-        </div>
+        </StatusMessage>
       )}
       <div className="flex flex-col gap-4 md:flex-row w-full">
         <Input
@@ -460,7 +456,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
             disabled={isProcessing}
             className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer"
           />
-          <span className="text-sm text-gray-600">
+          <span className={BODY_SMALL}>
             Subscribe to the TinaCMS newsletter
           </span>
         </label>

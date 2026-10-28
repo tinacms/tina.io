@@ -6,14 +6,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "SourceCodePro-Regular";
-  src: url("/fonts/SourceCodePro-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* IBM Plex Sans Medium */
 @font-face {
   font-family: 'IBMPlexSans-Medium';
@@ -23,9 +15,225 @@
   src: url('/fonts/IBMPlexSans-Medium.woff2') format('woff2');
 }
 
+/* IBM Plex Mono — code, terminal output and technical labels (`font-mono`).
+   From IBM's @ibm/plex-mono 2.5.0, SIL OFL 1.1 (public/fonts/IBMPlexMono-LICENSE.txt). */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-SemiBold.woff2') format('woff2');
+}
+
+/* Inter — the body face (`font-sans`). */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-Regular.woff2') format('woff2'),
+    url('/fonts/Inter-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-Italic.woff2') format('woff2'),
+    url('/fonts/Inter-Italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Inter-Medium.woff2') format('woff2'),
+    url('/fonts/Inter-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Inter-MediumItalic.woff2') format('woff2'),
+    url('/fonts/Inter-MediumItalic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Inter-Bold.woff2') format('woff2'),
+    url('/fonts/Inter-Bold.woff') format('woff');
+}
+
 :root {
   scroll-behavior: smooth;
   scroll-padding-top: 200px;
+
+  /* ──────────────────────────────────────────────────────────────────────
+     LAYER 1 — PRIMITIVES
+     Raw values, named after what they are. Nothing outside Layer 2 should
+     reference these; a component reaching for `orange-600` is reaching past
+     the meaning to the number. tailwind.config.js maps the colour ladders
+     onto these, so this block is the single source of every brand value.
+     ────────────────────────────────────────────────────────────────────── */
+  --orange-50: #fff8f3;
+  --orange-100: #ffede4;
+  --orange-200: #ffd3c1;
+  --orange-300: #ffab8b;
+  --orange-400: #ff724b;
+  --orange-500: #ec4815;
+  --orange-600: #d13f13;
+  --orange-700: #a5310f;
+  --orange-800: #7a230b;
+  --orange-900: #4c1507;
+
+  --blue-50: #dceeff;
+  --blue-100: #b4dbff;
+  --blue-200: #85c5fe;
+  --blue-300: #4eabfe;
+  --blue-400: #2296fe;
+  --blue-500: #0084ff;
+  --blue-600: #0574e4;
+  --blue-700: #0d5dbd;
+  --blue-800: #144696;
+  --blue-900: #1d2c6c;
+
+  --seafoam-50: #eefdf9;
+  --seafoam-100: #e9fbf4;
+  --seafoam-150: #c1f5eb;
+  --seafoam-200: #cff5e6;
+  --seafoam-300: #b4efd9;
+  --seafoam-400: #99e9cb;
+  --seafoam-500: #93e9be;
+  --seafoam-700: #529c7b;
+
+  --seafoam-900: #214c3d;
+
+  --yellow-100: #fef9c3;
+  --yellow-300: #fde047;
+  --yellow-800: #854d0e;
+
+  --red-50: #fef2f2;
+  --red-200: #fecaca;
+  --red-800: #991b1b;
+
+  --white: #ffffff;
+  --ink-900: #1c1b2e;
+  --slate-700: #334155;
+  --slate-500: #64748b;
+  --slate-100: #f1f5f9;
+
+  /* ──────────────────────────────────────────────────────────────────────
+     LAYER 2 — SEMANTIC TOKENS
+     What a colour is *for*. These are the only colours a component or a
+     type role should name. Every one points at a primitive — never a hex.
+     ────────────────────────────────────────────────────────────────────── */
+  /* Page titles are “lit from above”: every line runs from a light highlight
+     through the brand orange to a deep orange, so the type reads as raised.
+     The body of each letter stays at 3.8:1 or more on white; only the thin
+     highlight at the top of a line is 2.9:1. */
+  --text-heading-highlight: var(--orange-400);
+  --text-heading-start: var(--orange-500);
+  --text-heading-end: var(--orange-700);
+  /* Headings sit on the darkest ink; running text is a step lighter, so
+     paragraphs read softer without losing the heading hierarchy. */
+  --text-strong: var(--ink-900);
+  --text-body: var(--slate-700);
+  --text-subtle: var(--slate-500);
+  /* SLUB / eyebrow labels. Same grey as subtle on light surfaces; on dark
+     they turn white at 75% so they read apart from white links. */
+  --text-label: var(--slate-500);
+  /* Text on dark and brand-orange surfaces: solid white, because on the
+     orange footer any translucent white drops below 4.5:1. The on-dark
+     utility swaps the text tokens above for this inside its container. */
+  --text-on-dark: var(--white);
+  /* SLUB labels and footer legal links on dark: white at 75% opacity, so
+     they read apart from the white primary links. Deliberately below WCAG
+     AA (roughly 2.3–4.5:1 against the footer gradient) and approved by
+     design for short labels and secondary links. Don't "fix" this without
+     checking with design. */
+  --text-on-dark-label: color-mix(in srgb, var(--white) 75%, transparent);
+  /* Links: blue-700 is 6.3:1 on white; hover goes a step darker. Blue keeps
+     orange for the page title. The top-level nav items share this token. */
+  --text-link: var(--blue-700);
+  --text-link-hover: var(--blue-800);
+
+  /* Surface pairs: a fill and the text colour that belongs on it, for chips,
+     pills, badges and coloured table rows. A component names the pair (the
+     surface-* utilities in styles/tailwind.css), never the two colours, so
+     text can't end up on a fill it wasn't checked against. Contrast for
+     14px text, AA minimum 4.5:1. */
+  --surface-neutral: var(--slate-100);
+  --on-surface-neutral: var(--ink-900); /* 15.4:1 */
+  --surface-brand: var(--orange-100);
+  --on-surface-brand: var(--orange-700); /* 6.1:1 */
+  --border-brand: var(--orange-300);
+  --surface-info: var(--blue-50);
+  --on-surface-info: var(--blue-800); /* 7.6:1 */
+  --border-info: var(--blue-200);
+  --surface-success: var(--seafoam-100);
+  --on-surface-success: var(--seafoam-900); /* 9.0:1 */
+  --border-success: var(--seafoam-400);
+  --surface-warning: var(--yellow-100);
+  --on-surface-warning: var(--yellow-800); /* 6.4:1 */
+  --border-warning: var(--yellow-300);
+  /* Form errors: a tinted box, like the other status messages, so an error
+     can't pass for body text. */
+  --surface-error: var(--red-50);
+  --on-surface-error: var(--red-800); /* 7.6:1 */
+  --border-error: var(--red-200);
+  /* A chosen option in a list of cards (the language picker). Blue-500 is
+     3.4:1 on white, above the 3:1 minimum for non-text marks that show
+     selection. It replaces a surface's own border when both are set. */
+  --border-selected: var(--blue-500);
+  --surface-neutral-solid: var(--slate-500);
+  --on-surface-neutral-solid: var(--white); /* 4.8:1 */
+  --surface-brand-solid: var(--orange-600);
+  --on-surface-brand-solid: var(--white); /* 4.7:1 */
+
+  /* Type families. Headings are IBM Plex Sans; everything people read is
+     Inter; code and technical labels are IBM Plex Mono. They match the
+     font-ibm-plex, font-sans and font-mono classes in tailwind.config.js. */
+  --font-heading: 'IBMPlexSans-SemiBold', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ──────────────────────────────────────────────────────────────────────
+     LEGACY — pre-redesign colours outside the layers above. Most of the
+     brand tokens now point at primitives; the rest are still raw hex. Kept
+     because older blocks reference them; migrate to semantic tokens rather
+     than adding to this list.
+     ────────────────────────────────────────────────────────────────────── */
   --color-tina-blue-light: #2296fe;
   --color-tina-blue: #2296fe;
   --color-tina-blue-dark: #0574e4;
@@ -34,7 +242,7 @@
   --color-orange-dark: #d94217;
   --color-yellow: #f2c94c;
   --color-green: #6fcf97;
-  --color-black: #1c1b2e;
+  --color-black: var(--ink-900);
   --color-blue: #241748;
   --color-blue-light: #31215e;
   --color-white: #ffffff;
@@ -51,32 +259,23 @@
   --container-padding: 2rem;
 
   /* Tina Design Library */
-  --brand-primary: #EC4815;
-  --brand-primary-hover: #D13F13;
-  --brand-primary-light: #FFD3c1;
-  --brand-primary-text: #D13F13;
-  --brand-primary-contrast: #7a230b;
+  --brand-primary: var(--orange-500);
+  --brand-primary-hover: var(--orange-600);
+  --brand-primary-light: var(--orange-200);
+  --brand-primary-text: var(--orange-600);
+  --brand-primary-contrast: var(--orange-800);
 
-  --brand-primary-gradient-start: #FF724B;
-  --brand-primary-gradient-end: #D13F13;
+  --brand-primary-gradient-start: var(--orange-400);
+  --brand-primary-gradient-end: var(--orange-600);
 
-  --brand-secondary: #0084FF;
-  --brand-secondary-hover: #0574E4;
-  --brand-secondary-light: #DCEEFF;
-  --brand-secondary-text: #0574e4;
-  --brand-secondary-contrast: #1d2c6c;
+  --brand-secondary: var(--blue-500);
+  --brand-secondary-hover: var(--blue-600);
+  --brand-secondary-light: var(--blue-50);
+  --brand-secondary-text: var(--blue-600);
+  --brand-secondary-contrast: var(--blue-900);
 
-  --brand-secondary-gradient-start: #144696;
-  --brand-secondary-gradient-end: #1d2c6c;
-
-  --brand-tertiary: #93E9BE;
-  --brand-tertiary-hover: #72c39b;
-  --brand-tertiary-light: #EEFDF9;
-  --brand-tertiary-text: #39745c;
-  --brand-tertiary-contrast: #214c3d;
-
-  --brand-tertiary-gradient-start:  #B4EFD9;
-  --brand-tertiary-gradient-end: #72C39b;
+  --brand-secondary-gradient-start: var(--blue-800);
+  --brand-secondary-gradient-end: var(--blue-900);
 
   --glass-gradient-start: rgba(255, 255, 255, 0.1);
   --glass-gradient-end: rgba(255, 255, 255, 0.4);
@@ -86,8 +285,6 @@
   --neutral-background-quaternary: #E2E8F0;
   --neutral-background-quinary: #F1F5F9;
   --neutral-surface: #faebe5;
-  --neutral-text: #0f172a;
-  --neutral-text-secondary: #64748b;
   --neutral-border: #CBD5E1;
   --neutral-border-subtle: #e2e8f0;
 
@@ -98,11 +295,11 @@
 
 ::-moz-selection {
   background: var(--color-seafoam-dark);
-  color: var(--color-blue-light);
+  color: var(--text-strong);
 }
 ::selection {
   background: var(--color-seafoam-dark);
-  color: var(--color-blue-light);
+  color: var(--text-strong);
 }
 
 html {
@@ -123,42 +320,9 @@ h4 {
   }
 }
 
-.headingLarge {
-  font-family: var(--font-ibm-plex-semibold);
-  font-weight: bold;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-  font-size: 2.25rem;
-  color: #00255b;
-}
 
-.headingMedium {
-  font-size: 1.675rem;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-}
 
-.textHuge {
-  display: block;
-  width: 100%;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.375rem;
 
-  &:not(:last-child) {
-    margin-bottom: 2.5rem;
-  }
-}
-
-.textLarge {
-  font-size: 1.125rem;
-  opacity: 0.85;
-
-  &:not(:last-child) {
-    margin-bottom: 1.25rem;
-  }
-}
 
 .spacer {
   display: block;
@@ -205,6 +369,22 @@ h4 {
 .white {
   background: var(--color-white);
   color: var(--color-blue);
+}
+
+/* Code blocks: the PrismJS theme stylesheets (imported by the recipe and
+   code-block components) set their own font on code[class*="language-"].
+   They aren't in a Tailwind layer, so they would beat the CODE role. Hand the
+   font back: a role-code element takes its layered (role) values, and code
+   nested inside one inherits them. */
+:is(code, pre)[class*='language-'].role-code {
+  font-family: revert-layer;
+  font-size: revert-layer;
+  line-height: revert-layer;
+}
+.role-code :is(code, pre)[class*='language-'] {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 #chatbase-bubble-button {

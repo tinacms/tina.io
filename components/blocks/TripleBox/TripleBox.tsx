@@ -4,6 +4,13 @@ import type {
   PageBlocksTripleBox,
   PageBlocksTripleBoxBoxes,
 } from 'tina/__generated__/types';
+import {
+  BODY_SMALL,
+  CARD_TITLE,
+  LABEL,
+  SUB_HEADING,
+  SURFACE,
+} from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
 import RenderButton from '@/utils/renderButtonArrayHelper';
@@ -42,14 +49,14 @@ function TripleBoxItemCard({ data }: { data: PageBlocksTripleBoxBoxes }) {
       className="flex flex-col gap-2 bg-gradient-to-br from-white/10 to-white/40 shadow-md rounded-lg p-6 h-full"
     >
       <Image src={image} alt={title} width={40} height={40} />
-      <h3 className="text-2xl font-ibm-plex font-semibold h-">{title}</h3>
-      <p className="text-sm">{description}</p>
+      <h3 className={CARD_TITLE}>{title}</h3>
+      <p className={BODY_SMALL}>{description}</p>
       {badges && badges.length > 0 && (
         <div className="flex gap-2 items-end mt-auto">
           {badges.map((badge) => (
             <span
               key={badge}
-              className="text-sm bg-slate-400 text-zinc-50 px-1.5 py-0.5 rounded-md"
+              className={`${SURFACE.neutralSolid} ${LABEL} px-1.5 py-0.5 rounded-md`}
             >
               {badge}
             </span>
@@ -64,11 +71,9 @@ export default function TripleBox({ data }: { data: PageBlocksTripleBox }) {
   return (
     <Container size="medium" className="flex flex-col gap-6">
       <div className="flex flex-col lg:flex-row gap-4 justify-between lg:items-center items-start">
-        <h2 className="text-2xl font-semibold font-ibm-plex">{data.title}</h2>
+        <h2 className={CARD_TITLE}>{data.title}</h2>
         <div className="flex gap-6 items-center">
-          <h3 className="text-xl font-normal text-neutral-text-secondary">
-            {data.tagLine}
-          </h3>
+          <h3 className={SUB_HEADING}>{data.tagLine}</h3>
           {data.buttons && data.buttons.length > 0 && (
             <div className="flex gap-2 items-center">
               {data.buttons.map((button) => (

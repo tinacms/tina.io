@@ -1,7 +1,7 @@
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { useState } from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import TableBox from '../Table/table';
 import { CARD_ROWS_CLASSES, PlanCard } from './PlanCard';
 
@@ -51,7 +51,7 @@ export function PillSwitch({
             />
           </div>
           {isMonthly && (
-            <div className="flex items-center pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out text-black opacity-100">
+            <div className="flex items-center pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out opacity-100">
               <TinaMarkdown
                 components={docAndBlogComponents}
                 content={toggleText}
@@ -69,16 +69,14 @@ export function PricingBlock({ data }) {
 
   return (
     <div className="max-w-7xl w-full px-8 mx-auto">
-      {data.isHeadingOne ? (
-        <h1
-          className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
-        >
+      {/* The schema has no isHeadingOne field and this block is always first
+          on its page, so default to the h1. */}
+      {data.isHeadingOne !== false ? (
+        <h1 className={`${PAGE_TITLE} text-center justify-center`}>
           {data.headline}
         </h1>
       ) : (
-        <h2
-          className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
-        >
+        <h2 className={`${SECTION_TITLE} text-center justify-center`}>
           {data.headline}
         </h2>
       )}

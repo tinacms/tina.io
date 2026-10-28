@@ -87,12 +87,6 @@ module.exports = {
           lineHeight: '1.5',
         },
       ],
-      md: [
-        '16px',
-        {
-          lineHeight: '1.5',
-        },
-      ],
       lg: [
         '18px',
         {
@@ -303,15 +297,6 @@ module.exports = {
           'var(--brand-secondary-gradient-start)',
         'brand-secondary-gradient-end': 'var(--brand-secondary-gradient-end)',
 
-        'brand-tertiary': 'var(--brand-tertiary)',
-        'brand-tertiary-hover': 'var(--brand-tertiary-hover)',
-        'brand-tertiary-light': 'var(--brand-tertiary-light)',
-        'brand-tertiary-text': 'var(--brand-tertiary-text)',
-        'brand-tertiary-contrast': 'var(--brand-tertiary-contrast)',
-
-        'brand-tertiary-gradient-start': 'var(--brand-tertiary-gradient-start)',
-        'brand-tertiary-gradient-end': 'var(--brand-tertiary-gradient-end)',
-
         // Background gradients and glass
         'glass-gradient-start': 'var(--glass-gradient-start)',
         'glass-gradient-end': 'var(--glass-gradient-end)',
@@ -326,59 +311,64 @@ module.exports = {
         'neutral-background-tertiary': 'var(--neutral-background-tertiary)',
         'neutral-background-quaternary': 'var(--neutral-background-quaternary)',
         'neutral-background-quinary': 'var(--neutral-background-quinary)',
-        'neutral-text': 'var(--neutral-text)',
-        'neutral-text-secondary': 'var(--neutral-text-secondary)',
+
+        // Semantic type colours — what the type roles in
+        // components/styles/typography.ts are allowed to name.
+        // `heading` is a gradient, so it is a utility in styles/tailwind.css
+        // rather than a flat colour here.
+        strong: 'var(--text-strong)',
+        body: 'var(--text-body)',
+        subtle: 'var(--text-subtle)',
+        label: 'var(--text-label)',
+        link: 'var(--text-link)',
+        'link-hover': 'var(--text-link-hover)',
         'neutral-border': 'var(--neutral-border)',
         'neutral-border-subtle': 'var(--neutral-border-subtle)',
+        selected: 'var(--border-selected)',
 
         // Code Block Background
         'background-brand-code': 'var(--background-brand-code)',
         seafoam: {
-          50: '#EEFDF9',
-          100: '#E9FBF4',
-          150: '#C1F5EB',
-          200: '#CFF5E6',
-          300: '#B4EFD9',
-          400: '#99E9CB',
-          500: '#93E9BE',
-          600: '#72C39B',
-          700: '#529C7B',
-          800: '#39745C',
-          900: '#214C3D',
-          950: '#122A21',
+          50: 'var(--seafoam-50)',
+          100: 'var(--seafoam-100)',
+          150: 'var(--seafoam-150)',
+          200: 'var(--seafoam-200)',
+          300: 'var(--seafoam-300)',
+          400: 'var(--seafoam-400)',
+          500: 'var(--seafoam-500)',
+          700: 'var(--seafoam-700)',
         },
         blue: {
-          50: '#DCEEFF',
-          100: '#B4DBFF',
-          200: '#85C5FE',
-          300: '#4EABFE',
-          400: '#2296FE',
-          500: '#0084FF',
-          600: '#0574E4',
-          700: '#0D5DBD',
-          800: '#144696',
-          900: '#1D2C6C',
-          950: '#241748',
-          1000: '#0D5DBD',
+          50: 'var(--blue-50)',
+          100: 'var(--blue-100)',
+          200: 'var(--blue-200)',
+          300: 'var(--blue-300)',
+          400: 'var(--blue-400)',
+          500: 'var(--blue-500)',
+          600: 'var(--blue-600)',
+          700: 'var(--blue-700)',
+          800: 'var(--blue-800)',
+          900: 'var(--blue-900)',
         },
         orange: {
-          50: '#FFF8F3',
-          100: '#FFEDE4',
-          200: '#FFD3C1',
-          300: '#FFAB8B',
-          400: '#FF724B',
-          500: '#EC4815',
-          600: '#D13F13',
-          700: '#A5310F',
-          800: '#7A230B',
-          900: '#4C1507',
-          950: '#2F0D04',
+          50: 'var(--orange-50)',
+          100: 'var(--orange-100)',
+          200: 'var(--orange-200)',
+          300: 'var(--orange-300)',
+          400: 'var(--orange-400)',
+          500: 'var(--orange-500)',
+          600: 'var(--orange-600)',
+          700: 'var(--orange-700)',
+          800: 'var(--orange-800)',
+          900: 'var(--orange-900)',
         },
         success: '#22C55E',
         warning: '#F59E0B',
         error: '#EF4444',
         background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        // Default text colour follows the body token rather than shadcn's own
+        // --foreground, so unstyled text reads as body copy, not heading ink.
+        foreground: 'var(--text-body)',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -425,10 +415,8 @@ module.exports = {
           'IBMPlexSans-Medium',
           ...defaultTheme.fontFamily.sans,
         ],
-        'source-code-pro': [
-          'SourceCodePro-Regular',
-          ...defaultTheme.fontFamily.mono,
-        ],
+        // Code and technical labels. Matches --font-mono in app/global.css.
+        mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
       },
       gridTemplateColumns: {
         'auto-sm': 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -473,5 +461,5 @@ module.exports = {
     './app/**/**/*.{js,ts,jsx,tsx}', // Nested components in app/
     './src/**/*.{js,ts,jsx,tsx}',
   ],
-  safelist: ['font-ibm-plex-semibold', 'font-source-code-pro'],
+  safelist: ['font-ibm-plex-semibold'],
 };

@@ -10,7 +10,6 @@ jest.doMock('tinacms/dist/rich-text', () => ({
       'Linked description',
     ),
 }));
-jest.doMock('../Table/table', () => ({ LINK_CLASSES: 'underline' }));
 jest.doMock('utils/renderButtonArrayHelper', () => ({
   __esModule: true,
   default: () => {

@@ -15,6 +15,7 @@ import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
+import { LABEL, NAV_LINK, NAV_MENU_LINK } from '@/component/styles/typography';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import {
@@ -239,10 +240,7 @@ interface NavItemMapperContext {
   starCount: number;
 }
 
-const _navLinkClasses =
-  'flex items-center py-2 text-blue-700 hover:text-blue-500 transition ease-out duration-150 drop-shadow-sm text-base font-medium';
-
-const _mobileNavLinkClasses = `${_navLinkClasses} text-lg`;
+const _navLinkClasses = `flex items-center py-2 transition ease-out duration-150 drop-shadow-sm ${NAV_LINK}`;
 
 interface MobileNavItemMapperContext {
   index: number;
@@ -346,7 +344,7 @@ function desktopNavItemMapper(
                       setOpenDropdown(null);
                       openModal(subItem.modal);
                     }}
-                    className="touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60 rounded-md transition duration-150 ease-out text-gray-600 hover:text-blue-500 w-full text-left cursor-pointer"
+                    className={`touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60 rounded-md transition duration-150 ease-out w-full text-left cursor-pointer ${NAV_MENU_LINK}`}
                   >
                     {subItem.label}
                   </button>
@@ -365,7 +363,7 @@ function desktopNavItemMapper(
                     onClick={() => {
                       setOpenDropdown(null);
                     }}
-                    className="touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60  rounded-md transition duration-150 ease-out text-gray-600 hover:text-blue-500"
+                    className={`touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60 rounded-md transition duration-150 ease-out ${NAV_MENU_LINK}`}
                   >
                     {subItem.label}
                     {subItem.href.startsWith('https') && (
@@ -393,9 +391,7 @@ function desktopNavItemMapper(
             <span className="flex items-center">
               <GitHubIcon />
               {starCount > 0 && (
-                <span className="text-sm font-medium">
-                  {starCount.toLocaleString()}
-                </span>
+                <span className={LABEL}>{starCount.toLocaleString()}</span>
               )}
             </span>
           </Link>
@@ -426,7 +422,7 @@ function mobileNavItemMapper(
       return (
         <li
           key={`${index}-${item.label}`}
-          className={`group ${_mobileNavLinkClasses} flex flex-col items-start`}
+          className={`group ${_navLinkClasses} flex flex-col items-start`}
         >
           <button
             type="button"
@@ -455,7 +451,7 @@ function mobileNavItemMapper(
                       closeMenu();
                       openModal(subItem.modal);
                     }}
-                    className="py-2 px-2 flex items-center text-gray-600 hover:text-blue-500 w-full text-left cursor-pointer"
+                    className={`py-2 px-2 flex items-center w-full text-left cursor-pointer ${NAV_MENU_LINK}`}
                   >
                     {subItem.label}
                   </button>
@@ -469,7 +465,7 @@ function mobileNavItemMapper(
                       setOpenDropdown(null);
                       closeMenu();
                     }}
-                    className="py-2 px-2 flex items-center text-gray-600 hover:text-blue-500"
+                    className={`py-2 px-2 flex items-center ${NAV_MENU_LINK}`}
                   >
                     {subItem.label}
                     {subItem.href.startsWith('https://') && (
@@ -487,7 +483,7 @@ function mobileNavItemMapper(
       return (
         <li
           key={`${index}-${item.href}`}
-          className={`group ${_mobileNavLinkClasses}`}
+          className={`group ${_navLinkClasses}`}
         >
           <Link
             href={item.href}
@@ -504,7 +500,7 @@ function mobileNavItemMapper(
       return (
         <li
           key={`${index}-${item.owner}-${item.repo}`}
-          className={`group ${_mobileNavLinkClasses} py-2 flex items-center`}
+          className={`group ${_navLinkClasses} py-2 flex items-center`}
         >
           <Link
             href={`https://github.com/${item.owner}/${item.repo}`}
@@ -516,9 +512,7 @@ function mobileNavItemMapper(
             <span className="flex items-center">
               <GitHubIcon />
               {starCount > 0 && (
-                <span className="text-sm font-medium">
-                  {starCount.toLocaleString()}
-                </span>
+                <span className={LABEL}>{starCount.toLocaleString()}</span>
               )}
             </span>
           </Link>
@@ -906,7 +900,9 @@ export function AppNavBar({ sticky = true }) {
         open={modalType === 'LanguageSelect'}
         onOpenChange={(open) => !open && closeModal()}
       >
-        <DialogContent className="sm:max-w-md">
+        {/* 90vw on phones like the other dialogs; without it the dialog
+            shrinks to its content and the language cards overflow. */}
+        <DialogContent className="w-[90vw] sm:max-w-md">
           <LanguageSelect
             onLanguageSelect={handleLanguageChange}
             currentLanguage={selectedFlag}

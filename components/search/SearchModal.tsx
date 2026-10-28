@@ -5,8 +5,16 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  EYEBROW,
+  EYEBROW_LINK,
+  FIELD,
+  HIGHLIGHT,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-
 // Helper function for highlighting Algolia search hits
 export const highlightText = (text: string) => {
   const regex = /<em>(.*?)<\/em>/g;
@@ -19,7 +27,7 @@ export const highlightText = (text: string) => {
       segments.push(text.substring(lastIndex, match.index));
     }
     segments.push(
-      <span key={match.index} className="bg-orange-200 text-black font-bold">
+      <span key={match.index} className={HIGHLIGHT}>
         {match[1]}
       </span>,
     );
@@ -53,10 +61,10 @@ export const SearchResultsOverflowBody = ({
           className="py-3 px-4 border-b border-gray-100 group hover:bg-gray-50 transition-colors"
         >
           <Link href={`/blog/${item.slug}`} onClick={onResultClick}>
-            <h2 className="text-md font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
+            <h2 className={`${SUB_HEADING} break-words`}>
               {highlightText(item._highlightResult.title.value)}
             </h2>
-            <p className="text-gray-600 group-hover:text-gray-800 text-xs font-normal line-clamp-2 break-words mt-1">
+            <p className={`${BODY_MUTED} line-clamp-2 break-words mt-1`}>
               {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>
@@ -65,17 +73,17 @@ export const SearchResultsOverflowBody = ({
       <div>
         {numberOfResults > 0 ? (
           <Link
-            className="underline"
+            className={EYEBROW_LINK}
             href={`/search?query=${encodeURIComponent(query)}`}
             onClick={onResultClick}
           >
-            <div className="pt-3 pb-3 px-4 text-md font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent hover:from-orange-300 hover:via-orange-400 hover:to-orange-600 border-t border-gray-100">
+            <div className="pt-3 pb-3 px-4 border-t border-gray-100">
               See All {numberOfResults} Results
             </div>
           </Link>
         ) : (
           !isLoading && (
-            <div className="pt-8 px-4 text-center text-md font-inter font-semibold text-gray-500">
+            <div className={`${BODY_SMALL} pt-8 px-4 text-center`}>
               No Llamas Found...
             </div>
           )
@@ -116,14 +124,12 @@ export const SearchResultsOverflowTabs = ({
       <div className="border-b border-gray-200">
         <div className="flex justify-between items-center">
           <nav className="relative flex gap-16 px-6">
-            <span className="font-inter font-semibold text-sm py-4 text-blue-800">
-              BLOGS ({numberOfResults})
-            </span>
+            <span className={`${EYEBROW} py-4`}>BLOGS ({numberOfResults})</span>
           </nav>
         </div>
       </div>
       {isLoading && (
-        <div className="pt-8 px-6 text-center text-md bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-ibm-plex">
+        <div className={`${BODY_SMALL} pt-8 px-6 text-center`}>
           Mustering all the Llamas...
         </div>
       )}
@@ -183,7 +189,7 @@ export const SearchModal = ({
             <input
               ref={inputRef}
               type="text"
-              className="w-full py-3 px-6 rounded-full border border-gray-300 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className={`w-full py-3 px-6 rounded-full border border-gray-300 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent ${FIELD}`}
               placeholder="Search blog posts..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -207,12 +213,10 @@ export const SearchModal = ({
                 onResultClick={onClose}
               />
             ) : (
-              <div className="p-12 text-center text-gray-500">
+              <div className="p-12 text-center">
                 <HiMagnifyingGlass className="mx-auto text-5xl mb-4 text-gray-300" />
-                <p className="text-lg font-inter font-medium">
-                  Start typing to search...
-                </p>
-                <p className="text-sm text-gray-400 mt-2">
+                <p className={BODY_MUTED}>Start typing to search...</p>
+                <p className={`${BODY_MUTED} mt-2`}>
                   Search through blog posts
                 </p>
               </div>
@@ -243,7 +247,7 @@ export const SearchBar = ({ className = '' }: { className?: string }) => {
       <div className={`relative ${className}`}>
         <input
           type="text"
-          className="w-full p-2 pl-6 rounded-full border border-gray-300/20 bg-white/50 shadow-lg cursor-pointer"
+          className={`w-full p-2 pl-6 rounded-full border border-gray-300/20 bg-white/50 shadow-lg cursor-pointer ${FIELD}`}
           placeholder="Search"
           onClick={openModal}
           onKeyDown={handleInputKeyDown}

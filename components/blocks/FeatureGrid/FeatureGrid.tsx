@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
+import { BODY_SMALL, CARD_TITLE } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
@@ -54,11 +55,9 @@ const Feature = ({ data, id }) => {
       className="flex flex-col gap-4"
     >
       {headline && (
-        <h3 className="text-2xl md:text-xl lg:text-2xl font-ibm-plex leading-tight text-transparent bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text mb-2 break-words">
-          {headline}
-        </h3>
+        <h3 className={`${CARD_TITLE} mb-2 break-words`}>{headline}</h3>
       )}
-      {text && <p>{text}</p>}
+      {text && <p className={BODY_SMALL}>{text}</p>}
       {actions && <Actions items={actions} />}
     </div>
   );

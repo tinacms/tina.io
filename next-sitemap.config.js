@@ -5,7 +5,13 @@ module.exports = {
     policies: [
       {
         userAgent: '*',
-        disallow: ['/api/*', '/github/*', '/rss.xml', '/blog/page/*'],
+        disallow: [
+          '/api/*',
+          '/github/*',
+          '/rss.xml',
+          '/blog/page/*',
+          '/design',
+        ],
       },
       { userAgent: '*', allow: '/' },
     ],
@@ -24,6 +30,8 @@ module.exports = {
     '/blog/instagram/*',
     '/zh/blog/og/*',
     '/zh/blog/instagram/*',
+    // Internal type reference; noindex until the team decides to publish it.
+    '/design',
     // Docs now live in a separate instance at tina.io/docs; see its own sitemap above.
     '/docs',
     '/docs/*',

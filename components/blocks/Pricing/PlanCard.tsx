@@ -33,8 +33,16 @@ import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  CAPTION,
+  CARD_TITLE,
+  CARD_TITLE_FEATURED,
+  LABEL,
+  LINK,
+} from '@/component/styles/typography';
 import type { PageBlocksPricingPlans } from '../../../tina/__generated__/types';
-import { LINK_CLASSES } from '../Table/table';
 
 const icons = {
   FaClock,
@@ -84,7 +92,7 @@ const CardItemName = ({ item }) =>
       href={item.link}
       target="_blank"
       rel="noopener noreferrer"
-      className={LINK_CLASSES}
+      className={LINK}
     >
       {item.name}
     </Link>
@@ -104,14 +112,12 @@ const CardItems = ({
       return (
         <div
           key={`${item.name}-${index}`}
-          className={`${ITEM_GRID_CLASSES} mt-2 ${isLarge ? 'text-lg' : ''}`}
+          className={`${ITEM_GRID_CLASSES} ${BODY_SMALL} mt-2`}
         >
           {Icon ? <Icon /> : <span />}
           {comparison ? <span>{item.name}</span> : <CardItemName item={item} />}
           {item.description && (
-            <div
-              className={`col-start-2 my-1 text-gray-600/70 ${isLarge ? 'text-md' : 'text-sm'}`}
-            >
+            <div className={`${CAPTION} col-start-2 my-1`}>
               {!isMonthly
                 ? (item.annualDescription ?? item.description)
                 : item.description}
@@ -169,13 +175,14 @@ export const PlanCard = ({
           .replace('{total}', formatDollars(yearlyPrice))
           .replace('{saving}', formatDollars(monthlyPrice * 12 - yearlyPrice));
   const featuresHeading = data.featuresHeading || 'Includes:';
+  const titleRole = data.isStarred ? CARD_TITLE_FEATURED : CARD_TITLE;
 
   return (
     <span className={`animate-pop-in block h-full ${cardRows}`}>
       <div
         className={`h-full ${comparison ? '' : 'hover:scale-[1.03]'} hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl transform transition-transform duration-300 border border-transparent overflow-hidden ${cardRows} ${
           data.isMuted
-            ? 'grayscale bg-gray-50/70 text-gray-600 shadow-lg'
+            ? 'grayscale bg-gray-50/70 opacity-75 shadow-lg'
             : 'shadow-2xl'
         }`}
       >
@@ -186,31 +193,21 @@ export const PlanCard = ({
           </div>
         )}
         <div>
-          <Heading
-            className={`font-ibm-plex text-3xl bg-linear-to-br bg-clip-text text-transparent ${
-              data.isStarred
-                ? 'from-orange-400 via-orange-600 to-orange-800'
-                : 'from-blue-600 via-blue-800 to-blue-1000'
-            }`}
-          >
-            {data.name}
-          </Heading>
+          {/* The recommended (starred) plan is the one agreed exception:
+              its name and price use the brand orange gradient. */}
+          <Heading className={titleRole}>{data.name}</Heading>
           <TinaMarkdown
             content={data.description}
             components={comparison ? comparisonComponents : pricingComponents}
           />
           <div className="pt-10" aria-live="polite">
-            <span className="text-3xl font-ibm-plex bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-              {price}
-            </span>
+            <span className={titleRole}>{price}</span>
             {data.interval && (
-              <span className="pl-2 text-lg bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-                {data.interval}
-              </span>
+              <span className={`${BODY_MUTED} pl-2`}>{data.interval}</span>
             )}
           </div>
           <div
-            className={`py-1 text-stone-600 text-sm transition-all duration-500 ${
+            className={`${CAPTION} py-1 transition-all duration-500 ${
               isMonthly
                 ? 'animate-fadeOut opacity-0'
                 : 'animate-fadeIn opacity-100'
@@ -237,10 +234,12 @@ export const PlanCard = ({
                 }
               >
                 <div
-                  className="flex justify-between items-center font-semibold cursor-pointer"
+                  className="flex justify-between items-center cursor-pointer"
                   onClick={toggleAccordion}
                 >
-                  <p className="flex text-xl items-center">{featuresHeading}</p>
+                  <p className={`${LABEL} flex items-center`}>
+                    {featuresHeading}
+                  </p>
                   <span className="ml-2">
                     {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
                   </span>
@@ -259,7 +258,7 @@ export const PlanCard = ({
                   comparison ? 'block' : 'non-accordion-content hidden xl:block'
                 }
               >
-                <p className="font-semibold">{featuresHeading}</p>
+                <p className={LABEL}>{featuresHeading}</p>
                 <CardItems
                   items={data.cardItem}
                   isMonthly={isMonthly}
@@ -270,16 +269,16 @@ export const PlanCard = ({
           )}
 
           {!comparison && data.addOn?.isEnabled && data.addOn?.name && (
-            <label className="mt-6 flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm cursor-pointer select-none">
+            <label className="mt-6 flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white cursor-pointer select-none">
               <input
                 type="checkbox"
                 className="size-4 accent-orange-500 cursor-pointer"
                 checked={isAddOnSelected}
                 onChange={(event) => setAddOnSelected(event.target.checked)}
               />
-              <span className="font-semibold">{data.addOn.name}</span>
+              <span className={LABEL}>{data.addOn.name}</span>
               {data.addOn.monthlyPrice > 0 && (
-                <span className="ml-auto font-semibold whitespace-nowrap">
+                <span className={`${LABEL} ml-auto whitespace-nowrap`}>
                   +{formatDollars(data.addOn.monthlyPrice)}
                   {data.addOn.interval || '/month'}
                 </span>

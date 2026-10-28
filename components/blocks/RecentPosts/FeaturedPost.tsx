@@ -1,8 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { tinaField } from 'tinacms/dist/react';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  EYEBROW,
+  LINK,
+  SUB_HEADING,
+  SURFACE,
+} from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
-import { formatDate } from './RecentPosts';
+import { formatDate } from '@/utils/formatDate';
 
 type FeaturedPostProps = {
   featuredPost: {
@@ -52,19 +60,21 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
           <div className="flex items-center gap-2">
             {featuredPost.datePosted && (
               <p
-                className="text-sm text-neutral-text-secondary w-fit"
+                className={`${BODY_MUTED} w-fit`}
                 data-tina-field={tinaField(featuredPost, 'datePosted')}
               >
                 {formatDate(featuredPost.datePosted)}
               </p>
             )}
-            <span className="uppercase bg-orange-500 text-white px-3 py-0.5 rounded-full text-sm font-li w-fit">
+            <span
+              className={`${SURFACE.brandSolid} ${EYEBROW} px-3 py-0.5 rounded-full w-fit`}
+            >
               Featured
             </span>
           </div>
           {featuredPost.title && (
             <h3
-              className="text-lg"
+              className={SUB_HEADING}
               data-tina-field={tinaField(featuredPost, 'title')}
             >
               {featuredPost.title}
@@ -73,7 +83,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
 
           {featuredPost.description && (
             <p
-              className="text-xs text-neutral-text-secondary"
+              className={BODY_SMALL}
               data-tina-field={tinaField(featuredPost, 'description')}
             >
               {featuredPost.description}
@@ -81,21 +91,18 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
           )}
 
           {featuredPost.authorName && (
-            <p className="text-neutral-text-secondary text-sm">
+            <p className={BODY_MUTED}>
               By{' '}
               {featuredPost.authorUrl ? (
                 <Link
-                  className="relative hover:text-neutral-text z-2 uppercase underline transition-colors"
+                  className={`${BODY_MUTED} ${LINK} relative z-2`}
                   href={featuredPost.authorUrl}
                   data-tina-field={tinaField(featuredPost, 'authorName')}
                 >
                   {featuredPost.authorName}
                 </Link>
               ) : (
-                <span
-                  className="uppercase"
-                  data-tina-field={tinaField(featuredPost, 'authorName')}
-                >
+                <span data-tina-field={tinaField(featuredPost, 'authorName')}>
                   {featuredPost.authorName}
                 </span>
               )}

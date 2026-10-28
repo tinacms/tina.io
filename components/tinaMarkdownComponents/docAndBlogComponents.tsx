@@ -12,6 +12,18 @@ import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/getDocIds';
 import { unclipEmoji } from 'utils/unclipEmoji';
+import {
+  BODY,
+  BODY_MUTED,
+  BODY_SMALL,
+  CARD_TITLE,
+  CODE,
+  EYEBROW,
+  LABEL,
+  LINK,
+  SUB_HEADING,
+  SURFACE,
+} from '@/component/styles/typography';
 import { Prism } from '../styles/Prism';
 import { AccordionBlock } from './templateComponents/accordionBlock';
 
@@ -119,7 +131,7 @@ export const docAndBlogComponents: Components<{
   },
   recipeBlock: (props) => {
     return (
-      <div className="text-white">
+      <div>
         <RecipeBlock data={props} />
       </div>
     );
@@ -187,7 +199,7 @@ export const docAndBlogComponents: Components<{
   ),
   code: (props) => (
     <code
-      className="px-1 text-orange-500 p-0.5  bg-orange-500/5 rounded font-source-code-pro"
+      className={`${CODE} ${SURFACE.neutral} px-1 p-0.5 rounded`}
       {...props}
     />
   ),
@@ -204,10 +216,10 @@ export const docAndBlogComponents: Components<{
         <hr></hr>
         <button
           type="button"
-          className="flex w-full items-start justify-between text-left text-gray-900"
+          className="flex w-full items-start justify-between text-left"
           onClick={handleToggle}
         >
-          <h3>{props.heading}</h3>
+          <h3 className={SUB_HEADING}>{props.heading}</h3>
           {openTab ? <FaMinus /> : <FaPlus />}
         </button>
         {openTab && (
@@ -224,7 +236,7 @@ export const docAndBlogComponents: Components<{
   h1: (props) => <FormatHeaders level={1} {...props} />,
   h2: (props) => <FormatHeaders level={2} {...props} />,
   h3: (props) => <FormatHeaders level={3} {...props} />,
-  h4: (props) => <FormatHeaders level={5} {...props} />,
+  h4: (props) => <FormatHeaders level={4} {...props} />,
   h5: (props) => <FormatHeaders level={5} {...props} />,
   h6: (props) => <FormatHeaders level={6} {...props} />,
   img: (props) => {
@@ -237,9 +249,7 @@ export const docAndBlogComponents: Components<{
           title={props.caption || ''}
         />
         {props.caption && (
-          <div className="text-sm font-ibm-plex text-gray-500">
-            Figure: {props.caption}
-          </div>
+          <div className={BODY_MUTED}>Figure: {props.caption}</div>
         )}
       </span>
     );
@@ -250,11 +260,7 @@ export const docAndBlogComponents: Components<{
   p: (props) => <p className="mb-2" {...props} />,
   a: (props) => {
     return (
-      <a
-        href={props.url}
-        {...props}
-        className="underline transition-all duration-200 ease-out hover:text-orange-500"
-      />
+      <a href={props.url} {...props} className={LINK} />
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );
   },
@@ -272,7 +278,7 @@ export const docAndBlogComponents: Components<{
             className="text-white bg-linear-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full my-2 md:my-0 md:mx-2 mx-0"
           />
         </div>
-        <div className="leading-6">
+        <div className={BODY}>
           <TinaMarkdown
             content={props.children.props.content as any}
             components={docAndBlogComponents}
@@ -306,33 +312,33 @@ export const docAndBlogComponents: Components<{
             <div className="w-full md:w-1/3">
               <div className="mb-1">
                 {property.required && (
-                  <span className="text-orange-500 font-medium text-sm">
+                  <span
+                    className={`${LABEL} ${SURFACE.brand} rounded border px-1.5`}
+                  >
                     REQUIRED
                   </span>
                 )}
                 {property.experimental && (
-                  <span className="text-seafoam-700 font-medium text-sm">
+                  <span
+                    className={`${LABEL} ${SURFACE.info} rounded border px-1.5`}
+                  >
                     EXPERIMENTAL
                   </span>
                 )}
               </div>
-              <div className="font-ibm-plex text-blue-500 font-medium break-normal max-w-full inline-block">
+              <div className={`${CODE} break-normal max-w-full inline-block`}>
                 {property?.name?.replace(/([A-Z])/g, '\u200B$1')}
               </div>
-              <div className="text-gray-500 text-sm">{property.type}</div>
+              <div className={CODE}>{property.type}</div>
             </div>
-            <div className="w-full md:w-2/3">
+            <div className={`${BODY_SMALL} w-full md:w-2/3`}>
               <TinaMarkdown
                 content={property.description as any}
                 components={docAndBlogComponents}
               />
               {property.default && (
-                <div className="text-slate-900 text-md">
-                  Default is{' '}
-                  <span className="font-source-code-pro text-orange-500">
-                    {property.default}
-                  </span>
-                  .
+                <div className={BODY_SMALL}>
+                  Default is <span className={CODE}>{property.default}</span>.
                 </div>
               )}
             </div>
@@ -359,11 +365,13 @@ export const docAndBlogComponents: Components<{
           >
             <div>
               {required && (
-                <p className="text-orange-500 font-medium text-sm">REQUIRED</p>
+                <p
+                  className={`${LABEL} ${SURFACE.brand} rounded px-1.5 inline-block`}
+                >
+                  REQUIRED
+                </p>
               )}
-              <h3 className="text-md font-medium text-blue-500 font-ibm-plex">
-                {groupName || 'Object'}
-              </h3>
+              <h3 className={SUB_HEADING}>{groupName || 'Object'}</h3>
             </div>
 
             <ChevronRight
@@ -398,9 +406,7 @@ export const docAndBlogComponents: Components<{
           props.title ? 'pt-6' : 'pt-2'
         }`}
       >
-        {props.title && (
-          <h2 className="text-3xl text-blue-600 mb-6">{props.title}</h2>
-        )}
+        {props.title && <h2 className={`${CARD_TITLE} mb-6`}>{props.title}</h2>}
 
         {/* Process properties in order, grouping only adjacent items with same groupName */}
         {(() => {
@@ -477,12 +483,16 @@ export const docAndBlogComponents: Components<{
         })()}
 
         {props.property?.some((property) => property.required) && (
-          <div className=" mx-6 mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
+          <div
+            className={`${SURFACE.info} mx-6 mt-6 p-4 rounded-md flex items-start gap-3`}
+          >
             <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 shrink-0" />
-            <p className="text-sm text-gray-700">
+            <p className={BODY_MUTED}>
               All properties marked as{' '}
-              <span className="text-[#FF5533] font-medium">REQUIRED</span> must
-              be specified for the field to work properly.
+              <span className={`${LABEL} ${SURFACE.brand} rounded px-1.5`}>
+                REQUIRED
+              </span>{' '}
+              must be specified for the field to work properly.
             </p>
           </div>
         )}
@@ -518,8 +528,8 @@ export const docAndBlogComponents: Components<{
                         key={`cell-${rowIndex}-${cellIndex}`}
                         className={`border border-orange-100 px-4 py-2 ${
                           rowIndex === 0
-                            ? 'font-normal bg-white/50 text-left text-orange-500 font-ibm-plex'
-                            : ''
+                            ? `${EYEBROW} bg-white/50 text-left`
+                            : BODY_SMALL
                         } ${cellIndex === 0 ? 'break-words max-w-xs' : ''}`}
                       >
                         {/* @ts-ignore - Linter is wrong about the actual structure */}
@@ -571,7 +581,7 @@ export const docAndBlogComponents: Components<{
         ></iframe>
       </div>
       {caption && (
-        <div className="text-sm font-ibm-plex text-gray-500">
+        <div className={BODY_MUTED}>
           Video: {caption} {minutes && `(${minutes} minutes)`}
         </div>
       )}
@@ -579,7 +589,7 @@ export const docAndBlogComponents: Components<{
   ),
 
   CreateAppCta: ({ ctaText, cliText }) => (
-    <>
+    <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
       <a
         href="/docs/introduction/using-starter/"
         style={{
@@ -597,22 +607,11 @@ export const docAndBlogComponents: Components<{
       </a>
 
       <div
-        style={{
-          padding: '1rem 1.5rem',
-          fontFamily: 'monospace',
-          whiteSpace: 'nowrap',
-          width: 'auto',
-          display: 'inline-block',
-          border: '1px solid #8080803b',
-          lineHeight: '1em',
-          borderRadius: '10px',
-          marginLeft: '20px',
-          fontSize: '1rem',
-        }}
+        className={`${CODE} inline-block whitespace-nowrap px-6 py-4 border border-neutral-border-subtle rounded-lg`}
       >
         {cliText}
       </div>
-    </>
+    </div>
   ),
   WarningCallout: ({ body }) => (
     <blockquote
@@ -628,7 +627,7 @@ export const docAndBlogComponents: Components<{
             className="text-white bg-linear-to-br from-orange-400 to-orange-600 px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0"
           />
         </div>
-        <div className="leading-6">
+        <div className={BODY}>
           <TinaMarkdown
             content={body as any}
             components={docAndBlogComponents}
@@ -731,7 +730,7 @@ export const docAndBlogComponents: Components<{
         <button
           type="button"
           onClick={handleCopy}
-          className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded font-source-code-pro"
+          className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded"
         >
           {hasCopied ? (
             <CheckIcon className="h-4 w-4" />
@@ -822,22 +821,14 @@ function FormatHeaders({ children, level }) {
       ? unclipEmoji(content.map((node) => node.text).join(''))
       : children;
 
+  // Same mapping as RICH_TEXT: h1–h2 are CARD_TITLE, h3–h6 SUB_HEADING. See /design.
   const styles = {
-    1: 'bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-4xl mt-16! mb-4',
-    2: 'bg-linear-to-br from-blue-800 via-blue-900 to-blue-1000 bg-clip-text text-transparent text-3xl mt-12! mb-2',
-    3: 'bg-linear-to-br from-blue-800 via-blue-900 to-blue-1000 bg-clip-text text-transparent text-xl font-medium mt-8! mb-2 !important',
-    4: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-xl font-medium mt-2! mb-2',
-    5: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg font-medium mt-2! mb-1',
-    6: 'text-gray-500 text-base font-normal mt-2 mb-1',
-  };
-
-  const linkColor = {
-    1: 'text-orange-500',
-    2: 'text-orange-500',
-    3: 'text-blue-900',
-    4: 'text-orange-500',
-    5: 'text-orange-500',
-    6: 'text-gray-500',
+    1: `${CARD_TITLE} mt-16! mb-4`,
+    2: `${CARD_TITLE} mt-12! mb-2`,
+    3: `${SUB_HEADING} mt-8! mb-2`,
+    4: `${SUB_HEADING} mt-2! mb-2`,
+    5: `${SUB_HEADING} mt-2! mb-1`,
+    6: `${SUB_HEADING} mt-2 mb-1`,
   };
 
   const handleHeaderClick = (event) => {
@@ -872,17 +863,13 @@ function FormatHeaders({ children, level }) {
   return (
     <HeadingTag
       id={id}
-      className={`font-ibm-plex ${styles[level]} relative cursor-pointer group`}
+      className={`${styles[level]} relative cursor-pointer group`}
     >
-      <a
-        href={linkHref}
-        className="no-underline inline-block"
-        onClick={handleHeaderClick}
-      >
+      <a href={linkHref} className="inline-block" onClick={handleHeaderClick}>
         {' '}
         {headingChildren}
         <FiLink
-          className={`${linkColor[level]} opacity-0 group-hover:opacity-80 transition-opacity duration-200 absolute ml-1 group-hover:animate-wiggle`}
+          className="text-subtle opacity-0 group-hover:opacity-80 transition-opacity duration-200 absolute ml-1 group-hover:animate-wiggle"
           style={{
             display: 'inline-block',
             marginTop: '0.25rem',

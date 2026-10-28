@@ -1,7 +1,7 @@
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { BODY_MUTED, SECTION_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
 import { LiteYouTube } from './LiteYouTube';
@@ -24,7 +24,7 @@ export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
           className,
         )}
       >
-        <p className="text-gray-500">Video URL is invalid or missing</p>
+        <p className={BODY_MUTED}>Video URL is invalid or missing</p>
       </div>
     );
   }
@@ -60,7 +60,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
         {title && (
           <>
             <h2
-              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block pb-8 lg:leading-tight text-black text-balance text-center lg:text-left`}
+              className={`${SECTION_TITLE} inline-block pb-8 text-center lg:text-left`}
               data-tina-field={tinaField(data, 'title')}
             >
               {title}
@@ -76,9 +76,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
             <YouTubeEmbed src={externalVideoLink || ''} />
           </div>
           {figureCaption && (
-            <p className="text-sm text-gray-400 mt-2 text-left">
-              {figureCaption}
-            </p>
+            <p className={`${BODY_MUTED} mt-2 text-left`}>{figureCaption}</p>
           )}
         </div>
       </div>

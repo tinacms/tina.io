@@ -5,7 +5,12 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import {
+  BODY,
+  CARD_TITLE,
+  EYEBROW_LINK,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
 import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
@@ -63,15 +68,7 @@ const CarouselItem = ({
             />
           )}
           {headline && (
-            <h3
-              className={` md:text-3xl text-2xl font-ibm-plex leading-tight cursor-pointer pl-3 ${
-                isHovered && !isSmallOrMediumScreen
-                  ? 'text-transparent lg:text-3xl bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text'
-                  : 'text-black lg:text-xl'
-              }`}
-            >
-              {headline}
-            </h3>
+            <h3 className={`${CARD_TITLE} cursor-pointer pl-3`}>{headline}</h3>
           )}
         </div>
         <div
@@ -81,16 +78,13 @@ const CarouselItem = ({
               : 'scale-y-75 opacity-0'
           }`}
         >
-          {textDisplayCondition && (
-            <p
-              className={`md:pl-12 lg:pl-13 pl-9 text-lg font-medium slide-up`}
-            >
-              {text}
-            </p>
-          )}
-          {buttonDisplayCondition && (
-            <div className={`md:pl-6 lg:pl-6 pl-3 slide-up flex justify-start`}>
-              <Actions items={actionsArray} />
+          {/* Body text and its link share one container, so the link lines
+              up with the text under the title instead of relying on button
+              padding. */}
+          {(textDisplayCondition || buttonDisplayCondition) && (
+            <div className="md:pl-12 lg:pl-13 pl-9 slide-up flex flex-col items-start gap-1">
+              {textDisplayCondition && <p className={BODY}>{text}</p>}
+              {buttonDisplayCondition && <Actions items={actionsArray} />}
             </div>
           )}
         </div>
@@ -278,7 +272,7 @@ export default function CarouselFeatureBlock({ data, index }) {
         <div className="flex flex-col h-auto lg:flex-row gap-6 w-full rounded-xl overflow-visible pb-20 ">
           <div className="flex flex-col order-2 min-h-[880px] lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible ">
             <h2
-              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block py-4 lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left`}
+              className={`${SECTION_TITLE} inline-block py-4 text-center lg:text-left`}
               data-tina-field={tinaField(data, 'blockHeadline')}
             >
               {data.blockHeadline}
@@ -323,7 +317,7 @@ export default function CarouselFeatureBlock({ data, index }) {
             {!isShowingAll && isTouchScreen ? (
               <button
                 type="button"
-                className="text-blue-500 text-lg font-ibm-plex cursor-pointer"
+                className={`${EYEBROW_LINK} cursor-pointer`}
                 onClick={() => setIsShowingAll(true)}
               >
                 See all
@@ -332,7 +326,7 @@ export default function CarouselFeatureBlock({ data, index }) {
             {isShowingAll && isTouchScreen ? (
               <button
                 type="button"
-                className="text-blue-500 text-lg font-ibm-plex cursor-pointer"
+                className={`${EYEBROW_LINK} cursor-pointer`}
                 onClick={() => {
                   setTimeout(() => {
                     setIsShowingAll(false);

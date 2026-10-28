@@ -105,10 +105,21 @@ Two locales: English (`en`, default) and Chinese (`zh`). Middleware handles loca
 - Block statements required (no single-line `if` without braces)
 - `noUnusedVariables: error`, `useOptionalChain: error`, `noArrayIndexKey: error`
 - `noExplicitAny` and `noNonNullAssertion` are allowed (off)
-- Magic Numbers are a big no no! i.e: text-[15px] is bad, use text-md for example. Another bad example is w-[14%] on a component... why 14%!? make it a standard
+- Magic Numbers are a big no no! i.e: text-[15px] is bad, for type use a role from `typography.ts` instead. Another bad example is w-[14%] on a component... why 14%!? make it a standard
 - to conditionally render html use {variable} && ( <...>) rather than {variable} ? <> : null 
 
+## Typography
 
+Every piece of text uses one type role. Role names live in `components/styles/typography.ts`, their specs (`role-*` utilities) in `styles/tailwind.css`, colour tokens in `app/global.css`.
+
+- **Picking a role or reviewing type:** read `components/styles/typography.guide.ts`. It lists every role with what it's for and which role to use instead, plus the agreed exceptions. The Tina.io Style Guide at `/design` (noindex) renders that file, so edit role guidance there.
+- **A role plus layout classes, nothing else.** A role sets font, size at every breakpoint, weight, line height, letter spacing, case and colour; add only margin, padding, alignment, width and truncation beside it. Hard guardrail: no `text-sm`, `font-bold`, `font-ibm-plex`, `leading-*`, `tracking-*`, `uppercase`, `italic`, text colours (`text-gray-*`, `text-white`, `text-[#…]`) or inline `style={{ fontSize, color }}` next to a role, including `md:`/`hover:` variants.
+- **Links:** `LINK`, `TITLE_LINK` and `SUBTLE_LINK` are the only classes that combine with a role (`${BODY_SMALL} ${LINK}`). Any hover effect on text comes from one of them.
+- **Colour follows the surface:** on a dark or orange container, put `ON_DARK` on the container; on a chip, pill or coloured row, put a `SURFACE.*` on it. The roles inside recolour themselves. Only the page title is orange.
+- **Rich text:** wrap markdown in `RICH_TEXT` (`RichTextWrapper` and `DocsTextWrapper` already do). The styled-components stylesheets `components/styles/RichText.tsx` and `DocsRichText.tsx` hold spacing only.
+- **Fonts** come with the roles. IBM Plex Sans ships 500 and 600 only, so headings have no bold.
+- **Tokens:** components name roles, `SURFACE.*` and `ON_DARK`, never colour tokens, palette shades or hex values. Primitives → semantic tokens → roles, each layer pointing only at the one before.
+- **No role fits:** add one to `styles/tailwind.css`, `typography.ts` and `typography.guide.ts`, then use it.
 
 ## CI Pipeline
 

@@ -4,6 +4,13 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
+import {
+  BODY_SMALL,
+  CARD_TITLE,
+  LABEL,
+  LINK,
+  ON_DARK,
+} from '@/component/styles/typography';
 import { plausibleSiteIdForHost } from '@/utils/i18n/domains';
 
 let plausibleInitialized = false;
@@ -142,11 +149,13 @@ const ConsentBanner = () => {
   return (
     <>
       {isVisible && (
-        <div className="fixed flex flex-col gap-4 bottom-0 w-full z-50 bg-linear-to-br from-orange-400 to-orange-600 text-white p-6 text-center justify-center items-center">
-          <p className="pb-2">
+        <div
+          className={`${ON_DARK} fixed flex flex-col gap-4 bottom-0 w-full z-50 bg-linear-to-br from-orange-400 to-orange-600 p-6 text-center justify-center items-center`}
+        >
+          <p className={`${BODY_SMALL} pb-2`}>
             We use cookies to improve your experience. By continuing, you accept
             our{' '}
-            <Link href="/privacy-notice" className="text-white underline">
+            <Link href="/privacy-notice" className={LINK}>
               cookie policy
             </Link>
             .
@@ -169,7 +178,7 @@ const ConsentBanner = () => {
           </div>
           <button
             type="button"
-            className="underline font-ibm-plex text-sm cursor-pointer"
+            className={`${BODY_SMALL} ${LINK} cursor-pointer`}
             onClick={openModal}
           >
             Manage cookies
@@ -183,11 +192,11 @@ const ConsentBanner = () => {
           onClick={handleBackdropClick}
         >
           <div className="bg-white p-10 rounded-lg w-11/12 sm:w-96 md:w-2/3 lg:w-1/3">
-            <h2 className="text-xl md:text-xl lg:text-3xl text-orange-600 font-ibm-plex mb-4 text-center">
+            <h2 className={`${CARD_TITLE} mb-4 text-center`}>
               Customize your Consent Preferences
             </h2>
             <div className="lg:flex lg:justify-center lg:ml-auto lg:mr-auto">
-              <ul className="p-3 space-y-1 text-sm text-gray-700">
+              <ul className={`${BODY_SMALL} p-3 space-y-1`}>
                 <li>
                   <div className="flex p-2 rounded">
                     <label className="inline-flex items-center w-full cursor-pointer">
@@ -199,9 +208,7 @@ const ConsentBanner = () => {
                         className="sr-only peer"
                       />
                       <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600"></div>
-                      <span className="ms-3 font-semibold text-sm">
-                        Ad Storage
-                      </span>
+                      <span className={`${LABEL} ms-3`}>Ad Storage</span>
                     </label>
                   </div>
                 </li>
@@ -216,7 +223,7 @@ const ConsentBanner = () => {
                         className="sr-only peer"
                       />
                       <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600"></div>
-                      <span className="ms-3 font-semibold text-sm">
+                      <span className={`${LABEL} ms-3`}>
                         Ad Personalization
                       </span>
                     </label>
@@ -233,9 +240,7 @@ const ConsentBanner = () => {
                         className="sr-only peer"
                       />
                       <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600"></div>
-                      <span className="ms-3 font-semibold text-sm">
-                        Analytics Storage
-                      </span>
+                      <span className={`${LABEL} ms-3`}>Analytics Storage</span>
                     </label>
                   </div>
                 </li>
@@ -250,9 +255,7 @@ const ConsentBanner = () => {
                         className="sr-only peer"
                       />
                       <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600"></div>
-                      <span className="ms-3 font-semibold text-sm">
-                        Ad User Data
-                      </span>
+                      <span className={`${LABEL} ms-3`}>Ad User Data</span>
                     </label>
                   </div>
                 </li>

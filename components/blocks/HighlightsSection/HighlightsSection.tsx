@@ -32,7 +32,7 @@ import {
 import { HiOutlineSparkles } from 'react-icons/hi2';
 import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
-import { BODY_TEXT } from '@/component/styles/typography';
+import { BODY, CARD_TITLE } from '@/component/styles/typography';
 
 const icons = {
   FaClock,
@@ -85,9 +85,7 @@ const HighlightsSection = ({ data }) => {
                 {/* h2, not h4 — these are top-level section headings and the
                     skip broke heading order. Size is class-driven, so nothing
                     moves visually. */}
-                <h2 className="font-ibm-plex text-2xl md:text-3xl mb-4 text-black">
-                  {item.heading}
-                </h2>
+                <h2 className={`${CARD_TITLE} mb-4`}>{item.heading}</h2>
                 {Array.isArray(item.highlights) &&
                   item.highlights.map((iconItem) => {
                     const Icon = icons[iconItem.icon];
@@ -101,9 +99,7 @@ const HighlightsSection = ({ data }) => {
                             className={`text-3xl mr-2 ${iconColorClass} inline`}
                           />
                         )}
-                        <span className={`font-inter ${BODY_TEXT}`}>
-                          {iconItem.name}
-                        </span>
+                        <span className={`${BODY}`}>{iconItem.name}</span>
                       </div>
                     );
                   })}

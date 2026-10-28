@@ -1,31 +1,35 @@
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { EYEBROW, LABEL, SURFACE } from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
 
-const badgeVariants = cva(
-  'flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border',
-  {
-    variants: {
-      size: {
-        default: 'px-3.5 py-1.5 text-base',
-        medium: 'px-3 text-sm',
-        small: 'px-1 text-[10px]',
-      },
-      color: {
-        blue: 'bg-brand-secondary text-white border-brand-secondary',
-        ghostBlue: 'text-brand-secondary border-brand-secondary bg-white',
-        orange: 'bg-brand-primary text-white border-brand-primary',
-        ghostOrange: 'border-brand-primary text-brand-primary bg-white',
-        blueSecondary:
-          'border-brand-secondary bg-brand-secondary-light text-blue-800',
-      },
+// Badge colours come from the CMS (BADGE_COLOR_OPTIONS). Orange is the solid
+// “new” pill, Blue the light blue tint, Ghost Orange the light orange tint.
+// blue and ghostBlue are retired CMS values, kept so older content renders.
+// Text takes LABEL in the banner-sized badge and EYEBROW (SLUB) in the small
+// pills.
+const INFO = SURFACE.info;
+
+const badgeVariants = cva('flex gap-2 items-center w-fit rounded-full border', {
+  variants: {
+    size: {
+      default: `px-3.5 py-1.5 ${LABEL}`,
+      medium: `px-3 ${EYEBROW}`,
+      small: `px-1 ${EYEBROW}`,
     },
-    defaultVariants: {
-      size: 'default',
-      color: 'blue',
+    color: {
+      blue: INFO,
+      ghostBlue: INFO,
+      blueSecondary: INFO,
+      orange: SURFACE.brandSolid,
+      ghostOrange: SURFACE.brand,
     },
   },
-);
+  defaultVariants: {
+    size: 'default',
+    color: 'blueSecondary',
+  },
+});
 
 export type BadgeColor =
   | 'blue'

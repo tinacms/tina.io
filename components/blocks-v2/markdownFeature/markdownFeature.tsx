@@ -1,6 +1,6 @@
 import { FaCheckCircle } from 'react-icons/fa';
 import type { PageBlocksMarkdownFeature } from 'tina/__generated__/types';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { BODY, EYEBROW, SECTION_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { TerminalPanel } from './TerminalPanel';
@@ -9,9 +9,7 @@ function FeatureTag({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-1">
       <FaCheckCircle className="shrink-0 text-brand-primary" size={16} />
-      <span className="text-brand-primary text-xs font-semibold font-ibm-plex uppercase">
-        {label}
-      </span>
+      <span className={EYEBROW}>{label}</span>
     </div>
   );
 }
@@ -31,7 +29,7 @@ export default function MarkdownFeature(data: {
       </div>
       <div className="flex flex-col gap-6 order-2 md:order-2">
         {title && (
-          <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>
+          <h2 className={`${SECTION_TITLE}`}>
             {curlyBracketFormatter(title)}
             {subtitle && (
               <>
@@ -41,11 +39,7 @@ export default function MarkdownFeature(data: {
             )}
           </h2>
         )}
-        {subtext && (
-          <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-prose">
-            {subtext}
-          </p>
-        )}
+        {subtext && <p className={`${BODY} max-w-prose`}>{subtext}</p>}
         {featureTags && featureTags.length > 0 && (
           <div className="flex flex-wrap gap-x-6 gap-y-2 py-1">
             {featureTags.map((tag) =>

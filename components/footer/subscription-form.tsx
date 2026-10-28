@@ -2,6 +2,13 @@ import { useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  FIELD,
+  ON_DARK,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 import { addToMailchimp } from '@/utils/mailchimp_helper';
 
 interface FormData {
@@ -76,17 +83,17 @@ export const SubscriptionForm = ({ props }) => {
   return (
     <div className="flex flex-col mt-4 md:mt-0">
       <form
-        className="flex flex-col text-left gap-1.5 items-start w-full"
+        className={`${ON_DARK} flex flex-col text-left gap-1.5 items-start w-full`}
         onSubmit={handleSubmit}
       >
-        <h2 className=" md:text-xl font-ibm-plex text-white">Join the Herd!</h2>
-        <p className="text-sm text-white/80 pb-1.5">
+        <h2 className={SUB_HEADING}>Join the Herd!</h2>
+        <p className={`${BODY_SMALL} pb-1.5`}>
           Join our coding community for the latest tips and news.
         </p>
         <div className="flex flex-col gap-2.5 w-full">
           <div className="flex gap-2.5">
             <input
-              className="w-full px-2 py-2 text-sm  text-white border rounded-sm border-white placeholder:!text-white/70 bg-white/10"
+              className={`w-full px-2 py-2 border rounded-sm border-white bg-white/10 ${FIELD}`}
               placeholder="First name"
               name="firstName"
               type="text"
@@ -97,7 +104,7 @@ export const SubscriptionForm = ({ props }) => {
               disabled={isSubmitting}
             />
             <input
-              className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder:!text-white/70"
+              className={`w-full px-2 py-2 bg-white/10 border rounded-sm border-white ${FIELD}`}
               placeholder="Last name"
               name="lastName"
               type="text"
@@ -110,7 +117,7 @@ export const SubscriptionForm = ({ props }) => {
           </div>
 
           <input
-            className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder:!text-white/70"
+            className={`w-full px-2 py-2 bg-white/10 border rounded-sm border-white ${FIELD}`}
             placeholder="Email"
             name="email"
             type="email"
@@ -121,7 +128,7 @@ export const SubscriptionForm = ({ props }) => {
             disabled={isSubmitting}
           />
           <textarea
-            className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder:!text-white/70"
+            className={`w-full px-2 py-2 bg-white/10 border rounded-sm border-white ${FIELD}`}
             placeholder="Notes"
             name="notes"
             autoComplete="off"
@@ -131,15 +138,7 @@ export const SubscriptionForm = ({ props }) => {
             disabled={isSubmitting}
           />
           {message.text && (
-            <p
-              className={`text-xs flex items-center gap-1 ${
-                message.type === 'success'
-                  ? 'text-green-300'
-                  : message.type === 'warning'
-                    ? 'text-white'
-                    : 'text-white'
-              }`}
-            >
+            <p className={`${BODY_MUTED} flex items-center gap-1`}>
               {message.type === 'success' && <TiTick className="w-3 h-3" />}
               {message.type === 'warning' && (
                 <IoIosWarning className="w-3 h-3" />

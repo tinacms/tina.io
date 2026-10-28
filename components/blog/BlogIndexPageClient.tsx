@@ -7,6 +7,13 @@ import { LOCALE_ROUTE_CONFIG, type Locale } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
 import { unclipEmoji } from 'utils/unclipEmoji';
 import NewBlogPagination from '@/component/Blogs/BlogPagination';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  CARD_TITLE,
+  PAGE_TITLE,
+  TITLE_LINK,
+} from '@/component/styles/typography';
 import { extractTextFromBody } from '@/utils/extractTextFromBody';
 import { formatDate } from '@/utils/formatDate';
 
@@ -46,7 +53,7 @@ export default function BlogIndexPageClient({
   return (
     <section className="p-6">
       <header className="text-center pt-8 pb-4">
-        <h1 className="font-ibm-plex text-4xl md:text-5xl lg:text-6xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+        <h1 className={PAGE_TITLE}>
           {strings.blogIndex.heading}
           {strings.blogIndex.pageSuffix(pageIndex)}
         </h1>
@@ -55,24 +62,21 @@ export default function BlogIndexPageClient({
         {posts.map((post) => (
           <article
             key={post.id}
-            className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8"
+            className="w-full flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8"
           >
             <DynamicLink href={`${prefix}/blog/${post._sys.filename}`} passHref>
-              <h2 className="font-ibm-plex text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+              <h2 className={`${CARD_TITLE} ${TITLE_LINK}`}>
                 {unclipEmoji(post.title)}
               </h2>
             </DynamicLink>
             <div className="w-full">
               <div className="flex justify-between items-center w-full mb-6 -mt-2">
-                <p className="opacity-70">
-                  <span className="mr-1">By</span>
-                  <strong>{post.author}</strong>
-                </p>
-                <time className="opacity-70" dateTime={post.date}>
+                <p className={BODY_MUTED}>By {post.author}</p>
+                <time className={BODY_MUTED} dateTime={post.date}>
                   {formatDate(post.date || '')}
                 </time>
               </div>
-              <div className=" font-normal mb-6">
+              <div className={`${BODY_SMALL} mb-6`}>
                 <MarkdownContent
                   skipHtml={true}
                   content={extractTextFromBody(post.body)}
