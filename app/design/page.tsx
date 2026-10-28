@@ -321,8 +321,7 @@ export default function StyleGuidePage() {
     // The site layout already provides <main>.
     <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-16 px-4 py-16 md:px-8 lg:px-12">
       <header>
-        <p className={EYEBROW}>tina.io · internal reference</p>
-        <h1 className={`${PAGE_TITLE} mt-3`}>Tina.io Style Guide</h1>
+        <h1 className={PAGE_TITLE}>Tina.io Style Guide</h1>
         <p className={`${BODY} mt-4 max-w-3xl`}>
           Which role to use, and what to use instead. Every example renders
           through the code the site ships.
