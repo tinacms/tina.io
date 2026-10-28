@@ -110,26 +110,16 @@ Two locales: English (`en`, default) and Chinese (`zh`). Middleware handles loca
 
 ## Typography
 
-Every piece of text uses a type role. Role names live in `components/styles/typography.ts`; their specs are named utilities (`role-*`) in `styles/tailwind.css`; colour tokens are in `app/global.css`. The full set, rendered, with when-to-use rules, is the Tina.io Style Guide at `/design` (noindex), laid out like the SSW Figma style guide: one section per foundation (Typography, Colour; Buttons to come).
+Every piece of text uses one type role. Role names live in `components/styles/typography.ts`, their specs (`role-*` utilities) in `styles/tailwind.css`, colour tokens in `app/global.css`.
 
-- **Use a role and nothing else for type.** A role sets font, size at every breakpoint, weight, line height, letter spacing, case and colour. Never add `text-sm`, `font-bold`, `font-ibm-plex`, `leading-*`, `tracking-*`, `uppercase`, `italic` or any text colour (`text-gray-*`, `text-white`, `text-[#…]`, inline `style={{ fontSize, color }}`) next to one, including `md:`/`hover:` variants. Add only layout classes (margin, padding, alignment, width, truncation).
-- **Which role:**
-  - Headings: `PAGE_TITLE` (the one h1, orange gradient), `ARTICLE_TITLE` (blog/legal titles), `SECTION_TITLE` (opens a band), `CARD_TITLE` (cards, tiers, prices, rich-text h1–h2), `SUB_HEADING` (headings in copy, names in grids, rich-text h3–h6), `QUOTE` (testimonials).
-  - Labels: `EYEBROW` (SLUB: label above a title, table column headers, pills, step labels; short labels only, never names or sentences), `EYEBROW_LINK` (standalone “Read more →”), `LABEL` (chips, tags, table row labels and values, times).
-  - Reading: `BODY` (paragraphs; a bare `<p>` in `<main>` already gets it), `BODY_SMALL` (dense copy, lists, descriptions), `BODY_MUTED` (dates, bylines, captions, units, hints; never a paragraph, never something clickable), `CAPTION` (fixed 14px notes: billing notes, addresses), `CODE` (code, terminal output, package names, versions, hashes).
-  - Navigation and forms: `NAV_LINK`, `NAV_MENU_LINK`, `FOOTER_LINK`, `FOOTER_LEGAL_LINK`, `FIELD` (inputs, selects, text areas; 16px so phones don't zoom).
-- **Search highlights:** `HIGHLIGHT` marks a matched term inside any role (brand tint and bold, size from the surrounding text).
-- **Shimmer:** `SHIMMER` is a decorative sweep for short promo text (the homepage news banner). It keeps the role and takes its colours from the surface, so never add text colours to it.
-- **Links:** `LINK` is the one class that combines with a role (`${BODY_SMALL} ${LINK}`). It adds link blue (`--text-link`, blue-700) and an underline and keeps the size around it. `TITLE_LINK` is for a heading that is a link (post titles in lists): `${CARD_TITLE} ${TITLE_LINK}` stays ink and turns link blue on hover. `SUBTLE_LINK` is for a standalone link that should stay quiet (the GitHub stars line in the top banner): it keeps the role's colour, has no underline and darkens to ink on hover. Never hand-write `hover:underline` or a hover colour on a heading.
-- **Colour follows the surface, not the tag.**
-  - On a dark or brand-orange container, put `ON_DARK` on the container and use the normal roles inside. Everything turns white; SLUB and footer legal links turn white at 75% (agreed below AA). Never write `text-white`.
-  - On a chip, pill, badge or coloured table row, put a `SURFACE.*` (`neutral`, `brand`, `info`, `success`, `warning`, `neutralSolid`, `brandSolid`) on the element with the fill and give the text a role. The role picks up the paired ink. Never colour text on a fill by hand, and never put a fill colour on text without its surface.
-  - Only the page title is orange. Section, card and sub headings are ink whatever their tag.
-- **Rich text:** wrap markdown output in `RICH_TEXT` (`RichTextWrapper` and `DocsTextWrapper` already do). It maps bare `h1`–`h6`, `p`, `a`, `code`, `th`/`td` onto the roles. The styled-components stylesheets (`components/styles/RichText.tsx`, `DocsRichText.tsx`) hold spacing only; never put type in them.
-- **Fonts:** IBM Plex Sans for headings and labels (only 600 `font-ibm-plex` and 500 `font-ibm-plex-medium` ship, so never `font-bold` on it), Inter for reading text, IBM Plex Mono for code. These come with the roles; don't name them in components.
-- **Tokens:** components name roles, `SURFACE.*`, `ON_DARK` and `LINK` only, never colour tokens, palette shades or hex values. Primitives → semantic tokens → roles, each layer pointing only at the one before.
-- **Nothing fits?** Add a role to `styles/tailwind.css` and `typography.ts`, show it on `/design`, then use it. Don't hand-roll classes in a component.
-- **Agreed exceptions:** buttons (issue #4964); syntax-highlighting colours in code blocks and the homepage terminal; decorative terminal and code mockups use `CODE_ILLUSTRATION` (IBM Plex Mono 13px, a picture of code, never real code); data-driven brand colours (partner tiers); the recommended pricing plan's name and price (`CARD_TITLE_FEATURED`, CARD_TITLE in the orange gradient — nowhere else); icons, social icons and logos; the two-tone homepage headings (pending a team decision); TinaCMS admin field components.
+- **Picking a role or reviewing type:** read `components/styles/typography.guide.ts`. It lists every role with what it's for and which role to use instead, plus the agreed exceptions. The Tina.io Style Guide at `/design` (noindex) renders that file, so edit role guidance there.
+- **A role plus layout classes, nothing else.** A role sets font, size at every breakpoint, weight, line height, letter spacing, case and colour; add only margin, padding, alignment, width and truncation beside it. Hard guardrail: no `text-sm`, `font-bold`, `font-ibm-plex`, `leading-*`, `tracking-*`, `uppercase`, `italic`, text colours (`text-gray-*`, `text-white`, `text-[#…]`) or inline `style={{ fontSize, color }}` next to a role, including `md:`/`hover:` variants.
+- **Links:** `LINK`, `TITLE_LINK` and `SUBTLE_LINK` are the only classes that combine with a role (`${BODY_SMALL} ${LINK}`). Any hover effect on text comes from one of them.
+- **Colour follows the surface:** on a dark or orange container, put `ON_DARK` on the container; on a chip, pill or coloured row, put a `SURFACE.*` on it. The roles inside recolour themselves. Only the page title is orange.
+- **Rich text:** wrap markdown in `RICH_TEXT` (`RichTextWrapper` and `DocsTextWrapper` already do). The styled-components stylesheets `components/styles/RichText.tsx` and `DocsRichText.tsx` hold spacing only.
+- **Fonts** come with the roles. IBM Plex Sans ships 500 and 600 only, so headings have no bold.
+- **Tokens:** components name roles, `SURFACE.*` and `ON_DARK`, never colour tokens, palette shades or hex values. Primitives → semantic tokens → roles, each layer pointing only at the one before.
+- **No role fits:** add one to `styles/tailwind.css`, `typography.ts` and `typography.guide.ts`, then use it.
 
 ## CI Pipeline
 
