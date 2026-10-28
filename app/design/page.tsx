@@ -34,8 +34,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Tina.io Style Guide | TinaCMS',
-  description:
-    'Which type role and colour to use on tina.io, and what to use instead.',
+  description: 'Pick the type role and colour for any text on tina.io.',
   robots: { index: false, follow: false },
 };
 
@@ -249,8 +248,8 @@ export default function StyleGuidePage() {
       <header>
         <h1 className={PAGE_TITLE}>Tina.io Style Guide</h1>
         <p className={`${BODY} mt-4 max-w-3xl`}>
-          Which role to use, and what to use instead. Every example renders
-          through the code the site ships.
+          Use this page to pick the type role and colour for any text on
+          tina.io. Each example uses the same code as the live site.
         </p>
         <nav aria-label="Style guide sections" className="mt-6 flex gap-8">
           <a className={EYEBROW_LINK} href="#typography">
@@ -265,7 +264,7 @@ export default function StyleGuidePage() {
       <Section
         id="typography"
         title="Typography"
-        intro="Every piece of text uses one role from components/styles/typography.ts. Pick it by the job the text does, not by how big it should look."
+        intro="Give each piece of text one role from components/styles/typography.ts, chosen by the job the text does. The size comes with the role."
       >
         <Group title="The rules">
           <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
@@ -290,7 +289,7 @@ export default function StyleGuidePage() {
 
         <Group
           title="Agreed exceptions"
-          intro="Hand-set type here is expected. Everywhere else, use a role."
+          intro="You can hand-set type in these places. Use a role everywhere else."
         >
           <ul className="grid list-disc gap-1 pl-6">
             {TYPE_EXCEPTIONS.map((e) => (
@@ -305,11 +304,11 @@ export default function StyleGuidePage() {
       <Section
         id="colour"
         title="Colour"
-        intro="Text colour comes with the role, so components never name a colour. To change text colour, change the surface it sits on."
+        intro="Each role sets its own text colour, so components don't name colours. To change a text colour, change the surface under it."
       >
         <Group
           title="Text colours"
-          intro="For reference when adding a role. Tokens live in app/global.css."
+          intro="Check these when you add a role. The values live in app/global.css."
         >
           <GuideTable
             columns={['Token', 'Used by', 'Use for']}
@@ -385,7 +384,7 @@ export default function StyleGuidePage() {
       </Section>
 
       <p className={BODY_MUTED}>
-        Source: components/styles/typography.guide.ts. Edit the guidance there.
+        To change this guidance, edit components/styles/typography.guide.ts.
       </p>
     </div>
   );

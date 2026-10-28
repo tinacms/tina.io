@@ -254,7 +254,7 @@ export const ROLE_GROUPS: RoleGroup[] = [
   {
     title: 'Single-use roles',
     intro:
-      'Each exists for one job. Recognise them; reach for the everyday role everywhere else.',
+      'Each one has a single job. Use the everyday role for anything else.',
     roles: [
       {
         name: 'CARD_TITLE_FEATURED',
@@ -273,7 +273,8 @@ export const ROLE_GROUPS: RoleGroup[] = [
         name: 'SHIMMER',
         example: 'What’s new in v4',
         exampleKind: 'shimmer',
-        useFor: 'Short promo text in the homepage news banner. Keeps its role.',
+        useFor:
+          'Short promo text in the homepage news banner. It goes on top of a role.',
         notFor: { job: 'Body copy and headings', instead: 'their usual role' },
       },
     ],
@@ -287,7 +288,7 @@ export const TYPE_RULES = [
   'On a dark or orange container, put ON_DARK on the container. The roles inside turn white.',
   'On a chip, pill or coloured row, put a SURFACE on it. The role inside takes the paired colour.',
   'Wrap markdown in RICH_TEXT. It maps headings, paragraphs, links and code onto the roles.',
-  'When no role fits, add one to styles/tailwind.css, typography.ts and typography.guide.ts, then use it.',
+  'If no role fits, add one to styles/tailwind.css, typography.ts and typography.guide.ts, then use it.',
 ];
 
 /** Agreed exceptions: hand-set type here is expected, not a bug. */
