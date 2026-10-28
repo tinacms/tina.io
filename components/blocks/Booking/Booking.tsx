@@ -14,7 +14,8 @@ export type BookingItem = {
 // happen in the booking tool, so the stepper always shows step 1. The current
 // step is a filled brand-orange circle (3.8:1 on white) and its label reads in
 // ink (aria-current, see styles/tailwind.css). Picked by design (Oct 2026).
-const BOOKING_STEPS = ['Choose location', 'Choose time', 'Your info'];
+// Kept short so each label fits its column on a phone without wrapping.
+const BOOKING_STEPS = ['Location', 'Time', 'Your info'];
 const CURRENT_STEP = 0;
 
 const isValidImage = (url: string) =>
