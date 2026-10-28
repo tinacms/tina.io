@@ -54,7 +54,7 @@ export const QUOTE = 'role-quote';
 
 /**
  * SLUB (Smaller, Lighter, Uppercase, Bold): the small uppercase label above a
- * title, table column headers, pills. Short labels only, never names,
+ * title, table column headers, pills, step labels. Short labels only, never names,
  * sentences, prices or addresses. Uppercased here, not in the copy. 14px.
  */
 export const EYEBROW = 'role-eyebrow';
@@ -64,7 +64,7 @@ export const EYEBROW_LINK = 'role-eyebrow-link';
 
 /**
  * Short UI text that needs a little weight: chips, tags, status pills, table
- * row labels and values, times, step labels, “Page 1 of 15”. Inter Medium 14px.
+ * row labels and values, times, “Page 1 of 15”. Inter Medium 14px.
  */
 export const LABEL = 'role-label';
 

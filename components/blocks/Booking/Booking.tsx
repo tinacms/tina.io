@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import {
-  LABEL,
+  EYEBROW,
   PAGE_TITLE,
   SECTION_TITLE,
   SUB_HEADING,
@@ -14,6 +14,11 @@ export type BookingItem = {
   image: string;
   url: string;
 };
+
+// The booking flow. Only the first step happens on this page; the other two
+// happen in the booking tool, so the stepper always shows step 1.
+const BOOKING_STEPS = ['Choose location', 'Choose time', 'Your info'];
+const CURRENT_STEP = 0;
 
 const isValidImage = (url: string) =>
   url && (url.startsWith('http') || url.startsWith('/'));
@@ -50,34 +55,35 @@ const BookingBlock = ({ data }) => {
   return (
     <div className="flex justify-center w-full">
       <div className="lg:w-1/2 container mx-auto px-4">
-        <div className="flex justify-center mb-6 step-indicator items-center">
-          <div className="step flex flex-col items-center relative z-10">
-            <div className="step-icon w-6 h-6 border-2 border-orange-300 flex items-center justify-center rounded-full"></div>
-            <p
-              className={`${LABEL} text-center absolute bottom-[-20px] whitespace-nowrap`}
+        {/* Three equal columns, so labels can wrap instead of colliding on
+            phones. Each step draws the half-lines either side of its circle;
+            the outer halves are transparent, so the line runs circle to
+            circle. SLUB uppercases the copy, which stays in sentence case. */}
+        <ol
+          aria-label="Booking steps"
+          className="grid grid-cols-3 w-full max-w-lg mx-auto mb-6"
+        >
+          {BOOKING_STEPS.map((step, index) => (
+            <li
+              key={step}
+              aria-current={index === CURRENT_STEP ? 'step' : undefined}
+              className="flex flex-col items-center gap-2 text-center"
             >
-              CHOOSE LOCATION
-            </p>
-          </div>
-          <div className="indicator-line h-0.5 w-20 md:w-40 bg-gray-300"></div>
-          <div className="step flex flex-col items-center relative z-10">
-            <div className="step-icon w-6 h-6 border-2 border-gray-300 flex items-center justify-center rounded-full"></div>
-            <p
-              className={`${LABEL} text-center absolute bottom-[-20px] whitespace-nowrap`}
-            >
-              CHOOSE TIME
-            </p>
-          </div>
-          <div className="indicator-line h-0.5 w-20 md:w-40 bg-gray-300"></div>
-          <div className="step flex flex-col items-center relative z-10">
-            <div className="step-icon w-6 h-6 border-2 border-gray-300 flex items-center justify-center rounded-full"></div>
-            <p
-              className={`${LABEL} text-center absolute bottom-[-20px] whitespace-nowrap`}
-            >
-              YOUR INFO
-            </p>
-          </div>
-        </div>
+              <span className="flex w-full items-center" aria-hidden="true">
+                <span
+                  className={`h-0.5 grow ${index === 0 ? 'bg-transparent' : 'bg-gray-300'}`}
+                />
+                <span
+                  className={`size-6 shrink-0 rounded-full border-2 ${index === CURRENT_STEP ? 'border-orange-300' : 'border-gray-300'}`}
+                />
+                <span
+                  className={`h-0.5 grow ${index === BOOKING_STEPS.length - 1 ? 'bg-transparent' : 'bg-gray-300'}`}
+                />
+              </span>
+              <span className={`${EYEBROW} px-1`}>{step}</span>
+            </li>
+          ))}
+        </ol>
         <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
           {/* The block's schema has no isHeadingOne field, so this was always
           undefined and the page shipped without an h1. It is only ever the

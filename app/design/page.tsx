@@ -116,7 +116,7 @@ const GROUPS: { title: string; intro: string; roles: Role[] }[] = [
         name: 'EYEBROW (SLUB)',
         cls: EYEBROW,
         spec: 'Plex 500 · 14px · uppercase · tracking widest · label grey',
-        use: 'The label above a title, table column headers, pills.',
+        use: 'The label above a title, table column headers, pills, step labels.',
         never:
           'Names, sentences, prices or addresses. Uppercase it in CSS, not in the copy.',
         sample: 'Trusted by teams shipping at scale',
@@ -132,7 +132,7 @@ const GROUPS: { title: string; intro: string; roles: Role[] }[] = [
         name: 'LABEL',
         cls: LABEL,
         spec: 'Inter 500 · 14px · ink',
-        use: 'Chips, tags, status pills, table row labels and values, times, “Page 1 of 15”, step labels.',
+        use: 'Chips, tags, status pills, table row labels and values, times, “Page 1 of 15”.',
         never: 'Paragraphs or anything longer than a phrase.',
         sample: 'Included users',
       },
