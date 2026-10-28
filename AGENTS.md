@@ -110,7 +110,7 @@ Two locales: English (`en`, default) and Chinese (`zh`). Middleware handles loca
 
 ## Typography
 
-Every piece of text uses a type role. Role names live in `components/styles/typography.ts`; their specs are named utilities (`role-*`) in `styles/tailwind.css`; colour tokens are in `app/global.css`. The full set, rendered, with when-to-use rules, is at `/design` (noindex).
+Every piece of text uses a type role. Role names live in `components/styles/typography.ts`; their specs are named utilities (`role-*`) in `styles/tailwind.css`; colour tokens are in `app/global.css`. The full set, rendered, with when-to-use rules, is the Tina.io Style Guide at `/design` (noindex), laid out like the SSW Figma style guide: one section per foundation (Typography, Colour; Buttons to come).
 
 - **Use a role and nothing else for type.** A role sets font, size at every breakpoint, weight, line height, letter spacing, case and colour. Never add `text-sm`, `font-bold`, `font-ibm-plex`, `leading-*`, `tracking-*`, `uppercase`, `italic` or any text colour (`text-gray-*`, `text-white`, `text-[#…]`, inline `style={{ fontSize, color }}`) next to one, including `md:`/`hover:` variants. Add only layout classes (margin, padding, alignment, width, truncation).
 - **Which role:**
