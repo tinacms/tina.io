@@ -10,7 +10,7 @@ import {
   SURFACE,
 } from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
-import { formatDate } from './RecentPosts';
+import { formatDate } from '@/utils/formatDate';
 
 type FeaturedPostProps = {
   featuredPost: {
