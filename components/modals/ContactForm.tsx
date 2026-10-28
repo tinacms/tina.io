@@ -20,8 +20,10 @@ interface FormData {
   company: string;
   partnerType: string;
   portfolioUrl: string;
+  githubUrl: string;
   agencySize: string;
   availability: string;
+  tinaSites: string;
   tinaExperience: string;
   referralSource: string;
   message: string;
@@ -138,8 +140,10 @@ const initialFormData: FormData = {
   company: '',
   partnerType: '',
   portfolioUrl: '',
+  githubUrl: '',
   agencySize: '',
   availability: '',
+  tinaSites: '',
   tinaExperience: '',
   referralSource: '',
   message: '',
@@ -395,7 +399,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
           {isSoleDeveloper && (
             <>
               <Input
-                placeholder="Portfolio, GitHub, or website *"
+                placeholder="Portfolio or website *"
                 name="portfolioUrl"
                 type="url"
                 value={formData.portfolioUrl}
@@ -416,6 +420,31 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
               />
             </>
           )}
+          <Textarea
+            placeholder="Sites you've built with TinaCMS *"
+            name="tinaSites"
+            rows={3}
+            value={formData.tinaSites}
+            onChange={handleInputChange}
+            disabled={isProcessing}
+            required
+            className="w-full resize-y"
+          />
+          <Input
+            placeholder={
+              isAgency
+                ? 'GitHub organisation or profile (optional)'
+                : 'GitHub profile *'
+            }
+            name="githubUrl"
+            type="url"
+            value={formData.githubUrl}
+            onChange={handleInputChange}
+            onBlur={handleUrlBlur}
+            disabled={isProcessing}
+            required={!isAgency}
+            className="w-full"
+          />
           <Textarea
             placeholder="How much have you worked with TinaCMS before? *"
             name="tinaExperience"
