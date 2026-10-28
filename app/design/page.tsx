@@ -135,27 +135,39 @@ const SURFACES = [
 
 // ── Building blocks ───────────────────────────────────────────────────────
 
-/** A role's example, drawn through the real role. */
-const Example = ({ role }: { role: RoleGuide }) => {
+/** Kebab-case id from a group title, so an example can link to its own table. */
+const slug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+/**
+ * A role's example, drawn through the real role. Anything clickable on the
+ * site is a real link here too, so it shows the pointer and its hover state.
+ */
+const Example = ({ role, href }: { role: RoleGuide; href: string }) => {
   switch (role.exampleKind) {
+    case 'link':
+      return (
+        <a className={role.cls} href={href}>
+          {role.example}
+        </a>
+      );
     case 'inline-link':
       return (
         <p className={BODY_SMALL}>
           Start a{' '}
-          <a className={LINK} href="#links">
+          <a className={LINK} href={href}>
             {role.example}
           </a>
         </p>
       );
     case 'heading-link':
       return (
-        <a className="inline-block" href="#links">
+        <a className="inline-block" href={href}>
           <span className={`${CARD_TITLE} ${TITLE_LINK}`}>{role.example}</span>
         </a>
       );
     case 'subtle-link':
       return (
-        <a className={`${BODY_SMALL} ${SUBTLE_LINK}`} href="#links">
+        <a className={`${BODY_SMALL} ${SUBTLE_LINK}`} href={href}>
           {role.example}
         </a>
       );
@@ -167,11 +179,12 @@ const Example = ({ role }: { role: RoleGuide }) => {
       );
     case 'shimmer':
       return (
-        <span
+        <a
           className={`${SURFACE.info} ${LABEL} inline-flex rounded-full border px-3.5 py-1.5`}
+          href={href}
         >
           <span className={SHIMMER}>{role.example}</span>
-        </span>
+        </a>
       );
     case 'field':
       return (
@@ -244,7 +257,7 @@ const GuideTable = ({
   </div>
 );
 
-const RoleTable = ({ roles }: { roles: RoleGuide[] }) => (
+const RoleTable = ({ roles, href }: { roles: RoleGuide[]; href: string }) => (
   <GuideTable
     columns={['Example', 'Role', 'Use for', 'Not for']}
     widths={['w-5/12', 'w-1/6', 'w-1/4', 'w-1/6']}
@@ -252,7 +265,7 @@ const RoleTable = ({ roles }: { roles: RoleGuide[] }) => (
       key: role.name,
       cells: [
         <div key="example" className="wrap-anywhere">
-          <Example role={role} />
+          <Example role={role} href={href} />
         </div>,
         <p key="role" className={`${CODE} wrap-anywhere`}>
           {role.name}
@@ -354,11 +367,11 @@ export default function StyleGuidePage() {
         {ROLE_GROUPS.map((group) => (
           <Group
             key={group.title}
-            id={group.title === 'Links' ? 'links' : undefined}
+            id={slug(group.title)}
             title={group.title}
             intro={group.intro}
           >
-            <RoleTable roles={group.roles} />
+            <RoleTable roles={group.roles} href={`#${slug(group.title)}`} />
           </Group>
         ))}
 
@@ -434,6 +447,7 @@ export default function StyleGuidePage() {
         </Group>
 
         <Group
+          id="on-dark"
           title="On dark"
           intro="Put ON_DARK on a dark or orange container and keep the normal roles inside. Text turns white; SLUB and legal links turn white at 75%."
         >
@@ -441,14 +455,18 @@ export default function StyleGuidePage() {
             className={`${ON_DARK} flex flex-wrap items-center gap-x-10 gap-y-4 rounded-xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
           >
             <span className={EYEBROW}>Product</span>
-            <span className={FOOTER_LINK}>Showcase</span>
+            <a className={FOOTER_LINK} href="#on-dark">
+              Showcase
+            </a>
             <span className={BODY_SMALL}>Join the herd for tips and news.</span>
             <input
               className={`${FIELD} h-10 rounded-md border border-white/80 bg-white/10 px-3`}
               placeholder="Email"
               aria-label="Example field on dark"
             />
-            <span className={FOOTER_LEGAL_LINK}>Privacy</span>
+            <a className={FOOTER_LEGAL_LINK} href="#on-dark">
+              Privacy
+            </a>
           </div>
         </Group>
       </Section>

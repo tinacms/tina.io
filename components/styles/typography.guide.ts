@@ -36,6 +36,8 @@ import {
  */
 export type ExampleKind =
   | 'text'
+  /** Plain text in the role, drawn as a link because it's clickable on the site. */
+  | 'link'
   | 'inline-link'
   | 'heading-link'
   | 'subtle-link'
@@ -197,6 +199,7 @@ export const ROLE_GROUPS: RoleGroup[] = [
         name: 'EYEBROW_LINK',
         cls: EYEBROW_LINK,
         example: 'Read more →',
+        exampleKind: 'link',
         useFor: 'A standalone link: “Read more →”, “See all events →”.',
         notFor: { job: 'A link inside a sentence', instead: 'LINK' },
       },
@@ -240,6 +243,7 @@ export const ROLE_GROUPS: RoleGroup[] = [
         name: 'NAV_LINK',
         cls: NAV_LINK,
         example: 'TinaCMS',
+        exampleKind: 'link',
         useFor: 'Top-level nav items.',
         notFor: { job: 'Items inside a nav menu', instead: 'NAV_MENU_LINK' },
       },
@@ -247,6 +251,7 @@ export const ROLE_GROUPS: RoleGroup[] = [
         name: 'NAV_MENU_LINK',
         cls: NAV_MENU_LINK,
         example: 'Docs for TinaCMS',
+        exampleKind: 'link',
         useFor: 'Items inside a nav menu.',
         notFor: { job: 'Top-level nav items', instead: 'NAV_LINK' },
       },
@@ -263,6 +268,7 @@ export const ROLE_GROUPS: RoleGroup[] = [
         name: 'FOOTER_LINK',
         cls: FOOTER_LINK,
         example: 'Showcase',
+        exampleKind: 'link',
         useFor: 'Footer column links.',
         notFor: {
           job: 'Legal links under the footer',
@@ -273,6 +279,7 @@ export const ROLE_GROUPS: RoleGroup[] = [
         name: 'FOOTER_LEGAL_LINK',
         cls: FOOTER_LEGAL_LINK,
         example: 'Privacy',
+        exampleKind: 'link',
         useFor: 'The legal links under the footer.',
         notFor: { job: 'Footer column links', instead: 'FOOTER_LINK' },
       },
