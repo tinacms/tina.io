@@ -24,6 +24,7 @@ import {
   SECTION_TITLE,
   SUB_HEADING,
   SURFACE,
+  TITLE_LINK,
 } from '@/component/styles/typography';
 
 export const metadata: Metadata = {
@@ -400,6 +401,16 @@ export default function DesignPage() {
           </a>
           .
         </p>
+        <p className={`${BODY} mt-6 max-w-2xl`}>
+          <code className={CODE}>TITLE_LINK</code> is for a heading that is a
+          link, like a post title in a list. It stays ink and turns link blue on
+          hover:
+        </p>
+        <a className="mt-2 inline-block" href="#links">
+          <h3 className={`${CARD_TITLE} ${TITLE_LINK}`}>
+            Tipping the iceberg: the WordPress era is over
+          </h3>
+        </a>
       </section>
 
       <section className="mt-16">

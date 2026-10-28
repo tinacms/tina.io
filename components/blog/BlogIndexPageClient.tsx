@@ -10,8 +10,9 @@ import NewBlogPagination from '@/component/Blogs/BlogPagination';
 import {
   BODY_MUTED,
   BODY_SMALL,
+  CARD_TITLE,
   PAGE_TITLE,
-  SUB_HEADING,
+  TITLE_LINK,
 } from '@/component/styles/typography';
 import { extractTextFromBody } from '@/utils/extractTextFromBody';
 import { formatDate } from '@/utils/formatDate';
@@ -64,14 +65,13 @@ export default function BlogIndexPageClient({
             className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8"
           >
             <DynamicLink href={`${prefix}/blog/${post._sys.filename}`} passHref>
-              <h2 className={SUB_HEADING}>{unclipEmoji(post.title)}</h2>
+              <h2 className={`${CARD_TITLE} ${TITLE_LINK}`}>
+                {unclipEmoji(post.title)}
+              </h2>
             </DynamicLink>
             <div className="w-full">
               <div className="flex justify-between items-center w-full mb-6 -mt-2">
-                <p className={BODY_MUTED}>
-                  <span className="mr-1">By</span>
-                  <strong>{post.author}</strong>
-                </p>
+                <p className={BODY_MUTED}>By {post.author}</p>
                 <time className={BODY_MUTED} dateTime={post.date}>
                   {formatDate(post.date || '')}
                 </time>

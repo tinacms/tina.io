@@ -337,6 +337,12 @@ pre.prism-code.language-json {
   @apply text-link underline decoration-1 underline-offset-3 transition-colors hover:text-link-hover hover:decoration-2;
 }
 
+/* A heading that is a link, like a post title in a list. It keeps its role
+   and ink, and turns link blue on hover. Picked by design (Oct 2026). */
+@utility title-link {
+  @apply transition-colors hover:text-link;
+}
+
 /* Decorative shimmer on short promo text (the homepage news banner). The
    text keeps its role and surface ink as the base colour, and a lighter band
    of the same hue sweeps across it. text-fill-color does the hiding, so a

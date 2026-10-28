@@ -16,8 +16,8 @@
  *   line-height, tracking, case or text colour class next to one. Needing one
  *   means a role is missing: add it to styles/tailwind.css and here.
  * - Layout classes (margin, alignment, width, truncation) are fine.
- * - LINK is the one class that combines with a role (it only adds colour and
- *   underline).
+ * - LINK and TITLE_LINK are the only classes that combine with a role (they
+ *   only add colour, and LINK an underline).
  * - Colour follows the surface: on a dark container use ON_DARK, on a chip or
  *   coloured row use a SURFACE. Roles inside both recolour themselves.
  * - Colour follows what text does, not the tag: a plan name in a pricing card
@@ -111,6 +111,12 @@ export const FOOTER_LEGAL_LINK = 'role-footer-legal-link';
  * the role around it, e.g. `${BODY_SMALL} ${LINK}`. On ON_DARK it turns white.
  */
 export const LINK = 'link';
+
+/**
+ * A heading that is a link, like a post title in a list. Keeps the heading's
+ * role and ink and turns link blue on hover, e.g. `${CARD_TITLE} ${TITLE_LINK}`.
+ */
+export const TITLE_LINK = 'title-link';
 
 /** Text inputs, selects and text areas. 16px so phones don't zoom. Placeholder in the label grey. */
 export const FIELD = 'role-field';

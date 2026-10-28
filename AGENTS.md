@@ -120,7 +120,7 @@ Every piece of text uses a type role. Role names live in `components/styles/typo
   - Navigation and forms: `NAV_LINK`, `NAV_MENU_LINK`, `FOOTER_LINK`, `FOOTER_LEGAL_LINK`, `FIELD` (inputs, selects, text areas; 16px so phones don't zoom).
 - **Search highlights:** `HIGHLIGHT` marks a matched term inside any role (brand tint and bold, size from the surrounding text).
 - **Shimmer:** `SHIMMER` is a decorative sweep for short promo text (the homepage news banner). It keeps the role and takes its colours from the surface, so never add text colours to it.
-- **Links:** `LINK` is the one class that combines with a role (`${BODY_SMALL} ${LINK}`). It adds link blue (`--text-link`, blue-700) and an underline and keeps the size around it.
+- **Links:** `LINK` is the one class that combines with a role (`${BODY_SMALL} ${LINK}`). It adds link blue (`--text-link`, blue-700) and an underline and keeps the size around it. `TITLE_LINK` is for a heading that is a link (post titles in lists): `${CARD_TITLE} ${TITLE_LINK}` stays ink and turns link blue on hover. Never hand-write `hover:underline` or a hover colour on a heading.
 - **Colour follows the surface, not the tag.**
   - On a dark or brand-orange container, put `ON_DARK` on the container and use the normal roles inside. Everything turns white; SLUB and footer legal links turn white at 75% (agreed below AA). Never write `text-white`.
   - On a chip, pill, badge or coloured table row, put a `SURFACE.*` (`neutral`, `brand`, `info`, `success`, `warning`, `neutralSolid`, `brandSolid`) on the element with the fill and give the text a role. The role picks up the paired ink. Never colour text on a fill by hand, and never put a fill colour on text without its surface.

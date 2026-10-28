@@ -13,9 +13,11 @@ import {
   LINK,
   SECTION_TITLE,
   SUB_HEADING,
+  TITLE_LINK,
 } from '@/component/styles/typography';
 import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import Container from '@/component/util/Container';
+import { formatDate } from '@/utils/formatDate';
 import { extractYouTubeId } from '../VideoEmbed/utils';
 import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
 import { FeaturedPost } from './FeaturedPost';
@@ -31,17 +33,6 @@ const getPostHref = (path) => {
   processedPath = processedPath.replace('/blog-zh', '/zh/blog');
   return processedPath;
 };
-
-export function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const day = date.getUTCDate();
-  const month = date
-    .toLocaleString('en-US', { month: 'short', timeZone: 'UTC' })
-    .toUpperCase();
-  const year = date.getUTCFullYear();
-
-  return `${day} ${month}, ${year}`;
-}
 
 type VideoCardProps = {
   authorName: string;
@@ -68,11 +59,7 @@ const VideoCard = ({
         target="_blank"
         rel="noopener noreferrer"
       >
-        <h3
-          className={`${SUB_HEADING} inline-block hover:underline transition-all duration-300`}
-        >
-          {title}
-        </h3>
+        <h3 className={`${SUB_HEADING} ${TITLE_LINK} inline-block`}>{title}</h3>
       </Link>
       <span className={BODY_MUTED}>
         By{' '}
@@ -175,9 +162,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
               >
                 <span className={BODY_MUTED}>{formatDate(post.date)}</span>
                 <DynamicLink href={href} passHref>
-                  <h3
-                    className={`${SUB_HEADING} inline-block hover:underline transition-all duration-300`}
-                  >
+                  <h3 className={`${SUB_HEADING} ${TITLE_LINK} inline-block`}>
                     {post.title}
                   </h3>
                 </DynamicLink>
