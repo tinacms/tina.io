@@ -900,7 +900,9 @@ export function AppNavBar({ sticky = true }) {
         open={modalType === 'LanguageSelect'}
         onOpenChange={(open) => !open && closeModal()}
       >
-        <DialogContent className="sm:max-w-md">
+        {/* 90vw on phones like the other dialogs; without it the dialog
+            shrinks to its content and the language cards overflow. */}
+        <DialogContent className="w-[90vw] sm:max-w-md">
           <LanguageSelect
             onLanguageSelect={handleLanguageChange}
             currentLanguage={selectedFlag}

@@ -48,7 +48,7 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
   };
 
   return (
-    <div className="p-6 md:py-10 mx-4">
+    <div className="py-6 sm:mx-4 sm:px-6 md:py-10">
       <div className="flex justify-center pb-8">
         <h2 className={`${CARD_TITLE} inline-block m-0`}>
           {languageTitles[currentLanguage] || languageTitles.en}
