@@ -65,7 +65,11 @@ export const HeroFeature = ({ item, spacing, children }) => {
       {/* items-center on mobile: the column's cross axis is horizontal, so
           items-start pinned the buttons left under a centred headline. */}
       {item.buttons?.length > 0 && (
-        <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-center md:items-start lg:items-center gap-4 md:gap-10 pb-10">
+        // One button stays centred at tablet width; the two-column grid is
+        // only for rows of two or more.
+        <div
+          className={`flex flex-col ${item.buttons.length > 1 ? 'md:grid md:grid-cols-2 md:items-start' : ''} lg:flex lg:flex-row justify-center items-center lg:items-center gap-4 md:gap-10 pb-10`}
+        >
           {/* Tina's button objects have no `id`, so key on the label. */}
           {item.buttons.map((button, index) => (
             <div
