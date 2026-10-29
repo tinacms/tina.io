@@ -152,6 +152,7 @@
   --slate-700: #334155;
   --slate-500: #64748b;
   --slate-100: #f1f5f9;
+  --cyan-50: #ecf7f8;
 
   /* ──────────────────────────────────────────────────────────────────────
      LAYER 2 — SEMANTIC TOKENS
@@ -244,9 +245,8 @@
   /* Icon-only utility buttons (close, copy, carousel, search). */
   --icon-button-ink: var(--slate-700);
   --icon-button-hover: var(--slate-100);
-  /* Rows in a small menu (the npx starter dropdown): an orange tint on hover. */
-  --menu-item-hover: var(--orange-50);
-  --menu-item-hover-ink: var(--orange-700);
+  /* Dropdown menus (nav menus and the npx starter menu): a pale cyan card. */
+  --menu-surface: var(--cyan-50);
   /* Keyboard focus on every button and control; white on dark bands. */
   --focus-ring: var(--ink-900);
 

@@ -1,16 +1,12 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import { BiCheck, BiCopy } from 'react-icons/bi';
+import { BiCheck, BiCopy, BiLinkExternal } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { FOCUS_RING, ICON_BUTTON } from '@/component/styles/buttons';
-import {
-  BODY_MUTED,
-  LABEL,
-  LINK,
-  SUB_HEADING,
-} from '@/component/styles/typography';
+import { MENU_ITEM, MENU_PANEL } from '@/component/styles/menu';
+import { BODY_MUTED, LINK, NAV_MENU_LINK } from '@/component/styles/typography';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
 // biome-ignore lint/complexity/noBannedTypes: <TODO>
@@ -32,7 +28,6 @@ export const CodeButton = ({
   const [_copied, setCopied] = useState(false);
   const [showHelpText, setShowHelpText] = useState(false);
   const [isExplicitlyShown, setIsExplicitlyShown] = useState(false);
-  const [hoveredTemplate, setHoveredTemplate] = useState<number | null>(null);
 
   const buttonId = id || sanitizeLabel(label);
   const hasTemplates = starterTemplates && starterTemplates.length > 0;
@@ -64,13 +59,14 @@ export const CodeButton = ({
   return (
     <div
       className={`relative flex flex-col command-field max-w-full rounded-lg ${className}`}
+      onMouseLeave={handleMouseLeave}
     >
       <button
         type="button"
         className={`relative w-full rounded-lg bg-white/50 text-left text-black cursor-pointer hover:text-brand-primary transition-colors ${FOCUS_RING}`}
         onClick={clickEvent}
         onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        aria-expanded={hasDropdownContent ? isExpanded : undefined}
         id={buttonId}
         {...props}
       >
@@ -91,84 +87,91 @@ export const CodeButton = ({
           </span>
         </div>
       </button>
-      {isExpanded && (
+      {/* Same menu as the nav dropdowns (#4964): one hover area holds the
+          field and the menu, the 8px gap is padding (a bridge, not a margin),
+          and the menu stays mounted and fades. */}
+      {hasDropdownContent && (
         <div
-          className="absolute top-full left-0 right-0 z-50 mt-2 overflow-hidden animate-slide-down rounded-lg border border-neutral-border-subtle bg-white shadow-lg"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          className={`absolute top-full left-0 z-50 min-w-full w-max pt-2 transition-opacity duration-200 ease-in-out ${
+            isExpanded
+              ? 'opacity-100 pointer-events-auto'
+              : 'opacity-0 pointer-events-none'
+          }`}
         >
-          {hasTemplates && (
-            <div className="px-4 pt-4 pb-2">
-              <div className="flex items-center justify-between px-2 pb-2">
-                <span className={SUB_HEADING}>or deploy instantly...</span>
-                <button
-                  onClick={() => {
-                    setShowHelpText(false);
-                    setIsExplicitlyShown(false);
-                  }}
-                  type="button"
-                  aria-label="Close"
-                  className={ICON_BUTTON}
-                >
-                  <IoMdClose />
-                </button>
-              </div>
-              <div className="flex flex-col gap-1">
-                {starterTemplates.map((template, index) => (
-                  <a
-                    key={template.title}
-                    href={template.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="menu-item"
-                    onMouseEnter={() => setHoveredTemplate(index)}
-                    onMouseLeave={() => setHoveredTemplate(null)}
+          <div className={MENU_PANEL}>
+            {hasTemplates && (
+              <>
+                <div className="flex items-center justify-between gap-4 pl-2">
+                  <span className={`${NAV_MENU_LINK} pointer-events-none`}>
+                    or deploy instantly...
+                  </span>
+                  <button
+                    onClick={() => {
+                      setShowHelpText(false);
+                      setIsExplicitlyShown(false);
+                    }}
+                    type="button"
+                    aria-label="Close"
+                    className={ICON_BUTTON}
                   >
-                    <div className="flex items-center gap-2">
-                      {template.icon && (
-                        <div className="size-5 rounded-full overflow-hidden bg-strong flex items-center justify-center shrink-0">
-                          <Image
-                            src={template.icon}
-                            alt={template.title || ''}
-                            width={20}
-                            height={20}
-                            className="object-contain"
-                          />
-                        </div>
-                      )}
-                      <span className={LABEL}>{template.title}</span>
-                    </div>
-                    {hoveredTemplate === index && (
-                      <span className={LABEL}>&#x21B5;</span>
-                    )}
-                  </a>
-                ))}
+                    <IoMdClose />
+                  </button>
+                </div>
+                <ul>
+                  {starterTemplates.map((template) => (
+                    <li key={template.title}>
+                      <a
+                        href={template.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${MENU_ITEM} group ${NAV_MENU_LINK}`}
+                      >
+                        {template.icon && (
+                          <span className="size-5 rounded-full overflow-hidden bg-strong flex items-center justify-center shrink-0">
+                            <Image
+                              src={template.icon}
+                              alt=""
+                              width={20}
+                              height={20}
+                              className="object-contain"
+                            />
+                          </span>
+                        )}
+                        {template.title}
+                        <BiLinkExternal
+                          aria-hidden="true"
+                          className="text-blue-200 text-sm group-hover:text-blue-400 inline"
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {helpText?.children?.length > 0 && (
+              <div
+                className={`${BODY_MUTED} flex items-center justify-between gap-2 px-2 pt-2 pb-1 ${hasTemplates ? 'mt-1 border-t border-white' : ''}`}
+              >
+                <TinaMarkdown
+                  content={helpText}
+                  components={CodeButtonMarkdownStyle}
+                />
+                {!hasTemplates && (
+                  <button
+                    onClick={() => {
+                      setShowHelpText(false);
+                      setIsExplicitlyShown(false);
+                    }}
+                    type="button"
+                    aria-label="Close"
+                    className={ICON_BUTTON}
+                  >
+                    <IoMdClose />
+                  </button>
+                )}
               </div>
-            </div>
-          )}
-          {helpText?.children?.length > 0 && (
-            <div
-              className={`${BODY_MUTED} flex items-center justify-between gap-2 border-t border-neutral-border-subtle px-6 pt-3 pb-4 max-w-min min-w-full`}
-            >
-              <TinaMarkdown
-                content={helpText}
-                components={CodeButtonMarkdownStyle}
-              />
-              {!hasTemplates && (
-                <button
-                  onClick={() => {
-                    setShowHelpText(false);
-                    setIsExplicitlyShown(false);
-                  }}
-                  type="button"
-                  aria-label="Close"
-                  className={ICON_BUTTON}
-                >
-                  <IoMdClose />
-                </button>
-              )}
-            </div>
-          )}
+            )}
+          </div>
         </div>
       )}
     </div>

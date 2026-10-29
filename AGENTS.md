@@ -131,6 +131,7 @@ Every button is one of three levels, all one size (#4964). Level names live in `
 - **One size:** 44px tall, 8px corners, label width plus 24px each side, Plex SemiBold 16 (`BUTTON_LABEL`). Add only layout classes (margin, width, alignment) beside a button. No colour, radius, padding, height or type classes.
 - **Groups:** `ButtonGroup` (or `BUTTON_GROUP`) stacks buttons full width on phones and puts them side by side from `sm`. The highest level comes first.
 - **On dark or orange:** put `ON_DARK` on the container; Primary turns white with an orange label, Tertiary a white outline.
+- **Dropdown menus** (nav menus, the npx starter menu): `MENU_PANEL` and `MENU_ITEM` from `components/styles/menu.ts`, with `NAV_MENU_LINK` on the row text. Put the hover handlers on one parent around the trigger and the panel, bridge the gap with padding, and fade the panel with opacity.
 - **Icon-only buttons:** `ICON_BUTTON` (44px tap area, 20px icon, 2px stroke) and always an `aria-label`. Other clickable controls get `FOCUS_RING`. Never `outline-hidden`.
 - **Text links aren't buttons:** “Read more →” is `EYEBROW_LINK`; links in text are `LINK`.
 - **CMS:** the Actions `variant` and Modal Button `color` fields hold a level (`primary`, `secondary`, `tertiary`; Actions also `textLink`). `levelOf()` maps any old value. There are no shape, size or arrow fields.

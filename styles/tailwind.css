@@ -468,15 +468,17 @@ pre.prism-code.language-json {
   border: 1px solid var(--button-tertiary-border);
 }
 
-/* A row in a small menu (the npx starter dropdown): 44px tall, an orange
-   tint on hover; a LABEL inside takes the hover ink. */
+/* Dropdown menus: the nav menus and the npx starter menu share one look.
+   menu-panel is the pale cyan card; menu-item is a row in it, with a white
+   tint on hover. Put NAV_MENU_LINK on the row's text. */
+@utility menu-panel {
+  @apply rounded-xl p-2 shadow-lg;
+  background-color: var(--menu-surface);
+}
 @utility menu-item {
-  @apply flex min-h-11 items-center justify-between gap-2 rounded-md px-3 transition-colors;
-  &:hover,
-  &:focus-visible {
-    background-color: var(--menu-item-hover);
-    --text-strong: var(--menu-item-hover-ink);
-    color: var(--menu-item-hover-ink);
+  @apply touch-manipulation flex items-center gap-2 rounded-md px-2 py-2 transition duration-150 ease-out;
+  &:hover {
+    background-color: color-mix(in srgb, var(--white) 60%, transparent);
   }
   &:focus-visible {
     outline: 2px solid var(--focus-ring);

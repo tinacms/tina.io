@@ -16,6 +16,7 @@ import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
 import { FOCUS_RING, levelOf } from '@/component/styles/buttons';
+import { MENU_ITEM, MENU_PANEL } from '@/component/styles/menu';
 import { LABEL, NAV_LINK, NAV_MENU_LINK } from '@/component/styles/typography';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
@@ -301,7 +302,7 @@ function desktopNavItemMapper(
       return (
         <li
           key={`${index}-${item.label}`}
-          className={`relative group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? 'bg-[#ECF7F8]' : 'bg-transparent'} transition-all duration-300 ease-out hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2 cursor-pointer`}
+          className={`relative group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? 'bg-(--menu-surface)' : 'bg-transparent'} transition-all duration-300 ease-out hover:bg-(--menu-surface) rounded-xl pl-3 pr-2 cursor-pointer`}
           onMouseLeave={closeDropdownMenu}
         >
           <button
@@ -321,7 +322,7 @@ function desktopNavItemMapper(
             aria-hidden
           />
           <ul
-            className={`absolute -left-[10px] top-full min-w-full mt-5 w-max bg-[#ECF7F8] shadow-lg rounded-xl p-2 transition-opacity duration-200 ease-in-out ${
+            className={`absolute -left-[10px] top-full min-w-full mt-5 w-max ${MENU_PANEL} transition-opacity duration-200 ease-in-out ${
               openDropdown === `${index}-${item.label}`
                 ? 'opacity-100 pointer-events-auto'
                 : 'opacity-0 pointer-events-none'
@@ -336,7 +337,7 @@ function desktopNavItemMapper(
                       setOpenDropdown(null);
                       openModal(subItem.modal);
                     }}
-                    className={`touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60 rounded-md transition duration-150 ease-out w-full text-left cursor-pointer ${NAV_MENU_LINK}`}
+                    className={`${MENU_ITEM} group w-full text-left cursor-pointer ${NAV_MENU_LINK}`}
                   >
                     {subItem.label}
                   </button>
@@ -355,7 +356,7 @@ function desktopNavItemMapper(
                     onClick={() => {
                       setOpenDropdown(null);
                     }}
-                    className={`touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60 rounded-md transition duration-150 ease-out ${NAV_MENU_LINK}`}
+                    className={`${MENU_ITEM} group ${NAV_MENU_LINK}`}
                   >
                     {subItem.label}
                     {subItem.href.startsWith('https') && (
