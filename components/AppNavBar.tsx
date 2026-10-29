@@ -15,7 +15,7 @@ import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
-import { levelOf } from '@/component/styles/buttons';
+import { FOCUS_RING, levelOf } from '@/component/styles/buttons';
 import { LABEL, NAV_LINK, NAV_MENU_LINK } from '@/component/styles/typography';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
@@ -549,7 +549,10 @@ const MobileNavMenu = ({
       >
         <button
           type="button"
-          className="absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-ibm-plex whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
+          // Agreed exception (#4964): the menu tab keeps its own deliberate style.
+          className={`absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-ibm-plex whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer ${FOCUS_RING}`}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
           onClick={toggleMenu}
         >
           <BiMenu
@@ -576,7 +579,8 @@ const MobileNavMenu = ({
             <div className="flex items-center gap-3">
               <button
                 type="button"
-                className={`outline-hidden hover:animate-jelly duration-600`}
+                aria-label="Change language"
+                className={`hover:animate-jelly duration-600 rounded-md ${FOCUS_RING}`}
                 onClick={() => openModal('LanguageSelect')}
               >
                 {selectedFlag === 'en' ? (
@@ -681,7 +685,8 @@ const DesktopNavMenu = ({
         </LinkButton>
         <button
           type="button"
-          className={`cursor-pointer outline-hidden hover:animate-jelly duration-600`}
+          aria-label="Change language"
+          className={`cursor-pointer hover:animate-jelly duration-600 rounded-md ${FOCUS_RING}`}
           onClick={() => openModal('LanguageSelect')}
         >
           {selectedFlag === 'en' ? (

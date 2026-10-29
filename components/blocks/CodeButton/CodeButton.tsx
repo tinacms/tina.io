@@ -4,6 +4,7 @@ import { BiCheck, BiCopy } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
+import { ICON_BUTTON } from '@/component/styles/buttons';
 import { BODY_MUTED, LABEL, LINK } from '@/component/styles/typography';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
@@ -103,9 +104,10 @@ export const CodeButton = ({
                     setIsExplicitlyShown(false);
                   }}
                   type="button"
-                  className="hover:text-brand-primary hover:cursor-pointer"
+                  aria-label="Close"
+                  className={ICON_BUTTON}
                 >
-                  <IoMdClose className="w-4 h-4" />
+                  <IoMdClose />
                 </button>
               </div>
               <div className="flex flex-col gap-1">
@@ -160,9 +162,10 @@ export const CodeButton = ({
                     setIsExplicitlyShown(false);
                   }}
                   type="button"
-                  className="hover:text-brand-primary hover:cursor-pointer"
+                  aria-label="Close"
+                  className={ICON_BUTTON}
                 >
-                  <IoMdClose className="w-5 h-5" />
+                  <IoMdClose />
                 </button>
               )}
             </div>

@@ -37,6 +37,12 @@ export const BUTTON_LEVELS = Object.keys(BUTTON) as ButtonLevel[];
 /** Icon-only utility buttons: close, copy, carousel arrows, search. 44px tap area, 20px icon. */
 export const ICON_BUTTON = 'icon-btn';
 
+/** The keyboard focus ring for other controls: toggles, disclosure rows, choice cards. */
+export const FOCUS_RING = 'focus-ring';
+
+/** The selected option in a segmented toggle: Secondary blue on a pill track. */
+export const SEGMENTED_SELECTED = 'segmented-selected';
+
 /**
  * A row of buttons. On phones they stack, full width; from sm (640px) up they
  * sit side by side at label width.

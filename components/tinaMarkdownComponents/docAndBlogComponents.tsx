@@ -6,7 +6,6 @@ import { ChevronRight, Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
-import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -21,10 +20,13 @@ import {
   EYEBROW,
   LABEL,
   LINK,
+  ON_DARK,
   SUB_HEADING,
   SURFACE,
 } from '@/component/styles/typography';
+import { BUTTON, ICON_BUTTON } from '../styles/buttons';
 import { Prism } from '../styles/Prism';
+import { ButtonArrow, LinkButton } from '../ui/Button';
 import { AccordionBlock } from './templateComponents/accordionBlock';
 
 const PricingComparison = dynamic(() =>
@@ -590,19 +592,7 @@ export const docAndBlogComponents: Components<{
 
   CreateAppCta: ({ ctaText, cliText }) => (
     <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-      <a
-        href="/docs/introduction/using-starter/"
-        style={{
-          textDecoration: 'none',
-          borderRadius: '10px',
-          padding: '1rem 1.5rem',
-          lineHeight: '1em',
-          fontWeight: 'bold',
-          background: '#ec4815',
-          display: 'inline-block',
-          color: 'white',
-        }}
-      >
+      <a href="/docs/introduction/using-starter/" className={BUTTON.primary}>
         {ctaText}
       </a>
 
@@ -646,18 +636,9 @@ export const docAndBlogComponents: Components<{
       <div>
         <h3>{title}</h3>
         <p>{description}</p>
-        <a href={url} className="calloutButton">
+        <a href={url} className={`${BUTTON.primary} shrink-0`}>
           {buttonText}
-          <svg
-            aria-hidden="true"
-            stroke="currentColor"
-            fill="currentColor"
-            stroke-width="0"
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path>
-          </svg>
+          <ButtonArrow />
         </a>
       </div>
     </div>
@@ -730,14 +711,10 @@ export const docAndBlogComponents: Components<{
         <button
           type="button"
           onClick={handleCopy}
-          className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded"
+          aria-label={hasCopied ? 'Copied' : 'Copy code'}
+          className={`${ICON_BUTTON} ${ON_DARK} absolute top-2 right-2 z-10`}
         >
-          {hasCopied ? (
-            <CheckIcon className="h-4 w-4" />
-          ) : (
-            <ClipboardIcon className="h-4 w-4" />
-          )}
-          <span className="sr-only">Copy</span>
+          {hasCopied ? <CheckIcon /> : <ClipboardIcon />}
         </button>
         <Prism value={source} lang={lang || 'jsx'} theme="nightOwl" />
       </div>
@@ -782,14 +759,11 @@ export const docAndBlogComponents: Components<{
     </iframe>
   ),
   Button: ({ link, label }) => (
-    <div className="w-full flex justify-start my-6">
-      <a
-        className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-full flex items-center gap-1 font-ibm-plex whitespace-nowrap focus:outline-hidden focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-linear-to-br from-orange-400 to-orange-600"
-        href={link}
-        target="_blank"
-      >
-        {label} <BiRightArrowAlt className="h-5 w-auto -mt-1 opacity-70" />
-      </a>
+    <div className="my-6">
+      <LinkButton link={link} level="primary" target="_blank">
+        {label}
+        <ButtonArrow />
+      </LinkButton>
     </div>
   ),
 };

@@ -1,6 +1,7 @@
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { useState } from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { SEGMENTED_SELECTED } from '@/component/styles/buttons';
 import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import TableBox from '../Table/table';
 import { CARD_ROWS_CLASSES, PlanCard } from './PlanCard';
@@ -16,7 +17,7 @@ export function PillSwitch({
       <div className="flex flex-col sm:space-y-4 md:flex-row md:items-center">
         <div className="bg-linear-to-br font-ibm-plex from-white/25 via-white/50 to-white/75 shadow-md rounded-full gap-16 relative w-max">
           <div
-            className={`absolute top-0 left-0 w-1/2 h-full bg-linear-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 ease-in-out border-4 border-white  ${
+            className={`absolute top-0 left-0 w-1/2 h-full ${SEGMENTED_SELECTED} rounded-full transition-transform duration-500 ease-in-out border-4 border-white  ${
               isMonthly
                 ? 'transform translate-x-0'
                 : 'transform translate-x-full'

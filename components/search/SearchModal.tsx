@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
+import { ICON_BUTTON } from '@/component/styles/buttons';
 import {
   BODY_MUTED,
   BODY_SMALL,
@@ -198,7 +199,7 @@ export const SearchModal = ({
             <button
               type="button"
               onClick={handleSearchClick}
-              className="absolute right-12 top-1/2 transform -translate-y-1/2 text-orange-600 text-xl cursor-pointer hover:text-orange-700"
+              className={`${ICON_BUTTON} absolute right-10 top-1/2 -translate-y-1/2`}
               aria-label="Search"
             >
               <HiMagnifyingGlass />
@@ -253,10 +254,14 @@ export const SearchBar = ({ className = '' }: { className?: string }) => {
           onKeyDown={handleInputKeyDown}
           readOnly
         />
-        <HiMagnifyingGlass
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-600 text-xl cursor-pointer"
+        <button
+          type="button"
+          aria-label="Search"
           onClick={openModal}
-        />
+          className={`${ICON_BUTTON} absolute right-1 top-1/2 -translate-y-1/2`}
+        >
+          <HiMagnifyingGlass />
+        </button>
       </div>
       <SearchModal
         isOpen={isSearchModalOpen}

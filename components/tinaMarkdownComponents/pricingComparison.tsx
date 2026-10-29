@@ -2,6 +2,7 @@
 
 import { PlanCard } from 'components/blocks/Pricing/PlanCard';
 import { useState } from 'react';
+import { SEGMENTED_SELECTED } from '@/component/styles/buttons';
 import { BODY_MUTED } from '@/component/styles/typography';
 import type { PageBlocksPricingPlans } from '../../tina/__generated__/types';
 
@@ -27,7 +28,7 @@ type Props = {
   labels?: Partial<typeof defaultLabels> & { annualBillingText?: string };
 };
 
-// Segmented toggles are button controls: out of scope for the type roles (#4964).
+// Segmented toggles: the selected option takes SEGMENTED_SELECTED (#4964).
 const buttonClasses =
   'rounded-full px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600';
 
@@ -53,7 +54,7 @@ export function PricingComparison({ before, after, labels }: Props) {
               key={value}
               type="button"
               aria-pressed={version === value}
-              className={`${buttonClasses} ${version === value ? 'bg-blue-600 text-white' : 'text-blue-800'}`}
+              className={`${buttonClasses} ${version === value ? SEGMENTED_SELECTED : 'text-blue-800'}`}
               onClick={() => setVersion(value)}
             >
               {label(value)}
@@ -69,7 +70,7 @@ export function PricingComparison({ before, after, labels }: Props) {
               key={String(monthly)}
               type="button"
               aria-pressed={isMonthly === monthly}
-              className={`${buttonClasses} ${isMonthly === monthly ? 'bg-blue-600 text-white' : 'text-blue-800'}`}
+              className={`${buttonClasses} ${isMonthly === monthly ? SEGMENTED_SELECTED : 'text-blue-800'}`}
               onClick={() => setIsMonthly(monthly)}
             >
               {label(monthly ? 'monthly' : 'annually')}

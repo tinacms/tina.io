@@ -12,6 +12,7 @@ import {
   ON_DARK,
 } from '@/component/styles/typography';
 import { plausibleSiteIdForHost } from '@/utils/i18n/domains';
+import { Button, ButtonGroup } from './ui/Button';
 
 let plausibleInitialized = false;
 
@@ -160,22 +161,14 @@ const ConsentBanner = () => {
             </Link>
             .
           </p>
-          <div className="flex">
-            <button
-              type="button"
-              onClick={handleAcceptAll}
-              className="font-ibm-plex text-sm mx-2 px-6 py-2 bg-white text-[#ea6d43] rounded-3xl hover:bg-gray-200 cursor-pointer"
-            >
+          <ButtonGroup className="sm:justify-center">
+            <Button level="primary" onClick={handleAcceptAll}>
               Accept All
-            </button>
-            <button
-              type="button"
-              onClick={handleDeclineAll}
-              className="mx-2 px-6 py-2 font-ibm-plex text-sm border-2 border-white rounded-3xl hover:bg-orange-600 cursor-pointer"
-            >
+            </Button>
+            <Button level="tertiary" onClick={handleDeclineAll}>
               Reject All
-            </button>
-          </div>
+            </Button>
+          </ButtonGroup>
           <button
             type="button"
             className={`${BODY_SMALL} ${LINK} cursor-pointer`}
@@ -261,22 +254,14 @@ const ConsentBanner = () => {
                 </li>
               </ul>
             </div>
-            <div className="flex gap-3 justify-center mt-4">
-              <button
-                type="button"
-                onClick={cancelModal}
-                className="px-4 py-2 border-2 border-orange-600 text-orange-600 font-ibm-plex rounded-3xl hover:bg-orange-50"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={closeModal}
-                className="px-4 py-2 bg-orange-600 text-white font-ibm-plex rounded-3xl hover:bg-orange-700"
-              >
+            <ButtonGroup className="mt-4 sm:justify-center">
+              <Button level="primary" onClick={closeModal}>
                 Save my Preferences
-              </button>
-            </div>
+              </Button>
+              <Button level="tertiary" onClick={cancelModal}>
+                Cancel
+              </Button>
+            </ButtonGroup>
           </div>
         </div>
       )}

@@ -462,6 +462,22 @@ pre.prism-code.language-json {
   color: var(--button-tertiary-ink);
 }
 
+/* The keyboard focus ring for any other control (toggles, disclosure rows):
+   the same ring the buttons use. */
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* The selected option in a segmented toggle (pricing Monthly/Annually, the
+   pricing comparison): the Secondary blue on the toggle's own pill track. */
+@utility segmented-selected {
+  background-image: linear-gradient(to bottom right, var(--button-secondary-from), var(--button-secondary-to));
+  color: var(--button-secondary-ink);
+}
+
 /* Icon-only utility buttons (close, copy, carousel arrows, search): a 44px
    tap area, 20px icon at a 2px stroke, slate ink, a light square on hover.
    On dark they go white. Always give them an aria-label. */

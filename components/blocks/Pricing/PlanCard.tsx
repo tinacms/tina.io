@@ -33,6 +33,7 @@ import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
+import { FOCUS_RING } from '@/component/styles/buttons';
 import {
   BODY_MUTED,
   BODY_SMALL,
@@ -233,17 +234,19 @@ export const PlanCard = ({
                   comparison ? 'hidden' : 'accordion-content block xl:hidden'
                 }
               >
-                <div
-                  className="flex justify-between items-center cursor-pointer"
+                <button
+                  type="button"
+                  aria-expanded={isAccordionOpen}
+                  className={`flex w-full justify-between items-center cursor-pointer text-left rounded-md ${FOCUS_RING}`}
                   onClick={toggleAccordion}
                 >
-                  <p className={`${LABEL} flex items-center`}>
+                  <span className={`${LABEL} flex items-center`}>
                     {featuresHeading}
-                  </p>
-                  <span className="ml-2">
+                  </span>
+                  <span className="ml-2" aria-hidden="true">
                     {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
                   </span>
-                </div>
+                </button>
                 {isAccordionOpen && (
                   <CardItems
                     items={data.cardItem}

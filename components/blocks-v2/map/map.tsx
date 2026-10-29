@@ -8,6 +8,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa6';
 import type { PageBlocksMap } from 'tina/__generated__/types';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { FOCUS_RING } from '@/component/styles/buttons';
 import {
   BODY_SMALL,
   CAPTION,
@@ -233,18 +234,23 @@ const AccordionItem = ({
     <li>
       <div
         className={
-          'group flex flex-col cursor-pointer p-2 transition-all duration-300 rounded-md shadow-md border border-white/30 bg-gradient-to-tr from-white/10 to-white/40 hover:from-blue-500/10 hover:to-white/40'
+          'group flex flex-col p-2 transition-all duration-300 rounded-md shadow-md border border-white/30 bg-gradient-to-tr from-white/10 to-white/40 hover:from-blue-500/10 hover:to-white/40'
         }
-        onClick={handleSelectOffice}
       >
-        <div className="group flex cursor-pointer pl-2 justify-between w-full">
-          <div className={BODY_SMALL}>{office.addressLocality}</div>
-          <div className="flex items-center justify-center text-black">
+        <button
+          type="button"
+          aria-expanded={currentlySelected}
+          onClick={handleSelectOffice}
+          className={`group flex cursor-pointer pl-2 justify-between w-full text-left rounded-md ${FOCUS_RING}`}
+        >
+          <span className={BODY_SMALL}>{office.addressLocality}</span>
+          <span className="flex items-center justify-center text-black">
             <FaChevronRight
+              aria-hidden="true"
               className={`transition-transform duration-300 ${currentlySelected ? 'rotate-90' : ''}`}
             />
-          </div>
-        </div>
+          </span>
+        </button>
         <div
           className={`overflow-hidden transition-all duration-300 ${
             currentlySelected ? 'max-h-52 mb-2' : 'max-h-0'
