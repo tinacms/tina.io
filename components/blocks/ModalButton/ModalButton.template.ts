@@ -1,3 +1,5 @@
+import { BUTTON_LEVEL_OPTIONS } from '../../styles/buttons';
+
 const modals = [
   'BookDemo.tsx',
   'EmailForm.tsx',
@@ -7,42 +9,14 @@ const modals = [
 
 export const modalButtonTemplateFields = [
   { name: 'label', label: 'Label', type: 'string' },
-  { name: 'icon', label: 'Icon', type: 'boolean' },
-  {
-    name: 'shape',
-    label: 'Shape',
-    type: 'string',
-    options: [
-      { value: 'square', label: 'Square' },
-      { value: 'pill', label: 'Pill' },
-    ],
-  },
+  { name: 'icon', label: 'Arrow', type: 'boolean' },
   {
     name: 'color',
-    label: 'Color',
+    label: 'Level',
     type: 'string',
-    options: [
-      { value: 'default', label: 'Seafoam' },
-      { value: 'blue', label: 'Blue' },
-      { value: 'orange', label: 'Orange' },
-      { value: 'white', label: 'White' },
-      { value: 'ghost', label: 'Ghost' },
-      { value: 'orangeWithBorder', label: 'Orange with Border' },
-      { value: 'ghostBlue', label: 'Ghost Blue' },
-      { value: 'command', label: 'Command' },
-      { value: 'blueOutline', label: 'Blue Outline' },
-      { value: 'ghostOutline', label: 'Ghost Outline' },
-    ],
-  },
-  {
-    name: 'size',
-    label: 'Size',
-    type: 'string',
-    options: [
-      { value: 'small', label: 'Small' },
-      { value: 'medium', label: 'Medium' },
-      { value: 'large', label: 'Large' },
-    ],
+    description:
+      'Primary for the main action, Tertiary beside a Primary, Secondary on its own.',
+    options: BUTTON_LEVEL_OPTIONS,
   },
   { name: 'modal', label: 'Modal', type: 'string', options: modals },
 ];
@@ -57,10 +31,9 @@ export const modalButtonTemplate = {
       return { label: item?.label };
     },
     defaultItem: {
-      variant: 'default',
+      color: 'secondary',
       label: 'Secondary Action',
       icon: false,
-      size: 'medium',
     },
   },
   fields: modalButtonTemplateFields,

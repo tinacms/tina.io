@@ -56,8 +56,7 @@
         {
           "label": "Explore TinaCMS Customization",
           "icon": false,
-          "variant": "blue",
-          "size": "medium",
+          "variant": "secondary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

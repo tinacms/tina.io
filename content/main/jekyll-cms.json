@@ -44,8 +44,7 @@
         {
           "label": "Set Up TinaCMS with Jekyll",
           "icon": false,
-          "variant": "blue",
-          "size": "medium",
+          "variant": "secondary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

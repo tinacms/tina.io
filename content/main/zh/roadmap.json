@@ -11,9 +11,7 @@
         {
           "label": "GitHub Discussions",
           "icon": true,
-          "shape": "square",
-          "variant": "orange",
-          "size": "medium",
+          "variant": "primary",
           "url": "https://github.com/tinacms/tinacms/discussions",
           "_template": "actions"
         }
@@ -38,8 +36,7 @@
             {
               "label": "PostHog 🔗",
               "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://posthog.com/"
             }
           ]
@@ -53,17 +50,13 @@
             {
               "label": "博客介绍",
               "icon": false,
-              "shape": "pill",
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/blog/tinacloud-separate-content-repos"
             },
             {
               "label": "查看文档",
               "icon": true,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/docs/guides/separate-content-repo"
             }
           ]
@@ -76,16 +69,13 @@
             {
               "label": "博客介绍",
               "icon": false,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/blog/astro-is-becoming-the-default-tinacms-starter"
             },
             {
               "label": "GitHub 讨论 🔗",
               "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/5247"
             }
           ]
@@ -99,8 +89,7 @@
             {
               "label": "查看文档",
               "icon": true,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/docs/tinacloud/github-enterprise-integration"
             }
           ]
@@ -114,8 +103,7 @@
             {
               "label": "博客介绍",
               "icon": true,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/blog/two-factor-authentication"
             }
           ]
@@ -129,8 +117,7 @@
             {
               "label": "博客介绍",
               "icon": true,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache"
             }
           ]
@@ -143,15 +130,13 @@
             {
               "label": "博客介绍",
               "icon": true,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/blog/react-19-support"
             },
             {
               "label": "🚀 已在 2.7.7 发布",
               "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/"
             }
           ]
@@ -164,8 +149,7 @@
             {
               "label": "TinaDocs",
               "icon": true,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/tinadocs"
             }
           ]
@@ -178,9 +162,7 @@
             {
               "label": "🚀 已在 3.0.0 发布",
               "icon": true,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/blog/modernizing-to-esm"
             }
           ]
@@ -203,9 +185,7 @@
             {
               "label": "GitHub 讨论 🔗",
               "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/7002"
             }
           ]
@@ -218,8 +198,7 @@
             {
               "label": "GitHub 讨论 🔗",
               "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/5576"
             }
           ]
@@ -232,8 +211,7 @@
             {
               "label": "GitHub 讨论 🔗",
               "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/4476"
             }
           ]
@@ -246,9 +224,7 @@
             {
               "label": "GitHub Issue 🔗",
               "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/issues/6156"
             }
           ]
@@ -261,17 +237,13 @@
             {
               "label": "博客介绍",
               "icon": false,
-              "shape": "pill",
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/blog/tinacms-v4-is-coming"
             },
             {
               "label": "GitHub 讨论 🔗",
               "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/6782"
             }
           ]
@@ -284,9 +256,7 @@
             {
               "label": "GitHub 讨论 🔗",
               "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/7000"
             }
           ]
@@ -299,9 +269,7 @@
             {
               "label": "GitHub 讨论 🔗",
               "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/7001"
             }
           ]
@@ -320,8 +288,7 @@
             {
               "label": "GitHub 讨论 🔗",
               "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/6973"
             }
           ]
@@ -335,8 +302,7 @@
             {
               "label": "编辑工作流",
               "icon": true,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/editorial-workflow/"
             }
           ]
@@ -349,8 +315,7 @@
             {
               "label": "查看文档",
               "icon": true,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/docs/vibe-coding"
             }
           ]
@@ -364,8 +329,7 @@
             {
               "label": "你的站点用 /llms.txt 让 LLM 更好理解了吗？ 🔗",
               "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
             }
           ]

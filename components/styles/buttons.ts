@@ -51,6 +51,16 @@ export const BUTTON_GROUP =
   'flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center [&>*]:w-full sm:[&>*]:w-auto';
 
 /**
+ * The CMS options for a button's level (Actions `variant`, Modal Button
+ * `color`). Editors pick a level, never a colour, shape or size.
+ */
+export const BUTTON_LEVEL_OPTIONS = [
+  { value: 'primary', label: 'Primary (orange): the main action' },
+  { value: 'secondary', label: 'Secondary (blue): on its own, quieter' },
+  { value: 'tertiary', label: 'Tertiary (orange outline): beside a Primary' },
+];
+
+/**
  * Old CMS colour values, for content that hasn't been migrated (and for the
  * migration script). Pairing rules are applied in content, not here, so an
  * unmigrated blue outline maps to Tertiary.

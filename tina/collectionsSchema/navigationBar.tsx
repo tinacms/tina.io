@@ -123,10 +123,9 @@ export const navigationBarCollection = {
               return { label: `🍌 ${item?.label}` };
             },
             defaultItem: {
-              variant: 'default',
+              color: 'secondary',
               label: 'Secondary Action',
               icon: false,
-              size: 'medium',
             },
           },
           fields: [

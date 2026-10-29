@@ -13,8 +13,7 @@
         {
           "label": "Download Zip",
           "icon": false,
-          "variant": "blue",
-          "size": "medium",
+          "variant": "secondary",
           "url": "https://tinaio.sharepoint.com/:u:/s/TinaMarketing/IQAdMdaH4n4-SZID34L4bFXZAb26XTimPBRwsoZfY1s4E1o?e=rUulCV&download=1",
           "_template": "actions"
         }
@@ -36,8 +35,7 @@
             {
               "label": "Download",
               "icon": false,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://tinaio.sharepoint.com/:u:/s/TinaMarketing/IQAuaGVZUPqMTLzZLhoqhI9PAarv2KqjRMfkDOXLPHVnOXs?e=RaYmxZ&download=1",
               "_template": "actions"
             }
@@ -57,8 +55,7 @@
             {
               "label": "Download Zip",
               "icon": false,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "https://tinaio.sharepoint.com/:u:/s/TinaMarketing/IQDt9HH0D60ORrrgIGc3V5v2AVHgZVMrhnFgR8UbSIuHrW0?e=fGFLpY&download=1",
               "_template": "actions"
             }
@@ -104,8 +101,7 @@
             {
               "label": "View Style Guide",
               "icon": false,
-              "variant": "blue",
-              "size": "medium",
+              "variant": "secondary",
               "url": "/design",
               "_template": "actions"
             }

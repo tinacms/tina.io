@@ -57,8 +57,7 @@
         {
           "label": "Get Started with MDX",
           "icon": false,
-          "variant": "blue",
-          "size": "medium",
+          "variant": "secondary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

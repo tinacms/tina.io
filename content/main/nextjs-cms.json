@@ -56,8 +56,7 @@
         {
           "label": "Set Up TinaCMS with Next.js",
           "icon": false,
-          "variant": "default",
-          "size": "medium",
+          "variant": "secondary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

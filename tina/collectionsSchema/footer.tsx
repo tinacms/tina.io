@@ -125,10 +125,9 @@ export const footerCollection = {
                   return { label: `🍌 ${item?.label}` };
                 },
                 defaultItem: {
-                  variant: 'default',
+                  color: 'secondary',
                   label: 'Secondary Action',
                   icon: false,
-                  size: 'medium',
                 },
               },
               fields: [
@@ -362,10 +361,9 @@ export const footerCollection = {
                   return { label: `🍌 ${item?.label}` };
                 },
                 defaultItem: {
-                  variant: 'default',
+                  color: 'secondary',
                   label: 'Secondary Action',
                   icon: false,
-                  size: 'medium',
                 },
               },
               fields: [
@@ -494,10 +492,9 @@ export const footerCollection = {
                   return { label: `🍌 ${item?.label}` };
                 },
                 defaultItem: {
-                  variant: 'default',
+                  color: 'secondary',
                   label: 'Secondary Action',
                   icon: false,
-                  size: 'medium',
                 },
               },
               fields: [

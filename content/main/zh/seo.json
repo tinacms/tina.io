@@ -56,8 +56,7 @@
         {
           "label": "用 Tina 优化你的 SEO",
           "icon": false,
-          "variant": "default",
-          "size": "medium",
+          "variant": "secondary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

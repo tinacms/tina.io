@@ -48,8 +48,7 @@
         {
           "label": "联系我们",
           "icon": false,
-          "color": "blue",
-          "size": "small",
+          "color": "secondary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }

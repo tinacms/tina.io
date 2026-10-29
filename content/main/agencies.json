@@ -48,8 +48,7 @@
         {
           "label": "Contact Us",
           "icon": false,
-          "color": "blue",
-          "size": "small",
+          "color": "secondary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }

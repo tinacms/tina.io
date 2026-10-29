@@ -272,9 +272,7 @@
         {
           "label": "Get Started with TinaCMS",
           "icon": false,
-          "shape": "pill",
-          "variant": "blue",
-          "size": "medium",
+          "variant": "secondary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

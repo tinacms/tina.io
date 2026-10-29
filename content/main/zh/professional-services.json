@@ -24,9 +24,9 @@
             {
               "label": "预约通话",
               "icon": false,
-              "size": "medium",
               "modal": "BookDemo.tsx",
-              "_template": "modalButton"
+              "_template": "modalButton",
+              "color": "secondary"
             }
           ],
           "media": [
@@ -43,9 +43,9 @@
             {
               "label": "预约通话",
               "icon": false,
-              "size": "medium",
               "modal": "BookDemo.tsx",
-              "_template": "modalButton"
+              "_template": "modalButton",
+              "color": "secondary"
             }
           ],
           "media": [
@@ -63,9 +63,9 @@
             {
               "label": "预约通话",
               "icon": false,
-              "size": "medium",
               "modal": "BookDemo.tsx",
-              "_template": "modalButton"
+              "_template": "modalButton",
+              "color": "secondary"
             }
           ],
           "media": [
@@ -82,9 +82,7 @@
             {
               "label": "联系 SSW",
               "icon": false,
-              "shape": "pill",
-              "variant": "orange",
-              "size": "medium",
+              "variant": "primary",
               "url": "https://www.ssw.com.au/company/contact-us",
               "_template": "actions"
             }
@@ -107,9 +105,7 @@
         {
           "label": "预约通话",
           "icon": false,
-          "shape": "square",
-          "color": "orange",
-          "size": "medium",
+          "color": "primary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }

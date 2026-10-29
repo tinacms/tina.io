@@ -11,8 +11,7 @@
         {
           "label": "Tina Migration Guide",
           "icon": false,
-          "variant": "blue",
-          "size": "small",
+          "variant": "secondary",
           "url": "/docs/forestry/migrate",
           "_template": "actions"
         },
