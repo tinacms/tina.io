@@ -96,24 +96,30 @@
           ],
           "isReversed": true,
           "imageBackground": false
+        },
+        {
+          "headline": "Resources",
+          "text": "For website UI, refer to the Tina.io Style Guide. It sets the type and colour used across every tina.io page.\n",
+          "buttons": [
+            {
+              "label": "View Style Guide",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/design",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/brand-assets/style-guide-type-ramp.png",
+              "_template": "image"
+            }
+          ],
+          "imageBackground": false
         }
       ],
       "_template": "features"
-    },
-    {
-      "title": "Resources",
-      "description": "For website UI, refer to the Tina.io Style Guide. It sets the type and colour used across every tina.io page.",
-      "buttons": [
-        {
-          "label": "View Style Guide",
-          "icon": false,
-          "variant": "blue",
-          "size": "medium",
-          "url": "/design",
-          "_template": "actions"
-        }
-      ],
-      "_template": "callToAction"
     }
   ]
 }
