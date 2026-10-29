@@ -221,6 +221,32 @@
   --surface-brand-solid: var(--orange-600);
   --on-surface-brand-solid: var(--white); /* 4.7:1 */
 
+  /* Buttons: three levels, one size (#4964). A component names a level
+     (BUTTON in components/styles/buttons.ts), never these tokens.
+     Agreed exception: the Primary and Secondary gradients keep white labels
+     at 3.8:1 and 3.7:1 on their light ends, below AA for 16px text. Design
+     chose these over darker gradients that pass; don't "fix" without design. */
+  --button-primary-from: var(--orange-500);
+  --button-primary-to: var(--orange-700);
+  --button-primary-ink: var(--white);
+  --button-secondary-from: var(--blue-500);
+  --button-secondary-to: var(--blue-700);
+  --button-secondary-ink: var(--white);
+  /* Tertiary: an orange outline on white, 4.7:1. Always beside a Primary. */
+  --button-tertiary-fill: var(--white);
+  --button-tertiary-border: var(--orange-600);
+  --button-tertiary-ink: var(--orange-600);
+  /* On dark and orange bands the on-dark utility swaps the levels: Primary
+     goes white with an orange-700 label, Tertiary a white outline. */
+  --button-on-dark-fill: var(--white);
+  --button-on-dark-ink: var(--orange-700);
+  --button-on-dark-outline: var(--white);
+  /* Icon-only utility buttons (close, copy, carousel, search). */
+  --icon-button-ink: var(--slate-700);
+  --icon-button-hover: var(--slate-100);
+  /* Keyboard focus on every button and control; white on dark bands. */
+  --focus-ring: var(--ink-900);
+
   /* Type families. Headings are IBM Plex Sans; everything people read is
      Inter; code and technical labels are IBM Plex Mono. They match the
      font-ibm-plex, font-sans and font-mono classes in tailwind.config.js. */

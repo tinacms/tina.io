@@ -168,6 +168,17 @@ pre.prism-code.language-json {
   --text-label: var(--text-on-dark-label);
   --text-link: var(--text-on-dark);
   --text-link-hover: var(--text-on-dark);
+  /* Buttons inside follow the band: Primary goes white, Tertiary a white
+     outline, focus rings white. */
+  --button-primary-from: var(--button-on-dark-fill);
+  --button-primary-to: var(--button-on-dark-fill);
+  --button-primary-ink: var(--button-on-dark-ink);
+  --button-tertiary-fill: transparent;
+  --button-tertiary-border: var(--button-on-dark-outline);
+  --button-tertiary-ink: var(--button-on-dark-outline);
+  --icon-button-ink: var(--text-on-dark);
+  --icon-button-hover: color-mix(in srgb, var(--white) 12%, transparent);
+  --focus-ring: var(--text-on-dark);
   color: var(--text-body);
 }
 
@@ -394,6 +405,83 @@ pre.prism-code.language-json {
   @apply surface-brand rounded-sm px-0.5;
   font-weight: 700;
   font-synthesis-weight: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   BUTTONS (#4964) — three levels, one size. BUTTON in
+   components/styles/buttons.ts names these; components use the Button,
+   LinkButton and ModalButton components, which apply them. Colours come
+   from the --button-* tokens in app/global.css, so on-dark can swap them.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Button labels: IBM Plex Sans SemiBold 16px. No colour of its own; the
+   button's level sets the ink. */
+@utility role-button-label {
+  @apply font-ibm-plex font-semibold text-base leading-tight tracking-normal normal-case;
+}
+
+/* Shared by every level: 44px tall, 8px corners, label width plus 24px
+   each side. Hover lifts 1px with a soft shadow; pressing drops it back.
+   Disabled is 60% with no hover. background-origin stops a gradient fill
+   repeating into the transparent border (the edge seam). */
+@utility btn {
+  @apply role-button-label inline-flex items-center justify-center gap-2 whitespace-nowrap min-h-11 px-6 rounded-lg border border-transparent cursor-pointer transition duration-150 ease-out;
+  background-origin: border-box;
+  &:hover {
+    translate: -1px -1px;
+    box-shadow: 0 1px 3px 0 rgb(20 70 150 / 0.07), 0 2px 6px -1px rgb(20 70 150 / 0.07);
+  }
+  &:active {
+    translate: 0 0;
+    box-shadow: none;
+  }
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+  &:disabled,
+  &[aria-disabled='true'] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+    translate: none;
+    box-shadow: none;
+  }
+}
+@utility btn-primary {
+  background-image: linear-gradient(to bottom right, var(--button-primary-from), var(--button-primary-to));
+  color: var(--button-primary-ink);
+}
+@utility btn-secondary {
+  background-image: linear-gradient(to bottom right, var(--button-secondary-from), var(--button-secondary-to));
+  color: var(--button-secondary-ink);
+}
+@utility btn-tertiary {
+  background-color: var(--button-tertiary-fill);
+  border-color: var(--button-tertiary-border);
+  color: var(--button-tertiary-ink);
+}
+
+/* Icon-only utility buttons (close, copy, carousel arrows, search): a 44px
+   tap area, 20px icon at a 2px stroke, slate ink, a light square on hover.
+   On dark they go white. Always give them an aria-label. */
+@utility icon-btn {
+  @apply inline-flex shrink-0 items-center justify-center size-11 rounded-lg cursor-pointer transition-colors duration-150;
+  color: var(--icon-button-ink);
+  & svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  & svg :where(path, circle, rect, line, polyline) {
+    stroke-width: 2px;
+  }
+  &:hover {
+    background-color: var(--icon-button-hover);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
 }
 
 /* ──────────────────────────────────────────────────────────────────────────

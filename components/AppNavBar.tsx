@@ -15,6 +15,7 @@ import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
+import { levelOf } from '@/component/styles/buttons';
 import { LABEL, NAV_LINK, NAV_MENU_LINK } from '@/component/styles/typography';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
@@ -46,14 +47,6 @@ const LanguageSelect = dynamic(
   () => import('components/modals/LanguageSelect'),
   { ssr: false },
 );
-
-enum ValidColors {
-  White = 'white',
-  Blue = 'blue',
-  Orange = 'orange',
-  Seafoam = 'seafoam',
-  Ghost = 'ghost',
-}
 
 const EnFlag = ({ className }) => (
   <Image
@@ -274,12 +267,11 @@ function desktopNavItemMapper(
           className={`group ${_navLinkClasses}`}
         >
           <Button
-            color={item.color as ValidColors}
-            size="small"
+            level={levelOf(item.color)}
             onClick={() => openModal(item.modal)}
           >
             {item.icon2 && iconMapping[item.icon2] && (
-              <span className="mr-2">
+              <span>
                 {iconMapping[item.icon2]({
                   className: 'w-5 h-5',
                 })}
@@ -598,11 +590,9 @@ const MobileNavMenu = ({
           </div>
           <LinkButton
             link={'https://app.tina.io'}
-            color="blue"
-            size="medium"
-            className="cursor-pointer outline-hidden mx-6 justify-center"
+            level="secondary"
+            className="mx-6"
           >
-            {' '}
             My TinaCloud
           </LinkButton>
           <ul className="flex flex-col py-4 px-6 relative z-20">
@@ -639,12 +629,11 @@ const MobileNavMenu = ({
               isModalButtonItem(item) && (
                 <Button
                   key={`${index}-${item.modal}`}
-                  color={item.color as ValidColors}
-                  size="extraSmall"
+                  level={levelOf(item.color)}
                   onClick={() => openModal(item.modal)}
                 >
                   {item.icon2 && iconMapping[item.icon2] && (
-                    <span className="mr-2">
+                    <span>
                       {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
                     </span>
                   )}
@@ -687,13 +676,7 @@ const DesktopNavMenu = ({
         })}
       </ul>
       <li className="flex items-center gap-4">
-        <LinkButton
-          link={'https://app.tina.io'}
-          color="blue"
-          size="medium"
-          className="cursor-pointer outline-hidden"
-        >
-          {' '}
+        <LinkButton link={'https://app.tina.io'} level="secondary">
           My TinaCloud
         </LinkButton>
         <button

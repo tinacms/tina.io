@@ -27,7 +27,21 @@ const RenderButton = ({ button, className = '' }) => {
   // vertical margins cancelled (e.g. ModalB's -mb-2), so mixed rows of action
   // + modal buttons align by construction instead of by matching per-variant
   // nudges — which always drift out of sync across breakpoints.
-  return <div className="flex items-center [&>*]:!my-0">{inner}</div>;
+  // Action and modal buttons go full width on phones (stacked by the parent
+  // row's wrap) and back to label width from sm; the command button keeps
+  // its own width.
+  const stretch = !button.__typename.includes('CodeButton');
+  return (
+    <div
+      className={
+        stretch
+          ? 'flex w-full items-center sm:w-auto [&>*]:!my-0 [&>*]:w-full sm:[&>*]:w-auto'
+          : 'flex items-center [&>*]:!my-0'
+      }
+    >
+      {inner}
+    </div>
+  );
 };
 
 export default RenderButton;

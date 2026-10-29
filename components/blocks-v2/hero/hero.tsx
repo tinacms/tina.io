@@ -59,7 +59,6 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
               <RenderButton
                 key={`button-${button?.label || index}`}
                 button={button}
-                className="py-3"
                 data-tina-field={tinaField(button, 'label')}
               />
             ))}

@@ -1,13 +1,13 @@
 import { DemoForm } from 'components/modals/BookDemo';
 import { ContactForm } from 'components/modals/ContactForm';
 import { useState } from 'react';
-import { BiArrowBack } from 'react-icons/bi';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { EmailForm } from '@/component/modals/EmailForm';
+import { BUTTON_GROUP, levelOf } from '@/component/styles/buttons';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
-import { ModalButton } from '../../ui';
+import { ButtonArrow, ModalButton } from '../../ui';
 
 // Function that returns modal components
 const getModalContent = (modal: string) => {
@@ -46,37 +46,25 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
 
   const closeModal = () => setOpen(false);
 
-  const isList = true;
-
   return (
     <>
       <div
-        className={cn(
-          '-mb-2',
-          'items-center',
-          isList
-            ? 'flex flex-col sm:flex-row md:flex-row lg:flex-row'
-            : 'flex flex-row',
-          align === 'center' && 'justify-center',
-        )}
+        className={cn(BUTTON_GROUP, align === 'center' && 'sm:justify-center')}
       >
         {items?.map((item, index) => {
-          const { color, label, icon, modal, shape } = item;
+          const { color, variant, label, icon, modal } = item;
 
           return (
             <ModalButton
               key={sanitizeLabel(label) || modal || `modal-button-${index}`}
-              color={color}
-              shape={shape}
+              level={levelOf(variant ?? color)}
               id={sanitizeLabel(label)}
               className={className}
               onClick={() => openModal(modal)}
               data-tina-field={tinaField(item, 'label')}
             >
               {label}
-              {icon && (
-                <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
-              )}
+              {icon && <ButtonArrow />}
             </ModalButton>
           );
         })}

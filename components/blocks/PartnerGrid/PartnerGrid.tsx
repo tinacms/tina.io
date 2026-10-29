@@ -114,8 +114,8 @@ const PartnerCard = ({ data }) => {
 const CONTACT_BUTTON = {
   label: 'Contact us',
   modal: 'ContactForm.tsx',
-  color: 'blueOutline',
-  shape: 'pill',
+  // The card's only action, so it's the Primary (#4964).
+  variant: 'primary',
 };
 
 // Always the last card: the directory only lists partners who opted in, so a

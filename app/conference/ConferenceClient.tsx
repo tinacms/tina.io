@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from 'components/ui';
+import { Button, ButtonGroup, LinkButton } from 'components/ui';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
@@ -63,18 +63,20 @@ const HeaderBanner = ({
           )}
         </div>
       </div>
-      <div className="flex flex-row gap-4">
-        <Button color="white" size="medium" onClick={scrollToAgenda}>
-          <span className="mr-2">{tinaData.actionButton.title}</span>
-        </Button>
+      <ButtonGroup>
         {tinaData?.rightButton?.link && (
-          <Link href={tinaData.rightButton.link} target="_blank">
-            <Button color="blue" size="medium">
-              <span className="mr-2">{tinaData?.rightButton?.title}</span>
-            </Button>
-          </Link>
+          <LinkButton
+            link={tinaData.rightButton.link}
+            level="primary"
+            target="_blank"
+          >
+            {tinaData?.rightButton?.title}
+          </LinkButton>
         )}
-      </div>
+        <Button level="tertiary" onClick={scrollToAgenda}>
+          {tinaData.actionButton.title}
+        </Button>
+      </ButtonGroup>
     </div>
   );
 };

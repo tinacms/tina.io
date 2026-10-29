@@ -165,9 +165,8 @@ export const EmailForm = (props: EmailFormProps) => {
           <div className="w-full flex justify-end mt-6">
             <Button
               type="submit"
-              color="orange"
+              level="primary"
               disabled={isProcessing || !isValidEmail}
-              className="px-6 py-2.5"
             >
               {isProcessing ? 'Processing...' : 'Subscribe'}
             </Button>

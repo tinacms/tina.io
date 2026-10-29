@@ -29,56 +29,40 @@ export default function CommunityPageClient(data) {
 
           <ButtonGroup>
             <LinkButton
-              color="white"
+              level="tertiary"
               link={'https://github.com/tinacms/tinacms/discussions'}
             >
               <TinaIconSvg
-                style={{
-                  fill: '#EC4815',
-                  height: '1.675rem',
-                  width: 'auto',
-                  margin: '0 0.675rem 0 0.125rem',
-                }}
-              />{' '}
+                aria-hidden="true"
+                className="h-6 w-auto fill-[#EC4815]"
+              />
               Discussion
             </LinkButton>
             <LinkButton
               link={'https://discord.com/invite/zumN63Ybpf'}
-              color="white"
+              level="tertiary"
             >
               <FaDiscord
-                style={{
-                  color: '#5865f2',
-                  height: '1.5rem',
-                  width: 'auto',
-                  margin: '0 0.675rem 0 0.125rem',
-                }}
-              />{' '}
+                aria-hidden="true"
+                className="h-6 w-auto text-[#5865f2]"
+              />
               Discord
             </LinkButton>
             <LinkButton
               link={'https://github.com/tinacms/tinacms'}
-              color="white"
+              level="tertiary"
             >
               <FaGithub
-                style={{
-                  color: '#24292e',
-                  height: '1.5rem',
-                  width: 'auto',
-                  margin: '0 0.675rem 0 0.125rem',
-                }}
-              />{' '}
+                aria-hidden="true"
+                className="h-6 w-auto text-[#24292e]"
+              />
               GitHub
             </LinkButton>
-            <LinkButton link={'https://twitter.com/tinacms'} color="white">
+            <LinkButton link={'https://twitter.com/tinacms'} level="tertiary">
               <FaTwitter
-                style={{
-                  color: '#1DA1F2',
-                  height: '1.5rem',
-                  width: 'auto',
-                  margin: '0 0.675rem 0 0.125rem',
-                }}
-              />{' '}
+                aria-hidden="true"
+                className="h-6 w-auto text-[#1DA1F2]"
+              />
               Twitter
             </LinkButton>
           </ButtonGroup>

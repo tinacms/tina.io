@@ -6,9 +6,9 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useState } from 'react';
+import { BUTTON } from '@/component/styles/buttons';
 import { BODY, PAGE_TITLE } from '@/component/styles/typography';
-import { Button } from '../components/ui';
-import { DynamicLink } from '../components/ui/DynamicLink';
+import { ButtonGroup, LinkButton } from '../components/ui';
 import { DEFAULT_LOCALE, SupportedLocales } from '../middleware';
 import { EN_ORIGIN, hasZhPrefix, isZhHost } from '../utils/i18n/domains';
 import { checkPageExists } from './actions/not-found-actions';
@@ -65,17 +65,17 @@ const NotFoundContent = ({ content, locale }) => (
     title={content.notFound.title}
     description={content.notFound.description}
   >
-    <div className="flex flex-wrap gap-4">
-      <DynamicLink href={localePath('/docs', locale)} passHref>
-        <Button>{content.notFound.buttons.documentation}</Button>
-      </DynamicLink>
-      <DynamicLink href={localePath('/docs/guides', locale)} passHref>
-        <Button>{content.notFound.buttons.guides}</Button>
-      </DynamicLink>
-      <DynamicLink href={localePath('/', locale)} passHref>
-        <Button>{content.notFound.buttons.home}</Button>
-      </DynamicLink>
-    </div>
+    <ButtonGroup>
+      <LinkButton link={localePath('/docs', locale)} level="secondary">
+        {content.notFound.buttons.documentation}
+      </LinkButton>
+      <LinkButton link={localePath('/docs/guides', locale)} level="secondary">
+        {content.notFound.buttons.guides}
+      </LinkButton>
+      <LinkButton link={localePath('/', locale)} level="secondary">
+        {content.notFound.buttons.home}
+      </LinkButton>
+    </ButtonGroup>
   </PageLayout>
 );
 
@@ -86,11 +86,11 @@ const RedirectPage = ({ redirectPath, content }) => (
     title={content.notTranslated.title}
     description={content.notTranslated.description}
   >
-    <div className="flex flex-wrap gap-4">
-      <a href={redirectPath} className="cursor-pointer">
-        <Button>{content.notTranslated.buttons.continue}</Button>
+    <ButtonGroup>
+      <a href={redirectPath} className={BUTTON.secondary}>
+        {content.notTranslated.buttons.continue}
       </a>
-    </div>
+    </ButtonGroup>
   </PageLayout>
 );
 
