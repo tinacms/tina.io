@@ -99,6 +99,21 @@
         }
       ],
       "_template": "features"
+    },
+    {
+      "title": "资源",
+      "description": "网站 UI 请参考 Tina.io 样式指南，其中规定了 tina.io 各页面使用的字体与颜色。",
+      "buttons": [
+        {
+          "label": "查看样式指南",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/design",
+          "_template": "actions"
+        }
+      ],
+      "_template": "callToAction"
     }
   ]
 }
