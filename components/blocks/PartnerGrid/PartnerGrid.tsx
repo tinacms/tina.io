@@ -6,13 +6,14 @@ import {
   BODY,
   BODY_MUTED,
   BODY_SMALL,
+  EYEBROW_LINK,
   LABEL,
-  LINK,
   PAGE_TITLE,
   SECTION_TITLE,
   SUB_HEADING,
   SURFACE,
 } from '@/component/styles/typography';
+import { ButtonArrow } from '../../ui/Button';
 import { Container } from '../Container';
 import { ModalB } from '../ModalButton/ModalButton';
 
@@ -22,7 +23,11 @@ const PartnerCard = ({ data }) => {
       ? `https://${data.website}`
       : data.website;
   // Show the bare domain (no protocol / trailing slash) as the link text.
-  const websiteLabel = website?.replace(/^https?:\/\//, '').replace(/\/+$/, '');
+  // “Visit ssw.com.au”: the bare domain, without protocol, www or path.
+  const websiteDomain = website
+    ?.replace(/^https?:\/\//, '')
+    .replace(/^www\./, '')
+    .replace(/\/.*$/, '');
 
   const isPremier = data.tier === 'Premier';
 
@@ -99,11 +104,11 @@ const PartnerCard = ({ data }) => {
           href={website}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${BODY_SMALL} ${LINK} mt-auto inline-flex items-center gap-1`}
+          className={`${EYEBROW_LINK} mt-auto inline-flex items-center gap-1.5 py-2`}
           data-tina-field={tinaField(data, 'website')}
         >
-          {websiteLabel}
-          <span aria-hidden="true">&rarr;</span>
+          Visit {websiteDomain}
+          <ButtonArrow />
         </a>
       )}
     </div>
