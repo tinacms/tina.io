@@ -4,6 +4,5 @@ export * from './DocsPagination';
 export * from './DynamicLink';
 export * from './LastEdited';
 export * from './LoadingDots';
-export * from './NavToggle';
 export * from './Overlay';
 export * from './Video';

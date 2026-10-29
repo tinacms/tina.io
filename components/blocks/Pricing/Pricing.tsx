@@ -27,7 +27,7 @@ export function PillSwitch({
             <button
               type="button"
               className={`px-10 py-4 w-1/2 z-20 cursor-pointer rounded-full transition-colors duration-500 ${FOCUS_RING} ${
-                isMonthly ? 'text-white' : 'text-blue-500'
+                isMonthly ? 'text-white' : 'text-link'
               }`}
               onClick={() => setIsMonthly(true)}
             >
@@ -36,7 +36,7 @@ export function PillSwitch({
             <button
               type="button"
               className={`px-10 py-2 w-1/2 z-20 cursor-pointer rounded-full transition-colors duration-500 ${FOCUS_RING} ${
-                !isMonthly ? 'text-white' : 'text-blue-500'
+                !isMonthly ? 'text-white' : 'text-link'
               }`}
               onClick={() => setIsMonthly(false)}
             >
