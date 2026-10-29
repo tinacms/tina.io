@@ -168,7 +168,7 @@
             {
               "label": "了解更多",
               "icon": false,
-              "variant": "tertiary",
+              "variant": "textLink",
               "url": "/docs/self-hosted/overview"
             }
           ]
@@ -211,7 +211,7 @@
             {
               "label": "了解更多",
               "icon": false,
-              "variant": "tertiary",
+              "variant": "textLink",
               "url": "/docs/tinacloud/webhooks"
             }
           ]
@@ -231,7 +231,7 @@
             {
               "label": "获取支持",
               "icon": false,
-              "variant": "tertiary",
+              "variant": "textLink",
               "url": "/docs/support"
             }
           ]

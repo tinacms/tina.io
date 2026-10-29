@@ -253,7 +253,7 @@ const AccordionItem = ({
         </button>
         <div
           className={`overflow-hidden transition-all duration-300 ${
-            currentlySelected ? 'max-h-52 mb-2' : 'max-h-0'
+            currentlySelected ? 'max-h-96 mb-2' : 'max-h-0'
           }`}
         >
           {children}
