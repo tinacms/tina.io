@@ -229,33 +229,32 @@ export const PlanCard = ({
         <div>
           {data.cardItem?.length > 0 && (
             <div className="pt-6">
-              <div
-                className={
-                  comparison ? 'hidden' : 'accordion-content block xl:hidden'
-                }
-              >
-                <button
-                  type="button"
-                  aria-expanded={isAccordionOpen}
-                  className={`flex w-full justify-between items-center cursor-pointer text-left rounded-md ${FOCUS_RING}`}
-                  onClick={toggleAccordion}
-                >
-                  <span className={`${LABEL} flex items-center`}>
-                    {featuresHeading}
-                  </span>
-                  <span className="ml-2" aria-hidden="true">
-                    {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
-                  </span>
-                </button>
-                {isAccordionOpen && (
-                  <CardItems
-                    items={data.cardItem}
-                    isMonthly={isMonthly}
-                    isLarge
-                    comparison={comparison}
-                  />
-                )}
-              </div>
+              {/* The comparison card is read-only, so it has no toggle. */}
+              {!comparison && (
+                <div className="accordion-content block xl:hidden">
+                  <button
+                    type="button"
+                    aria-expanded={isAccordionOpen}
+                    className={`flex w-full justify-between items-center cursor-pointer text-left rounded-md ${FOCUS_RING}`}
+                    onClick={toggleAccordion}
+                  >
+                    <span className={`${LABEL} flex items-center`}>
+                      {featuresHeading}
+                    </span>
+                    <span className="ml-2" aria-hidden="true">
+                      {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
+                    </span>
+                  </button>
+                  {isAccordionOpen && (
+                    <CardItems
+                      items={data.cardItem}
+                      isMonthly={isMonthly}
+                      isLarge
+                      comparison={comparison}
+                    />
+                  )}
+                </div>
+              )}
               <div
                 className={
                   comparison ? 'block' : 'non-accordion-content hidden xl:block'
