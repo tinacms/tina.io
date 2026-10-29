@@ -468,6 +468,22 @@ pre.prism-code.language-json {
   border: 1px solid var(--button-tertiary-border);
 }
 
+/* A row in a small menu (the npx starter dropdown): 44px tall, an orange
+   tint on hover; a LABEL inside takes the hover ink. */
+@utility menu-item {
+  @apply flex min-h-11 items-center justify-between gap-2 rounded-md px-3 transition-colors;
+  &:hover,
+  &:focus-visible {
+    background-color: var(--menu-item-hover);
+    --text-strong: var(--menu-item-hover-ink);
+    color: var(--menu-item-hover-ink);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: -2px;
+  }
+}
+
 /* The keyboard focus ring for any other control (toggles, disclosure rows):
    the same ring the buttons use. */
 @utility focus-ring {

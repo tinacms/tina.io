@@ -35,7 +35,12 @@ const getModalClassName = (modal: string | null) => {
   return 'sm:max-w-lg';
 };
 
-export const ModalB = ({ items, align = 'left', className = '' }) => {
+export const ModalB = ({
+  items,
+  align = 'left',
+  fill = false,
+  className = '',
+}) => {
   const [open, setOpen] = useState(false);
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
@@ -49,7 +54,11 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
   return (
     <>
       <div
-        className={cn(BUTTON_GROUP, align === 'center' && 'sm:justify-center')}
+        className={cn(
+          BUTTON_GROUP,
+          fill && 'sm:[&>*]:w-full',
+          align === 'center' && 'sm:justify-center',
+        )}
       >
         {items?.map((item, index) => {
           const { color, variant, label, modal } = item;

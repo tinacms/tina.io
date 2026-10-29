@@ -5,7 +5,12 @@ import { IoMdClose } from 'react-icons/io';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { FOCUS_RING, ICON_BUTTON } from '@/component/styles/buttons';
-import { BODY_MUTED, LABEL, LINK } from '@/component/styles/typography';
+import {
+  BODY_MUTED,
+  LABEL,
+  LINK,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
 // biome-ignore lint/complexity/noBannedTypes: <TODO>
@@ -58,11 +63,11 @@ export const CodeButton = ({
 
   return (
     <div
-      className={`relative flex flex-col command-field max-w-full ${isExpanded ? 'rounded-t-lg' : 'rounded-lg'}`}
+      className={`relative flex flex-col command-field max-w-full rounded-lg ${className}`}
     >
       <button
         type="button"
-        className={`relative ${_copied || isExpanded ? 'rounded-t-lg' : 'rounded-lg'} bg-white/50 text-black cursor-pointer hover:text-brand-primary transition-colors ${FOCUS_RING}`}
+        className={`relative w-full rounded-lg bg-white/50 text-left text-black cursor-pointer hover:text-brand-primary transition-colors ${FOCUS_RING}`}
         onClick={clickEvent}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -73,12 +78,10 @@ export const CodeButton = ({
           <span className="bash flex items-center text-lg select-none">
             &gt;
           </span>
-          <span className="label font-mono pr-2 text-sm flex items-center mt-0.5 select-text">
+          <span className="label font-mono pr-2 text-sm flex flex-1 items-center mt-0.5 select-text">
             {label}
           </span>
-          <span
-            className={`relative flex items-center rounded-tr-md btn-primary h-full px-4 py-3 ${_copied || isExpanded ? '' : 'rounded-br-md'} ease-out transition-colors duration-200`}
-          >
+          <span className="relative flex items-center rounded-r-md btn-primary h-full px-4 py-3 ease-out transition-colors duration-200">
             <BiCopy
               className={`w-5 h-5 duration-200 ${_copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
             />
@@ -90,14 +93,14 @@ export const CodeButton = ({
       </button>
       {isExpanded && (
         <div
-          className="absolute top-full left-[-1px] right-[-1px] z-50 overflow-hidden animate-slide-down bg-white command-field rounded-b-lg"
+          className="absolute top-full left-0 right-0 z-50 mt-2 overflow-hidden animate-slide-down rounded-lg border border-neutral-border-subtle bg-white shadow-lg"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           {hasTemplates && (
             <div className="px-4 pt-4 pb-2">
               <div className="flex items-center justify-between px-2 pb-2">
-                <span className={BODY_MUTED}>or deploy instantly...</span>
+                <span className={SUB_HEADING}>or deploy instantly...</span>
                 <button
                   onClick={() => {
                     setShowHelpText(false);
@@ -117,22 +120,18 @@ export const CodeButton = ({
                     href={template.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center justify-between px-2 py-2 rounded transition-colors ${
-                      hoveredTemplate === index
-                        ? 'bg-neutral-background-secondary'
-                        : ''
-                    }`}
+                    className="menu-item"
                     onMouseEnter={() => setHoveredTemplate(index)}
                     onMouseLeave={() => setHoveredTemplate(null)}
                   >
                     <div className="flex items-center gap-2">
                       {template.icon && (
-                        <div className="size-4 rounded-full overflow-hidden bg-strong flex items-center justify-center shrink-0">
+                        <div className="size-5 rounded-full overflow-hidden bg-strong flex items-center justify-center shrink-0">
                           <Image
                             src={template.icon}
                             alt={template.title || ''}
-                            width={16}
-                            height={16}
+                            width={20}
+                            height={20}
                             className="object-contain"
                           />
                         </div>
@@ -149,7 +148,7 @@ export const CodeButton = ({
           )}
           {helpText?.children?.length > 0 && (
             <div
-              className={`${BODY_MUTED} bg-white/50 border-t border-t-[var(--button-tertiary-border)] rounded-b-lg flex items-center justify-between px-2 pb-1 pt-2 max-h-[500px] max-w-min min-w-full`}
+              className={`${BODY_MUTED} flex items-center justify-between gap-2 border-t border-neutral-border-subtle px-6 pt-3 pb-4 max-w-min min-w-full`}
             >
               <TinaMarkdown
                 content={helpText}

@@ -2,16 +2,16 @@ import { Actions } from 'components/blocks/ActionButton/ActionsButton';
 import { CodeButton } from 'components/blocks/CodeButton/CodeButton';
 import { ModalB } from 'components/blocks/ModalButton/ModalButton';
 
-const RenderButton = ({ button, className = '' }) => {
+const RenderButton = ({ button, className = '', fill = false }) => {
   const inner = button.__typename.includes('Actions') ? (
-    <Actions items={[button]} className={className} />
+    <Actions items={[button]} className={className} fill={fill} />
   ) : button.__typename.includes('ModalButton') ? (
-    <ModalB items={[button]} className={className} />
+    <ModalB items={[button]} className={className} fill={fill} />
   ) : button.__typename.includes('CodeButton') ? (
     <CodeButton
       id={button.id}
       label={button.label}
-      className={className}
+      className={fill ? `w-full ${className}` : className}
       helpText={button?.helpText}
       starterTemplates={button?.starterTemplates}
     >
@@ -30,12 +30,14 @@ const RenderButton = ({ button, className = '' }) => {
   // Action and modal buttons go full width on phones (stacked by the parent
   // row's wrap) and back to label width from sm; the command button keeps
   // its own width.
-  const stretch = !button.__typename.includes('CodeButton');
+  const stretch = fill || !button.__typename.includes('CodeButton');
   return (
     <div
       className={
         stretch
-          ? 'flex w-full items-center sm:w-auto [&>*]:!my-0 [&>*]:w-full sm:[&>*]:w-auto'
+          ? fill
+            ? 'flex w-full items-center [&>*]:!my-0 [&>*]:w-full'
+            : 'flex w-full items-center sm:w-auto [&>*]:!my-0 [&>*]:w-full sm:[&>*]:w-auto'
           : 'flex items-center [&>*]:!my-0'
       }
     >

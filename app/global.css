@@ -244,6 +244,9 @@
   /* Icon-only utility buttons (close, copy, carousel, search). */
   --icon-button-ink: var(--slate-700);
   --icon-button-hover: var(--slate-100);
+  /* Rows in a small menu (the npx starter dropdown): an orange tint on hover. */
+  --menu-item-hover: var(--orange-50);
+  --menu-item-hover-ink: var(--orange-700);
   /* Keyboard focus on every button and control; white on dark bands. */
   --focus-ring: var(--ink-900);
 

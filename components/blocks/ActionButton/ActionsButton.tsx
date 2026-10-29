@@ -16,13 +16,18 @@ export const Actions = ({
   items,
   align = 'left',
   flush = false,
+  fill = false,
   className = '',
 }) => {
   const ActionButton = flush ? FlushButton : LinkButton;
 
   return (
     <div
-      className={cn(BUTTON_GROUP, align === 'center' && 'sm:justify-center')}
+      className={cn(
+        BUTTON_GROUP,
+        fill && 'sm:[&>*]:w-full',
+        align === 'center' && 'sm:justify-center',
+      )}
     >
       {items?.map((item, index) => {
         const { variant, label, url } = item;
