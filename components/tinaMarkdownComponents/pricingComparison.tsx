@@ -30,7 +30,7 @@ type Props = {
 
 // Segmented toggles: the selected option takes SEGMENTED_SELECTED (#4964).
 const buttonClasses =
-  'rounded-full px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600';
+  'rounded-full px-4 py-2 text-sm font-semibold cursor-pointer transition-colors focus-ring';
 
 export function PricingComparison({ before, after, labels }: Props) {
   const label = (key: keyof typeof defaultLabels) =>
