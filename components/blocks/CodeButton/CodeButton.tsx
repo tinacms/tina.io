@@ -5,7 +5,7 @@ import { IoMdClose } from 'react-icons/io';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { FOCUS_RING, ICON_BUTTON } from '@/component/styles/buttons';
-import { MENU_ITEM, MENU_PANEL } from '@/component/styles/menu';
+import { COMMAND_MENU, COMMAND_MENU_ITEM } from '@/component/styles/menu';
 import { BODY_MUTED, LINK, NAV_MENU_LINK } from '@/component/styles/typography';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
@@ -63,7 +63,7 @@ export const CodeButton = ({
     >
       <button
         type="button"
-        className={`relative w-full rounded-lg bg-white/50 text-left text-black cursor-pointer hover:text-brand-primary transition-colors ${FOCUS_RING}`}
+        className={`relative w-full rounded-lg text-left text-strong cursor-pointer ${FOCUS_RING}`}
         onClick={clickEvent}
         onMouseEnter={handleMouseEnter}
         aria-expanded={hasDropdownContent ? isExpanded : undefined}
@@ -77,7 +77,7 @@ export const CodeButton = ({
           <span className="label font-mono pr-2 text-sm flex flex-1 items-center mt-0.5 select-text">
             {label}
           </span>
-          <span className="relative flex items-center rounded-r-md btn-primary h-full px-4 py-3 ease-out transition-colors duration-200">
+          <span className="relative flex items-center rounded-r-md command-copy h-full px-4 py-3">
             <BiCopy
               className={`w-5 h-5 duration-200 ${_copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
             />
@@ -87,18 +87,19 @@ export const CodeButton = ({
           </span>
         </div>
       </button>
-      {/* Same menu as the nav dropdowns (#4964): one hover area holds the
+      {/* Behaves like the nav dropdowns (#4964): one hover area holds the
           field and the menu, the 8px gap is padding (a bridge, not a margin),
-          and the menu stays mounted and fades. */}
+          and the menu stays mounted and fades. It is exactly as wide as the
+          field, so the two line up and it never runs off a phone screen. */}
       {hasDropdownContent && (
         <div
-          className={`absolute top-full left-0 z-50 min-w-full w-max pt-2 transition-opacity duration-200 ease-in-out ${
+          className={`absolute top-full -inset-x-px z-50 pt-2 transition-opacity duration-200 ease-in-out ${
             isExpanded
               ? 'opacity-100 pointer-events-auto'
               : 'opacity-0 pointer-events-none'
           }`}
         >
-          <div className={MENU_PANEL}>
+          <div className={COMMAND_MENU}>
             {hasTemplates && (
               <>
                 <div className="flex items-center justify-between gap-4 pl-2">
@@ -124,7 +125,7 @@ export const CodeButton = ({
                         href={template.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`${MENU_ITEM} group ${NAV_MENU_LINK}`}
+                        className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
                       >
                         {template.icon && (
                           <span className="size-5 rounded-full overflow-hidden bg-strong flex items-center justify-center shrink-0">
@@ -140,7 +141,7 @@ export const CodeButton = ({
                         {template.title}
                         <BiLinkExternal
                           aria-hidden="true"
-                          className="text-blue-200 text-sm group-hover:text-blue-400 inline"
+                          className="text-sm shrink-0"
                         />
                       </a>
                     </li>
@@ -150,7 +151,7 @@ export const CodeButton = ({
             )}
             {helpText?.children?.length > 0 && (
               <div
-                className={`${BODY_MUTED} flex items-center justify-between gap-2 px-2 pt-2 pb-1 ${hasTemplates ? 'mt-1 border-t border-white' : ''}`}
+                className={`${BODY_MUTED} flex items-center justify-between gap-2 px-2 pt-2 pb-1 ${hasTemplates ? 'mt-1 border-t border-(--command-menu-rule)' : ''}`}
               >
                 <TinaMarkdown
                   content={helpText}

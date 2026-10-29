@@ -462,15 +462,23 @@ pre.prism-code.language-json {
   color: var(--button-tertiary-ink);
 }
 
-/* The npx command field (CodeButton): the Tertiary outline around a mono
-   command, with a Primary copy segment (btn-primary) on the end. */
+/* The npx command field (CodeButton): a white input with a light slate
+   outline around a mono command, and a flat orange copy block on the end. */
 @utility command-field {
-  border: 1px solid var(--button-tertiary-border);
+  @apply shadow-sm transition-colors;
+  background-color: var(--command-field-fill);
+  border: 1px solid var(--command-field-border);
+  &:hover {
+    border-color: var(--command-field-border-hover);
+  }
+}
+@utility command-copy {
+  background-color: var(--command-copy-fill);
+  color: var(--command-copy-ink);
 }
 
-/* Dropdown menus: the nav menus and the npx starter menu share one look.
-   menu-panel is the pale cyan card; menu-item is a row in it, with a white
-   tint on hover. Put NAV_MENU_LINK on the row's text. */
+/* Nav dropdown menus. menu-panel is the pale cyan card; menu-item is a row
+   in it, with a white tint on hover. Put NAV_MENU_LINK on the row's text. */
 @utility menu-panel {
   @apply rounded-xl p-2 shadow-lg;
   background-color: var(--menu-surface);
@@ -479,6 +487,34 @@ pre.prism-code.language-json {
   @apply touch-manipulation flex items-center gap-2 rounded-md px-2 py-2 transition duration-150 ease-out;
   &:hover {
     background-color: color-mix(in srgb, var(--white) 60%, transparent);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: -2px;
+  }
+}
+
+/* The npx starter menu under the command field: the nav menu's shape and
+   behaviour, as a white card. command-menu-item rows turn light grey with an
+   orange label and icon on hover. */
+@utility command-menu {
+  @apply rounded-xl p-2 shadow-lg;
+  background-color: var(--command-menu-surface);
+  border: 1px solid var(--command-menu-border);
+}
+@utility command-menu-item {
+  @apply touch-manipulation flex items-center gap-2 rounded-md px-2 py-2 transition duration-150 ease-out;
+  & svg {
+    color: var(--command-menu-icon);
+    transition: color 150ms ease-out;
+  }
+  /* Doubled so the orange beats the link blue hover in NAV_MENU_LINK. */
+  &&:hover {
+    background-color: var(--command-menu-hover);
+    color: var(--command-menu-hover-ink);
+  }
+  &:hover svg {
+    color: currentColor;
   }
   &:focus-visible {
     outline: 2px solid var(--focus-ring);

@@ -151,6 +151,8 @@
   --ink-900: #1c1b2e;
   --slate-700: #334155;
   --slate-500: #64748b;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
   --slate-100: #f1f5f9;
   --cyan-50: #ecf7f8;
 
@@ -245,8 +247,24 @@
   /* Icon-only utility buttons (close, copy, carousel, search). */
   --icon-button-ink: var(--slate-700);
   --icon-button-hover: var(--slate-100);
-  /* Dropdown menus (nav menus and the npx starter menu): a pale cyan card. */
+  /* Nav dropdown menus: a pale cyan card. */
   --menu-surface: var(--cyan-50);
+  /* The npx command field: a white input with a light slate outline and a
+     flat orange copy block (white icon, 4.7:1). */
+  --command-field-fill: var(--white);
+  --command-field-border: var(--slate-200);
+  --command-field-border-hover: var(--slate-300);
+  --command-copy-fill: var(--orange-600);
+  --command-copy-ink: var(--white);
+  /* Its starter menu: a white card with the same light outline. Rows turn
+     light grey with an orange-600 label and icon on hover (4.3:1, agreed
+     below AA); icons are ink until then. */
+  --command-menu-surface: var(--white);
+  --command-menu-border: var(--slate-200);
+  --command-menu-rule: var(--slate-100);
+  --command-menu-icon: var(--ink-900);
+  --command-menu-hover: var(--slate-100);
+  --command-menu-hover-ink: var(--orange-600);
   /* Keyboard focus on every button and control; white on dark bands. */
   --focus-ring: var(--ink-900);
 
