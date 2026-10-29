@@ -125,6 +125,12 @@ export const TITLE_LINK = 'title-link';
  */
 export const SUBTLE_LINK = 'subtle-link';
 
+/**
+ * Button labels: IBM Plex Sans SemiBold 16px, no colour of its own. The button
+ * levels apply it (BUTTON in buttons.ts); never put it on a button by hand.
+ */
+export const BUTTON_LABEL = 'role-button-label';
+
 /** Text inputs, selects and text areas. 16px so phones don't zoom. Placeholder in the label grey. */
 export const FIELD = 'role-field';
 

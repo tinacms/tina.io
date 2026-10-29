@@ -293,7 +293,7 @@ export const TYPE_RULES = [
 
 /** Agreed exceptions: hand-set type here is expected, not a bug. */
 export const TYPE_EXCEPTIONS = [
-  'Buttons (issue #4964).',
+  'Button labels: the button levels set them (BUTTON_LABEL). See Buttons below.',
   'Syntax-highlighting colours in code blocks and the homepage terminal.',
   'Data-driven brand colours, like partner tier badges.',
   'Icons, social icons and logos.',

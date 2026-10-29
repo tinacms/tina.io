@@ -1,5 +1,12 @@
+import { Copy, Search, X } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { ICON_BUTTON } from '@/component/styles/buttons';
+import {
+  BUTTON_EXCEPTIONS,
+  BUTTON_LEVEL_GUIDE,
+  BUTTON_RULES,
+} from '@/component/styles/buttons.guide';
 import {
   BODY,
   BODY_MUTED,
@@ -31,10 +38,12 @@ import {
   TYPE_EXCEPTIONS,
   TYPE_RULES,
 } from '@/component/styles/typography.guide';
+import { Button, ButtonArrow, ButtonGroup } from '@/component/ui/Button';
 
 export const metadata: Metadata = {
   title: 'Tina.io Style Guide | TinaCMS',
-  description: 'Pick the type role and colour for any text on tina.io.',
+  description:
+    'Pick the type role, colour and button level for anything on tina.io.',
   robots: { index: false, follow: false },
 };
 
@@ -248,8 +257,8 @@ export default function StyleGuidePage() {
       <header>
         <h1 className={PAGE_TITLE}>Tina.io Style Guide</h1>
         <p className={`${BODY} mt-4 max-w-3xl`}>
-          Use this page to pick the type role and colour for any text on
-          tina.io. Each example uses the same code as the live site.
+          Use this page to pick the type role, colour and button level for
+          anything on tina.io. Each example uses the same code as the live site.
         </p>
         <nav aria-label="Style guide sections" className="mt-6 flex gap-8">
           <a className={EYEBROW_LINK} href="#typography">
@@ -257,6 +266,9 @@ export default function StyleGuidePage() {
           </a>
           <a className={EYEBROW_LINK} href="#colour">
             Colour
+          </a>
+          <a className={EYEBROW_LINK} href="#buttons">
+            Buttons
           </a>
         </nav>
       </header>
@@ -383,8 +395,132 @@ export default function StyleGuidePage() {
         </Group>
       </Section>
 
+      <Section
+        id="buttons"
+        title="Buttons"
+        intro="Every button is one of three levels from components/styles/buttons.ts, all one size. Pick the level by the job; the look comes with it."
+      >
+        <Group title="The rules">
+          <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
+            {BUTTON_RULES.map((rule) => (
+              <li key={rule} className={BODY_SMALL}>
+                {rule}
+              </li>
+            ))}
+          </ol>
+        </Group>
+
+        <Group id="button-levels" title="Levels">
+          <GuideTable
+            columns={['Example', 'Level', 'Use for', 'Not for']}
+            widths={['w-1/4', 'w-1/6', 'w-1/3', 'w-1/4']}
+            rows={BUTTON_LEVEL_GUIDE.map((g) => ({
+              key: g.level,
+              cells: [
+                <Button key="example" level={g.level}>
+                  {g.example}
+                  {g.arrow && <ButtonArrow />}
+                </Button>,
+                <p key="level" className={`${CODE} wrap-anywhere`}>
+                  BUTTON.{g.level}
+                </p>,
+                <p key="use" className={BODY_SMALL}>
+                  {g.useFor}
+                </p>,
+                <p key="not" className={BODY_SMALL}>
+                  {g.notFor.job} →{' '}
+                  <span className={CODE}>{g.notFor.instead}</span>
+                </p>,
+              ],
+            }))}
+          />
+        </Group>
+
+        <Group
+          id="button-groups"
+          title="Groups"
+          intro="A group leads with Primary and a Tertiary sits beside it. On phones the buttons stack, full width. Narrow the window to see it."
+        >
+          <ButtonGroup>
+            <Button level="primary">
+              Learn about TinaCMS
+              <ButtonArrow />
+            </Button>
+            <Button level="tertiary">Try the Editor</Button>
+          </ButtonGroup>
+        </Group>
+
+        <Group
+          id="buttons-on-dark"
+          title="On dark"
+          intro="Put ON_DARK on the orange or dark container and keep the normal levels inside. Primary turns white with an orange label; Tertiary turns into a white outline."
+        >
+          <div
+            className={`${ON_DARK} rounded-xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
+          >
+            <ButtonGroup>
+              <Button level="primary">Accept All</Button>
+              <Button level="tertiary">Reject All</Button>
+            </ButtonGroup>
+          </div>
+        </Group>
+
+        <Group
+          id="button-states"
+          title="States"
+          intro="Hover lifts 1px with a soft shadow, and pressing drops it back. Keyboard focus shows a 2px ink ring (tab to it). Disabled is 60% with no hover."
+        >
+          <ButtonGroup>
+            <Button level="primary">Schedule Call</Button>
+            <Button level="primary" disabled>
+              Sending…
+            </Button>
+          </ButtonGroup>
+        </Group>
+
+        <Group
+          id="icon-buttons"
+          title="Icon buttons"
+          intro="ICON_BUTTON for close, copy, carousel arrows and search: a 44px tap area, a 20px icon at a 2px stroke, slate, with a light square on hover. White on dark. Always add an aria-label."
+        >
+          <div className="flex flex-wrap items-center gap-2">
+            <button type="button" className={ICON_BUTTON} aria-label="Close">
+              <X />
+            </button>
+            <button type="button" className={ICON_BUTTON} aria-label="Search">
+              <Search />
+            </button>
+            <span
+              className={`${ON_DARK} inline-flex rounded-lg bg-[url('/svg/orange-bg.svg')] bg-cover p-1`}
+            >
+              <button
+                type="button"
+                className={ICON_BUTTON}
+                aria-label="Copy code"
+              >
+                <Copy />
+              </button>
+            </span>
+          </div>
+        </Group>
+
+        <Group
+          title="Agreed exceptions"
+          intro="These keep their own styling. Every other button uses a level."
+        >
+          <ul className="grid list-disc gap-1 pl-6">
+            {BUTTON_EXCEPTIONS.map((e) => (
+              <li key={e} className={BODY_SMALL}>
+                {e}
+              </li>
+            ))}
+          </ul>
+        </Group>
+      </Section>
+
       <p className={BODY_MUTED}>
-        To change this guidance, edit components/styles/typography.guide.ts.
+        To change this guidance, edit components/styles/typography.guide.ts and
+        components/styles/buttons.guide.ts.
       </p>
     </div>
   );

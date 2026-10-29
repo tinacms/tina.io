@@ -121,6 +121,20 @@ Every piece of text uses one type role. Role names live in `components/styles/ty
 - **Tokens:** components name roles, `SURFACE.*` and `ON_DARK`, never colour tokens, palette shades or hex values. Primitives → semantic tokens → roles, each layer pointing only at the one before.
 - **No role fits:** add one to `styles/tailwind.css`, `typography.ts` and `typography.guide.ts`, then use it.
 
+## Buttons
+
+Every button is one of three levels, all one size (#4964). Level names live in `components/styles/buttons.ts`, their specs (`btn`, `btn-primary`, `btn-secondary`, `btn-tertiary`, `icon-btn`) in `styles/tailwind.css`, colour tokens (`--button-*`) in `app/global.css`. Guidance and agreed exceptions are in `components/styles/buttons.guide.ts`, rendered at `/design`.
+
+- **Use the components:** `Button`, `LinkButton` or `ModalButton` from `components/ui/Button.tsx` with `level="primary" | "secondary" | "tertiary"`. Hand-rolled buttons are only for the agreed exceptions.
+- **Levels:** Primary (orange gradient) is the main action and leads a group. Tertiary (orange outline) always sits beside a Primary. Secondary (blue gradient) stands on its own, or is the quieter partner of a Primary. Never put a Tertiary next to a Secondary: make the lead Primary.
+- **One size:** 44px tall, 8px corners, label width plus 24px each side, Plex SemiBold 16 (`BUTTON_LABEL`). Add only layout classes (margin, width, alignment) beside a button. No colour, radius, padding, height or type classes.
+- **Groups:** `ButtonGroup` (or `BUTTON_GROUP`) stacks buttons full width on phones and puts them side by side from `sm`. The highest level comes first.
+- **On dark or orange:** put `ON_DARK` on the container; Primary turns white with an orange label, Tertiary a white outline.
+- **Icon-only buttons:** `ICON_BUTTON` (44px tap area, 20px icon, 2px stroke) and always an `aria-label`. Other clickable controls get `FOCUS_RING`. Never `outline-hidden`.
+- **Text links aren't buttons:** “Read more →” is `EYEBROW_LINK`; links in text are `LINK`.
+- **CMS:** the Actions `variant` and Modal Button `color` fields hold a level (`primary`, `secondary`, `tertiary`; Actions also `textLink`). `levelOf()` maps any old value. There are no shape or size fields.
+- **New level or exception:** add it to `styles/tailwind.css`, `buttons.ts` and `buttons.guide.ts` together.
+
 ## CI Pipeline
 
 PR checks (`.github/workflows/nodejs.yml`): install → build → lint → test → export → HTML validation. Requires TinaCMS secrets (`TINA_TOKEN`, `NEXT_PUBLIC_TINA_CLIENT_ID`, etc.).
