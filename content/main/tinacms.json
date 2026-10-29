@@ -22,8 +22,25 @@
         },
         {
           "label": "npx create-tina-app@latest",
-          "helpText": "",
-          "_template": "codeButton"
+          "helpText": "Need some help? Watch the video – see the [CLI docs](https://tina.io/docs/introduction/using-starter)\n",
+          "_template": "codeButton",
+          "starterTemplates": [
+            {
+              "title": "Astro",
+              "icon": "/Starters/astro.svg",
+              "link": "https://app.tina.io/quickstart"
+            },
+            {
+              "title": "Next.js",
+              "icon": "/Starters/next.js.svg",
+              "link": "https://app.tina.io/quickstart"
+            },
+            {
+              "title": "TinaDocs",
+              "icon": "/Starters/tina-docs.svg",
+              "link": "https://app.tina.io/quickstart"
+            }
+          ]
         }
       ],
       "buttonHorizontalAlignment": "left",
