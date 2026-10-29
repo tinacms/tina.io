@@ -38,7 +38,7 @@ import {
   TYPE_EXCEPTIONS,
   TYPE_RULES,
 } from '@/component/styles/typography.guide';
-import { Button, ButtonArrow, ButtonGroup } from '@/component/ui/Button';
+import { Button, ButtonGroup } from '@/component/ui/Button';
 
 export const metadata: Metadata = {
   title: 'Tina.io Style Guide | TinaCMS',
@@ -419,7 +419,6 @@ export default function StyleGuidePage() {
               cells: [
                 <Button key="example" level={g.level}>
                   {g.example}
-                  {g.arrow && <ButtonArrow />}
                 </Button>,
                 <p key="level" className={`${CODE} wrap-anywhere`}>
                   BUTTON.{g.level}
@@ -442,10 +441,7 @@ export default function StyleGuidePage() {
           intro="A group leads with Primary and a Tertiary sits beside it. On phones the buttons stack, full width. Narrow the window to see it."
         >
           <ButtonGroup>
-            <Button level="primary">
-              Learn about TinaCMS
-              <ButtonArrow />
-            </Button>
+            <Button level="primary">Learn about TinaCMS</Button>
             <Button level="tertiary">Try the Editor</Button>
           </ButtonGroup>
         </Group>

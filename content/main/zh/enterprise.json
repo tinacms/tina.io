@@ -10,14 +10,12 @@
       "buttons": [
         {
           "label": "获取产品单页",
-          "icon": false,
           "variant": "primary",
           "url": "mailto:info@tina.io?subject=TinaCMS%20Enterprise%201-Pager&body=Hello,%20I%27d%20like%20more%20information%20about%20the%20TinaCMS%20Enterprise%20Solution",
           "_template": "actions"
         },
         {
           "label": "预约产品演示",
-          "icon": false,
           "color": "tertiary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
@@ -137,8 +135,7 @@
           "buttons": [
             {
               "label": "了解更多",
-              "icon": false,
-              "variant": "tertiary",
+              "variant": "primary",
               "url": "/editorial-workflow",
               "_template": "actions"
             }
@@ -167,7 +164,6 @@
           "actions": [
             {
               "label": "了解更多",
-              "icon": false,
               "variant": "textLink",
               "url": "/docs/self-hosted/overview"
             }
@@ -210,7 +206,6 @@
           "actions": [
             {
               "label": "了解更多",
-              "icon": false,
               "variant": "textLink",
               "url": "/docs/tinacloud/webhooks"
             }
@@ -230,7 +225,6 @@
           "actions": [
             {
               "label": "获取支持",
-              "icon": false,
               "variant": "textLink",
               "url": "/docs/support"
             }
@@ -253,7 +247,6 @@
       "buttons": [
         {
           "label": "预约演示",
-          "icon": true,
           "color": "primary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"

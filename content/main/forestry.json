@@ -10,8 +10,7 @@
       "buttons": [
         {
           "label": "Tina Migration Guide",
-          "icon": false,
-          "variant": "secondary",
+          "variant": "primary",
           "url": "/docs/forestry/migrate",
           "_template": "actions"
         },

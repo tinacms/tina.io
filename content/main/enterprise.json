@@ -10,14 +10,12 @@
       "buttons": [
         {
           "label": "Request 1-Pager",
-          "icon": false,
           "variant": "primary",
           "url": "mailto:info@tina.io?subject=TinaCMS%20Enterprise%201-Pager&body=Hello,%20I%27d%20like%20more%20information%20about%20the%20TinaCMS%20Enterprise%20Solution",
           "_template": "actions"
         },
         {
           "label": "Schedule a Demo",
-          "icon": false,
           "color": "tertiary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
@@ -137,8 +135,7 @@
           "buttons": [
             {
               "label": "Learn More",
-              "icon": false,
-              "variant": "tertiary",
+              "variant": "primary",
               "url": "/editorial-workflow",
               "_template": "actions"
             }
@@ -167,7 +164,6 @@
           "actions": [
             {
               "label": "Learn More",
-              "icon": false,
               "variant": "textLink",
               "url": "/docs/self-hosted/overview"
             }
@@ -210,7 +206,6 @@
           "actions": [
             {
               "label": "Learn More",
-              "icon": false,
               "variant": "textLink",
               "url": "/docs/tinacloud/webhooks"
             }
@@ -230,7 +225,6 @@
           "actions": [
             {
               "label": "Get Support",
-              "icon": false,
               "variant": "textLink",
               "url": "/docs/support"
             }
@@ -253,7 +247,6 @@
       "buttons": [
         {
           "label": "Book a Demo",
-          "icon": true,
           "color": "primary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"

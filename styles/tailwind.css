@@ -462,6 +462,12 @@ pre.prism-code.language-json {
   color: var(--button-tertiary-ink);
 }
 
+/* The npx command field (CodeButton): the Tertiary outline around a mono
+   command, with a Primary copy segment (btn-primary) on the end. */
+@utility command-field {
+  border: 1px solid var(--button-tertiary-border);
+}
+
 /* The keyboard focus ring for any other control (toggles, disclosure rows):
    the same ring the buttons use. */
 @utility focus-ring {

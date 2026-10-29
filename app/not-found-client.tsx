@@ -66,14 +66,14 @@ const NotFoundContent = ({ content, locale }) => (
     description={content.notFound.description}
   >
     <ButtonGroup>
-      <LinkButton link={localePath('/docs', locale)} level="secondary">
+      <LinkButton link={localePath('/', locale)} level="primary">
+        {content.notFound.buttons.home}
+      </LinkButton>
+      <LinkButton link={localePath('/docs', locale)} level="tertiary">
         {content.notFound.buttons.documentation}
       </LinkButton>
-      <LinkButton link={localePath('/docs/guides', locale)} level="secondary">
+      <LinkButton link={localePath('/docs/guides', locale)} level="tertiary">
         {content.notFound.buttons.guides}
-      </LinkButton>
-      <LinkButton link={localePath('/', locale)} level="secondary">
-        {content.notFound.buttons.home}
       </LinkButton>
     </ButtonGroup>
   </PageLayout>
@@ -87,7 +87,7 @@ const RedirectPage = ({ redirectPath, content }) => (
     description={content.notTranslated.description}
   >
     <ButtonGroup>
-      <a href={redirectPath} className={BUTTON.secondary}>
+      <a href={redirectPath} className={BUTTON.primary}>
         {content.notTranslated.buttons.continue}
       </a>
     </ButtonGroup>

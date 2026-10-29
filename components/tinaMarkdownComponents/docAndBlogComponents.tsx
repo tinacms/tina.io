@@ -26,7 +26,7 @@ import {
 } from '@/component/styles/typography';
 import { BUTTON, ICON_BUTTON } from '../styles/buttons';
 import { Prism } from '../styles/Prism';
-import { ButtonArrow, LinkButton } from '../ui/Button';
+import { LinkButton } from '../ui/Button';
 import { AccordionBlock } from './templateComponents/accordionBlock';
 
 const PricingComparison = dynamic(() =>
@@ -638,7 +638,6 @@ export const docAndBlogComponents: Components<{
         <p>{description}</p>
         <a href={url} className={`${BUTTON.primary} shrink-0`}>
           {buttonText}
-          <ButtonArrow />
         </a>
       </div>
     </div>
@@ -762,7 +761,6 @@ export const docAndBlogComponents: Components<{
     <div className="my-6">
       <LinkButton link={link} level="primary" target="_blank">
         {label}
-        <ButtonArrow />
       </LinkButton>
     </div>
   ),

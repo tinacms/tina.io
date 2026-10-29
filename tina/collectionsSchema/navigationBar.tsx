@@ -125,7 +125,6 @@ export const navigationBarCollection = {
             defaultItem: {
               color: 'secondary',
               label: 'Secondary Action',
-              icon: false,
             },
           },
           fields: [

@@ -55,8 +55,7 @@
       "buttons": [
         {
           "label": "Get Started with TinaCMS",
-          "icon": false,
-          "variant": "secondary",
+          "variant": "primary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

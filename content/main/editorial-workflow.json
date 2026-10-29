@@ -16,8 +16,7 @@
       "buttons": [
         {
           "label": "Schedule a Demo",
-          "icon": true,
-          "color": "secondary",
+          "color": "primary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }
@@ -78,8 +77,7 @@
       "buttons": [
         {
           "label": "Get a Demo",
-          "icon": true,
-          "color": "secondary",
+          "color": "primary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }

@@ -14,14 +14,12 @@
           "buttons": [
             {
               "label": "Try the Editor Now",
-              "icon": false,
               "variant": "primary",
               "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             },
             {
               "label": "Book a Demo",
-              "icon": false,
               "color": "tertiary",
               "modal": "BookDemo.tsx",
               "_template": "modalButton"
@@ -155,7 +153,6 @@
           "videoSrc": "/video/key-features/2024-09-13-key-features-visual-editing-v3.webm",
           "button": {
             "label": "READ MORE",
-            "icon": true,
             "variant": "textLink",
             "url": "https://demo.tina.io/admin#/"
           }
@@ -167,7 +164,6 @@
           "videoSrc": "/video/key-features/2024-09-13-key-features-open-source.webm",
           "button": {
             "label": "READ MORE",
-            "icon": true,
             "variant": "textLink",
             "url": "https://github.com/tinacms/tinacms"
           }
@@ -179,7 +175,6 @@
           "videoSrc": "/video/key-features/2024-09-19-key-features-local.webm",
           "button": {
             "label": "READ MORE",
-            "icon": true,
             "variant": "textLink",
             "url": "/docs/setup-overview/"
           }
@@ -191,7 +186,6 @@
           "videoSrc": "/video/2024-09-19-key-features-3rd-party-media%20v3.webm",
           "button": {
             "label": "READ MORE",
-            "icon": true,
             "variant": "textLink",
             "url": "/docs/reference/media/overview"
           }
@@ -203,7 +197,6 @@
           "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
           "button": {
             "label": "READ MORE",
-            "icon": true,
             "variant": "textLink",
             "url": "/docs/editing/blocks"
           }
@@ -215,7 +208,6 @@
           "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm",
           "button": {
             "label": "READ MORE",
-            "icon": true,
             "variant": "textLink",
             "url": "/docs/using-tina-editor"
           }
@@ -227,7 +219,6 @@
           "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm",
           "button": {
             "label": "READ MORE",
-            "icon": true,
             "variant": "textLink",
             "url": "/docs/drafts/editorial-workflow/"
           }
@@ -239,7 +230,6 @@
           "videoSrc": "/video/key-features/2024-09-13-key-features-docs.webm",
           "button": {
             "label": "READ MORE",
-            "icon": true,
             "variant": "textLink",
             "url": "/docs"
           }
@@ -268,8 +258,7 @@
           "buttons": [
             {
               "label": "Schedule Call",
-              "icon": true,
-              "color": "secondary",
+              "color": "primary",
               "modal": "BookDemo.tsx",
               "_template": "modalButton"
             }
@@ -434,8 +423,7 @@
           "buttons": [
             {
               "label": "Editorial Workflow",
-              "icon": false,
-              "variant": "secondary",
+              "variant": "primary",
               "url": "/editorial-workflow",
               "_template": "actions"
             }

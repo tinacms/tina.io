@@ -3,13 +3,12 @@ import { BUTTON_LEVEL_OPTIONS } from '../../styles/buttons';
 export const actionsButtonTemplateFields = {
   fields: [
     { name: 'label', label: 'Label', type: 'string' },
-    { name: 'icon', label: 'Arrow', type: 'boolean' },
     {
       name: 'variant',
       label: 'Level',
       type: 'string',
       description:
-        'Primary for the main action, Tertiary beside a Primary, Secondary on its own. Text link for “Read more →” links.',
+        'A section’s only button is Primary. Tertiary sits beside a Primary. Text link for “Read more →” links.',
       options: [
         ...BUTTON_LEVEL_OPTIONS,
         { value: 'textLink', label: 'Text link: “Read more →”' },
@@ -31,7 +30,6 @@ export const actionsButtonTemplate = {
     defaultItem: {
       variant: 'secondary',
       label: 'Secondary Action',
-      icon: false,
       url: '/',
     },
   },

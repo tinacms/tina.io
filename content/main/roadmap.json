@@ -10,7 +10,6 @@
       "buttons": [
         {
           "label": "GitHub Discussions",
-          "icon": true,
           "variant": "primary",
           "url": "https://github.com/tinacms/tinacms/discussions",
           "_template": "actions"
@@ -34,8 +33,7 @@
           "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
           "actions": [
             {
-              "label": "PostHog 🔗",
-              "icon": false,
+              "label": "PostHog",
               "variant": "secondary",
               "url": "https://posthog.com/"
             }
@@ -49,13 +47,11 @@
           "actions": [
             {
               "label": "Blogged",
-              "icon": false,
               "variant": "secondary",
               "url": "https://tina.io/blog/tinacloud-separate-content-repos"
             },
             {
               "label": "Documentation",
-              "icon": true,
               "variant": "secondary",
               "url": "https://tina.io/docs/guides/separate-content-repo"
             }
@@ -68,13 +64,11 @@
           "actions": [
             {
               "label": "Blogged",
-              "icon": false,
               "variant": "secondary",
               "url": "/blog/astro-is-becoming-the-default-tinacms-starter"
             },
             {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
+              "label": "GitHub Discussion",
               "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/5247"
             }
@@ -88,7 +82,6 @@
           "actions": [
             {
               "label": "Documentation",
-              "icon": true,
               "variant": "secondary",
               "url": "https://tina.io/docs/tinacloud/github-enterprise-integration"
             }
@@ -102,7 +95,6 @@
           "actions": [
             {
               "label": "Blogged",
-              "icon": true,
               "variant": "secondary",
               "url": "/blog/two-factor-authentication"
             }
@@ -116,7 +108,6 @@
           "actions": [
             {
               "label": "Blogged",
-              "icon": true,
               "variant": "secondary",
               "url": "/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache"
             }
@@ -129,13 +120,11 @@
           "actions": [
             {
               "label": "Blogged",
-              "icon": true,
               "variant": "secondary",
               "url": "https://tina.io/blog/react-19-support"
             },
             {
               "label": "🚀 Shipped in 2.7.7",
-              "icon": false,
               "variant": "secondary",
               "url": "/"
             }
@@ -148,7 +137,6 @@
           "actions": [
             {
               "label": "TinaDocs",
-              "icon": true,
               "variant": "secondary",
               "url": "/tinadocs"
             }
@@ -161,7 +149,6 @@
           "actions": [
             {
               "label": "🚀 Shipped in 3.0.0",
-              "icon": true,
               "variant": "secondary",
               "url": "/blog/modernizing-to-esm"
             }
@@ -183,8 +170,7 @@
           "content": "We're adding Editorial Workflow support to the Media Manager, enabling media changes to go through the same branch-based workflow as content edits.\n",
           "actions": [
             {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
+              "label": "GitHub Discussion",
               "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/7002"
             }
@@ -196,8 +182,7 @@
           "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security and scalability.\n",
           "actions": [
             {
-              "label": "Github Discussion 🔗",
-              "icon": false,
+              "label": "Github Discussion",
               "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/5576"
             }
@@ -209,8 +194,7 @@
           "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc).\n",
           "actions": [
             {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
+              "label": "GitHub Discussion",
               "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/4476"
             }
@@ -222,8 +206,7 @@
           "content": "We're adding a public GitHub Action for querying and editing your content. One of the use cases for this would be using GitHub actions to periodically use AI to find content in your project, e.g. documentation.\n",
           "actions": [
             {
-              "label": "GitHub Issue 🔗",
-              "icon": false,
+              "label": "GitHub Issue",
               "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/issues/6156"
             }
@@ -236,13 +219,11 @@
           "actions": [
             {
               "label": "Blogged",
-              "icon": false,
               "variant": "secondary",
               "url": "https://tina.io/blog/tinacms-v4-is-coming"
             },
             {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
+              "label": "GitHub Discussion",
               "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/6782"
             }
@@ -254,8 +235,7 @@
           "content": "A first-party TinaCloud CLI lets developers manage projects, repos, branches, and more from the terminal.\n",
           "actions": [
             {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
+              "label": "GitHub Discussion",
               "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/7000"
             }
@@ -267,8 +247,7 @@
           "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access. Brook covers what is changing and who it affects here: [https://youtu.be/UdNko6iJEsQ](https://youtu.be/UdNko6iJEsQ)\n",
           "actions": [
             {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
+              "label": "GitHub Discussion",
               "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/7001"
             }
@@ -289,8 +268,7 @@
           "content": "We’re adding MDX plugin adapters so teams can use their preferred Markdown tools and Markdown flavors while keeping TinaCMS Visual Editing. Fumadocs is planned as the first supported adapter.\n",
           "actions": [
             {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
+              "label": "GitHub Discussion",
               "variant": "secondary",
               "url": "https://github.com/tinacms/tinacms/discussions/6973"
             }
@@ -304,7 +282,6 @@
           "actions": [
             {
               "label": "Editorial Workflow",
-              "icon": true,
               "variant": "secondary",
               "url": "https://tina.io/editorial-workflow/"
             }
@@ -317,7 +294,6 @@
           "actions": [
             {
               "label": "Documentation",
-              "icon": true,
               "variant": "secondary",
               "url": "https://tina.io/docs/vibe-coding"
             }
@@ -330,8 +306,7 @@
           "content": "We're working on some ways to leverage AI in the content creation process.\n",
           "actions": [
             {
-              "label": "Do you use /llms.txt to make your site LLM-friendly? 🔗",
-              "icon": false,
+              "label": "Do you use /llms.txt to make your site LLM-friendly?",
               "variant": "secondary",
               "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
             }

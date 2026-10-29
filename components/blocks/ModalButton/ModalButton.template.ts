@@ -9,13 +9,12 @@ const modals = [
 
 export const modalButtonTemplateFields = [
   { name: 'label', label: 'Label', type: 'string' },
-  { name: 'icon', label: 'Arrow', type: 'boolean' },
   {
     name: 'color',
     label: 'Level',
     type: 'string',
     description:
-      'Primary for the main action, Tertiary beside a Primary, Secondary on its own.',
+      'A section’s only button is Primary. Tertiary sits beside a Primary.',
     options: BUTTON_LEVEL_OPTIONS,
   },
   { name: 'modal', label: 'Modal', type: 'string', options: modals },
@@ -33,7 +32,6 @@ export const modalButtonTemplate = {
     defaultItem: {
       color: 'secondary',
       label: 'Secondary Action',
-      icon: false,
     },
   },
   fields: modalButtonTemplateFields,

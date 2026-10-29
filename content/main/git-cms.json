@@ -55,8 +55,7 @@
       "buttons": [
         {
           "label": "Start Using Git-Backed CMS",
-          "icon": false,
-          "variant": "secondary",
+          "variant": "primary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

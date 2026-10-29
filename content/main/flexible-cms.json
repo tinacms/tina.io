@@ -55,8 +55,7 @@
       "buttons": [
         {
           "label": "Explore TinaCMS Customization",
-          "icon": false,
-          "variant": "secondary",
+          "variant": "primary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

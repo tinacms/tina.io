@@ -9,8 +9,6 @@ export interface ButtonLevelGuide {
   level: ButtonLevel;
   /** Label for the live example, taken from the site. */
   example: string;
-  /** Show the trailing arrow in the example. */
-  arrow?: boolean;
   useFor: string;
   notFor: { job: string; instead: string };
 }
@@ -20,7 +18,7 @@ export const BUTTON_LEVEL_GUIDE: ButtonLevelGuide[] = [
     level: 'primary',
     example: 'Schedule Call',
     useFor:
-      'The main action in a view: get started, schedule a call, start a plan. A group always leads with it.',
+      'The main action in a view: get started, schedule a call, start a plan. A group always leads with it, and a section’s only button is always Primary.',
     notFor: {
       job: 'Several equal actions in one row',
       instead: 'BUTTON.secondary',
@@ -30,9 +28,9 @@ export const BUTTON_LEVEL_GUIDE: ButtonLevelGuide[] = [
     level: 'secondary',
     example: 'My TinaCloud',
     useFor:
-      'A button on its own that shouldn’t compete with the page’s Primary, like the nav’s My TinaCloud, or the quieter partner of a Primary.',
+      'A button that shouldn’t compete with the page’s Primary, like the nav’s My TinaCloud, or the quieter partner of a Primary.',
     notFor: {
-      job: 'Leading a group that has a Tertiary in it',
+      job: 'A section’s only button, or leading a group with a Tertiary',
       instead: 'BUTTON.primary',
     },
   },
@@ -51,7 +49,8 @@ export const BUTTON_LEVEL_GUIDE: ButtonLevelGuide[] = [
 /** The rules, phrased as what to do. */
 export const BUTTON_RULES = [
   'Every button is one of three levels and one size: 44px tall, 8px corners, the label plus 24px each side. Use Button, LinkButton or ModalButton with a level.',
-  'A group leads with Primary. Tertiary (the orange outline) always sits beside a Primary; blue Secondary stands on its own or as the quieter partner of a Primary.',
+  'A group leads with Primary, and a section’s only button is Primary. Tertiary (the orange outline) always sits beside a Primary; blue Secondary is for buttons that shouldn’t compete, like the nav’s My TinaCloud.',
+  'Buttons have no arrows. Text links (“Read more →”) always end in one.',
   'The highest level comes first in a group. Cancel is Tertiary, after the action it cancels.',
   'Let the label set the width. On phones, groups stack full width (ButtonGroup or BUTTON_GROUP does this).',
   'Add only layout classes beside a button: margin, width, alignment. Never a colour, radius, padding, height or type class.',
@@ -67,7 +66,8 @@ export const BUTTON_RULES = [
 export const BUTTON_EXCEPTIONS = [
   'The phone menu tab and the language flag in the nav: deliberate one-offs.',
   'Nav menu triggers and footer column toggles: text, styled by NAV_LINK, NAV_MENU_LINK and FOOTER_LINK.',
-  'The npx create-tina-app command button and its copy segment.',
+  'The npx create-tina-app command field: the Tertiary outline around the command, with a Primary copy segment (command-field + btn-primary).',
+  'Roadmap links are plain text links (LINK), not buttons.',
   'Video play overlays, social icons and logos.',
   'Clickable chips and badges (What’s New contributors and commits, the hero news badge): typography surfaces.',
   'Choice cards (Book a demo locations, language picker).',

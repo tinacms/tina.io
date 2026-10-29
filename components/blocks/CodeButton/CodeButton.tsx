@@ -4,7 +4,7 @@ import { BiCheck, BiCopy } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
-import { ICON_BUTTON } from '@/component/styles/buttons';
+import { FOCUS_RING, ICON_BUTTON } from '@/component/styles/buttons';
 import { BODY_MUTED, LABEL, LINK } from '@/component/styles/typography';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
@@ -58,11 +58,11 @@ export const CodeButton = ({
 
   return (
     <div
-      className={`relative flex flex-col border border-brand-primary max-w-full ${isExpanded ? 'rounded-t-md' : 'rounded-md'}`}
+      className={`relative flex flex-col command-field max-w-full ${isExpanded ? 'rounded-t-lg' : 'rounded-lg'}`}
     >
       <button
         type="button"
-        className={`relative ${_copied || isExpanded ? 'rounded-t-md' : 'rounded-md'} bg-white/50 text-black cursor-pointer hover:text-brand-primary transition-colors`}
+        className={`relative ${_copied || isExpanded ? 'rounded-t-lg' : 'rounded-lg'} bg-white/50 text-black cursor-pointer hover:text-brand-primary transition-colors ${FOCUS_RING}`}
         onClick={clickEvent}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -77,7 +77,7 @@ export const CodeButton = ({
             {label}
           </span>
           <span
-            className={`relative flex items-center rounded-tr-sm bg-brand-primary h-full px-4 py-3 ${_copied || isExpanded ? '' : 'rounded-br-sm'} border-l border-brand-primary ease-out transition-colors duration-200 text-white group-hover:text-gray-200`}
+            className={`relative flex items-center rounded-tr-md btn-primary h-full px-4 py-3 ${_copied || isExpanded ? '' : 'rounded-br-md'} ease-out transition-colors duration-200`}
           >
             <BiCopy
               className={`w-5 h-5 duration-200 ${_copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
@@ -90,7 +90,7 @@ export const CodeButton = ({
       </button>
       {isExpanded && (
         <div
-          className="absolute top-full left-[-1px] right-[-1px] z-50 overflow-hidden animate-slide-down bg-white border border-brand-primary rounded-b-md border-t border-t-brand-primary"
+          className="absolute top-full left-[-1px] right-[-1px] z-50 overflow-hidden animate-slide-down bg-white command-field rounded-b-lg"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -149,7 +149,7 @@ export const CodeButton = ({
           )}
           {helpText?.children?.length > 0 && (
             <div
-              className={`${BODY_MUTED} bg-white/50 border-t border-brand-primary rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 max-h-[500px] max-w-min min-w-full`}
+              className={`${BODY_MUTED} bg-white/50 border-t border-t-[var(--button-tertiary-border)] rounded-b-lg flex items-center justify-between px-2 pb-1 pt-2 max-h-[500px] max-w-min min-w-full`}
             >
               <TinaMarkdown
                 content={helpText}

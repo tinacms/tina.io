@@ -271,8 +271,7 @@
       "buttons": [
         {
           "label": "开始使用 TinaCMS",
-          "icon": false,
-          "variant": "secondary",
+          "variant": "primary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

@@ -13,14 +13,12 @@
       "buttons": [
         {
           "label": "Find a partner",
-          "icon": true,
           "variant": "primary",
           "url": "#find-a-partner-section",
           "_template": "actions"
         },
         {
           "label": "Become a partner",
-          "icon": false,
           "variant": "tertiary",
           "url": "#become-a-partner-section",
           "_template": "actions"
@@ -124,7 +122,6 @@
       "buttons": [
         {
           "label": "Apply to become a partner",
-          "icon": true,
           "color": "primary",
           "modal": "BecomePartner.tsx",
           "_template": "modalButton"

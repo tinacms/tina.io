@@ -1,15 +1,17 @@
+import Link from 'next/link';
 import type { IconType } from 'react-icons';
 import { FaHourglassHalf, FaRegCheckCircle, FaRegClock } from 'react-icons/fa';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import {
   BODY,
+  BODY_SMALL,
   CARD_TITLE,
   LABEL,
+  LINK,
   SECTION_TITLE,
   SURFACE,
 } from '@/component/styles/typography';
-import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
 // The status icons the roadmap supports. Kept in sync with the picker in
@@ -88,7 +90,26 @@ const Roadmap = ({ data, last = false, index }) => {
             {data.status}
           </span>
         )}
-        {data.actions && <Actions items={data.actions} />}
+        {/* Roadmap links are plain text links, not buttons (#4964). */}
+        {data.actions?.length > 0 && (
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {data.actions.map((action, actionIndex) => {
+              const external = /^https?:\/\//.test(action?.url || '');
+              return (
+                <Link
+                  key={`${action?.label}-${actionIndex}`}
+                  href={action?.url || '#'}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                  className={`${BODY_SMALL} ${LINK}`}
+                  data-tina-field={tinaField(action, 'label')}
+                >
+                  {action?.label}
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

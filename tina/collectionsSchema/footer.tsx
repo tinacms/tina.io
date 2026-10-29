@@ -127,7 +127,6 @@ export const footerCollection = {
                 defaultItem: {
                   color: 'secondary',
                   label: 'Secondary Action',
-                  icon: false,
                 },
               },
               fields: [
@@ -363,7 +362,6 @@ export const footerCollection = {
                 defaultItem: {
                   color: 'secondary',
                   label: 'Secondary Action',
-                  icon: false,
                 },
               },
               fields: [
@@ -494,7 +492,6 @@ export const footerCollection = {
                 defaultItem: {
                   color: 'secondary',
                   label: 'Secondary Action',
-                  icon: false,
                 },
               },
               fields: [

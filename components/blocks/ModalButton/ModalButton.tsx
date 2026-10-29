@@ -7,7 +7,7 @@ import { EmailForm } from '@/component/modals/EmailForm';
 import { BUTTON_GROUP, levelOf } from '@/component/styles/buttons';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
-import { ButtonArrow, ModalButton } from '../../ui';
+import { ModalButton } from '../../ui';
 
 // Function that returns modal components
 const getModalContent = (modal: string) => {
@@ -52,7 +52,7 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
         className={cn(BUTTON_GROUP, align === 'center' && 'sm:justify-center')}
       >
         {items?.map((item, index) => {
-          const { color, variant, label, icon, modal } = item;
+          const { color, variant, label, modal } = item;
 
           return (
             <ModalButton
@@ -64,7 +64,6 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
               data-tina-field={tinaField(item, 'label')}
             >
               {label}
-              {icon && <ButtonArrow />}
             </ModalButton>
           );
         })}

@@ -16,8 +16,7 @@
       "buttons": [
         {
           "label": "预约演示",
-          "icon": true,
-          "color": "secondary",
+          "color": "primary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }
@@ -78,8 +77,7 @@
       "buttons": [
         {
           "label": "获取演示",
-          "icon": true,
-          "color": "secondary",
+          "color": "primary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }

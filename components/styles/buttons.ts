@@ -9,9 +9,10 @@
  * The rules:
  * - Every button is one of three levels, all one size (44px, 8px corners).
  *   Use the Button, LinkButton or ModalButton components with `level`.
- * - Primary is the main action. Tertiary (orange outline) always sits beside
- *   a Primary. Secondary (blue) stands on its own, or is the quieter partner
- *   of a Primary. A group never leads with Secondary next to a Tertiary.
+ * - Primary is the main action, and a section's only button is Primary.
+ *   Tertiary (orange outline) always sits beside a Primary. Secondary (blue)
+ *   is for buttons that shouldn't compete, like the nav's My TinaCloud.
+ * - Buttons have no arrows; text links always end in one.
  * - On a dark or orange container, put ON_DARK on the container. Primary
  *   turns white and Tertiary a white outline by themselves.
  * - Add only layout classes beside a button: margin, width, alignment.
@@ -24,7 +25,7 @@
 export const BUTTON = {
   /** The main action in a view: sign up, get started, schedule a call. Orange. */
   primary: 'btn btn-primary',
-  /** A button on its own that shouldn't compete with the page's Primary, or the quieter partner of a Primary. Blue. */
+  /** A button that shouldn't compete with the page's Primary (the nav's My TinaCloud), or the quieter partner of a Primary. Blue. */
   secondary: 'btn btn-secondary',
   /** A lower-emphasis action beside a Primary: try the editor, learn more, cancel. Orange outline. */
   tertiary: 'btn btn-tertiary',
@@ -56,7 +57,7 @@ export const BUTTON_GROUP =
  */
 export const BUTTON_LEVEL_OPTIONS = [
   { value: 'primary', label: 'Primary (orange): the main action' },
-  { value: 'secondary', label: 'Secondary (blue): on its own, quieter' },
+  { value: 'secondary', label: 'Secondary (blue): quieter, beside a Primary' },
   { value: 'tertiary', label: 'Tertiary (orange outline): beside a Primary' },
 ];
 
