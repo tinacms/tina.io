@@ -7,7 +7,10 @@
     {
       "headline": "TinaCMS vs Storyblok: Why TinaCMS Could Be Your Choice",
       "text": "Discover the unique benefits of TinaCMS for your projects.",
-      "blockSettings": { "isHeadingOne": true }, "_template": "hero"
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "_template": "hero"
     },
     {
       "options": {
@@ -52,9 +55,7 @@
       "buttons": [
         {
           "label": "Get Started with TinaCMS",
-          "icon": false,
-          "variant": "blue",
-          "size": "medium",
+          "variant": "primary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

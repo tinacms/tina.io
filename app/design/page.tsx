@@ -1,5 +1,20 @@
+import { Copy, Search, X } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { CodeButton } from '@/component/blocks/CodeButton/CodeButton';
+import { ICON_BUTTON, NEUTRAL_OUTLINE } from '@/component/styles/buttons';
+import {
+  BUTTON_EXCEPTIONS,
+  BUTTON_LEVEL_GUIDE,
+  BUTTON_RULES,
+} from '@/component/styles/buttons.guide';
+import {
+  COMMAND_MENU,
+  COMMAND_MENU_ITEM,
+  MENU_ITEM,
+  MENU_PANEL,
+} from '@/component/styles/menu';
+import { CODE_PANEL, TAB, TAB_LIST } from '@/component/styles/tabs';
 import {
   BODY,
   BODY_MUTED,
@@ -14,6 +29,7 @@ import {
   HIGHLIGHT,
   LABEL,
   LINK,
+  NAV_MENU_LINK,
   ON_DARK,
   PAGE_TITLE,
   SECTION_TITLE,
@@ -31,10 +47,16 @@ import {
   TYPE_EXCEPTIONS,
   TYPE_RULES,
 } from '@/component/styles/typography.guide';
+import { Button, ButtonGroup } from '@/component/ui/Button';
+import { Pagination, PostPagination } from '@/component/ui/Pagination';
+import { SocialLinks, TINA_SOCIAL_LINKS } from '@/component/ui/SocialLinks';
+import { TextLink } from '@/component/ui/TextLink';
+import { SegmentedToggleExample } from './SegmentedToggleExample';
 
 export const metadata: Metadata = {
   title: 'Tina.io Style Guide | TinaCMS',
-  description: 'Pick the type role and colour for any text on tina.io.',
+  description:
+    'Pick the type role, colour and button level for anything on tina.io.',
   robots: { index: false, follow: false },
 };
 
@@ -248,8 +270,8 @@ export default function StyleGuidePage() {
       <header>
         <h1 className={PAGE_TITLE}>Tina.io Style Guide</h1>
         <p className={`${BODY} mt-4 max-w-3xl`}>
-          Use this page to pick the type role and colour for any text on
-          tina.io. Each example uses the same code as the live site.
+          Use this page to pick the type role, colour and button level for
+          anything on tina.io. Each example uses the same code as the live site.
         </p>
         <nav aria-label="Style guide sections" className="mt-6 flex gap-8">
           <a className={EYEBROW_LINK} href="#typography">
@@ -257,6 +279,12 @@ export default function StyleGuidePage() {
           </a>
           <a className={EYEBROW_LINK} href="#colour">
             Colour
+          </a>
+          <a className={EYEBROW_LINK} href="#buttons">
+            Buttons
+          </a>
+          <a className={EYEBROW_LINK} href="#links">
+            Links and navigation
           </a>
         </nav>
       </header>
@@ -383,8 +411,282 @@ export default function StyleGuidePage() {
         </Group>
       </Section>
 
+      <Section
+        id="buttons"
+        title="Buttons"
+        intro="Every button is one of three levels from components/styles/buttons.ts, all one size. Pick the level by the job; the look comes with it."
+      >
+        <Group title="The rules">
+          <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
+            {BUTTON_RULES.map((rule) => (
+              <li key={rule} className={BODY_SMALL}>
+                {rule}
+              </li>
+            ))}
+          </ol>
+        </Group>
+
+        <Group id="button-levels" title="Levels">
+          <GuideTable
+            columns={['Example', 'Level', 'Use for', 'Not for']}
+            widths={['w-1/4', 'w-1/6', 'w-1/3', 'w-1/4']}
+            rows={BUTTON_LEVEL_GUIDE.map((g) => ({
+              key: g.level,
+              cells: [
+                <Button key="example" level={g.level}>
+                  {g.example}
+                </Button>,
+                <p key="level" className={`${CODE} wrap-anywhere`}>
+                  BUTTON.{g.level}
+                </p>,
+                <p key="use" className={BODY_SMALL}>
+                  {g.useFor}
+                </p>,
+                <p key="not" className={BODY_SMALL}>
+                  {g.notFor.job} →{' '}
+                  <span className={CODE}>{g.notFor.instead}</span>
+                </p>,
+              ],
+            }))}
+          />
+        </Group>
+
+        <Group
+          id="button-groups"
+          title="Groups"
+          intro="A group leads with Primary and a Tertiary sits beside it. On phones the buttons stack, full width. Narrow the window to see it."
+        >
+          <ButtonGroup>
+            <Button level="primary">Learn about TinaCMS</Button>
+            <Button level="tertiary">Try the Editor</Button>
+          </ButtonGroup>
+        </Group>
+
+        <Group
+          id="buttons-on-dark"
+          title="On dark"
+          intro="Put ON_DARK on the orange or dark container and keep the normal levels inside. Primary turns white with an orange label; Tertiary turns into a white outline."
+        >
+          <div
+            className={`${ON_DARK} rounded-xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
+          >
+            <ButtonGroup>
+              <Button level="primary">Accept All</Button>
+              <Button level="tertiary">Reject All</Button>
+            </ButtonGroup>
+          </div>
+        </Group>
+
+        <Group
+          id="button-states"
+          title="States"
+          intro="Hover lifts 1px with a soft shadow, and pressing drops it back. Keyboard focus shows a 2px ink ring (tab to it). Disabled is 60% with no hover."
+        >
+          <ButtonGroup>
+            <Button level="primary">Schedule Call</Button>
+            <Button level="primary" disabled>
+              Sending…
+            </Button>
+          </ButtonGroup>
+        </Group>
+
+        <Group
+          id="icon-buttons"
+          title="Icon buttons"
+          intro="ICON_BUTTON for close, copy, carousel arrows and search: a 44px tap area, a 20px icon at a 2px stroke, slate, with a light square on hover. White on dark. Always add an aria-label."
+        >
+          <div className="flex flex-wrap items-center gap-2">
+            <button type="button" className={ICON_BUTTON} aria-label="Close">
+              <X />
+            </button>
+            <button type="button" className={ICON_BUTTON} aria-label="Search">
+              <Search />
+            </button>
+            <span
+              className={`${ON_DARK} inline-flex rounded-lg bg-[url('/svg/orange-bg.svg')] bg-cover p-1`}
+            >
+              <button
+                type="button"
+                className={ICON_BUTTON}
+                aria-label="Copy code"
+              >
+                <Copy />
+              </button>
+            </span>
+          </div>
+        </Group>
+
+        <Group
+          title="Agreed exceptions"
+          intro="These keep their own styling. Every other button uses a level."
+        >
+          <ul className="grid list-disc gap-1 pl-6">
+            {BUTTON_EXCEPTIONS.map((e) => (
+              <li key={e} className={BODY_SMALL}>
+                {e}
+              </li>
+            ))}
+          </ul>
+        </Group>
+      </Section>
+
+      <Section
+        id="links"
+        title="Links and navigation"
+        intro="The pieces around buttons: text links, social links, the neutral outline, the command field, dropdown menus, pagination, segmented toggles and tabs. Each has one look, built the same way as the buttons, so there is nothing to choose."
+      >
+        <Group
+          id="text-links"
+          title="Text links"
+          intro="TextLink for a standalone “Read more →”: SLUB in the link colour, underlined, always ending in the short arrow. No other arrow or icon. Inside a card that is itself the link, use as=&quot;span&quot;. Links inside a sentence are LINK."
+        >
+          <div className="flex flex-wrap items-center gap-8">
+            <TextLink href="#text-links">Read more</TextLink>
+            <TextLink href="#text-links">See all events</TextLink>
+          </div>
+        </Group>
+
+        <Group
+          id="social-links"
+          title="Social links"
+          intro="SocialLinks: button size in the neutral outline (white, a light slate border that darkens on hover), an ink label and each network’s own logo colour. Not a button level, so a row of them needs no Primary."
+        >
+          <SocialLinks links={TINA_SOCIAL_LINKS} />
+        </Group>
+
+        <Group
+          id="pagination"
+          title="Pagination"
+          intro="Pagination for a list of pages: ink numbers and Previous / Next at button size, a light slate outline on hover, and the current page outlined. On phones only ‹ [3] › shows. At the end of a blog post, PostPagination shows ← Previous / Next → cards, the arrow on the label."
+        >
+          <Pagination
+            currentPage={3}
+            numPages={24}
+            hrefFor={() => '#pagination'}
+            labels={{
+              pagination: 'Example pages',
+              previous: 'Previous',
+              next: 'Next',
+              page: (page) => `Page ${page}`,
+            }}
+          />
+          <PostPagination
+            previous={{ title: 'TinaCMS v4 is coming', slug: '#pagination' }}
+            next={{
+              title: 'Editorial Workflow for media',
+              slug: '#pagination',
+            }}
+            labels={{ previous: 'Previous', next: 'Next' }}
+          />
+        </Group>
+
+        <Group
+          id="neutral-outline"
+          title="Neutral outline"
+          intro="NEUTRAL_OUTLINE: white with a light slate border that darkens on hover. The command field, social links, the current page number and the post cards all wear it, so they read as one family next to the orange and blue buttons."
+        >
+          <div className={`${NEUTRAL_OUTLINE} max-w-sm rounded-lg p-4`}>
+            <p className={BODY_SMALL}>Hover to see the border darken.</p>
+          </div>
+        </Group>
+
+        <Group
+          id="command-field"
+          title="Command field"
+          intro="CodeButton: the npx command in the neutral outline (COMMAND role) with a flat orange copy block. Clicking copies the command and opens the starter menu, which is exactly as wide as the field."
+        >
+          <CodeButton
+            label="npx create-tina-app@latest"
+            className="w-fit"
+            starterTemplates={[
+              {
+                title: 'Astro',
+                icon: '/Starters/astro.svg',
+                link: 'https://app.tina.io/quickstart',
+              },
+              {
+                title: 'Next.js',
+                icon: '/Starters/next.js.svg',
+                link: 'https://app.tina.io/quickstart',
+              },
+            ]}
+          />
+        </Group>
+
+        <Group
+          id="menus"
+          title="Dropdown menus"
+          intro="Nav menus are pale cyan (MENU_PANEL, MENU_ITEM); the starter menu under the command field is white (COMMAND_MENU, COMMAND_MENU_ITEM). Both open on hover or click, cross the gap under the trigger on padding, are hidden from the keyboard when closed (MENU_REVEAL), and close on Escape."
+        >
+          <div className="flex flex-wrap items-start gap-8">
+            <ul className={`${MENU_PANEL} w-56`}>
+              <li>
+                <a href="#menus" className={`${MENU_ITEM} ${NAV_MENU_LINK}`}>
+                  Docs for TinaCMS
+                </a>
+              </li>
+              <li>
+                <a href="#menus" className={`${MENU_ITEM} ${NAV_MENU_LINK}`}>
+                  Showcase
+                </a>
+              </li>
+            </ul>
+            <ul className={`${COMMAND_MENU} w-56`}>
+              <li>
+                <a
+                  href="#menus"
+                  className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
+                >
+                  Astro
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#menus"
+                  className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
+                >
+                  Next.js
+                </a>
+              </li>
+            </ul>
+          </div>
+        </Group>
+
+        <Group
+          id="segmented-toggles"
+          title="Segmented toggles"
+          intro="SegmentedToggle: one choice from two or three short options, like Monthly / Annually. A frosted pill track, link-blue options, and a Secondary blue thumb that slides under the selected one. Each option is a pressed button."
+        >
+          <SegmentedToggleExample />
+        </Group>
+
+        <Group
+          id="tabs"
+          title="Tabs"
+          intro="TAB_LIST and TAB on dark code panels: flat, the selected tab with a solid orange underline and the others at 70%. Use role=&quot;tablist&quot;, role=&quot;tab&quot; and aria-selected."
+        >
+          <div className={`${CODE_PANEL} rounded-md`}>
+            <div role="tablist" className={`${TAB_LIST} px-2`}>
+              <button type="button" role="tab" aria-selected className={TAB}>
+                Query
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={false}
+                className={TAB}
+              >
+                Response
+              </button>
+            </div>
+            <div className="h-16" />
+          </div>
+        </Group>
+      </Section>
+
       <p className={BODY_MUTED}>
-        To change this guidance, edit components/styles/typography.guide.ts.
+        To change this guidance, edit components/styles/typography.guide.ts and
+        components/styles/buttons.guide.ts.
       </p>
     </div>
   );

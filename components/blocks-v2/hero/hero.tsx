@@ -5,7 +5,7 @@ import { BODY, PAGE_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { cn } from '@/lib/utils';
-import RenderButton from '@/utils/renderButtonArrayHelper';
+import RenderButton, { kindOf } from '@/utils/renderButtonArrayHelper';
 import { RecentNewsBanner } from './RecentNewsBanner';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
@@ -18,6 +18,9 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     recentNewsBanner,
   } = data.data || {};
   const alignment = buttonHorizontalAlignment ?? 'center';
+  const isCommand = (button) => kindOf(button) === 'command';
+  const isCommandGrid =
+    buttons?.length === 3 && buttons.filter(isCommand).length === 1;
 
   const bannerFilled =
     recentNewsBanner && (recentNewsBanner.title || recentNewsBanner.link);
@@ -55,14 +58,27 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           <div
             className={`flex ${alignment === 'left' ? 'justify-center md:justify-start' : 'justify-center'} w-full flex-row flex-wrap gap-2 max-w-[62ch]`}
           >
-            {buttons.map((button, index) => (
-              <RenderButton
-                key={`button-${button?.label || index}`}
-                button={button}
-                className="py-3"
-                data-tina-field={tinaField(button, 'label')}
-              />
-            ))}
+            {isCommandGrid ? (
+              // Two buttons over the npx command field: equal columns, so the
+              // buttons and the command line up on both edges.
+              <div className="grid w-full grid-cols-1 gap-4 sm:w-fit sm:grid-cols-2">
+                {buttons.map((button, index) => (
+                  <div
+                    key={`button-${button?.label || index}`}
+                    className={isCommand(button) ? 'sm:col-span-2' : undefined}
+                  >
+                    <RenderButton button={button} fill />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              buttons.map((button, index) => (
+                <RenderButton
+                  key={`button-${button?.label || index}`}
+                  button={button}
+                />
+              ))
+            )}
           </div>
         )}
       </div>

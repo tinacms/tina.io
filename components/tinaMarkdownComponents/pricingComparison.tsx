@@ -3,6 +3,7 @@
 import { PlanCard } from 'components/blocks/Pricing/PlanCard';
 import { useState } from 'react';
 import { BODY_MUTED } from '@/component/styles/typography';
+import { SegmentedToggle } from '@/component/ui/SegmentedToggle';
 import type { PageBlocksPricingPlans } from '../../tina/__generated__/types';
 
 type ComparisonPlan = Omit<
@@ -27,10 +28,6 @@ type Props = {
   labels?: Partial<typeof defaultLabels> & { annualBillingText?: string };
 };
 
-// Segmented toggles are button controls: out of scope for the type roles (#4964).
-const buttonClasses =
-  'rounded-full px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600';
-
 export function PricingComparison({ before, after, labels }: Props) {
   const label = (key: keyof typeof defaultLabels) =>
     labels?.[key] || defaultLabels[key];
@@ -44,38 +41,24 @@ export function PricingComparison({ before, after, labels }: Props) {
       className="my-8 w-full max-w-full"
     >
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-        <fieldset
-          aria-label={label('version')}
-          className="flex rounded-full bg-white/60 p-1 shadow-sm"
-        >
-          {(['before', 'after'] as const).map((value) => (
-            <button
-              key={value}
-              type="button"
-              aria-pressed={version === value}
-              className={`${buttonClasses} ${version === value ? 'bg-blue-600 text-white' : 'text-blue-800'}`}
-              onClick={() => setVersion(value)}
-            >
-              {label(value)}
-            </button>
-          ))}
-        </fieldset>
-        <fieldset
-          aria-label={label('billingPeriod')}
-          className="flex rounded-full bg-white/60 p-1 shadow-sm"
-        >
-          {[true, false].map((monthly) => (
-            <button
-              key={String(monthly)}
-              type="button"
-              aria-pressed={isMonthly === monthly}
-              className={`${buttonClasses} ${isMonthly === monthly ? 'bg-blue-600 text-white' : 'text-blue-800'}`}
-              onClick={() => setIsMonthly(monthly)}
-            >
-              {label(monthly ? 'monthly' : 'annually')}
-            </button>
-          ))}
-        </fieldset>
+        <SegmentedToggle
+          label={label('version')}
+          options={[
+            { value: 'before', label: label('before') },
+            { value: 'after', label: label('after') },
+          ]}
+          value={version}
+          onChange={setVersion}
+        />
+        <SegmentedToggle
+          label={label('billingPeriod')}
+          options={[
+            { value: 'monthly', label: label('monthly') },
+            { value: 'annually', label: label('annually') },
+          ]}
+          value={isMonthly ? 'monthly' : 'annually'}
+          onChange={(period) => setIsMonthly(period === 'monthly')}
+        />
       </div>
       <p className={`${BODY_MUTED} mb-4`}>{label('note')}</p>
       <div className="grid min-w-0 grid-cols-1 items-stretch gap-4 md:grid-cols-2">

@@ -58,14 +58,12 @@
           "buttons": [
             {
               "label": "Start Free",
-              "icon": false,
-              "variant": "ghostOutline",
-              "size": "medium",
+              "variant": "tertiary",
               "url": "https://app.tina.io/register?origin=https://app.tina.io",
               "_template": "actions"
             }
           ],
-          "isMuted": true
+          "isMuted": false
         },
         {
           "name": "Team",
@@ -107,9 +105,7 @@
           "buttons": [
             {
               "label": "Start Team Plan",
-              "icon": false,
-              "variant": "orangeWithBorder",
-              "size": "medium",
+              "variant": "tertiary",
               "url": "https://app.tina.io/register?origin=https://app.tina.io",
               "_template": "actions"
             }
@@ -154,9 +150,7 @@
           "buttons": [
             {
               "label": "Start Business Plan",
-              "icon": false,
-              "variant": "orange",
-              "size": "medium",
+              "variant": "primary",
               "url": "https://app.tina.io/register?origin=https://app.tina.io",
               "_template": "actions"
             }
@@ -207,10 +201,7 @@
           "buttons": [
             {
               "label": "Contact Sales",
-              "icon": true,
-              "shape": "pill",
-              "color": "orangeWithBorder",
-              "size": "medium",
+              "color": "tertiary",
               "modal": "BookDemo.tsx",
               "_template": "modalButton"
             }
@@ -536,10 +527,9 @@
           "buttons": [
             {
               "label": "Book a Chat",
-              "icon": false,
-              "size": "medium",
               "modal": "BookDemo.tsx",
-              "_template": "modalButton"
+              "_template": "modalButton",
+              "color": "primary"
             }
           ],
           "media": [

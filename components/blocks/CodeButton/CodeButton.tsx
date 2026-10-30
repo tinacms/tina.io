@@ -1,10 +1,36 @@
+'use client';
+
 import Image from 'next/image';
-import { useState } from 'react';
-import { BiCheck, BiCopy } from 'react-icons/bi';
+import { useRef, useState } from 'react';
+import {
+  BiCheck,
+  BiChevronRight,
+  BiCopy,
+  BiLinkExternal,
+} from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
-import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
+import {
+  type Components,
+  TinaMarkdown,
+  type TinaMarkdownContent,
+} from 'tinacms/dist/rich-text';
+import { closeOnEscape } from 'utils/closeOnEscape';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
-import { BODY_MUTED, LABEL, LINK } from '@/component/styles/typography';
+import { FOCUS_RING, ICON_BUTTON } from '@/component/styles/buttons';
+import {
+  COMMAND_COPY,
+  COMMAND_FIELD,
+  COMMAND_MENU,
+  COMMAND_MENU_ITEM,
+  COMMAND_MENU_RULE,
+  MENU_REVEAL,
+} from '@/component/styles/menu';
+import {
+  BODY_MUTED,
+  COMMAND,
+  LINK,
+  NAV_MENU_LINK,
+} from '@/component/styles/typography';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
 // biome-ignore lint/complexity/noBannedTypes: <TODO>
@@ -14,23 +40,38 @@ export const CodeButtonMarkdownStyle: Components<{}> = {
   },
 };
 
+interface StarterTemplate {
+  title: string;
+  link: string;
+  icon?: string | null;
+}
+
+interface CodeButtonProps
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
+  label: string;
+  id?: string;
+  className?: string;
+  helpText?: TinaMarkdownContent;
+  starterTemplates?: StarterTemplate[] | null;
+}
+
 export const CodeButton = ({
-  children,
   label,
   id,
   className = '',
   helpText,
   starterTemplates,
   ...props
-}) => {
-  const [_copied, setCopied] = useState(false);
+}: CodeButtonProps) => {
+  const [copied, setCopied] = useState(false);
   const [showHelpText, setShowHelpText] = useState(false);
   const [isExplicitlyShown, setIsExplicitlyShown] = useState(false);
-  const [hoveredTemplate, setHoveredTemplate] = useState<number | null>(null);
 
   const buttonId = id || sanitizeLabel(label);
   const hasTemplates = starterTemplates && starterTemplates.length > 0;
-  const hasDropdownContent = helpText?.children?.length > 0 || hasTemplates;
+  const hasHelpText =
+    !Array.isArray(helpText) && helpText?.children?.length > 0;
+  const hasDropdownContent = hasHelpText || hasTemplates;
   const isExpanded = showHelpText && hasDropdownContent;
 
   const clickEvent = () => {
@@ -42,6 +83,8 @@ export const CodeButton = ({
       setCopied(false);
     }, 2000);
   };
+
+  const fieldRef = useRef<HTMLButtonElement>(null);
 
   const handleMouseEnter = () => {
     if (hasDropdownContent) {
@@ -55,118 +98,120 @@ export const CodeButton = ({
     }
   };
 
+  const closeMenu = () => {
+    setShowHelpText(false);
+    setIsExplicitlyShown(false);
+  };
+
+  const handleKeyDown = closeOnEscape(isExpanded, () => {
+    closeMenu();
+    fieldRef.current?.focus();
+  });
+
+  const closeButton = (
+    <button
+      onClick={closeMenu}
+      type="button"
+      aria-label="Close"
+      className={ICON_BUTTON}
+    >
+      <IoMdClose />
+    </button>
+  );
+
   return (
     <div
-      className={`relative flex flex-col border border-brand-primary max-w-full ${isExpanded ? 'rounded-t-md' : 'rounded-md'}`}
+      className={`relative flex flex-col ${COMMAND_FIELD} max-w-full ${className}`}
+      onMouseLeave={handleMouseLeave}
+      onKeyDown={handleKeyDown}
     >
       <button
+        ref={fieldRef}
         type="button"
-        className={`relative ${_copied || isExpanded ? 'rounded-t-md' : 'rounded-md'} bg-white/50 text-black cursor-pointer hover:text-brand-primary transition-colors`}
+        className={`relative w-full rounded-lg text-left cursor-pointer ${FOCUS_RING}`}
         onClick={clickEvent}
         onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        aria-expanded={hasDropdownContent ? isExpanded : undefined}
         id={buttonId}
         {...props}
       >
         <div className="group flex items-center pl-4 gap-2">
-          <span className="bash flex items-center text-lg select-none">
-            &gt;
-          </span>
-          <span className="label font-mono pr-2 text-sm flex items-center mt-0.5 select-text">
+          <BiChevronRight aria-hidden="true" className="size-4.5 shrink-0" />
+          <span
+            className={`${COMMAND} pr-2 flex flex-1 items-center mt-0.5 select-text`}
+          >
             {label}
           </span>
           <span
-            className={`relative flex items-center rounded-tr-sm bg-brand-primary h-full px-4 py-3 ${_copied || isExpanded ? '' : 'rounded-br-sm'} border-l border-brand-primary ease-out transition-colors duration-200 text-white group-hover:text-gray-200`}
+            className={`relative flex items-center rounded-r-md ${COMMAND_COPY} h-full px-4 py-3`}
           >
             <BiCopy
-              className={`w-5 h-5 duration-200 ${_copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
+              className={`w-5 h-5 duration-200 ${copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
             />
             <BiCheck
-              className={`w-5 h-5 absolute inset-0 m-auto duration-200 ${_copied ? 'rotate-0 scale-100 opacity-100' : '-rotate-180 scale-0 opacity-0'}`}
+              className={`w-5 h-5 absolute inset-0 m-auto duration-200 ${copied ? 'rotate-0 scale-100 opacity-100' : '-rotate-180 scale-0 opacity-0'}`}
             />
           </span>
         </div>
       </button>
-      {isExpanded && (
+      {/* Closed, it is hidden from the keyboard; Escape closes it. */}
+      {hasDropdownContent && (
         <div
-          className="absolute top-full left-[-1px] right-[-1px] z-50 overflow-hidden animate-slide-down bg-white border border-brand-primary rounded-b-md border-t border-t-brand-primary"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          data-state={isExpanded ? 'open' : 'closed'}
+          className={`${MENU_REVEAL} absolute top-full -inset-x-px z-50 pt-2`}
         >
-          {hasTemplates && (
-            <div className="px-4 pt-4 pb-2">
-              <div className="flex items-center justify-between px-2 pb-2">
-                <span className={BODY_MUTED}>or deploy instantly...</span>
-                <button
-                  onClick={() => {
-                    setShowHelpText(false);
-                    setIsExplicitlyShown(false);
-                  }}
-                  type="button"
-                  className="hover:text-brand-primary hover:cursor-pointer"
-                >
-                  <IoMdClose className="w-4 h-4" />
-                </button>
+          <div className={COMMAND_MENU}>
+            {hasTemplates && (
+              <>
+                <div className="flex items-center justify-between gap-4 pl-2">
+                  <span className={`${NAV_MENU_LINK} pointer-events-none`}>
+                    or deploy instantly...
+                  </span>
+                  {closeButton}
+                </div>
+                <ul>
+                  {starterTemplates.map((template) => (
+                    <li key={template.title}>
+                      <a
+                        href={template.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
+                      >
+                        {template.icon && (
+                          <span className="size-5 rounded-full overflow-hidden bg-strong flex items-center justify-center shrink-0">
+                            <Image
+                              src={template.icon}
+                              alt=""
+                              width={20}
+                              height={20}
+                              className="object-contain"
+                            />
+                          </span>
+                        )}
+                        {template.title}
+                        <BiLinkExternal
+                          aria-hidden="true"
+                          className="text-sm shrink-0"
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {hasHelpText && (
+              <div
+                className={`${BODY_MUTED} flex items-center justify-between gap-2 px-2 pt-2 pb-1 ${hasTemplates ? `mt-1 ${COMMAND_MENU_RULE}` : ''}`}
+              >
+                <TinaMarkdown
+                  content={helpText}
+                  components={CodeButtonMarkdownStyle}
+                />
+                {!hasTemplates && closeButton}
               </div>
-              <div className="flex flex-col gap-1">
-                {starterTemplates.map((template, index) => (
-                  <a
-                    key={template.title}
-                    href={template.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center justify-between px-2 py-2 rounded transition-colors ${
-                      hoveredTemplate === index
-                        ? 'bg-neutral-background-secondary'
-                        : ''
-                    }`}
-                    onMouseEnter={() => setHoveredTemplate(index)}
-                    onMouseLeave={() => setHoveredTemplate(null)}
-                  >
-                    <div className="flex items-center gap-2">
-                      {template.icon && (
-                        <div className="size-4 rounded-full overflow-hidden bg-strong flex items-center justify-center shrink-0">
-                          <Image
-                            src={template.icon}
-                            alt={template.title || ''}
-                            width={16}
-                            height={16}
-                            className="object-contain"
-                          />
-                        </div>
-                      )}
-                      <span className={LABEL}>{template.title}</span>
-                    </div>
-                    {hoveredTemplate === index && (
-                      <span className={LABEL}>&#x21B5;</span>
-                    )}
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
-          {helpText?.children?.length > 0 && (
-            <div
-              className={`${BODY_MUTED} bg-white/50 border-t border-brand-primary rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 max-h-[500px] max-w-min min-w-full`}
-            >
-              <TinaMarkdown
-                content={helpText}
-                components={CodeButtonMarkdownStyle}
-              />
-              {!hasTemplates && (
-                <button
-                  onClick={() => {
-                    setShowHelpText(false);
-                    setIsExplicitlyShown(false);
-                  }}
-                  type="button"
-                  className="hover:text-brand-primary hover:cursor-pointer"
-                >
-                  <IoMdClose className="w-5 h-5" />
-                </button>
-              )}
-            </div>
-          )}
+            )}
+          </div>
         </div>
       )}
     </div>

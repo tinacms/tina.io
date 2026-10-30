@@ -55,9 +55,7 @@
       "buttons": [
         {
           "label": "开始构建文档",
-          "icon": false,
-          "variant": "blue",
-          "size": "medium",
+          "variant": "primary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

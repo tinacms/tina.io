@@ -1,6 +1,5 @@
-import Link from 'next/link';
-import { FaNewspaper } from 'react-icons/fa';
-import { EYEBROW_LINK, PAGE_TITLE } from '@/component/styles/typography';
+import { PAGE_TITLE } from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 import { WhatsNewCard } from '../tinacms/WhatsNewTinaCMSLayout';
 
 export const WhatsNewTinaCloudPageLayout = ({ data }) => {
@@ -16,13 +15,10 @@ export const WhatsNewTinaCloudPageLayout = ({ data }) => {
           <WhatsNewCard key={item.id} item={item} />
         ))}
       </div>
-      <div className="text-center">
-        <Link
-          href="https://us20.campaign-archive.com/home/?u=1fea337bee20e7270d025ea8a&id=c1062536a1"
-          className={`${EYEBROW_LINK} flex items-center justify-center`}
-        >
-          See Newsletters <FaNewspaper className="ml-2" />
-        </Link>
+      <div className="flex flex-col items-center">
+        <TextLink href="https://us20.campaign-archive.com/home/?u=1fea337bee20e7270d025ea8a&id=c1062536a1">
+          See Newsletters
+        </TextLink>
       </div>
     </div>
   );

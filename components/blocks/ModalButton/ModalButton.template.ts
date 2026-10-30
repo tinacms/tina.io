@@ -1,3 +1,5 @@
+import { BUTTON_LEVEL_OPTIONS } from '../../styles/buttons';
+
 const modals = [
   'BookDemo.tsx',
   'EmailForm.tsx',
@@ -5,44 +7,21 @@ const modals = [
   'BecomePartner.tsx',
 ];
 
+/** A new modal button starts as Primary, like every new button. */
+export const modalButtonDefaultItem = {
+  color: 'primary',
+  label: 'Primary Action',
+};
+
 export const modalButtonTemplateFields = [
   { name: 'label', label: 'Label', type: 'string' },
-  { name: 'icon', label: 'Icon', type: 'boolean' },
-  {
-    name: 'shape',
-    label: 'Shape',
-    type: 'string',
-    options: [
-      { value: 'square', label: 'Square' },
-      { value: 'pill', label: 'Pill' },
-    ],
-  },
   {
     name: 'color',
-    label: 'Color',
+    label: 'Level',
     type: 'string',
-    options: [
-      { value: 'default', label: 'Seafoam' },
-      { value: 'blue', label: 'Blue' },
-      { value: 'orange', label: 'Orange' },
-      { value: 'white', label: 'White' },
-      { value: 'ghost', label: 'Ghost' },
-      { value: 'orangeWithBorder', label: 'Orange with Border' },
-      { value: 'ghostBlue', label: 'Ghost Blue' },
-      { value: 'command', label: 'Command' },
-      { value: 'blueOutline', label: 'Blue Outline' },
-      { value: 'ghostOutline', label: 'Ghost Outline' },
-    ],
-  },
-  {
-    name: 'size',
-    label: 'Size',
-    type: 'string',
-    options: [
-      { value: 'small', label: 'Small' },
-      { value: 'medium', label: 'Medium' },
-      { value: 'large', label: 'Large' },
-    ],
+    description:
+      'A section’s only button is Primary. Tertiary sits beside a Primary.',
+    options: BUTTON_LEVEL_OPTIONS,
   },
   { name: 'modal', label: 'Modal', type: 'string', options: modals },
 ];
@@ -56,12 +35,7 @@ export const modalButtonTemplate = {
     itemProps: (item) => {
       return { label: item?.label };
     },
-    defaultItem: {
-      variant: 'default',
-      label: 'Secondary Action',
-      icon: false,
-      size: 'medium',
-    },
+    defaultItem: modalButtonDefaultItem,
   },
   fields: modalButtonTemplateFields,
 };

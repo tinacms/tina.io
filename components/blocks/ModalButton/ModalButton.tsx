@@ -1,13 +1,12 @@
 import { DemoForm } from 'components/modals/BookDemo';
 import { ContactForm } from 'components/modals/ContactForm';
 import { useState } from 'react';
-import { BiArrowBack } from 'react-icons/bi';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { EmailForm } from '@/component/modals/EmailForm';
+import { levelOf } from '@/component/styles/buttons';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { cn } from '@/lib/utils';
-import { ModalButton } from '../../ui';
+import { ButtonGroup, ModalButton } from '../../ui';
 
 // Function that returns modal components
 const getModalContent = (modal: string) => {
@@ -35,7 +34,7 @@ const getModalClassName = (modal: string | null) => {
   return 'sm:max-w-lg';
 };
 
-export const ModalB = ({ items, align = 'left', className = '' }) => {
+export const ModalB = ({ items, fill = false, className = '' }) => {
   const [open, setOpen] = useState(false);
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
@@ -46,41 +45,26 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
 
   const closeModal = () => setOpen(false);
 
-  const isList = true;
-
   return (
     <>
-      <div
-        className={cn(
-          '-mb-2',
-          'items-center',
-          isList
-            ? 'flex flex-col sm:flex-row md:flex-row lg:flex-row'
-            : 'flex flex-row',
-          align === 'center' && 'justify-center',
-        )}
-      >
+      <ButtonGroup fill={fill}>
         {items?.map((item, index) => {
-          const { color, label, icon, modal, shape } = item;
+          const { color, label, modal } = item;
 
           return (
             <ModalButton
               key={sanitizeLabel(label) || modal || `modal-button-${index}`}
-              color={color}
-              shape={shape}
+              level={levelOf(color)}
               id={sanitizeLabel(label)}
               className={className}
               onClick={() => openModal(modal)}
               data-tina-field={tinaField(item, 'label')}
             >
               {label}
-              {icon && (
-                <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
-              )}
             </ModalButton>
           );
         })}
-      </div>
+      </ButtonGroup>
 
       <Dialog open={open} onOpenChange={(isOpen) => !isOpen && closeModal()}>
         <DialogContent className={getModalClassName(activeModal)}>

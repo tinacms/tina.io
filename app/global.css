@@ -151,7 +151,12 @@
   --ink-900: #1c1b2e;
   --slate-700: #334155;
   --slate-500: #64748b;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
   --slate-100: #f1f5f9;
+  --cyan-50: #ecf7f8;
+  /* The Night Owl code theme's background. */
+  --night-owl-900: #011627;
 
   /* ──────────────────────────────────────────────────────────────────────
      LAYER 2 — SEMANTIC TOKENS
@@ -220,6 +225,79 @@
   --on-surface-neutral-solid: var(--white); /* 4.8:1 */
   --surface-brand-solid: var(--orange-600);
   --on-surface-brand-solid: var(--white); /* 4.7:1 */
+
+  /* Buttons: three levels, one size. A component names a level
+     (BUTTON in components/styles/buttons.ts), never these tokens.
+     Agreed exception: the Primary and Secondary gradients keep white labels
+     at 3.8:1 and 3.7:1 on their light ends, below AA for 16px text. Design
+     chose these over darker gradients that pass; don't "fix" without design. */
+  --button-primary-from: var(--orange-500);
+  --button-primary-to: var(--orange-700);
+  --button-primary-ink: var(--white);
+  --button-secondary-from: var(--blue-500);
+  --button-secondary-to: var(--blue-700);
+  --button-secondary-ink: var(--white);
+  /* Tertiary: an orange outline on white, 4.7:1. Always beside a Primary. */
+  --button-tertiary-fill: var(--white);
+  --button-tertiary-border: var(--orange-600);
+  --button-tertiary-ink: var(--orange-600);
+  /* On dark and orange bands the on-dark utility swaps the levels: Primary
+     goes white with an orange-700 label, Tertiary a white outline. */
+  --button-on-dark-fill: var(--white);
+  --button-on-dark-ink: var(--orange-700);
+  --button-on-dark-outline: var(--white);
+  /* A soft blue-tinted shadow, for things that lift on hover. */
+  --shadow-soft-tint: color-mix(in srgb, var(--blue-800) 7%, transparent);
+  --shadow-soft: 0 1px 3px 0 var(--shadow-soft-tint), 0 2px 6px -1px var(--shadow-soft-tint);
+  /* Under a button as it lifts on hover. */
+  --button-hover-shadow: var(--shadow-soft);
+  /* Under a previous / next post card on hover. */
+  --post-card-hover-shadow: var(--shadow-soft);
+  /* The short arrow at the end of a text link, relative to the link text. */
+  --text-link-arrow-size: 1.125em;
+  /* Icon-only utility buttons (close, copy, carousel, search). */
+  --icon-button-ink: var(--slate-700);
+  --icon-button-hover: var(--slate-100);
+  /* The neutral outline: white with a light slate border that darkens on hover. */
+  --neutral-outline-fill: var(--white);
+  --neutral-outline-border: var(--slate-200);
+  --neutral-outline-border-hover: var(--slate-300);
+  /* Nav dropdown menus: a pale cyan card, rows tinted white on hover. */
+  --menu-surface: var(--cyan-50);
+  --menu-item-hover: color-mix(in srgb, var(--white) 60%, transparent);
+  /* The npx command field: the neutral outline with a flat orange copy
+     block (white icon, 4.7:1). */
+  --command-copy-fill: var(--orange-600);
+  --command-copy-ink: var(--white);
+  /* Its starter menu: a white card in the neutral outline. Rows turn light
+     grey with an orange-600 label and icon on hover (4.3:1, agreed below AA);
+     icons are ink until then. */
+  --command-menu-rule: var(--slate-100);
+  --command-menu-icon: var(--ink-900);
+  --command-menu-hover: var(--slate-100);
+  --command-menu-hover-ink: var(--orange-600);
+  /* Segmented toggles (pricing Monthly / Annually): a frosted white pill
+     track, a Secondary blue thumb that slides to the selected option, and
+     link blue for the options not selected. */
+  --segmented-track-from: color-mix(in srgb, var(--white) 25%, transparent);
+  --segmented-track-via: color-mix(in srgb, var(--white) 50%, transparent);
+  --segmented-track-to: color-mix(in srgb, var(--white) 75%, transparent);
+  --segmented-ink: var(--text-link);
+  /* Pagination (the /blog list): ink numbers with a light slate outline on
+     hover. The current page wears the neutral outline. */
+  --pagination-ink: var(--ink-900);
+  --pagination-hover-border: var(--slate-300);
+  /* Social links (Discord, GitHub, …): the neutral outline with an ink
+     label. The logos keep their own brand colours. */
+  --social-link-ink: var(--ink-900);
+  /* Dark code panels (Night Owl), like the GraphQL Query / Response block. */
+  --code-panel: var(--night-owl-900);
+  /* Tabs on dark code panels (GraphQL Query / Response): a solid orange
+     underline on the selected tab and a faint divider under the row. */
+  --tab-indicator: var(--orange-500);
+  --tab-divider: color-mix(in srgb, var(--white) 12%, transparent);
+  /* Keyboard focus on every button and control; white on dark bands. */
+  --focus-ring: var(--ink-900);
 
   /* Type families. Headings are IBM Plex Sans; everything people read is
      Inter; code and technical labels are IBM Plex Mono. They match the

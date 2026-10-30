@@ -5,6 +5,7 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
+import { FOCUS_RING } from '@/component/styles/buttons';
 import {
   BODY,
   CARD_TITLE,
@@ -68,7 +69,18 @@ const CarouselItem = ({
             />
           )}
           {headline && (
-            <h3 className={`${CARD_TITLE} cursor-pointer pl-3`}>{headline}</h3>
+            <h3 className={`${CARD_TITLE} pl-3`}>
+              {/* The card is clickable for the mouse; this gives keyboards the
+                  same "show this feature" action (it can't wrap the links). */}
+              <button
+                type="button"
+                onClick={() => onClick(index)}
+                aria-expanded={isHovered}
+                className={`cursor-pointer text-left rounded-md ${FOCUS_RING}`}
+              >
+                {headline}
+              </button>
+            </h3>
           )}
         </div>
         <div

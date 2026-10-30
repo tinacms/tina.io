@@ -10,10 +10,7 @@
       "buttons": [
         {
           "label": "GitHub Discussions",
-          "icon": true,
-          "shape": "square",
-          "variant": "orange",
-          "size": "medium",
+          "variant": "primary",
           "url": "https://github.com/tinacms/tinacms/discussions",
           "_template": "actions"
         }
@@ -31,11 +28,7 @@
           "content": "我们正在为媒体管理器加入编辑工作流支持，让媒体变更也能走与内容编辑相同的基于分支的流程。\n",
           "actions": [
             {
-              "label": "GitHub 讨论 🔗",
-              "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "label": "GitHub 讨论",
               "url": "https://github.com/tinacms/tinacms/discussions/7002"
             }
           ]
@@ -46,10 +39,7 @@
           "content": "我们的清单上还有若干媒体管理方面的改进（图片搜索、支持更多媒体类型等）。\n",
           "actions": [
             {
-              "label": "GitHub 讨论 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "label": "GitHub 讨论",
               "url": "https://github.com/tinacms/tinacms/discussions/4476"
             }
           ]
@@ -65,10 +55,7 @@
           "content": "我们引入了由 PostHog 提供支持的可选遥测功能，以便更好地了解用户如何使用 TinaCMS。这些数据将指导我们改进产品，同时保护用户隐私。由于 TinaCMS 是开源的，所有遥测都完全可选、可配置。\n",
           "actions": [
             {
-              "label": "PostHog 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "label": "PostHog",
               "url": "https://posthog.com/"
             }
           ]
@@ -81,18 +68,10 @@
           "actions": [
             {
               "label": "博客介绍",
-              "icon": false,
-              "shape": "pill",
-              "variant": "blue",
-              "size": "medium",
               "url": "/blog/tinacloud-separate-content-repos"
             },
             {
               "label": "查看文档",
-              "icon": true,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
               "url": "/docs/guides/separate-content-repo"
             }
           ]
@@ -104,17 +83,10 @@
           "actions": [
             {
               "label": "博客介绍",
-              "icon": false,
-              "variant": "blue",
-              "size": "medium",
               "url": "/blog/astro-is-becoming-the-default-tinacms-starter"
             },
             {
-              "label": "GitHub 讨论 🔗",
-              "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "label": "GitHub 讨论",
               "url": "https://github.com/tinacms/tinacms/discussions/5247"
             }
           ]
@@ -127,9 +99,6 @@
           "actions": [
             {
               "label": "查看文档",
-              "icon": true,
-              "variant": "blue",
-              "size": "medium",
               "url": "/docs/tinacloud/github-enterprise-integration"
             }
           ]
@@ -142,9 +111,6 @@
           "actions": [
             {
               "label": "博客介绍",
-              "icon": true,
-              "variant": "blue",
-              "size": "medium",
               "url": "/blog/two-factor-authentication"
             }
           ]
@@ -157,9 +123,6 @@
           "actions": [
             {
               "label": "博客介绍",
-              "icon": true,
-              "variant": "blue",
-              "size": "medium",
               "url": "/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache"
             }
           ]
@@ -171,16 +134,10 @@
           "actions": [
             {
               "label": "博客介绍",
-              "icon": true,
-              "variant": "blue",
-              "size": "medium",
               "url": "/blog/react-19-support"
             },
             {
               "label": "🚀 已在 2.7.7 发布",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
               "url": "/"
             }
           ]
@@ -192,9 +149,6 @@
           "actions": [
             {
               "label": "TinaDocs",
-              "icon": true,
-              "variant": "blue",
-              "size": "medium",
               "url": "/tinadocs"
             }
           ]
@@ -206,10 +160,6 @@
           "actions": [
             {
               "label": "🚀 已在 3.0.0 发布",
-              "icon": true,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
               "url": "/blog/modernizing-to-esm"
             }
           ]
@@ -230,10 +180,7 @@
           "content": "改进我们的内容 API —— 更快的内容读取响应时间。这将缩短静态站点的构建时间，让部署更迅速。对于企业客户，我们还在增加数据隔离，确保其数据与其他账户分离，以获得更好的安全性和可扩展性。\n",
           "actions": [
             {
-              "label": "GitHub 讨论 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "label": "GitHub 讨论",
               "url": "https://github.com/tinacms/tinacms/discussions/5576"
             }
           ]
@@ -244,11 +191,7 @@
           "content": "我们正在提供一个公开的 GitHub Action，用于查询和编辑你的内容。一个典型用法是：通过 GitHub Actions 定期借助 AI 在项目中查找内容，例如文档。\n",
           "actions": [
             {
-              "label": "GitHub Issue 🔗",
-              "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "label": "GitHub Issue",
               "url": "https://github.com/tinacms/tinacms/issues/6156"
             }
           ]
@@ -260,18 +203,10 @@
           "actions": [
             {
               "label": "博客介绍",
-              "icon": false,
-              "shape": "pill",
-              "variant": "blue",
-              "size": "medium",
               "url": "/blog/tinacms-v4-is-coming"
             },
             {
-              "label": "GitHub 讨论 🔗",
-              "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "label": "GitHub 讨论",
               "url": "https://github.com/tinacms/tinacms/discussions/6782"
             }
           ]
@@ -282,11 +217,7 @@
           "content": "官方的 TinaCloud CLI 让开发者可以在终端里管理项目、仓库、分支等。\n",
           "actions": [
             {
-              "label": "GitHub 讨论 🔗",
-              "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "label": "GitHub 讨论",
               "url": "https://github.com/tinacms/tinacms/discussions/7000"
             }
           ]
@@ -297,11 +228,7 @@
           "content": "我们正在把认证体系升级为使用 WorkOS，让用户访问的管理更简单、更可靠。\n",
           "actions": [
             {
-              "label": "GitHub 讨论 🔗",
-              "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
+              "label": "GitHub 讨论",
               "url": "https://github.com/tinacms/tinacms/discussions/7001"
             }
           ]
@@ -318,10 +245,7 @@
           "content": "我们正在增加 MDX 插件适配器，让团队可以使用自己偏好的 Markdown 工具和 Markdown 方言，同时保留 TinaCMS 的可视化编辑能力。Fumadocs 将是首个计划支持的适配器。\n",
           "actions": [
             {
-              "label": "GitHub 讨论 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "label": "GitHub 讨论",
               "url": "https://github.com/tinacms/tinacms/discussions/6973"
             }
           ]
@@ -334,9 +258,6 @@
           "actions": [
             {
               "label": "编辑工作流",
-              "icon": true,
-              "variant": "blue",
-              "size": "medium",
               "url": "/editorial-workflow/"
             }
           ]
@@ -348,9 +269,6 @@
           "actions": [
             {
               "label": "查看文档",
-              "icon": true,
-              "variant": "blue",
-              "size": "medium",
               "url": "/docs/vibe-coding"
             }
           ]
@@ -362,10 +280,7 @@
           "content": "我们正在探索一些在内容创作流程中运用 AI 的方式。\n",
           "actions": [
             {
-              "label": "你的站点用 /llms.txt 让 LLM 更好理解了吗？ 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
+              "label": "你的站点用 /llms.txt 让 LLM 更好理解了吗？",
               "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
             }
           ]

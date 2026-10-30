@@ -25,7 +25,7 @@ function CarouselFeatureMobileItem(data) {
       {text && <p className={`${BODY_SMALL} pl-[1px] slide-up mb-4`}>{text}</p>}
       {button && (
         <div className={`pl-[1px] slide-up flex mt-auto`}>
-          <Actions items={actionsArray} className="p-0!" />
+          <Actions items={actionsArray} />
         </div>
       )}
     </div>

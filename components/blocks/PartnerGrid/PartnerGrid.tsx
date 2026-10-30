@@ -7,12 +7,12 @@ import {
   BODY_MUTED,
   BODY_SMALL,
   LABEL,
-  LINK,
   PAGE_TITLE,
   SECTION_TITLE,
   SUB_HEADING,
   SURFACE,
 } from '@/component/styles/typography';
+import { TextLink } from '../../ui/TextLink';
 import { Container } from '../Container';
 import { ModalB } from '../ModalButton/ModalButton';
 
@@ -22,7 +22,11 @@ const PartnerCard = ({ data }) => {
       ? `https://${data.website}`
       : data.website;
   // Show the bare domain (no protocol / trailing slash) as the link text.
-  const websiteLabel = website?.replace(/^https?:\/\//, '').replace(/\/+$/, '');
+  // “Visit ssw.com.au”: the bare domain, without protocol, www or path.
+  const websiteDomain = website
+    ?.replace(/^https?:\/\//, '')
+    .replace(/^www\./, '')
+    .replace(/\/.*$/, '');
 
   const isPremier = data.tier === 'Premier';
 
@@ -95,16 +99,13 @@ const PartnerCard = ({ data }) => {
       )}
 
       {website && (
-        <a
+        <TextLink
           href={website}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${BODY_SMALL} ${LINK} mt-auto inline-flex items-center gap-1`}
+          className="mt-auto"
           data-tina-field={tinaField(data, 'website')}
         >
-          {websiteLabel}
-          <span aria-hidden="true">&rarr;</span>
-        </a>
+          Visit {websiteDomain}
+        </TextLink>
       )}
     </div>
   );
@@ -114,8 +115,8 @@ const PartnerCard = ({ data }) => {
 const CONTACT_BUTTON = {
   label: 'Contact us',
   modal: 'ContactForm.tsx',
-  color: 'blueOutline',
-  shape: 'pill',
+  // The card's only action, so it's the Primary.
+  variant: 'primary',
 };
 
 // Always the last card: the directory only lists partners who opted in, so a

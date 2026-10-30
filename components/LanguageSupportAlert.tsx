@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import type { PageType } from 'utils/hasChineseVersion';
 import { hasChineseVersion } from 'utils/hasChineseVersion';
+import { ICON_BUTTON } from '@/component/styles/buttons';
 import { SURFACE } from '@/component/styles/typography';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
@@ -77,15 +78,14 @@ export function LanguageSupportAlert() {
         </AlertDescription>
         <button
           type="button"
-          className="absolute top-2 right-2 rounded-full hover:bg-yellow-200 flex items-center justify-center"
+          className={`${ICON_BUTTON} absolute top-1 right-1`}
           onClick={(e) => {
             e.stopPropagation();
             setIsVisible(false);
           }}
           aria-label="Close"
-          style={{ padding: 2 }}
         >
-          <X className="h-4 w-4" />
+          <X />
         </button>
       </Alert>
     </div>

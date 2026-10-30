@@ -1,11 +1,11 @@
 'use client';
 
-import { Button } from 'components/ui';
+import { Button, ButtonGroup, LinkButton } from 'components/ui';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { FaRegCalendar, FaRegMap, FaRegStar } from 'react-icons/fa';
-import { FaArrowRightLong, FaRegClock } from 'react-icons/fa6';
+import { FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
@@ -17,7 +17,6 @@ import {
   BODY_SMALL,
   CARD_TITLE,
   EYEBROW,
-  EYEBROW_LINK,
   LABEL,
   LINK,
   PAGE_TITLE,
@@ -26,6 +25,7 @@ import {
   SUB_HEADING,
   SURFACE,
 } from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 
 const HeaderBanner = ({
   tinaData,
@@ -63,18 +63,16 @@ const HeaderBanner = ({
           )}
         </div>
       </div>
-      <div className="flex flex-row gap-4">
-        <Button color="white" size="medium" onClick={scrollToAgenda}>
-          <span className="mr-2">{tinaData.actionButton.title}</span>
-        </Button>
+      <ButtonGroup>
         {tinaData?.rightButton?.link && (
-          <Link href={tinaData.rightButton.link} target="_blank">
-            <Button color="blue" size="medium">
-              <span className="mr-2">{tinaData?.rightButton?.title}</span>
-            </Button>
-          </Link>
+          <LinkButton link={tinaData.rightButton.link} target="_blank">
+            {tinaData?.rightButton?.title}
+          </LinkButton>
         )}
-      </div>
+        <Button level="tertiary" onClick={scrollToAgenda}>
+          {tinaData.actionButton.title}
+        </Button>
+      </ButtonGroup>
     </div>
   );
 };
@@ -493,13 +491,9 @@ function ConferencePage({
           />
         )}
         <Agenda filteredSessions={filteredSessions} agendaRef={agendaRef} />
-        <Link
-          href="/events"
-          className={`${EYEBROW_LINK} mt-16 flex items-center w-fit gap-2 group`}
-        >
-          <span>SEE ALL EVENTS</span>
-          <FaArrowRightLong />
-        </Link>
+        <TextLink href="/events" className="mt-16">
+          See all events
+        </TextLink>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ import remarkGfm from 'remark-gfm';
 import styled from 'styled-components';
 import LinkSvg from '../../public/svg/link.svg';
 import { Prism } from '../styles/Prism';
-import { BODY, LABEL } from '../styles/typography';
+import { BODY } from '../styles/typography';
 
 interface MarkdownContentProps {
   content: string;
@@ -21,53 +21,17 @@ interface MarkdownContentProps {
 }
 
 export const copyToClipboard = (text: string) => {
+  // Selecting the temporary textarea takes focus, so hand it back afterwards
+  // or keyboard users lose their place.
+  const previousFocus = document.activeElement as HTMLElement | null;
   const el = document.createElement('textarea');
   el.value = text;
   document.body.appendChild(el);
   el.select();
   document.execCommand('copy');
   document.body.removeChild(el);
+  previousFocus?.focus();
 };
-
-interface copyButtonProps {
-  value?: string;
-}
-
-const _CopyCodeButton = ({ value }: copyButtonProps) => {
-  const [copied, setCopied] = React.useState(false);
-
-  const clickEvent = () => {
-    setCopied(true);
-    copyToClipboard(value);
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
-  };
-
-  return (
-    <StyledCopyCodeButton className={LABEL} onClick={clickEvent}>
-      {!copied ? 'Copy' : 'Copied!'}
-    </StyledCopyCodeButton>
-  );
-};
-
-const StyledCopyCodeButton = styled.button`
-  position: absolute;
-  right: 0;
-  top: 0;
-  cursor: pointer;
-  border: 1px solid var(--tina-color-grey-3);
-  opacity: 0.6;
-  background: rgba(0, 0, 0, 0.03);
-  border-right-width: 0;
-  transition: all 150ms ease-out;
-  border-top-width: 0;
-  border-radius: 0 0 0 5px;
-
-  &:hover {
-    opacity: 1;
-  }
-`;
 
 const CodeWrapper = styled.div`
   position: relative;

@@ -1,16 +1,15 @@
 import Link from 'next/link';
-import { FaGithub, FaNewspaper } from 'react-icons/fa';
 import {
   BODY_MUTED,
   BODY_SMALL,
   CARD_TITLE,
   CODE,
-  EYEBROW_LINK,
   LABEL,
   PAGE_TITLE,
   SUB_HEADING,
   SURFACE,
 } from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 import { formatDate } from '@/utils/formatDate';
 
 interface ChangeItem {
@@ -136,19 +135,13 @@ const WhatsNewTinaCMSPageLayout = ({ data }) => {
           <WhatsNewCard key={item.id} item={item} />
         ))}
       </div>
-      <div className="text-center">
-        <Link
-          href="https://github.com/tinacms/tinacms/blob/main/packages/tinacms/CHANGELOG.md"
-          className={`${EYEBROW_LINK} flex items-center justify-center`}
-        >
-          See more on GitHub <FaGithub className="ml-2" />
-        </Link>
-        <Link
-          href="https://us20.campaign-archive.com/home/?u=1fea337bee20e7270d025ea8a&id=c1062536a1"
-          className={`${EYEBROW_LINK} flex items-center justify-center`}
-        >
-          See Newsletters <FaNewspaper className="ml-2" />
-        </Link>
+      <div className="flex flex-col items-center">
+        <TextLink href="https://github.com/tinacms/tinacms/blob/main/packages/tinacms/CHANGELOG.md">
+          See more on GitHub
+        </TextLink>
+        <TextLink href="https://us20.campaign-archive.com/home/?u=1fea337bee20e7270d025ea8a&id=c1062536a1">
+          See Newsletters
+        </TextLink>
       </div>
     </div>
   );

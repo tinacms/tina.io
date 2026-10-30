@@ -13,15 +13,8 @@ export const heroTemplate: Template = {
       text: 'Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site',
       actions: [
         {
-          variant: 'orange',
+          variant: 'primary',
           label: 'Primary Action',
-          icon: true,
-          url: '/',
-        },
-        {
-          variant: '',
-          label: 'Secondary Action',
-          icon: false,
           url: '/',
         },
       ],
