@@ -551,9 +551,14 @@ pre.prism-code.language-json {
 @utility arrow-link {
   @apply role-eyebrow-link inline-flex items-center gap-1.5 py-2;
 }
-@utility arrow-link-arrow {
-  @apply w-auto -mr-1 shrink-0 rotate-180 opacity-70;
+/* The short arrow itself, pointing left. arrow-link-arrow turns it to
+   point right at the end of a text link. */
+@utility arrow-icon {
+  @apply w-auto shrink-0 opacity-70;
   height: var(--text-link-arrow-size);
+}
+@utility arrow-link-arrow {
+  @apply arrow-icon -mr-1 rotate-180;
 }
 
 /* Social links (Discord, GitHub, …): button size and type in the neutral
@@ -638,13 +643,14 @@ pre.prism-code.language-json {
 }
 
 /* Page numbers and Previous / Next in a numbered pagination (the /blog
-   list): button size and type in ink, a light grey fill on hover. The
-   current page (aria-current="page") wears the neutral outline. */
+   list): button size and type in ink, a light slate outline on hover (no
+   fill, so it sits well on the seafoam backdrop). The current page
+   (aria-current="page") wears the neutral outline. */
 @utility pagination-item {
   @apply button-shape gap-1 min-w-11 px-3 transition-colors duration-150;
   color: var(--pagination-ink);
   &:hover {
-    background-color: var(--pagination-hover);
+    border-color: var(--pagination-hover-border);
   }
   &[aria-current='page'] {
     @apply neutral-outline;

@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
+import { BiArrowBack, BiChevronLeft, BiChevronRight } from 'react-icons/bi';
+import { ARROW_ICON } from '@/component/styles/links';
 import { PAGINATION_ITEM, POST_CARD } from '@/component/styles/pagination';
 import { EYEBROW, SUB_HEADING } from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
@@ -9,7 +10,7 @@ import { TextLinkArrow } from './TextLink';
  * Pagination. Two pieces:
  * - Pagination: numbered pages for a list (‹ Previous 1 2 3 … 24 Next ›).
  *   On phones only ‹ [3] › shows.
- * - PostPagination: the previous / next post cards at the end of a post.
+ * - PostPagination: the ← Previous / Next → post cards at the end of a post.
  */
 
 const ELLIPSIS = 'ellipsis';
@@ -123,28 +124,33 @@ interface PostPaginationProps {
   labels: { previous: string; next: string };
 }
 
+// The arrow sits on the label, pointing the way the card goes: ← Previous,
+// Next →. The title stays plain text.
 const PostCard = ({
   post,
   label,
-  align,
+  direction,
 }: {
   post: PostLink;
   label: string;
-  align: 'left' | 'right';
+  direction: 'previous' | 'next';
 }) => (
   <Link
     href={post.slug}
     className={cn(
       POST_CARD,
       'h-full',
-      align === 'right' && 'items-end text-right',
+      direction === 'next' && 'items-end text-right',
     )}
   >
-    <span className={EYEBROW}>{label}</span>
-    <span className={cn(SUB_HEADING, 'inline-flex items-center gap-1.5')}>
-      {post.title}
-      <TextLinkArrow />
+    <span className={cn(EYEBROW, 'inline-flex items-center gap-1.5')}>
+      {direction === 'previous' && (
+        <BiArrowBack aria-hidden="true" className={ARROW_ICON} />
+      )}
+      {label}
+      {direction === 'next' && <TextLinkArrow />}
     </span>
+    <span className={SUB_HEADING}>{post.title}</span>
   </Link>
 );
 
@@ -163,11 +169,15 @@ export const PostPagination = ({
       className="mt-8 grid gap-4 sm:grid-cols-2"
     >
       {previous?.slug && (
-        <PostCard post={previous} label={labels.previous} align="left" />
+        <PostCard
+          post={previous}
+          label={labels.previous}
+          direction="previous"
+        />
       )}
       {next?.slug && (
         <div className="sm:col-start-2">
-          <PostCard post={next} label={labels.next} align="right" />
+          <PostCard post={next} label={labels.next} direction="next" />
         </div>
       )}
     </nav>

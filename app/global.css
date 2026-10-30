@@ -283,10 +283,10 @@
   --segmented-track-via: color-mix(in srgb, var(--white) 50%, transparent);
   --segmented-track-to: color-mix(in srgb, var(--white) 75%, transparent);
   --segmented-ink: var(--text-link);
-  /* Pagination (the /blog list): ink numbers that fill light grey on hover.
-     The current page wears the neutral outline. */
+  /* Pagination (the /blog list): ink numbers with a light slate outline on
+     hover. The current page wears the neutral outline. */
   --pagination-ink: var(--ink-900);
-  --pagination-hover: var(--slate-100);
+  --pagination-hover-border: var(--slate-300);
   /* Social links (Discord, GitHub, …): the neutral outline with an ink
      label. The logos keep their own brand colours. */
   --social-link-ink: var(--ink-900);

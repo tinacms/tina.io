@@ -14,5 +14,8 @@ export const TEXT_LINK = 'arrow-link';
 /** The short arrow at the end of every text link. TextLink draws it. */
 export const TEXT_LINK_ARROW = 'arrow-link-arrow';
 
+/** The same short arrow pointing left, e.g. before “Previous”. */
+export const ARROW_ICON = 'arrow-icon';
+
 /** A social link: white, light slate outline, ink label, brand-colour logo. */
 export const SOCIAL_LINK = 'social-link';

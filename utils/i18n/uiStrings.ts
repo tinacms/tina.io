@@ -23,8 +23,8 @@ const STRINGS: Record<Locale, UiStrings> = {
   en: {
     blogPost: {
       lastEdited: 'Last Edited',
-      previousPost: 'Previous post',
-      nextPost: 'Next post',
+      previousPost: 'Previous',
+      nextPost: 'Next',
     },
     blogIndex: {
       heading: 'Blog',

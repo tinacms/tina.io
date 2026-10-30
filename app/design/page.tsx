@@ -557,7 +557,7 @@ export default function StyleGuidePage() {
         <Group
           id="pagination"
           title="Pagination"
-          intro="Pagination for a list of pages: ink numbers and Previous / Next at button size, a light grey fill on hover, and the current page outlined. On phones only ‹ [3] › shows. At the end of a blog post, PostPagination shows “Previous post” / “Next post” cards."
+          intro="Pagination for a list of pages: ink numbers and Previous / Next at button size, a light slate outline on hover, and the current page outlined. On phones only ‹ [3] › shows. At the end of a blog post, PostPagination shows ← Previous / Next → cards, the arrow on the label."
         >
           <Pagination
             currentPage={3}
@@ -576,7 +576,7 @@ export default function StyleGuidePage() {
               title: 'Editorial Workflow for media',
               slug: '#pagination',
             }}
-            labels={{ previous: 'Previous post', next: 'Next post' }}
+            labels={{ previous: 'Previous', next: 'Next' }}
           />
         </Group>
 
