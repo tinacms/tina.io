@@ -2,7 +2,7 @@
 
 import { PlanCard } from 'components/blocks/Pricing/PlanCard';
 import { useState } from 'react';
-import { SEGMENTED_SELECTED } from '@/component/styles/buttons';
+import { FOCUS_RING, SEGMENTED_SELECTED } from '@/component/styles/buttons';
 import { BODY_MUTED } from '@/component/styles/typography';
 import type { PageBlocksPricingPlans } from '../../tina/__generated__/types';
 
@@ -28,9 +28,7 @@ type Props = {
   labels?: Partial<typeof defaultLabels> & { annualBillingText?: string };
 };
 
-// Segmented toggles: the selected option takes SEGMENTED_SELECTED (#4964).
-const buttonClasses =
-  'rounded-full px-4 py-2 text-sm font-semibold cursor-pointer transition-colors focus-ring';
+const buttonClasses = `rounded-full px-4 py-2 text-sm font-semibold cursor-pointer transition-colors ${FOCUS_RING}`;
 
 export function PricingComparison({ before, after, labels }: Props) {
   const label = (key: keyof typeof defaultLabels) =>

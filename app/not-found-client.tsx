@@ -65,7 +65,7 @@ const NotFoundContent = ({ content, locale }) => (
     description={content.notFound.description}
   >
     <ButtonGroup>
-      <LinkButton link={localePath('/', locale)} level="primary">
+      <LinkButton link={localePath('/', locale)}>
         {content.notFound.buttons.home}
       </LinkButton>
       <LinkButton link={localePath('/docs', locale)} level="tertiary">

@@ -163,11 +163,7 @@ export const EmailForm = (props: EmailFormProps) => {
             />
           </div>
           <div className="w-full flex justify-end mt-6">
-            <Button
-              type="submit"
-              level="primary"
-              disabled={isProcessing || !isValidEmail}
-            >
+            <Button type="submit" disabled={isProcessing || !isValidEmail}>
               {isProcessing ? 'Processing...' : 'Subscribe'}
             </Button>
           </div>

@@ -9,7 +9,11 @@ import {
   BiLinkExternal,
 } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
-import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
+import {
+  type Components,
+  TinaMarkdown,
+  type TinaMarkdownContent,
+} from 'tinacms/dist/rich-text';
 import { closeOnEscape } from 'utils/closeOnEscape';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { FOCUS_RING, ICON_BUTTON } from '@/component/styles/buttons';
@@ -47,8 +51,7 @@ interface CodeButtonProps
   label: string;
   id?: string;
   className?: string;
-  /** TinaCMS rich text. */
-  helpText?: any;
+  helpText?: TinaMarkdownContent;
   starterTemplates?: StarterTemplate[] | null;
 }
 
@@ -66,7 +69,9 @@ export const CodeButton = ({
 
   const buttonId = id || sanitizeLabel(label);
   const hasTemplates = starterTemplates && starterTemplates.length > 0;
-  const hasDropdownContent = helpText?.children?.length > 0 || hasTemplates;
+  const hasHelpText =
+    !Array.isArray(helpText) && helpText?.children?.length > 0;
+  const hasDropdownContent = hasHelpText || hasTemplates;
   const isExpanded = showHelpText && hasDropdownContent;
 
   const clickEvent = () => {
@@ -149,11 +154,7 @@ export const CodeButton = ({
           </span>
         </div>
       </button>
-      {/* Behaves like the nav dropdowns (#4964): one hover area holds the
-          field and the menu, the 8px gap is padding (a bridge, not a margin),
-          and the menu stays mounted and fades. Closed, it is hidden from the
-          keyboard too, and Escape closes it. It is exactly as wide as the
-          field, so the two line up and it never runs off a phone screen. */}
+      {/* Closed, it is hidden from the keyboard; Escape closes it. */}
       {hasDropdownContent && (
         <div
           data-state={isExpanded ? 'open' : 'closed'}
@@ -199,7 +200,7 @@ export const CodeButton = ({
                 </ul>
               </>
             )}
-            {helpText?.children?.length > 0 && (
+            {hasHelpText && (
               <div
                 className={`${BODY_MUTED} flex items-center justify-between gap-2 px-2 pt-2 pb-1 ${hasTemplates ? `mt-1 ${COMMAND_MENU_RULE}` : ''}`}
               >

@@ -1,7 +1,7 @@
 'use client';
 
 import { MarkdownContent, RichTextWrapper } from 'components/layout';
-import { SocialLinks } from 'components/ui';
+import { SocialLinks, TINA_SOCIAL_LINKS } from 'components/ui';
 import Image from 'next/image';
 import { EmailForm } from '@/component/modals/EmailForm';
 
@@ -25,14 +25,7 @@ export default function CommunityPageClient(data) {
             </div>
           </RichTextWrapper>
 
-          <SocialLinks
-            links={{
-              tina: 'https://github.com/tinacms/tinacms/discussions',
-              discord: 'https://discord.com/invite/zumN63Ybpf',
-              github: 'https://github.com/tinacms/tinacms',
-              twitter: 'https://twitter.com/tinacms',
-            }}
-          />
+          <SocialLinks links={TINA_SOCIAL_LINKS} />
         </div>
 
         {/* Info Image */}

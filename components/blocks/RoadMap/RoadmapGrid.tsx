@@ -12,7 +12,7 @@ import {
   SECTION_TITLE,
   SURFACE,
 } from '@/component/styles/typography';
-import { isExternalLink } from '@/utils/isExternalLink';
+import { externalLinkProps } from '@/utils/isExternalLink';
 import { Container } from '../Container';
 
 // The status icons the roadmap supports. Kept in sync with the picker in
@@ -91,24 +91,19 @@ const Roadmap = ({ data, last = false, index }) => {
             {data.status}
           </span>
         )}
-        {/* Roadmap links are plain text links, not buttons (#4964). */}
         {data.actions?.length > 0 && (
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {data.actions.map((action, actionIndex) => {
-              const external = isExternalLink(action?.url);
-              return (
-                <Link
-                  key={`${action?.label}-${actionIndex}`}
-                  href={action?.url || '#'}
-                  target={external ? '_blank' : undefined}
-                  rel={external ? 'noopener noreferrer' : undefined}
-                  className={`${BODY_SMALL} ${LINK}`}
-                  data-tina-field={tinaField(action, 'label')}
-                >
-                  {action?.label}
-                </Link>
-              );
-            })}
+            {data.actions.map((action, actionIndex) => (
+              <Link
+                key={`${action?.label}-${actionIndex}`}
+                href={action?.url || '#'}
+                {...externalLinkProps(action?.url)}
+                className={`${BODY_SMALL} ${LINK}`}
+                data-tina-field={tinaField(action, 'label')}
+              >
+                {action?.label}
+              </Link>
+            ))}
           </div>
         )}
       </div>

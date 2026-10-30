@@ -7,6 +7,12 @@ const modals = [
   'BecomePartner.tsx',
 ];
 
+/** A new modal button starts as Primary, like every new button. */
+export const modalButtonDefaultItem = {
+  color: 'primary',
+  label: 'Primary Action',
+};
+
 export const modalButtonTemplateFields = [
   { name: 'label', label: 'Label', type: 'string' },
   {
@@ -29,10 +35,7 @@ export const modalButtonTemplate = {
     itemProps: (item) => {
       return { label: item?.label };
     },
-    defaultItem: {
-      color: 'primary',
-      label: 'Primary Action',
-    },
+    defaultItem: modalButtonDefaultItem,
   },
   fields: modalButtonTemplateFields,
 };

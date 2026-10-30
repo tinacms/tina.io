@@ -226,7 +226,7 @@
   --surface-brand-solid: var(--orange-600);
   --on-surface-brand-solid: var(--white); /* 4.7:1 */
 
-  /* Buttons: three levels, one size (#4964). A component names a level
+  /* Buttons: three levels, one size. A component names a level
      (BUTTON in components/styles/buttons.ts), never these tokens.
      Agreed exception: the Primary and Secondary gradients keep white labels
      at 3.8:1 and 3.7:1 on their light ends, below AA for 16px text. Design
@@ -258,14 +258,13 @@
   /* Icon-only utility buttons (close, copy, carousel, search). */
   --icon-button-ink: var(--slate-700);
   --icon-button-hover: var(--slate-100);
-  /* The neutral outline: white with a light slate border that darkens on
-     hover. The npx command field, social links, the current page number and
-     the previous / next post cards all wear it. */
+  /* The neutral outline: white with a light slate border that darkens on hover. */
   --neutral-outline-fill: var(--white);
   --neutral-outline-border: var(--slate-200);
   --neutral-outline-border-hover: var(--slate-300);
-  /* Nav dropdown menus: a pale cyan card. */
+  /* Nav dropdown menus: a pale cyan card, rows tinted white on hover. */
   --menu-surface: var(--cyan-50);
+  --menu-item-hover: color-mix(in srgb, var(--white) 60%, transparent);
   /* The npx command field: the neutral outline with a flat orange copy
      block (white icon, 4.7:1). */
   --command-copy-fill: var(--orange-600);

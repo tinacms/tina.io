@@ -149,12 +149,7 @@ export const SubscriptionForm = ({ props }) => {
             </p>
           )}
           <div className="flex justify-center pt-1">
-            <Button
-              type="submit"
-              level="primary"
-              className="w-full"
-              disabled={isSubmitting}
-            >
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting ? 'Subscribe...' : label}
             </Button>
           </div>

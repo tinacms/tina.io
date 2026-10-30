@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { TextLinkArrow } from './TextLink';
 
 /**
- * Pagination (#4964). Two pieces:
+ * Pagination. Two pieces:
  * - Pagination: numbered pages for a list (‹ Previous 1 2 3 … 24 Next ›).
  *   On phones only ‹ [3] › shows.
  * - PostPagination: the previous / next post cards at the end of a post.
@@ -73,12 +73,7 @@ export const Pagination = ({
         {pages.map((page, index) =>
           page === ELLIPSIS ? (
             <li
-              // Two ellipses at most: one before the current page, one after.
-              key={
-                index < pages.indexOf(currentPage)
-                  ? 'ellipsis-start'
-                  : 'ellipsis-end'
-              }
+              key={`ellipsis-after-${pages[index - 1]}`}
               aria-hidden="true"
               className={cn(PAGINATION_ITEM, 'hidden sm:inline-flex')}
             >

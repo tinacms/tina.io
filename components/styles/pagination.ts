@@ -1,5 +1,5 @@
 /**
- * Pagination (#4964), specified as utilities in styles/tailwind.css. Use the
+ * Pagination, specified as utilities in styles/tailwind.css. Use the
  * Pagination and PostPagination components in components/ui/Pagination.tsx.
  */
 

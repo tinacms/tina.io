@@ -115,7 +115,7 @@ const PartnerCard = ({ data }) => {
 const CONTACT_BUTTON = {
   label: 'Contact us',
   modal: 'ContactForm.tsx',
-  // The card's only action, so it's the Primary (#4964).
+  // The card's only action, so it's the Primary.
   variant: 'primary',
 };
 

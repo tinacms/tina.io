@@ -1,25 +1,12 @@
 /**
- * Button levels for tina.io — the names components use (#4964).
+ * Button levels for tina.io — the names components use.
  *
  *   primitives        app/global.css        --orange-500, --blue-500
  *   semantic tokens   app/global.css        --button-primary-from: var(--orange-500)
  *   level specs       styles/tailwind.css   @utility btn, btn-primary, …
  *   level names       here                  BUTTON.primary = 'btn btn-primary'
  *
- * The rules:
- * - Every button is one of three levels, all one size (44px, 8px corners).
- *   Use the Button, LinkButton or ModalButton components with `level`.
- * - Primary is the main action, and a section's only button is Primary.
- *   Tertiary (orange outline) always sits beside a Primary. Secondary (blue)
- *   is for buttons that shouldn't compete, like the nav's My TinaCloud.
- * - Buttons have no arrows; text links always end in one.
- * - On a dark or orange container, put ON_DARK on the container. Primary
- *   turns white and Tertiary a white outline by themselves.
- * - Add only layout classes beside a button: margin, width, alignment.
- *   Never a colour, radius, padding, height or type class.
- * - Icon-only buttons use ICON_BUTTON and always get an aria-label.
- * - A link that reads as text (“Read more →”) is a text link, not a button:
- *   use the TextLink component (components/styles/links.ts).
+ * Rules and agreed exceptions: buttons.guide.ts, shown on /design.
  */
 
 export const BUTTON = {
@@ -42,11 +29,7 @@ export const FOCUS_RING = 'focus-ring';
 /** The focus ring for a switch drawn after a hidden `peer` input: shows when the input has keyboard focus. */
 export const FOCUS_RING_PEER = 'focus-ring-peer';
 
-/**
- * The neutral outline: white, a light slate border that darkens on hover.
- * Shared by the command field, social links, the current page number and the
- * post cards. Not a button level.
- */
+/** The neutral outline: white, a light slate border that darkens on hover. Not a button level. */
 export const NEUTRAL_OUTLINE = 'neutral-outline';
 
 /** The selected option in a segmented toggle: Secondary blue on a pill track. */

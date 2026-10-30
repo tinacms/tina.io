@@ -469,11 +469,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         </label>
       )}
       <div className="w-full flex justify-end">
-        <Button
-          type="submit"
-          level="primary"
-          disabled={isProcessing || !isValidEmail}
-        >
+        <Button type="submit" disabled={isProcessing || !isValidEmail}>
           {isProcessing ? 'Sending...' : config.submitLabel}
         </Button>
       </div>

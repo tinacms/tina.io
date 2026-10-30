@@ -1,6 +1,9 @@
 const _modals = ['BookDemo', 'EmailForm', 'ContactForm'];
 
-import { modalButtonTemplateFields } from '../../components/blocks/ModalButton/ModalButton.template';
+import {
+  modalButtonDefaultItem,
+  modalButtonTemplateFields,
+} from '../../components/blocks/ModalButton/ModalButton.template';
 
 export const navigationBarCollection = {
   label: 'Navigation Bar',
@@ -121,10 +124,7 @@ export const navigationBarCollection = {
             itemProps: (item) => {
               return { label: `🍌 ${item?.label}` };
             },
-            defaultItem: {
-              color: 'primary',
-              label: 'Primary Action',
-            },
+            defaultItem: modalButtonDefaultItem,
           },
           fields: modalButtonTemplateFields,
         },

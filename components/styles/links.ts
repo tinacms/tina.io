@@ -1,5 +1,5 @@
 /**
- * Standalone links (#4964), specified as utilities in styles/tailwind.css.
+ * Standalone links, specified as utilities in styles/tailwind.css.
  *
  * - A text link (“Read more →”) is not a button. Use the TextLink component,
  *   which always draws the short arrow. No other arrow or icon goes on a

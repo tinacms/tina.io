@@ -34,12 +34,7 @@ const getModalClassName = (modal: string | null) => {
   return 'sm:max-w-lg';
 };
 
-export const ModalB = ({
-  items,
-  align = 'left',
-  fill = false,
-  className = '',
-}) => {
+export const ModalB = ({ items, fill = false, className = '' }) => {
   const [open, setOpen] = useState(false);
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
@@ -52,7 +47,7 @@ export const ModalB = ({
 
   return (
     <>
-      <ButtonGroup fill={fill} align={align === 'center' ? 'center' : 'left'}>
+      <ButtonGroup fill={fill}>
         {items?.map((item, index) => {
           const { color, label, modal } = item;
 

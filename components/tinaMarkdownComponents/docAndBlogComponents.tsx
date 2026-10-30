@@ -759,7 +759,7 @@ export const docAndBlogComponents: Components<{
   ),
   Button: ({ link, label }) => (
     <div className="my-6">
-      <LinkButton link={link} level="primary" target="_blank">
+      <LinkButton link={link} target="_blank">
         {label}
       </LinkButton>
     </div>

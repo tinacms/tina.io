@@ -1,5 +1,5 @@
 /**
- * Dropdown menus (#4964), specified as utilities in styles/tailwind.css:
+ * Dropdown menus, specified as utilities in styles/tailwind.css:
  * the nav menus (pale cyan) and the npx starter menu (white, under the
  * command field). Both behave the same way.
  *

@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { BiArrowBack } from 'react-icons/bi';
 import { TEXT_LINK, TEXT_LINK_ARROW } from '@/component/styles/links';
 import { cn } from '@/lib/utils';
-import { isExternalLink } from '@/utils/isExternalLink';
+import { externalLinkProps } from '@/utils/isExternalLink';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
 
 /**
- * A standalone text link (“Read more →”) (#4964). It always ends in the short
+ * A standalone text link (“Read more →”). It always ends in the short
  * arrow; there is no option to drop it or swap the icon. External links open
  * in a new tab. Inside a card that is itself the link, pass `as="span"`.
  */
@@ -22,14 +22,13 @@ type TextLinkProps = Omit<
 > & {
   href?: string;
   as?: 'a' | 'span';
-  className?: string;
   children: React.ReactNode;
 };
 
 export const TextLink = ({
   href = '/',
   as = 'a',
-  className = '',
+  className,
   children,
   ...props
 }: TextLinkProps) => {
@@ -54,14 +53,12 @@ export const TextLink = ({
     );
   }
 
-  const external = isExternalLink(href);
   return (
     <Link
       href={href}
       prefetch={shouldPrefetchLink(href)}
       className={classes}
-      target={external ? '_blank' : undefined}
-      rel={external ? 'noopener noreferrer' : undefined}
+      {...externalLinkProps(href)}
       {...props}
     >
       {content}

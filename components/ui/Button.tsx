@@ -5,14 +5,10 @@ import {
   type ButtonLevel,
 } from '@/component/styles/buttons';
 import { cn } from '@/lib/utils';
-import { isExternalLink } from '@/utils/isExternalLink';
+import { externalLinkProps } from '@/utils/isExternalLink';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
 
-/**
- * tina.io buttons (#4964): three levels, one size. Pick a `level`; add only
- * layout classes (margin, width, alignment) through `className`. Colours,
- * radius, height and type come from the level. See components/styles/buttons.ts.
- */
+/** The three button levels as components. See components/styles/buttons.ts. */
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   level?: ButtonLevel;
@@ -57,8 +53,8 @@ export const LinkButton = ({
   ...props
 }: LinkButtonProps) => {
   const classes = cn(BUTTON[level], className);
-  const external = isExternalLink(link);
-  const linkTarget = target ?? (external ? '_blank' : undefined);
+  const external = externalLinkProps(link);
+  const linkTarget = target ?? external.target;
   const linkRel =
     rel ?? (linkTarget === '_blank' ? 'noopener noreferrer' : undefined);
 
@@ -105,7 +101,7 @@ export const ButtonGroup = ({
   children,
   fill = false,
   align = 'left',
-  className = '',
+  className,
 }: {
   children: React.ReactNode;
   fill?: boolean;

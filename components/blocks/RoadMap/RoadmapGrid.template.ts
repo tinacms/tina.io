@@ -54,7 +54,7 @@ export const roadmapGridTemplate: Template = {
           label: 'Content',
           type: 'rich-text',
         },
-        // Roadmap links are always plain text links (#4964), so they have
+        // Roadmap links are always plain text links, so they have
         // only a label and a URL: no level to pick.
         {
           label: 'Links',

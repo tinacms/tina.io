@@ -4,7 +4,7 @@ import { ModalB } from 'components/blocks/ModalButton/ModalButton';
 
 type ButtonKind = 'actions' | 'modal' | 'command' | null;
 
-const kindOf = (button): ButtonKind => {
+export const kindOf = (button): ButtonKind => {
   const type: string = button?.__typename ?? '';
   if (type.includes('Actions')) {
     return 'actions';
@@ -22,10 +22,13 @@ const kindOf = (button): ButtonKind => {
 // line up. Action and modal buttons go full width on phones and back to label
 // width from sm (or stay full width with `fill`); the command field keeps its
 // own width.
+const FILL_CELL = 'flex w-full items-center [&>*]:w-full';
+const BUTTON_CELL =
+  'flex w-full items-center sm:w-auto [&>*]:w-full sm:[&>*]:w-auto';
 const CELL = {
-  fill: 'flex w-full items-center [&>*]:w-full',
+  actions: BUTTON_CELL,
+  modal: BUTTON_CELL,
   command: 'flex items-center',
-  button: 'flex w-full items-center sm:w-auto [&>*]:w-full sm:[&>*]:w-auto',
 };
 
 const RenderButton = ({ button, className = '', fill = false }) => {
@@ -33,11 +36,7 @@ const RenderButton = ({ button, className = '', fill = false }) => {
   if (!kind) {
     return null;
   }
-  const cell = fill
-    ? CELL.fill
-    : kind === 'command'
-      ? CELL.command
-      : CELL.button;
+  const cell = fill ? FILL_CELL : CELL[kind];
   return (
     <div className={cell}>
       {kind === 'actions' && (

@@ -1,7 +1,7 @@
 import type { KeyboardEvent } from 'react';
 
 /**
- * A keydown handler for menus and popovers (#4964): Escape runs `close` while
+ * A keydown handler for menus and popovers: Escape runs `close` while
  * the menu is open. `close` gets the event, so it can return focus to the
  * trigger.
  */

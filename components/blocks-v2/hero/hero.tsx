@@ -5,7 +5,7 @@ import { BODY, PAGE_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { cn } from '@/lib/utils';
-import RenderButton from '@/utils/renderButtonArrayHelper';
+import RenderButton, { kindOf } from '@/utils/renderButtonArrayHelper';
 import { RecentNewsBanner } from './RecentNewsBanner';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
@@ -18,7 +18,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     recentNewsBanner,
   } = data.data || {};
   const alignment = buttonHorizontalAlignment ?? 'center';
-  const isCommand = (button) => button?.__typename?.includes('CodeButton');
+  const isCommand = (button) => kindOf(button) === 'command';
   const isCommandGrid =
     buttons?.length === 3 && buttons.filter(isCommand).length === 1;
 
@@ -60,18 +60,14 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           >
             {isCommandGrid ? (
               // Two buttons over the npx command field: equal columns, so the
-              // buttons and the command line up on both edges (#4964).
+              // buttons and the command line up on both edges.
               <div className="grid w-full grid-cols-1 gap-4 sm:w-fit sm:grid-cols-2">
                 {buttons.map((button, index) => (
                   <div
                     key={`button-${button?.label || index}`}
                     className={isCommand(button) ? 'sm:col-span-2' : undefined}
                   >
-                    <RenderButton
-                      button={button}
-                      fill
-                      data-tina-field={tinaField(button, 'label')}
-                    />
+                    <RenderButton button={button} fill />
                   </div>
                 ))}
               </div>
@@ -80,7 +76,6 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                 <RenderButton
                   key={`button-${button?.label || index}`}
                   button={button}
-                  data-tina-field={tinaField(button, 'label')}
                 />
               ))
             )}

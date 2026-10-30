@@ -15,7 +15,7 @@ import { CodeButton } from '../CodeButton/CodeButton';
 import { Container } from '../Container';
 
 // Each feature leads with at most one Primary, the npx command field, or a
-// text link (#4964).
+// text link.
 const features = [
   {
     id: 'editing',

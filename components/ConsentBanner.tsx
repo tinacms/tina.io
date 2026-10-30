@@ -162,10 +162,8 @@ const ConsentBanner = () => {
             </Link>
             .
           </p>
-          <ButtonGroup className="sm:justify-center">
-            <Button level="primary" onClick={handleAcceptAll}>
-              Accept All
-            </Button>
+          <ButtonGroup align="center">
+            <Button onClick={handleAcceptAll}>Accept All</Button>
             <Button level="tertiary" onClick={handleDeclineAll}>
               Reject All
             </Button>
@@ -263,10 +261,8 @@ const ConsentBanner = () => {
                 </li>
               </ul>
             </div>
-            <ButtonGroup className="mt-4 sm:justify-center">
-              <Button level="primary" onClick={closeModal}>
-                Save my Preferences
-              </Button>
+            <ButtonGroup align="center" className="mt-4">
+              <Button onClick={closeModal}>Save my Preferences</Button>
               <Button level="tertiary" onClick={cancelModal}>
                 Cancel
               </Button>

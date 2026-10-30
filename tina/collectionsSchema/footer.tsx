@@ -1,4 +1,7 @@
-import { modalButtonTemplateFields } from 'components/blocks/ModalButton/ModalButton.template';
+import {
+  modalButtonDefaultItem,
+  modalButtonTemplateFields,
+} from 'components/blocks/ModalButton/ModalButton.template';
 
 export const footerCollection = {
   name: 'footer',
@@ -122,10 +125,7 @@ export const footerCollection = {
                 itemProps: (item) => {
                   return { label: `🍌 ${item?.label}` };
                 },
-                defaultItem: {
-                  color: 'primary',
-                  label: 'Primary Action',
-                },
+                defaultItem: modalButtonDefaultItem,
               },
               fields: modalButtonTemplateFields,
             },
@@ -347,10 +347,7 @@ export const footerCollection = {
                 itemProps: (item) => {
                   return { label: `🍌 ${item?.label}` };
                 },
-                defaultItem: {
-                  color: 'primary',
-                  label: 'Primary Action',
-                },
+                defaultItem: modalButtonDefaultItem,
               },
               fields: modalButtonTemplateFields,
             },
@@ -467,10 +464,7 @@ export const footerCollection = {
                 itemProps: (item) => {
                   return { label: `🍌 ${item?.label}` };
                 },
-                defaultItem: {
-                  color: 'primary',
-                  label: 'Primary Action',
-                },
+                defaultItem: modalButtonDefaultItem,
               },
               fields: modalButtonTemplateFields,
             },

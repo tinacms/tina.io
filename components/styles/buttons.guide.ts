@@ -1,7 +1,7 @@
 import type { ButtonLevel } from './buttons';
 
 /**
- * Guidance for the button levels (#4964), rendered by the Tina.io Style Guide
+ * Guidance for the button levels, rendered by the Tina.io Style Guide
  * at /design. Edit button guidance here, not in the page.
  */
 

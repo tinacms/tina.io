@@ -65,11 +65,7 @@ const HeaderBanner = ({
       </div>
       <ButtonGroup>
         {tinaData?.rightButton?.link && (
-          <LinkButton
-            link={tinaData.rightButton.link}
-            level="primary"
-            target="_blank"
-          >
+          <LinkButton link={tinaData.rightButton.link} target="_blank">
             {tinaData?.rightButton?.title}
           </LinkButton>
         )}

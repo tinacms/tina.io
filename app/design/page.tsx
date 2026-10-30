@@ -49,7 +49,7 @@ import {
 } from '@/component/styles/typography.guide';
 import { Button, ButtonGroup } from '@/component/ui/Button';
 import { Pagination, PostPagination } from '@/component/ui/Pagination';
-import { SocialLinks } from '@/component/ui/SocialLinks';
+import { SocialLinks, TINA_SOCIAL_LINKS } from '@/component/ui/SocialLinks';
 import { TextLink } from '@/component/ui/TextLink';
 
 export const metadata: Metadata = {
@@ -550,14 +550,7 @@ export default function StyleGuidePage() {
           title="Social links"
           intro="SocialLinks: button size in the neutral outline (white, a light slate border that darkens on hover), an ink label and each network’s own logo colour. Not a button level, so a row of them needs no Primary."
         >
-          <SocialLinks
-            links={{
-              tina: 'https://github.com/tinacms/tinacms/discussions',
-              discord: 'https://discord.com/invite/zumN63Ybpf',
-              github: 'https://github.com/tinacms/tinacms',
-              twitter: 'https://twitter.com/tinacms',
-            }}
-          />
+          <SocialLinks links={TINA_SOCIAL_LINKS} />
         </Group>
 
         <Group

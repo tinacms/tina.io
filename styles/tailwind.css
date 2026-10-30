@@ -413,7 +413,7 @@ pre.prism-code.language-json {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   BUTTONS (#4964) — three levels, one size. BUTTON in
+   BUTTONS — three levels, one size. BUTTON in
    components/styles/buttons.ts names these; components use the Button,
    LinkButton and ModalButton components, which apply them. Colours come
    from the --button-* tokens in app/global.css, so on-dark can swap them.
@@ -444,22 +444,22 @@ pre.prism-code.language-json {
 }
 /* The same ring drawn inside the element, for rows in a menu. */
 @utility focus-ring-inset {
+  @apply focus-ring;
   &:focus-visible {
-    outline: 2px solid var(--focus-ring);
     outline-offset: -2px;
   }
 }
 
-/* Shared by every level: 44px tall, 8px corners, label width plus 24px
-   each side. Hover lifts 1px with a soft shadow; pressing drops it back.
-   Disabled is 60% with no hover. background-origin stops a gradient fill
-   repeating into the transparent border (the edge seam). */
 /* The shape every button-sized control shares: Plex SemiBold 16, at least
    44px tall, 8px corners, a transparent border so outlined versions line up,
    and the focus ring. btn and pagination-item build on it. */
 @utility button-shape {
   @apply role-button-label focus-ring inline-flex items-center justify-center min-h-11 rounded-lg border border-transparent;
 }
+/* Shared by every level: label width plus 24px each side. Hover lifts 1px
+   with a soft shadow; pressing drops it back. Disabled is 60% with no hover.
+   background-origin stops a gradient fill repeating into the transparent
+   border (the edge seam). */
 @utility btn {
   @apply button-shape gap-2 whitespace-nowrap px-6 cursor-pointer transition duration-150 ease-out;
   background-origin: border-box;
@@ -518,9 +518,8 @@ pre.prism-code.language-json {
   }
 }
 
-/* The neutral outline: white, a light slate border, a darker border on
-   hover. Shared by the command field, social links, the current page number
-   and the previous / next post cards. */
+/* The neutral outline: white, a light slate border, darker on hover. Where
+   it's used is listed on /design. */
 @utility neutral-outline {
   background-color: var(--neutral-outline-fill);
   border: 1px solid var(--neutral-outline-border);
@@ -530,7 +529,7 @@ pre.prism-code.language-json {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   LINKS, MENUS, PAGINATION AND TABS (#4964). Names in
+   LINKS, MENUS, PAGINATION AND TABS. Names in
    components/styles/links.ts, menu.ts, pagination.ts and tabs.ts.
    ────────────────────────────────────────────────────────────────────────── */
 
@@ -592,7 +591,7 @@ pre.prism-code.language-json {
 @utility menu-item {
   @apply menu-row;
   &:hover {
-    background-color: color-mix(in srgb, var(--white) 60%, transparent);
+    background-color: var(--menu-item-hover);
   }
 }
 /* A nav trigger with its menu open, or on the current section. */
@@ -649,14 +648,14 @@ pre.prism-code.language-json {
   }
 }
 
-/* Tabs on a dark code panel (GraphQL Query / Response): flat, with a solid
-   orange underline on the selected tab and the others at 70%. Use inside
-   ON_DARK so the label and focus ring go white. */
 /* A dark code panel (Night Owl). Text inside turns light, like ON_DARK. */
 @utility code-panel {
   @apply on-dark;
   background-color: var(--code-panel);
 }
+/* Tabs on a dark code panel (GraphQL Query / Response): flat, with a solid
+   orange underline on the selected tab and the others at 70%. Use inside
+   CODE_PANEL so the label and focus ring go white. */
 @utility tab-list {
   @apply flex;
   border-bottom: 1px solid var(--tab-divider);

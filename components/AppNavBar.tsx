@@ -559,7 +559,7 @@ const MobileNavMenu = ({
         <button
           ref={menuTabRef}
           type="button"
-          // Agreed exception (#4964): the menu tab keeps its own deliberate style.
+          // Agreed exception: the menu tab keeps its own deliberate style.
           className={`absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-ibm-plex whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer ${FOCUS_RING}`}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}

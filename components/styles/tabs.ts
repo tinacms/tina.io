@@ -1,5 +1,5 @@
 /**
- * Tabs on a dark code panel (#4964), specified as utilities in
+ * Tabs on a dark code panel, specified as utilities in
  * styles/tailwind.css. Put them inside ON_DARK and give the row
  * role="tablist" and each tab role="tab" with aria-selected.
  */
