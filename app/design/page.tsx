@@ -7,6 +7,7 @@ import {
   BUTTON_LEVEL_GUIDE,
   BUTTON_RULES,
 } from '@/component/styles/buttons.guide';
+import { TAB, TAB_LIST } from '@/component/styles/tabs';
 import {
   BODY,
   BODY_MUTED,
@@ -39,6 +40,9 @@ import {
   TYPE_RULES,
 } from '@/component/styles/typography.guide';
 import { Button, ButtonGroup } from '@/component/ui/Button';
+import { Pagination, PostPagination } from '@/component/ui/Pagination';
+import { SocialLinks } from '@/component/ui/SocialLinks';
+import { TextLink } from '@/component/ui/TextLink';
 
 export const metadata: Metadata = {
   title: 'Tina.io Style Guide | TinaCMS',
@@ -269,6 +273,9 @@ export default function StyleGuidePage() {
           </a>
           <a className={EYEBROW_LINK} href="#buttons">
             Buttons
+          </a>
+          <a className={EYEBROW_LINK} href="#links">
+            Links and navigation
           </a>
         </nav>
       </header>
@@ -511,6 +518,87 @@ export default function StyleGuidePage() {
               </li>
             ))}
           </ul>
+        </Group>
+      </Section>
+
+      <Section
+        id="links"
+        title="Links and navigation"
+        intro="The pieces around buttons: text links, social links, pagination and tabs. Each has one look, built the same way as the buttons, so there is nothing to choose."
+      >
+        <Group
+          id="text-links"
+          title="Text links"
+          intro="TextLink for a standalone “Read more →”: SLUB in the link colour, underlined, always ending in the short arrow. No other arrow or icon. Inside a card that is itself the link, use as=&quot;span&quot;. Links inside a sentence are LINK."
+        >
+          <div className="flex flex-wrap items-center gap-8">
+            <TextLink href="#text-links">Read more</TextLink>
+            <TextLink href="#text-links">See all events</TextLink>
+          </div>
+        </Group>
+
+        <Group
+          id="social-links"
+          title="Social links"
+          intro="SocialLinks: button size in the neutral outline (white, a light slate border that darkens on hover), an ink label and each network’s own logo colour. Not a button level, so a row of them needs no Primary."
+        >
+          <SocialLinks
+            links={{
+              tina: 'https://github.com/tinacms/tinacms/discussions',
+              discord: 'https://discord.com/invite/zumN63Ybpf',
+              github: 'https://github.com/tinacms/tinacms',
+              twitter: 'https://twitter.com/tinacms',
+            }}
+          />
+        </Group>
+
+        <Group
+          id="pagination"
+          title="Pagination"
+          intro="Pagination for a list of pages: ink numbers and Previous / Next at button size, a light grey fill on hover, and the current page outlined. On phones only ‹ [3] › shows. At the end of a blog post, PostPagination shows “Previous post” / “Next post” cards."
+        >
+          <Pagination
+            currentPage={3}
+            numPages={24}
+            hrefFor={() => '#pagination'}
+            labels={{
+              pagination: 'Example pages',
+              previous: 'Previous',
+              next: 'Next',
+              page: (page) => `Page ${page}`,
+            }}
+          />
+          <PostPagination
+            previous={{ title: 'TinaCMS v4 is coming', slug: '#pagination' }}
+            next={{
+              title: 'Editorial Workflow for media',
+              slug: '#pagination',
+            }}
+            labels={{ previous: 'Previous post', next: 'Next post' }}
+          />
+        </Group>
+
+        <Group
+          id="tabs"
+          title="Tabs"
+          intro="TAB_LIST and TAB on dark code panels: flat, the selected tab with a solid orange underline and the others at 70%. Use role=&quot;tablist&quot;, role=&quot;tab&quot; and aria-selected."
+        >
+          <div className="rounded-md bg-gray-900">
+            <div role="tablist" className={`${ON_DARK} ${TAB_LIST} px-2`}>
+              <button type="button" role="tab" aria-selected className={TAB}>
+                Query
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={false}
+                className={TAB}
+              >
+                Response
+              </button>
+            </div>
+            <div className="h-16" />
+          </div>
         </Group>
       </Section>
 

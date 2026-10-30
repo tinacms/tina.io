@@ -1,10 +1,8 @@
 'use client';
 
 import { MarkdownContent, RichTextWrapper } from 'components/layout';
-import { ButtonGroup, LinkButton } from 'components/ui';
+import { SocialLinks } from 'components/ui';
 import Image from 'next/image';
-import TinaIconSvg from 'public/svg/tina-icon.svg';
-import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 import { EmailForm } from '@/component/modals/EmailForm';
 
 import { BODY, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
@@ -27,45 +25,14 @@ export default function CommunityPageClient(data) {
             </div>
           </RichTextWrapper>
 
-          <ButtonGroup>
-            <LinkButton
-              level="tertiary"
-              link={'https://github.com/tinacms/tinacms/discussions'}
-            >
-              <TinaIconSvg
-                aria-hidden="true"
-                className="h-6 w-auto fill-[#EC4815]"
-              />
-              Discussion
-            </LinkButton>
-            <LinkButton
-              link={'https://discord.com/invite/zumN63Ybpf'}
-              level="tertiary"
-            >
-              <FaDiscord
-                aria-hidden="true"
-                className="h-6 w-auto text-[#5865f2]"
-              />
-              Discord
-            </LinkButton>
-            <LinkButton
-              link={'https://github.com/tinacms/tinacms'}
-              level="tertiary"
-            >
-              <FaGithub
-                aria-hidden="true"
-                className="h-6 w-auto text-[#24292e]"
-              />
-              GitHub
-            </LinkButton>
-            <LinkButton link={'https://twitter.com/tinacms'} level="tertiary">
-              <FaTwitter
-                aria-hidden="true"
-                className="h-6 w-auto text-[#1DA1F2]"
-              />
-              Twitter
-            </LinkButton>
-          </ButtonGroup>
+          <SocialLinks
+            links={{
+              tina: 'https://github.com/tinacms/tinacms/discussions',
+              discord: 'https://discord.com/invite/zumN63Ybpf',
+              github: 'https://github.com/tinacms/tinacms',
+              twitter: 'https://twitter.com/tinacms',
+            }}
+          />
         </div>
 
         {/* Info Image */}

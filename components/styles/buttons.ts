@@ -19,7 +19,7 @@
  *   Never a colour, radius, padding, height or type class.
  * - Icon-only buttons use ICON_BUTTON and always get an aria-label.
  * - A link that reads as text (“Read more →”) is a text link, not a button:
- *   use EYEBROW_LINK or LINK from typography.ts.
+ *   use the TextLink component (components/styles/links.ts).
  */
 
 export const BUTTON = {
@@ -32,8 +32,6 @@ export const BUTTON = {
 } as const;
 
 export type ButtonLevel = keyof typeof BUTTON;
-
-export const BUTTON_LEVELS = Object.keys(BUTTON) as ButtonLevel[];
 
 /** Icon-only utility buttons: close, copy, carousel arrows, search. 44px tap area, 20px icon. */
 export const ICON_BUTTON = 'icon-btn';
@@ -61,28 +59,6 @@ export const BUTTON_LEVEL_OPTIONS = [
   { value: 'tertiary', label: 'Tertiary (orange outline): beside a Primary' },
 ];
 
-/**
- * Old CMS colour values, for content that hasn't been migrated (and for the
- * migration script). Pairing rules are applied in content, not here, so an
- * unmigrated blue outline maps to Tertiary.
- */
-export const LEVEL_FROM_LEGACY: Record<string, ButtonLevel> = {
-  primary: 'primary',
-  secondary: 'secondary',
-  tertiary: 'tertiary',
-  orange: 'primary',
-  black: 'primary',
-  blue: 'secondary',
-  default: 'secondary',
-  seafoam: 'secondary',
-  command: 'secondary',
-  white: 'tertiary',
-  ghost: 'tertiary',
-  orangeWithBorder: 'tertiary',
-  ghostOutline: 'tertiary',
-  blueOutline: 'tertiary',
-};
-
-/** The level for any stored value; unknown or missing values are Secondary (the old default). */
+/** The level for a stored CMS value. Anything that isn't a level is Primary. */
 export const levelOf = (value?: string | null): ButtonLevel =>
-  (value && LEVEL_FROM_LEGACY[value]) || 'secondary';
+  value && value in BUTTON ? (value as ButtonLevel) : 'primary';

@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useState } from 'react';
-import { BUTTON } from '@/component/styles/buttons';
 import { BODY, PAGE_TITLE } from '@/component/styles/typography';
 import { ButtonGroup, LinkButton } from '../components/ui';
 import { DEFAULT_LOCALE, SupportedLocales } from '../middleware';
@@ -87,9 +86,9 @@ const RedirectPage = ({ redirectPath, content }) => (
     description={content.notTranslated.description}
   >
     <ButtonGroup>
-      <a href={redirectPath} className={BUTTON.primary}>
+      <LinkButton link={redirectPath} reloadDocument target="_self">
         {content.notTranslated.buttons.continue}
-      </a>
+      </LinkButton>
     </ButtonGroup>
   </PageLayout>
 );

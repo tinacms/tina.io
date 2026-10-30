@@ -24,7 +24,7 @@ import {
   SUB_HEADING,
   SURFACE,
 } from '@/component/styles/typography';
-import { BUTTON, ICON_BUTTON } from '../styles/buttons';
+import { ICON_BUTTON } from '../styles/buttons';
 import { Prism } from '../styles/Prism';
 import { LinkButton } from '../ui/Button';
 import { AccordionBlock } from './templateComponents/accordionBlock';
@@ -592,9 +592,9 @@ export const docAndBlogComponents: Components<{
 
   CreateAppCta: ({ ctaText, cliText }) => (
     <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-      <a href="/docs/introduction/using-starter/" className={BUTTON.primary}>
+      <LinkButton link="/docs/introduction/using-starter/">
         {ctaText}
-      </a>
+      </LinkButton>
 
       <div
         className={`${CODE} inline-block whitespace-nowrap px-6 py-4 border border-neutral-border-subtle rounded-lg`}
@@ -636,9 +636,9 @@ export const docAndBlogComponents: Components<{
       <div>
         <h3>{title}</h3>
         <p>{description}</p>
-        <a href={url} className={`${BUTTON.primary} shrink-0`}>
+        <LinkButton link={url} className="shrink-0">
           {buttonText}
-        </a>
+        </LinkButton>
       </div>
     </div>
   ),

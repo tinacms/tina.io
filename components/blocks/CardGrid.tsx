@@ -1,5 +1,5 @@
 import { BODY_SMALL, CARD_TITLE } from '@/component/styles/typography';
-import { Actions } from '../blocks/ActionButton/ActionsButton';
+import { TextLink } from '../ui/TextLink';
 
 export const CardGrid = ({ props }) => {
   return (
@@ -8,24 +8,17 @@ export const CardGrid = ({ props }) => {
         <a
           key={`${card.title}-${index}`}
           href={card.link}
-          className="flex flex-col justify-between p-6 border rounded-lg group bg-transparent hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out transition-all ease-out duration-150 transition-all ease-out duration-150"
+          className="flex flex-col justify-between p-6 border rounded-lg group bg-transparent hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out"
         >
           <h2 className={`${CARD_TITLE} mb-2`}>{card.title}</h2>
 
           <p className={BODY_SMALL}>{card.description}</p>
           <div className="flex-1"></div>
+          {/* The whole card is the link, so the text link is a span. */}
           {card.linkText && (
-            <Actions
-              items={[
-                {
-                  variant: 'secondary',
-                  label: card.linkText,
-                  icon: 'arrowRight',
-                  url: card.link,
-                },
-              ]}
-              flush={true}
-            />
+            <TextLink as="span" className="mt-4 self-start">
+              {card.linkText}
+            </TextLink>
           )}
         </a>
       ))}

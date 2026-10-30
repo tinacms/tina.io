@@ -21,12 +21,16 @@ interface MarkdownContentProps {
 }
 
 export const copyToClipboard = (text: string) => {
+  // Selecting the temporary textarea takes focus, so hand it back afterwards
+  // or keyboard users lose their place.
+  const previousFocus = document.activeElement as HTMLElement | null;
   const el = document.createElement('textarea');
   el.value = text;
   document.body.appendChild(el);
   el.select();
   document.execCommand('copy');
   document.body.removeChild(el);
+  previousFocus?.focus();
 };
 
 const CodeWrapper = styled.div`

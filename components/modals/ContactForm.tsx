@@ -3,14 +3,12 @@ import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import type React from 'react';
 import { useState } from 'react';
-import { BiCopy } from 'react-icons/bi';
-import { TiTick } from 'react-icons/ti';
 import {
   BODY,
   BODY_SMALL,
   CARD_TITLE,
   FIELD,
-  LABEL,
+  LINK,
 } from '@/component/styles/typography';
 import { StatusMessage, type StatusType } from '@/component/ui/StatusMessage';
 import { Input } from '@/components/ui/input';
@@ -173,14 +171,6 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
     text: string;
     type: StatusType | '';
   }>({ text: '', type: '' });
-  const [copied, setCopied] = useState(false);
-
-  const copyEmail = () => {
-    navigator.clipboard.writeText('info@tina.io');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsProcessing(true);
@@ -271,22 +261,10 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
           {message.type === 'error' ? (
             <>
               There was an error with the form. Please email us directly at{' '}
-              <span className={LABEL}>info@tina.io</span>
-              <button
-                type="button"
-                onClick={copyEmail}
-                className="ml-1 align-middle inline-flex items-center opacity-75 hover:opacity-100 transition-opacity"
-                title="Copy email address"
-                aria-label={
-                  copied ? 'Email address copied' : 'Copy email address'
-                }
-              >
-                {copied ? (
-                  <TiTick className="w-4 h-4" />
-                ) : (
-                  <BiCopy className="w-3.5 h-3.5" />
-                )}
-              </button>
+              <a href="mailto:info@tina.io" className={LINK}>
+                info@tina.io
+              </a>
+              .
             </>
           ) : (
             message.text

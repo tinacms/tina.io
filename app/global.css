@@ -244,27 +244,41 @@
   --button-on-dark-fill: var(--white);
   --button-on-dark-ink: var(--orange-700);
   --button-on-dark-outline: var(--white);
+  /* The soft shadow under a lifted button or card on hover. */
+  --button-hover-shadow: 0 1px 3px 0 rgb(20 70 150 / 0.07), 0 2px 6px -1px rgb(20 70 150 / 0.07);
   /* Icon-only utility buttons (close, copy, carousel, search). */
   --icon-button-ink: var(--slate-700);
   --icon-button-hover: var(--slate-100);
+  /* The neutral outline: white with a light slate border that darkens on
+     hover. The npx command field, social links, the current page number and
+     the previous / next post cards all wear it. */
+  --neutral-outline-fill: var(--white);
+  --neutral-outline-border: var(--slate-200);
+  --neutral-outline-border-hover: var(--slate-300);
   /* Nav dropdown menus: a pale cyan card. */
   --menu-surface: var(--cyan-50);
-  /* The npx command field: a white input with a light slate outline and a
-     flat orange copy block (white icon, 4.7:1). */
-  --command-field-fill: var(--white);
-  --command-field-border: var(--slate-200);
-  --command-field-border-hover: var(--slate-300);
+  /* The npx command field: the neutral outline with a flat orange copy
+     block (white icon, 4.7:1). */
   --command-copy-fill: var(--orange-600);
   --command-copy-ink: var(--white);
-  /* Its starter menu: a white card with the same light outline. Rows turn
-     light grey with an orange-600 label and icon on hover (4.3:1, agreed
-     below AA); icons are ink until then. */
-  --command-menu-surface: var(--white);
-  --command-menu-border: var(--slate-200);
+  /* Its starter menu: a white card in the neutral outline. Rows turn light
+     grey with an orange-600 label and icon on hover (4.3:1, agreed below AA);
+     icons are ink until then. */
   --command-menu-rule: var(--slate-100);
   --command-menu-icon: var(--ink-900);
   --command-menu-hover: var(--slate-100);
   --command-menu-hover-ink: var(--orange-600);
+  /* Pagination (the /blog list): ink numbers that fill light grey on hover.
+     The current page wears the neutral outline. */
+  --pagination-ink: var(--ink-900);
+  --pagination-hover: var(--slate-100);
+  /* Social links (Discord, GitHub, …): the neutral outline with an ink
+     label. The logos keep their own brand colours. */
+  --social-link-ink: var(--ink-900);
+  /* Tabs on dark code panels (GraphQL Query / Response): a solid orange
+     underline on the selected tab and a faint divider under the row. */
+  --tab-indicator: var(--orange-500);
+  --tab-divider: color-mix(in srgb, var(--white) 12%, transparent);
   /* Keyboard focus on every button and control; white on dark bands. */
   --focus-ring: var(--ink-900);
 

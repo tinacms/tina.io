@@ -420,24 +420,37 @@ pre.prism-code.language-json {
   @apply font-ibm-plex font-semibold text-base leading-tight tracking-normal normal-case;
 }
 
+/* The keyboard focus ring for every control: a 2px ink ring (white on
+   dark). Buttons and icon buttons apply it; use FOCUS_RING on any other
+   control (toggles, disclosure rows, choice cards). */
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+/* The same ring drawn inside the element, for rows in a menu. */
+@utility focus-ring-inset {
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: -2px;
+  }
+}
+
 /* Shared by every level: 44px tall, 8px corners, label width plus 24px
    each side. Hover lifts 1px with a soft shadow; pressing drops it back.
    Disabled is 60% with no hover. background-origin stops a gradient fill
    repeating into the transparent border (the edge seam). */
 @utility btn {
-  @apply role-button-label inline-flex items-center justify-center gap-2 whitespace-nowrap min-h-11 px-6 rounded-lg border border-transparent cursor-pointer transition duration-150 ease-out;
+  @apply role-button-label focus-ring inline-flex items-center justify-center gap-2 whitespace-nowrap min-h-11 px-6 rounded-lg border border-transparent cursor-pointer transition duration-150 ease-out;
   background-origin: border-box;
   &:hover {
     translate: -1px -1px;
-    box-shadow: 0 1px 3px 0 rgb(20 70 150 / 0.07), 0 2px 6px -1px rgb(20 70 150 / 0.07);
+    box-shadow: var(--button-hover-shadow);
   }
   &:active {
     translate: 0 0;
     box-shadow: none;
-  }
-  &:focus-visible {
-    outline: 2px solid var(--focus-ring);
-    outline-offset: 2px;
   }
   &:disabled,
   &[aria-disabled='true'] {
@@ -462,48 +475,123 @@ pre.prism-code.language-json {
   color: var(--button-tertiary-ink);
 }
 
-/* The npx command field (CodeButton): a white input with a light slate
-   outline around a mono command, and a flat orange copy block on the end. */
-@utility command-field {
-  @apply shadow-sm transition-colors;
-  background-color: var(--command-field-fill);
-  border: 1px solid var(--command-field-border);
-  &:hover {
-    border-color: var(--command-field-border-hover);
+/* The selected option in a segmented toggle (pricing Monthly/Annually, the
+   pricing comparison): the Secondary blue on the toggle's own pill track. */
+@utility segmented-selected {
+  @apply btn-secondary;
+}
+
+/* Icon-only utility buttons (close, copy, carousel arrows, search): a 44px
+   tap area, 20px icon at a 2px stroke, slate ink, a light square on hover.
+   On dark they go white. Always give them an aria-label. */
+@utility icon-btn {
+  @apply focus-ring inline-flex shrink-0 items-center justify-center size-11 rounded-lg cursor-pointer transition-colors duration-150;
+  color: var(--icon-button-ink);
+  & svg {
+    width: 1.25rem;
+    height: 1.25rem;
   }
+  & svg :where(path, circle, rect, line, polyline) {
+    stroke-width: 2px;
+  }
+  &:hover {
+    background-color: var(--icon-button-hover);
+  }
+}
+
+/* The neutral outline: white, a light slate border, a darker border on
+   hover. Shared by the command field, social links, the current page number
+   and the previous / next post cards. */
+@utility neutral-outline {
+  background-color: var(--neutral-outline-fill);
+  border: 1px solid var(--neutral-outline-border);
+  &:hover {
+    border-color: var(--neutral-outline-border-hover);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   LINKS, MENUS, PAGINATION AND TABS (#4964). Names in
+   components/styles/links.ts, menu.ts, pagination.ts and tabs.ts.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* A standalone text link (“Read more →”, “See all events →”): SLUB in the
+   link colour, underlined, and always the short arrow (arrow-link-arrow,
+   drawn by the TextLink component). Never on its own without the arrow. */
+@utility arrow-link {
+  @apply role-eyebrow-link inline-flex items-center gap-1.5 py-2;
+}
+@utility arrow-link-arrow {
+  @apply h-[1.125em] w-auto -mr-1 shrink-0 rotate-180 opacity-70;
+}
+
+/* Social links (Discord, GitHub, …): button size and type in the neutral
+   outline, with an ink label and the network's own logo colour. Not a
+   button level: they sit in rows of their own. */
+@utility social-link {
+  @apply btn neutral-outline;
+  color: var(--social-link-ink);
+}
+
+/* The npx command field (CodeButton): the neutral outline around a mono
+   command, with a flat orange copy block on the end. */
+@utility command-field {
+  @apply neutral-outline rounded-lg shadow-sm transition-colors;
+  color: var(--text-strong);
+}
+/* The command itself, in mono. */
+@utility command-label {
+  @apply font-mono text-sm;
 }
 @utility command-copy {
   background-color: var(--command-copy-fill);
   color: var(--command-copy-ink);
 }
 
-/* Nav dropdown menus. menu-panel is the pale cyan card; menu-item is a row
-   in it, with a white tint on hover. Put NAV_MENU_LINK on the row's text. */
-@utility menu-panel {
-  @apply rounded-xl p-2 shadow-lg;
-  background-color: var(--menu-surface);
-}
-@utility menu-item {
-  @apply touch-manipulation flex items-center gap-2 rounded-md px-2 py-2 transition duration-150 ease-out;
-  &:hover {
-    background-color: color-mix(in srgb, var(--white) 60%, transparent);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--focus-ring);
-    outline-offset: -2px;
+/* A dropdown that opens and closes: it fades, and when closed it is hidden
+   from the keyboard and screen readers too. Set data-state="open" or
+   "closed" on it. */
+@utility menu-reveal {
+  transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+  &[data-state='closed'] {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 }
 
-/* The npx starter menu under the command field: the nav menu's shape and
-   behaviour, as a white card. command-menu-item rows turn light grey with an
-   orange label and icon on hover. */
-@utility command-menu {
+/* Every menu card and row share a shape. menu-panel is the nav's pale cyan
+   card and menu-item a row in it, with a white tint on hover. Put
+   NAV_MENU_LINK on the row's text. */
+@utility menu-card {
   @apply rounded-xl p-2 shadow-lg;
-  background-color: var(--command-menu-surface);
-  border: 1px solid var(--command-menu-border);
+}
+@utility menu-row {
+  @apply focus-ring-inset touch-manipulation flex items-center gap-2 rounded-md px-2 py-2 transition duration-150 ease-out;
+}
+@utility menu-panel {
+  @apply menu-card;
+  background-color: var(--menu-surface);
+}
+@utility menu-item {
+  @apply menu-row;
+  &:hover {
+    background-color: color-mix(in srgb, var(--white) 60%, transparent);
+  }
+}
+/* A nav trigger with its menu open, or on the current section. */
+@utility menu-trigger-active {
+  background-color: var(--menu-surface);
+}
+
+/* The npx starter menu under the command field: the nav menu's shape and
+   behaviour as a white card in the neutral outline. command-menu-item rows
+   turn light grey with an orange label and icon on hover. */
+@utility command-menu {
+  @apply menu-card neutral-outline;
 }
 @utility command-menu-item {
-  @apply touch-manipulation flex items-center gap-2 rounded-md px-2 py-2 transition duration-150 ease-out;
+  @apply menu-row;
   & svg {
     color: var(--command-menu-icon);
     transition: color 150ms ease-out;
@@ -516,47 +604,51 @@ pre.prism-code.language-json {
   &:hover svg {
     color: currentColor;
   }
-  &:focus-visible {
-    outline: 2px solid var(--focus-ring);
-    outline-offset: -2px;
-  }
+}
+/* The line between the starter list and the help text. */
+@utility command-menu-rule {
+  border-top: 1px solid var(--command-menu-rule);
 }
 
-/* The keyboard focus ring for any other control (toggles, disclosure rows):
-   the same ring the buttons use. */
-@utility focus-ring {
-  &:focus-visible {
-    outline: 2px solid var(--focus-ring);
-    outline-offset: 2px;
-  }
-}
-
-/* The selected option in a segmented toggle (pricing Monthly/Annually, the
-   pricing comparison): the Secondary blue on the toggle's own pill track. */
-@utility segmented-selected {
-  background-image: linear-gradient(to bottom right, var(--button-secondary-from), var(--button-secondary-to));
-  color: var(--button-secondary-ink);
-}
-
-/* Icon-only utility buttons (close, copy, carousel arrows, search): a 44px
-   tap area, 20px icon at a 2px stroke, slate ink, a light square on hover.
-   On dark they go white. Always give them an aria-label. */
-@utility icon-btn {
-  @apply inline-flex shrink-0 items-center justify-center size-11 rounded-lg cursor-pointer transition-colors duration-150;
-  color: var(--icon-button-ink);
-  & svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-  & svg :where(path, circle, rect, line, polyline) {
-    stroke-width: 2px;
-  }
+/* Page numbers and Previous / Next in a numbered pagination (the /blog
+   list): button size and type in ink, a light grey fill on hover. The
+   current page (aria-current="page") wears the neutral outline. */
+@utility pagination-item {
+  @apply role-button-label focus-ring inline-flex items-center justify-center gap-1 min-h-11 min-w-11 px-3 rounded-lg border border-transparent transition-colors duration-150;
+  color: var(--pagination-ink);
   &:hover {
-    background-color: var(--icon-button-hover);
+    background-color: var(--pagination-hover);
   }
-  &:focus-visible {
-    outline: 2px solid var(--focus-ring);
-    outline-offset: 2px;
+  &[aria-current='page'] {
+    @apply neutral-outline;
+  }
+}
+
+/* The previous / next post cards at the end of a blog post: a white card in
+   the neutral outline that lifts its shadow on hover. */
+@utility post-card {
+  @apply neutral-outline focus-ring flex flex-col gap-1 rounded-lg p-4 transition duration-150 ease-out;
+  &:hover {
+    box-shadow: var(--button-hover-shadow);
+  }
+}
+
+/* Tabs on a dark code panel (GraphQL Query / Response): flat, with a solid
+   orange underline on the selected tab and the others at 70%. Use inside
+   ON_DARK so the label and focus ring go white. */
+@utility tab-list {
+  @apply flex;
+  border-bottom: 1px solid var(--tab-divider);
+}
+@utility tab {
+  @apply role-label focus-ring-inset relative inline-flex items-center px-4 pt-3 pb-2.5 cursor-pointer transition-opacity duration-150;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+  &[aria-selected='true'] {
+    opacity: 1;
+    box-shadow: inset 0 -2px 0 var(--tab-indicator);
   }
 }
 

@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { EmailForm } from '@/component/modals/EmailForm';
-import { BUTTON_GROUP, levelOf } from '@/component/styles/buttons';
+import { levelOf } from '@/component/styles/buttons';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
-import { ModalButton } from '../../ui';
+import { ButtonGroup, ModalButton } from '../../ui';
 
 // Function that returns modal components
 const getModalContent = (modal: string) => {
@@ -53,20 +53,19 @@ export const ModalB = ({
 
   return (
     <>
-      <div
+      <ButtonGroup
         className={cn(
-          BUTTON_GROUP,
           fill && 'sm:[&>*]:w-full',
           align === 'center' && 'sm:justify-center',
         )}
       >
         {items?.map((item, index) => {
-          const { color, variant, label, modal } = item;
+          const { color, label, modal } = item;
 
           return (
             <ModalButton
               key={sanitizeLabel(label) || modal || `modal-button-${index}`}
-              level={levelOf(variant ?? color)}
+              level={levelOf(color)}
               id={sanitizeLabel(label)}
               className={className}
               onClick={() => openModal(modal)}
@@ -76,7 +75,7 @@ export const ModalB = ({
             </ModalButton>
           );
         })}
-      </div>
+      </ButtonGroup>
 
       <Dialog open={open} onOpenChange={(isOpen) => !isOpen && closeModal()}>
         <DialogContent className={getModalClassName(activeModal)}>

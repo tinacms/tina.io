@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { FaRegCalendar, FaRegMap, FaRegStar } from 'react-icons/fa';
-import { FaArrowRightLong, FaRegClock } from 'react-icons/fa6';
+import { FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
@@ -17,7 +17,6 @@ import {
   BODY_SMALL,
   CARD_TITLE,
   EYEBROW,
-  EYEBROW_LINK,
   LABEL,
   LINK,
   PAGE_TITLE,
@@ -26,6 +25,7 @@ import {
   SUB_HEADING,
   SURFACE,
 } from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 
 const HeaderBanner = ({
   tinaData,
@@ -495,13 +495,9 @@ function ConferencePage({
           />
         )}
         <Agenda filteredSessions={filteredSessions} agendaRef={agendaRef} />
-        <Link
-          href="/events"
-          className={`${EYEBROW_LINK} mt-16 flex items-center w-fit gap-2 group`}
-        >
-          <span>SEE ALL EVENTS</span>
-          <FaArrowRightLong />
-        </Link>
+        <TextLink href="/events" className="mt-16">
+          See all events
+        </TextLink>
       </div>
     </div>
   );

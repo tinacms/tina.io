@@ -1,11 +1,9 @@
 import Link from 'next/link';
-import { BiArrowBack } from 'react-icons/bi';
 import {
   BUTTON,
   BUTTON_GROUP,
   type ButtonLevel,
 } from '@/component/styles/buttons';
-import { EYEBROW_LINK } from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
 
@@ -20,14 +18,6 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children: React.ReactNode | React.ReactNode[];
 }
-
-/** The trailing arrow on buttons that go somewhere. */
-export const ButtonArrow = () => (
-  <BiArrowBack
-    aria-hidden="true"
-    className="h-[1.125em] w-auto -mr-1 rotate-180 opacity-70"
-  />
-);
 
 export const Button = ({
   level = 'primary',
@@ -45,27 +35,45 @@ interface LinkButtonProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   link?: string;
   level?: ButtonLevel;
+  /** A full page load instead of a client-side route change (another origin, /admin). */
+  reloadDocument?: boolean;
   className?: string;
   children: React.ReactNode | React.ReactNode[];
 }
 
+/**
+ * A button that goes somewhere. External links open in a new tab unless you
+ * pass a `target`.
+ */
 export const LinkButton = ({
   link = '/',
   level = 'primary',
+  reloadDocument = false,
   className = '',
+  target,
+  rel,
   children,
   ...props
 }: LinkButtonProps) => {
-  const externalLink = link.startsWith('http');
   const classes = cn(BUTTON[level], className);
+  const external = /^https?:\/\//.test(link);
+  const linkTarget = target ?? (external ? '_blank' : undefined);
+  const linkRel =
+    rel ?? (linkTarget === '_blank' ? 'noopener noreferrer' : undefined);
 
   // Same-page anchors go through a plain <a>: Next 14 handles hash-only Link
   // clicks with scrollIntoView, which Chromium silently cancels while the
   // document's `scroll-behavior: smooth` is in flight, so the hash updates
   // but the page never moves. Native anchor navigation is reliable.
-  if (link.startsWith('#')) {
+  if (reloadDocument || link.startsWith('#')) {
     return (
-      <a href={link} className={classes} {...props}>
+      <a
+        href={link}
+        className={classes}
+        target={linkTarget}
+        rel={linkRel}
+        {...props}
+      >
         {children}
       </a>
     );
@@ -76,38 +84,14 @@ export const LinkButton = ({
       href={link}
       prefetch={shouldPrefetchLink(link)}
       className={classes}
+      target={linkTarget}
+      rel={linkRel}
       {...props}
-      target={externalLink ? '_blank' : props.target}
-      rel={externalLink ? 'noopener noreferrer' : props.rel}
     >
       {children}
     </Link>
   );
 };
-
-/**
- * A link with no button chrome, for card grids that list actions as text.
- * It reads as a standalone text link, so it takes EYEBROW_LINK.
- */
-export const FlushButton = ({
-  link = '/',
-  className = '',
-  children,
-  ...props
-}: LinkButtonProps) => (
-  <Link
-    href={link}
-    prefetch={shouldPrefetchLink(link)}
-    className={cn(
-      EYEBROW_LINK,
-      'inline-flex items-center gap-1.5 py-2',
-      className,
-    )}
-    {...props}
-  >
-    {children}
-  </Link>
-);
 
 /** A button that opens a modal; the caller owns the dialog. */
 export const ModalButton = Button;

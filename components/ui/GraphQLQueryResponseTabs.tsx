@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import { LABEL, ON_DARK } from '@/component/styles/typography';
+import { TAB, TAB_LIST } from '@/component/styles/tabs';
+import { ON_DARK } from '@/component/styles/typography';
 import { Prism } from '../styles/Prism';
 
 export const GraphQLQueryResponseTabs = ({ ...props }) => {
   const [isQuery, setIsQuery] = useState(!props.preselectResponse);
 
-  const buttonStyling = `${LABEL} flex justify-center relative mx-6 pt-3 pb-2.5 transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 whitespace-nowrap px-2`;
-  const activeButtonStyling =
-    ' hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px opacity-50 hover:opacity-100';
   const overlay = (
     <div
       className="w-full grow rounded-md"
@@ -16,40 +14,35 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
       }}
     ></div>
   );
-  const underlineStyling =
-    'transition-[width] absolute h-1 bottom-0 bg-linear-to-br from-orange-400 to-orange-600 rounded-lg';
   const containerStyling =
     'w-full flex col-start-1 row-start-1 overflow-x-scroll flex-col';
 
   return (
     <div className="mb-1">
       <div
-        className={`${ON_DARK} flex w-full py-0 relative top-3 pt-1 z-10 rounded-t-md border-b border-b-orange-400/30`}
+        role="tablist"
+        className={`${ON_DARK} ${TAB_LIST} w-full relative top-3 pt-1 px-2 z-10 rounded-t-md`}
         style={{
           backgroundColor: 'rgb(1, 22, 39)',
         }}
       >
         <button
           type="button"
+          role="tab"
+          aria-selected={isQuery}
           onClick={() => setIsQuery(true)}
-          className={buttonStyling + (isQuery ? '' : activeButtonStyling)}
-          disabled={isQuery}
+          className={TAB}
         >
           {props.customQueryName ?? 'Query'}
-          <div
-            className={underlineStyling + (isQuery ? ' w-full' : ' w-0')}
-          ></div>
         </button>
         <button
           type="button"
+          role="tab"
+          aria-selected={!isQuery}
           onClick={() => setIsQuery(false)}
-          className={buttonStyling + (isQuery ? activeButtonStyling : '')}
-          disabled={!isQuery}
+          className={TAB}
         >
           {props.customResponseName ?? 'Response'}
-          <div
-            className={underlineStyling + (isQuery ? ' w-0' : ' w-full')}
-          ></div>
         </button>
       </div>
       <div className="h-fit grid grid-cols-1 w-full">

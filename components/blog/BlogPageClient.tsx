@@ -3,7 +3,7 @@
 
 import Giscus from '@giscus/react';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
-import { DocsPagination } from 'components/ui';
+import { PostPagination } from 'components/ui';
 import Image from 'next/image';
 import React from 'react';
 import { useTina } from 'tinacms/dist/react';
@@ -70,7 +70,14 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
               <time dateTime={post.last_edited}>{lastEditedDate}</time>
             </div>
           )}
-          <DocsPagination prevPage={previousPage} nextPage={nextPage} />
+          <PostPagination
+            previous={previousPage}
+            next={nextPage}
+            labels={{
+              previous: strings.blogPost.previousPost,
+              next: strings.blogPost.nextPost,
+            }}
+          />
           <div className="mt-8">
             <Giscus
               id="discussion-box"

@@ -30,8 +30,8 @@ export const modalButtonTemplate = {
       return { label: item?.label };
     },
     defaultItem: {
-      color: 'secondary',
-      label: 'Secondary Action',
+      color: 'primary',
+      label: 'Primary Action',
     },
   },
   fields: modalButtonTemplateFields,

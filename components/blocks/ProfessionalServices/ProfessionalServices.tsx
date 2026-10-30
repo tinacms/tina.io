@@ -1,5 +1,3 @@
-import Link from 'next/link';
-import { FaArrowRight } from 'react-icons/fa';
 import type { PageBlocksProfessionalServices } from 'tina/__generated__/types';
 import { IconOptions } from '@/component/forms/IconPicker';
 import {
@@ -7,11 +5,11 @@ import {
   BODY_SMALL,
   CARD_TITLE,
   EYEBROW,
-  EYEBROW_LINK,
   LABEL,
   SECTION_TITLE,
   SURFACE,
 } from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 import Container from '@/component/util/Container';
 
 function ServiceIcon({
@@ -78,14 +76,10 @@ export function ProfessionalServices({
               </div>
             )}
             {service?.link && (
-              <Link
-                href={service.link}
-                className={`${EYEBROW_LINK} mt-auto pt-6 inline-flex items-center gap-2 py-2`}
-              >
+              <TextLink href={service.link} className="mt-auto pt-6">
                 Read more
                 <span className="sr-only">about {service.title}</span>
-                <FaArrowRight className="text-xs" />
-              </Link>
+              </TextLink>
             )}
           </div>
         ))}

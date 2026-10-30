@@ -59,19 +59,24 @@ export const BUTTON_RULES = [
   'Navigation is a link and an action is a button; either can be any level. Anything that submits or changes data is a <button>.',
   'Disable rather than hide an unavailable button. Disabled is 60% with no hover.',
   'Icon-only buttons use ICON_BUTTON and always have an aria-label.',
-  'A link that reads as text (“Read more →”) is a text link: EYEBROW_LINK or LINK, not a button. In the CMS that’s the Text link option.',
+  'A link that reads as text (“Read more →”) is a TextLink, not a button. It always ends in the short arrow; no other arrow or icon. Links inside a sentence are LINK. In the CMS that’s the Text link option.',
 ];
 
 /** Agreed exceptions: their own styling is expected, not a bug. */
 export const BUTTON_EXCEPTIONS = [
   'The phone menu tab and the language flag in the nav: deliberate one-offs.',
   'Nav menu triggers and footer column toggles: text, styled by NAV_LINK, NAV_MENU_LINK and FOOTER_LINK.',
-  'The npx create-tina-app command field: a white input with a light slate outline and a flat orange copy block (command-field + command-copy). Its starter menu is a white card the same width (COMMAND_MENU, COMMAND_MENU_ITEM).',
+  'The npx create-tina-app command field: a white input in the neutral outline with a flat orange copy block (command-field + command-copy). Its starter menu is a white card the same width (COMMAND_MENU, COMMAND_MENU_ITEM).',
+  'Social links (community page, Social block): button size in the neutral outline with an ink label and each network’s own logo colour (SocialLinks). They are not a level, so a row of them needs no Primary.',
+  'Pricing plan cards: each card has its own lone Tertiary, and the cards side by side act as the group.',
+  'TinaCon: the Agenda button stays Tertiary even when Register isn’t shown.',
   'Roadmap links are plain text links (LINK), not buttons.',
   'Video play overlays, social icons and logos.',
   'Clickable chips and badges (What’s New contributors and commits, the hero news badge): typography surfaces.',
   'Choice cards (Book a demo locations, language picker).',
   'Segmented toggles (pricing): a pill track, with the selected option in the Secondary blue (SEGMENTED_SELECTED).',
+  'Tabs on dark code panels (GraphQL Query / Response): flat, with a solid orange underline on the selected tab (TAB_LIST, TAB).',
+  'Pagination: ink page numbers and Previous / Next at button size, the current page outlined (Pagination, PostPagination).',
   'Contrast: the Primary and Secondary gradients keep white labels at 3.8:1 and 3.7:1 on their light ends, and the starter menu’s hovered row is orange-600 on light grey at 4.3:1. Agreed with design; don’t darken without checking.',
   'Third-party widgets: the chatbot, YouTube player, Giscus comments and HubSpot forms.',
 ];

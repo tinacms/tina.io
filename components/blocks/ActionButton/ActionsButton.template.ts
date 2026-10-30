@@ -28,8 +28,8 @@ export const actionsButtonTemplate = {
       return { label: item?.label };
     },
     defaultItem: {
-      variant: 'secondary',
-      label: 'Secondary Action',
+      variant: 'primary',
+      label: 'Primary Action',
       url: '/',
     },
   },

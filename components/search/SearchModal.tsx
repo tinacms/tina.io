@@ -10,11 +10,11 @@ import {
   BODY_MUTED,
   BODY_SMALL,
   EYEBROW,
-  EYEBROW_LINK,
   FIELD,
   HIGHLIGHT,
   SUB_HEADING,
 } from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 // Helper function for highlighting Algolia search hits
 export const highlightText = (text: string) => {
@@ -73,15 +73,14 @@ export const SearchResultsOverflowBody = ({
       ))}
       <div>
         {numberOfResults > 0 ? (
-          <Link
-            className={EYEBROW_LINK}
-            href={`/search?query=${encodeURIComponent(query)}`}
-            onClick={onResultClick}
-          >
-            <div className="pt-3 pb-3 px-4 border-t border-gray-100">
-              See All {numberOfResults} Results
-            </div>
-          </Link>
+          <div className="px-4 pt-1 border-t border-gray-100">
+            <TextLink
+              href={`/search?query=${encodeURIComponent(query)}`}
+              onClick={onResultClick}
+            >
+              See all {numberOfResults} results
+            </TextLink>
+          </div>
         ) : (
           !isLoading && (
             <div className={`${BODY_SMALL} pt-8 px-4 text-center`}>

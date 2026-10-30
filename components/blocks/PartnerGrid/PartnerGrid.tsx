@@ -6,14 +6,13 @@ import {
   BODY,
   BODY_MUTED,
   BODY_SMALL,
-  EYEBROW_LINK,
   LABEL,
   PAGE_TITLE,
   SECTION_TITLE,
   SUB_HEADING,
   SURFACE,
 } from '@/component/styles/typography';
-import { ButtonArrow } from '../../ui/Button';
+import { TextLink } from '../../ui/TextLink';
 import { Container } from '../Container';
 import { ModalB } from '../ModalButton/ModalButton';
 
@@ -100,16 +99,13 @@ const PartnerCard = ({ data }) => {
       )}
 
       {website && (
-        <a
+        <TextLink
           href={website}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${EYEBROW_LINK} mt-auto inline-flex items-center gap-1.5 py-2`}
+          className="mt-auto"
           data-tina-field={tinaField(data, 'website')}
         >
           Visit {websiteDomain}
-          <ButtonArrow />
-        </a>
+        </TextLink>
       )}
     </div>
   );

@@ -142,7 +142,6 @@
       },
       {
         "label": "Contact Us",
-        "icon": false,
         "color": "primary",
         "modal": "ContactForm.tsx",
         "_template": "modalButton"
@@ -237,10 +236,8 @@
       },
       {
         "label": "Subscribe",
-        "icon": false,
         "color": "primary",
         "modal": "EmailForm.tsx",
-        "icon2": "MdEmail",
         "_template": "modalButton"
       }
     ]

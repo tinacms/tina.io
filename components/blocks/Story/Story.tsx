@@ -9,71 +9,42 @@ import {
   SECTION_TITLE,
 } from '@/component/styles/typography';
 import { Prism } from '../../styles/Prism';
-import { Actions } from '../ActionButton/ActionsButton';
+import { ButtonGroup, LinkButton } from '../../ui/Button';
+import { TextLink } from '../../ui/TextLink';
+import { CodeButton } from '../CodeButton/CodeButton';
 import { Container } from '../Container';
 
+// Each feature leads with at most one Primary, the npx command field, or a
+// text link (#4964).
 const features = [
   {
     id: 'editing',
     title: 'Edit Markdown, Visually',
     description:
       'Tina is an open-source, headless CMS for Markdown, MDX, and JSON.',
-    actions: [
-      {
-        variant: 'blue',
-        size: 'large',
-        label: 'Get Started',
-        url: '/docs/setup-overview/',
-      },
-      {
-        variant: 'command',
-        size: 'large',
-        label: 'npx create-tina-app@latest',
-        url: '/',
-      },
-    ],
+    primary: { label: 'Get Started', url: '/docs/setup-overview/' },
+    command: 'npx create-tina-app@latest',
   },
   {
     id: 'file',
     title: 'Own Your Content',
     description:
       'Store content in your repo. Tina saves to MDX, Markdown, and JSON and provides a powerful data layer on top of your static files.',
-    actions: [
-      {
-        variant: 'seafoam',
-        size: 'large',
-        label: 'Learn More',
-        url: '/docs/product-tour/',
-      },
-    ],
+    link: { label: 'Learn More', url: '/docs/product-tour/' },
   },
   {
     id: 'schema',
     title: 'Simple CMS Configuration',
     description:
       "Define your content's schema and Tina will provide you with a user friendly editing experience.",
-    actions: [
-      {
-        variant: 'seafoam',
-        size: 'large',
-        label: 'Read The Docs',
-        url: '/docs/schema/',
-      },
-    ],
+    link: { label: 'Read The Docs', url: '/docs/schema/' },
   },
   {
     id: 'git',
     title: 'Powered by Git',
     description:
       'Let your editorial team focus on writing content, while Tina commits to your repository.',
-    actions: [
-      {
-        variant: 'seafoam',
-        size: 'large',
-        label: 'Learn More',
-        url: '/docs/',
-      },
-    ],
+    link: { label: 'Learn More', url: '/docs/' },
   },
 ];
 
@@ -422,9 +393,21 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
           <p className={`${BODY} block -mb-2 max-w-prose`}>
             {item.description}
           </p>
-          <div className="-mx-0.5">
-            {item.actions && <Actions items={item.actions} />}
-          </div>
+          {(item.primary || item.command) && (
+            <ButtonGroup>
+              {item.primary && (
+                <LinkButton link={item.primary.url}>
+                  {item.primary.label}
+                </LinkButton>
+              )}
+              {item.command && <CodeButton label={item.command} />}
+            </ButtonGroup>
+          )}
+          {item.link && (
+            <TextLink href={item.link.url} className="self-start">
+              {item.link.label}
+            </TextLink>
+          )}
         </div>
       </div>
       <style jsx>{`

@@ -1,6 +1,5 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
@@ -13,12 +12,11 @@ import { ICON_BUTTON } from '@/component/styles/buttons';
 import {
   BODY,
   BODY_SMALL,
-  LABEL,
-  LINK,
   ON_DARK,
   SECTION_TITLE,
   SUB_HEADING,
 } from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 import { splitOneAndJoin } from './CompareBox.template';
 
 function hexToRgba(hex, alpha) {
@@ -188,12 +186,9 @@ const CompanyCard = ({ company, criteria }) => {
       </div>
 
       {company.testimonialLink && (
-        <Link
-          href={company?.testimonialLink}
-          className={`${LABEL} ${LINK} inline-block py-4 text-center`}
-        >
-          How {company?.headline} stacks up with TinaCMS →
-        </Link>
+        <TextLink href={company.testimonialLink} className="py-4">
+          How {company?.headline} stacks up with TinaCMS
+        </TextLink>
       )}
     </div>
   );
