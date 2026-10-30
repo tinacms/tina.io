@@ -27,6 +27,8 @@ export const SegmentedToggle = <T extends string>({
   return (
     // biome-ignore lint/a11y/useSemanticElements: a pressed-button group, not a fieldset of inputs
     <div role="group" aria-label={label} className={SEGMENTED_TRACK}>
+      {/* Calculated, so set inline: the thumb is one option wide and
+          slides by whole options to the selected one. */}
       <span
         aria-hidden="true"
         className={SEGMENTED_SELECTED}
