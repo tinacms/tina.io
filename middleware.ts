@@ -64,8 +64,10 @@ export function middleware(request: NextRequest) {
 export const config = {
   // Everything except API routes, build assets, the TinaCMS admin app, and any
   // path with a file extension. Static files must not pay for middleware.
+  // An extension must start with a letter, so slugs that end in a version
+  // number (`/blog/tinacms-1.4`) still reach middleware.
   matcher: [
-    '/((?!api/|_next/static|_next/image|admin|p/e|favicon\\.ico|.*\\.[a-zA-Z0-9]+$).*)',
+    '/((?!api/|_next/static|_next/image|admin|p/e|favicon\\.ico|.*\\.[a-zA-Z][a-zA-Z0-9]*$).*)',
   ],
 };
 
