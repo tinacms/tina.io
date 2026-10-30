@@ -494,10 +494,22 @@ pre.prism-code.language-json {
   color: var(--button-tertiary-ink);
 }
 
-/* The selected option in a segmented toggle (pricing Monthly/Annually, the
-   pricing comparison): the Secondary blue on the toggle's own pill track. */
+/* Segmented toggles (SegmentedToggle): a frosted pill track; options with
+   the button label type, link blue until selected; and a Secondary blue
+   thumb that slides under the selected option. */
+@utility segmented-track {
+  @apply relative inline-grid grid-flow-col auto-cols-fr w-max rounded-full shadow-md;
+  background-image: linear-gradient(to bottom right, var(--segmented-track-from), var(--segmented-track-via), var(--segmented-track-to));
+}
+@utility segmented-option {
+  @apply role-button-label focus-ring relative z-10 px-10 py-4 leading-none rounded-full cursor-pointer whitespace-nowrap transition-colors duration-500;
+  color: var(--segmented-ink);
+  &[aria-pressed='true'] {
+    color: var(--button-secondary-ink);
+  }
+}
 @utility segmented-selected {
-  @apply btn-secondary;
+  @apply btn-secondary absolute inset-y-0 left-0 rounded-full transition-transform duration-500 ease-in-out;
 }
 
 /* Icon-only utility buttons (close, copy, carousel arrows, search): a 44px

@@ -51,6 +51,7 @@ import { Button, ButtonGroup } from '@/component/ui/Button';
 import { Pagination, PostPagination } from '@/component/ui/Pagination';
 import { SocialLinks, TINA_SOCIAL_LINKS } from '@/component/ui/SocialLinks';
 import { TextLink } from '@/component/ui/TextLink';
+import { SegmentedToggleExample } from './SegmentedToggleExample';
 
 export const metadata: Metadata = {
   title: 'Tina.io Style Guide | TinaCMS',
@@ -532,7 +533,7 @@ export default function StyleGuidePage() {
       <Section
         id="links"
         title="Links and navigation"
-        intro="The pieces around buttons: text links, social links, the neutral outline, the command field, dropdown menus, pagination and tabs. Each has one look, built the same way as the buttons, so there is nothing to choose."
+        intro="The pieces around buttons: text links, social links, the neutral outline, the command field, dropdown menus, pagination, segmented toggles and tabs. Each has one look, built the same way as the buttons, so there is nothing to choose."
       >
         <Group
           id="text-links"
@@ -649,6 +650,14 @@ export default function StyleGuidePage() {
               </li>
             </ul>
           </div>
+        </Group>
+
+        <Group
+          id="segmented-toggles"
+          title="Segmented toggles"
+          intro="SegmentedToggle: one choice from two or three short options, like Monthly / Annually. A frosted pill track, link-blue options, and a Secondary blue thumb that slides under the selected one. Each option is a pressed button."
+        >
+          <SegmentedToggleExample />
         </Group>
 
         <Group

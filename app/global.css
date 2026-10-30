@@ -276,6 +276,13 @@
   --command-menu-icon: var(--ink-900);
   --command-menu-hover: var(--slate-100);
   --command-menu-hover-ink: var(--orange-600);
+  /* Segmented toggles (pricing Monthly / Annually): a frosted white pill
+     track, a Secondary blue thumb that slides to the selected option, and
+     link blue for the options not selected. */
+  --segmented-track-from: color-mix(in srgb, var(--white) 25%, transparent);
+  --segmented-track-via: color-mix(in srgb, var(--white) 50%, transparent);
+  --segmented-track-to: color-mix(in srgb, var(--white) 75%, transparent);
+  --segmented-ink: var(--text-link);
   /* Pagination (the /blog list): ink numbers that fill light grey on hover.
      The current page wears the neutral outline. */
   --pagination-ink: var(--ink-900);

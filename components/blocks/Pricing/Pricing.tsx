@@ -1,8 +1,8 @@
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { useState } from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { FOCUS_RING, SEGMENTED_SELECTED } from '@/component/styles/buttons';
 import { PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
+import { SegmentedToggle } from '@/component/ui/SegmentedToggle';
 import TableBox from '../Table/table';
 import { CARD_ROWS_CLASSES, PlanCard } from './PlanCard';
 
@@ -15,35 +15,15 @@ export function PillSwitch({
   return (
     <div className="flex justify-center md:justify-start pt-10">
       <div className="flex flex-col sm:space-y-4 md:flex-row md:items-center">
-        <div className="bg-linear-to-br font-ibm-plex from-white/25 via-white/50 to-white/75 shadow-md rounded-full gap-16 relative w-max">
-          <div
-            className={`absolute top-0 left-0 w-1/2 h-full ${SEGMENTED_SELECTED} rounded-full transition-transform duration-500 ease-in-out ${
-              isMonthly
-                ? 'transform translate-x-0'
-                : 'transform translate-x-full'
-            }`}
-          ></div>
-          <div className="relative leading-none flex z-10">
-            <button
-              type="button"
-              className={`px-10 py-4 w-1/2 z-20 cursor-pointer rounded-full transition-colors duration-500 ${FOCUS_RING} ${
-                isMonthly ? 'text-white' : 'text-link'
-              }`}
-              onClick={() => setIsMonthly(true)}
-            >
-              Monthly
-            </button>
-            <button
-              type="button"
-              className={`px-10 py-2 w-1/2 z-20 cursor-pointer rounded-full transition-colors duration-500 ${FOCUS_RING} ${
-                !isMonthly ? 'text-white' : 'text-link'
-              }`}
-              onClick={() => setIsMonthly(false)}
-            >
-              Annually
-            </button>
-          </div>
-        </div>
+        <SegmentedToggle
+          label="Billing period"
+          options={[
+            { value: 'monthly', label: 'Monthly' },
+            { value: 'annually', label: 'Annually' },
+          ]}
+          value={isMonthly ? 'monthly' : 'annually'}
+          onChange={(period) => setIsMonthly(period === 'monthly')}
+        />
         <div className="flex flex-col md:flex-row md:items-center pt-4 pb-8">
           <div className="flex items-start md:items-center md:pt-0 justify-center md:justify-start pl-1 md:pl-10">
             <TinaMarkdown

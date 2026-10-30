@@ -137,6 +137,7 @@ Every button is one of three levels, all one size (#4964). Level names live in `
 - **Text links aren't buttons:** a standalone “Read more →” is `TextLink` (`components/ui/TextLink.tsx`), which always draws the short arrow; pass `as="span"` inside a card that is itself the link. Links inside a sentence are `LINK`. Never hand-build a text link with `EYEBROW_LINK` and an icon.
 - **Social links:** `SocialLinks` (`components/ui/SocialLinks.tsx`): button size in the neutral outline with brand-colour logos. Not a button level.
 - **Pagination:** numbered list pages use `Pagination`; the end of a blog post uses `PostPagination` (“Previous post” / “Next post” cards). Both in `components/ui/Pagination.tsx`.
+- **Segmented toggles:** `SegmentedToggle` (`components/ui/SegmentedToggle.tsx`) for one choice from a few short options, like Monthly / Annually. Don't hand-build one.
 - **Tabs:** flat tabs on dark code panels use `TAB_LIST` and `TAB` from `components/styles/tabs.ts`, with `role="tablist"` / `role="tab"` and `aria-selected`.
 - **Neutral outline:** white with a light slate border that darkens on hover (`NEUTRAL_OUTLINE`); the command field, social links, the current page number and post cards share it.
 - **Command field:** `CodeButton` only: `COMMAND_FIELD` and `COMMAND_COPY` (`menu.ts`) with the `COMMAND` type role for the command.
