@@ -19,9 +19,11 @@ import {
   MENU_PANEL,
   MENU_REVEAL,
   MENU_TRIGGER_ACTIVE,
+  MENU_TRIGGER_HOVER,
 } from '@/component/styles/menu';
 import { LABEL, NAV_LINK, NAV_MENU_LINK } from '@/component/styles/typography';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { closeOnEscape } from '@/utils/closeOnEscape';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import {
   hasZhPrefix,
@@ -80,7 +82,10 @@ const doubleNavItemDropDownString = 'doubleNavItemDropDown';
 
 // Reusable components
 const ExternalLinkIcon = () => (
-  <BiLinkExternal className="text-blue-200 text-sm inline ml-1" />
+  <BiLinkExternal
+    aria-hidden="true"
+    className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1"
+  />
 );
 
 const GitHubIcon = () => (
@@ -293,15 +298,13 @@ function desktopNavItemMapper(
       return (
         <li
           key={dropdownKey}
-          className={`relative group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? MENU_TRIGGER_ACTIVE : 'bg-transparent'} transition-all duration-300 ease-out hover:menu-trigger-active rounded-xl pl-3 pr-2 cursor-pointer`}
+          className={`relative group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? MENU_TRIGGER_ACTIVE : 'bg-transparent'} transition-all duration-300 ease-out ${MENU_TRIGGER_HOVER} rounded-xl pl-3 pr-2 cursor-pointer`}
           onMouseLeave={closeDropdownMenu}
-          onKeyDown={(e) => {
-            // Escape closes the menu and returns focus to its trigger.
-            if (e.key === 'Escape' && openDropdown === dropdownKey) {
-              closeDropdownMenu();
-              e.currentTarget.querySelector('button')?.focus();
-            }
-          }}
+          // Escape closes the menu and returns focus to its trigger.
+          onKeyDown={closeOnEscape(openDropdown === dropdownKey, (e) => {
+            closeDropdownMenu();
+            e.currentTarget.querySelector('button')?.focus();
+          })}
         >
           <button
             type="button"
@@ -320,7 +323,7 @@ function desktopNavItemMapper(
               menu is hidden from the keyboard too. */}
           <div
             data-state={openDropdown === dropdownKey ? 'open' : 'closed'}
-            className={`${MENU_REVEAL} absolute -left-[10px] top-full min-w-full w-max pt-5`}
+            className={`${MENU_REVEAL} absolute -left-2.5 top-full min-w-full w-max pt-5`}
           >
             <ul className={MENU_PANEL}>
               {item.items.map((subItem, subIndex) => (
@@ -356,9 +359,7 @@ function desktopNavItemMapper(
                       className={`${MENU_ITEM} group ${NAV_MENU_LINK}`}
                     >
                       {subItem.label}
-                      {subItem.href.startsWith('https') && (
-                        <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
-                      )}
+                      {subItem.href.startsWith('https') && <ExternalLinkIcon />}
                     </Link>
                   )}
                 </li>
@@ -546,13 +547,11 @@ const MobileNavMenu = ({
     <>
       <nav
         aria-label="Mobile navigation"
-        onKeyDown={(e) => {
-          // Escape closes the menu and returns focus to the tab that opens it.
-          if (e.key === 'Escape' && menuOpen) {
-            toggleMenu();
-            menuTabRef.current?.focus();
-          }
-        }}
+        // Escape closes the menu and returns focus to the tab that opens it.
+        onKeyDown={closeOnEscape(menuOpen, () => {
+          toggleMenu();
+          menuTabRef.current?.focus();
+        })}
         className={`fixed top-0 right-0 h-full w-[300px] bg-linear-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         } `}

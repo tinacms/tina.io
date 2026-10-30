@@ -2,24 +2,18 @@ import { Actions } from 'components/blocks/ActionButton/ActionsButton';
 import { CodeButton } from 'components/blocks/CodeButton/CodeButton';
 import { ModalB } from 'components/blocks/ModalButton/ModalButton';
 
-const renderInner = (button, className: string, fill: boolean) => {
+type ButtonKind = 'actions' | 'modal' | 'command' | null;
+
+const kindOf = (button): ButtonKind => {
   const type: string = button?.__typename ?? '';
   if (type.includes('Actions')) {
-    return <Actions items={[button]} className={className} fill={fill} />;
+    return 'actions';
   }
   if (type.includes('ModalButton')) {
-    return <ModalB items={[button]} className={className} fill={fill} />;
+    return 'modal';
   }
   if (type.includes('CodeButton')) {
-    return (
-      <CodeButton
-        id={button.id}
-        label={button.label}
-        className={fill ? `w-full ${className}` : className}
-        helpText={button?.helpText}
-        starterTemplates={button?.starterTemplates}
-      />
-    );
+    return 'command';
   }
   return null;
 };
@@ -28,23 +22,41 @@ const renderInner = (button, className: string, fill: boolean) => {
 // line up. Action and modal buttons go full width on phones and back to label
 // width from sm (or stay full width with `fill`); the command field keeps its
 // own width.
-const cellClass = (isCommand: boolean, fill: boolean) => {
-  if (fill) {
-    return 'flex w-full items-center [&>*]:!my-0 [&>*]:w-full';
-  }
-  if (isCommand) {
-    return 'flex items-center [&>*]:!my-0';
-  }
-  return 'flex w-full items-center sm:w-auto [&>*]:!my-0 [&>*]:w-full sm:[&>*]:w-auto';
+const CELL = {
+  fill: 'flex w-full items-center [&>*]:w-full',
+  command: 'flex items-center',
+  button: 'flex w-full items-center sm:w-auto [&>*]:w-full sm:[&>*]:w-auto',
 };
 
 const RenderButton = ({ button, className = '', fill = false }) => {
-  const inner = renderInner(button, className, fill);
-  if (!inner) {
+  const kind = kindOf(button);
+  if (!kind) {
     return null;
   }
-  const isCommand = (button?.__typename ?? '').includes('CodeButton');
-  return <div className={cellClass(isCommand, fill)}>{inner}</div>;
+  const cell = fill
+    ? CELL.fill
+    : kind === 'command'
+      ? CELL.command
+      : CELL.button;
+  return (
+    <div className={cell}>
+      {kind === 'actions' && (
+        <Actions items={[button]} className={className} fill={fill} />
+      )}
+      {kind === 'modal' && (
+        <ModalB items={[button]} className={className} fill={fill} />
+      )}
+      {kind === 'command' && (
+        <CodeButton
+          id={button.id}
+          label={button.label}
+          className={fill ? `w-full ${className}` : className}
+          helpText={button?.helpText}
+          starterTemplates={button?.starterTemplates}
+        />
+      )}
+    </div>
+  );
 };
 
 export default RenderButton;

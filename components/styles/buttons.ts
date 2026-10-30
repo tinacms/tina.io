@@ -39,6 +39,16 @@ export const ICON_BUTTON = 'icon-btn';
 /** The keyboard focus ring for other controls: toggles, disclosure rows, choice cards. */
 export const FOCUS_RING = 'focus-ring';
 
+/** The focus ring for a switch drawn after a hidden `peer` input: shows when the input has keyboard focus. */
+export const FOCUS_RING_PEER = 'focus-ring-peer';
+
+/**
+ * The neutral outline: white, a light slate border that darkens on hover.
+ * Shared by the command field, social links, the current page number and the
+ * post cards. Not a button level.
+ */
+export const NEUTRAL_OUTLINE = 'neutral-outline';
+
 /** The selected option in a segmented toggle: Secondary blue on a pill track. */
 export const SEGMENTED_SELECTED = 'segmented-selected';
 
@@ -55,10 +65,17 @@ export const BUTTON_GROUP =
  */
 export const BUTTON_LEVEL_OPTIONS = [
   { value: 'primary', label: 'Primary (orange): the main action' },
-  { value: 'secondary', label: 'Secondary (blue): quieter, beside a Primary' },
-  { value: 'tertiary', label: 'Tertiary (orange outline): beside a Primary' },
+  {
+    value: 'secondary',
+    label:
+      'Secondary (blue): shouldn’t compete with the page’s Primary, like My TinaCloud',
+  },
+  {
+    value: 'tertiary',
+    label: 'Tertiary (orange outline): always beside a Primary',
+  },
 ];
 
 /** The level for a stored CMS value. Anything that isn't a level is Primary. */
 export const levelOf = (value?: string | null): ButtonLevel =>
-  value && value in BUTTON ? (value as ButtonLevel) : 'primary';
+  value && Object.hasOwn(BUTTON, value) ? (value as ButtonLevel) : 'primary';

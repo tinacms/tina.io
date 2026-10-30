@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { BiArrowBack } from 'react-icons/bi';
 import { TEXT_LINK, TEXT_LINK_ARROW } from '@/component/styles/links';
 import { cn } from '@/lib/utils';
+import { isExternalLink } from '@/utils/isExternalLink';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
 
 /**
@@ -44,7 +45,16 @@ export const TextLink = ({
     return <span className={classes}>{content}</span>;
   }
 
-  const external = /^https?:\/\//.test(href);
+  // Same-page anchors use a plain <a>, for the reason LinkButton does.
+  if (href.startsWith('#')) {
+    return (
+      <a href={href} className={classes} {...props}>
+        {content}
+      </a>
+    );
+  }
+
+  const external = isExternalLink(href);
   return (
     <Link
       href={href}

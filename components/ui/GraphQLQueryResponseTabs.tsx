@@ -1,19 +1,11 @@
 import { useState } from 'react';
-import { TAB, TAB_LIST } from '@/component/styles/tabs';
-import { ON_DARK } from '@/component/styles/typography';
+import { CODE_PANEL, TAB, TAB_LIST } from '@/component/styles/tabs';
 import { Prism } from '../styles/Prism';
 
 export const GraphQLQueryResponseTabs = ({ ...props }) => {
   const [isQuery, setIsQuery] = useState(!props.preselectResponse);
 
-  const overlay = (
-    <div
-      className="w-full grow rounded-md"
-      style={{
-        backgroundColor: 'rgb(1, 22, 39)',
-      }}
-    ></div>
-  );
+  const overlay = <div className={`${CODE_PANEL} w-full grow rounded-md`} />;
   const containerStyling =
     'w-full flex col-start-1 row-start-1 overflow-x-scroll flex-col';
 
@@ -21,10 +13,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
     <div className="mb-1">
       <div
         role="tablist"
-        className={`${ON_DARK} ${TAB_LIST} w-full relative top-3 pt-1 px-2 z-10 rounded-t-md`}
-        style={{
-          backgroundColor: 'rgb(1, 22, 39)',
-        }}
+        className={`${CODE_PANEL} ${TAB_LIST} w-full relative top-3 pt-1 px-2 z-10 rounded-t-md`}
       >
         <button
           type="button"

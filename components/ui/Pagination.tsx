@@ -15,7 +15,7 @@ import { TextLinkArrow } from './TextLink';
 const ELLIPSIS = 'ellipsis';
 
 /** First, last, the current page and its neighbours, with gaps as ellipses. */
-export const pageWindow = (
+const pageWindow = (
   current: number,
   total: number,
 ): (number | typeof ELLIPSIS)[] => {

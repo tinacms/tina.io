@@ -21,6 +21,15 @@ export const MENU_ITEM = 'menu-item';
 /** A nav trigger whose menu is open or holds the current page: the cyan fill. */
 export const MENU_TRIGGER_ACTIVE = 'menu-trigger-active';
 
+/** The same cyan fill on hover, for nav triggers. */
+export const MENU_TRIGGER_HOVER = 'hover:menu-trigger-active';
+
+/** The npx command field: the neutral outline around the command (CodeButton). */
+export const COMMAND_FIELD = 'command-field';
+
+/** The flat orange copy block at the end of the command field. */
+export const COMMAND_COPY = 'command-copy';
+
 /** The npx starter menu's card: white, with the command field's outline. */
 export const COMMAND_MENU = 'command-menu';
 

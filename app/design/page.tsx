@@ -1,13 +1,20 @@
 import { Copy, Search, X } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import { ICON_BUTTON } from '@/component/styles/buttons';
+import { CodeButton } from '@/component/blocks/CodeButton/CodeButton';
+import { ICON_BUTTON, NEUTRAL_OUTLINE } from '@/component/styles/buttons';
 import {
   BUTTON_EXCEPTIONS,
   BUTTON_LEVEL_GUIDE,
   BUTTON_RULES,
 } from '@/component/styles/buttons.guide';
-import { TAB, TAB_LIST } from '@/component/styles/tabs';
+import {
+  COMMAND_MENU,
+  COMMAND_MENU_ITEM,
+  MENU_ITEM,
+  MENU_PANEL,
+} from '@/component/styles/menu';
+import { CODE_PANEL, TAB, TAB_LIST } from '@/component/styles/tabs';
 import {
   BODY,
   BODY_MUTED,
@@ -22,6 +29,7 @@ import {
   HIGHLIGHT,
   LABEL,
   LINK,
+  NAV_MENU_LINK,
   ON_DARK,
   PAGE_TITLE,
   SECTION_TITLE,
@@ -524,7 +532,7 @@ export default function StyleGuidePage() {
       <Section
         id="links"
         title="Links and navigation"
-        intro="The pieces around buttons: text links, social links, pagination and tabs. Each has one look, built the same way as the buttons, so there is nothing to choose."
+        intro="The pieces around buttons: text links, social links, the neutral outline, the command field, dropdown menus, pagination and tabs. Each has one look, built the same way as the buttons, so there is nothing to choose."
       >
         <Group
           id="text-links"
@@ -579,12 +587,84 @@ export default function StyleGuidePage() {
         </Group>
 
         <Group
+          id="neutral-outline"
+          title="Neutral outline"
+          intro="NEUTRAL_OUTLINE: white with a light slate border that darkens on hover. The command field, social links, the current page number and the post cards all wear it, so they read as one family next to the orange and blue buttons."
+        >
+          <div className={`${NEUTRAL_OUTLINE} max-w-sm rounded-lg p-4`}>
+            <p className={BODY_SMALL}>Hover to see the border darken.</p>
+          </div>
+        </Group>
+
+        <Group
+          id="command-field"
+          title="Command field"
+          intro="CodeButton: the npx command in the neutral outline (COMMAND role) with a flat orange copy block. Clicking copies the command and opens the starter menu, which is exactly as wide as the field."
+        >
+          <CodeButton
+            label="npx create-tina-app@latest"
+            className="w-fit"
+            starterTemplates={[
+              {
+                title: 'Astro',
+                icon: '/Starters/astro.svg',
+                link: 'https://app.tina.io/quickstart',
+              },
+              {
+                title: 'Next.js',
+                icon: '/Starters/next.js.svg',
+                link: 'https://app.tina.io/quickstart',
+              },
+            ]}
+          />
+        </Group>
+
+        <Group
+          id="menus"
+          title="Dropdown menus"
+          intro="Nav menus are pale cyan (MENU_PANEL, MENU_ITEM); the starter menu under the command field is white (COMMAND_MENU, COMMAND_MENU_ITEM). Both open on hover or click, cross the gap under the trigger on padding, are hidden from the keyboard when closed (MENU_REVEAL), and close on Escape."
+        >
+          <div className="flex flex-wrap items-start gap-8">
+            <ul className={`${MENU_PANEL} w-56`}>
+              <li>
+                <a href="#menus" className={`${MENU_ITEM} ${NAV_MENU_LINK}`}>
+                  Docs for TinaCMS
+                </a>
+              </li>
+              <li>
+                <a href="#menus" className={`${MENU_ITEM} ${NAV_MENU_LINK}`}>
+                  Showcase
+                </a>
+              </li>
+            </ul>
+            <ul className={`${COMMAND_MENU} w-56`}>
+              <li>
+                <a
+                  href="#menus"
+                  className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
+                >
+                  Astro
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#menus"
+                  className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
+                >
+                  Next.js
+                </a>
+              </li>
+            </ul>
+          </div>
+        </Group>
+
+        <Group
           id="tabs"
           title="Tabs"
           intro="TAB_LIST and TAB on dark code panels: flat, the selected tab with a solid orange underline and the others at 70%. Use role=&quot;tablist&quot;, role=&quot;tab&quot; and aria-selected."
         >
-          <div className="rounded-md bg-gray-900">
-            <div role="tablist" className={`${ON_DARK} ${TAB_LIST} px-2`}>
+          <div className={`${CODE_PANEL} rounded-md`}>
+            <div role="tablist" className={`${TAB_LIST} px-2`}>
               <button type="button" role="tab" aria-selected className={TAB}>
                 Query
               </button>

@@ -1,7 +1,6 @@
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { levelOf } from '@/component/styles/buttons';
-import { cn } from '@/lib/utils';
 import { ButtonGroup, LinkButton, TextLink } from '../../ui';
 
 // A text link (“READ MORE →”) has no fill or border, so it isn't a button: it
@@ -12,12 +11,7 @@ export const Actions = ({
   fill = false,
   className = '',
 }) => (
-  <ButtonGroup
-    className={cn(
-      fill && 'sm:[&>*]:w-full',
-      align === 'center' && 'sm:justify-center',
-    )}
-  >
+  <ButtonGroup fill={fill} align={align === 'center' ? 'center' : 'left'}>
     {items?.map((item, index) => {
       const { variant, label, url } = item;
       const link = url || '#';

@@ -12,6 +12,7 @@ import {
   SECTION_TITLE,
   SURFACE,
 } from '@/component/styles/typography';
+import { isExternalLink } from '@/utils/isExternalLink';
 import { Container } from '../Container';
 
 // The status icons the roadmap supports. Kept in sync with the picker in
@@ -94,7 +95,7 @@ const Roadmap = ({ data, last = false, index }) => {
         {data.actions?.length > 0 && (
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {data.actions.map((action, actionIndex) => {
-              const external = /^https?:\/\//.test(action?.url || '');
+              const external = isExternalLink(action?.url);
               return (
                 <Link
                   key={`${action?.label}-${actionIndex}`}

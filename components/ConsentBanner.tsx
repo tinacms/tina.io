@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
+import { FOCUS_RING_PEER } from '@/component/styles/buttons';
 import {
   BODY_SMALL,
   CARD_TITLE,
@@ -200,7 +201,9 @@ const ConsentBanner = () => {
                         onChange={handleConsentChange}
                         className="sr-only peer"
                       />
-                      <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600"></div>
+                      <div
+                        className={`${FOCUS_RING_PEER} relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600`}
+                      ></div>
                       <span className={`${LABEL} ms-3`}>Ad Storage</span>
                     </label>
                   </div>
@@ -215,7 +218,9 @@ const ConsentBanner = () => {
                         onChange={handleConsentChange}
                         className="sr-only peer"
                       />
-                      <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600"></div>
+                      <div
+                        className={`${FOCUS_RING_PEER} relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600`}
+                      ></div>
                       <span className={`${LABEL} ms-3`}>
                         Ad Personalization
                       </span>
@@ -232,7 +237,9 @@ const ConsentBanner = () => {
                         onChange={handleConsentChange}
                         className="sr-only peer"
                       />
-                      <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600"></div>
+                      <div
+                        className={`${FOCUS_RING_PEER} relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600`}
+                      ></div>
                       <span className={`${LABEL} ms-3`}>Analytics Storage</span>
                     </label>
                   </div>
@@ -247,7 +254,9 @@ const ConsentBanner = () => {
                         onChange={handleConsentChange}
                         className="sr-only peer"
                       />
-                      <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600"></div>
+                      <div
+                        className={`${FOCUS_RING_PEER} relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600`}
+                      ></div>
                       <span className={`${LABEL} ms-3`}>Ad User Data</span>
                     </label>
                   </div>

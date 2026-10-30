@@ -6,7 +6,6 @@ import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { EmailForm } from '@/component/modals/EmailForm';
 import { levelOf } from '@/component/styles/buttons';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { cn } from '@/lib/utils';
 import { ButtonGroup, ModalButton } from '../../ui';
 
 // Function that returns modal components
@@ -53,12 +52,7 @@ export const ModalB = ({
 
   return (
     <>
-      <ButtonGroup
-        className={cn(
-          fill && 'sm:[&>*]:w-full',
-          align === 'center' && 'sm:justify-center',
-        )}
-      >
+      <ButtonGroup fill={fill} align={align === 'center' ? 'center' : 'left'}>
         {items?.map((item, index) => {
           const { color, label, modal } = item;
 

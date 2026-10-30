@@ -4,6 +4,9 @@
  * role="tablist" and each tab role="tab" with aria-selected.
  */
 
+/** A dark code panel (Night Owl) for code and its tabs. Text inside turns light. */
+export const CODE_PANEL = 'code-panel';
+
 /** The row of tabs, with a faint divider under it. */
 export const TAB_LIST = 'tab-list';
 

@@ -155,6 +155,8 @@
   --slate-200: #e2e8f0;
   --slate-100: #f1f5f9;
   --cyan-50: #ecf7f8;
+  /* The Night Owl code theme's background. */
+  --night-owl-900: #011627;
 
   /* ──────────────────────────────────────────────────────────────────────
      LAYER 2 — SEMANTIC TOKENS
@@ -244,8 +246,15 @@
   --button-on-dark-fill: var(--white);
   --button-on-dark-ink: var(--orange-700);
   --button-on-dark-outline: var(--white);
-  /* The soft shadow under a lifted button or card on hover. */
-  --button-hover-shadow: 0 1px 3px 0 rgb(20 70 150 / 0.07), 0 2px 6px -1px rgb(20 70 150 / 0.07);
+  /* A soft blue-tinted shadow, for things that lift on hover. */
+  --shadow-soft-tint: color-mix(in srgb, var(--blue-800) 7%, transparent);
+  --shadow-soft: 0 1px 3px 0 var(--shadow-soft-tint), 0 2px 6px -1px var(--shadow-soft-tint);
+  /* Under a button as it lifts on hover. */
+  --button-hover-shadow: var(--shadow-soft);
+  /* Under a previous / next post card on hover. */
+  --post-card-hover-shadow: var(--shadow-soft);
+  /* The short arrow at the end of a text link, relative to the link text. */
+  --text-link-arrow-size: 1.125em;
   /* Icon-only utility buttons (close, copy, carousel, search). */
   --icon-button-ink: var(--slate-700);
   --icon-button-hover: var(--slate-100);
@@ -275,6 +284,8 @@
   /* Social links (Discord, GitHub, …): the neutral outline with an ink
      label. The logos keep their own brand colours. */
   --social-link-ink: var(--ink-900);
+  /* Dark code panels (Night Owl), like the GraphQL Query / Response block. */
+  --code-panel: var(--night-owl-900);
   /* Tabs on dark code panels (GraphQL Query / Response): a solid orange
      underline on the selected tab and a faint divider under the row. */
   --tab-indicator: var(--orange-500);

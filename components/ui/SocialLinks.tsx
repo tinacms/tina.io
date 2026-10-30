@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 import { SOCIAL_LINK } from '@/component/styles/links';
+import { isExternalLink } from '@/utils/isExternalLink';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import { ButtonGroup } from './Button';
 
@@ -54,8 +55,8 @@ export const SocialLinks = ({
           key={network}
           href={href}
           className={SOCIAL_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
+          target={isExternalLink(href) ? '_blank' : undefined}
+          rel={isExternalLink(href) ? 'noopener noreferrer' : undefined}
         >
           {NETWORKS[network].logo}
           {NETWORKS[network].label}

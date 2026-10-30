@@ -5,6 +5,7 @@ import {
   type ButtonLevel,
 } from '@/component/styles/buttons';
 import { cn } from '@/lib/utils';
+import { isExternalLink } from '@/utils/isExternalLink';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
 
 /**
@@ -56,7 +57,7 @@ export const LinkButton = ({
   ...props
 }: LinkButtonProps) => {
   const classes = cn(BUTTON[level], className);
-  const external = /^https?:\/\//.test(link);
+  const external = isExternalLink(link);
   const linkTarget = target ?? (external ? '_blank' : undefined);
   const linkRel =
     rel ?? (linkTarget === '_blank' ? 'noopener noreferrer' : undefined);
@@ -96,11 +97,29 @@ export const LinkButton = ({
 /** A button that opens a modal; the caller owns the dialog. */
 export const ModalButton = Button;
 
-/** A row of buttons: stacked full width on phones, side by side from sm. */
+/**
+ * A row of buttons: stacked full width on phones, side by side from sm.
+ * `fill` keeps them full width at every size; `align="center"` centres the row.
+ */
 export const ButtonGroup = ({
   children,
+  fill = false,
+  align = 'left',
   className = '',
 }: {
   children: React.ReactNode;
+  fill?: boolean;
+  align?: 'left' | 'center';
   className?: string;
-}) => <div className={cn(BUTTON_GROUP, className)}>{children}</div>;
+}) => (
+  <div
+    className={cn(
+      BUTTON_GROUP,
+      fill && 'sm:[&>*]:w-full',
+      align === 'center' && 'sm:justify-center',
+      className,
+    )}
+  >
+    {children}
+  </div>
+);

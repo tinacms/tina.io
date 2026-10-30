@@ -330,6 +330,11 @@ pre.prism-code.language-json {
    homepage terminal, read as a picture of code rather than code to read, so
    they sit smaller than CODE. 13px at every width, the one size below 14px.
    Never use it for code a reader needs. */
+/* Single-use: the command in the npx command field. IBM Plex Mono 14px at
+   every width, so the field keeps one width across breakpoints. */
+@utility role-command {
+  @apply font-mono font-normal text-sm leading-5 tracking-normal normal-case text-strong;
+}
 @utility role-code-illustration {
   @apply font-mono font-normal text-[13px] leading-relaxed tracking-normal normal-case text-strong;
 }
@@ -429,6 +434,14 @@ pre.prism-code.language-json {
     outline-offset: 2px;
   }
 }
+/* The ring on a styled control drawn after a hidden input (toggle
+   switches): it shows when the input before it has keyboard focus. */
+@utility focus-ring-peer {
+  :where(.peer):focus-visible ~ & {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
 /* The same ring drawn inside the element, for rows in a menu. */
 @utility focus-ring-inset {
   &:focus-visible {
@@ -441,8 +454,14 @@ pre.prism-code.language-json {
    each side. Hover lifts 1px with a soft shadow; pressing drops it back.
    Disabled is 60% with no hover. background-origin stops a gradient fill
    repeating into the transparent border (the edge seam). */
+/* The shape every button-sized control shares: Plex SemiBold 16, at least
+   44px tall, 8px corners, a transparent border so outlined versions line up,
+   and the focus ring. btn and pagination-item build on it. */
+@utility button-shape {
+  @apply role-button-label focus-ring inline-flex items-center justify-center min-h-11 rounded-lg border border-transparent;
+}
 @utility btn {
-  @apply role-button-label focus-ring inline-flex items-center justify-center gap-2 whitespace-nowrap min-h-11 px-6 rounded-lg border border-transparent cursor-pointer transition duration-150 ease-out;
+  @apply button-shape gap-2 whitespace-nowrap px-6 cursor-pointer transition duration-150 ease-out;
   background-origin: border-box;
   &:hover {
     translate: -1px -1px;
@@ -522,7 +541,8 @@ pre.prism-code.language-json {
   @apply role-eyebrow-link inline-flex items-center gap-1.5 py-2;
 }
 @utility arrow-link-arrow {
-  @apply h-[1.125em] w-auto -mr-1 shrink-0 rotate-180 opacity-70;
+  @apply w-auto -mr-1 shrink-0 rotate-180 opacity-70;
+  height: var(--text-link-arrow-size);
 }
 
 /* Social links (Discord, GitHub, …): button size and type in the neutral
@@ -538,10 +558,6 @@ pre.prism-code.language-json {
 @utility command-field {
   @apply neutral-outline rounded-lg shadow-sm transition-colors;
   color: var(--text-strong);
-}
-/* The command itself, in mono. */
-@utility command-label {
-  @apply font-mono text-sm;
 }
 @utility command-copy {
   background-color: var(--command-copy-fill);
@@ -614,7 +630,7 @@ pre.prism-code.language-json {
    list): button size and type in ink, a light grey fill on hover. The
    current page (aria-current="page") wears the neutral outline. */
 @utility pagination-item {
-  @apply role-button-label focus-ring inline-flex items-center justify-center gap-1 min-h-11 min-w-11 px-3 rounded-lg border border-transparent transition-colors duration-150;
+  @apply button-shape gap-1 min-w-11 px-3 transition-colors duration-150;
   color: var(--pagination-ink);
   &:hover {
     background-color: var(--pagination-hover);
@@ -629,13 +645,18 @@ pre.prism-code.language-json {
 @utility post-card {
   @apply neutral-outline focus-ring flex flex-col gap-1 rounded-lg p-4 transition duration-150 ease-out;
   &:hover {
-    box-shadow: var(--button-hover-shadow);
+    box-shadow: var(--post-card-hover-shadow);
   }
 }
 
 /* Tabs on a dark code panel (GraphQL Query / Response): flat, with a solid
    orange underline on the selected tab and the others at 70%. Use inside
    ON_DARK so the label and focus ring go white. */
+/* A dark code panel (Night Owl). Text inside turns light, like ON_DARK. */
+@utility code-panel {
+  @apply on-dark;
+  background-color: var(--code-panel);
+}
 @utility tab-list {
   @apply flex;
   border-bottom: 1px solid var(--tab-divider);

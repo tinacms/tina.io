@@ -1,17 +1,32 @@
+'use client';
+
 import Image from 'next/image';
-import { type KeyboardEvent, useRef, useState } from 'react';
-import { BiCheck, BiCopy, BiLinkExternal } from 'react-icons/bi';
+import { useRef, useState } from 'react';
+import {
+  BiCheck,
+  BiChevronRight,
+  BiCopy,
+  BiLinkExternal,
+} from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
+import { closeOnEscape } from 'utils/closeOnEscape';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { FOCUS_RING, ICON_BUTTON } from '@/component/styles/buttons';
 import {
+  COMMAND_COPY,
+  COMMAND_FIELD,
   COMMAND_MENU,
   COMMAND_MENU_ITEM,
   COMMAND_MENU_RULE,
   MENU_REVEAL,
 } from '@/component/styles/menu';
-import { BODY_MUTED, LINK, NAV_MENU_LINK } from '@/component/styles/typography';
+import {
+  BODY_MUTED,
+  COMMAND,
+  LINK,
+  NAV_MENU_LINK,
+} from '@/component/styles/typography';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
 // biome-ignore lint/complexity/noBannedTypes: <TODO>
@@ -35,11 +50,9 @@ interface CodeButtonProps
   /** TinaCMS rich text. */
   helpText?: any;
   starterTemplates?: StarterTemplate[] | null;
-  children?: React.ReactNode;
 }
 
 export const CodeButton = ({
-  children: _children,
   label,
   id,
   className = '',
@@ -47,7 +60,7 @@ export const CodeButton = ({
   starterTemplates,
   ...props
 }: CodeButtonProps) => {
-  const [_copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [showHelpText, setShowHelpText] = useState(false);
   const [isExplicitlyShown, setIsExplicitlyShown] = useState(false);
 
@@ -85,12 +98,10 @@ export const CodeButton = ({
     setIsExplicitlyShown(false);
   };
 
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Escape' && isExpanded) {
-      closeMenu();
-      fieldRef.current?.focus();
-    }
-  };
+  const handleKeyDown = closeOnEscape(isExpanded, () => {
+    closeMenu();
+    fieldRef.current?.focus();
+  });
 
   const closeButton = (
     <button
@@ -105,7 +116,7 @@ export const CodeButton = ({
 
   return (
     <div
-      className={`relative flex flex-col command-field max-w-full ${className}`}
+      className={`relative flex flex-col ${COMMAND_FIELD} max-w-full ${className}`}
       onMouseLeave={handleMouseLeave}
       onKeyDown={handleKeyDown}
     >
@@ -120,18 +131,20 @@ export const CodeButton = ({
         {...props}
       >
         <div className="group flex items-center pl-4 gap-2">
-          <span className="bash flex items-center text-lg select-none">
-            &gt;
-          </span>
-          <span className="command-label pr-2 flex flex-1 items-center mt-0.5 select-text">
+          <BiChevronRight aria-hidden="true" className="size-4.5 shrink-0" />
+          <span
+            className={`${COMMAND} pr-2 flex flex-1 items-center mt-0.5 select-text`}
+          >
             {label}
           </span>
-          <span className="relative flex items-center rounded-r-md command-copy h-full px-4 py-3">
+          <span
+            className={`relative flex items-center rounded-r-md ${COMMAND_COPY} h-full px-4 py-3`}
+          >
             <BiCopy
-              className={`w-5 h-5 duration-200 ${_copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
+              className={`w-5 h-5 duration-200 ${copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
             />
             <BiCheck
-              className={`w-5 h-5 absolute inset-0 m-auto duration-200 ${_copied ? 'rotate-0 scale-100 opacity-100' : '-rotate-180 scale-0 opacity-0'}`}
+              className={`w-5 h-5 absolute inset-0 m-auto duration-200 ${copied ? 'rotate-0 scale-100 opacity-100' : '-rotate-180 scale-0 opacity-0'}`}
             />
           </span>
         </div>
