@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useEditState } from 'tinacms/dist/react';
 import { LinkButton } from '@/component/ui/Button';
-import TinaIconSvg from '../public/svg/tina-icon.svg';
 
 const hasTinaSession = () => {
   const raw = window.localStorage.getItem('tinacms-auth');
@@ -43,8 +42,7 @@ const AdminLink = () => {
       reloadDocument
       className="shrink-0"
     >
-      <TinaIconSvg aria-hidden="true" className="h-5 w-auto fill-current" />
-      Edit ✏️
+      Edit
     </LinkButton>
   );
 };
