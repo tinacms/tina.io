@@ -9,7 +9,7 @@ prev: content/blog/2026-09-updates.mdx
 next: ''
 ---
 
-The herd has been busy again 🦙. Here's a look at October's editor improvements, reference fixes and TinaCloud updates, covering 1 to 22 October.
+The herd has been busy again 🦙. Here's a look at October's editor improvements, reference fixes and TinaCloud updates, including the improvements released on 27 October.
 
 ## 📦 TinaCMS - 3 New Features
 
@@ -29,6 +29,10 @@ The herd has been busy again 🦙. Here's a look at October's editor improvement
 
 ### 🩹 Fewer snags
 
+- **Tidier Markdown lists:** Adjacent lists save without an extra separator comment.
+- **Cleaner content files:** Empty optional image fields stay out of saved content.
+- **Image lists in rich text:** Lists of images work inside rich-text templates.
+
 - **Clearer messages:** Error dialogs have descriptive titles and help links. ([#7738](https://github.com/tinacms/tinacms/pull/7738))
 - **More accessible save status:** Screen readers can identify whether content has been saved. ([#7791](https://github.com/tinacms/tinacms/pull/7791))
 - **Better build feedback:** Indexing messages give developers more useful information when troubleshooting. ([#7786](https://github.com/tinacms/tinacms/pull/7786))
@@ -42,10 +46,19 @@ The herd has been busy again 🦙. Here's a look at October's editor improvement
 - Indexing processes more work in parallel to reduce time spent waiting on storage.
 - New-branch indexing does less repeated processing behind the scenes.
 
+- **More reliable multi-repo indexing:** Content branches use the right schema when a project spans repositories.
+
 ### 📱 A friendlier dashboard
 
 - **Easier navigation on phones:** A dropdown keeps dashboard sections within reach on smaller screens.
 - **Clearer indexing feedback:** Developers get more useful status messages when checking a build.
+
+- **Admin safeguards:** Projects retain an admin when roles are changed.
+- **Privacy controls:** The dashboard asks for consent before loading tracking in supported regions.
+
+### 🖼️ Better image caching
+
+- Browsers can reuse cached SVG, PNG and WebP assets instead of downloading them again unnecessarily.
 
 ## Keep up with socials
 
