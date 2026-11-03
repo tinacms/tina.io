@@ -3,8 +3,11 @@ import Image from 'next/image';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import {
-  BLOCK_HEADINGS_SIZE,
-  H1_HEADINGS_SIZE,
+  BODY,
+  CARD_TITLE,
+  PAGE_TITLE,
+  RICH_TEXT,
+  SECTION_TITLE,
 } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
@@ -26,13 +29,11 @@ export function ShowcaseBlock({ data, index }) {
       >
         <div className="featureText">
           {data.headline && (
-            <h3 className="text-3xl lg:text-4xl font-ibm-plex lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent mb-2">
-              {data.headline}
-            </h3>
+            <h3 className={`${CARD_TITLE} mb-2`}>{data.headline}</h3>
           )}
           {(data.text || data.actions) && <hr className="dottedBorder" />}
           {data.text && (
-            <div className="textLarge">
+            <div className={RICH_TEXT}>
               <ReactMarkdown>{data.text}</ReactMarkdown>
             </div>
           )}
@@ -99,16 +100,6 @@ export function ShowcaseBlock({ data, index }) {
           min-width: 8rem;
           justify-self: center;
           margin-top: 1rem;
-          :global(p > a) {
-            text-decoration: underline;
-            transition: all ease-out 150ms;
-            color: var(--color-tina-blue-dark);
-            text-decoration-color: var(--color-seafoam-dark);
-            &:hover {
-              color: var(--color-tina-blue);
-              text-decoration-color: var(--color-tina-blue);
-            }
-          }
           :global(p) {
             max-width: 400px;
           }
@@ -157,20 +148,16 @@ export function ShowcaseItemsBlock({ data, index }) {
       <Container>
         {data.title &&
           (data.blockSettings.isHeadingOne ? (
-            <h1
-              className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
-            >
+            <h1 className={`${PAGE_TITLE} text-center justify-center`}>
               {data.title}
             </h1>
           ) : (
-            <h2
-              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
-            >
+            <h2 className={`${SECTION_TITLE} text-center justify-center`}>
               {data.title}
             </h2>
           ))}
         {data.subText && (
-          <p className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center py-4">
+          <p className={`${BODY} max-w-60ch text-center py-4`}>
             {data.subText}
           </p>
         )}

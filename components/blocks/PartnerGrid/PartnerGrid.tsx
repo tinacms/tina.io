@@ -3,8 +3,15 @@ import Image from 'next/image';
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import {
-  BLOCK_HEADINGS_SIZE,
-  H1_HEADINGS_SIZE,
+  BODY,
+  BODY_MUTED,
+  BODY_SMALL,
+  LABEL,
+  LINK,
+  PAGE_TITLE,
+  SECTION_TITLE,
+  SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { ModalB } from '../ModalButton/ModalButton';
@@ -37,7 +44,7 @@ const PartnerCard = ({ data }) => {
             />
           ) : (
             <span
-              className="text-xl font-ibm-plex text-blue-1000"
+              className={SUB_HEADING}
               data-tina-field={tinaField(data, 'name')}
             >
               {data.name}
@@ -46,10 +53,11 @@ const PartnerCard = ({ data }) => {
         </div>
         {data.tier && (
           <span
-            className={`shrink-0 rounded-full px-3 py-1 text-sm font-medium ${
+            className={`${LABEL} shrink-0 rounded-full px-3 py-1 ${
               isPremier
-                ? 'bg-linear-to-r from-amber-200 via-yellow-300 to-amber-400 text-amber-900 shadow-sm ring-1 ring-amber-300/60'
-                : 'bg-blue-50 text-blue-700'
+                ? // Premier keeps its brand gradient (data-driven tier colour).
+                  'bg-linear-to-r from-amber-200 via-yellow-300 to-amber-400 text-amber-900 shadow-sm ring-1 ring-amber-300/60'
+                : `${SURFACE.info} border`
             }`}
             data-tina-field={tinaField(data, 'tier')}
           >
@@ -59,17 +67,14 @@ const PartnerCard = ({ data }) => {
       </div>
 
       {data.location && (
-        <p
-          className="text-sm text-neutral-text-secondary"
-          data-tina-field={tinaField(data, 'location')}
-        >
+        <p className={BODY_MUTED} data-tina-field={tinaField(data, 'location')}>
           {data.location}
         </p>
       )}
 
       {data.description && (
         <p
-          className="grow text-neutral-text-secondary"
+          className={`${BODY_SMALL} grow`}
           data-tina-field={tinaField(data, 'description')}
         >
           {data.description}
@@ -81,7 +86,7 @@ const PartnerCard = ({ data }) => {
           {data.services.map((service) => (
             <li
               key={service}
-              className="rounded-md bg-gray-100 px-3 py-1 text-sm text-gray-700"
+              className={`${SURFACE.neutral} ${LABEL} rounded-md px-3 py-1`}
             >
               {service}
             </li>
@@ -94,7 +99,7 @@ const PartnerCard = ({ data }) => {
           href={website}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-auto inline-flex items-center gap-1 font-medium text-blue-500 hover:text-blue-700"
+          className={`${BODY_SMALL} ${LINK} mt-auto inline-flex items-center gap-1`}
           data-tina-field={tinaField(data, 'website')}
         >
           {websiteLabel}
@@ -119,7 +124,7 @@ const GetInContactCard = ({ data }) => (
   <div className="flex h-full flex-col gap-4 rounded-lg border-2 border-dashed border-blue-200 bg-blue-50/40 p-6 md:p-8">
     {data.contactCardTitle && (
       <h3
-        className="text-xl font-ibm-plex text-blue-1000"
+        className={SUB_HEADING}
         data-tina-field={tinaField(data, 'contactCardTitle')}
       >
         {data.contactCardTitle}
@@ -127,7 +132,7 @@ const GetInContactCard = ({ data }) => (
     )}
     {data.contactCardText && (
       <p
-        className="grow text-neutral-text-secondary"
+        className={`${BODY_SMALL} grow`}
         data-tina-field={tinaField(data, 'contactCardText')}
       >
         {data.contactCardText}
@@ -168,20 +173,16 @@ export function PartnerGridBlock({ data, index }) {
       <Container width="wide">
         {data.title &&
           (data.blockSettings?.isHeadingOne ? (
-            <h1
-              className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
-            >
+            <h1 className={`${PAGE_TITLE} text-center justify-center`}>
               {data.title}
             </h1>
           ) : (
-            <h2
-              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
-            >
+            <h2 className={`${SECTION_TITLE} text-center justify-center`}>
               {data.title}
             </h2>
           ))}
         {data.subText && (
-          <p className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center mx-auto py-4">
+          <p className={`${BODY} max-w-60ch text-center mx-auto py-4`}>
             {data.subText}
           </p>
         )}

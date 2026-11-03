@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { CODE_ILLUSTRATION } from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
 
 type TerminalPanelProps = {
@@ -7,48 +8,48 @@ type TerminalPanelProps = {
 
 function TerminalOutput() {
   return (
-    <div className="bg-white px-5 py-4 font-mono text-[13px] leading-[1.7] text-[#374151] space-y-3">
+    <div className="bg-white px-5 py-4 space-y-3">
       <div>
-        <p>
+        <p className={CODE_ILLUSTRATION}>
           <span className="text-[#9ca3af]">$</span>{' '}
           <span className="text-[#374151]">
             npx create-tina-app@latest my-blog
           </span>
         </p>
         <div className="mt-1 space-y-0.5">
-          <p>
+          <p className={CODE_ILLUSTRATION}>
             <span className="text-[#19c332] mr-1.5">&#10003;</span>
             Creating your markdown repository...
           </p>
-          <p>
+          <p className={CODE_ILLUSTRATION}>
             <span className="text-[#19c332] mr-1.5">&#10003;</span>
             Content ready for GEO optimization
           </p>
         </div>
       </div>
       <div>
-        <p>
+        <p className={CODE_ILLUSTRATION}>
           <span className="text-[#9ca3af]">$</span>{' '}
           <span className="text-[#19c332]">echo</span>{' '}
           <span className="text-[#ec4815]">"GEO loves markdown"</span>
         </p>
         <div className="mt-1 space-y-0.5">
-          <p>
+          <p className={CODE_ILLUSTRATION}>
             <span className="text-[#9ca3af]">&gt;</span> AI-powered search
             optimization
           </p>
-          <p>
+          <p className={CODE_ILLUSTRATION}>
             <span className="text-[#9ca3af]">&gt;</span> No complex build steps
           </p>
-          <p>
+          <p className={CODE_ILLUSTRATION}>
             <span className="text-[#9ca3af]">&gt;</span> LLM compatibility:
             {'    '}
-            <span className="text-[#19c332] font-semibold">excellent</span>
+            <span className="text-[#19c332]">excellent</span>
           </p>
-          <p>
+          <p className={CODE_ILLUSTRATION}>
             <span className="text-[#9ca3af]">&gt;</span> GEO readiness:
             {'        '}
-            <span className="text-[#19c332] font-semibold">excellent</span>
+            <span className="text-[#19c332]">excellent</span>
           </p>
         </div>
       </div>
@@ -78,7 +79,7 @@ export function TerminalPanel({ secondaryImage }: TerminalPanelProps) {
             <div className="size-3 rounded-full bg-[#febc2e] border border-black/10" />
             <div className="size-3 rounded-full bg-[#19c332] border border-black/10" />
           </div>
-          <span className="text-[#acb2bc] text-sm font-medium">
+          <span className={`${CODE_ILLUSTRATION} text-[#acb2bc]`}>
             ~/my-tina-site
           </span>
         </div>
@@ -91,7 +92,7 @@ export function TerminalPanel({ secondaryImage }: TerminalPanelProps) {
                 'border border-black/10',
               )}
             />
-            <span className="text-[#19c332] text-xs font-semibold">
+            <span className={`${CODE_ILLUSTRATION} text-[#19c332]`}>
               Markdown in
             </span>
           </div>
@@ -118,7 +119,7 @@ export function TerminalPanel({ secondaryImage }: TerminalPanelProps) {
                 'border border-black/10',
               )}
             />
-            <span className="text-[#ec4815] text-xs font-semibold">
+            <span className={`${CODE_ILLUSTRATION} text-orange-500`}>
               AI + GEO ready
             </span>
           </div>

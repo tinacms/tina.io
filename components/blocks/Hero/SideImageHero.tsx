@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { BODY_TEXT, H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { BODY, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 
 // Entrance: the text rises in, then the image flies in from the right and
 // hovers. Visitors who prefer reduced motion get a short fade instead.
@@ -13,7 +13,9 @@ const FLY_IN =
 // Side image layout for the Hero block: headline and text on the left, the
 // Side Image on the right. Stacks with the image below on mobile.
 export const SideImageHero = ({ data }) => {
-  const Heading = data.blockSettings?.isHeadingOne ? 'h1' : 'h2';
+  const isPageTitle = data.blockSettings?.isHeadingOne;
+  const Heading = isPageTitle ? 'h1' : 'h2';
+  const headingRole = isPageTitle ? PAGE_TITLE : SECTION_TITLE;
 
   return (
     <section
@@ -22,7 +24,7 @@ export const SideImageHero = ({ data }) => {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 items-center gap-8 lg:gap-12">
         <div className={`flex flex-col items-start ${data.spacing || 'gap-6'}`}>
-          <Heading className={`${H1_HEADINGS_SIZE} font-ibm-plex ${RISE}`}>
+          <Heading className={`${headingRole} ${RISE}`}>
             <span
               className="block"
               data-tina-field={tinaField(data, 'headline')}
@@ -41,7 +43,7 @@ export const SideImageHero = ({ data }) => {
 
           {data.text && (
             <p
-              className={`${BODY_TEXT} max-w-xl ${RISE} motion-safe:animate-delay-200`}
+              className={`${BODY} max-w-xl ${RISE} motion-safe:animate-delay-200`}
               data-tina-field={tinaField(data, 'text')}
             >
               {data.text}

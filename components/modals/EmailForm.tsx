@@ -2,9 +2,8 @@
 import Image from 'next/image';
 import type React from 'react';
 import { useState } from 'react';
-import { ImCross } from 'react-icons/im';
-import { IoIosWarning } from 'react-icons/io';
-import { TiTick } from 'react-icons/ti';
+import { BODY, CARD_TITLE } from '@/component/styles/typography';
+import { StatusMessage, type StatusType } from '@/component/ui/StatusMessage';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import BettyWithLlama from '../../public/img/BettyWithLlama.png';
@@ -33,7 +32,10 @@ export const EmailForm = (props: EmailFormProps) => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [message, setMessage] = useState({ text: '', type: '' });
+  const [message, setMessage] = useState<{
+    text: string;
+    type: StatusType | '';
+  }>({ text: '', type: '' });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -102,29 +104,20 @@ export const EmailForm = (props: EmailFormProps) => {
             props.isFooter ? 'w-auto' : ''
           }`}
         >
-          <h2 className="inline-block lg:text-left md:text-left sm:text-center m-0 md:text-4xl font-ibm-plex lg:text-3xl text-2xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+          <h2
+            className={`inline-block lg:text-left md:text-left sm:text-center m-0 ${CARD_TITLE}`}
+          >
             Join the Herd! 🦙
           </h2>
-          <p className="text-left w-full mt-2 mb-4">
+          <p className={`text-left w-full mt-2 mb-4 ${BODY}`}>
             Become part of our coding community and stay updated with the latest
             tips and news. Learn more about the community and get llama-zing
             content delivered to your inbox!
           </p>
-          {message.text && (
-            <p
-              className={`font-ibm-plex text-sm mb-4 flex items-center gap-2 ${
-                message.type === 'success'
-                  ? 'text-green-500'
-                  : message.type === 'warning'
-                    ? 'text-orange-500'
-                    : 'text-red-500'
-              }`}
-            >
-              {message.type === 'success' && <TiTick />}
-              {message.type === 'warning' && <IoIosWarning />}
-              {message.type === 'error' && <ImCross />}
-              <span>{message.text}</span>
-            </p>
+          {message.type && (
+            <StatusMessage type={message.type} className="mb-4">
+              {message.text}
+            </StatusMessage>
           )}
           <div className="flex flex-col gap-4 md:flex-row w-full md:mb-1">
             <Input

@@ -2,6 +2,7 @@
 
 import { PlanCard } from 'components/blocks/Pricing/PlanCard';
 import { useState } from 'react';
+import { BODY_MUTED } from '@/component/styles/typography';
 import type { PageBlocksPricingPlans } from '../../tina/__generated__/types';
 
 type ComparisonPlan = Omit<
@@ -26,6 +27,7 @@ type Props = {
   labels?: Partial<typeof defaultLabels> & { annualBillingText?: string };
 };
 
+// Segmented toggles are button controls: out of scope for the type roles (#4964).
 const buttonClasses =
   'rounded-full px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600';
 
@@ -75,7 +77,7 @@ export function PricingComparison({ before, after, labels }: Props) {
           ))}
         </fieldset>
       </div>
-      <p className="mb-4 text-sm text-gray-600">{label('note')}</p>
+      <p className={`${BODY_MUTED} mb-4`}>{label('note')}</p>
       <div className="grid min-w-0 grid-cols-1 items-stretch gap-4 md:grid-cols-2">
         {plans.map((plan, index) => (
           <PlanCard

@@ -106,19 +106,6 @@ export async function formatExcerpt(
   return plainTextExcerpt;
 }
 
-export function formatDate(fullDate) {
-  const date = new Date(fullDate);
-  // normalizes UTC with local timezone
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-  const dateOptions: Intl.DateTimeFormatOptions = {
-    formatMatcher: 'best fit',
-    month: 'long',
-    year: 'numeric',
-    day: 'numeric',
-  };
-  return date.toLocaleDateString('en-US', dateOptions);
-}
-
 export const isRelevantPost = (post: { date: string; last_edited: string }) => {
   if (post.last_edited) {
     return (

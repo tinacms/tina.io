@@ -4,6 +4,7 @@ import { DynamicLink } from 'components/ui';
 import { useRouter } from 'next/navigation';
 import type React from 'react';
 import { useState } from 'react';
+import { EYEBROW_LINK, FIELD, LABEL } from '@/component/styles/typography';
 
 interface BlogPaginationProps {
   currentPage: number;
@@ -28,16 +29,16 @@ export default function NewBlogPagination({
   }
 
   return (
-    <div className="flex justify-between items-center mb-12 text-lg font-medium font-ibm-plex">
+    <div className="flex justify-between items-center mb-12">
       {/* Pagination Links */}
       <div className="flex gap-4">
         {!isFirst && (
           <DynamicLink href={prevPage}>
             <span
               onClick={() => setSelectValue(selectValue - 1)}
-              className="text-orange-600 hover:underline"
+              className={EYEBROW_LINK}
             >
-              <span className="font-bold">←</span> Newer
+              <span>←</span> Newer
             </span>
           </DynamicLink>
         )}
@@ -45,23 +46,23 @@ export default function NewBlogPagination({
           <DynamicLink href={nextPage}>
             <span
               onClick={() => setSelectValue(selectValue + 1)}
-              className="text-orange-600 hover:underline"
+              className={EYEBROW_LINK}
             >
-              Older <span className="font-bold">→</span>
+              Older <span>→</span>
             </span>
           </DynamicLink>
         )}
       </div>
 
       {/* Page Select */}
-      <div className="flex items-center gap-2">
-        <span className="text-gray-700">Page</span>
+      <div className={`${LABEL} flex items-center gap-2`}>
+        <span>Page</span>
         <div className="relative inline-block">
           <select
             aria-label="Pagination Dropdown"
             value={selectValue}
             onChange={handleSelectChange}
-            className="appearance-none border border-gray-300 rounded-md bg-light pl-2 pr-8 py-1 cursor-pointer text-orange-600 focus:outline-hidden focus:ring-2 focus:ring-orange-300"
+            className={`${FIELD} appearance-none border border-neutral-border rounded-md pl-2 pr-8 py-1 cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-(--border-brand)`}
           >
             {Array.from({ length: numPages }, (_, i) => (
               <option
@@ -75,7 +76,7 @@ export default function NewBlogPagination({
             ))}
           </select>
         </div>
-        <span className="text-gray-700">of</span> {numPages}
+        <span>of</span> {numPages}
       </div>
     </div>
   );

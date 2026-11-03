@@ -1,9 +1,7 @@
 'use client';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { FaChevronRight } from 'react-icons/fa';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { ARTICLE_TITLE, BODY, EYEBROW } from '@/component/styles/typography';
+import { ChooserCard } from '@/component/ui/ChooserCard';
 
 export type BookingItem = {
   name: string;
@@ -12,36 +10,16 @@ export type BookingItem = {
   url: string;
 };
 
-const BookingCard = ({ cardItem }) => {
-  const isValidImage = (url) => {
-    return url && (url.startsWith('http') || url.startsWith('/'));
-  };
+// Only the first step happens on this page; the other two happen in the
+// booking tool, so the stepper always shows step 1. The current step is a
+// filled brand-orange circle (3.8:1 on white) and its label reads in ink
+// (aria-current, see styles/tailwind.css). Labels are short so each fits its
+// column on a phone without wrapping.
+const BOOKING_STEPS = ['Location', 'Time', 'Your info'];
+const CURRENT_STEP = 0;
 
-  return (
-    <Link href={cardItem.url || '#'}>
-      <div className="relative mb-4 rounded-md group flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700 bg-linear-to-br from-white/25 via-white/50 to-white/75 sm:pt-1">
-        {isValidImage(cardItem.image) && (
-          <Image
-            src={cardItem.image}
-            alt={`${cardItem.name} Portrait`}
-            className="hidden md:block w-24 h-24 aspect-square object-cover rounded-full mr-4"
-            width={96}
-            height={96}
-          />
-        )}
-        <div className="grow text-center md:text-left lg:pl-4 lg:text-left">
-          <div className="font-medium text-3xl">{cardItem.name}</div>
-          <div className="text-muted-foreground text-md">
-            {cardItem.description}
-          </div>
-        </div>
-        <div className="shrink-0 sm:self-center">
-          <FaChevronRight className="h-10 w-10 text-muted-foreground pr-6" />
-        </div>
-      </div>
-    </Link>
-  );
-};
+const isValidImage = (url: string) =>
+  url && (url.startsWith('http') || url.startsWith('/'));
 
 const BookingBlock = ({ data }) => {
   const [meetingPeople, setMeetingPeople] = useState<BookingItem[]>([]);
@@ -75,51 +53,67 @@ const BookingBlock = ({ data }) => {
   return (
     <div className="flex justify-center w-full">
       <div className="lg:w-1/2 container mx-auto px-4">
-        <div className="flex justify-center mb-6 step-indicator items-center">
-          <div className="step flex flex-col items-center relative z-10">
-            <div className="step-icon w-6 h-6 border-2 border-orange-300 flex items-center justify-center rounded-full"></div>
-            <p className="text-center absolute bottom-[-20px] text-xxs md:text-xs whitespace-nowrap">
-              CHOOSE LOCATION
-            </p>
-          </div>
-          <div className="indicator-line h-0.5 w-20 md:w-40 bg-gray-300"></div>
-          <div className="step flex flex-col items-center relative z-10">
-            <div className="step-icon w-6 h-6 border-2 border-gray-300 flex items-center justify-center rounded-full"></div>
-            <p className="text-center absolute bottom-[-20px] text-xxs md:text-xs whitespace-nowrap">
-              CHOOSE TIME
-            </p>
-          </div>
-          <div className="indicator-line h-0.5 w-20 md:w-40 bg-gray-300"></div>
-          <div className="step flex flex-col items-center relative z-10">
-            <div className="step-icon w-6 h-6 border-2 border-gray-300 flex items-center justify-center rounded-full"></div>
-            <p className="text-center absolute bottom-[-20px] text-xxs md:text-xs whitespace-nowrap">
-              YOUR INFO
-            </p>
-          </div>
-        </div>
-        <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
-          {data.isHeadingOne ? (
-            <h1
-              className={`${BLOCK_HEADINGS_SIZE} w-full text-center inline-block m-0 font-ibm-plex whitespace-nowrap lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
+        {/* Three equal columns, so labels can wrap instead of colliding on
+            phones. Each step draws the half-lines either side of its circle;
+            the outer halves are transparent, so the line runs circle to
+            circle. SLUB uppercases the copy, which stays in sentence case. */}
+        <ol
+          aria-label="Booking steps"
+          className="grid grid-cols-3 w-full max-w-lg mx-auto mb-6"
+        >
+          {BOOKING_STEPS.map((step, index) => (
+            <li
+              key={step}
+              aria-current={index === CURRENT_STEP ? 'step' : undefined}
+              className="flex flex-col items-center gap-2 text-center"
             >
-              {data.title}
-            </h1>
-          ) : (
-            <h2
-              className={`${BLOCK_HEADINGS_SIZE} w-full text-center inline-block m-0 font-ibm-plex whitespace-nowrap lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
-            >
-              {data.title}
-            </h2>
-          )}
-          <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight text-black">
-            {data.description}
-          </h3>
-          {meetingPeople.map((cardItem, index) => (
-            <BookingCard
-              key={`booking-${cardItem.name}-${index}`}
-              cardItem={cardItem}
-            />
+              <span className="flex w-full items-center" aria-hidden="true">
+                <span
+                  className={`h-0.5 grow ${index === 0 ? 'bg-transparent' : 'bg-neutral-border'}`}
+                />
+                <span
+                  className={`size-6 shrink-0 rounded-full border-2 ${index === CURRENT_STEP ? 'border-brand-primary bg-brand-primary' : 'border-neutral-border'}`}
+                />
+                <span
+                  className={`h-0.5 grow ${index === BOOKING_STEPS.length - 1 ? 'bg-transparent' : 'bg-neutral-border'}`}
+                />
+              </span>
+              <span className={`${EYEBROW} px-1`}>{step}</span>
+            </li>
           ))}
+        </ol>
+        <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
+          {/* The schema has no isHeadingOne field and this block is always
+          first on its page, so its title is the h1. It sits in a narrow card,
+          so it takes ARTICLE_TITLE, a step below PAGE_TITLE. */}
+          <h1
+            className={`${ARTICLE_TITLE} w-full text-center inline-block m-0`}
+          >
+            {data.title}
+          </h1>
+          <p className={`${BODY} w-full text-center mb-6 m-0 pb-4`}>
+            {data.description}
+          </p>
+          <div className="grid gap-7 pb-4">
+            {meetingPeople.map((cardItem, index) => (
+              <ChooserCard
+                key={`booking-${cardItem.name}-${index}`}
+                href={cardItem.url || '#'}
+                name={cardItem.name}
+                description={cardItem.description}
+                image={
+                  isValidImage(cardItem.image)
+                    ? {
+                        src: cardItem.image,
+                        alt: `${cardItem.name} Portrait`,
+                        kind: 'photo',
+                      }
+                    : undefined
+                }
+                stackOnMobile
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

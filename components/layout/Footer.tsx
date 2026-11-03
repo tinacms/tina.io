@@ -1,5 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
+import {
+  BODY_MUTED,
+  EYEBROW,
+  FOOTER_LEGAL_LINK,
+  FOOTER_LINK,
+  ON_DARK,
+} from '@/component/styles/typography';
 import { TinaIcon } from '../../components/logo';
 import { DynamicLink } from '../../components/ui';
 import FooterData from '../../content/footer/Master-Footer.json';
@@ -42,7 +49,7 @@ const LinkGroup = ({
 }) => {
   return (
     <details
-      className={`inline-block drop-shadow-sm relative opacity-90 text-white text-lg lg:text-xl font-ibm-plex transition duration-150 ease-out ${
+      className={`inline-block drop-shadow-sm relative transition duration-150 ease-out ${FOOTER_LINK} ${
         isOpen ? 'open' : ''
       }`}
       open={isOpen}
@@ -74,7 +81,9 @@ export const LinkItem = ({ item }) => {
 
   return (
     <DynamicLink href={link} passHref>
-      <div className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white text-lg lg:text-xl font-ibm-plex transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
+      <div
+        className={`inline-block drop-shadow-sm relative transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px ${FOOTER_LINK}`}
+      >
         {label}
       </div>
     </DynamicLink>
@@ -108,7 +117,9 @@ export const Footer = () => {
   return (
     <footer>
       {/* Top */}
-      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-6 py-8 lg:py-12 lg:px-12 -mt-px">
+      <div
+        className={`${ON_DARK} flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-6 py-8 lg:py-12 lg:px-12 -mt-px`}
+      >
         <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
         </div>
@@ -122,9 +133,7 @@ export const Footer = () => {
                   className="flex flex-col items-stretch justify-start gap-2"
                 >
                   {hasHeader && (
-                    <p className="uppercase text-orange-100 opacity-70 font-bold -mt-1">
-                      {column.header}
-                    </p>
+                    <p className={`${EYEBROW} -mt-1`}>{column.header}</p>
                   )}
                   {column.footerItem.map((item, idx) => {
                     return item.items ? (
@@ -179,7 +188,9 @@ export const Footer = () => {
       </div>
 
       {/* Bottom */}
-      <div className="flex justify-end flex-col lg:flex-row w-full lg:items-center bg-linear-to-br from-orange-600 via-orange-800 to-orange-900 text-white px-6 py-8 lg:px-18 gap-6">
+      <div
+        className={`${ON_DARK} flex justify-end flex-col lg:flex-row w-full lg:items-center bg-linear-to-br from-orange-600 via-orange-800 to-orange-900 px-6 py-8 lg:px-18 gap-6`}
+      >
         <div className="flex drop-shadow-sm flex-wrap gap-6">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {footerLinks.map((item, _idx) => {
@@ -194,7 +205,7 @@ export const Footer = () => {
             })}
           </div>
           <div>
-            <p>
+            <p className={BODY_MUTED}>
               &copy; TinaCMS 2019–
               {new Date().getFullYear()}
             </p>
@@ -209,7 +220,7 @@ const FooterLink = ({ link, label }) => {
   return (
     <Link
       href={link}
-      className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap"
+      className={`transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] whitespace-nowrap ${FOOTER_LEGAL_LINK}`}
       passHref
     >
       {label}

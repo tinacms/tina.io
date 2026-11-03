@@ -2,9 +2,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaChevronCircleDown } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import {
+  BODY,
+  BODY_SMALL,
+  CARD_TITLE,
+  ON_DARK,
+  SUB_HEADING,
+} from '@/component/styles/typography';
 import { customHighlightCSS } from '../styles/RecipeCSS';
 import CodeBlockWithHighlightLines from '../ui/recipeComponent/RecipeCodeBlockWithHighlight';
-
 export const RecipeBlock = ({ data }) => {
   const { title, description, codeblock, code, instruction } = data;
 
@@ -102,17 +108,13 @@ export const RecipeBlock = ({ data }) => {
   return (
     <div className="recipe-block-container relative w-full">
       <div className="title-description px-10">
-        <h2 className="font-ibm-plex text-orange-500 text-2xl">
-          {title || 'Default Title'}
-        </h2>
-        <p className="font-normal py-2 text-base">
-          {description || 'Default Description'}
-        </p>
+        <h2 className={CARD_TITLE}>{title || 'Default Title'}</h2>
+        <p className={`${BODY} py-2`}>{description || 'Default Description'}</p>
       </div>
 
       <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">
         <div
-          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh shrink-0 grow rounded-tl-xl rounded-br-xl lg:rounded-br-none rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col"
+          className={`instructions ${ON_DARK} bg-gray-800 relative lg:w-1/3 max-h-50vh shrink-0 grow rounded-tl-xl rounded-br-xl lg:rounded-br-none rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col`}
           ref={instructionBlockRefs}
           style={{
             height:
@@ -140,7 +142,7 @@ export const RecipeBlock = ({ data }) => {
                 ref={(el) => {
                   instructionRefs.current[idx] = el;
                 }}
-                className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800 text-white 
+                className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800
                 ${clickedInstruction === idx ? 'bg-slate-600' : ''}`}
                 onClick={() =>
                   handleInstructionClick(
@@ -150,7 +152,7 @@ export const RecipeBlock = ({ data }) => {
                   )
                 }
               >
-                <h5 className="font-ibm-plex">{`${idx + 1}. ${
+                <h5 className={SUB_HEADING}>{`${idx + 1}. ${
                   inst.header || 'Default Header'
                 }`}</h5>
                 <div
@@ -160,18 +162,18 @@ export const RecipeBlock = ({ data }) => {
                       : 'duration-0 max-h-0 opacity-0'
                   }`}
                 >
-                  <span className="mt-2">
+                  <span className={`${BODY_SMALL} mt-2`}>
                     {inst.itemDescription || 'Default Item Description'}
                   </span>
                 </div>
               </div>
-            )) || <p>No instructions available.</p>}
+            )) || <p className={BODY}>No instructions available.</p>}
           </div>
         </div>
 
         <div
           ref={codeblockRef}
-          className="codeblock bg-gray-800 lg:w-2/3 max-h-50vh overflow-auto lg:rounded-tr-xl rounded-bl-xl lg:rounded-bl-none rounded-br-xl "
+          className={`codeblock ${ON_DARK} bg-gray-800 lg:w-2/3 max-h-50vh overflow-auto lg:rounded-tr-xl rounded-bl-xl lg:rounded-bl-none rounded-br-xl`}
         >
           {code ? (
             <CodeBlockWithHighlightLines
@@ -193,7 +195,7 @@ export const RecipeBlock = ({ data }) => {
               }}
             />
           ) : (
-            <p>No code block available.</p>
+            <p className={BODY}>No code block available.</p>
           )}
         </div>
       </div>

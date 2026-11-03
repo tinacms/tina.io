@@ -41,21 +41,6 @@ export const RecentNewsBanner = ({
     recentNewsBanner.badge?.position === 'top right'
       ? 'top'
       : 'inline';
-  const getTextColorClass = (bgColor?: BadgeColor) => {
-    switch (bgColor) {
-      case 'blue':
-        return 'text-transparent from-white via-brand-secondary bg-white to-white';
-      case 'orange':
-        return 'text-transparent from-white via-brand-primary-light bg-white to-white';
-      case 'ghostBlue':
-        return 'text-transparent bg-brand-secondary from-brand-secondary via-brand-secondary-light to-brand-secondary';
-      case 'ghostOrange':
-        return 'text-transparent bg-brand-primary from-brand-primary via-brand-primary-light to-brand-primary';
-      default:
-        return 'text-transparent bg-brand-secondary-gradient-start from-brand-secondary-gradient-start via-brand-secondary to-brand-secondary-gradient-start';
-    }
-  };
-
   return (
     <Badge
       color={recentNewsBanner.backgroundColor as BadgeColor}
@@ -79,7 +64,7 @@ export const RecentNewsBanner = ({
             size="small"
             color={recentNewsBanner.badge?.color as BadgeColor}
             className={cn(
-              'uppercase absolute text-[10px] -top-3 flex items-center gap-1',
+              'absolute -top-3 flex items-center gap-1',
               recentNewsBanner.badge?.position === 'top left'
                 ? '-left-2.5'
                 : '-right-2.5',
@@ -103,7 +88,7 @@ export const RecentNewsBanner = ({
               <Badge
                 color={recentNewsBanner.badge?.color as BadgeColor}
                 size="medium"
-                className="uppercase text-xs self-stretch flex items-center gap-1"
+                className="self-stretch flex items-center gap-1"
                 dataTinaField={tinaField(recentNewsBanner?.badge, 'text')}
               >
                 {BadgeIconComponent && (
@@ -117,7 +102,7 @@ export const RecentNewsBanner = ({
 
           <AnimatedShinyText
             className={cn(
-              'flex items-center @max-lg:text-xs gap-2 text-sm',
+              'flex items-center gap-2',
               badgePositionType === 'inline' &&
                 recentNewsBanner.badge?.position === 'left' &&
                 'pr-2',
@@ -127,7 +112,6 @@ export const RecentNewsBanner = ({
               (badgePositionType === 'top' ||
                 !recentNewsBanner.badge?.position) &&
                 'px-2',
-              getTextColorClass(recentNewsBanner.backgroundColor as BadgeColor),
             )}
           >
             <span className="inline-flex gap-2 md:text-nowrap items-center">

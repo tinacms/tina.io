@@ -2,6 +2,12 @@ import DocsRichText from 'components/styles/DocsRichText';
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
+import {
+  BODY,
+  CODE,
+  ON_DARK,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
 import { Prism } from '../../styles/Prism';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
@@ -198,7 +204,7 @@ const Pane = ({ data, position, ...props }) => {
     <>
       <div
         {...props}
-        className={`pane text-xs sm:text-sm lg:text-base ${
+        className={`pane ${
           data.basePosition ? data.basePosition : ''
         } ${position}`}
         style={{
@@ -210,17 +216,16 @@ const Pane = ({ data, position, ...props }) => {
         {data.file && (
           <div className="flex flex-col justify-start items-start">
             {data.file.name && (
-              <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-blue-800 bg-linear-to-tl from-blue-800 to-blue-900 px-7 py-3 font-ibm-plex">
+              <div
+                className={`${ON_DARK} ${CODE} inline-block rounded-t-lg overflow-hidden border-2 border-b-0 border-blue-800 bg-linear-to-tl from-blue-800 to-blue-900 px-7 py-3`}
+              >
                 {data.file.name}
               </div>
             )}
             <div
               className={`file relative ${
                 data.file.name ? 'rounded-lg rounded-tl-none' : 'rounded-lg'
-              } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-linear-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
-              style={{
-                fontSize: `${1.25 * (data.file.textScale ? data.file.textScale : 1)}em`,
-              }}
+              } overflow-hidden w-full border-2 border-blue-800 bg-linear-to-br from-blue-800 via-blue-900 to-blue-700 shadow-panel`}
             >
               <CodeWrapper>
                 <div className="[&>pre]:bg-transparent! [&>pre]:border-none! rounded-xl">
@@ -331,12 +336,8 @@ const Pane = ({ data, position, ...props }) => {
         /* Code Styles */
 
         :global(.hljs) {
-          font-size: unquote('clamp(0.75em,0.676em + 0.37vw, 1em)			');
           padding: 1.5em;
           color: var(--blue-250);
-          font-weight: medium;
-          font-family: SFMono-Regular, Menlo, Monaco, Consolas,
-            'Liberation Mono', 'Courier New', monospace;
           text-shadow: 0 0 7px rgba(var(--blue-250-rgb), 0.15),
             0 0 12px rgba(var(--blue-250-rgb), 0.2),
             0 0 32px rgba(var(--blue-250-rgb), 0.3);
@@ -415,12 +416,10 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
         </div>
         <div className="drop-shadow-sm flex flex-col gap-6 lg:gap-8" ref={ref}>
           <div className="title-wrapper">
-            <h2 className="font-ibm-plex inline-block text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
-              {item.title}
-            </h2>
+            <h2 className={`${SECTION_TITLE} inline-block`}>{item.title}</h2>
           </div>
           <hr className="my-0!" />
-          <p className="text-lg lg:text-xl lg:leading-normal block bg-linear-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-prose">
+          <p className={`${BODY} block -mb-2 max-w-prose`}>
             {item.description}
           </p>
           <div className="-mx-0.5">

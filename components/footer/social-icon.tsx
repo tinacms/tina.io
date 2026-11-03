@@ -26,7 +26,7 @@ const WeChatIcon = ({ socialLink }) => {
   return (
     <div className="relative group">
       <button
-        className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 font-ibm-plex cursor-pointer"
+        className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 cursor-pointer"
         aria-label="WeChat QR Code"
         type="button"
       >
@@ -58,7 +58,7 @@ const WeChatIcon = ({ socialLink }) => {
 const SocialLink = ({ link, children }) => {
   return (
     <a
-      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 font-ibm-plex"
+      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2"
       href={link || ''}
       target="_blank"
       rel="noopener noreferrer"

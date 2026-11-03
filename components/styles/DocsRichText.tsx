@@ -1,13 +1,14 @@
 import { css } from 'styled-components';
 
-/* Styles rich text (markdown output).
-   Use the RichTextWrapper component to easily apply these styles,
-   or add the css via ${RichText} to a component
-*/
+/* Layout for rich text in Content, Columns, Features and legal-page blocks:
+   spacing, wrapping, borders and media. Type comes from the RICH_TEXT class
+   (styles/tailwind.css), which maps bare headings, paragraphs, links, code and
+   table cells onto the type roles — so nothing here sets a font, size, weight,
+   line height or text colour. Use the DocsTextWrapper component, which applies
+   both. */
 
 const DocsRichText = css`
-  /* Linewrap Fix */
-
+  /* Long words and URLs wrap instead of overflowing */
   h1,
   h2,
   h3,
@@ -18,13 +19,9 @@ const DocsRichText = css`
   li,
   a {
     overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-all;
     word-break: break-word;
     hyphens: auto;
   }
-
-  /* Spacing */
 
   h1,
   h2,
@@ -32,6 +29,7 @@ const DocsRichText = css`
   h4,
   h5,
   h6 {
+    position: relative;
     padding-top: 1rem;
     margin: 1rem 0 1.5rem 0;
     &:first-child {
@@ -62,119 +60,25 @@ const DocsRichText = css`
     margin-bottom: 1.5rem;
   }
 
+  ul {
+    list-style-type: disc;
+  }
+
   li {
     margin-bottom: 0.5rem;
   }
 
-  /* Styling */
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    position: relative;
-    font-family: var(--font-ibm-plex);
-    font-weight: regular;
-    font-style: normal;
-    em {
-      font-style: normal;
-    }
-  }
-
-  h1,
-  .h1,
-  h2,
-  .h2,
-  h3,
-  .h3,
-  h4,
-  .h4 {
-    line-height: 1.3;
-    letter-spacing: 0.1px;
-    color: var(--color-secondary-dark);
-  }
-
-  h1,
-  .h1,
-  h2,
-  .h2 {
-    font-weight: bold;
-    color: var(--color-orange);
-    em {
-      color: var(--color-orange);
-      font-style: italic;
-    }
-  }
-
-  h3,
-  .h3,
-  h4,
-  .h4 {
-    color: var(--color-secondary);
-    em {
-      color: var(--color-secondary);
-      font-style: italic;
-    }
-  }
-
-  h1,
-  .h1 {
-    font-size: 2rem;
-    @media (min-width: 1200px) {
-      font-size: 2.5rem;
-    }
-  }
-
-  h2,
-  .h2 {
-    font-size: 1.5rem;
-    @media (min-width: 1200px) {
-      font-size: 1.625rem;
-    }
-  }
-
-  h3,
-  .h3 {
-    font-size: 1.3125rem;
-  }
-
-  h4,
-  .h4 {
-    font-size: 1.125rem;
-  }
-
-  p {
-    font-size: 16px;
-    color: var(--color-secondary-dark);
-
-    @media (min-width: 685px) {
-      font-size: 18px;
-    }
-
-    img {
-      display: block;
-      margin: 1.5rem auto;
-      border-radius: 5px;
-      border-width: 1px;
-      border-style: solid;
-      border-color: rgb(237, 238, 238);
-      border-image: initial;
-      overflow: hidden;
-    }
+  p img,
+  iframe {
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 5px;
+    border: 1px solid rgb(237, 238, 238);
+    overflow: hidden;
   }
 
   iframe {
     max-width: 100%;
-    display: block;
-    margin: 1.5rem auto;
-    border-radius: 5px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(237, 238, 238);
-    border-image: initial;
-    overflow: hidden;
   }
 
   iframe.wide {
@@ -185,23 +89,8 @@ const DocsRichText = css`
     transform: translate3d(-50%, 0, 0);
   }
 
-  a:not([class]) {
-    color: inherit;
-    opacity: 0.8;
-    text-decoration: underline rgba(0, 0, 0, 0.3);
-    transition: all 185ms ease-out;
-
-    &:hover,
-    &:focus {
-      opacity: 1;
-      color: var(--color-orange);
-      text-decoration-color: var(--color-orange);
-    }
-  }
-
   blockquote {
     display: block;
-    font-size: 1.125rem;
     background-color: var(--color-seafoam);
     border: 1px solid var(--color-seafoam-dark);
     border-left-width: 6px;
@@ -210,23 +99,17 @@ const DocsRichText = css`
   }
 
   li blockquote {
-    display: block;
     border: none;
     border-radius: 0;
     background: none;
     padding: 0 0 0 1rem;
     border-left: 1px solid var(--color-seafoam-dark);
     margin: -1rem 0 1.5rem 0 !important;
-
-    a {
-      font-size: 1rem;
-    }
   }
 
   hr {
     display: block;
     border: none;
-    border-image: initial;
     background: url('/svg/hr.svg');
     background-size: auto 100%;
     background-repeat: no-repeat;
@@ -235,90 +118,44 @@ const DocsRichText = css`
     margin: 2rem 0px;
   }
 
-  strong {
-    font-weight: bold;
-  }
-
-  ul {
-    list-style-type: disc;
-  }
-
-  li {
-    font-size: 1.125rem;
-    color: var(--color-secondary-dark);
-  }
-
-  *:not(pre) > code {
-    padding: 0.1em 0.2em;
-    border-radius: 0.3em;
-    background-color: var(--color-light);
-    border: 1px solid var(--color-light-dark);
-    border-radius: 0.3rem;
-    color: var(--color-orange);
-    font-size: 1em;
-    line-height: inherit;
-  }
-
   pre {
-    background-color: var(--color-light);
-    border: 1px solid var(--color-light-dark);
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    background-color: var(--neutral-background);
+    border: 1px solid var(--neutral-border-subtle);
     text-align: left;
     word-spacing: normal;
     word-break: normal;
     overflow-wrap: normal;
-    line-height: 1.5;
     tab-size: 4;
     hyphens: none;
     padding: 1em;
     margin: 0.5em 0px;
     overflow: auto;
     border-radius: 0.3rem;
-    /* fix wrapping issues breaking layout */
+    /* Wrap long lines instead of breaking the layout */
     white-space: pre-wrap !important;
-    white-space: -moz-pre-wrap !important;
-    white-space: -pre-wrap !important;
-    white-space: -o-pre-wrap !important;
     word-wrap: break-word !important;
     code {
       white-space: pre-wrap !important;
-      white-space: -moz-pre-wrap !important;
-      white-space: -pre-wrap !important;
-      white-space: -o-pre-wrap !important;
       word-wrap: break-word !important;
     }
   }
 
   table {
     width: 100%;
-    line-height: 1.375;
   }
 
-  tr {
-    &:nth-child(even) {
-      background-color: var(--color-light);
-    }
+  tr:nth-child(even) {
+    background-color: var(--neutral-background);
   }
 
   th,
   td {
     padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid var(--neutral-border-subtle);
   }
 
   th {
-    border-bottom: 3px solid var(--color-light-dark);
-    font-family: var(--font-ibm-plex);
-    font-weight: regular;
-    font-style: normal;
-    color: var(--color-orange);
-    letter-spacing: 0.5px;
-    font-size: 1.125rem;
-    line-height: 1.3;
-    letter-spacing: 0.1px;
-  }
-
-  td {
-    border-bottom: 1px solid var(--color-light-dark);
+    border-bottom-width: 3px;
   }
 
   .callout {
@@ -348,13 +185,10 @@ const DocsRichText = css`
     }
 
     h3 {
-      color: var(--color-orange);
-      font-size: 1.5rem;
       margin-bottom: 1.25rem;
     }
 
     p {
-      font-size: 1rem;
       margin: 0 0 1.375rem 0;
     }
 
@@ -369,11 +203,11 @@ const DocsRichText = css`
     }
   }
 
+  /* A button, not text: buttons are out of scope for the type roles (#4964). */
   .calloutButton {
     flex: 0 0 auto;
     position: relative;
     text-decoration: none;
-    color: inherit;
     font-size: 1.125rem;
     line-height: 1;
     font-weight: bold;

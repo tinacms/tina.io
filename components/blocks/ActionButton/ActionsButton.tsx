@@ -1,7 +1,13 @@
+import Link from 'next/link';
 import { BiArrowBack } from 'react-icons/bi';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
+import { EYEBROW_LINK } from '@/component/styles/typography';
 import { FlushButton, LinkButton } from '../../ui';
+
+// Ghost Blue has no fill and no border, so it is a standalone text link
+// (“READ MORE →”) and takes EYEBROW_LINK. The other variants stay buttons (#4964).
+const TEXT_LINK_VARIANT = 'ghostBlue';
 
 export const Actions = ({
   items,
@@ -31,6 +37,24 @@ export const Actions = ({
             const externalUrlPattern = /^((http|https|ftp):\/\/)/;
             const external = externalUrlPattern.test(url);
             const link = url || '#';
+            if (variant === TEXT_LINK_VARIANT) {
+              return (
+                <Link
+                  key={sanitizeLabel(label) || `action-link-${index}`}
+                  id={sanitizeLabel(label)}
+                  href={link}
+                  target={external ? '_blank' : '_self'}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                  data-tina-field={tinaField(item, 'label')}
+                  className={`${EYEBROW_LINK} inline-flex items-center gap-1.5 py-2 ${className}`}
+                >
+                  {label}
+                  {icon && (
+                    <BiArrowBack className="h-[1.125em] w-auto rotate-180" />
+                  )}
+                </Link>
+              );
+            }
             return (
               <ActionButton
                 key={sanitizeLabel(label) || `action-button-${index}`}

@@ -27,6 +27,35 @@
       "items": [
         {
           "icon": "FaRegCheckCircle",
+          "heading": "媒体管理器的编辑工作流支持\n",
+          "content": "我们正在为媒体管理器加入编辑工作流支持，让媒体变更也能走与内容编辑相同的基于分支的流程。\n",
+          "actions": [
+            {
+              "label": "GitHub 讨论 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/7002"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "改进媒体管理体验\n",
+          "content": "我们的清单上还有若干媒体管理方面的改进（图片搜索、支持更多媒体类型等）。\n",
+          "actions": [
+            {
+              "label": "GitHub 讨论 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/4476"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
           "heading": "TinaCloud —— 项目洞察\n",
           "content": "我们正在为 TinaCloud 控制台加入新的分析能力，帮助团队了解内容是如何演进的。这些洞察会展示谁做了修改、哪些文件被更新，以及活跃度随时间的变化趋势，让团队对自己的内容工作流有更清晰的视野。\n"
         },
@@ -197,21 +226,6 @@
       "items": [
         {
           "icon": "FaHourglassHalf",
-          "heading": "媒体管理器的编辑工作流支持\n",
-          "content": "我们正在为媒体管理器加入编辑工作流支持，让媒体变更也能走与内容编辑相同的基于分支的流程。\n",
-          "actions": [
-            {
-              "label": "GitHub 讨论 🔗",
-              "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/discussions/7002"
-            }
-          ]
-        },
-        {
-          "icon": "FaHourglassHalf",
           "heading": "TinaCloud 性能\n",
           "content": "改进我们的内容 API —— 更快的内容读取响应时间。这将缩短静态站点的构建时间，让部署更迅速。对于企业客户，我们还在增加数据隔离，确保其数据与其他账户分离，以获得更好的安全性和可扩展性。\n",
           "actions": [
@@ -221,20 +235,6 @@
               "variant": "default",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/discussions/5576"
-            }
-          ]
-        },
-        {
-          "icon": "FaHourglassHalf",
-          "heading": "改进媒体管理体验\n",
-          "content": "我们的清单上还有若干媒体管理方面的改进（图片搜索、支持更多媒体类型等）。\n",
-          "actions": [
-            {
-              "label": "GitHub 讨论 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/discussions/4476"
             }
           ]
         },

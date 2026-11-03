@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import type { PageType } from 'utils/hasChineseVersion';
 import { hasChineseVersion } from 'utils/hasChineseVersion';
+import { SURFACE } from '@/component/styles/typography';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export function LanguageSupportAlert() {
@@ -62,11 +63,11 @@ export function LanguageSupportAlert() {
   return (
     <div className="fixed bottom-3 left-3 z-50 max-w-md">
       <Alert
-        variant="default"
-        className="bg-yellow-100 border-yellow-400 text-yellow-800 cursor-pointer transition-opacity relative pr-8"
+        variant="surface"
+        className={`${SURFACE.warning} cursor-pointer transition-opacity relative pr-8`}
       >
-        <AlertTriangle className="h-4 w-4 text-yellow-600" />
-        <AlertTitle className="font-medium mb-3">
+        <AlertTriangle className="h-4 w-4" />
+        <AlertTitle className="mb-3">
           <span className="mr-2">警告</span>
           <span>Warning</span>
         </AlertTitle>
@@ -84,7 +85,7 @@ export function LanguageSupportAlert() {
           aria-label="Close"
           style={{ padding: 2 }}
         >
-          <X className="h-4 w-4 text-yellow-600" />
+          <X className="h-4 w-4" />
         </button>
       </Alert>
     </div>

@@ -27,6 +27,35 @@
       "items": [
         {
           "icon": "FaRegCheckCircle",
+          "heading": "Editorial Workflow Support for Media Manager\n",
+          "content": "We're adding Editorial Workflow support to the Media Manager, enabling media changes to go through the same branch-based workflow as content edits.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/7002"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "Improving Media Management UX\n",
+          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc).\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/4476"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
           "heading": "TinaCloud - Project Insights\n",
           "content": "We’re adding new analytics to the TinaCloud portal to help teams understand how their content is evolving. These insights show who is making changes, which files are being updated, and how activity trends over time — giving teams clearer visibility into their content workflows.\n"
         },
@@ -197,21 +226,6 @@
       "items": [
         {
           "icon": "FaHourglassHalf",
-          "heading": "Editorial Workflow Support for Media Manager\n",
-          "content": "We're adding Editorial Workflow support to the Media Manager, enabling media changes to go through the same branch-based workflow as content edits.\n",
-          "actions": [
-            {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
-              "shape": "pill",
-              "variant": "default",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/discussions/7002"
-            }
-          ]
-        },
-        {
-          "icon": "FaHourglassHalf",
           "heading": "TinaCloud Performance\n",
           "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security and scalability.\n",
           "actions": [
@@ -221,20 +235,6 @@
               "variant": "default",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/discussions/5576"
-            }
-          ]
-        },
-        {
-          "icon": "FaHourglassHalf",
-          "heading": "Improving Media Management UX\n",
-          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc).\n",
-          "actions": [
-            {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/discussions/4476"
             }
           ]
         },
