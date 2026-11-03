@@ -11,15 +11,13 @@ next: ''
 
 The herd has been busy again 🦙. Here's a look at October's editor improvements, reference fixes and TinaCloud updates, including the improvements released on 27 October.
 
-## 📦 TinaCMS - 3 New Features
+## 📦 TinaCMS Updates
 
-### 🎨 Lots of CMS editor improvements
+### 🎨 TinaCMS 3.15 brings some handy changes to the everyday editing experience
 
-[TinaCMS 3.15.0](https://github.com/tinacms/tinacms/releases/tag/tinacms%403.15.0) brings a few handy changes to everyday editing:
-
-- **Text colour:** Add colour to rich text with the new Text Color dropdown beside Highlight. Developers can customise the palette. See the [setup guide](https://tina.io/docs/reference/types/rich-text#text-color). ([#7683](https://github.com/tinacms/tinacms/pull/7683))
+- **Text colour:** Add colour to rich text with the new Text Color dropdown (next to Highlight). Developers can customise the palette. Check out the [setup guide](https://tina.io/docs/reference/types/rich-text#text-color) for more info. ([#7683](https://github.com/tinacms/tinacms/pull/7683))
 - **24-hour time picker:** Date fields follow your chosen time format, including a 24-hour clock. ([#7798](https://github.com/tinacms/tinacms/pull/7798))
-- **Readable field descriptions:** Longer descriptions wrap onto another line, so editors can read the full instructions. ([#7734](https://github.com/tinacms/tinacms/pull/7734))
+- **Readable field descriptions:** Longer descriptions wrap onto another line. ([#7734](https://github.com/tinacms/tinacms/pull/7734))
 
 ### 🔗 References that keep up
 
@@ -32,27 +30,24 @@ The herd has been busy again 🦙. Here's a look at October's editor improvement
 - **Tidier Markdown lists:** Adjacent lists save without an extra separator comment.
 - **Cleaner content files:** Empty optional image fields stay out of saved content.
 - **Image lists in rich text:** Lists of images work inside rich-text templates.
-
 - **Clearer messages:** Error dialogs have descriptive titles and help links. ([#7738](https://github.com/tinacms/tinacms/pull/7738))
 - **More accessible save status:** Screen readers can identify whether content has been saved. ([#7791](https://github.com/tinacms/tinacms/pull/7791))
 - **Better build feedback:** Indexing messages give developers more useful information when troubleshooting. ([#7786](https://github.com/tinacms/tinacms/pull/7786))
 
-**Developer note:** TinaCMS 3.15.0 requires React 18 or later. Check the [release notes](https://github.com/tinacms/tinacms/releases/tag/tinacms%403.15.0) before upgrading.
+**Developer note:** TinaCMS 3.15 requires React 18 or later. Check the [release notes](https://github.com/tinacms/tinacms/releases/tag/tinacms%403.15.0) before upgrading.
 
-## ☁️ TinaCloud
+## ☁️ TinaCloud Updates
 
 ### ⚡ Faster indexing
 
 - Indexing processes more work in parallel to reduce time spent waiting on storage.
 - New-branch indexing does less repeated processing behind the scenes.
-
 - **More reliable multi-repo indexing:** Content branches use the right schema when a project spans repositories.
 
 ### 📱 A friendlier dashboard
 
 - **Easier navigation on phones:** A dropdown keeps dashboard sections within reach on smaller screens.
 - **Clearer indexing feedback:** Developers get more useful status messages when checking a build.
-
 - **Admin safeguards:** Projects retain an admin when roles are changed.
 - **Privacy controls:** The dashboard asks for consent before loading tracking in supported regions.
 
