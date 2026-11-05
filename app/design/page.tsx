@@ -273,7 +273,10 @@ export default function StyleGuidePage() {
           Use this page to pick the type role, colour and button level for
           anything on tina.io. Each example uses the same code as the live site.
         </p>
-        <nav aria-label="Style guide sections" className="mt-6 flex gap-8">
+        <nav
+          aria-label="Style guide sections"
+          className="mt-6 flex flex-wrap gap-x-8 gap-y-2"
+        >
           <a className={EYEBROW_LINK} href="#typography">
             Typography
           </a>
@@ -655,7 +658,7 @@ export default function StyleGuidePage() {
         <Group
           id="segmented-toggles"
           title="Segmented toggles"
-          intro="SegmentedToggle: one choice from two or three short options, like Monthly / Annually. A frosted pill track, link-blue options, and a Secondary blue thumb that slides under the selected one. Each option is a pressed button."
+          intro="SegmentedToggle: one choice from two or three short options, like Monthly / Annually. A frosted track with square corners, link-blue options, and a Secondary blue thumb that slides under the selected one. Each option is a pressed button."
         >
           <SegmentedToggleExample />
         </Group>

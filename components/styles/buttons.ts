@@ -32,7 +32,7 @@ export const FOCUS_RING_PEER = 'focus-ring-peer';
 /** The neutral outline: white, a light slate border that darkens on hover. Not a button level. */
 export const NEUTRAL_OUTLINE = 'neutral-outline';
 
-/** A segmented toggle's pill track. Use the SegmentedToggle component. */
+/** A segmented toggle's frosted track. Use the SegmentedToggle component. */
 export const SEGMENTED_TRACK = 'segmented-track';
 
 /** An option in a segmented toggle: link blue, white when selected (aria-pressed). */

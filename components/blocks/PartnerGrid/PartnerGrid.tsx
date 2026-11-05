@@ -116,7 +116,7 @@ const CONTACT_BUTTON = {
   label: 'Contact us',
   modal: 'ContactForm.tsx',
   // The card's only action, so it's the Primary.
-  variant: 'primary',
+  color: 'primary',
 };
 
 // Always the last card: the directory only lists partners who opted in, so a

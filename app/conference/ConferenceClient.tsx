@@ -63,7 +63,7 @@ const HeaderBanner = ({
           )}
         </div>
       </div>
-      <ButtonGroup>
+      <ButtonGroup className="w-full sm:w-auto">
         {tinaData?.rightButton?.link && (
           <LinkButton link={tinaData.rightButton.link} target="_blank">
             {tinaData?.rightButton?.title}

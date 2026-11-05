@@ -62,13 +62,13 @@ export const HeroFeature = ({ item, spacing, children }) => {
       )}
       {/* Skipped entirely when there are no buttons — the row's own pb-10 would
           otherwise leave a dead gap under a text-only hero. */}
-      {/* items-center on mobile: the column's cross axis is horizontal, so
-          items-start pinned the buttons left under a centred headline. */}
+      {/* Phones stretch each button to full width, like other button groups;
+          from sm up they centre under the headline. */}
       {item.buttons?.length > 0 && (
         // One button stays centred at tablet width; the two-column grid is
         // only for rows of two or more.
         <div
-          className={`flex flex-col ${item.buttons.length > 1 ? 'md:grid md:grid-cols-2 md:items-start' : ''} lg:flex lg:flex-row justify-center items-center lg:items-center gap-4 md:gap-10 pb-10`}
+          className={`flex flex-col ${item.buttons.length > 1 ? 'md:grid md:grid-cols-2 md:items-start' : ''} lg:flex lg:flex-row justify-center items-stretch sm:items-center lg:items-center gap-4 pb-10`}
         >
           {/* Tina's button objects have no `id`, so key on the label. */}
           {item.buttons.map((button, index) => (
