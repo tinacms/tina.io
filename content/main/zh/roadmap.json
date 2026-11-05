@@ -284,6 +284,11 @@
               "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
             }
           ]
+        },
+        {
+          "icon": "FaRegClock",
+          "heading": "TinaCloud 审计日志\n",
+          "content": "我们正在为 TinaCloud 上 Business 和 Enterprise 套餐的组织加入审计日志。组织所有者将可以在控制台页面或通过 API 查看谁添加或移除了用户、项目或密钥，操作发生的时间，以及操作来自哪个 IP 地址。\n"
         }
       ],
       "options": {

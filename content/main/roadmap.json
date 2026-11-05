@@ -287,6 +287,11 @@
               "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
             }
           ]
+        },
+        {
+          "icon": "FaRegClock",
+          "heading": "TinaCloud - Auditing\n",
+          "content": "We’re adding an audit log to TinaCloud for Business and Enterprise organizations. Owners will be able to see who added or removed a user, project or secret, when it happened, and which IP address it came from, on a dashboard page or through an API.\n"
         }
       ],
       "options": {
