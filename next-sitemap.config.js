@@ -5,16 +5,39 @@ module.exports = {
     policies: [
       {
         userAgent: '*',
-        disallow: ['/api/*', '/github/*', '/rss.xml', '/blog/page/*'],
+        disallow: [
+          '/api/*',
+          '/github/*',
+          '/rss.xml',
+          '/blog/page/*',
+          '/design',
+        ],
       },
       { userAgent: '*', allow: '/' },
     ],
     additionalSitemaps: [
       'https://tina.io/tinadocs/sitemap.xml',
       'https://tina.io/tinadocs/doc/sitemap.xml',
+      'https://tina.io/docs/sitemap.xml',
     ],
   },
-  exclude: ['/api/*', '/github/*', '/rss.xml', '/blog/page/*'],
+  exclude: [
+    '/api/*',
+    '/github/*',
+    '/rss.xml',
+    '/blog/page/*',
+    '/blog/og/*',
+    '/blog/instagram/*',
+    '/zh/blog/og/*',
+    '/zh/blog/instagram/*',
+    // Internal type reference; noindex until the team decides to publish it.
+    '/design',
+    // Docs now live in a separate instance at tina.io/docs; see its own sitemap above.
+    '/docs',
+    '/docs/*',
+    '/zh/docs',
+    '/zh/docs/*',
+  ],
   sitemapSize: 7000,
   transform: async (_config, path) => {
     const listOfMinorPaths = [
@@ -32,7 +55,14 @@ module.exports = {
       return {
         loc: '/',
         changefreq: 'daily',
-        priority: 0.7,
+        priority: 1.0,
+      };
+    }
+    if (path === '/zh/home') {
+      return {
+        loc: '/zh',
+        changefreq: 'daily',
+        priority: 1.0,
       };
     }
     if (path === '/') {
@@ -40,13 +70,6 @@ module.exports = {
         loc: path,
         changefreq: 'daily',
         priority: 1.0,
-      };
-    }
-    if (path.indexOf('/docs/') > -1) {
-      return {
-        loc: path,
-        changefreq: 'weekly',
-        priority: 0.5,
       };
     }
     if (path.indexOf('/guides/') > -1) {

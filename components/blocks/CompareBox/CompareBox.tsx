@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
@@ -7,10 +8,17 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import css from 'styled-jsx/css';
 import { tinaField } from 'tinacms/dist/react';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { ICON_BUTTON } from '@/component/styles/buttons';
+import {
+  BODY,
+  BODY_SMALL,
+  ON_DARK,
+  SECTION_TITLE,
+  SUB_HEADING,
+} from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 import { splitOneAndJoin } from './CompareBox.template';
 
-//Function to use alpha values to create a background gradient with any input hex colour
 function hexToRgba(hex, alpha) {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -21,7 +29,6 @@ function hexToRgba(hex, alpha) {
 const commonHeightStyle = {
   height: '50px',
   marginBottom: '8px',
-  lineHeight: '16px',
 };
 
 const CompanyItem = ({ company, onClick }) => {
@@ -30,8 +37,10 @@ const CompanyItem = ({ company, onClick }) => {
   }
 
   return (
-    <div
-      className={`flex items-center space-x-4 cursor-pointer ${
+    <button
+      type="button"
+      aria-pressed={!!company.active}
+      className={`flex items-center space-x-4 cursor-pointer text-left ${
         company.active ? '' : 'opacity-25'
       }`}
       onClick={onClick}
@@ -45,22 +54,32 @@ const CompanyItem = ({ company, onClick }) => {
           height={40}
         />
       )}
-      <span
-        className={`font-ibm-plex  ${
-          company.active
-            ? 'bg-linear-to-br text-black bg-clip-text'
-            : 'text-gray-500'
-        }`}
-      >
-        <div className="lg:text-xl md:text-sm text-xs">{company.headline}</div>
-      </span>
-    </div>
+      <span className={SUB_HEADING}>{company.headline}</span>
+    </button>
   );
 };
 
-const CriteriaCard = ({ criteriaItems }) => {
-  const [hoveredItem, setHoveredItem] = useState(null);
+// Carousel arrows: utility icon buttons instead of react-slick's CSS glyphs.
+const SliderArrow = ({
+  direction,
+  onClick,
+}: {
+  direction: 'prev' | 'next';
+  onClick?: () => void;
+}) => (
+  <button
+    type="button"
+    aria-label={direction === 'prev' ? 'Previous' : 'Next'}
+    onClick={onClick}
+    className={`${ICON_BUTTON} absolute top-1/2 z-10 -translate-y-1/2 ${
+      direction === 'prev' ? '-left-10' : '-right-10'
+    }`}
+  >
+    {direction === 'prev' ? <ChevronLeft /> : <ChevronRight />}
+  </button>
+);
 
+const CriteriaCard = ({ criteriaItems }) => {
   return (
     <div className="criteria-card rounded-lg relative">
       <div key={0} className="py-3 flex" style={commonHeightStyle} />
@@ -70,25 +89,23 @@ const CriteriaCard = ({ criteriaItems }) => {
           className="py-3 flex relative"
           style={commonHeightStyle}
         >
-          <h3
-            data-tina-field={tinaField(item, 'criteria')}
-            className="sm:leading-[10px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs flex items-center"
-          >
-            <span>{item.criteria}</span>
-          </h3>
-          <div className="relative content-center ml-auto lg:ml-0">
-            <IoMdInformationCircleOutline
-              className="ml-1 text-orange-500 text-xl"
-              onMouseEnter={() => setHoveredItem(_idx)}
-              onMouseLeave={() => setHoveredItem(null)}
-            />
-            {hoveredItem === _idx && (
-              <div className="ml-0.5 shadow-[0px_0px_25px_10px_rgba(0,0,0,0.1)] absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white text-sm p-2 rounded-lg z-10 xl:w-[300px] w-[150px] break-words text-center">
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-white"></div>
+          <div className="group relative flex-shrink-0 flex items-center mr-1">
+            <IoMdInformationCircleOutline className="mr-1 text-orange-500 text-xl" />
+            <div className="hidden group-hover:block absolute left-0 top-full pt-2 z-20">
+              <div
+                className={`${BODY_SMALL} relative shadow-xl bg-white p-2 rounded-lg xl:w-72 w-40 break-words text-center`}
+              >
                 {item.description}
               </div>
-            )}
+            </div>
           </div>
+
+          <h3
+            data-tina-field={tinaField(item, 'criteria')}
+            className={`${SUB_HEADING} min-w-0 flex-1 flex items-center`}
+          >
+            <span className="min-w-0">{item.criteria}</span>
+          </h3>
         </div>
       ))}
     </div>
@@ -99,11 +116,14 @@ const CompanyCard = ({ company, criteria }) => {
   const criterias = company.satisfiedCriteria?.map((item) =>
     splitOneAndJoin(item, '-'),
   );
+
   const baseColor = company.backgroundColor || '#000000';
+  const isTina = company.headline === 'TinaCMS';
+
   return (
     <div className="rounded-lg flex flex-col items-center w-full company-card">
       <div
-        className="w-full flex justify-center items-center text-center px-2 py-4 opacity-100 rounded-t-lg"
+        className={`${ON_DARK} w-full flex justify-center items-center text-center px-2 py-4 rounded-t-lg`}
         style={{
           ...commonHeightStyle,
           background: `linear-gradient(225deg, ${hexToRgba(
@@ -124,7 +144,8 @@ const CompanyCard = ({ company, criteria }) => {
             height={40}
           />
         )}
-        <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-md text-xs font-bold text-white whitespace-nowrap">
+
+        <h3 className={`${SUB_HEADING} hidden sm:block whitespace-nowrap`}>
           {company.headline}
         </h3>
       </div>
@@ -145,7 +166,10 @@ const CompanyCard = ({ company, criteria }) => {
                 style={{
                   ...commonHeightStyle,
                   backgroundColor: company.backgroundColor
-                    ? hexToRgba(company.backgroundColor, 0.2)
+                    ? hexToRgba(
+                        isTina ? company.backgroundColor : '#808080',
+                        0.2,
+                      )
                     : 'transparent',
                 }}
               >
@@ -156,21 +180,22 @@ const CompanyCard = ({ company, criteria }) => {
                   />
                 )}
               </div>
-              <div
-                className="w-full"
-                style={{ backgroundColor: 'transparent', height: '0px' }}
-              ></div>
             </div>
           );
         })}
       </div>
+
+      {company.testimonialLink && (
+        <TextLink href={company.testimonialLink} className="py-4">
+          How {company?.headline} stacks up with TinaCMS
+        </TextLink>
+      )}
     </div>
   );
 };
 
 interface CompareBoxBlockProps {
   data: any;
-  index: number;
 }
 
 export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
@@ -180,7 +205,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    setCompanies(data.companies);
+    setCompanies(data.companies ?? []);
   }, [data]);
 
   useEffect(() => {
@@ -189,22 +214,30 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
     }
 
     let currentIndex = 1;
-    const interval = setInterval(() => {
+
+    const advanceSlide = () => {
       setCompanies((prevCompanies) => {
         const newCompanies = prevCompanies?.map((company, idx) => ({
           ...company,
-          active: idx === 0 ? true : idx === currentIndex,
+          active: idx === 0 || idx === currentIndex,
         }));
+
         if (sliderRef.current) {
           sliderRef.current.slickGoTo(currentIndex - 1);
         }
-        currentIndex = (currentIndex + 1) % (prevCompanies?.length ?? 1);
-        if (currentIndex === 0) {
-          currentIndex = 1;
-        }
-        return newCompanies;
+
+        currentIndex =
+          currentIndex + 1 >= (prevCompanies?.length ?? 0)
+            ? 1
+            : currentIndex + 1;
+
+        return newCompanies ?? prevCompanies;
       });
-    }, 3000);
+    };
+
+    advanceSlide();
+
+    const interval = setInterval(advanceSlide, 3000);
 
     return () => clearInterval(interval);
   }, [userInteracted]);
@@ -257,6 +290,8 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
 
   const settings = {
     dots: false,
+    prevArrow: <SliderArrow direction="prev" />,
+    nextArrow: <SliderArrow direction="next" />,
     infinite: true,
     speed: 500,
     slidesToShow: 6,
@@ -306,10 +341,18 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
     <div className="md:px-10 lg:px-10 rounded-lg w-full">
       <div className="px-8 py-8 md:px-8 bg-linear-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
         <h2
-          className={`${BLOCK_HEADINGS_SIZE} pl-3 font-ibm-plex flex items-center text-center justify-center lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8`}
+          data-tina-field={tinaField(data, 'heading')}
+          className={`${SECTION_TITLE} pl-3 flex items-center text-center justify-center px-2 mt-10 pb-8`}
         >
-          Why Tina?
+          {data.heading}
         </h2>
+
+        <p
+          data-tina-field={tinaField(data, 'subheading')}
+          className={`${BODY} text-center -mt-4 mb-8`}
+        >
+          {data.subheading}
+        </p>
         <div
           className="items-center w-full"
           style={{ justifyContent: 'center' }}
@@ -346,6 +389,7 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
             <div className="col-span-1">
               <CriteriaCard criteriaItems={data.criteriaItems} />
             </div>
+
             {companies
               ?.filter((company) => company.active)
               .map((company, _idx) => (

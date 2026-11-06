@@ -1,92 +1,76 @@
-import { EmailForm } from 'components/forms';
 import { DemoForm } from 'components/modals/BookDemo';
-// biome-ignore lint/correctness/noUnusedImports: <TODO>
-import React, { useState } from 'react';
-import { BiArrowBack } from 'react-icons/bi';
-import { Modal } from 'react-responsive-modal';
-import 'react-responsive-modal/styles.css';
+import { ContactForm } from 'components/modals/ContactForm';
+import { useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
-import { ModalButton } from '../../ui';
+import { EmailForm } from '@/component/modals/EmailForm';
+import { levelOf } from '@/component/styles/buttons';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { ButtonGroup, ModalButton } from '../../ui';
 
-const modals = {
-  'BookDemo.tsx': <DemoForm />,
-  'EmailForm.tsx': <EmailForm />,
+// Function that returns modal components
+const getModalContent = (modal: string) => {
+  if (modal === 'BookDemo.tsx') {
+    return <DemoForm />;
+  }
+  if (modal === 'EmailForm.tsx') {
+    return <EmailForm />;
+  }
+  if (modal === 'ContactForm.tsx') {
+    return <ContactForm />;
+  }
+  if (modal === 'BecomePartner.tsx') {
+    return <ContactForm variant="partner" />;
+  }
+  return null;
 };
 
-export const ModalB = ({ items, align = 'left', className = '' }) => {
+// The contact-based forms want the same roomy dialog the navbar/footer use;
+// other modals keep the compact default.
+const getModalClassName = (modal: string | null) => {
+  if (modal === 'ContactForm.tsx' || modal === 'BecomePartner.tsx') {
+    return '!max-w-2xl w-[90vw] !max-h-[90vh] !p-0 !duration-0';
+  }
+  return 'sm:max-w-lg';
+};
+
+export const ModalB = ({ items, fill = false, className = '' }) => {
   const [open, setOpen] = useState(false);
-  const [ModalContent, setModalContent] = useState(null);
+  const [activeModal, setActiveModal] = useState<string | null>(null);
 
   const openModal = (modal) => {
-    setModalContent(modals[modal]);
+    setActiveModal(modal);
     setOpen(true);
   };
 
   const closeModal = () => setOpen(false);
 
-  const isList = true;
-
   return (
     <>
-      <div
-        className={[
-          'actionGroup',
-          'items-center',
-          isList
-            ? 'flex flex-col sm:flex-row md:flex-row lg:flex-row'
-            : 'flex flex-row',
-          align === 'center' && 'actionGroupCenter',
-        ]
-          .filter(Boolean)
-          .join(' ')}
-      >
-        {items?.map((item) => {
-          const { color, label, icon, modal, shape } = item;
+      <ButtonGroup fill={fill}>
+        {items?.map((item, index) => {
+          const { color, label, modal } = item;
 
           return (
             <ModalButton
-              key={label}
-              color={color}
-              shape={shape}
+              key={sanitizeLabel(label) || modal || `modal-button-${index}`}
+              level={levelOf(color)}
               id={sanitizeLabel(label)}
               className={className}
               onClick={() => openModal(modal)}
               data-tina-field={tinaField(item, 'label')}
             >
               {label}
-              {icon && (
-                <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
-              )}
             </ModalButton>
           );
         })}
-      </div>
+      </ButtonGroup>
 
-      <Modal open={open} onClose={closeModal} center>
-        {ModalContent}
-      </Modal>
-      <style jsx>{`
-        .actionGroup {
-          margin: 0 0 -0.5rem 0;
-        }
-
-        .actionGroupCenter {
-          justify-content: center;
-        }
-
-        .icon-class {
-          display: inline-block;
-          margin-left: 0.375em;
-          height: 1em;
-          width: auto;
-          transition: opacity ease-out 150ms;
-        }
-
-        .modal-button:hover .icon-class {
-          opacity: 0.85;
-        }
-      `}</style>
+      <Dialog open={open} onOpenChange={(isOpen) => !isOpen && closeModal()}>
+        <DialogContent className={getModalClassName(activeModal)}>
+          {activeModal && getModalContent(activeModal)}
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

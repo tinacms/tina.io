@@ -12,6 +12,7 @@ import remarkGfm from 'remark-gfm';
 import styled from 'styled-components';
 import LinkSvg from '../../public/svg/link.svg';
 import { Prism } from '../styles/Prism';
+import { BODY } from '../styles/typography';
 
 interface MarkdownContentProps {
   content: string;
@@ -20,56 +21,17 @@ interface MarkdownContentProps {
 }
 
 export const copyToClipboard = (text: string) => {
+  // Selecting the temporary textarea takes focus, so hand it back afterwards
+  // or keyboard users lose their place.
+  const previousFocus = document.activeElement as HTMLElement | null;
   const el = document.createElement('textarea');
   el.value = text;
   document.body.appendChild(el);
   el.select();
   document.execCommand('copy');
   document.body.removeChild(el);
+  previousFocus?.focus();
 };
-
-interface copyButtonProps {
-  value?: string;
-}
-
-const _CopyCodeButton = ({ value }: copyButtonProps) => {
-  const [copied, setCopied] = React.useState(false);
-
-  const clickEvent = () => {
-    setCopied(true);
-    copyToClipboard(value);
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
-  };
-
-  return (
-    <StyledCopyCodeButton onClick={clickEvent}>
-      {!copied ? 'Copy' : 'Copied!'}
-    </StyledCopyCodeButton>
-  );
-};
-
-const StyledCopyCodeButton = styled.button`
-  position: absolute;
-  right: 0;
-  top: 0;
-  cursor: pointer;
-  border: 1px solid var(--tina-color-grey-3);
-  opacity: 0.6;
-  background: rgba(0, 0, 0, 0.03);
-  color: var(--tina-color-grey-7);
-  border-right-width: 0;
-  transition: all 150ms ease-out;
-  border-top-width: 0;
-  font-size: var(--tina-font-size-1);
-  border-radius: 0 0 0 5px;
-
-  &:hover {
-    color: var(--color-orange);
-    opacity: 1;
-  }
-`;
 
 const CodeWrapper = styled.div`
   position: relative;
@@ -146,7 +108,7 @@ const CodeSnippet = (props) => {
       {({ open }) => (
         <>
           <dt>
-            <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-900">
+            <Disclosure.Button className="flex w-full items-start justify-between text-left">
               {props.children[headingIndex]}
               <span className="ml-6 flex h-7 items-center">
                 {open ? (
@@ -159,7 +121,7 @@ const CodeSnippet = (props) => {
           </dt>
           <Disclosure.Panel as="dd" className="mt-2 pr-12">
             {
-              <div className="py-4 text-base leading-7">
+              <div className={`${BODY} py-4`}>
                 {descriptionIndex !== -1
                   ? props.children[descriptionIndex]
                   : null}
@@ -201,7 +163,7 @@ export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
     <ReactMarkdown
       rehypePlugins={[rehypeRaw, remarkGfm]}
       remarkPlugins={[remarkDirective, remarkDirectiveRehype]}
-      skipHtml={skipHtml ? skipHtml : false}
+      skipHtml={skipHtml ?? false}
       components={{
         ul: ({ node, ...props }) => {
           return <ul className="list-disc ml-6" {...props} />;
@@ -243,8 +205,3 @@ export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
     </ReactMarkdown>
   );
 }
-
-MarkdownContent.defaultProps = {
-  escapeHtml: true,
-  skipHtml: false,
-};

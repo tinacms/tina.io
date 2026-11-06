@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2026.07.3",
+  "dateReleased": "2026-07-31T04:32:47Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Stop logging raw tokens in plaintext",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "✨ Activity reporting: content-change leaderboard and latest landing",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}

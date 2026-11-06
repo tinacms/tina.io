@@ -1,3 +1,4 @@
+import { pricingComparisonTemplate } from '../../components/tinaMarkdownComponents/pricingComparison.template';
 import { seoInformation } from './sharedFields/seoInformation';
 
 export const blogsCollection = {
@@ -5,6 +6,15 @@ export const blogsCollection = {
   label: 'Blog Posts',
   path: 'content/blog',
   format: 'mdx',
+  ui: {
+    defaultItem: () => ({ date: new Date().toISOString() }),
+    beforeSubmit: async ({ values }) => {
+      return {
+        ...values,
+        last_edited: new Date().toISOString(),
+      };
+    },
+  },
   fields: [
     {
       ...seoInformation,
@@ -26,21 +36,22 @@ export const blogsCollection = {
       },
     },
     {
-      // note: default to current date/time
       type: 'string',
       name: 'date',
       label: 'Date Created',
+      required: true,
+      description:
+        'Required. The home page and the blog list sort by this date. A post with no date does not show in either list.',
       ui: {
         component: 'date',
       },
     },
     {
-      // note: this should be a hidden field that auto-updates
       type: 'string',
       name: 'last_edited',
       label: 'Last Edited',
       ui: {
-        component: 'date',
+        component: 'hidden',
       },
     },
     {
@@ -73,6 +84,7 @@ export const blogsCollection = {
         type: 'mdx',
       },
       templates: [
+        pricingComparisonTemplate,
         {
           name: 'WarningCallout',
           label: 'Warning Callout',
@@ -311,18 +323,6 @@ export const blogsCollection = {
           name: 'CustomFieldComponentDemo',
           label: 'Field Component Demo [do not use]',
           fields: [{ type: 'string', name: 'test' }],
-        },
-        {
-          name: 'CloudinaryVideo',
-          label: 'Cloudinary Video',
-          fields: [
-            {
-              type: 'string',
-              name: 'src',
-              label: 'Cloudinary URL',
-              description: 'Full URL with no file extension',
-            },
-          ],
         },
         {
           name: 'Button',

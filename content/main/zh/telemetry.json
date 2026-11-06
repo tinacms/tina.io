@@ -1,0 +1,16 @@
+{
+  "seo": {
+    "title": "TinaCMS 开源遥测与隐私政策",
+    "description": "了解 TinaCMS 的开源遥测数据收集。我们收集匿名、可选的数据以改进编辑体验。使用 --noTelemetry 即可轻松退出。"
+  },
+  "blocks": [
+    {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "title": "开源遥测",
+      "byLine": "作为一家公司和一个开源社区，我们希望为每个人带来尽可能好的编辑体验。为了做到这一点，我们需要反馈，而遥测是获取反馈的方式之一。今后我们计划从命令行工具包中收集**完全匿名**的遥测数据。参与遥测是匿名、可选的，并且可以轻松退出。\n\n## 为什么要收集遥测数据？\n\n目前，我们获取反馈的方式是通过用户访谈和社区反馈手动进行的。这类反馈固然重要，但无法让我们全面了解社区整体是如何使用我们产品的。\n\n## 我们收集哪些数据\n\n我们会追踪 `create-tina-app` 和 `tinacms init` 的调用情况。除调用外，我们还会记录 TinaCMS 版本、Node 版本、操作系统和 Yarn 版本。我们也想了解自己开发的功能是否被社区使用：`tinacms audit` 和 `tinacms server:start` 命令。最后，我们希望尽快发现错误以便及时修复。在启用状态下，我们还会追踪 CLI 产生的错误。\n\n## 如何退出\n\n只需在 CLI 或 create-tina-app 命令后加上 `--noTelemetry` 即可退出。\n例如：\n\n```\nnpx create-tina-app@latest --noTelemetry\n```\n\n```\ntinacms server:start --noTelemetry \n```\n",
+      "_template": "footerLinkContent"
+    }
+  ]
+}

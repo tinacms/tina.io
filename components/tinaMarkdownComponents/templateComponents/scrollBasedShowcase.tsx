@@ -1,6 +1,7 @@
 // biome-ignore lint/style/useImportType: <TODO>
 import React, { useEffect, useRef, useState } from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { BODY, CARD_TITLE, SUB_HEADING } from '@/component/styles/typography';
 
 /** Minimal inline docAndBlogComponents for headings only */
 const docAndBlogComponents = {
@@ -196,30 +197,21 @@ export default function ScrollBasedShowcase(data: {
             return (
               <div
                 key={`showcase-item-${item.title}`}
-                // If active => full opacity + orange border + text color
-                // If not => half opacity + gray border
+                // If active => full opacity + orange border
+                // If not => faded + gray border
                 className={`mt-0 md:mt-8 transition-all duration-300 ease-in-out
-                  ${
-                    isFocused
-                      ? 'opacity-100  text-gray-900'
-                      : 'opacity-15  border-gray-300 text-gray-800'
-                  }
+                  ${isFocused ? 'opacity-100' : 'opacity-15  border-gray-300'}
                 `}
               >
                 {item.useAsSubsection ? (
                   <div
                     id={itemId}
                     className="pointer-events-none"
-                    // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
-                    ref={(el) => (headingRefs.current[index] = el)}
+                    ref={(el) => {
+                      headingRefs.current[index] = el;
+                    }}
                   >
-                    <div
-                      className={`bg-linear-to-br bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 ${
-                        isFocused
-                          ? 'from-orange-400 via-orange-500 to-orange-600'
-                          : 'from-gray-800 to-gray-700'
-                      } !important`}
-                    >
+                    <div className={`${SUB_HEADING} mt-2 mb-2`}>
                       {item.title}
                     </div>
                   </div>
@@ -227,18 +219,11 @@ export default function ScrollBasedShowcase(data: {
                   <div
                     id={itemId}
                     className="pointer-events-none"
-                    // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
-                    ref={(el) => (headingRefs.current[index] = el)}
+                    ref={(el) => {
+                      headingRefs.current[index] = el;
+                    }}
                   >
-                    <h2
-                      className={`bg-linear-to-br  bg-clip-text text-transparent text-3xl mt-4 mb-3 ${
-                        isFocused
-                          ? 'from-orange-400 via-orange-500 to-orange-600'
-                          : 'from-gray-800 to-gray-700'
-                      }`}
-                    >
-                      {item.title}
-                    </h2>
+                    <h2 className={`${CARD_TITLE} mt-4 mb-3`}>{item.title}</h2>
                   </div>
                 )}
 
@@ -247,7 +232,7 @@ export default function ScrollBasedShowcase(data: {
                     isFocused ? 'border-orange-400' : 'border-gray-800'
                   }`}
                 >
-                  <li>
+                  <li className={BODY}>
                     <TinaMarkdown
                       content={item.content}
                       components={docAndBlogComponents}
@@ -274,7 +259,7 @@ export default function ScrollBasedShowcase(data: {
           <img
             ref={activeImg}
             src={headings[0]?.src || ''}
-            alt=""
+            alt="Feature showcase illustration"
             className="absolute right-0 w-100 transition-all duration-1000 ease-in-out rounded-lg"
             style={{
               opacity: activeIds.length ? 1 : 0,

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { BODY, SECTION_TITLE } from '@/component/styles/typography';
 import CloudsOne from '../../../public/svg/clouds-1.svg';
 import CloudsTwo from '../../../public/svg/clouds-2.svg';
 
@@ -11,22 +11,20 @@ export function FlyingBlock({ data, index }) {
         <div className="learnContainer">
           <div>
             {data.headline && (
-              <h3 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>
-                {data.headline}
-              </h3>
+              <h3 className={`${SECTION_TITLE}`}>{data.headline}</h3>
             )}
-            {data.text && <p className="text">{data.text}</p>}
+            {data.text && <p className={`${BODY} text`}>{data.text}</p>}
             {data.buttons?.map((button, index) => (
-              <RenderButton key={button.id} button={button} />
+              <RenderButton key={`${button.label}-${index}`} button={button} />
             ))}
           </div>
           <div className="learnImageWrapper">
             <Image
               className="learnImage"
-              src="/img/3d-flying-llama.png"
-              alt="Tina learning"
-              width={600}
-              height={600}
+              src="/img/tina-llama-flying.png"
+              alt="Tina the Llama flying like a superhero."
+              width={816}
+              height={615}
             />
           </div>
         </div>
@@ -112,20 +110,7 @@ export function FlyingBlock({ data, index }) {
           }
         }
 
-        .title {
-          font-family: var(--font-ibm-plex);
-          font-weight: bold;
-          line-height: 1.4;
-          margin-bottom: 1.5rem;
-          font-size: 2.5rem;
-          color: var(--color-orangeg);
-        }
-
         .text {
-          color: var(--color-secondary);
-          font-size: 1.125rem;
-          opacity: 0.85;
-
           &:not(:last-child) {
             margin-bottom: 1.5rem;
           }

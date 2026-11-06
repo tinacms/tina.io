@@ -56,7 +56,7 @@ else
   echo "$RELEASE_NOTES" > "$temp_md"
   
   # Check if markdown contains "Updated dependencies" pattern
-  if grep -qE "^[-*]   Updated dependencies" "$temp_md"; then
+  if grep -qE "^[-*][[:space:]]+Updated dependencies" "$temp_md"; then
     # Use awk to parse markdown and build JSON structure
     # This handles sections (## and ### headers) and converts "Updated dependencies" into its own section
     awk -v version="$trimmedVersionNumber" -v date="$DATE_RELEASED" '
@@ -92,7 +92,7 @@ else
       next
     }
     
-    /^[-*]   Updated dependencies/ {
+    /^[-*][[:space:]]+Updated dependencies/ {
       # Save previous section
       if (section != "" && items != "") {
         if (!first_section) sections = sections ","
@@ -114,9 +114,9 @@ else
       next
     }
     
-    in_updated_deps && /^    -/ {
-      dep_name = substr($0, 6)
-      gsub(/^[[:space:]]+/, "", dep_name)
+    in_updated_deps && /^[[:space:]]+-[[:space:]]/ {
+      dep_name = $0
+      gsub(/^[[:space:]]*-[[:space:]]*/, "", dep_name)
       gsub(/"/, "\\\"", dep_name)
       if (items != "") items = items ","
       item_json = "\n          {\n            \"changesDescription\": \"" dep_name "\""
@@ -129,9 +129,9 @@ else
       next
     }
     
-    /^[-*]   / && !in_updated_deps {
-      item_text = substr($0, 5)
-      gsub(/^[[:space:]]+/, "", item_text)
+    /^[-*][[:space:]]/ && !in_updated_deps {
+      item_text = $0
+      gsub(/^[-*][[:space:]]+/, "", item_text)
       
       # Parse the markdown line to extract PR, commit, GitHub info, and description
       pr_number = ""
@@ -328,15 +328,9 @@ else
       }
       
       /^[-*][[:space:]]/ {
-        # Match both "-   " (dash + spaces) and "* " (asterisk + space) patterns
-        if (/^-[[:space:]]{3}/) {
-          item_text = substr($0, 5)
-        } else if (/^\*[[:space:]]/) {
-          item_text = substr($0, 3)
-        } else {
-          next
-        }
-        gsub(/^[[:space:]]+/, "", item_text)
+        # Match dash or asterisk bullets with any amount of whitespace after the marker
+        item_text = $0
+        gsub(/^[-*][[:space:]]+/, "", item_text)
         
         # Parse the markdown line to extract PR, commit, GitHub info, and description
         pr_number = ""
@@ -503,6 +497,20 @@ else
   fi
 fi
 
+
+# Fail loudly if parsing produced no items or any empty descriptions, so the
+# workflow errors instead of opening a PR with an empty release notes page.
+itemCount=$(jq '[.changesObject // [] | .[] | .changesList // [] | .[]] | length' "$releaseNotesFile")
+emptyCount=$(jq '[.changesObject // [] | .[] | .changesList // [] | .[] | .changesDescription
+  | if type == "object" then ([.. | .text? // empty] | join("")) else tostring end
+  | select(gsub("\\s"; "") == "")] | length' "$releaseNotesFile")
+if [ "$itemCount" -eq 0 ] || [ "$emptyCount" -gt 0 ]; then
+  echo "❌ Release notes parsing produced $itemCount items ($emptyCount with empty descriptions)."
+  echo "The RELEASE_NOTES input could not be parsed:"
+  echo "$RELEASE_NOTES"
+  rm -f "$releaseNotesFile"
+  exit 1
+fi
 
 echo "✅ File created"
 cat $releaseNotesFile

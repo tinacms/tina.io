@@ -1,0 +1,126 @@
+{
+  "versionNumber": "2.10.0",
+  "dateReleased": "2025-11-24T22:35:55Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "Folder creation validation with regex",
+          "pull_request_number": "6142",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6142",
+          "commit_hash": "f2577b9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f2577b911a97ecc1c3f53a98ae8218cc33bc9867",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Branch selector styling adjustments",
+          "pull_request_number": "6130",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6130",
+          "commit_hash": "3ffa092",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3ffa0929e4964f17d5ffa05e0d4cbbff5d9ef4d9",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        },
+        {
+          "changesDescription": "Fix: ui.max not applying to primitive type list:true",
+          "pull_request_number": "6147",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6147",
+          "commit_hash": "38920ce",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/38920ce29a9b63c54b04f39537f19beab62d2c86",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Remove Lodash and replace usages with either native functions or es-toolkit equivalents",
+          "pull_request_number": "6145",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6145",
+          "commit_hash": "d1bd1a1",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d1bd1a1312fa910e237ec06608e7c11830c78346",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        },
+        {
+          "changesDescription": "Clean up default branch name formatting",
+          "pull_request_number": "6149",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6149",
+          "commit_hash": "67e1a3d",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/67e1a3d4c52e0acdab0a8dc53956e39f2e3075fa",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Open admin menu on main dashboard by default",
+          "pull_request_number": "6094",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6094",
+          "commit_hash": "9fb1402",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/9fb1402491f52d16e763c875ee550f7d879c83c8",
+          "gitHubName": "iloveitaly",
+          "gitHubLink": "https://github.com/iloveitaly"
+        },
+        {
+          "changesDescription": "Add table headings to collections pages",
+          "pull_request_number": "6113",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6113",
+          "commit_hash": "3fa1098",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3fa109849f552406dd0059041afe0bf09edadb25",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        },
+        {
+          "changesDescription": "fix: add onClick handler to cancel button in create-branch-modal",
+          "pull_request_number": "6140",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6140",
+          "commit_hash": "ccab7a5",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ccab7a5d0fd1f4167e8f72306e9d32e8750ed9bf",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Migrate from react-beautiful-dnd to dnd-kit to fix deprecation error.",
+          "pull_request_number": "5822",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5822",
+          "commit_hash": "4b824be",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4b824be53572f9231753ebd3b5f14fd778fd73d6",
+          "gitHubName": "copilot-swe-agent",
+          "gitHubLink": "https://github.com/apps/copilot-swe-agent"
+        },
+        {
+          "changesDescription": "Centralise styles for collections table",
+          "pull_request_number": "6143",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6143",
+          "commit_hash": "d9487bf",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d9487bff276ba20a84b76944c5a7a333666f4984",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@1.10.0",
+          "commit_hash": "f2577b9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f2577b9"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@1.8.2",
+          "commit_hash": "f2577b9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f2577b9"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.1.2",
+          "commit_hash": "f2577b9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f2577b9"
+        }
+      ]
+    }
+  ]
+}

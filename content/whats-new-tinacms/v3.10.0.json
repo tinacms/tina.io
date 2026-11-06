@@ -1,0 +1,108 @@
+{
+  "versionNumber": "3.10.0",
+  "dateReleased": "2026-07-06T05:43:21Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "editorial workflow - add toggle to switch PRs created between draft and ready to review mode",
+          "pull_request_number": "7136",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7136",
+          "commit_hash": "c809733",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c809733ce8037d81937e81f0c8781a6cf222099b",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Update `@radix-ui/*` dependencies to their latest patch/minor releases and remove the unused `@radix-ui/react-checkbox` dependency",
+          "pull_request_number": "7141",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7141",
+          "commit_hash": "3a1b39a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3a1b39ad9a2bbeb82a539fbca6985d5b714238dd",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Add a PostHog `editorial-workflow-save` event that records which save option was used in the \"Save changes to new branch\" modal (draft, ready for review, or publish), whether the save succeeded, and the failure reason when it didn't.",
+          "pull_request_number": "7140",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7140",
+          "commit_hash": "de4a807",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/de4a80771e83afa8502f834227351cff54c5f236",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Editorial workflow: replace the draft / ready-for-review toggle in the \"Save changes to new branch\" modal with a save-options dropdown (Save draft, Save (ready for review), Save and publish). The split button's main action reflects the editor's last choice (default Save draft, remembered via localStorage), and Save and publish is disabled with a tooltip on protected branches.",
+          "pull_request_number": "7138",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7138",
+          "commit_hash": "8497110",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/8497110ada7554f97807ce7a09a3624b5efc5713",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "move floatingtoolbar for links to a react portal",
+          "pull_request_number": "7131",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7131",
+          "commit_hash": "22d0c0d",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/22d0c0d095b79e116677a798d07b35591ccb816e",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "refactor: replace hardcoded error-message string checks with shared error-identifier constants in `@tinacms/schema-tools`, so producers and consumers reference one source of truth instead of fragile `error.message.includes('...')` matching (#6777)",
+          "pull_request_number": "7123",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7123",
+          "commit_hash": "5148d67",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5148d679049bc53e34b287a586bc721db7cb7710",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Unify folder-name validation with the document-filename and backend `relativePath` allowlist. The Create Folder modal now rejects names with disallowed characters (e.g. spaces) inline instead of letting the request fail on the backend, and a project-level `folderNameRegex` is layered on top of that baseline. The allowlist lives in a single shared constant in `@tinacms/schema-tools`.",
+          "pull_request_number": "7143",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7143",
+          "commit_hash": "ff10e65",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ff10e657e48f1acc67cafd3e1a99bef23c8ac419",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Harden message handling in the `useEditState` hook so it validates the sender of incoming `message` events, matching the `isFromAdmin(event, trustedAdminOrigins)` check already used by `useTina`. The hook now also removes its `message` listener on unmount. Legitimate admin→preview behavior is unchanged.",
+          "pull_request_number": "7128",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7128",
+          "commit_hash": "b53a51c",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b53a51c92ee8ddecbb654f5b57c7d10673a06626",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.8.3",
+          "commit_hash": "5148d67",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5148d67"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.1.9",
+          "commit_hash": "5148d67",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5148d67"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.21",
+          "commit_hash": "5148d67",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5148d67"
+        }
+      ]
+    }
+  ]
+}

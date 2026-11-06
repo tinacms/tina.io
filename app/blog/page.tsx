@@ -2,7 +2,7 @@ import settings from '@/content/settings/config.json';
 import { getSeo } from '@/utils/metadata/getSeo';
 import BlogPaginationPage from './page/[page_index]/page';
 
-export async function generateMetadata() {
+export function generateMetadata() {
   return getSeo({
     title: 'TinaCMS Blog',
     description:
@@ -12,6 +12,5 @@ export async function generateMetadata() {
 }
 
 export default async function BlogPage() {
-  const params = { page_index: '1' };
-  return await BlogPaginationPage({ params });
+  return await BlogPaginationPage({ params: { page_index: '1' } });
 }

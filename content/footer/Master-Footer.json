@@ -13,13 +13,13 @@
         "_template": "stringItem"
       },
       {
-        "label": "How Tina Works",
-        "href": "/docs/product-tour",
+        "label": "Roadmap",
+        "href": "/roadmap",
         "_template": "stringItem"
       },
       {
-        "label": "Roadmap",
-        "href": "/roadmap ",
+        "label": "Compare TinaCMS",
+        "href": "/compare-tina",
         "_template": "stringItem"
       }
     ]
@@ -33,18 +33,13 @@
         "_template": "stringItem"
       },
       {
-        "label": "Documentation",
+        "label": "DOCS FOR TINACMS",
         "href": "/docs",
         "_template": "stringItem"
       },
       {
         "label": "Examples",
         "href": "/examples",
-        "_template": "stringItem"
-      },
-      {
-        "label": "Compare Tina",
-        "href": "/compare-tina",
         "_template": "stringItem"
       },
       {
@@ -89,10 +84,6 @@
           {
             "label": "Teams",
             "href": "/cms-for-teams"
-          },
-          {
-            "label": "Jamstack CMS",
-            "href": "/jamstack-cms"
           }
         ],
         "_template": "groupOfStringItems"
@@ -111,10 +102,6 @@
           {
             "label": "Git",
             "href": "/git-cms"
-          },
-          {
-            "label": "Editorial Workflow",
-            "href": "/editorial-workflow"
           },
           {
             "label": "Customization",
@@ -145,9 +132,19 @@
           {
             "label": "Jekyll",
             "href": "/jekyll-cms"
+          },
+          {
+            "label": "Jamstack CMS",
+            "href": "/jamstack-cms"
           }
         ],
         "_template": "groupOfStringItems"
+      },
+      {
+        "label": "Contact Us",
+        "color": "primary",
+        "modal": "ContactForm.tsx",
+        "_template": "modalButton"
       }
     ]
   },
@@ -179,11 +176,6 @@
         "_template": "stringItem"
       },
       {
-        "label": "Support",
-        "href": "/docs/support",
-        "_template": "stringItem"
-      },
-      {
         "label": "GitHub",
         "href": "https://github.com/tinacms/tinacms",
         "image": "/github-mark-white.svg",
@@ -197,8 +189,13 @@
       },
       {
         "label": "Discord",
-        "href": "https://discord.com/invite/zumN63Ybpf",
+        "href": "https://tina.io/discord",
         "image": "/icon_clyde_white_RGB.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "WeChat",
+        "image": "/wechat-group.svg",
         "_template": "socialLink"
       },
       {
@@ -215,17 +212,32 @@
       },
       {
         "label": "Facebook",
-        "href": "https://www.facebook.com/profile.php?id=61572968406294",
+        "href": "https://www.facebook.com/tinacms/",
         "image": "/svg/facebook-logo.svg",
         "_template": "socialLink"
       },
       {
+        "label": "Bluesky",
+        "href": "https://bsky.app/profile/tina.io",
+        "image": "/svg/bluesky-logo.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/tinacms_/",
+        "image": "/svg/instagram-logo.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "Threads",
+        "href": "https://www.threads.com/@tinacms_",
+        "image": "/svg/threads-logo.svg",
+        "_template": "socialLink"
+      },
+      {
         "label": "Subscribe",
-        "icon": false,
-        "color": "orange",
-        "size": "medium",
+        "color": "primary",
         "modal": "EmailForm.tsx",
-        "icon2": "MdEmail",
         "_template": "modalButton"
       }
     ]

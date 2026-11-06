@@ -1,0 +1,61 @@
+{
+  "versionNumber": "2026.04.3",
+  "dateReleased": "2026-04-23T09:54:01Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🐛 fix empty project drop down section",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat: include project name in invitation emails",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat: Add pathToTina to project creation flows",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Fix skip stripe webhook",
+          "gitHubName": "Marxoz",
+          "gitHubLink": "https://github.com/Marxoz"
+        },
+        {
+          "changesDescription": "fix: soft-skip media event handlers when GitHub App installation is gone",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Hide project checklist when all items are done",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        },
+        {
+          "changesDescription": "Add branch-aware media check to git-assets-deleted handler",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Fix branch-aware media in asset delete and sync handlers",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": [
+        {
+          "changesDescription": "their first contribution",
+          "gitHubName": "Marxoz",
+          "gitHubLink": "https://github.com/Marxoz"
+        }
+      ]
+    }
+  ]
+}

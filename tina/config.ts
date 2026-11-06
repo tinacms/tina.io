@@ -22,11 +22,12 @@ const tinaConfig = defineConfig({
   },
 
   build: { outputFolder: 'admin', publicFolder: 'public' },
-  cmsCallback: (cms) => {
-    import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
-      cms.plugins.add(MarkdownFieldPlugin);
-    });
-    return cms;
+
+  repoProvider: {
+    defaultBranchName: 'main',
+    historyUrl: ({ relativePath, branch }) => ({
+      url: `https://github.com/tinacms/tina.io/commits/${branch}/${relativePath}`,
+    }),
   },
 });
 

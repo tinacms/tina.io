@@ -1,0 +1,52 @@
+{
+  "versionNumber": "3.0.2",
+  "dateReleased": "2025-12-08T04:50:12Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "- `@tinacms/graphql`: remove scmp dependency, replaced with modern code (now inbuilt)",
+          "pull_request_number": "6216",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6216",
+          "commit_hash": "5c1e891",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5c1e89181f595d392ad6cb56ca5fc0b6d9e60a23",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        },
+        {
+          "changesDescription": "`react-color` to `react-colorful` migration",
+          "pull_request_number": "6208",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6208",
+          "commit_hash": "f717193",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f717193aa4a1d3205df42d120fd1f6192b5e41e5",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        },
+        {
+          "changesDescription": "plate : hyperlink UI fixes for valid urls",
+          "pull_request_number": "6213",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6213",
+          "commit_hash": "ac59522",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ac59522053c71c713057c4c2b6ce610617bce85e",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/search@1.1.5"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.0.0"
+        },
+        {
+          "changesDescription": "@tinacms/schema-tools@2.0.0"
+        }
+      ]
+    }
+  ]
+}

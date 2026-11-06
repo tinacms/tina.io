@@ -1,10 +1,9 @@
 import { GoogleTagManager } from '@next/third-parties/google';
-import AdminLink from 'components/AppRouterMigrationComponents/AdminLink';
-import { CloudBanner } from 'components/AppRouterMigrationComponents/CloudBanner';
-import ConsentBanner from 'components/AppRouterMigrationComponents/ConsentBanner';
-import { SiteLayout } from 'components/AppRouterMigrationComponents/SiteLayout';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
+import { CloudBanner } from '@/component/CloudBanner';
+import ConsentBanner from '@/component/ConsentBanner';
+import { SiteLayout } from '@/component/SiteLayout';
 import { getJsonPreviewProps } from '@/utils/getJsonPreviewProps';
 import data from '../content/siteConfig.json';
 import StyledComponentsRegistry from '../lib/registry';
@@ -12,12 +11,9 @@ import '../styles/tailwind.css';
 import './global.css';
 import { TailwindIndicator } from '@/component/util/TailwindIndicator';
 
-const TinaChatBot = dynamic(
-  () => import('../components/AppRouterMigrationComponents/TinaChatBot'),
-  {
-    ssr: false,
-  },
-);
+const TinaChatBot = dynamic(() => import('../components/TinaChatBot'), {
+  ssr: false,
+});
 
 export const metadata = {
   title: {
@@ -64,20 +60,6 @@ export default async function RootLayout({
       <head>
         <meta name="theme-color" content="#E6FAF8" />
         <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
-        <link
-          rel="preload"
-          href="/fonts/IBMPlexSans-SemiBold.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Inter-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
       </head>
       <body>
         <StyledComponentsRegistry>
@@ -93,7 +75,6 @@ export default async function RootLayout({
             />
           </noscript>
           <CloudBanner />
-          <AdminLink />
           <ConsentBanner />
           <TinaChatBot />
           <SiteLayout footerData={footerData}>{children}</SiteLayout>

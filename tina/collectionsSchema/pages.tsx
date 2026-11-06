@@ -3,6 +3,8 @@ import { callToActionTemplate } from '@/component/blocks/CallToAction/call-to-ac
 import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
 import { featureCardTemplate } from '@/component/blocks-v2/featureCard/featureCard.template';
 import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
+import { mapTemplate } from '@/component/blocks-v2/map/map.template';
+import { markdownFeatureTemplate } from '@/component/blocks-v2/markdownFeature/markdownFeature.template';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
 import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
 import {
@@ -19,9 +21,12 @@ import { flyingTemplate } from '../../components/blocks/Flying/Flying.template';
 import { footerLinkContentTemplate } from '../../components/blocks/FooterLinkContent/footerLinkContent.template';
 import { heroTemplate } from '../../components/blocks/Hero/Hero.template';
 import { highlightsSectionTemplate } from '../../components/blocks/HighlightsSection/HighlightsSection.template';
+import { imageBandTemplate } from '../../components/blocks/ImageBand/ImageBand.template';
 import { logoGridTemplate } from '../../components/blocks/LogoGrid/LogoGrid.template';
 import { mediaComponentTemplate } from '../../components/blocks/Media/MediaComponent.template';
+import { partnerGridTemplate } from '../../components/blocks/PartnerGrid/PartnerGrid.template';
 import { pricingTemplate } from '../../components/blocks/Pricing/Pricing.template';
+import { professionalServicesTemplate } from '../../components/blocks/ProfessionalServices/ProfessionalServices.template';
 import { quoteTemplate } from '../../components/blocks/Quote/Quote.template';
 import { recentPostsTemplate } from '../../components/blocks/RecentPosts/RecentPosts.template';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
@@ -33,6 +38,9 @@ import { tableTemplate } from '../../components/blocks/Table/table.template';
 import { testimonialsTemplate } from '../../components/blocks/Testimonial/Testimonials.template';
 import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/TextAndMediaColumn/TextAndMediaColumns.template';
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
+import { tripleBoxTemplate } from '../../components/blocks/TripleBox/TripleBox.template';
+import { versionsTemplate } from '../../components/blocks/Versions/Versions.template';
+import { DocsEditLinks } from '../customTinaFormFields/docsEditLinks';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
 
@@ -66,6 +74,8 @@ const templates = [
   pricingTemplate as Template,
   spacerTemplate as Template,
   featureGridTemplate as Template,
+  partnerGridTemplate as Template,
+  imageBandTemplate as Template,
   heroTemplate as Template,
   flyingTemplate as Template,
   faqTemplate as Template,
@@ -83,7 +93,12 @@ const templates = [
   videoEmbedTemplate as Template,
   herov2Template as Template,
   featureCardTemplate as Template,
+  markdownFeatureTemplate as Template,
   callToActionTemplate as Template,
+  mapTemplate as Template,
+  tripleBoxTemplate as Template,
+  professionalServicesTemplate as Template,
+  versionsTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {
@@ -94,9 +109,9 @@ const templates = [
 });
 
 export const pagesCollection = {
-  label: 'Pages',
+  label: 'Main',
   name: 'page',
-  path: 'content/blocksPages',
+  path: 'content/main',
   format: 'json',
   ui: {
     router: ({ document, collection }) => {
@@ -123,6 +138,14 @@ export const pagesCollection = {
     },
   },
   fields: [
+    {
+      type: 'string',
+      label: 'Edit Links',
+      name: '_docsEditLinks',
+      ui: {
+        component: DocsEditLinks,
+      },
+    },
     extendedSeoInformation,
     {
       label: 'Page Sections',

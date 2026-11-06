@@ -1,0 +1,41 @@
+{
+  "versionNumber": "2026.09.2",
+  "dateReleased": "2026-09-14T21:06:09Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Stop reporting a blocked GitHub call as missing push access",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "feat(identity): backfill owners on projects and orgs that have none",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "Administer the CMS announcement bar from a staff admin panel",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "feat: add MFA enrolment for AuthKit accounts",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "chore: upgrade koa to 3 with @koa/cors 5, koa-router 12 and @koa/bodyparser 6",
+          "gitHubName": "koa",
+          "gitHubLink": "https://github.com/koa"
+        },
+        {
+          "changesDescription": "chore: update TinaCMS dependencies[bot]",
+          "gitHubName": "release-bot-allow-prs-and-push",
+          "gitHubLink": "https://github.com/release-bot-allow-prs-and-push"
+        }
+      ]
+    }
+  ]
+}

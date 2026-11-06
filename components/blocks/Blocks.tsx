@@ -1,13 +1,18 @@
 'use client';
 import dynamic from 'next/dynamic';
-// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
+
+const OfficeMap = dynamic(() =>
+  import('@/component/blocks-v2/map/map').then((mod) => mod.OfficeMap),
+);
+
 import type {
   PageBlocks,
   PostConnection,
 } from '../../tina/__generated__/types';
 import FeatureCard from '../blocks-v2/featureCard/featureCard';
 import HeroV2 from '../blocks-v2/hero/hero';
+import MarkdownFeature from '../blocks-v2/markdownFeature/markdownFeature';
 import {
   BlockWrapper,
   ContentBlock,
@@ -26,24 +31,27 @@ import CallToAction from './CallToAction/call-to-action';
 import { ColumnsBlock } from './Columns/Columns';
 import { VerticalCardsBlock } from './Events/Events';
 import { HighlightsSection } from './HighlightsSection/HighlightsSection';
+import { ImageBandBlock } from './ImageBand/ImageBand';
 import { MediaComponent } from './Media/MediaComponent';
+import { PartnerGridBlock } from './PartnerGrid/PartnerGrid';
+import { ProfessionalServices } from './ProfessionalServices/ProfessionalServices';
 import { RecentPostsBlock } from './RecentPosts/RecentPosts';
 import RecipeBlock from './Recipe';
 import { RoadmapGridBlock } from './RoadMap/RoadmapGrid';
 import { ShowcaseItemsBlock } from './Showcase/Showcase';
 import { SpacerComponent } from './Spacer/Spacer';
 import TableBox from './Table/table';
+import TestimonialsBlock from './Testimonial/Testimonials';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
+import TripleBox from './TripleBox/TripleBox';
+import { VersionsBlock } from './Versions/Versions';
 import VideoDisplay from './VideoEmbed/videoEmbed';
 
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
   { ssr: false },
 );
-const TestimonialsBlock = dynamic(() => import('./Testimonial/Testimonials'), {
-  ssr: false,
-});
 const BookingBlock = dynamic(() => import('./Booking/Booking'), { ssr: false });
 const CompareBoxBlock = dynamic(() => import('./CompareBox/CompareBox'), {
   ssr: false,
@@ -54,7 +62,7 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
     case 'PageBlocksFeatures':
       return <FeaturesBlock data={block} index={index} />;
     case 'PageBlocksCompareBox':
-      return <CompareBoxBlock data={block} index={index} />;
+      return <CompareBoxBlock data={block} />;
     case 'PageBlocksFlying':
       return <FlyingBlock data={block} index={index} />;
     case 'PageBlocksEvents':
@@ -83,6 +91,10 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <StoryBlock index={index} />;
     case 'PageBlocksFeatureGrid':
       return <FeatureGridBlock data={block} index={index} />;
+    case 'PageBlocksPartnerGrid':
+      return <PartnerGridBlock data={block} index={index} />;
+    case 'PageBlocksImageBand':
+      return <ImageBandBlock data={block} index={index} />;
     case 'PageBlocksLogoGrid':
       return <LogoGridBlock data={block} index={index} />;
     case 'PageBlocksCarouselFeature':
@@ -97,8 +109,6 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
           recentPosts={recentPosts}
         />
       );
-    case 'PageBlocksTestimonials':
-      return <TestimonialsBlock data={block} />;
     case 'PageBlocksQuote':
       return <QuoteBlock data={block} index={index} />;
     case 'PageBlocksTextMediaColumnComponent':
@@ -117,8 +127,20 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <HeroV2 data={block} />;
     case 'PageBlocksFeatureCard':
       return <FeatureCard data={block} />;
+    case 'PageBlocksMarkdownFeature':
+      return <MarkdownFeature data={block} />;
     case 'PageBlocksCallToAction':
       return <CallToAction data={block} />;
+    case 'PageBlocksMap':
+      return <OfficeMap data={block} />;
+    case 'PageBlocksTripleBox':
+      return <TripleBox data={block} />;
+    case 'PageBlocksProfessionalServices':
+      return <ProfessionalServices data={block} />;
+    case 'PageBlocksTestimonials':
+      return <TestimonialsBlock data={block} />;
+    case 'PageBlocksVersions':
+      return <VersionsBlock data={block} />;
     default:
       return null;
   }
@@ -138,7 +160,11 @@ export const Blocks = ({
   return blocks.map((block, index) => {
     // FooterLinkContent blocks don't use BlockWrapper
     if (block.__typename === 'PageBlocksFooterLinkContent') {
-      return blockByType(block, index, recentPosts);
+      return (
+        <React.Fragment key={`${block.__typename}-${index}`}>
+          {blockByType(block, index, recentPosts)}
+        </React.Fragment>
+      );
     }
 
     return (

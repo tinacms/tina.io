@@ -1,90 +1,13 @@
-import Image from 'next/image';
-// biome-ignore lint/correctness/noUnusedImports: <TODO>
-import React, { useState } from 'react';
-import { FaYoutube } from 'react-icons/fa';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { SECTION_TITLE } from '@/component/styles/typography';
 
 const VideoGridComponent = ({ data }) => {
   const { mediaItem, typenames } = data || {};
 
-  const [isPlayingArray, setIsPlayingArray] = useState(
-    Array.isArray(mediaItem) ? mediaItem.map(() => false) : [],
-  );
+  const sizeClasses =
+    'w-[500px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[320px] lg:w-[600px] lg:h-[340px] xl:w-[600px] xl:h-[340px]';
 
-  const handlePlayVideo = (index) => {
-    const newIsPlayingArray = [...isPlayingArray];
-    newIsPlayingArray[index] = true;
-    setIsPlayingArray(newIsPlayingArray);
-  };
-
-  const renderMedia = (media, index) => {
-    const isPlaying = isPlayingArray[index];
-
-    const sizeClasses =
-      'w-[500px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[320px] lg:w-[600px] lg:h-[340px] xl:w-[600px] xl:h-[340px]';
-
-    if (media.__typename === typenames.cloudinary) {
-      if (media.media?.match(/\.(jpeg|jpg|gif|png|svg|webp)$/)) {
-        return (
-          <div
-            className={`relative rounded-lg shadow-2xl ${sizeClasses} overflow-hidden`}
-          >
-            <Image
-              src={media.media}
-              alt="Media"
-              layout="fill"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              objectFit="cover"
-              className="rounded-lg"
-            />
-          </div>
-        );
-      } else if (media.media?.match(/\.(mp4|webm|ogg)$/)) {
-        return (
-          <div
-            className={`relative rounded-lg shadow-2xl ${sizeClasses} overflow-hidden`}
-            onClick={() => handlePlayVideo(index)}
-          >
-            {isPlaying ? (
-              // biome-ignore lint/a11y/useMediaCaption: <TODO>
-              <video
-                src={media.media}
-                controls
-                autoPlay
-                className="object-cover rounded-lg *:"
-                style={{ width: '100%', height: '100%' }}
-              />
-            ) : (
-              <div className={`relative rounded-lg shadow-2xl ${sizeClasses}`}>
-                {media.thumbnail && (
-                  <Image
-                    src={media.thumbnail}
-                    alt="Video Thumbnail"
-                    layout="fill"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    objectFit="cover"
-                    className="rounded-lg"
-                  />
-                )}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button
-                    type="button"
-                    className="relative text-7xl text-orange-500"
-                  >
-                    <div className="relative inline-block">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="bg-white w-5 h-5"></div>
-                      </div>
-                      <FaYoutube className="relative" />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        );
-      }
-    } else if (media.__typename === typenames.youtube) {
+  const renderMedia = (media) => {
+    if (media.__typename === typenames.youtube) {
       return (
         <div className={`overflow-hidden rounded-lg shadow-2xl ${sizeClasses}`}>
           <iframe
@@ -93,6 +16,7 @@ const VideoGridComponent = ({ data }) => {
             src={media.embedUrl}
             title="YouTube video player"
             className="object-cover rounded-lg"
+            referrerPolicy="strict-origin-when-cross-origin"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
@@ -108,10 +32,10 @@ const VideoGridComponent = ({ data }) => {
         {Array.isArray(mediaList) &&
           mediaItem.map((item, index) => (
             <div
-              key={item.id}
+              key={`${item.__typename}-${index}`}
               className="relative flex justify-center items-center"
             >
-              {renderMedia(item, index)}
+              {renderMedia(item)}
             </div>
           ))}
       </>
@@ -125,14 +49,13 @@ const MediaComponent = ({ data }) => {
   const { headline, mediaItem } = data || {};
 
   const typenames = {
-    cloudinary: 'PageBlocksMediaComponentMediaItemCloudinaryMediaComponent',
     youtube: 'PageBlocksMediaComponentMediaItemYoutubeMedia',
   };
 
   return (
     <div className="media-component md:px-8 xl:px-8 lg:px-8 px-3 max-w-(--breakpoint-xl) mx-auto pb-4 pt-8">
       <h2
-        className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-center sm:pt-10 md:pt-4 lg:pt-0 lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent pb-10`}
+        className={`${SECTION_TITLE} text-center sm:pt-10 md:pt-4 lg:pt-0 pb-10`}
       >
         {headline}
       </h2>
