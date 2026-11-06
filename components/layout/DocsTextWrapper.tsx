@@ -1,9 +1,10 @@
 import DocsRichText from 'components/styles/DocsRichText';
 import React from 'react';
 import styled from 'styled-components';
+import { RICH_TEXT } from '../styles/typography';
 
-/* Styles rich text (markdown output)
- */
+/* Styles rich text (markdown output): RICH_TEXT maps the markdown elements
+   onto the type roles, DocsRichText adds the spacing. */
 
 export const DocsTextWrapper = ({ children }) => {
   React.useEffect(() => {
@@ -38,7 +39,7 @@ export const DocsTextWrapper = ({ children }) => {
     }
   }, []);
 
-  return <TextWrapper>{children}</TextWrapper>;
+  return <TextWrapper className={RICH_TEXT}>{children}</TextWrapper>;
 };
 
 const TextWrapper = styled.div`

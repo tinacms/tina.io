@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2026.07.2",
+  "dateReleased": "2026-07-29T06:14:22Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "fix(identity): harden org list against membership rows missing OrgName",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(refresh-webhooks): refresh content-repo hooks in direct mode",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(auth): dual-issuer (Cognito + WorkOS) JWT verification for content-api & assets-api",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "✨ Return matching folders as media-search results (v2 list)",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}

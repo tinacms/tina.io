@@ -1,0 +1,61 @@
+{
+  "versionNumber": "2026.01.3",
+  "dateReleased": "2026-01-18T22:22:17Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Update /ses-email-templates/index.tsx",
+          "gitHubName": "tiagov8",
+          "gitHubLink": "https://github.com/tiagov8"
+        },
+        {
+          "changesDescription": "Change email template colors to #ec4815",
+          "gitHubName": "tiagov8",
+          "gitHubLink": "https://github.com/tiagov8"
+        },
+        {
+          "changesDescription": "Revise email invitation messages and links",
+          "gitHubName": "tiagov8",
+          "gitHubLink": "https://github.com/tiagov8"
+        },
+        {
+          "changesDescription": "Update email template with payment information reminder",
+          "gitHubName": "tiagov8",
+          "gitHubLink": "https://github.com/tiagov8"
+        },
+        {
+          "changesDescription": "fix: update invalid site url error message",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "Scripts to scan and remove media indices",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        },
+        {
+          "changesDescription": "Make slash more subtle and improve x spacing",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat: copy the v2 search index and fix a double encoding bug",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": [
+        {
+          "changesDescription": "their first contribution",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        }
+      ]
+    }
+  ]
+}

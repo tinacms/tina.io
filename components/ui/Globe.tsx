@@ -1,8 +1,24 @@
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
+
+const GlobeFallback = () => (
+  <div
+    style={{ width: '100%', height: '700px' }}
+    className="flex items-center justify-center"
+  >
+    <Image
+      src="/img/tina-404-not-found.webp"
+      alt="Tina events around the world"
+      width={500}
+      height={500}
+      style={{ objectFit: 'contain' }}
+    />
+  </div>
+);
 
 const geographicToCartesian = (latitude, longitude, radius = 1) => {
   const latRad = (latitude * Math.PI) / 180;
@@ -295,6 +311,7 @@ const Globe = ({ activeGlobeId, cardItems }) => {
   return (
     <div ref={containerRef} style={{ width: '100%', height: '700px' }}>
       <Canvas
+        fallback={<GlobeFallback />}
         style={{
           width: canvasSize.width,
           height: canvasSize.height,

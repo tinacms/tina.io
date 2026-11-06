@@ -1,0 +1,85 @@
+{
+  "versionNumber": "3.7.2",
+  "dateReleased": "2026-04-08T04:49:15Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Improve branch operation error message clarity",
+          "pull_request_number": "6400",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6400",
+          "commit_hash": "3569c95",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3569c95c124138013b36cd30bfef4d0b02f5c57b",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "refactor: make @tinacms/schema-tools the single source of truth",
+          "pull_request_number": "6633",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6633",
+          "commit_hash": "4315d73",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4315d731e729857713d5f3fc6cdef2b30abd9384",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        },
+        {
+          "changesDescription": "Improve error messages when a pull request via editorial workflow fails due to missing Git authoring tokens",
+          "pull_request_number": "6617",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6617",
+          "commit_hash": "ff1cd6f",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ff1cd6fb50edc24b34f81166d7dedbfec6d22b32",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        },
+        {
+          "changesDescription": "Fix login screen error message and update modal title",
+          "pull_request_number": "6626",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6626",
+          "commit_hash": "d1ad86e",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d1ad86e204e19bf5bb4811658d40d172635da3af",
+          "gitHubName": "tiagov8",
+          "gitHubLink": "https://github.com/tiagov8"
+        },
+        {
+          "changesDescription": "🐖 Add Telemetry to new Media Usage dashboard to see how users are interacting with it",
+          "pull_request_number": "6607",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6607",
+          "commit_hash": "e146e92",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/e146e922b40cb5376c7a3adf81b44ad4cf8f1867",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Reduce the TinaCloud auth modal login image so it appears as a decorative element rather than dominating the modal.",
+          "pull_request_number": "6602",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6602",
+          "commit_hash": "246ee27",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/246ee27a8e0b74baf241c6a70a1699013fc59299",
+          "gitHubName": "griffenedge",
+          "gitHubLink": "https://github.com/griffenedge"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.7.1",
+          "commit_hash": "4315d73",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4315d73"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.1.1",
+          "commit_hash": "4315d73",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4315d73"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.9",
+          "commit_hash": "4315d73",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4315d73"
+        }
+      ]
+    }
+  ]
+}

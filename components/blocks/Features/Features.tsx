@@ -2,17 +2,34 @@ import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { tinaField } from 'tinacms/dist/react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import {
+  BODY,
+  BODY_MUTED,
+  CODE,
+  ON_DARK,
+  PAGE_TITLE,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
+import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import PlayIcon from '@/public/svg/play-button.svg';
 
 export function FeatureBlock({ data }) {
   const isReversed = data.isReversed;
 
+  const anchorId = data.headline
+    ? data.headline
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9-]/g, '')
+    : undefined;
+
   return (
     <div
+      id={anchorId}
       className={`my-6 flex flex-col-reverse w-full px-10 lg:gap-8 ${
         isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
       }`}
@@ -24,7 +41,7 @@ export function FeatureBlock({ data }) {
       >
         {data.headingOne && data.headline && (
           <h1
-            className="font-ibm-plex inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight text-balance text-center lg:text-left"
+            className={`${PAGE_TITLE} inline-block py-4 text-left`}
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}
@@ -32,7 +49,7 @@ export function FeatureBlock({ data }) {
         )}
         {data.headline && !data.headingOne && (
           <h2
-            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block  py-4  lg:leading-tight text-balance text-center lg:text-left`}
+            className={`${SECTION_TITLE} inline-block py-4 text-left`}
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}
@@ -41,13 +58,18 @@ export function FeatureBlock({ data }) {
         <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-3">
           <hr className="my-0! w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
         </div>
-        <p
-          className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center lg:text-left py-4"
+        <div
+          className={`${BODY} max-w-60ch text-left py-4`}
           data-tina-field={tinaField(data, 'text')}
         >
-          {data.text}
-        </p>
-        <div className="flex flex-col items-center lg:items-start">
+          {data.text && (
+            <TinaMarkdown
+              content={data.text}
+              components={docAndBlogComponents}
+            />
+          )}
+        </div>
+        <div className="flex flex-col items-start">
           <div className="flex flex-col md:flex-row gap-2">
             {data.buttons?.slice(0, 2).map((button, index) => (
               <RenderButton
@@ -91,6 +113,7 @@ export const RenderMedia = ({ data }) => {
           target="_blank"
           rel="noopener noreferrer"
           id="play-button-overlay"
+          aria-label="Play video"
           className="relative block"
         >
           <FeatureVideo
@@ -109,7 +132,7 @@ export const RenderMedia = ({ data }) => {
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaImage' ||
     data.media[0].__typename === 'PageBlocksHeroMediaImage'
   ) {
-    return (
+    return data.media[0].image ? (
       <Image
         src={data.media[0].image}
         alt={data.headline}
@@ -119,6 +142,8 @@ export const RenderMedia = ({ data }) => {
         width={1200}
         height={1200}
       />
+    ) : (
+      <div className="w-full h-full m-auto rounded-lg bg-gray-200"></div>
     );
   }
   if (
@@ -128,7 +153,9 @@ export const RenderMedia = ({ data }) => {
     return (
       <div className="flex flex-col justify-start items-start">
         {data.media[0].file && (
-          <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-linear-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-ibm-plex">
+          <div
+            className={`${ON_DARK} ${CODE} inline-block rounded-t-lg overflow-hidden border-2 border-b-0 border-gray-700 bg-linear-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3`}
+          >
             {data.media[0].file}
           </div>
         )}
@@ -167,7 +194,7 @@ export const RenderMedia = ({ data }) => {
         {isPlaying ? (
           <div className="flex flex-col justify-center w-full h-full pb-4 group">
             <YouTubeEmbed videoId={data.media[0].videoEmbedId} />
-            <span className="text-sm text-gray-400 mt-2 text-left">
+            <span className={`${BODY_MUTED} mt-2 text-left`}>
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -178,6 +205,7 @@ export const RenderMedia = ({ data }) => {
               onClick={() => setIsPlaying(true)}
               className="relative block w-full"
               id="play-button-overlay"
+              aria-label="Play video"
             >
               <div className="relative w-full aspect-video rounded-lg overflow-hidden">
                 <Image
@@ -194,7 +222,7 @@ export const RenderMedia = ({ data }) => {
                 </div>
               </div>
             </button>
-            <span className="text-sm text-gray-400 mt-2 text-left">
+            <span className={`${BODY_MUTED} mt-2 text-left`}>
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -213,7 +241,7 @@ export const RenderMedia = ({ data }) => {
         {isPlaying ? (
           <div className="flex flex-col justify-center w-full h-full pb-4 group">
             <YouTubeEmbed videoId={data.media[0].videoEmbedId} />
-            <span className="text-sm text-gray-400 mt-2 text-left">
+            <span className={`${BODY_MUTED} mt-2 text-left`}>
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -224,6 +252,7 @@ export const RenderMedia = ({ data }) => {
               onClick={() => setIsPlaying(true)}
               className="relative block w-full"
               id="play-button-overlay"
+              aria-label="Play video"
             >
               <div className="relative w-full pb-[56.25%] rounded-lg overflow-hidden">
                 <video
@@ -246,7 +275,7 @@ export const RenderMedia = ({ data }) => {
                 </div>
               </div>
             </button>
-            <span className="text-sm text-gray-400 mt-2 text-left">
+            <span className={`${BODY_MUTED} mt-2 text-left`}>
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -322,6 +351,7 @@ const YouTubeEmbed = ({ videoId }: { videoId: string }) => (
       src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
       title="YouTube video player"
       frameBorder="0"
+      referrerPolicy="strict-origin-when-cross-origin"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowFullScreen
     ></iframe>

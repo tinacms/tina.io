@@ -13,15 +13,8 @@ export const heroTemplate: Template = {
       text: 'Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site',
       actions: [
         {
-          variant: 'orange',
+          variant: 'primary',
           label: 'Primary Action',
-          icon: true,
-          url: '/',
-        },
-        {
-          variant: '',
-          label: 'Secondary Action',
-          icon: false,
           url: '/',
         },
       ],
@@ -65,8 +58,7 @@ export const heroTemplate: Template = {
             {
               name: 'src',
               label: 'Video Source',
-              description:
-                'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
+              description: 'Full URL to the video file (.webm or .mp4).',
               type: 'string',
             },
             {
@@ -157,6 +149,20 @@ export const heroTemplate: Template = {
           ],
         },
       ],
+    },
+    {
+      name: 'sideImage',
+      label: 'Side Image',
+      type: 'image',
+      description:
+        'Shows this image beside the headline and text (below them on mobile). Works best with a transparent cut-out, e.g. /img/tina-llama/tina-llama-superhero.webp. Media and Mobile Text Size are not used when a Side Image is set.',
+    },
+    {
+      name: 'anchorId',
+      label: 'Anchor ID',
+      type: 'string',
+      description:
+        'Target for #links from elsewhere on the page, e.g. become-a-partner-section.',
     },
     {
       name: 'margin',

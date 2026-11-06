@@ -1,0 +1,40 @@
+{
+  "versionNumber": "3.2.0",
+  "dateReleased": "2026-01-05T22:12:40Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "✨ Half-width property for text fields in TinaCMS Editor",
+          "pull_request_number": "6286",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6286",
+          "commit_hash": "a63401a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a63401a3dd8271258bc6bfb4cc22593c19e94c7d",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.2.0",
+          "commit_hash": "a63401a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a63401a"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.0.2",
+          "commit_hash": "a63401a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a63401a"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.1.9",
+          "commit_hash": "a63401a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a63401a"
+        }
+      ]
+    }
+  ]
+}

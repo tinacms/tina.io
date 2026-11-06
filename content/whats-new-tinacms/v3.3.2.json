@@ -1,0 +1,40 @@
+{
+  "versionNumber": "3.3.2",
+  "dateReleased": "2026-01-26T22:03:16Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "🐛Bug Fix - Prevent user from editing read only fields when slugify method provided",
+          "pull_request_number": "6362",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6362",
+          "commit_hash": "6647240",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/6647240db6cfffcf1efb4fa9799e9c039b929389",
+          "gitHubName": "Calinator444",
+          "gitHubLink": "https://github.com/Calinator444"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.4.0",
+          "commit_hash": "1d4fb88",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/1d4fb88"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.0.4",
+          "commit_hash": "1d4fb88",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/1d4fb88"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.1",
+          "commit_hash": "1d4fb88",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/1d4fb88"
+        }
+      ]
+    }
+  ]
+}

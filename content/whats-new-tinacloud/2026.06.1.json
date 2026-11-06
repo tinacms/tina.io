@@ -1,0 +1,61 @@
+{
+  "versionNumber": "2026.06.1",
+  "dateReleased": "2026-06-10T01:13:44Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "revert: back out #3613 e2e auth tests pushed to main without review",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189"
+        },
+        {
+          "changesDescription": "test(dashboard): e2e GitHub OAuth sign-in + sign-out (#3613)",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189"
+        },
+        {
+          "changesDescription": "feat: add cli auth endpoints",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "feat: add tinacloud client id to jwt token",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "🐛 Write framework-aware env var prefixes for Vercel quickstart",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix(assets-api): redirect oversized originals to presigned S3 URL (#3532)",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat: automatically detect installation id from repo",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "chore: update TinaCMS dependencies[bot]",
+          "gitHubName": "release-bot-allow-prs-and-push",
+          "gitHubLink": "https://github.com/release-bot-allow-prs-and-push"
+        },
+        {
+          "changesDescription": "fix: set Cognito UserPool featurePlan to ESSENTIALS",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: seed branch media indexes regardless of branch-aware flag, drop MediaRoot from index schema",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

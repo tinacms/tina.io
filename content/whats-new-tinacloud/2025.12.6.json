@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2025.12.6",
+  "dateReleased": "2025-12-22T22:02:44Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Footer scroll behaviour fix",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "📝 Docs - Update documentation for key encoding and secrets",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "💄UX - Hide unindexed branches alert for non-admin users",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "♻️ Refactor - Align & Rework TinaCloud New Project Workflows",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}

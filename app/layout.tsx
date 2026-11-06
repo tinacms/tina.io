@@ -1,7 +1,6 @@
 import { GoogleTagManager } from '@next/third-parties/google';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
-import AdminLink from '@/component/AdminLink';
 import { CloudBanner } from '@/component/CloudBanner';
 import ConsentBanner from '@/component/ConsentBanner';
 import { SiteLayout } from '@/component/SiteLayout';
@@ -61,20 +60,6 @@ export default async function RootLayout({
       <head>
         <meta name="theme-color" content="#E6FAF8" />
         <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
-        <link
-          rel="preload"
-          href="/fonts/IBMPlexSans-SemiBold.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Inter-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
       </head>
       <body>
         <StyledComponentsRegistry>
@@ -90,7 +75,6 @@ export default async function RootLayout({
             />
           </noscript>
           <CloudBanner />
-          <AdminLink />
           <ConsentBanner />
           <TinaChatBot />
           <SiteLayout footerData={footerData}>{children}</SiteLayout>

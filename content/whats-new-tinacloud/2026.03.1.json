@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2026.03.1",
+  "dateReleased": "2026-03-05T07:49:02Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Add --single-branch and --no-tags to git clone v2",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189"
+        },
+        {
+          "changesDescription": "Don't write MediaIndexingEnabled by default on app creation",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

@@ -43,7 +43,16 @@ export const showcaseTemplate: Template = {
           name: 'media',
           label: 'Media',
           type: 'object',
-          fields: [{ name: 'src', label: 'Image Source', type: 'image' }],
+          fields: [
+            {
+              name: 'youtubeUrl',
+              label: 'YouTube URL',
+              type: 'string',
+              description:
+                'Add a youtube video link. Takes precendence over the image if both are provided.',
+            },
+            { name: 'src', label: 'Image Source', type: 'image' },
+          ],
         },
       ],
     },

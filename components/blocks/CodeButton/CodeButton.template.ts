@@ -19,5 +19,23 @@ export const codeButtonTemplate = {
       description:
         'Optional:This text will appear when the user clicks on the button',
     },
+    {
+      name: 'starterTemplates',
+      label: 'Starter Templates',
+      type: 'object',
+      list: true,
+      description:
+        'Optional: Starter templates shown in the dropdown when clicked',
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.title };
+        },
+      },
+      fields: [
+        { name: 'title', label: 'Title', type: 'string' },
+        { name: 'icon', label: 'Icon', type: 'image' },
+        { name: 'link', label: 'Link', type: 'string' },
+      ],
+    },
   ],
 };

@@ -1,0 +1,26 @@
+{
+  "versionNumber": "3.7.5",
+  "dateReleased": "2026-04-29T01:38:47Z",
+  "changesObject": [
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.7.3",
+          "commit_hash": "a85b1c0",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a85b1c0"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.12",
+          "commit_hash": "a85b1c0",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a85b1c0"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.1.3",
+          "commit_hash": "a85b1c0",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a85b1c0"
+        }
+      ]
+    }
+  ]
+}
