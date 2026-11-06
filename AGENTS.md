@@ -121,6 +121,29 @@ Every piece of text uses one type role. Role names live in `components/styles/ty
 - **Tokens:** components name roles, `SURFACE.*` and `ON_DARK`, never colour tokens, palette shades or hex values. Primitives → semantic tokens → roles, each layer pointing only at the one before.
 - **No role fits:** add one to `styles/tailwind.css`, `typography.ts` and `typography.guide.ts`, then use it.
 
+## Buttons
+
+Every button is one of three levels, all one size (#4964). Level names live in `components/styles/buttons.ts`, their specs (`btn`, `btn-primary`, `btn-secondary`, `btn-tertiary`, `icon-btn`) in `styles/tailwind.css`, colour tokens (`--button-*`) in `app/global.css`. Guidance and agreed exceptions are in `components/styles/buttons.guide.ts`, rendered at `/design`.
+
+- **Use the components:** `Button`, `LinkButton` or `ModalButton` from `components/ui/Button.tsx` with `level="primary" | "secondary" | "tertiary"`. Hand-rolled buttons are only for the agreed exceptions.
+- **Levels:** Primary (orange gradient) is the main action and leads a group; a section's only button is Primary. Tertiary (orange outline) always sits beside a Primary. Secondary (blue gradient) is for buttons that shouldn't compete, like the nav's My TinaCloud. Never put a Tertiary next to a Secondary: make the lead Primary.
+- **Arrows:** buttons have none. Text links (“Read more →”) always end in the short arrow, and nothing else.
+- **One size:** 44px tall, 8px corners, label width plus 24px each side, Plex SemiBold 16 (`role-button-label`, applied by the levels). Add only layout classes (margin, width, alignment) beside a button. No colour, radius, padding, height or type classes.
+- **Groups:** `ButtonGroup` (or `BUTTON_GROUP`) stacks buttons full width on phones and puts them side by side from `sm`. The highest level comes first.
+- **On dark or orange:** put `ON_DARK` on the container; Primary turns white with an orange label, Tertiary a white outline.
+- **Dropdown menus:** nav menus use `MENU_PANEL` and `MENU_ITEM` (pale cyan); the npx starter menu uses `COMMAND_MENU` and `COMMAND_MENU_ITEM` (white, exactly as wide as the command field). Both come from `components/styles/menu.ts`, with `NAV_MENU_LINK` on the row text. Put the hover handlers on one parent around the trigger and the panel, bridge the gap with padding, wrap the panel in `MENU_REVEAL` with `data-state="open" | "closed"` (closed menus are hidden from the keyboard), and close it on Escape with `closeOnEscape` (`utils/closeOnEscape.ts`).
+- **Icon-only buttons:** `ICON_BUTTON` (44px tap area, 20px icon, 2px stroke) and always an `aria-label`. Other clickable controls get `FOCUS_RING`; a switch drawn after a hidden `peer` input gets `FOCUS_RING_PEER`. Never `outline-hidden`.
+- **External links:** use `isExternalLink` (`utils/isExternalLink.ts`) to decide on a new tab; `LinkButton`, `TextLink` and `SocialLinks` already do.
+- **Text links aren't buttons:** a standalone “Read more →” is `TextLink` (`components/ui/TextLink.tsx`), which always draws the short arrow; pass `as="span"` inside a card that is itself the link. Links inside a sentence are `LINK`. Never hand-build a text link with `EYEBROW_LINK` and an icon.
+- **Social links:** `SocialLinks` (`components/ui/SocialLinks.tsx`): button size in the neutral outline with brand-colour logos. Not a button level.
+- **Pagination:** numbered list pages use `Pagination`; the end of a blog post uses `PostPagination` (“Previous post” / “Next post” cards). Both in `components/ui/Pagination.tsx`.
+- **Segmented toggles:** `SegmentedToggle` (`components/ui/SegmentedToggle.tsx`) for one choice from a few short options, like Monthly / Annually. Don't hand-build one.
+- **Tabs:** flat tabs on dark code panels use `TAB_LIST` and `TAB` from `components/styles/tabs.ts`, with `role="tablist"` / `role="tab"` and `aria-selected`.
+- **Neutral outline:** white with a light slate border that darkens on hover (`NEUTRAL_OUTLINE`); the command field, social links, the current page number and post cards share it.
+- **Command field:** `CodeButton` only: `COMMAND_FIELD` and `COMMAND_COPY` (`menu.ts`) with the `COMMAND` type role for the command.
+- **CMS:** the Actions `variant` and Modal Button `color` fields hold a level (`primary`, `secondary`, `tertiary`; Actions also `textLink`). New buttons default to Primary, and `levelOf()` treats anything that isn't a level as Primary. There are no shape, size, arrow or icon fields; don't add them back.
+- **New level, piece or exception:** add the token to `app/global.css`, the spec to `styles/tailwind.css`, the name to `components/styles/*` (or a component in `components/ui`), a section on `/design`, and a line here, together.
+
 ## CI Pipeline
 
 PR checks (`.github/workflows/nodejs.yml`): install → build → lint → test → export → HTML validation. Requires TinaCMS secrets (`TINA_TOKEN`, `NEXT_PUBLIC_TINA_CLIENT_ID`, etc.).

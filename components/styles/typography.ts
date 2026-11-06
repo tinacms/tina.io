@@ -85,6 +85,9 @@ export const CAPTION = 'role-caption';
 /** Inline code, terminal output, package names, versions, commit hashes, published dates. IBM Plex Mono, 14 → 16px. */
 export const CODE = 'role-code';
 
+/** Single-use: the command in the npx command field. IBM Plex Mono 14px at every width. */
+export const COMMAND = 'role-command';
+
 /**
  * Agreed exception: decorative terminal and code mockups (the homepage
  * terminal). IBM Plex Mono 13px at every width, line height 1.625. A picture of

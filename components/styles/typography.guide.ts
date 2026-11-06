@@ -263,6 +263,13 @@ export const ROLE_GROUPS: RoleGroup[] = [
         notFor: { job: 'Any other card title or price', instead: 'CARD_TITLE' },
       },
       {
+        name: 'COMMAND',
+        example: 'npx create-tina-app@latest',
+        useFor:
+          'The command in the npx command field. 14px at every width, so the field keeps one width.',
+        notFor: { job: 'Code in text or code blocks', instead: 'CODE' },
+      },
+      {
         name: 'CODE_ILLUSTRATION',
         example: '$ npx create-tina-app my-blog',
         useFor:
@@ -293,7 +300,7 @@ export const TYPE_RULES = [
 
 /** Agreed exceptions: hand-set type here is expected, not a bug. */
 export const TYPE_EXCEPTIONS = [
-  'Buttons (issue #4964).',
+  'Button labels: the button levels set them (role-button-label). See Buttons below.',
   'Syntax-highlighting colours in code blocks and the homepage terminal.',
   'Data-driven brand colours, like partner tier badges.',
   'Icons, social icons and logos.',

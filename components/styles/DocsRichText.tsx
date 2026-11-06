@@ -202,38 +202,6 @@ const DocsRichText = css`
       }
     }
   }
-
-  /* A button, not text: buttons are out of scope for the type roles (#4964). */
-  .calloutButton {
-    flex: 0 0 auto;
-    position: relative;
-    text-decoration: none;
-    font-size: 1.125rem;
-    line-height: 1;
-    font-weight: bold;
-    padding: 0.75rem 1.625rem;
-    border-radius: 0.25rem;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    outline: none;
-    background: var(--color-orange);
-    transition: background 150ms ease-out;
-    color: white;
-
-    :hover,
-    ::focus,
-    :active {
-      background: var(--color-orange-light);
-    }
-
-    svg {
-      display: inline-block;
-      width: auto;
-      height: 1.125em;
-      margin-left: 0.75rem;
-    }
-  }
 `;
 
 export default DocsRichText;

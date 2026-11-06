@@ -12,11 +12,18 @@ import { usePathname, useRouter } from 'next/navigation';
 import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
-import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
-import { MdEmail } from 'react-icons/md';
+import { FOCUS_RING, levelOf } from '@/component/styles/buttons';
+import {
+  MENU_ITEM,
+  MENU_PANEL,
+  MENU_REVEAL,
+  MENU_TRIGGER_ACTIVE,
+  MENU_TRIGGER_HOVER,
+} from '@/component/styles/menu';
 import { LABEL, NAV_LINK, NAV_MENU_LINK } from '@/component/styles/typography';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { closeOnEscape } from '@/utils/closeOnEscape';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import {
   hasZhPrefix,
@@ -47,14 +54,6 @@ const LanguageSelect = dynamic(
   { ssr: false },
 );
 
-enum ValidColors {
-  White = 'white',
-  Blue = 'blue',
-  Orange = 'orange',
-  Seafoam = 'seafoam',
-  Ghost = 'ghost',
-}
-
 const EnFlag = ({ className }) => (
   <Image
     src="/flags/en.png"
@@ -80,14 +79,13 @@ const stringItemString = 'stringItem';
 const groupOfStringItemsString = 'groupOfStringItems';
 const GitHubStarButton = 'GitHubStarButton';
 const doubleNavItemDropDownString = 'doubleNavItemDropDown';
-const iconMapping = {
-  MdEmail: MdEmail,
-  FaCalendarDay: FaCalendarDay,
-};
 
 // Reusable components
 const ExternalLinkIcon = () => (
-  <BiLinkExternal className="text-blue-200 text-sm inline ml-1" />
+  <BiLinkExternal
+    aria-hidden="true"
+    className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1"
+  />
 );
 
 const GitHubIcon = () => (
@@ -113,9 +111,7 @@ interface NavItemBase {
 interface ModalButtonItem extends NavItemBase {
   _template: typeof modalButtonString;
   color: string;
-  size: string;
   modal: string;
-  icon2?: string;
 }
 
 interface StringItem extends NavItemBase {
@@ -274,17 +270,9 @@ function desktopNavItemMapper(
           className={`group ${_navLinkClasses}`}
         >
           <Button
-            color={item.color as ValidColors}
-            size="small"
+            level={levelOf(item.color)}
             onClick={() => openModal(item.modal)}
           >
-            {item.icon2 && iconMapping[item.icon2] && (
-              <span className="mr-2">
-                {iconMapping[item.icon2]({
-                  className: 'w-5 h-5',
-                })}
-              </span>
-            )}
             {item.label}
           </Button>
         </li>
@@ -305,77 +293,82 @@ function desktopNavItemMapper(
           </Link>
         </li>
       );
-    case groupOfStringItemsString:
+    case groupOfStringItemsString: {
+      const dropdownKey = `${index}-${item.label}`;
       return (
         <li
-          key={`${index}-${item.label}`}
-          className={`relative group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? 'bg-[#ECF7F8]' : 'bg-transparent'} transition-all duration-300 ease-out hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2 cursor-pointer`}
+          key={dropdownKey}
+          className={`relative group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? MENU_TRIGGER_ACTIVE : 'bg-transparent'} transition-all duration-300 ease-out ${MENU_TRIGGER_HOVER} rounded-xl pl-3 pr-2 cursor-pointer`}
           onMouseLeave={closeDropdownMenu}
+          // Escape closes the menu and returns focus to its trigger.
+          onKeyDown={closeOnEscape(openDropdown === dropdownKey, (e) => {
+            closeDropdownMenu();
+            e.currentTarget.querySelector('button')?.focus();
+          })}
         >
           <button
             type="button"
             className="flex items-center justify-center group cursor-pointer"
+            aria-expanded={openDropdown === dropdownKey}
             onMouseEnter={(e: React.MouseEvent) =>
-              openDropdownMenu(`${index}-${item.label}`, e)
+              openDropdownMenu(dropdownKey, e)
             }
-            onClick={(e) => openDropdownMenu(`${index}-${item.label}`, e)}
+            onClick={(e) => openDropdownMenu(dropdownKey, e)}
           >
             {item.label}
             <BiChevronDown className="w-4 h-4 ml-0.5" />
           </button>
-          {/* hover bridge that is invisible to user (maintains hover state) */}
+          {/* The gap under the trigger is padding inside the hover area, so
+              the menu stays open while the pointer crosses it. Closed, the
+              menu is hidden from the keyboard too. */}
           <div
-            className="absolute left-0 top-full h-5 min-w-full"
-            aria-hidden
-          />
-          <ul
-            className={`absolute -left-[10px] top-full min-w-full mt-5 w-max bg-[#ECF7F8] shadow-lg rounded-xl p-2 transition-opacity duration-200 ease-in-out ${
-              openDropdown === `${index}-${item.label}`
-                ? 'opacity-100 pointer-events-auto'
-                : 'opacity-0 pointer-events-none'
-            }`}
+            data-state={openDropdown === dropdownKey ? 'open' : 'closed'}
+            className={`${MENU_REVEAL} absolute -left-2.5 top-full min-w-full w-max pt-5`}
           >
-            {item.items.map((subItem, subIndex) => (
-              <li key={`${index}-${subIndex}-${subItem.modal || subItem.href}`}>
-                {subItem.modal ? (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setOpenDropdown(null);
-                      openModal(subItem.modal);
-                    }}
-                    className={`touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60 rounded-md transition duration-150 ease-out w-full text-left cursor-pointer ${NAV_MENU_LINK}`}
-                  >
-                    {subItem.label}
-                  </button>
-                ) : (
-                  <Link
-                    href={subItem.href}
-                    prefetch={shouldPrefetchLink(subItem.href)}
-                    target={
-                      subItem.href.startsWith('https') ? '_blank' : undefined
-                    }
-                    rel={
-                      subItem.href.startsWith('https')
-                        ? 'noopener noreferrer'
-                        : undefined
-                    }
-                    onClick={() => {
-                      setOpenDropdown(null);
-                    }}
-                    className={`touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60 rounded-md transition duration-150 ease-out ${NAV_MENU_LINK}`}
-                  >
-                    {subItem.label}
-                    {subItem.href.startsWith('https') && (
-                      <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
-                    )}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
+            <ul className={MENU_PANEL}>
+              {item.items.map((subItem, subIndex) => (
+                <li
+                  key={`${index}-${subIndex}-${subItem.modal || subItem.href}`}
+                >
+                  {subItem.modal ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOpenDropdown(null);
+                        openModal(subItem.modal);
+                      }}
+                      className={`${MENU_ITEM} group w-full text-left cursor-pointer ${NAV_MENU_LINK}`}
+                    >
+                      {subItem.label}
+                    </button>
+                  ) : (
+                    <Link
+                      href={subItem.href}
+                      prefetch={shouldPrefetchLink(subItem.href)}
+                      target={
+                        subItem.href.startsWith('https') ? '_blank' : undefined
+                      }
+                      rel={
+                        subItem.href.startsWith('https')
+                          ? 'noopener noreferrer'
+                          : undefined
+                      }
+                      onClick={() => {
+                        setOpenDropdown(null);
+                      }}
+                      className={`${MENU_ITEM} group ${NAV_MENU_LINK}`}
+                    >
+                      {subItem.label}
+                      {subItem.href.startsWith('https') && <ExternalLinkIcon />}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </li>
       );
+    }
     case GitHubStarButton:
       return (
         <li
@@ -438,7 +431,9 @@ function mobileNavItemMapper(
           </button>
           <ul
             className={`flex flex-col pl-4 overflow-hidden transition-all duration-200 ease-in-out ${
-              isOpen ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'
+              isOpen
+                ? 'max-h-96 opacity-100 mt-2'
+                : 'invisible max-h-0 opacity-0'
             }`}
           >
             {item.items.map((subItem, subIndex) => (
@@ -536,6 +531,7 @@ const MobileNavMenu = ({
 }: MobileNavMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const menuTabRef = useRef<HTMLButtonElement>(null);
 
   const toggleMenu = () => {
     const newMenuOpen = !menuOpen;
@@ -551,13 +547,22 @@ const MobileNavMenu = ({
     <>
       <nav
         aria-label="Mobile navigation"
+        // Escape closes the menu and returns focus to the tab that opens it.
+        onKeyDown={closeOnEscape(menuOpen, () => {
+          toggleMenu();
+          menuTabRef.current?.focus();
+        })}
         className={`fixed top-0 right-0 h-full w-[300px] bg-linear-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         } `}
       >
         <button
+          ref={menuTabRef}
           type="button"
-          className="absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-ibm-plex whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
+          // Agreed exception: the menu tab keeps its own deliberate style.
+          className={`absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-ibm-plex whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer ${FOCUS_RING}`}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
           onClick={toggleMenu}
         >
           <BiMenu
@@ -572,7 +577,13 @@ const MobileNavMenu = ({
           />
         </button>
 
-        <div className="h-full w-full absolute overflow-y-auto">
+        {/* Closed, the off-canvas menu is hidden from the keyboard too; only
+            the tab that opens it stays reachable. */}
+        <div
+          className={`h-full w-full absolute overflow-y-auto transition-[visibility] duration-200 ${
+            menuOpen ? 'visible' : 'invisible'
+          }`}
+        >
           <div className="flex py-4 px-6 relative z-20 justify-between items-center">
             <div className="pb-4 pt-2">
               <Link href={'/'}>
@@ -584,7 +595,8 @@ const MobileNavMenu = ({
             <div className="flex items-center gap-3">
               <button
                 type="button"
-                className={`outline-hidden hover:animate-jelly duration-600`}
+                aria-label="Change language"
+                className={`hover:animate-jelly duration-600 rounded-md ${FOCUS_RING}`}
                 onClick={() => openModal('LanguageSelect')}
               >
                 {selectedFlag === 'en' ? (
@@ -598,11 +610,9 @@ const MobileNavMenu = ({
           </div>
           <LinkButton
             link={'https://app.tina.io'}
-            color="blue"
-            size="medium"
-            className="cursor-pointer outline-hidden mx-6 justify-center"
+            level="secondary"
+            className="mx-6"
           >
-            {' '}
             My TinaCloud
           </LinkButton>
           <ul className="flex flex-col py-4 px-6 relative z-20">
@@ -639,15 +649,9 @@ const MobileNavMenu = ({
               isModalButtonItem(item) && (
                 <Button
                   key={`${index}-${item.modal}`}
-                  color={item.color as ValidColors}
-                  size="extraSmall"
+                  level={levelOf(item.color)}
                   onClick={() => openModal(item.modal)}
                 >
-                  {item.icon2 && iconMapping[item.icon2] && (
-                    <span className="mr-2">
-                      {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
-                    </span>
-                  )}
                   {item.label}
                 </Button>
               ),
@@ -687,18 +691,13 @@ const DesktopNavMenu = ({
         })}
       </ul>
       <li className="flex items-center gap-4">
-        <LinkButton
-          link={'https://app.tina.io'}
-          color="blue"
-          size="medium"
-          className="cursor-pointer outline-hidden"
-        >
-          {' '}
+        <LinkButton link={'https://app.tina.io'} level="secondary">
           My TinaCloud
         </LinkButton>
         <button
           type="button"
-          className={`cursor-pointer outline-hidden hover:animate-jelly duration-600`}
+          aria-label="Change language"
+          className={`cursor-pointer hover:animate-jelly duration-600 rounded-md ${FOCUS_RING}`}
           onClick={() => openModal('LanguageSelect')}
         >
           {selectedFlag === 'en' ? (

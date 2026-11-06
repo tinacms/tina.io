@@ -1,41 +1,17 @@
+import { BUTTON_LEVEL_OPTIONS } from '../../styles/buttons';
+
 export const actionsButtonTemplateFields = {
   fields: [
     { name: 'label', label: 'Label', type: 'string' },
-    { name: 'icon', label: 'Icon', type: 'boolean' },
-    {
-      name: 'shape',
-      label: 'Shape',
-      type: 'string',
-      options: [
-        { value: 'square', label: 'Square' },
-        { value: 'pill', label: 'Pill' },
-      ],
-    },
     {
       name: 'variant',
-      label: 'Variant',
+      label: 'Level',
       type: 'string',
+      description:
+        'A section’s only button is Primary. Tertiary sits beside a Primary. Text link for “Read more →” links.',
       options: [
-        { value: 'default', label: 'Seafoam' },
-        { value: 'blue', label: 'Blue' },
-        { value: 'orange', label: 'Orange' },
-        { value: 'white', label: 'White' },
-        { value: 'ghost', label: 'Ghost' },
-        { value: 'orangeWithBorder', label: 'Orange with Border' },
-        { value: 'ghostBlue', label: 'Ghost Blue' },
-        { value: 'blueOutline', label: 'Blue Outline' },
-        { value: 'ghostOutline', label: 'Ghost Outline' },
-        { value: 'black', label: 'Black' },
-      ],
-    },
-    {
-      name: 'size',
-      label: 'Size',
-      type: 'string',
-      options: [
-        { value: 'small', label: 'Small' },
-        { value: 'medium', label: 'Medium' },
-        { value: 'large', label: 'Large' },
+        ...BUTTON_LEVEL_OPTIONS,
+        { value: 'textLink', label: 'Text link: “Read more →”' },
       ],
     },
     { name: 'url', label: 'URL', type: 'string' },
@@ -52,10 +28,8 @@ export const actionsButtonTemplate = {
       return { label: item?.label };
     },
     defaultItem: {
-      variant: 'default',
-      label: 'Secondary Action',
-      icon: false,
-      size: 'medium',
+      variant: 'primary',
+      label: 'Primary Action',
       url: '/',
     },
   },

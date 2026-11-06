@@ -1,5 +1,5 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
@@ -8,15 +8,15 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import css from 'styled-jsx/css';
 import { tinaField } from 'tinacms/dist/react';
+import { ICON_BUTTON } from '@/component/styles/buttons';
 import {
   BODY,
   BODY_SMALL,
-  LABEL,
-  LINK,
   ON_DARK,
   SECTION_TITLE,
   SUB_HEADING,
 } from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 import { splitOneAndJoin } from './CompareBox.template';
 
 function hexToRgba(hex, alpha) {
@@ -37,8 +37,10 @@ const CompanyItem = ({ company, onClick }) => {
   }
 
   return (
-    <div
-      className={`flex items-center space-x-4 cursor-pointer ${
+    <button
+      type="button"
+      aria-pressed={!!company.active}
+      className={`flex items-center space-x-4 cursor-pointer text-left ${
         company.active ? '' : 'opacity-25'
       }`}
       onClick={onClick}
@@ -52,12 +54,30 @@ const CompanyItem = ({ company, onClick }) => {
           height={40}
         />
       )}
-      <span>
-        <div className={SUB_HEADING}>{company.headline}</div>
-      </span>
-    </div>
+      <span className={SUB_HEADING}>{company.headline}</span>
+    </button>
   );
 };
+
+// Carousel arrows: utility icon buttons instead of react-slick's CSS glyphs.
+const SliderArrow = ({
+  direction,
+  onClick,
+}: {
+  direction: 'prev' | 'next';
+  onClick?: () => void;
+}) => (
+  <button
+    type="button"
+    aria-label={direction === 'prev' ? 'Previous' : 'Next'}
+    onClick={onClick}
+    className={`${ICON_BUTTON} absolute top-1/2 z-10 -translate-y-1/2 ${
+      direction === 'prev' ? '-left-10' : '-right-10'
+    }`}
+  >
+    {direction === 'prev' ? <ChevronLeft /> : <ChevronRight />}
+  </button>
+);
 
 const CriteriaCard = ({ criteriaItems }) => {
   return (
@@ -166,12 +186,9 @@ const CompanyCard = ({ company, criteria }) => {
       </div>
 
       {company.testimonialLink && (
-        <Link
-          href={company?.testimonialLink}
-          className={`${LABEL} ${LINK} inline-block py-4 text-center`}
-        >
-          How {company?.headline} stacks up with TinaCMS →
-        </Link>
+        <TextLink href={company.testimonialLink} className="py-4">
+          How {company?.headline} stacks up with TinaCMS
+        </TextLink>
       )}
     </div>
   );
@@ -273,6 +290,8 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
 
   const settings = {
     dots: false,
+    prevArrow: <SliderArrow direction="prev" />,
+    nextArrow: <SliderArrow direction="next" />,
     infinite: true,
     speed: 500,
     slidesToShow: 6,

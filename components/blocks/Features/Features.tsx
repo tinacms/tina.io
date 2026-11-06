@@ -113,6 +113,7 @@ export const RenderMedia = ({ data }) => {
           target="_blank"
           rel="noopener noreferrer"
           id="play-button-overlay"
+          aria-label="Play video"
           className="relative block"
         >
           <FeatureVideo
@@ -204,6 +205,7 @@ export const RenderMedia = ({ data }) => {
               onClick={() => setIsPlaying(true)}
               className="relative block w-full"
               id="play-button-overlay"
+              aria-label="Play video"
             >
               <div className="relative w-full aspect-video rounded-lg overflow-hidden">
                 <Image
@@ -250,6 +252,7 @@ export const RenderMedia = ({ data }) => {
               onClick={() => setIsPlaying(true)}
               className="relative block w-full"
               id="play-button-overlay"
+              aria-label="Play video"
             >
               <div className="relative w-full pb-[56.25%] rounded-lg overflow-hidden">
                 <video

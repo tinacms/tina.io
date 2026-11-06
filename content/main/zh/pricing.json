@@ -58,14 +58,12 @@
           "buttons": [
             {
               "label": "免费开始",
-              "icon": false,
-              "variant": "ghostOutline",
-              "size": "medium",
+              "variant": "tertiary",
               "url": "https://app.tina.io/register?origin=https://app.tina.io",
               "_template": "actions"
             }
           ],
-          "isMuted": true,
+          "isMuted": false,
           "featuresHeading": "包含："
         },
         {
@@ -108,9 +106,7 @@
           "buttons": [
             {
               "label": "开通 Team 套餐",
-              "icon": false,
-              "variant": "orangeWithBorder",
-              "size": "medium",
+              "variant": "tertiary",
               "url": "https://app.tina.io/register?origin=https://app.tina.io",
               "_template": "actions"
             }
@@ -156,9 +152,7 @@
           "buttons": [
             {
               "label": "开通 Business 套餐",
-              "icon": false,
-              "variant": "orange",
-              "size": "medium",
+              "variant": "primary",
               "url": "https://app.tina.io/register?origin=https://app.tina.io",
               "_template": "actions"
             }
@@ -209,10 +203,7 @@
           "buttons": [
             {
               "label": "联系销售",
-              "icon": true,
-              "shape": "pill",
-              "color": "orangeWithBorder",
-              "size": "medium",
+              "color": "tertiary",
               "modal": "BookDemo.tsx",
               "_template": "modalButton"
             }
@@ -538,10 +529,9 @@
           "buttons": [
             {
               "label": "预约沟通",
-              "icon": false,
-              "size": "medium",
               "modal": "BookDemo.tsx",
-              "_template": "modalButton"
+              "_template": "modalButton",
+              "color": "primary"
             }
           ],
           "media": [

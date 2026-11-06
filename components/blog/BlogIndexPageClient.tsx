@@ -2,11 +2,10 @@
 'use client';
 
 import { MarkdownContent } from 'components/layout';
-import { DynamicLink } from 'components/ui';
+import { DynamicLink, Pagination } from 'components/ui';
 import { LOCALE_ROUTE_CONFIG, type Locale } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
 import { unclipEmoji } from 'utils/unclipEmoji';
-import NewBlogPagination from '@/component/Blogs/BlogPagination';
 import {
   BODY_MUTED,
   BODY_SMALL,
@@ -86,9 +85,19 @@ export default function BlogIndexPageClient({
             </div>
           </article>
         ))}
-        <nav aria-label="Blog pagination" className="mt-12">
-          <NewBlogPagination currentPage={pageIndex} numPages={numPages} />
-        </nav>
+        <div className="mt-12 mb-12">
+          <Pagination
+            currentPage={pageIndex}
+            numPages={numPages}
+            hrefFor={(page) => `${prefix}/blog/page/${page}`}
+            labels={{
+              pagination: strings.blogIndex.pagination,
+              previous: strings.blogIndex.previous,
+              next: strings.blogIndex.next,
+              page: strings.blogIndex.pageLabel,
+            }}
+          />
+        </div>
       </div>
     </section>
   );

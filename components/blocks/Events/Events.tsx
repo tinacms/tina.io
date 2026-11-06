@@ -1,17 +1,15 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { FaArrowRightLong } from 'react-icons/fa6';
 import {
   BODY,
   BODY_MUTED,
   BODY_SMALL,
   CARD_TITLE,
-  EYEBROW_LINK,
   LABEL,
   SECTION_TITLE,
   SURFACE,
 } from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 import eventsData from '../../../content/events/master-events.json';
 import {
   calculateEventStatus,
@@ -124,14 +122,10 @@ export const Card = ({ cardItem, onHover }) => {
           </p>
         </div>
         <p className={BODY_SMALL}>{cardItem.location}</p>
-        <Link
-          href={cardItem.link}
-          className={`${EYEBROW_LINK} flex gap-2 pt-2 items-center`}
-        >
+        <TextLink href={cardItem.link} className="self-start">
           Read more
           <span className="sr-only">about {cardItem.headline}</span>
-          <FaArrowRightLong className="pr-1" />
-        </Link>
+        </TextLink>
       </div>
       <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
     </div>
@@ -244,13 +238,9 @@ const EventsBlock = () => {
             ))}
           </div>
 
-          <Link
-            href="/events"
-            className={`${EYEBROW_LINK} pl-4 pt-10 flex items-center w-fit justify-end gap-2 group pr-1`}
-          >
-            <span>SEE ALL EVENTS</span>
-            <FaArrowRightLong />
-          </Link>
+          <TextLink href="/events" className="pl-4 pt-10">
+            See all events
+          </TextLink>
         </div>
       </div>
     </div>

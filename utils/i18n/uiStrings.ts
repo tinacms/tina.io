@@ -4,9 +4,15 @@ import type { Locale } from './localeRouteConfig';
 export interface UiStrings {
   blogPost: {
     lastEdited: string;
+    previousPost: string;
+    nextPost: string;
   };
   blogIndex: {
     heading: string;
+    pagination: string;
+    previous: string;
+    next: string;
+    pageLabel: (pageIndex: number) => string;
     pageSuffix: (pageIndex: number) => string;
     metaTitle: (pageIndex: number) => string;
     metaDescription: string;
@@ -15,9 +21,17 @@ export interface UiStrings {
 
 const STRINGS: Record<Locale, UiStrings> = {
   en: {
-    blogPost: { lastEdited: 'Last Edited' },
+    blogPost: {
+      lastEdited: 'Last Edited',
+      previousPost: 'Previous',
+      nextPost: 'Next',
+    },
     blogIndex: {
       heading: 'Blog',
+      pagination: 'Blog pages',
+      previous: 'Previous',
+      next: 'Next',
+      pageLabel: (pageIndex) => `Page ${pageIndex}`,
       pageSuffix: (pageIndex) => (pageIndex > 1 ? ` - Page ${pageIndex}` : ''),
       metaTitle: (pageIndex) => `TinaCMS Blog - Page ${pageIndex}`,
       metaDescription:
@@ -25,9 +39,17 @@ const STRINGS: Record<Locale, UiStrings> = {
     },
   },
   zh: {
-    blogPost: { lastEdited: 'Last Edited' },
+    blogPost: {
+      lastEdited: 'Last Edited',
+      previousPost: '上一篇',
+      nextPost: '下一篇',
+    },
     blogIndex: {
       heading: '博客',
+      pagination: '博客分页',
+      previous: '上一页',
+      next: '下一页',
+      pageLabel: (pageIndex) => `第 ${pageIndex} 页`,
       pageSuffix: (pageIndex) => (pageIndex > 1 ? ` - 第${pageIndex}页` : ''),
       metaTitle: (pageIndex) => `TinaCMS 博客 - 第 ${pageIndex} 页`,
       metaDescription:

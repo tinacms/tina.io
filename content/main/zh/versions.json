@@ -11,19 +11,13 @@
       "buttons": [
         {
           "label": "TinaCMS 更新日志",
-          "icon": true,
-          "shape": "square",
-          "variant": "orange",
-          "size": "medium",
+          "variant": "primary",
           "url": "/whats-new/tinacms",
           "_template": "actions"
         },
         {
           "label": "TinaCloud 更新日志",
-          "icon": true,
-          "shape": "square",
-          "variant": "orangeWithBorder",
-          "size": "medium",
+          "variant": "tertiary",
           "url": "/whats-new/tinacloud",
           "_template": "actions"
         }

@@ -1,10 +1,8 @@
 'use client';
 
 import { MarkdownContent, RichTextWrapper } from 'components/layout';
-import { ButtonGroup, LinkButton } from 'components/ui';
+import { SocialLinks, TINA_SOCIAL_LINKS } from 'components/ui';
 import Image from 'next/image';
-import TinaIconSvg from 'public/svg/tina-icon.svg';
-import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 import { EmailForm } from '@/component/modals/EmailForm';
 
 import { BODY, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
@@ -27,61 +25,7 @@ export default function CommunityPageClient(data) {
             </div>
           </RichTextWrapper>
 
-          <ButtonGroup>
-            <LinkButton
-              color="white"
-              link={'https://github.com/tinacms/tinacms/discussions'}
-            >
-              <TinaIconSvg
-                style={{
-                  fill: '#EC4815',
-                  height: '1.675rem',
-                  width: 'auto',
-                  margin: '0 0.675rem 0 0.125rem',
-                }}
-              />{' '}
-              Discussion
-            </LinkButton>
-            <LinkButton
-              link={'https://discord.com/invite/zumN63Ybpf'}
-              color="white"
-            >
-              <FaDiscord
-                style={{
-                  color: '#5865f2',
-                  height: '1.5rem',
-                  width: 'auto',
-                  margin: '0 0.675rem 0 0.125rem',
-                }}
-              />{' '}
-              Discord
-            </LinkButton>
-            <LinkButton
-              link={'https://github.com/tinacms/tinacms'}
-              color="white"
-            >
-              <FaGithub
-                style={{
-                  color: '#24292e',
-                  height: '1.5rem',
-                  width: 'auto',
-                  margin: '0 0.675rem 0 0.125rem',
-                }}
-              />{' '}
-              GitHub
-            </LinkButton>
-            <LinkButton link={'https://twitter.com/tinacms'} color="white">
-              <FaTwitter
-                style={{
-                  color: '#1DA1F2',
-                  height: '1.5rem',
-                  width: 'auto',
-                  margin: '0 0.675rem 0 0.125rem',
-                }}
-              />{' '}
-              Twitter
-            </LinkButton>
-          </ButtonGroup>
+          <SocialLinks links={TINA_SOCIAL_LINKS} />
         </div>
 
         {/* Info Image */}

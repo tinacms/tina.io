@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useEditState } from 'tinacms/dist/react';
-import TinaIconSvg from '../public/svg/tina-icon.svg';
+import { LinkButton } from '@/component/ui/Button';
 
 const hasTinaSession = () => {
   const raw = window.localStorage.getItem('tinacms-auth');
@@ -37,13 +37,13 @@ const AdminLink = () => {
   }
 
   return (
-    <a
-      href={`/admin/index.html#/~${pathname}`}
-      className="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-orange-500 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-orange-600"
+    <LinkButton
+      link={`/admin/index.html#/~${pathname}`}
+      reloadDocument
+      className="shrink-0"
     >
-      <TinaIconSvg className="h-5 w-auto fill-white" />
-      Edit ✏️
-    </a>
+      Edit
+    </LinkButton>
   );
 };
 

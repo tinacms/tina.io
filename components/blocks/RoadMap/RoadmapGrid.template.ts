@@ -1,6 +1,5 @@
 import { type Template, wrapFieldsWithMeta } from 'tinacms';
 import RoadmapIconSelector from '../../forms/RoadmapIconSelector';
-import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
 
 export const roadmapGridTemplate: Template = {
   label: 'Roadmap Grid',
@@ -55,7 +54,22 @@ export const roadmapGridTemplate: Template = {
           label: 'Content',
           type: 'rich-text',
         },
-        actionsButtonTemplate as any,
+        // Roadmap links are always plain text links, so they have
+        // only a label and a URL: no level to pick.
+        {
+          label: 'Links',
+          name: 'actions',
+          type: 'object',
+          list: true,
+          ui: {
+            itemProps: (item) => ({ label: item?.label }),
+            defaultItem: { label: 'GitHub Discussion', url: '/' },
+          },
+          fields: [
+            { name: 'label', label: 'Label', type: 'string' },
+            { name: 'url', label: 'URL', type: 'string' },
+          ],
+        },
       ],
     },
     {

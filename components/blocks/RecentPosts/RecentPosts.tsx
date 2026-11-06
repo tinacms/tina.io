@@ -4,18 +4,17 @@ import { RichTextWrapper } from 'components/layout/RichTextWrapper';
 import { DynamicLink } from 'components/ui';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { FaArrowRightLong } from 'react-icons/fa6';
 import { tinaField } from 'tinacms/dist/react';
 import {
   BODY_MUTED,
   CARD_TITLE,
-  EYEBROW_LINK,
   LINK,
   SECTION_TITLE,
   SUB_HEADING,
   TITLE_LINK,
 } from '@/component/styles/typography';
 import { SkeletonBar } from '@/component/ui/SkeletonBar';
+import { TextLink } from '@/component/ui/TextLink';
 import Container from '@/component/util/Container';
 import { formatDate } from '@/utils/formatDate';
 import { extractYouTubeId } from '../VideoEmbed/utils';
@@ -176,13 +175,9 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
               </div>
             );
           })}
-          <Link
-            href="/blog"
-            className={`${EYEBROW_LINK} flex gap-2 pt-2 items-center -mt-4 lg:-mt-10`}
-          >
-            READ MORE BLOGS
-            <FaArrowRightLong className="pr-1" />
-          </Link>
+          <TextLink href="/blog" className="-mt-4 lg:-mt-10">
+            Read more blogs
+          </TextLink>
         </div>
       </section>
     </Container>
