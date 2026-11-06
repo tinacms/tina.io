@@ -10,7 +10,6 @@ const searchClient = algoliasearch(
 );
 
 interface SearchResults {
-  docs: { results: any[]; count: number };
   blogs: { results: any[]; count: number };
 }
 
@@ -24,25 +23,17 @@ export const fetchAlgoliaSearchResults = async (
       advancedSyntax: true,
       query,
     };
-    const [docsResults, blogsResults] = await Promise.all([
-      searchClient.searchSingleIndex({
-        indexName: 'Tina-Docs-Next',
-        searchParams,
-      }),
-      searchClient.searchSingleIndex({
-        indexName: 'Tina-Blogs-Next',
-        searchParams,
-      }),
-    ]);
+    const blogsResults = await searchClient.searchSingleIndex({
+      indexName: 'Tina-Blogs-Next',
+      searchParams,
+    });
 
     return {
-      docs: { results: docsResults.hits, count: docsResults.nbHits },
       blogs: { results: blogsResults.hits, count: blogsResults.nbHits },
     };
   } catch (error) {
     console.error('Error fetching Algolia search results:', error);
     return {
-      docs: { results: [], count: 0 },
       blogs: { results: [], count: 0 },
     };
   }

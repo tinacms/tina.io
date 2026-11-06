@@ -1,0 +1,20 @@
+{
+  "versionNumber": "3.14.3",
+  "dateReleased": "2026-10-05T20:12:57Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Show an orange border when hovering over a populated image selector.",
+          "pull_request_number": "7658",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7658",
+          "commit_hash": "d281cdf",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d281cdf3a1dc1d5ef42d2bfd15c29224acc9d201",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        }
+      ]
+    }
+  ]
+}

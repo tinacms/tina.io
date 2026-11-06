@@ -1,0 +1,44 @@
+{
+  "versionNumber": "3.9.3",
+  "dateReleased": "2026-06-15T23:35:00Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Fix crash when reopening Global Configuration after navigating to a collection in the admin",
+          "pull_request_number": "7055",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7055",
+          "commit_hash": "42760d8",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/42760d8f5afd201107e27e274308af37f96ba8d0",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "Harden cross-window message handling and rich-text URL sanitization.",
+          "pull_request_number": "7056",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7056",
+          "commit_hash": "c491fc5",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c491fc55e612725f5d775eeb1fdf3f8ba82314fa",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/mdx@2.1.7",
+          "commit_hash": "c491fc5",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c491fc5"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.19",
+          "commit_hash": "c491fc5",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c491fc5"
+        }
+      ]
+    }
+  ]
+}

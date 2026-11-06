@@ -1,0 +1,206 @@
+{
+  "versionNumber": "2026.10.2",
+  "dateReleased": "2026-10-27T04:27:20Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Fix multi-repo pull branch indexing",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "fix(identity): never unverify a user on WorkOS sync",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "chore: sync the Code reviewer field options with assignable people",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(deps): refresh solid-js so its seroval copy moves to the patched 1.6 line",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(dashboard): ask EU visitors for consent before loading tracking scripts",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat: move cli analytics to server",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "fix(assets-api): keep Cache-Control on media served from assets.tina.io",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix(identity): refuse demoting a project's last admin",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "docs: decide how GitHub accounts migrate and restructure the account docs",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "chore: update TinaCMS dependencies[bot]",
+          "gitHubName": "release-bot-allow-prs-and-push",
+          "gitHubLink": "https://github.com/release-bot-allow-prs-and-push"
+        },
+        {
+          "changesDescription": "chore: set the board's Priority from each card's Priority Score",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore: move closed items that never shipped from Done to Won't do on the board",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(ses): add content-neutral TinaCMS email template",
+          "gitHubName": "ianhoffmanx",
+          "gitHubLink": "https://github.com/ianhoffmanx"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group across 1 directory with 26 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump handlebars from 4.7.9 to 4.7.10[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump source-map-js from 1.2.1 to 1.2.2 in /e2e/tinacms-compat[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump vite-tsconfig-paths from 4.3.2 to 6.1.1[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump stripe from 10.17.0 to 23.0.0[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group with 2 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group in /identity with 3 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump mime-types and @types/mime-types[bot]",
+          "gitHubName": "types",
+          "gitHubLink": "https://github.com/types"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group with 20 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump vitest from 4.1.10 to 4.1.11 in /admin[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump picomatch from 2.3.2 to 4.0.7[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group in /identity with 2 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump github.com/klauspost/compress from 1.17.11 to 1.18.7 in /identity[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump actions/create-github-app-token from 3.2.0 to 3.3.0 in the patch-and-minor group[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump vite from 8.3.0 to 8.3.3 in /e2e/tinacms-compat[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump follow-redirects from 1.16.0 to 1.16.1[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump markdown-it from 14.3.2 to 14.3.3[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump launch-editor from 2.14.1 to 2.14.2[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group with 35 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump vitest from 4.1.10 to 4.1.11 in /ui[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump @octokit/auth-app from 4.0.13 to 8.3.1[bot]",
+          "gitHubName": "octokit",
+          "gitHubLink": "https://github.com/octokit"
+        },
+        {
+          "changesDescription": "chore(deps): bump dompurify from 3.4.16 to 3.4.17[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump body-parser from 1.20.6 to 1.20.9[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump fast-uri from 3.1.8 to 3.1.9[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump zod from 3.24.2 to 4.6.6[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}

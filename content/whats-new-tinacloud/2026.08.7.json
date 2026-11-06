@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2026.08.7",
+  "dateReleased": "2026-08-31T01:14:21Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🎨 Enlarge header menus: type scale, row height, menu height (#4063)",
+          "gitHubName": "designbyalex",
+          "gitHubLink": "https://github.com/designbyalex"
+        },
+        {
+          "changesDescription": "Fix TinaCloud no-access login handling",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": [
+        {
+          "changesDescription": "their first contribution",
+          "gitHubName": "designbyalex",
+          "gitHubLink": "https://github.com/designbyalex"
+        }
+      ]
+    }
+  ]
+}

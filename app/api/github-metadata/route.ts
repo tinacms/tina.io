@@ -75,13 +75,23 @@ export async function GET(request: Request) {
     const latestCommit = latestCommits[0];
     const firstCommit = allCommits.length ? allCommits.at(-1)! : null;
 
-    return NextResponse.json({
-      latestCommit,
-      firstCommit,
-      historyUrl: path
-        ? `https://github.com/${owner}/${repo}/commits/main/${path}`
-        : `https://github.com/${owner}/${repo}/commits/main`,
-    });
+    return NextResponse.json(
+      {
+        latestCommit,
+        firstCommit,
+        historyUrl: path
+          ? `https://github.com/${owner}/${repo}/commits/main/${path}`
+          : `https://github.com/${owner}/${repo}/commits/main`,
+      },
+      {
+        // Cache per (owner, repo, path) at the Vercel edge so repeat requests
+        // are served from cache instead of re-invoking the function. Mirrors
+        // the CACHE_TTL used for the upstream GitHub fetch above.
+        headers: {
+          'Cache-Control': `public, s-maxage=${CACHE_TTL}, stale-while-revalidate=86400`,
+        },
+      },
+    );
   } catch (error) {
     console.error('Error fetching GitHub metadata:', error);
     return NextResponse.json(

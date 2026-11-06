@@ -1,0 +1,14 @@
+{
+  "versionNumber": "3.8.1",
+  "dateReleased": "2026-05-14T00:51:06Z",
+  "changesObject": [
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/search@1.2.15"
+        }
+      ]
+    }
+  ]
+}

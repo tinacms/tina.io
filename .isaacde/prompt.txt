@@ -1,0 +1,6 @@
+You're working on PR #4689: Populate homepage "Recent Videos" from the TinaCMS YouTube channel
+https://github.com/tinacms/tina.io/pull/4689
+
+Checked out on branch 'feature/dynamic-recent-videos'. Review the current diff and state, address any outstanding work or review feedback, then push updates to the branch.
+
+Before returning control or opening a PR, run the `pre-return-gate` skill to enforce this project's checklist (it no-ops if there's none).

@@ -1,0 +1,37 @@
+{
+  "versionNumber": "3.5.1",
+  "dateReleased": "2026-02-23T22:13:49Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "🐖 PostHog - Add Telemetry around the branch selector to see which elements users are interacting with on the modal",
+          "pull_request_number": "6446",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6446",
+          "commit_hash": "2738749",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/2738749bac08c02214fdf208f96bbcc4906ef442",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "📊 Telemetry - Add telemetry to CollectionListPage to identify how users are interacting with the page (button clicks, filtering etc)",
+          "pull_request_number": "6443",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6443",
+          "commit_hash": "dfb4ce8",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/dfb4ce8da7b82b638337109cc7859125e112a0a9",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/search@1.2.4"
+        }
+      ]
+    }
+  ]
+}

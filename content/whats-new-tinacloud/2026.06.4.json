@@ -1,0 +1,56 @@
+{
+  "versionNumber": "2026.06.4",
+  "dateReleased": "2026-06-15T05:43:03Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: transfer project ownership to another collaborator",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "docs(identity): DynamoDB update-in-place convention + support-ops identity check",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "docs(adr): WorkOS POC planning artifacts + decision investigations",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "setup for feature flag for WorkOS",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189"
+        },
+        {
+          "changesDescription": "fix(media): self-heal orphaned media uploads that dead-lock with \"already exists\"",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(content-api): skip and clean up schema-less branches on reset and repo-binding changes",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "Upgrade dashboard to React 17",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189"
+        },
+        {
+          "changesDescription": "fix(ci): install gosec via Go proxy to stop Security scans rate-limit flakes",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore: update TinaCMS dependencies[bot]",
+          "gitHubName": "release-bot-allow-prs-and-push",
+          "gitHubLink": "https://github.com/release-bot-allow-prs-and-push"
+        }
+      ]
+    }
+  ]
+}

@@ -20,7 +20,7 @@ We welcome contributions to improve the Tina.io experience!
 
 1. **Fork the Repo**: Work on your own fork to avoid conflicts.
 1. **Branching**: Use `feature/your-feature-name` or `bugfix/your-bugfix-name` for changes.
-1. **Using TinaCMS**: For content changes (e.g., docs), use visual editing with TinaCMS locally (e.g., http://localhost:3000/admin).
+1. **Using TinaCMS**: For content changes (e.g., blog posts), use visual editing with TinaCMS locally (e.g., http://localhost:3000/admin). Documentation changes go to [tinacms/docs](https://github.com/tinacms/docs).
 1. **Commits**: Write clear, descriptive messages. Break large changes into multiple commits.
 1. **Code Quality**:
    - Use Tailwind over inline CSS or styled components.

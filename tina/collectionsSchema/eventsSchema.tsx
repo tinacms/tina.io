@@ -1,16 +1,12 @@
-import moment from 'moment-timezone';
-import 'react-datetime/css/react-datetime.css';
 // biome-ignore lint/correctness/noUnusedImports: React is required
 import React from 'react';
 import { LocationField } from 'tina/customTinaFormFields/locationField';
 import { TextField, wrapFieldsWithMeta } from 'tinacms';
 import majorTimezones from '../../components/componentSuppliedData/EventsTimezones.json';
+import { getSchemaUtcOffsetHours } from '../../utils/schemaTimezoneOffset';
 import { seoInformation } from './sharedFields/seoInformation';
 
 type offset = { value: any; label: string };
-
-//Basically the gist of most of this processing is to create the list of possible GMT offsets...
-//then associate relevant cities to them via the moment-timezone library.
 
 const dateFormat = Intl.DateTimeFormat('en-US', {
   year: 'numeric',
@@ -36,7 +32,7 @@ const addCitiesAndPrefix = (offsets: number[], _prefix = '+'): offset[] => {
   const cityTimezoneMap = new Map();
   //Get the timezones of major cities
   majorTimezones.forEach((cityOffset) => {
-    const zone = moment.tz(cityOffset.ianaName).utcOffset() / 60;
+    const zone = getSchemaUtcOffsetHours(cityOffset.ianaName);
     cityTimezoneMap.set(
       zone,
       cityTimezoneMap.get(zone)
@@ -164,7 +160,7 @@ export const eventsCollection = {
           label: 'Timezone',
           type: 'number',
           description:
-            'Please select the timezone the event is being held in. GMT and UTC are analagous.',
+            'Select the UTC offset for the event date. City names show January offsets; allow for daylight saving.',
           ui: {
             parse: (value) => Number(value),
             component: 'select',

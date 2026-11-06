@@ -31,7 +31,18 @@ export async function GET(request: Request) {
     }
 
     const data = await response.json();
-    return NextResponse.json({ stars: data.stargazers_count });
+    return NextResponse.json(
+      { stars: data.stargazers_count },
+      {
+        // Star count is identical site-wide and changes slowly. Cache the
+        // response at the Vercel edge so repeat page views are served from
+        // cache instead of re-invoking this function + hitting GitHub.
+        headers: {
+          'Cache-Control':
+            'public, s-maxage=3600, stale-while-revalidate=86400',
+        },
+      },
+    );
   } catch (error) {
     console.error('Error fetching GitHub stars:', error);
     return NextResponse.json(

@@ -87,12 +87,6 @@ module.exports = {
           lineHeight: '1.5',
         },
       ],
-      md: [
-        '16px',
-        {
-          lineHeight: '1.5',
-        },
-      ],
       lg: [
         '18px',
         {
@@ -126,31 +120,31 @@ module.exports = {
       '5xl': [
         '48px',
         {
-          lineHeight: '1',
+          lineHeight: 'normal',
         },
       ],
       '6xl': [
         '60px',
         {
-          lineHeight: '1',
+          lineHeight: 'normal',
         },
       ],
       '7xl': [
         '72px',
         {
-          lineHeight: '1',
+          lineHeight: 'normal',
         },
       ],
       '8xl': [
         '96px',
         {
-          lineHeight: '1',
+          lineHeight: 'normal',
         },
       ],
       '9xl': [
         '128px',
         {
-          lineHeight: '1',
+          lineHeight: 'normal',
         },
       ],
     },
@@ -239,6 +233,18 @@ module.exports = {
             opacity: '1',
           },
         },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        'row-in': {
+          from: { opacity: '0', transform: 'translateY(0.125rem)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        bob: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-0.75rem)' },
+        },
       },
       animation: {
         jelly: 'jelly 0.6s ease',
@@ -248,6 +254,12 @@ module.exports = {
         marquee: 'marquee var(--duration) infinite linear',
         'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
         'slide-down': 'slideDown 500ms ease-out',
+        shimmer: 'shimmer 1.6s ease-in-out infinite',
+        'row-in': 'row-in 240ms ease-out both',
+        bob: 'bob 5s ease-in-out infinite',
+      },
+      backgroundSize: {
+        skeleton: '200% 100%',
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
@@ -258,6 +270,12 @@ module.exports = {
         panel:
           '6px 4px 16px rgba(0,132,255, 0.07), 10px 8px 32px rgba(0,132,255, 0.07), 18px 16px 64px rgba(0,132,255, 0.1)',
         outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
+        input:
+          'inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0px 2px 3px rgba(0, 0, 0, 0.12)',
+        'input-hover':
+          'inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.2), 0 2px 3px rgba(0, 0, 0, 0.12)',
+        'input-focus':
+          'inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.7), 0 2px 3px rgba(0, 0, 0, 0.12)',
       },
       dropShadow: {
         sm: '0 1px 1px rgb(20 70 150 / 0.05)',
@@ -279,15 +297,6 @@ module.exports = {
           'var(--brand-secondary-gradient-start)',
         'brand-secondary-gradient-end': 'var(--brand-secondary-gradient-end)',
 
-        'brand-tertiary': 'var(--brand-tertiary)',
-        'brand-tertiary-hover': 'var(--brand-tertiary-hover)',
-        'brand-tertiary-light': 'var(--brand-tertiary-light)',
-        'brand-tertiary-text': 'var(--brand-tertiary-text)',
-        'brand-tertiary-contrast': 'var(--brand-tertiary-contrast)',
-
-        'brand-tertiary-gradient-start': 'var(--brand-tertiary-gradient-start)',
-        'brand-tertiary-gradient-end': 'var(--brand-tertiary-gradient-end)',
-
         // Background gradients and glass
         'glass-gradient-start': 'var(--glass-gradient-start)',
         'glass-gradient-end': 'var(--glass-gradient-end)',
@@ -302,59 +311,64 @@ module.exports = {
         'neutral-background-tertiary': 'var(--neutral-background-tertiary)',
         'neutral-background-quaternary': 'var(--neutral-background-quaternary)',
         'neutral-background-quinary': 'var(--neutral-background-quinary)',
-        'neutral-text': 'var(--neutral-text)',
-        'neutral-text-secondary': 'var(--neutral-text-secondary)',
+
+        // Semantic type colours — what the type roles in
+        // components/styles/typography.ts are allowed to name.
+        // `heading` is a gradient, so it is a utility in styles/tailwind.css
+        // rather than a flat colour here.
+        strong: 'var(--text-strong)',
+        body: 'var(--text-body)',
+        subtle: 'var(--text-subtle)',
+        label: 'var(--text-label)',
+        link: 'var(--text-link)',
+        'link-hover': 'var(--text-link-hover)',
         'neutral-border': 'var(--neutral-border)',
         'neutral-border-subtle': 'var(--neutral-border-subtle)',
+        selected: 'var(--border-selected)',
 
         // Code Block Background
         'background-brand-code': 'var(--background-brand-code)',
         seafoam: {
-          50: '#EEFDF9',
-          100: '#E9FBF4',
-          150: '#C1F5EB',
-          200: '#CFF5E6',
-          300: '#B4EFD9',
-          400: '#99E9CB',
-          500: '#93E9BE',
-          600: '#72C39B',
-          700: '#529C7B',
-          800: '#39745C',
-          900: '#214C3D',
-          950: '#122A21',
+          50: 'var(--seafoam-50)',
+          100: 'var(--seafoam-100)',
+          150: 'var(--seafoam-150)',
+          200: 'var(--seafoam-200)',
+          300: 'var(--seafoam-300)',
+          400: 'var(--seafoam-400)',
+          500: 'var(--seafoam-500)',
+          700: 'var(--seafoam-700)',
         },
         blue: {
-          50: '#DCEEFF',
-          100: '#B4DBFF',
-          200: '#85C5FE',
-          300: '#4EABFE',
-          400: '#2296FE',
-          500: '#0084FF',
-          600: '#0574E4',
-          700: '#0D5DBD',
-          800: '#144696',
-          900: '#1D2C6C',
-          950: '#241748',
-          1000: '#0D5DBD',
+          50: 'var(--blue-50)',
+          100: 'var(--blue-100)',
+          200: 'var(--blue-200)',
+          300: 'var(--blue-300)',
+          400: 'var(--blue-400)',
+          500: 'var(--blue-500)',
+          600: 'var(--blue-600)',
+          700: 'var(--blue-700)',
+          800: 'var(--blue-800)',
+          900: 'var(--blue-900)',
         },
         orange: {
-          50: '#FFF8F3',
-          100: '#FFEDE4',
-          200: '#FFD3C1',
-          300: '#FFAB8B',
-          400: '#FF724B',
-          500: '#EC4815',
-          600: '#D13F13',
-          700: '#A5310F',
-          800: '#7A230B',
-          900: '#4C1507',
-          950: '#2F0D04',
+          50: 'var(--orange-50)',
+          100: 'var(--orange-100)',
+          200: 'var(--orange-200)',
+          300: 'var(--orange-300)',
+          400: 'var(--orange-400)',
+          500: 'var(--orange-500)',
+          600: 'var(--orange-600)',
+          700: 'var(--orange-700)',
+          800: 'var(--orange-800)',
+          900: 'var(--orange-900)',
         },
         success: '#22C55E',
         warning: '#F59E0B',
         error: '#EF4444',
         background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        // Default text colour follows the body token rather than shadcn's own
+        // --foreground, so unstyled text reads as body copy, not heading ink.
+        foreground: 'var(--text-body)',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -397,10 +411,12 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         'ibm-plex': ['IBMPlexSans-SemiBold', ...defaultTheme.fontFamily.sans],
-        'source-code-pro': [
-          'SourceCodePro-Regular',
-          ...defaultTheme.fontFamily.mono,
+        'ibm-plex-medium': [
+          'IBMPlexSans-Medium',
+          ...defaultTheme.fontFamily.sans,
         ],
+        // Code and technical labels. Matches --font-mono in app/global.css.
+        mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
       },
       gridTemplateColumns: {
         'auto-sm': 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -413,6 +429,8 @@ module.exports = {
         '50vh': '50vh',
       },
       backgroundImage: {
+        'skeleton-shimmer':
+          'linear-gradient(90deg, rgba(17,24,39,0.06) 0%, rgba(17,24,39,0.12) 50%, rgba(17,24,39,0.06) 100%)',
         'blob-bg':
           "url(\"data:image/svg+xml,%3Csvg preserveAspectRatio='none' viewBox='0 0 194 109' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_566_318)'%3E%3Crect width='194' height='109' fill='white' /%3E%3Cmask id='mask0_566_318' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='194' height='109'%3E%3Crect width='194' height='109' fill='url(%23paint0_linear_566_318)' /%3E%3C/mask%3E%3Cg mask='url(%23mask0_566_318)'%3E%3Crect width='194' height='109' fill='url(%23paint1_linear_566_318)' /%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_566_318' x1='97' y1='0' x2='97' y2='109' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23D9D9D9' stop-opacity='0.45' /%3E%3Cstop offset='0.229052' stop-color='%23D9D9D9' stop-opacity='0.1678' /%3E%3Cstop offset='0.677779' stop-color='%23D9D9D9' stop-opacity='0.0513' /%3E%3Cstop offset='1' stop-color='%23D9D9D9' stop-opacity='0' /%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_566_318' x1='0' y1='54.5' x2='194' y2='54.5' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2353E9DD' /%3E%3Cstop offset='0.34375' stop-color='%2368D7E4' /%3E%3Cstop offset='0.59375' stop-color='%2359BFF2' /%3E%3Cstop offset='1' stop-color='%234BA8FF' /%3E%3C/linearGradient%3E%3CclipPath id='clip0_566_318'%3E%3Crect width='194' height='109' fill='white' /%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E\")",
       },
@@ -443,5 +461,5 @@ module.exports = {
     './app/**/**/*.{js,ts,jsx,tsx}', // Nested components in app/
     './src/**/*.{js,ts,jsx,tsx}',
   ],
-  safelist: ['font-ibm-plex-semibold', 'font-source-code-pro'],
+  safelist: ['font-ibm-plex-semibold'],
 };

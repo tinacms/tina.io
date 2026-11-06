@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import type { PageType } from 'utils/hasChineseVersion';
 import { hasChineseVersion } from 'utils/hasChineseVersion';
+import { ICON_BUTTON } from '@/component/styles/buttons';
+import { SURFACE } from '@/component/styles/typography';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export function LanguageSupportAlert() {
@@ -27,9 +29,6 @@ export function LanguageSupportAlert() {
       return 'pages';
     }
 
-    if (path.startsWith('/docs')) {
-      return 'docs';
-    }
     if (path.startsWith('/blog')) {
       return 'blog';
     }
@@ -65,11 +64,11 @@ export function LanguageSupportAlert() {
   return (
     <div className="fixed bottom-3 left-3 z-50 max-w-md">
       <Alert
-        variant="default"
-        className="bg-yellow-100 border-yellow-400 text-yellow-800 cursor-pointer transition-opacity relative pr-8"
+        variant="surface"
+        className={`${SURFACE.warning} cursor-pointer transition-opacity relative pr-8`}
       >
-        <AlertTriangle className="h-4 w-4 text-yellow-600" />
-        <AlertTitle className="font-medium mb-3">
+        <AlertTriangle className="h-4 w-4" />
+        <AlertTitle className="mb-3">
           <span className="mr-2">警告</span>
           <span>Warning</span>
         </AlertTitle>
@@ -79,15 +78,14 @@ export function LanguageSupportAlert() {
         </AlertDescription>
         <button
           type="button"
-          className="absolute top-2 right-2 rounded-full hover:bg-yellow-200 flex items-center justify-center"
+          className={`${ICON_BUTTON} absolute top-1 right-1`}
           onClick={(e) => {
             e.stopPropagation();
             setIsVisible(false);
           }}
           aria-label="Close"
-          style={{ padding: 2 }}
         >
-          <X className="h-4 w-4 text-yellow-600" />
+          <X />
         </button>
       </Alert>
     </div>

@@ -1,0 +1,126 @@
+{
+  "versionNumber": "2026.09.1",
+  "dateReleased": "2026-09-14T00:16:07Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Development/2057 improve consistency of domain name overrides",
+          "gitHubName": "harley-j",
+          "gitHubLink": "https://github.com/harley-j"
+        },
+        {
+          "changesDescription": "fix(identity): require an org admin caller and refuse owner deletion when removing an org user",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(content-api): validate GraphQL schema before indexing succeeds",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "💄 Shorten the co-authoring name and email fields",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix(content-api): recover failed index migrations",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "chore: update TinaCMS dependencies[bot]",
+          "gitHubName": "release-bot-allow-prs-and-push",
+          "gitHubLink": "https://github.com/release-bot-allow-prs-and-push"
+        },
+        {
+          "changesDescription": "fix: teach the Lambda wrapper that compressed bodies are binary",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Hide account deletion for WorkOS users until it cascades",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "chore(assets-api): align aws-sdk-client-mock with the rest of the workspace",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(dashboard): mark required fields and hold errors until blur",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "chore(dashboard): upgrade vite 4 to 6",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(dashboard): capture churn feedback on cancel",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        },
+        {
+          "changesDescription": "test: add deployed-environment e2e coverage for the content editing flow",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "💄 Replace the chevron wizard steps with a rail on a card",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix(content-api): stop applying the generator pathToTina to content repo clones",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump qs from 6.15.3 to 6.16.0[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump browserslist from 4.24.4 to 4.28.8[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump github.com/go-chi/chi/v5 from 5.0.8 to 5.2.4 in /identity[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump postcss-selector-parser from 6.1.2 to 6.1.4[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump golang.org/x/net from 0.54.0 to 0.55.0 in /identity[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": [
+        {
+          "changesDescription": "their first contribution",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        }
+      ]
+    }
+  ]
+}

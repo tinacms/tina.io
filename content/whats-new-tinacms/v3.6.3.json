@@ -1,0 +1,20 @@
+{
+  "versionNumber": "3.6.3",
+  "dateReleased": "2026-03-19T04:15:21Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Fix broken cross-package relative import for posthog in @tinacms/app that caused consumer build failures",
+          "pull_request_number": "6524",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6524",
+          "commit_hash": "3c45642",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3c45642650e1a9e9fd340c62c9a5372d10f0bee7",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}

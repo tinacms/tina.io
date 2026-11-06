@@ -1,0 +1,96 @@
+{
+  "versionNumber": "2026.01.4",
+  "dateReleased": "2026-01-26T22:01:52Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "💄 UI - TinaCloud Header",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat: add posthog logging to index process",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "fix: handle Stripe subscription cancellation and set project to free on deletion",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Adding drawio file for the workaround of 404 pages",
+          "gitHubName": "amankumarrr",
+          "gitHubLink": "https://github.com/amankumarrr"
+        },
+        {
+          "changesDescription": "feat: add posthog events for search + add metrics",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        },
+        {
+          "changesDescription": "feat(identity): add ability for users to edit their name",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "fix: aws get-role-credentials needing access-token",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump sha.js from 2.4.11 to 2.4.12[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump tar-fs from 2.1.3 to 2.1.4[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump jws from 3.2.2 to 3.2.3[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump min-document from 2.19.0 to 2.19.1[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump js-yaml from 3.14.1 to 3.14.2[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump tar from 7.4.3 to 7.5.3[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump preact from 10.27.2 to 10.28.2[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump express from 4.21.2 to 4.22.1[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump axios from 1.8.4 to 1.12.0[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2026.08.4",
+  "dateReleased": "2026-08-24T05:30:28Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Render the real CreateAppUser error when accepting a project invite",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "🐛 Give every lambda only the stage params it reads",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Complete invite acceptance under AuthKit",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        }
+      ]
+    }
+  ]
+}

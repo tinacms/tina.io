@@ -1,16 +1,17 @@
 'use client';
 import Image from 'next/image';
 import type React from 'react';
-import { useRef, useState } from 'react';
-import { ImCross } from 'react-icons/im';
-import { IoIosWarning } from 'react-icons/io';
-import { TiTick } from 'react-icons/ti';
+import { useState } from 'react';
+import { BODY, CARD_TITLE } from '@/component/styles/typography';
+import { StatusMessage, type StatusType } from '@/component/ui/StatusMessage';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import BettyWithLlama from '../../public/img/BettyWithLlama.png';
 import { addToMailchimp } from '../../utils';
-import { Button, Input, Textarea } from '../ui';
+import { Button } from '../ui';
 
 interface EmailFormProps {
-  isFooter: boolean;
+  isFooter?: boolean;
 }
 
 interface FormData {
@@ -20,16 +21,21 @@ interface FormData {
   notes?: string;
 }
 
+const initialFormData: FormData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  notes: '',
+};
+
 export const EmailForm = (props: EmailFormProps) => {
-  const defaultValues = useRef<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    notes: '',
-  });
-  const [formData, setFormData] = useState<FormData>(defaultValues.current);
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [message, setMessage] = useState({ text: '', type: '' });
+  const [message, setMessage] = useState<{
+    text: string;
+    type: StatusType | '';
+  }>({ text: '', type: '' });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,7 +53,7 @@ export const EmailForm = (props: EmailFormProps) => {
           text: "You've been added to the llama list.",
           type: 'success',
         });
-        setFormData(defaultValues.current);
+        setFormData(initialFormData);
       } else if (result.message.includes('400')) {
         setMessage({ text: "You're already in our herd!", type: 'warning' });
       } else {
@@ -84,6 +90,7 @@ export const EmailForm = (props: EmailFormProps) => {
           src={BettyWithLlama}
           alt="Betty with a llama"
           fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
           className="w-full h-full object-cover"
         />
       </div>
@@ -97,31 +104,22 @@ export const EmailForm = (props: EmailFormProps) => {
             props.isFooter ? 'w-auto' : ''
           }`}
         >
-          <h1 className="inline-block lg:text-left md:text-left sm:text-center m-0 md:text-4xl font-ibm-plex lg:text-3xl text-2xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+          <h2
+            className={`inline-block lg:text-left md:text-left sm:text-center m-0 ${CARD_TITLE}`}
+          >
             Join the Herd! 🦙
-          </h1>
-          <p className="text-left w-full mt-2 mb-4">
+          </h2>
+          <p className={`text-left w-full mt-2 mb-4 ${BODY}`}>
             Become part of our coding community and stay updated with the latest
             tips and news. Learn more about the community and get llama-zing
             content delivered to your inbox!
           </p>
-          {message.text && (
-            <p
-              className={`font-ibm-plex text-sm mb-4 flex items-center gap-2 ${
-                message.type === 'success'
-                  ? 'text-green-500'
-                  : message.type === 'warning'
-                    ? 'text-orange-500'
-                    : 'text-red-500'
-              }`}
-            >
-              {message.type === 'success' && <TiTick />}
-              {message.type === 'warning' && <IoIosWarning />}
-              {message.type === 'error' && <ImCross />}
-              <span>{message.text}</span>
-            </p>
+          {message.type && (
+            <StatusMessage type={message.type} className="mb-4">
+              {message.text}
+            </StatusMessage>
           )}
-          <div className="flex flex-col gap-1.5 md:flex-row md:gap-2 w-full md:mb-1">
+          <div className="flex flex-col gap-4 md:flex-row w-full md:mb-1">
             <Input
               placeholder="First name"
               name="firstName"
@@ -143,12 +141,13 @@ export const EmailForm = (props: EmailFormProps) => {
           </div>
           <div className="flex flex-col gap-1.5 mt-2 mb-1 w-full">
             <Input
-              placeholder="Email"
+              placeholder="Email *"
               name="email"
               type="email"
               value={formData.email}
               onChange={handleInputChange}
               disabled={isProcessing}
+              required
               className="w-full"
             />
           </div>
@@ -160,16 +159,11 @@ export const EmailForm = (props: EmailFormProps) => {
               value={formData.notes}
               onChange={handleInputChange}
               disabled={isProcessing}
-              className="w-full"
+              className="w-full resize-y"
             />
           </div>
           <div className="w-full flex justify-end mt-6">
-            <Button
-              type="submit"
-              color="orange"
-              disabled={isProcessing}
-              className="px-6 py-2.5"
-            >
+            <Button type="submit" disabled={isProcessing || !isValidEmail}>
               {isProcessing ? 'Processing...' : 'Subscribe'}
             </Button>
           </div>
@@ -177,8 +171,4 @@ export const EmailForm = (props: EmailFormProps) => {
       </div>
     </div>
   );
-};
-
-EmailForm.defaultProps = {
-  isFooter: false,
 };
