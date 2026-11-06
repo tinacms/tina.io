@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2024.12.52",
+  "dateReleased": "2024-12-12T06:33:20Z",
+  "changesObject": [
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "🔥 Intercom and LogRocket integrations - Delete",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

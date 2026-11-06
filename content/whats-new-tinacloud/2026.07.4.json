@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.07.4",
+  "dateReleased": "2026-07-31T11:33:02Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: personal activity calendar",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}

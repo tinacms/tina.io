@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.12.5",
+  "dateReleased": "2025-12-15T02:07:02Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Add GET for Posthog token. To be used in TinaCloud",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Fix 500 on Starter Route",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}

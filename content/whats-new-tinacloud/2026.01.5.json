@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2026.01.5",
+  "dateReleased": "2026-01-28T01:39:49Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "fix(user-details): adjust layout for user details section to enforce max width on large screens",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "chore: update @tinacms/graphql to 2.1.0",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
+        }
+      ]
+    }
+  ]
+}

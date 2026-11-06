@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.02.90",
+  "dateReleased": "2025-02-24T13:27:28Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🚑 Hotfix - Fix search",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

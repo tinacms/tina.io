@@ -1,0 +1,40 @@
+{
+  "versionNumber": "2.8.0",
+  "dateReleased": "2025-07-07T05:54:03Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "Upgrade Plate editor to v48 beta, integrating latest features and improvements.",
+          "pull_request_number": "5744",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5744",
+          "commit_hash": "98a61e2",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/98a61e2d263978a7096cc23ac7e94aa0039981be",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@1.9.0",
+          "commit_hash": "98a61e2",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/98a61e2"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.1.0",
+          "commit_hash": "98a61e2",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/98a61e2"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@1.8.0",
+          "commit_hash": "98a61e2",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/98a61e2"
+        }
+      ]
+    }
+  ]
+}

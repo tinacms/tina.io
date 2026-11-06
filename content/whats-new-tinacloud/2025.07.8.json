@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.07.8",
+  "dateReleased": "2025-07-10T02:04:49Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "ci(gosec): remove specified version in attempt to always pull latest",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "🐛 Bug - Too many pending tasks for the read cache lock",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

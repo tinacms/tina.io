@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2024.12.50",
+  "dateReleased": "2024-12-10T03:23:38Z",
+  "changesObject": [
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "Upgrade `aws-sdk-client-mock`",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}

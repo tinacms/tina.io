@@ -4,6 +4,6 @@ export const whatsNewTinaCloudCollection = {
   name: 'WhatsNewTinaCloud',
   label: 'Whats new - TinaCloud',
   path: 'content/whats-new-tinacloud',
-  format: 'mdx',
+  format: 'json',
   fields: WhatsNewFields,
 };

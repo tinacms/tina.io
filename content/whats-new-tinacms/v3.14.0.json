@@ -1,0 +1,94 @@
+{
+  "versionNumber": "3.14.0",
+  "dateReleased": "2026-09-14T05:42:25Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "`<TinaMarkdown>` and `<StaticTinaMarkdown>` accept `null` and `undefined` for `content`. Both components already rendered nothing for these values, and the prop types now match. You can pass an optional rich-text field to them without a guard.",
+          "pull_request_number": "7229",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7229",
+          "commit_hash": "2a70b77",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/2a70b77f023f9c6f042de4ae4dcada565c7b9be8",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Cycle the loading copy through a bank of llama-themed messages in a random order, with a short fade between them. The admin loading page, the sidebar loading placeholder, and the TinaCMS wrapper all share the same message list.",
+          "pull_request_number": "7539",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7539",
+          "commit_hash": "901975f",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/901975f9974d92be3d881998741602ae0d99f05e",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "URL-encode the pagination cursor in the media list request, so folders whose cursor contains a reserved character load every page instead of repeating the first one.",
+          "pull_request_number": "7551",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7551",
+          "commit_hash": "2bbbaaf",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/2bbbaaf809453b4046b09692cec45ec5e4cc2c04",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Replace generic \"Please wait\" loading copy with more on-brand messaging in the admin loading page, sidebar loading placeholder, and TinaCMS wrapper.",
+          "pull_request_number": "7529",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7529",
+          "commit_hash": "c5407b7",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c5407b7f97c922ddace0062a3c8b04d34b921a91",
+          "gitHubName": "copilot-swe-agent",
+          "gitHubLink": "https://github.com/apps/copilot-swe-agent"
+        },
+        {
+          "changesDescription": "Use absolute URLs for the README images so they render on the npm package page.",
+          "pull_request_number": "7538",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7538",
+          "commit_hash": "a658075",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a658075e87aa973a81620a6ff89ff48c11003a0f",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Revert the final-form family to v4 so edits inside nested panels survive navigating back",
+          "pull_request_number": "7520",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7520",
+          "commit_hash": "60db64b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/60db64bf3e80550fcaf6f9c4ec79c19191c1702c",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "The admin preview route now resolves its path against the admin's own origin. When the resolved value points elsewhere the preview stays on the site root, raises a warning, and replaces the rejected address in history so neither the address bar nor the back button keeps pointing at the other site.",
+          "pull_request_number": "7522",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7522",
+          "commit_hash": "b57dbf4",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b57dbf4b56201aef15cd92caa49fd12ab96bbecf",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/mdx@2.2.3",
+          "commit_hash": "df35183",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/df35183"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.25",
+          "commit_hash": "df35183",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/df35183"
+        }
+      ]
+    }
+  ]
+}

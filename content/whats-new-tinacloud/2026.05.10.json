@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.05.10",
+  "dateReleased": "2026-05-28T05:13:47Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "polish(dashboard): Configuration UI + \"Repo\" naming sweep",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        }
+      ]
+    }
+  ]
+}

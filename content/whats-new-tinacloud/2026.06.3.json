@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.06.3",
+  "dateReleased": "2026-06-10T07:31:23Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "refactor(identity): rename JWT claim tinacloud_client_id to tinacloud_user_id",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

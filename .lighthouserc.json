@@ -1,0 +1,21 @@
+{
+  "ci": {
+    "collect": {
+      "url": ["https://tina.io/"],
+      "settings": {
+        "preset": "desktop",
+        "onlyCategories": [
+          "performance",
+          "accessibility",
+          "best-practices",
+          "seo"
+        ]
+      },
+      "numberOfRuns": 1
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "lighthouseci"
+    }
+  }
+}

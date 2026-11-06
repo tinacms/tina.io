@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2024.10.34",
+  "dateReleased": "2024-10-31T08:02:11Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🚸 UX - Improvements to 'Refresh Statuses' button for branches on project Configuration page in https://github.com/tinacms/tinacloud/pull/2368",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

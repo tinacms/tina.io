@@ -1,0 +1,38 @@
+{
+  "versionNumber": "2.8.1",
+  "dateReleased": "2025-07-14T23:50:45Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "VersionInfo - fix version info",
+          "pull_request_number": "5842",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5842",
+          "commit_hash": "41359ed",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/41359edaf08def7a5e26969ec114155038c09752",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "Fixed a bug that stopped the Admin Sidebar from being able to minimize",
+          "pull_request_number": "5853",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5853",
+          "commit_hash": "b20a2c4",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b20a2c4fd64fa2d06711850db63fb317302ee361",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        },
+        {
+          "changesDescription": "Sidebar - fixed version number being reported in UI",
+          "pull_request_number": "5842",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5842",
+          "commit_hash": "41359ed",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/41359edaf08def7a5e26969ec114155038c09752",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}

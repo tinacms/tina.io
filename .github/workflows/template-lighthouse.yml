@@ -1,0 +1,90 @@
+name: Template - Lighthouse Insights
+
+on:
+  workflow_call:
+    inputs:
+      url:
+        type: string
+        required: true
+    secrets:
+      GH_APP_KEY:
+        required: true
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  lighthouse-insights:
+    name: Run Lighthouse Insights
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (PR)
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - name: Checkout (repository_dispatch)
+        if: github.event_name == 'repository_dispatch'
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.client_payload.git.sha }}
+          repository: ${{ github.repository }}
+
+      - name: Checkout (default)
+        if: github.event_name != 'pull_request' && github.event_name != 'repository_dispatch'
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        run: npm install -g pnpm@9
+
+      - name: Wait for slot to be available
+        uses: jtalk/url-health-check-action@v4
+        with:
+          url: ${{ inputs.url }}
+          max-attempts: 5
+          retry-delay: 40s
+
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./.lighthouserc.json
+          urls: |
+            ${{ inputs.url }}
+            ${{ inputs.url }}/docs
+            ${{ inputs.url }}/blog
+            ${{ inputs.url }}/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache
+            ${{ inputs.url }}/events
+          
+
+      - name: Create Lighthouse report
+        id: lighthouse-results-generate
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+        run: python scripts/generate-lighthouse-report.py
+
+      - name: Comment on PR with Lighthouse insights
+        uses: mshick/add-pr-comment@v2
+        with:
+          message: ${{ steps.lighthouse-results-generate.outputs.report }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allow-repeats: true
+
+
+      - name: Add Lighthouse Insights to Summary
+        if: github.event_name != 'pull_request'
+        run: |
+          $report_content='${{ steps.lighthouse-results-generate.outputs.report }}'
+          "$report_content" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append

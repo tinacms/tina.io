@@ -1,0 +1,29 @@
+{
+  "versionNumber": "2.2.7",
+  "dateReleased": "2024-10-01T07:27:46Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Attempt to fix `fs` not found issue",
+          "pull_request_number": "4840",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/4840",
+          "commit_hash": "113f4db",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/113f4db4b5d5b7d4b95d612eca56f815f41b4f8c",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        },
+        {
+          "changesDescription": "♻️ Add index to key",
+          "pull_request_number": "4826",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/4826",
+          "commit_hash": "f0994c8",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f0994c8f49122cd9d784bf47171715c529d2528f",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        }
+      ]
+    }
+  ]
+}

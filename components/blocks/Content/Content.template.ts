@@ -65,11 +65,11 @@ export const contentTemplate: Template = {
         type: 'mdx',
       },
       templates: [
-        // @ts-ignore
+        // @ts-expect-error
         actionsButtonTemplate,
-        // @ts-ignore
+        // @ts-expect-error
         socialTemplate,
-        // @ts-ignore
+        // @ts-expect-error
         newsletterTemplate,
       ],
     },

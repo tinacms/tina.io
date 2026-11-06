@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.03.98",
+  "dateReleased": "2025-03-13T04:30:34Z",
+  "changesObject": [
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "⬆️ Updates - @tinacms/graphql, @babel/*, axios packages",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
+        }
+      ]
+    }
+  ]
+}

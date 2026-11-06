@@ -1,4 +1,5 @@
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { BODY } from '@/component/styles/typography';
 import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import { VideoGridComponent } from '../Media/MediaComponent';
 
@@ -6,8 +7,6 @@ const TextAndMediaColumnsComponent = ({ data }) => {
   const { mediaColumnItem, body, isVideoOnLeft } = data || {};
 
   const typenames = {
-    cloudinary:
-      'PageBlocksTextMediaColumnComponentMediaColumnItemCloudinaryMediaComponent',
     youtube: 'PageBlocksTextMediaColumnComponentMediaColumnItemYoutubeMedia',
   };
 
@@ -24,7 +23,7 @@ const TextAndMediaColumnsComponent = ({ data }) => {
           })}
         </div>
         <div
-          className={`lg:col-span-3 py-12 lg:py-0 mx-12 md:mx-16 text-center lg:text-start lg:mx-30 my-auto relative row-start-1 ${
+          className={`${BODY} lg:col-span-3 pt-8 lg:pt-0 mx-6 md:mx-16 text-start lg:mx-30 my-auto relative row-start-1 ${
             isVideoOnLeft ? 'lg:col-start-5' : 'lg:col-start-1'
           }`}
         >

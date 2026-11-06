@@ -17,16 +17,16 @@
           "href": "https://www.youtube.com/c/tinacms"
         },
         {
-          "label": "Compare TinaCMS",
-          "href": "/compare-tina"
-        },
-        {
           "label": "Showcase",
           "href": "/showcase"
         },
         {
           "label": "What's New in TinaCMS",
           "href": "/whats-new/tinacms"
+        },
+        {
+          "label": "Versions",
+          "href": "/versions"
         }
       ],
       "_template": "groupOfStringItems"
@@ -49,8 +49,16 @@
       "label": "TinaCloud",
       "items": [
         {
-          "label": "My TinaCloud",
-          "href": "https://app.tina.io/signin"
+          "label": "Pricing",
+          "href": "/pricing"
+        },
+        {
+          "label": "Enterprise",
+          "href": "/enterprise"
+        },
+        {
+          "label": "Quickstart ",
+          "href": "https://app.tina.io/quickstart"
         },
         {
           "label": "What's New in TinaCloud",
@@ -60,18 +68,9 @@
       "_template": "groupOfStringItems"
     },
     {
-      "label": "Pricing",
-      "items": [
-        {
-          "label": "TinaCloud Pricing",
-          "href": "/pricing"
-        },
-        {
-          "label": "Enterprise",
-          "href": "/enterprise"
-        }
-      ],
-      "_template": "groupOfStringItems"
+      "label": "Editorial Workflow",
+      "href": "/editorial-workflow",
+      "_template": "stringItem"
     },
     {
       "label": "Community",
@@ -79,6 +78,10 @@
         {
           "label": "Events",
           "href": "/events"
+        },
+        {
+          "label": "Partners",
+          "href": "/partners"
         },
         {
           "label": "Certifications",
@@ -111,8 +114,12 @@
       "label": "About",
       "items": [
         {
-          "label": "About Tina",
+          "label": "About TinaCMS",
           "href": "/about"
+        },
+        {
+          "label": "Compare TinaCMS",
+          "href": "/compare-tina"
         },
         {
           "label": "Blog",
@@ -121,6 +128,11 @@
         {
           "label": "Examples",
           "href": "/examples"
+        },
+        {
+          "label": "Contact Us",
+          "href": "",
+          "modal": "ContactForm"
         }
       ],
       "_template": "groupOfStringItems"

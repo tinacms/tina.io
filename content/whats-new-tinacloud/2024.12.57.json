@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2024.12.57",
+  "dateReleased": "2024-12-18T06:28:36Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🛂 Invites - Allow users to be invited without requiring email",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🔒 Pipeline security - stop using access key/secrets in favour of OIDC",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}

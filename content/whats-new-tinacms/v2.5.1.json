@@ -1,0 +1,29 @@
+{
+  "versionNumber": "2.5.1",
+  "dateReleased": "2024-12-09T04:37:41Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Export MediaStoreClass interface",
+          "pull_request_number": "5284",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5284",
+          "commit_hash": "bbfd415",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/bbfd415762a8b2c62b7653b497b94d67aaa8501a",
+          "gitHubName": "Nopik",
+          "gitHubLink": "https://github.com/Nopik"
+        },
+        {
+          "changesDescription": "Fix descriptions showing [Object, Object]",
+          "pull_request_number": "5325",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5325",
+          "commit_hash": "83a25cf",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/83a25cf61b736e1867d37bee37f7514d349e4427",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        }
+      ]
+    }
+  ]
+}

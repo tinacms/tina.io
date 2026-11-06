@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2024.12.51",
+  "dateReleased": "2024-12-12T03:54:38Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: multifactor authentication",
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4"
+        },
+        {
+          "changesDescription": "Distinguish app and runtime graphql versions",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "📝 Docs - Fixes unindexed branch error link",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        },
+        {
+          "changesDescription": "🥅 Error message - Fixed links when expected branches are not indexed",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

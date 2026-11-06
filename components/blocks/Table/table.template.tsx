@@ -36,6 +36,13 @@ export const tableTemplate: Template = {
         { name: 'isReccomended', label: 'Is Reccomended?', type: 'boolean' },
         { name: 'columnHeader', label: 'Column Header', type: 'string' },
         { name: 'columnByLine', label: 'Column By-Line', type: 'string' },
+        {
+          name: 'columnByLineAnnual',
+          label: 'Column By-Line (annual billing)',
+          type: 'string',
+          description:
+            'Shown instead of the by-line while the pricing toggle is on Annually',
+        },
         { name: 'columnHeaderLink', label: 'Column Link', type: 'string' },
       ],
     },
@@ -52,6 +59,12 @@ export const tableTemplate: Template = {
       },
       fields: [
         { name: 'rowHeader', label: 'Row Header', type: 'string' },
+        {
+          name: 'rowHeaderLink',
+          label: 'Row Header Link',
+          type: 'string',
+          description: 'Optional URL that turns the row header into a link',
+        },
         {
           name: 'rowDescription',
           label: 'Row Description',
@@ -115,7 +128,7 @@ export const tableTemplate: Template = {
               return (
                 <div>
                   {valueMap.map((cell, index) => (
-                    <div className="mb-2" key={cell.id}>
+                    <div className="mb-2" key={`${cell.columnHeader}-${index}`}>
                       <div className="flex mb-1">
                         <span className="mr-3 font-bold">
                           {cell.columnHeader}:

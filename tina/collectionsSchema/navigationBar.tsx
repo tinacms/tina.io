@@ -1,7 +1,9 @@
-const _modals = ['BookDemo', 'EmailForm'];
-const iconOptions = ['FaCalendarDay', 'MdEmail'];
+const _modals = ['BookDemo', 'EmailForm', 'ContactForm'];
 
-import { modalButtonTemplateFields } from '../../components/blocks/ModalButton/ModalButton.template';
+import {
+  modalButtonDefaultItem,
+  modalButtonTemplateFields,
+} from '../../components/blocks/ModalButton/ModalButton.template';
 
 export const navigationBarCollection = {
   label: 'Navigation Bar',
@@ -102,6 +104,14 @@ export const navigationBarCollection = {
                   label: 'href',
                   type: 'string',
                 },
+                {
+                  name: 'modal',
+                  label: 'Modal',
+                  type: 'string',
+                  options: _modals,
+                  description:
+                    'If set, clicking this item opens a modal instead of navigating',
+                },
               ],
             },
           ],
@@ -114,24 +124,9 @@ export const navigationBarCollection = {
             itemProps: (item) => {
               return { label: `🍌 ${item?.label}` };
             },
-            defaultItem: {
-              variant: 'default',
-              label: 'Secondary Action',
-              icon: false,
-              size: 'medium',
-            },
+            defaultItem: modalButtonDefaultItem,
           },
-          fields: [
-            ...modalButtonTemplateFields,
-            {
-              name: 'icon2',
-              label: 'Icon',
-              type: 'string',
-              options: iconOptions,
-              description:
-                'If you want a new icon added please ask a developer :)',
-            },
-          ],
+          fields: modalButtonTemplateFields,
         },
         {
           name: 'doubleNavItemDropDown',

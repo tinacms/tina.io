@@ -1,0 +1,160 @@
+import { useState } from 'react';
+import { ImCross } from 'react-icons/im';
+import { IoIosWarning } from 'react-icons/io';
+import { TiTick } from 'react-icons/ti';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  FIELD,
+  ON_DARK,
+  SUB_HEADING,
+} from '@/component/styles/typography';
+import { addToMailchimp } from '@/utils/mailchimp_helper';
+import { Button } from '../ui/Button';
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  notes: string;
+}
+
+export const SubscriptionForm = ({ props }) => {
+  const { label } = props;
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    notes: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState({ text: '', type: '' });
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setMessage({ text: '', type: '' });
+
+    try {
+      const result = await addToMailchimp(
+        formData.email,
+        formData.firstName,
+        formData.lastName,
+        formData.notes,
+      );
+
+      if (result.result === 'success') {
+        setMessage({
+          text: "You've been added to the llama list!",
+          type: 'success',
+        });
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          notes: '',
+        });
+      } else if (result.message.includes('400')) {
+        setMessage({ text: "You're already in our herd!", type: 'warning' });
+      } else {
+        setMessage({
+          text: 'There was an error. Please try again.',
+          type: 'error',
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setMessage({
+        text: 'There was an error. Please try again.',
+        type: 'error',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  return (
+    <div className="flex flex-col mt-4 md:mt-0">
+      <form
+        className={`${ON_DARK} flex flex-col text-left gap-1.5 items-start w-full`}
+        onSubmit={handleSubmit}
+      >
+        <h2 className={SUB_HEADING}>Join the Herd!</h2>
+        <p className={`${BODY_SMALL} pb-1.5`}>
+          Join our coding community for the latest tips and news.
+        </p>
+        <div className="flex flex-col gap-2.5 w-full">
+          <div className="flex gap-2.5">
+            <input
+              className={`w-full px-2 py-2 border rounded-sm border-white bg-white/10 ${FIELD}`}
+              placeholder="First name"
+              name="firstName"
+              type="text"
+              autoComplete="given-name"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              required
+              disabled={isSubmitting}
+            />
+            <input
+              className={`w-full px-2 py-2 bg-white/10 border rounded-sm border-white ${FIELD}`}
+              placeholder="Last name"
+              name="lastName"
+              type="text"
+              autoComplete="family-name"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              required
+              disabled={isSubmitting}
+            />
+          </div>
+
+          <input
+            className={`w-full px-2 py-2 bg-white/10 border rounded-sm border-white ${FIELD}`}
+            placeholder="Email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+            disabled={isSubmitting}
+          />
+          <textarea
+            className={`w-full px-2 py-2 bg-white/10 border rounded-sm border-white ${FIELD}`}
+            placeholder="Notes"
+            name="notes"
+            autoComplete="off"
+            rows={2}
+            value={formData.notes}
+            onChange={handleInputChange}
+            disabled={isSubmitting}
+          />
+          {message.text && (
+            <p className={`${BODY_MUTED} flex items-center gap-1`}>
+              {message.type === 'success' && <TiTick className="w-3 h-3" />}
+              {message.type === 'warning' && (
+                <IoIosWarning className="w-3 h-3" />
+              )}
+              {message.type === 'error' && <ImCross className="w-3 h-3" />}
+              {message.text}
+            </p>
+          )}
+          <div className="flex justify-center pt-1">
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? 'Subscribe...' : label}
+            </Button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};

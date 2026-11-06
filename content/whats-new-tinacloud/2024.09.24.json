@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2024.09.24",
+  "dateReleased": "2024-09-30T07:52:33Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "starter templates - updates note for common vercel deployment issues in https://github.com/tinacms/tinacloud/pull/2320",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "User sign up - use name instead of username to prefix default organisation in https://github.com/tinacms/tinacloud/pull/2318",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump rollup from 2.38.3 to 2.79.2 in https://github.com/tinacms/tinacloud/pull/2323",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump axios from 0.21.1 to 1.7.7 in https://github.com/tinacms/tinacloud/pull/2322",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}

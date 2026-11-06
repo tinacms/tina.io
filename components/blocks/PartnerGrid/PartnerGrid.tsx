@@ -1,0 +1,210 @@
+import Image from 'next/image';
+// biome-ignore lint/correctness/noUnusedImports: React is required for JSX
+import React from 'react';
+import { tinaField } from 'tinacms/dist/react';
+import {
+  BODY,
+  BODY_MUTED,
+  BODY_SMALL,
+  LABEL,
+  PAGE_TITLE,
+  SECTION_TITLE,
+  SUB_HEADING,
+  SURFACE,
+} from '@/component/styles/typography';
+import { TextLink } from '../../ui/TextLink';
+import { Container } from '../Container';
+import { ModalB } from '../ModalButton/ModalButton';
+
+const PartnerCard = ({ data }) => {
+  const website =
+    data.website && !data.website.match(/^https?:\/\//)
+      ? `https://${data.website}`
+      : data.website;
+  // Show the bare domain (no protocol / trailing slash) as the link text.
+  // “Visit ssw.com.au”: the bare domain, without protocol, www or path.
+  const websiteDomain = website
+    ?.replace(/^https?:\/\//, '')
+    .replace(/^www\./, '')
+    .replace(/\/.*$/, '');
+
+  const isPremier = data.tier === 'Premier';
+
+  return (
+    <div
+      className={`flex h-full flex-col gap-4 rounded-lg bg-white p-6 shadow-lg md:p-8 ${
+        isPremier ? 'ring-2 ring-amber-300/70' : ''
+      }`}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="relative h-12 w-40">
+          {data.logo ? (
+            <Image
+              src={data.logo}
+              alt={data.name}
+              fill
+              className="object-contain object-left"
+              data-tina-field={tinaField(data, 'logo')}
+            />
+          ) : (
+            <span
+              className={SUB_HEADING}
+              data-tina-field={tinaField(data, 'name')}
+            >
+              {data.name}
+            </span>
+          )}
+        </div>
+        {data.tier && (
+          <span
+            className={`${LABEL} shrink-0 rounded-full px-3 py-1 ${
+              isPremier
+                ? // Premier keeps its brand gradient (data-driven tier colour).
+                  'bg-linear-to-r from-amber-200 via-yellow-300 to-amber-400 text-amber-900 shadow-sm ring-1 ring-amber-300/60'
+                : `${SURFACE.info} border`
+            }`}
+            data-tina-field={tinaField(data, 'tier')}
+          >
+            {data.tier}
+          </span>
+        )}
+      </div>
+
+      {data.location && (
+        <p className={BODY_MUTED} data-tina-field={tinaField(data, 'location')}>
+          {data.location}
+        </p>
+      )}
+
+      {data.description && (
+        <p
+          className={`${BODY_SMALL} grow`}
+          data-tina-field={tinaField(data, 'description')}
+        >
+          {data.description}
+        </p>
+      )}
+
+      {data.services?.length > 0 && (
+        <ul className="flex flex-wrap gap-2">
+          {data.services.map((service) => (
+            <li
+              key={service}
+              className={`${SURFACE.neutral} ${LABEL} rounded-md px-3 py-1`}
+            >
+              {service}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {website && (
+        <TextLink
+          href={website}
+          className="mt-auto"
+          data-tina-field={tinaField(data, 'website')}
+        >
+          Visit {websiteDomain}
+        </TextLink>
+      )}
+    </div>
+  );
+};
+
+// Same modal the navbar's "Contact Us" opens — there is no /contact route.
+const CONTACT_BUTTON = {
+  label: 'Contact us',
+  modal: 'ContactForm.tsx',
+  // The card's only action, so it's the Primary.
+  color: 'primary',
+};
+
+// Always the last card: the directory only lists partners who opted in, so a
+// visitor who sees no fit still needs a path to the ones who aren't listed.
+const GetInContactCard = ({ data }) => (
+  <div className="flex h-full flex-col gap-4 rounded-lg border-2 border-dashed border-blue-200 bg-blue-50/40 p-6 md:p-8">
+    {data.contactCardTitle && (
+      <h3
+        className={SUB_HEADING}
+        data-tina-field={tinaField(data, 'contactCardTitle')}
+      >
+        {data.contactCardTitle}
+      </h3>
+    )}
+    {data.contactCardText && (
+      <p
+        className={`${BODY_SMALL} grow`}
+        data-tina-field={tinaField(data, 'contactCardText')}
+      >
+        {data.contactCardText}
+      </p>
+    )}
+    <div className="mt-auto">
+      <ModalB items={[CONTACT_BUTTON]} />
+    </div>
+  </div>
+);
+
+// The title-derived fallback breaks inbound links when an editor renames the
+// block, hence `anchorId`. `-section` keeps it off the CTA button's own id,
+// which slugifies from the same words.
+const sectionId = (data, index) => {
+  if (data.anchorId) {
+    return data.anchorId;
+  }
+  const slug = data.title
+    ?.toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return slug ? `${slug}-section` : `partner-grid-${index}`;
+};
+
+export function PartnerGridBlock({ data, index }) {
+  // With a single partner the full-width grid reads as if partners are missing;
+  // center the lone card next to the contact card instead. The heading stays —
+  // it's what tells visitors this section is the partner list.
+  const isSingle = data.items?.length === 1;
+
+  return (
+    <section
+      id={sectionId(data, index)}
+      key={`partner-grid-${index}`}
+      className="w-full scroll-mt-24"
+    >
+      <Container width="wide">
+        {data.title &&
+          (data.blockSettings?.isHeadingOne ? (
+            <h1 className={`${PAGE_TITLE} text-center justify-center`}>
+              {data.title}
+            </h1>
+          ) : (
+            <h2 className={`${SECTION_TITLE} text-center justify-center`}>
+              {data.title}
+            </h2>
+          ))}
+        {data.subText && (
+          <p className={`${BODY} max-w-60ch text-center mx-auto py-4`}>
+            {data.subText}
+          </p>
+        )}
+        {isSingle ? (
+          <div className="flex justify-center pt-8">
+            <div className="grid w-full max-w-3xl grid-cols-1 gap-8 sm:grid-cols-2">
+              {data.items.map((item, i) => (
+                <PartnerCard key={`${item.name}-${i}`} data={item} />
+              ))}
+              <GetInContactCard data={data} />
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
+            {data.items?.map((item, i) => (
+              <PartnerCard key={`${item.name}-${i}`} data={item} />
+            ))}
+            <GetInContactCard data={data} />
+          </div>
+        )}
+      </Container>
+    </section>
+  );
+}

@@ -11,15 +11,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import type { Collection, Template } from 'tinacms';
+import type { Collection } from 'tinacms';
 import { defineSchema } from 'tinacms';
-import { itemTemplate } from '../components/toc/toc-item.template';
-import { submenuTemplate } from '../components/toc/toc-submenu.template';
 import { blogsCollection } from './collectionsSchema/blogs';
 import { blogsZhCollection } from './collectionsSchema/blogsZh';
 import { conferenceTinaCMSCollection } from './collectionsSchema/conference';
-import { docsCollection } from './collectionsSchema/docs';
-import { docsZhCollection } from './collectionsSchema/docsZh';
 import { eventsCollection } from './collectionsSchema/eventsSchema';
 import { examplesCollection } from './collectionsSchema/examples';
 import { footerCollection } from './collectionsSchema/footer';
@@ -33,8 +29,6 @@ import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS';
 export const schema = defineSchema({
   collections: [
     pagesCollection as Collection,
-    docsCollection as Collection,
-    docsZhCollection as Collection,
     blogsCollection as Collection,
     blogsZhCollection as Collection,
     examplesCollection as Collection,
@@ -46,37 +40,5 @@ export const schema = defineSchema({
     footerCollection as Collection,
     conferenceTinaCMSCollection as Collection,
     settingCollection as Collection,
-    {
-      name: 'docsTableOfContents',
-      label: 'Docs - Table of Contents',
-      path: 'content/docs-toc',
-      format: 'json',
-      fields: [
-        {
-          name: 'supermenuGroup',
-          label: 'Supermenu Group',
-          type: 'object',
-          list: true,
-          ui: {
-            itemProps: (item) => {
-              return { label: `🗂️ ${item?.title ?? 'Unnamed Menu Group'}` };
-            },
-          },
-          fields: [
-            { name: 'title', label: 'Name', type: 'string' },
-            {
-              name: 'items',
-              label: 'Page or Submenu',
-              type: 'object',
-              list: true,
-              templates: [
-                submenuTemplate as Template,
-                itemTemplate as Template,
-              ],
-            },
-          ],
-        },
-      ],
-    },
   ],
 });

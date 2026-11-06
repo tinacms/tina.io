@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.08.3",
+  "dateReleased": "2025-08-26T07:38:35Z",
+  "changesObject": [
+    {
+      "changesTitle": "🐛 Bug Fixes",
+      "changesList": [
+        {
+          "changesDescription": "Fix footer page format and improve responsive design",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Fix email service",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}

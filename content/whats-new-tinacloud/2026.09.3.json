@@ -1,0 +1,56 @@
+{
+  "versionNumber": "2026.09.3",
+  "dateReleased": "2026-09-17T04:56:36Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Surface the real indexing failure instead of \"Please try again\"",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore: upgrade serverless-http from 2.7.0 to 4.0.0 in content-api and assets-api",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix: stop editorial workflow saves crashing on a commit event with no email",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group across 1 directory with 2 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group across 1 directory with 6 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump js-yaml from 3.15.1 to 3.15.2[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump fs-extra and @types/fs-extra[bot]",
+          "gitHubName": "types",
+          "gitHubLink": "https://github.com/types"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump jsdom from 21.1.2 to 30.0.1[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}

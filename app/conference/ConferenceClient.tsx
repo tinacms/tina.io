@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from 'components/ui';
+import { Button, ButtonGroup, LinkButton } from 'components/ui';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
@@ -11,6 +11,22 @@ import { IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
+import {
+  BODY,
+  BODY_MUTED,
+  BODY_SMALL,
+  CARD_TITLE,
+  EYEBROW,
+  LABEL,
+  LINK,
+  PAGE_TITLE,
+  RICH_TEXT,
+  SECTION_TITLE,
+  SUB_HEADING,
+  SURFACE,
+} from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
+
 const HeaderBanner = ({
   tinaData,
   scrollToAgenda,
@@ -19,42 +35,44 @@ const HeaderBanner = ({
   scrollToAgenda: () => void;
 }) => {
   return (
-    <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br from-seafoam-100 to-seafoam-200 text-black">
-      <h1 className="font-ibm-plex text-4xl pb-4 text-orange-500">
-        {tinaData.bannerTitle}
-      </h1>
-      <h2 className="text-2xl max-w-4xl text-orange-500 font-ibm-plex pb-4">
+    <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br from-seafoam-100 to-seafoam-200">
+      <h1 className={`${PAGE_TITLE} pb-4`}>{tinaData.bannerTitle}</h1>
+      <h2 className={`${CARD_TITLE} max-w-4xl pb-4`}>
         {tinaData.bannerTagline}
       </h2>
-      <h3 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h3>
+      <h3 className={`${BODY} max-w-4xl`}>{tinaData.bannerDescription}</h3>
       <div className="flex flex-col md:flex-row py-6 gap-6  md:gap-10">
         <div className="flex gap-2 items-center">
-          <FaRegCalendar /> <span>{tinaData.date}</span>
+          <FaRegCalendar /> <span className={BODY_SMALL}>{tinaData.date}</span>
         </div>
         <div className="flex gap-2 items-center">
-          <FaRegClock /> <span>{tinaData.time}</span>
+          <FaRegClock /> <span className={BODY_SMALL}>{tinaData.time}</span>
         </div>
         <div className="flex gap-2 items-center">
           <FaRegMap />{' '}
-          <Link
-            href="https://www.ssw.com.au/offices/melbourne "
-            target="_blank"
-            className="underline"
-          >
-            {tinaData.location}
-          </Link>
+          {tinaData.locationLink ? (
+            <Link
+              href={tinaData.locationLink}
+              target="_blank"
+              className={`${BODY_SMALL} ${LINK}`}
+            >
+              {tinaData.location}
+            </Link>
+          ) : (
+            <span className={BODY_SMALL}>{tinaData.location}</span>
+          )}
         </div>
       </div>
-      <div className="flex flex-row gap-4">
-        <Button color="white" size="medium" onClick={scrollToAgenda}>
-          <span className="mr-2">{tinaData.actionButton.title}</span>
+      <ButtonGroup className="w-full sm:w-auto">
+        {tinaData?.rightButton?.link && (
+          <LinkButton link={tinaData.rightButton.link} target="_blank">
+            {tinaData?.rightButton?.title}
+          </LinkButton>
+        )}
+        <Button level="tertiary" onClick={scrollToAgenda}>
+          {tinaData.actionButton.title}
         </Button>
-        <Link href={tinaData?.rightButton?.link} target="_blank">
-          <Button color="blue" size="medium">
-            <span className="mr-2">{tinaData?.rightButton?.title}</span>
-          </Button>
-        </Link>
-      </div>
+      </ButtonGroup>
     </div>
   );
 };
@@ -95,7 +113,7 @@ interface KeyHighlightsProps {
 }
 const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
   return (
-    <div className="flex flex-col md:flex-row py-12 gap-10 max-w-4xl text-lg">
+    <div className="flex flex-col md:flex-row py-12 gap-10 max-w-4xl">
       {[
         ['headerLeft', 'descriptionLeft', 'iconLeft'],
         ['headerMiddle', 'descriptionMiddle', 'iconMiddle'],
@@ -106,10 +124,12 @@ const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
           className="flex flex-col gap-2 items-center w-full md:w-1/3"
         >
           {icons[highlights[icon as keyof typeof highlights]]}
-          <h3 className="font-bold">
+          <h3 className={SUB_HEADING}>
             {highlights[header as keyof typeof highlights]}
           </h3>
-          <p>{highlights[description as keyof typeof highlights]}</p>
+          <p className={BODY_SMALL}>
+            {highlights[description as keyof typeof highlights]}
+          </p>
         </div>
       ))}
     </div>
@@ -118,7 +138,7 @@ const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
 
 const conferenceMarkdownComponents = {
   a: ({ children, url }: { children: React.ReactNode; url: string }) => (
-    <Link href={url} target="_blank" className="underline">
+    <Link href={url} target="_blank" className={LINK}>
       {children}
     </Link>
   ),
@@ -144,9 +164,7 @@ interface Session {
 const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
   return (
     <div className="flex flex-col items-center text-center p-6 md:p-16">
-      <h2 className="text-3xl font-bold py-16 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
-        Open Source Expert Speakers
-      </h2>
+      <h2 className={`${SECTION_TITLE} py-16`}>Open Source Expert Speakers</h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14">
         {speakers.map((speaker) => (
           <div
@@ -162,10 +180,8 @@ const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
                 className="rounded-full shadow-xl"
               />
             </Link>
-            <h3 className="font-bold text-lg pt-5">{speaker.name}</h3>
-            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
-              {speaker.position}
-            </h4>
+            <h3 className={`${SUB_HEADING} pt-5`}>{speaker.name}</h3>
+            <h4 className={`${BODY_MUTED} pb-2 -pt-1`}>{speaker.position}</h4>
           </div>
         ))}
       </div>
@@ -230,12 +246,20 @@ function Agenda({
     (a, b) => a.timeStart - b.timeStart,
   );
 
+  if (timeSlots.length === 0) {
+    return (
+      <div className="flex flex-col items-center" ref={agendaRef}>
+        <h2 id="agenda" className={`${SECTION_TITLE} pt-16 pb-8`}>
+          Agenda
+        </h2>
+        <p className={`${BODY} pb-16`}>The full agenda is coming soon.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center" ref={agendaRef}>
-      <h2
-        id="agenda"
-        className="text-3xl font-bold pt-16 pb-8 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
-      >
+      <h2 id="agenda" className={`${SECTION_TITLE} pt-16 pb-8`}>
         Agenda
       </h2>
 
@@ -243,16 +267,18 @@ function Agenda({
       <div className="w-full max-w-5xl overflow-x-auto hidden md:block rounded-xl">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-blue-100">
-              <th className="border p-4 w-1/6 text-left">Time</th>
-              <th className="border p-4 w-4/5 text-center">Talks</th>
+            <tr className={SURFACE.info}>
+              <th className={`${EYEBROW} border p-4 w-1/6 text-left`}>Time</th>
+              <th className={`${EYEBROW} border p-4 w-4/5 text-center`}>
+                Talks
+              </th>
             </tr>
           </thead>
           <tbody>
             {timeSlots.map((slot) => (
               <tr key={slot.timeStart}>
                 <td className="border p-4 align-top text-left">
-                  <div className="font-bold leading-6">
+                  <div className={LABEL}>
                     {formatTime(slot.timeStart)} -
                     <br />
                     {slot.timeEnd ? formatTime(slot.timeEnd) : ''}
@@ -266,10 +292,10 @@ function Agenda({
                         key={breakSession.speechTitle}
                         className="mb-4 last:mb-0"
                       >
-                        <h3 className="text-lg font-bold">
+                        <h3 className={SUB_HEADING}>
                           {breakSession.speechTitle}
                         </h3>
-                        <p className="text-gray-600 text-sm">
+                        <p className={BODY_SMALL}>
                           {breakSession.speechDescription}
                         </p>
                       </div>
@@ -283,11 +309,9 @@ function Agenda({
                         className="mb-4 last:mb-0 flex"
                       >
                         <div>
-                          <h3 className="text-lg leading-6 font-bold">
-                            {talk.speechTitle}
-                          </h3>
+                          <h3 className={SUB_HEADING}>{talk.speechTitle}</h3>
                           {talk.talkSpeakerName && (
-                            <div className="flex items-center gap-2 text-gray-600 mt-1">
+                            <div className="flex items-center gap-2 mt-1">
                               <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
                                 <Image
                                   src={talk.talkSpeakerImage}
@@ -297,12 +321,12 @@ function Agenda({
                                   className="w-full h-full object-cover"
                                 />
                               </div>
-                              <span className="text-sm">
+                              <span className={LABEL}>
                                 {talk.talkSpeakerName}
                               </span>
                             </div>
                           )}
-                          <p className="text-gray-600 text-sm pt-2">
+                          <p className={`${BODY_SMALL} pt-2`}>
                             {talk.speechDescription}
                           </p>
                         </div>
@@ -320,7 +344,7 @@ function Agenda({
       <div className="w-full max-w-6xl md:hidden text-left">
         {timeSlots.map((slot, _slotIndex) => (
           <div key={slot.timeStart} className="mb-8">
-            <div className="bg-blue-100 py-3 px-4 rounded-t-lg font-bold">
+            <div className={`${SURFACE.info} ${LABEL} py-3 px-4 rounded-t-lg`}>
               {formatTime(slot.timeStart)} -{' '}
               {slot.timeEnd ? formatTime(slot.timeEnd) : ''}
             </div>
@@ -333,13 +357,13 @@ function Agenda({
                     key={breakSession.speechTitle}
                     className="mb-4 last:mb-0"
                   >
-                    <div className="bg-orange-100 text-orange-500 text-sm rounded-full px-2 w-14 mb-2">
+                    <div
+                      className={`${SURFACE.brand} ${LABEL} rounded-full px-2 w-14 mb-2`}
+                    >
                       Break
                     </div>
-                    <h3 className="text-lg leading-5 font-bold">
-                      {breakSession.speechTitle}
-                    </h3>
-                    <p className="text-gray-600 text-sm pt-1">
+                    <h3 className={SUB_HEADING}>{breakSession.speechTitle}</h3>
+                    <p className={`${BODY_SMALL} pt-1`}>
                       {breakSession.speechDescription}
                     </p>
                   </div>
@@ -356,14 +380,14 @@ function Agenda({
                     key={talk.speechTitle}
                     className="pb-4 border-b last:border-b-0 last:pb-0"
                   >
-                    <div className="bg-blue-100 text-blue-500 text-sm rounded-full px-2 w-11 mb-2">
+                    <div
+                      className={`${SURFACE.info} ${LABEL} rounded-full border px-2 w-fit mb-2`}
+                    >
                       Talk
                     </div>
-                    <h3 className="text-lg font-bold leading-5">
-                      {talk.speechTitle}
-                    </h3>
+                    <h3 className={SUB_HEADING}>{talk.speechTitle}</h3>
                     {talk.talkSpeakerName && (
-                      <div className="flex items-center gap-2 text-gray-600 mt-1">
+                      <div className="flex items-center gap-2 mt-1">
                         <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
                           <Image
                             src={talk.talkSpeakerImage}
@@ -373,10 +397,10 @@ function Agenda({
                             className="w-full h-full object-cover"
                           />
                         </div>
-                        <span className="text-sm">{talk.talkSpeakerName}</span>
+                        <span className={LABEL}>{talk.talkSpeakerName}</span>
                       </div>
                     )}
-                    <p className="text-gray-600 text-sm pt-2">
+                    <p className={`${BODY_SMALL} pt-2`}>
                       {talk.speechDescription}
                     </p>
                   </div>
@@ -449,10 +473,10 @@ function ConferencePage({
         scrollToAgenda={scrollToAgenda}
       />
       <div className="flex flex-col justify-center items-center text-center p-16">
-        <h2 className="text-3xl font-bold pb-4 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
+        <h2 className={`${SECTION_TITLE} pb-4`}>
           {tinaData.data?.conference?.about?.heading}
         </h2>
-        <div className="text-lg max-w-4xl">
+        <div className={`${RICH_TEXT} max-w-4xl`}>
           <TinaMarkdown
             content={tinaData.data?.conference?.about?.description}
             components={conferenceMarkdownComponents}
@@ -461,10 +485,15 @@ function ConferencePage({
         <KeyHighlights
           highlights={tinaData.data?.conference?.about?.keyHighlights}
         />
-        <OpenSourceExpertSpeakers
-          speakers={tinaData.data?.conference?.speakers || []}
-        />
+        {tinaData.data?.conference?.speakers?.length > 0 && (
+          <OpenSourceExpertSpeakers
+            speakers={tinaData.data?.conference?.speakers || []}
+          />
+        )}
         <Agenda filteredSessions={filteredSessions} agendaRef={agendaRef} />
+        <TextLink href="/events" className="mt-16">
+          See all events
+        </TextLink>
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const redirects = require('./content/settings/config.json')?.redirects || [];
 const withSvgr = require('next-svgr');
@@ -7,8 +6,11 @@ require('dotenv').config();
 
 const isStatic = process.env.EXPORT_MODE === 'static';
 
-const TINA_DOCS_URL = 'https://tina-docs-red.vercel.app';
+const TINA_DOCS_URL = 'https://tina-docs-zeta-one.vercel.app';
 const TINA_DOCS_LANDING_URL = 'https://tina-docs-landing.vercel.app';
+const GEO_URL =
+  process.env.GEO_URL || 'https://tinacms-geo-lead-capture-xi.vercel.app';
+const DOCS_UPSTREAM_URL = process.env.DOCS_UPSTREAM_URL?.replace(/\/$/, '');
 
 /**
  * @type {import('next').NextConfig}
@@ -38,13 +40,14 @@ const config = {
   outputFileTracing: false,
   images: {
     unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
+    // Cache optimized images for 31 days. Next.js defaults to 60s, which
+    // causes the optimizer to re-fetch and re-write variants constantly
+    // (the dominant Image Optimization cost was cache writes, not transforms).
+    minimumCacheTTL: 2678400,
+    // Drop the 3840px (4K) variant: it doubles the transform/cache cost of
+    // every image for a rare case, and Next falls back to 2048px gracefully.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        port: '',
-        pathname: '/forestry-demo/**',
-      },
       {
         protocol: 'https',
         hostname: 'assets.tina.io',
@@ -54,53 +57,83 @@ const config = {
   },
 
   async rewrites() {
-    return [
-      // Your existing site routes
-      { source: '/', destination: '/home' },
-      { source: '/:locale(en|zh)', destination: '/:locale/home' },
+    // beforeFiles: wins over the local app/docs routes.
+    const docsUpstreamRewrites = DOCS_UPSTREAM_URL
+      ? [
+          { source: '/docs', destination: `${DOCS_UPSTREAM_URL}/docs` },
+          {
+            source: '/docs/:path*',
+            destination: `${DOCS_UPSTREAM_URL}/docs/:path*`,
+          },
+          { source: '/zh/docs', destination: `${DOCS_UPSTREAM_URL}/docs/zh` },
+          {
+            source: '/zh/docs/:path*',
+            destination: `${DOCS_UPSTREAM_URL}/docs/zh/:path*`,
+          },
+        ]
+      : [];
 
-      // Docs
-      {
-        source: '/tinadocs/docs',
-        destination: `${TINA_DOCS_URL}/tinadocs/docs`,
-      },
-      {
-        source: '/tinadocs/docs/:path*',
-        destination: `${TINA_DOCS_URL}/tinadocs/docs/:path*`,
-      },
-      {
-        source: '/tinadocs/docsassets/:path*',
-        destination: `${TINA_DOCS_URL}/tinadocs/docsassets/:path*`,
-      },
-      // Docs - Search functionality - Pagefind
-      {
-        source: '/tinadocs/_next/static/pagefind/:path*',
-        destination: `${TINA_DOCS_URL}/tinadocs/_next/static/pagefind/:path*`,
-      },
-      // Docs - Sitemap
-      {
-        source: '/tinadocs/doc/sitemap.xml',
-        destination: `${TINA_DOCS_URL}/tinadocs/doc/sitemap.xml`,
-      },
+    return {
+      beforeFiles: [
+        ...docsUpstreamRewrites,
+        { source: '/p/e', destination: 'https://plausible.io/api/event' },
+      ],
+      afterFiles: [
+        // Your existing site routes
+        { source: '/', destination: '/home' },
+        { source: '/:locale(en|zh)', destination: '/:locale/home' },
 
-      // Landing Page - Specific patterns first
-      {
-        source: '/tinadocs',
-        destination: `${TINA_DOCS_LANDING_URL}/tinadocs`,
-      },
-      {
-        source: '/tinadocs/landing/:path*',
-        destination: `${TINA_DOCS_LANDING_URL}/tinadocs/landing/:path*`,
-      },
-      // Catch-all for remaining tinadocs paths
-      {
-        source: '/tinadocs/:path*',
-        destination: `${TINA_DOCS_LANDING_URL}/tinadocs/:path*`,
-      },
+        // Docs
+        {
+          source: '/tinadocs/docs',
+          destination: `${TINA_DOCS_URL}/tinadocs/docs`,
+        },
+        {
+          source: '/tinadocs/api/:path*',
+          destination: `${TINA_DOCS_URL}/tinadocs/api/:path*`,
+        },
+        {
+          source: '/tinadocs/docs/:path*',
+          destination: `${TINA_DOCS_URL}/tinadocs/docs/:path*`,
+        },
+        {
+          source: '/tinadocs/docsassets/:path*',
+          destination: `${TINA_DOCS_URL}/tinadocs/docsassets/:path*`,
+        },
+        // Docs - Search functionality - Pagefind
+        {
+          source: '/tinadocs/_next/static/pagefind/:path*',
+          destination: `${TINA_DOCS_URL}/tinadocs/_next/static/pagefind/:path*`,
+        },
+        // Docs - Sitemap
+        {
+          source: '/tinadocs/doc/sitemap.xml',
+          destination: `${TINA_DOCS_URL}/tinadocs/doc/sitemap.xml`,
+        },
 
-      // Admin passthrough (yours)
-      { source: '/admin', destination: '/admin/index.html' },
-    ];
+        // Landing Page - Specific patterns first
+        {
+          source: '/tinadocs',
+          destination: `${TINA_DOCS_LANDING_URL}/tinadocs`,
+        },
+        {
+          source: '/tinadocs/landing/:path*',
+          destination: `${TINA_DOCS_LANDING_URL}/tinadocs/landing/:path*`,
+        },
+        // Catch-all for remaining tinadocs paths
+        {
+          source: '/tinadocs/:path*',
+          destination: `${TINA_DOCS_LANDING_URL}/tinadocs/:path*`,
+        },
+
+        // AI Search Readiness tool (separate deployment: tinacms/tinacms-geo-lead-capture)
+        { source: '/geo', destination: `${GEO_URL}/geo` },
+        { source: '/geo/:path*', destination: `${GEO_URL}/geo/:path*` },
+
+        // Admin passthrough (yours)
+        { source: '/admin', destination: '/admin/index.html' },
+      ],
+    };
   },
 
   env: {
@@ -142,7 +175,11 @@ const config = {
         destination: '/:locale',
         permanent: true,
       },
-
+      {
+        source: '/discord',
+        destination: 'https://discord.com/invite/zumN63Ybpf',
+        permanent: true,
+      },
       // existing redirects from JSON
       ...redirects.map((redirect) => ({
         source: redirect.source,
@@ -152,11 +189,18 @@ const config = {
     ];
   },
 
-  webpack(config) {
+  webpack(config, { dev }) {
     config.module.rules.push({ test: /\.md$/, use: 'raw-loader' });
     config.resolve.fallback = { ...config.resolve.fallback, fs: 'empty' };
 
-    config.plugins.push(new MomentLocalesPlugin());
+    // Opt-in escape hatch for low-RAM machines. Disabling webpack's persistent
+    // cache drops the dev server's peak memory on a cold homepage compile from
+    // ~8.7GB to ~7.6GB, at the cost of ~13s on each dev-server restart (the
+    // cache is no longer reused). Cold compile time is unchanged.
+    // Off by default; set LOW_MEMORY=true in your local .env to enable.
+    if (dev && process.env.LOW_MEMORY === 'true') {
+      config.cache = false;
+    }
 
     config.plugins.push(
       new MonacoWebpackPlugin({

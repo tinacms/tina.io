@@ -4,7 +4,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email_address, status, merge_fields } = body;
+    const { email_address, status, merge_fields, note } = body;
 
     mailchimp.setConfig({
       apiKey: process.env.MAILCHIMP_API_KEY,
@@ -17,11 +17,22 @@ export async function POST(request: NextRequest) {
         { email_address, status, merge_fields },
       );
 
+      if (note) {
+        try {
+          const _noteResponse = await mailchimp.lists.createListMemberNote(
+            process.env.MAILCHIMP_AUDIENCE_ID!,
+            response.id,
+            { note },
+          );
+        } catch (noteError: any) {
+          throw new Error(noteError.message);
+        }
+      }
+
       return NextResponse.json({ success: true, response }, { status: 200 });
     } catch (err: any) {
       const errorStatus = err.response ? err.response.status : 500;
       const errorMessage = err.response ? err.response.text : err.message;
-      console.error('Mailchimp error:', errorMessage);
 
       return NextResponse.json(
         { error: true, message: errorMessage },

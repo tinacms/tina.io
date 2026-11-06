@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2024.12.53",
+  "dateReleased": "2024-12-15T23:58:07Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Bug - Getting started link lead to HTTP 404 Not Found",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        },
+        {
+          "changesDescription": "🔥 Intercom - Removes artefacts from Identity API and Docs",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        },
+        {
+          "changesDescription": "✉️ Audit system sent emails",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}

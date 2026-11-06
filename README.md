@@ -2,7 +2,7 @@
 
 # <p align="center">Tina.io – the Website for [TinaCMS](https://github.com/tinacms/tinacms)</p>
 
-Source code for the tina.io website, including the TinaCMS documentation and blog.
+Source code for the tina.io website: the TinaCMS marketing site and blog. The documentation lives in [tinacms/docs](https://github.com/tinacms/docs) and is served under `tina.io/docs` through a rewrite.
 
 Found a bug? Create a PBI and we'll look into it.
 
@@ -69,6 +69,12 @@ Additionally, the Tina [docs](https://tina.io/docs/) contains the usage details 
 - [Definition of Done (work requirements)](/_docs/Definition-of-Done.md)
 - [Definition of Ready (PBI requrements)](/_docs/Definition-of-Ready.md)
 - [Contribution Guidelines](CONTRIBUTING.md)
+
+### Design  
+
+The Tina.io site aims to adhere to the design library created by the awesome designers at [SSW](https://ssw.com.au)
+
+- [Tina.io Design Library](https://www.figma.com/design/qFedRo7Xsc9oexI2IoPbFG/Tina.io-Design-Library?node-id=0-1&p=f&t=Dvm7mhFHhIWC6Rru-0) on Figma
 
 ### 🔍 Search Functionality Overview
 

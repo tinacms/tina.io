@@ -5,8 +5,6 @@ Last updated: 26/09/2024
 ```
 .
 ├── components/
-│   ├── DocumentNavigation/
-│   │   └── ... various navigation menu components for the docs
 │   ├── layout/
 │   │   └── ... wrappers for site pages
 │   ├── blocks/
@@ -15,9 +13,8 @@ Last updated: 26/09/2024
 │   ├── tinaMarkdownComponents/
 │   │   ├── ... Rich-Text styling and embedded components
 │   │   └── ... 🦙 https://tina.io/docs/editing/markdown/ 🦙
-│   ├── toc/
-│   │   ├── ... contains docs table of contents (toc) schema
-│   │   └── ... generated toc component from doc headings
+│   ├── search/
+│   │   └── ... blog search modal and /search results page components
 │   ├── ui/
 │   │   └── ... re-usable utility components
 │   ├── styles/

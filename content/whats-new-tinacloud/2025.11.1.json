@@ -1,0 +1,41 @@
+{
+  "versionNumber": "2025.11.1",
+  "dateReleased": "2025-11-20T02:27:51Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat(posthog): add webhook delete / create events",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "feat(posthog): add posthog logging to editorial workflow toggle",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "💄UI - Remove link-out icon from docs section",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Posthog logging for Media sync and enabled events",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        },
+        {
+          "changesDescription": "fix: Ensure posthog doesn't break login with MFA and MFA logging",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        },
+        {
+          "changesDescription": "🐛 Bug: Clean up branch references and status events on branch deletion",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

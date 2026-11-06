@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2025.07.6",
+  "dateReleased": "2025-07-09T22:18:56Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "✨ feat(verifyUserAccount): sanitize verification code input",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🧱 Infrastructure",
+      "changesList": [
+        {
+          "changesDescription": "ci(gosec): use latest gosec version",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}

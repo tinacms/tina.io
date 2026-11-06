@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.12.0",
+  "dateReleased": "2025-12-02T04:58:25Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🦺 Validation: Add branch hierarchy validation to prevent Git reference conflicts",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "🔧 Update: Upgrade @tinacms/graphql to version 2.0.0",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
+        }
+      ]
+    }
+  ]
+}

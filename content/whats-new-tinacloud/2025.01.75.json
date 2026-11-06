@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.01.75",
+  "dateReleased": "2025-01-17T01:35:32Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "♻️ ContentAPIRouter - Refactor secrets retrieval",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

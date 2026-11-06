@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.03.97",
+  "dateReleased": "2025-03-11T23:57:29Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🧱 CI/CD - Infrastructure changes to improve user content access",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

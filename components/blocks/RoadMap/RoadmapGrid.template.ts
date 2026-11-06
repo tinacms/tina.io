@@ -1,5 +1,5 @@
-import type { Template } from 'tinacms';
-import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
+import { type Template, wrapFieldsWithMeta } from 'tinacms';
+import RoadmapIconSelector from '../../forms/RoadmapIconSelector';
 
 export const roadmapGridTemplate: Template = {
   label: 'Roadmap Grid',
@@ -21,19 +21,55 @@ export const roadmapGridTemplate: Template = {
       ui: {
         itemProps: (item) => ({
           key: item.id,
-          label: item.headline,
+          // `heading` is rich-text — its admin value is an AST object, so pull
+          // the first line of text for a readable sidebar label.
+          label:
+            item.heading?.children?.[0]?.children?.[0]?.text || 'Roadmap Item',
         }),
       },
       fields: [
-        { name: 'headline', label: 'Headline', type: 'string' },
+        {
+          name: 'icon',
+          label: 'Status Icon',
+          type: 'string',
+          description:
+            'Status marker shown before the headline: done, in progress, or coming soon.',
+          ui: {
+            component: wrapFieldsWithMeta(RoadmapIconSelector),
+          },
+        },
+        {
+          // Named `heading` (not `headline`) to avoid a GraphQL fragment
+          // type-conflict: sibling blocks (FeatureGrid, Showcase, etc.) expose
+          // a String `items.headline`, which clashes with this rich-text field.
+          name: 'heading',
+          label: 'Headline',
+          type: 'rich-text',
+          description:
+            'Supports inline formatting. Use strikethrough (~~text~~) to cross out completed or dropped items.',
+        },
         { name: 'status', label: 'Status', type: 'string' },
         {
           name: 'content',
           label: 'Content',
           type: 'rich-text',
         },
-        // @ts-ignore
-        actionsButtonTemplate as any,
+        // Roadmap links are always plain text links, so they have
+        // only a label and a URL: no level to pick.
+        {
+          label: 'Links',
+          name: 'actions',
+          type: 'object',
+          list: true,
+          ui: {
+            itemProps: (item) => ({ label: item?.label }),
+            defaultItem: { label: 'GitHub Discussion', url: '/' },
+          },
+          fields: [
+            { name: 'label', label: 'Label', type: 'string' },
+            { name: 'url', label: 'URL', type: 'string' },
+          ],
+        },
       ],
     },
     {

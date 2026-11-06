@@ -11,8 +11,64 @@ export const recentPostsTemplate = {
       type: 'string',
     },
     {
+      name: 'featuredHeading',
+      label: 'Featured Heading',
+      type: 'string',
+      description: 'Heading for the featured post section',
+    },
+    {
+      name: 'featuredPost',
+      label: 'Featured Post',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          label: 'Title',
+          type: 'string',
+        },
+        {
+          name: 'description',
+          label: 'Description',
+          type: 'string',
+          ui: {
+            component: 'textarea',
+          },
+        },
+        {
+          name: 'url',
+          label: 'URL',
+          type: 'string',
+          description: 'Link URL for the post title',
+        },
+        {
+          name: 'datePosted',
+          label: 'Date Posted',
+          type: 'datetime',
+        },
+        {
+          name: 'authorName',
+          label: 'Author Name',
+          type: 'string',
+        },
+        {
+          name: 'authorUrl',
+          label: 'Author URL',
+          type: 'string',
+          description: 'The SSW People URL of the author',
+        },
+        {
+          name: 'imageUrl',
+          label: 'Image',
+          type: 'image',
+          description: 'use an image with a 16:9 aspect ratio for best results',
+        },
+      ],
+    },
+    {
       name: 'youtubeVideos',
       label: 'YouTube Videos',
+      description:
+        "Fallback only. The block normally shows the latest uploads from the TinaCMS YouTube channel automatically; these curated videos are used only if that live feed can't be loaded.",
       type: 'object',
       list: true,
       ui: {
@@ -34,7 +90,6 @@ export const recentPostsTemplate = {
           name: 'dateReleased',
           label: 'Date Released',
           type: 'datetime',
-          description: 'Time doesnt matter we only use day, month and year',
         },
         { name: 'title', label: 'Title', type: 'string' },
         { name: 'authorName', label: 'Author Name', type: 'string' },

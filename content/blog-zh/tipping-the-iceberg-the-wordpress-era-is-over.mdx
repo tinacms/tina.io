@@ -1,0 +1,86 @@
+---
+seo:
+  title: '冰山一角：WordPress时代已结束 | TinaCMS博客'
+  description: '本周两个关键的PHP漏洞使WordPress网站面临风险。首先修补漏洞。然后问问自己对内容、技术栈和退出策略有多少控制权。'
+  canonicalUrl: 'https://tina.io/blog/tipping-the-iceberg-the-wordpress-era-is-over'
+title: WordPress引擎已崩溃
+date: '2026-10-28T00:00:00.000Z'
+last_edited: '2026-10-27T05:31:02.611Z'
+author: TinaCMS团队
+prev: content/blog-zh/2026-09-updates.mdx
+next: ''
+---
+
+如果你使用WordPress来搭建网站，可能这一周过得不太顺利。与此同时，TinaCMS的用户却睡得像婴儿一样安稳。
+
+WordPress运行在PHP上，2026年10月21日，PHP项目发布了两个关键漏洞的紧急修复：CVE-2026-109618和CVE-2026-109619，合称为**PHP2Shell**。
+
+* 这两个漏洞可以让攻击者在不登录的情况下在你的服务器上运行代码
+* 漏洞存在于PHP中，而不是WordPress或插件中，因此WordPress更新无法修复它们
+* 更新PHP，或要求你的主机提供商更新
+
+## PHP修复：立即修补
+
+根据谁管理你的PHP安装，有两种方法可以修补你的网站：
+
+* **托管主机运行它。** 询问你的主机提供商是否已应用这两个修复并重启了PHP。
+* **你自己运行服务器。** 更新PHP到你版本的修复版本，然后重启使用它的服务：
+  * **8.5.12**
+  * **8.4.27**
+  * **8.3.36**
+  * **8.2.35**
+  * PHP 8.1及更早版本没有来自PHP项目的修复，因此请获取供应商的指导
+
+要查看网站的PHP版本，请在WordPress中打开**工具 > 站点健康 > 信息 > 服务器**。
+
+在使用`mod_php`的Apache上风险最高。
+研究人员展示了一种在任何应用代码运行之前的攻击，因此WordPress登录无法保护你。
+暴露是修补的理由，而不是入侵的证据。
+详情请参阅[PHP安全公告](https://www.php.net/archive/2026.php)。
+
+## &#x20;为什么客户仍然选择WordPress？
+
+团队选择WordPress是有充分理由的：客户熟悉其编辑器，开发人员知道如何用它构建和交付网站。
+它也几乎*无处不在：* [W3Techs在2026年10月23日测量到它占所有网站的39%](https://w3techs.com/technologies/details/cm-wordpress)。
+但你也需要维护页面下的一切。
+
+![两个冰山。WordPress冰山显示水面上的页面和水下的大量：PHP运行时、WordPress核心、插件和主题、托管和补丁、备份和旧集成。一个箭头指向一个较小的TinaCMS冰山：水面上的页面，水下只有Git中的内容文件、前端和构建、静态托管，以及TinaCloud或你自己的后端。Tina羊驼站在TinaCMS的顶端。](/img/blog/tipping-the-iceberg-the-wordpress-era-is-over/wordpress-to-tinacms-iceberg-v3.jpg)
+
+**图：从WordPress迁移到TinaCMS。更快的网站和更小的攻击面**
+
+## 评估迁移
+
+移除PHP意味着替换WordPress。
+这可能涉及解开主题、页面构建器布局、自定义字段和发布工作流。
+
+要评估成本，请问：
+
+* 有多少内容在当前主题和插件之外是有用的？
+* 另一个开发人员能否从文档化的访问中重建网站，还是依赖于一个人的记忆？
+* 你有什么Claude订阅？😜
+
+## 更好的解决方案…… TinaCMS
+
+TinaCMS将内容存储为Markdown、MDX和JSON文件在你的GitHub仓库中。
+编辑者获得一个CMS界面，每次保存都是一次提交。
+[TinaCloud](https://tina.io/docs/tinacloud)运行编辑器后端，或者你可以自行托管。
+
+你可以使用Astro、Next.js或其他React框架构建前端。
+
+### 试用一个试点项目
+
+1. 开始一个TinaCMS项目：`npx create-tina-app@latest`
+2. 选择2到3个具有代表性的页面，包括一个复杂的布局
+3. 使用我们的[WordPress到TinaCMS指南](https://tina.io/docs/guides/converting-wordpress-to-tina)移动内容和媒体。设计和插件行为需要单独处理。
+4. 保持现有URL，或映射重定向
+5. 让一个真正的编辑者在预览部署上执行他们的正常任务
+
+### 用AI加速✨
+
+一个AI编码助手可以从截图中搭建试点项目。
+我们的[氛围博客演练](https://tina.io/blog/vibe-blogging-with-tinacms)展示了如何操作。
+
+WordPress是遗留软件，为23年前的网络而建，比我们的一些TinaCMS开发人员还要老！
+PHP2Shell漏洞是重新讨论这个话题的好理由，并构建一个快速原型来推动讨论。
+
+如需迁移帮助，请加入[TinaCMS社区在Discord](https://tina.io/discord)。

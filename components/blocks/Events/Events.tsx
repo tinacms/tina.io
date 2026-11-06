@@ -1,8 +1,15 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { FaArrowRightLong } from 'react-icons/fa6';
-import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import {
+  BODY,
+  BODY_MUTED,
+  BODY_SMALL,
+  CARD_TITLE,
+  LABEL,
+  SECTION_TITLE,
+  SURFACE,
+} from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 import eventsData from '../../../content/events/master-events.json';
 import {
   calculateEventStatus,
@@ -11,7 +18,45 @@ import {
   formatEventDate,
 } from './dates-calculations';
 
+const EVENT_CHIP = `${LABEL} border px-2 mb-1.5 rounded shadow-lg w-fit`;
+
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
+
+const GlobeFallback = () => (
+  <div
+    style={{ width: '100%', height: '700px' }}
+    className="flex items-center justify-center"
+  >
+    <Image
+      src="/img/tina-404-not-found.webp"
+      alt="Tina events around the world"
+      width={500}
+      height={500}
+      style={{ objectFit: 'contain' }}
+    />
+  </div>
+);
+
+class GlobeErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <GlobeFallback />;
+    }
+    return this.props.children;
+  }
+}
 
 export const Card = ({ cardItem, onHover }) => {
   const [formattedDate, setFormattedDate] = useState('');
@@ -54,15 +99,13 @@ export const Card = ({ cardItem, onHover }) => {
       </div>
       <div className="grow flex flex-col overflow-hidden py-2">
         {isLiveEvent ? (
-          <span className="bg-[#0574E4] px-2 mb-1.5 rounded text-sm text-white font-semibold shadow-lg w-fit ">
-            Event Started
-          </span>
+          <span className={`${SURFACE.info} ${EVENT_CHIP}`}>Event Started</span>
         ) : isLiveOrPastEvent ? (
-          <span className="bg-slate-500 px-2 mb-1.5 rounded text-sm text-white font-semibold shadow-lg w-fit">
+          <span className={`${SURFACE.neutralSolid} ${EVENT_CHIP}`}>
             Event Finished
           </span>
         ) : (
-          <span className="bg-[#0574E4] px-2 mb-1.5 rounded text-sm text-white font-semibold shadow-lg w-fit">
+          <span className={`${SURFACE.info} ${EVENT_CHIP}`}>
             {hoursUntilEvent >= 24
               ? `${Math.floor(hoursUntilEvent / 24)} Day${
                   hoursUntilEvent >= 48 ? 's' : ''
@@ -72,32 +115,17 @@ export const Card = ({ cardItem, onHover }) => {
                 } to go`}
           </span>
         )}
-        <h3 className="font-ibm-plex text-2xl mb-1 text-black">
-          {cardItem.headline}
-        </h3>
-        <div
-          className={`flex items-center text-md ${
-            isLiveOrPastEvent ? 'text-gray-500' : 'text-black'
-          }`}
-        >
-          <p className="mr-2">
+        <h3 className={`${CARD_TITLE} mb-1`}>{cardItem.headline}</h3>
+        <div className="flex items-center">
+          <p className={`${BODY_MUTED} mr-2`}>
             {formattedDate} {endYear}
           </p>
         </div>
-        <p
-          className={`text-md ${
-            isLiveOrPastEvent ? 'text-gray-500' : 'text-black'
-          }`}
-        >
-          {cardItem.location}
-        </p>
-        <Link
-          href={cardItem.link}
-          className="flex gap-2 pt-2 items-center text-black hover:text-blue-600"
-        >
-          READ MORE
-          <FaArrowRightLong className="text-black hover:text-blue-600 pr-1" />
-        </Link>
+        <p className={BODY_SMALL}>{cardItem.location}</p>
+        <TextLink href={cardItem.link} className="self-start">
+          Read more
+          <span className="sr-only">about {cardItem.headline}</span>
+        </TextLink>
       </div>
       <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
     </div>
@@ -174,15 +202,11 @@ const EventsBlock = () => {
 
   return (
     <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8 flex flex-col gap-8">
-      <h2
-        className={`${H1_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight text-black text-balance text-center`}
-      >
+      <h2 className={`${SECTION_TITLE} inline-block text-center`}>
         {eventsData.title}
       </h2>
       <div className="max-w-[62ch] mx-auto">
-        <p className="text-center text-neutral-text-secondary font-light leading-relaxed text-lg">
-          {eventsData.byLine}
-        </p>
+        <p className={`${BODY} text-center`}>{eventsData.byLine}</p>
       </div>
 
       <div className="flex flex-col lg:flex-row lg:gap-4">
@@ -191,16 +215,16 @@ const EventsBlock = () => {
           ref={globeContainerRef}
         >
           {isGlobeVisible && (
-            <Suspense
-              fallback={
-                <div className="font-ibm-plex text-2xl">Loading Globe...</div>
-              }
-            >
-              <LazyGlobe
-                activeGlobeId={activeGlobeId}
-                cardItems={filteredEvents}
-              />
-            </Suspense>
+            <GlobeErrorBoundary>
+              <Suspense
+                fallback={<div className={BODY_MUTED}>Loading Globe...</div>}
+              >
+                <LazyGlobe
+                  activeGlobeId={activeGlobeId}
+                  cardItems={filteredEvents}
+                />
+              </Suspense>
+            </GlobeErrorBoundary>
           )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2 justify-start">
@@ -214,15 +238,9 @@ const EventsBlock = () => {
             ))}
           </div>
 
-          <Link
-            href="/events"
-            className="self-end pt-10 font-bold flex items-center w-fit justify-end gap-2 group pr-1"
-          >
-            <span className="text-black group-hover:text-blue-600">
-              SEE ALL EVENTS
-            </span>
-            <FaArrowRightLong className="text-black group-hover:text-blue-600" />
-          </Link>
+          <TextLink href="/events" className="pl-4 pt-10">
+            See all events
+          </TextLink>
         </div>
       </div>
     </div>

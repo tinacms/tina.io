@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2024.12.48",
+  "dateReleased": "2024-12-06T04:01:22Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Bug - Minimize data transferred when listing apps",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}
