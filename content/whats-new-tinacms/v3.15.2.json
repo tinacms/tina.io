@@ -1,0 +1,20 @@
+{
+  "versionNumber": "3.15.2",
+  "dateReleased": "2026-11-09T01:27:25Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Focus the reference field combobox when visual editing selects it. The reference field ignored `experimental_focusIntent`, so clicking a reference in the preview opened the sidebar without focusing anything.",
+          "pull_request_number": "7994",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7994",
+          "commit_hash": "c91c528",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c91c528f51171ee8a5955831738c2ece5ef8bed2",
+          "gitHubName": "Tyagiquamar",
+          "gitHubLink": "https://github.com/Tyagiquamar"
+        }
+      ]
+    }
+  ]
+}
