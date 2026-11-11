@@ -41,6 +41,7 @@ module.exports = {
   sitemapSize: 7000,
   transform: async (_config, path) => {
     const listOfMinorPaths = [
+      '/pricing-and-payment-terms',
       '/privacy-notice',
       '/security',
       '/terms-of-service',
