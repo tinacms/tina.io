@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.11.3",
+  "dateReleased": "2026-11-16T21:16:58Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Disable signups for auth migration",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}
