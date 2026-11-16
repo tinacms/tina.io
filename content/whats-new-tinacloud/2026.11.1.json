@@ -1,0 +1,96 @@
+{
+  "versionNumber": "2026.11.1",
+  "dateReleased": "2026-11-16T00:53:08Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "chore: hold @types/node and ten build-breaking majors in Dependabot",
+          "gitHubName": "types",
+          "gitHubLink": "https://github.com/types"
+        },
+        {
+          "changesDescription": "auth: enforce account status across APIs",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "chore: add the sprint review content folder",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "sprint review/sprint 124 (PR from TinaCMS)",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "github/workflows: pass WorkOS webhook secret to staging deploy",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "fix(identity): org admin can invite member as owner",
+          "gitHubName": "harley-j",
+          "gitHubLink": "https://github.com/harley-j"
+        },
+        {
+          "changesDescription": "fix: pass recipientName to SES from send-announcement",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "sprint review/sprint 124 (PR from TinaCMS)",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "test(identity): expect 409 when accept refuses a pending owner invite",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "✨ Cache document history metadata",
+          "gitHubName": "harley-j",
+          "gitHubLink": "https://github.com/harley-j"
+        },
+        {
+          "changesDescription": "fix(infra): measure sst.Function in the Lambda env budget check",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Update password reset email content for clarity, accuracy",
+          "gitHubName": "ianhoffmanx",
+          "gitHubLink": "https://github.com/ianhoffmanx"
+        },
+        {
+          "changesDescription": "feat(admin): add a project activity page backed by PostHog",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Add scoped Cognito alias audit",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "Add VML support for Outlook in password reset email",
+          "gitHubName": "ianhoffmanx",
+          "gitHubLink": "https://github.com/ianhoffmanx"
+        },
+        {
+          "changesDescription": "Project-access backfill",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "js/dashboard: pause sign-ups during auth migration",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}
