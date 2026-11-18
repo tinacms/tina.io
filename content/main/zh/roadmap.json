@@ -25,7 +25,7 @@
         {
           "icon": "FaRegCheckCircle",
           "heading": "认证从 AWS Cognito 切换到 WorkOS\n",
-          "content": "我们正在把认证体系升级为使用 WorkOS，让用户访问的管理更简单、更可靠。\n",
+          "content": "我们已将认证体系升级为使用 WorkOS，让用户访问的管理更简单、更可靠。\n",
           "actions": [
             {
               "label": "博客介绍",
