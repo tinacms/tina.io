@@ -154,6 +154,8 @@ export const SURFACE = {
   info: 'surface-info',
   /** Seafoam-100 with seafoam-900. “Open”, success. */
   success: 'surface-success',
+  /** Seafoam-100 fill and seafoam border with the normal ink. Good-news callouts in a post. */
+  successPanel: 'surface-success-panel',
   /** Yellow-100 with yellow-800. Warnings, like the “English only” alert. */
   warning: 'surface-warning',
   /** Red-50 with red-800. Form errors. */

@@ -223,6 +223,10 @@ pre.prism-code.language-json {
   --text-label: var(--on-surface-success);
   color: var(--on-surface-success);
 }
+@utility surface-success-panel {
+  background-color: var(--surface-success);
+  border-color: var(--border-success);
+}
 @utility surface-warning {
   background-color: var(--surface-warning);
   border-color: var(--border-warning);

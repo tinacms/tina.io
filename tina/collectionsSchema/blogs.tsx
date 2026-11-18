@@ -86,6 +86,17 @@ export const blogsCollection = {
       templates: [
         pricingComparisonTemplate,
         {
+          name: 'UpdateCallout',
+          label: 'Update Callout',
+          fields: [
+            {
+              name: 'body',
+              label: 'Body',
+              type: 'rich-text',
+            },
+          ],
+        },
+        {
           name: 'WarningCallout',
           label: 'Warning Callout',
           fields: [

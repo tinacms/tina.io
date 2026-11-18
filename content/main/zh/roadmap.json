@@ -24,6 +24,21 @@
       "items": [
         {
           "icon": "FaRegCheckCircle",
+          "heading": "认证从 AWS Cognito 切换到 WorkOS\n",
+          "content": "我们已将认证体系升级为使用 WorkOS，让用户访问的管理更简单、更可靠。\n",
+          "actions": [
+            {
+              "label": "博客介绍",
+              "url": "/blog/october-tinacloud-auth-changes"
+            },
+            {
+              "label": "GitHub 讨论",
+              "url": "https://github.com/tinacms/tinacms/discussions/7001"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
           "heading": "媒体管理器的编辑工作流支持\n",
           "content": "我们正在为媒体管理器加入编辑工作流支持，让媒体变更也能走与内容编辑相同的基于分支的流程。\n",
           "actions": [
@@ -219,17 +234,6 @@
             {
               "label": "GitHub 讨论",
               "url": "https://github.com/tinacms/tinacms/discussions/7000"
-            }
-          ]
-        },
-        {
-          "icon": "FaHourglassHalf",
-          "heading": "认证从 AWS Cognito 切换到 WorkOS\n",
-          "content": "我们正在把认证体系升级为使用 WorkOS，让用户访问的管理更简单、更可靠。\n",
-          "actions": [
-            {
-              "label": "GitHub 讨论",
-              "url": "https://github.com/tinacms/tinacms/discussions/7001"
             }
           ]
         }
