@@ -5,7 +5,11 @@ import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs
 import { ChevronRight, Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
+import {
+  AiOutlineBulb,
+  AiOutlineNotification,
+  AiOutlineWarning,
+} from 'react-icons/ai';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -80,6 +84,7 @@ export const docAndBlogComponents: Components<{
   };
   WebmEmbed: { embedSrc: string; width?: string };
   WarningCallout: { body: string };
+  UpdateCallout: { body: string };
   Codesandbox: { embedSrc: string; title: string };
   Diagram: { alt: string; src: string };
   WideImage: { alt: string; src: string };
@@ -625,6 +630,19 @@ export const docAndBlogComponents: Components<{
         </div>
       </div>
     </blockquote>
+  ),
+  UpdateCallout: ({ body }) => (
+    <aside
+      className={`${SURFACE.success} my-4 flex flex-col md:flex-row gap-2 md:items-center items-start rounded-lg border p-4`}
+    >
+      <AiOutlineNotification
+        size={40}
+        className="shrink-0 text-white bg-linear-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full md:mx-2"
+      />
+      <div className={BODY}>
+        <TinaMarkdown content={body as any} components={docAndBlogComponents} />
+      </div>
+    </aside>
   ),
   Callout: ({ title, description, url, buttonText }) => (
     <div className="callout">
