@@ -1,0 +1,78 @@
+---
+seo:
+  title: "TinaCMS v4: Where we're at | TinaCMS Blog"
+  description: 'Six months after we announced TinaCMS v4, here is what the new editor can do.'
+title: "TinaCMS v4: Where we're at"
+date: '2026-11-19T00:00:00.000Z'
+last_edited: '2026-11-19T00:00:00.000Z'
+author: The TinaCMS Team
+prev: content/blog/tinacms-v4-is-coming.mdx
+next: ''
+---
+
+In May we told you [what we're planning for TinaCMS v4](/blog/tinacms-v4-is-coming). We promised five things: plugins, better forms, better fields, Git workflows inside the editor, and a fresh editor UI.
+
+Six months and a lot of pull requests later, v4 is starting to feel real. Here's a look at where the herd has got to 🦙.
+
+**TL;DR:** v4 isn't released yet, and v3 is still fully supported. This post is a preview of what's coming.
+
+## 🏠 A brand new home
+
+When you open the v4 admin, you land on **Home**. It's a dashboard of panels that shows your collections, your recent documents and the branch you're on ([#8009](https://github.com/tinacms/tinacms/pull/8009), [#8050](https://github.com/tinacms/tinacms/pull/8050)).
+
+A rail runs down the left side, and collections open right beside it. The Top bar holds a Branch switcher, so you always know which branch you're editing. A Status bar along the bottom tells you what TinaCMS is doing.
+
+Every button, field and tooltip now comes from one design system, so the whole editor feels like it belongs together ([#7990](https://github.com/tinacms/tinacms/pull/7990)).
+
+<WideImage src="/img/blog/tinacms-v4-progress/home.png" alt="The TinaCMS v4 Home screen with the Collections and Recent documents panels" />
+
+**Figure: The v4 Home screen, with the rail, Top bar and Status bar.**
+
+## 💾 Saving you can trust
+
+Losing work is the worst. v4 keeps your unsaved edits as drafts, so a reload or a closed tab doesn't wipe them out ([#7627](https://github.com/tinacms/tinacms/pull/7627)).
+
+When a field has a problem, the Save button changes to **Resolve 1 error**. Click it to see an error summary that takes you to each field that needs a fix ([#8031](https://github.com/tinacms/tinacms/pull/8031)).
+
+Edited five documents? Use **Save all** in the Top bar to save them in one go ([#8061](https://github.com/tinacms/tinacms/pull/8061)).
+
+<WideImage src="/img/blog/tinacms-v4-progress/resolve-errors.png" alt="A post with an empty title, the Resolve 1 error button and the Errors pane" />
+
+**Figure: A blocked save tells you exactly what to fix.**
+
+## 🔌 Plugins all the way down
+
+This is the big change under the hood. In v4, media, search, login and even whole screens are plugins. You can add them, swap them out or replace them, and you don't need to fork TinaCMS to do it ([#7706](https://github.com/tinacms/tinacms/pull/7706)).
+
+Your config shows what that looks like:
+
+```ts
+import { defineConfig, mediaManagerPlugin, tinaCloud } from '@tinacms/tinacms';
+
+export default defineConfig({
+  plugins: [
+    tinaCloud({ clientId: process.env.TINA_PUBLIC_CLIENT_ID }),
+    mediaManagerPlugin(),
+    ratingFieldPlugin,
+  ],
+  schema: { collections: [postCollection] },
+});
+```
+
+One `tinaCloud()` line gives you content, login and media. Add a `search` option and it gives you search too ([#8057](https://github.com/tinacms/tinacms/pull/8057)). Want your own media provider instead? Write a plugin for it.
+
+## 🗺️ What's next
+
+We're still working through the rest of the editor, the migration codemod and the docs. We'll share the migration details before anything ships.
+
+v3 is going nowhere. Stay on it, and move to v4 when you're ready.
+
+If you'd like to follow along:
+
+* Star the [TinaCMS GitHub repository](https://github.com/tinacms/tinacms)
+* Share feedback in the [TinaCMS v4 GitHub Discussion](https://github.com/tinacms/tinacms/discussions/6782)
+* Join the conversation in the [TinaCMS Discord](https://discord.com/invite/zumN63Ybpf)
+
+Best,
+
+The TinaCMS Team 🦙
