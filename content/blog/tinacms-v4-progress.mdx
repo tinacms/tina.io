@@ -61,6 +61,34 @@ export default defineConfig({
 
 One `tinaCloud()` line gives you content, login and media. Add a `search` option and it gives you search too ([#8057](https://github.com/tinacms/tinacms/pull/8057)). Want your own media provider instead? Write a plugin for it.
 
+## 🧭 Make the admin your own
+
+The sidebar and the admin panel aren't fixed anymore. Any plugin can add its own entry to the sidebar, with a label and an icon. An entry can open a screen inside TinaCMS, open a link in a new tab, or run an action ([#7686](https://github.com/tinacms/tinacms/pull/7686)).
+
+Home is just a screen too. If your team wants its own dashboard, like publishing stats or a content calendar, swap out Home for your own screen ([#8050](https://github.com/tinacms/tinacms/pull/8050), [#7706](https://github.com/tinacms/tinacms/pull/7706)).
+
+```tsx
+export const dashboardPlugin = definePlugin({
+  name: 'acme:dashboard',
+  provides: ['screen'],
+  overrides: [{ capability: 'screen', key: 'home' }],
+  client: async () => ({
+    default: defineClientPlugin({
+      screens: [{ name: 'home', label: 'Home', component: AcmeDashboard }],
+      slots: {
+        globalNav: [
+          {
+            label: 'Style guide',
+            icon: BookIcon,
+            target: { kind: 'url', href: 'https://acme.com/style' },
+          },
+        ],
+      },
+    }),
+  }),
+});
+```
+
 ## 🗺️ What's next
 
 We're still working through the rest of the editor, the migration codemod and the docs. We'll share the migration details before anything ships.
