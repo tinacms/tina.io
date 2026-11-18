@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.11.6",
+  "dateReleased": "2026-11-17T23:56:38Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Fix TinaCMS editor login failing with auth configuration error",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}
