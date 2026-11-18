@@ -24,6 +24,21 @@
       "items": [
         {
           "icon": "FaRegCheckCircle",
+          "heading": "Swapping auth from AWS Cognito to WorkOS\n",
+          "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access. Brook covers what is changing and who it affects here: [https://youtu.be/UdNko6iJEsQ](https://youtu.be/UdNko6iJEsQ)\n",
+          "actions": [
+            {
+              "label": "Blogged",
+              "url": "/blog/october-tinacloud-auth-changes"
+            },
+            {
+              "label": "GitHub Discussion",
+              "url": "https://github.com/tinacms/tinacms/discussions/7001"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
           "heading": "Editorial Workflow Support for Media Manager\n",
           "content": "We're adding Editorial Workflow support to the Media Manager, enabling media changes to go through the same branch-based workflow as content edits.\n",
           "actions": [
@@ -219,17 +234,6 @@
             {
               "label": "GitHub Discussion",
               "url": "https://github.com/tinacms/tinacms/discussions/7000"
-            }
-          ]
-        },
-        {
-          "icon": "FaHourglassHalf",
-          "heading": "Swapping auth from AWS Cognito to WorkOS\n",
-          "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access. Brook covers what is changing and who it affects here: [https://youtu.be/UdNko6iJEsQ](https://youtu.be/UdNko6iJEsQ)\n",
-          "actions": [
-            {
-              "label": "GitHub Discussion",
-              "url": "https://github.com/tinacms/tinacms/discussions/7001"
             }
           ]
         }
