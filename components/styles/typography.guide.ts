@@ -399,6 +399,13 @@ export const SURFACE_GUIDE: {
     useFor: '“Open”, form success messages.',
   },
   {
+    name: 'successPanel',
+    example: 'The migration is complete.',
+    role: 'BODY',
+    useFor:
+      'Good-news callouts in a post, like UpdateCallout. Text keeps its normal colour.',
+  },
+  {
     name: 'warning',
     example: 'English only',
     role: 'LABEL',

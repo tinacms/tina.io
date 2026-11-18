@@ -633,7 +633,7 @@ export const docAndBlogComponents: Components<{
   ),
   UpdateCallout: ({ body }) => (
     <aside
-      className={`${SURFACE.success} my-4 flex flex-col md:flex-row gap-2 md:items-center items-start rounded-lg border p-4`}
+      className={`${SURFACE.successPanel} my-4 flex flex-col md:flex-row gap-2 md:items-center items-start rounded-lg border p-4`}
     >
       <AiOutlineNotification
         size={40}
