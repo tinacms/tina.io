@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2026.11.8",
+  "dateReleased": "2026-11-19T21:22:13Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "ci: pass the Cloudflare OAuth client ID to staging and prod deploys",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat: add Cloudflare Workers OAuth and Deploy button flow",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat(admin): let staff queue an account for deletion",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix(cloudflare): wait for the starter code before creating the project",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}
