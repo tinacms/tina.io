@@ -36,15 +36,17 @@ When a field has a problem, the Save button changes to **Resolve 1 error**. Clic
 
 Edited five documents? Use **Save all** in the Top bar to save them in one go ([#8061](https://github.com/tinacms/tinacms/pull/8061)).
 
+The fields got a rebuild too. Each field shows its errors under it once you leave the field or try to save, and the Image field shows your picture as a tile, a cover or a gallery ([#7945](https://github.com/tinacms/tinacms/pull/7945), [#7988](https://github.com/tinacms/tinacms/pull/7988)).
+
 <WideImage src="/img/blog/tinacms-v4-progress/resolve-errors.png" alt="A post with an empty title, the Resolve 1 error button and the Errors pane" />
 
-**Figure: A blocked save tells you exactly what to fix.**
+**Figure: A blocked save tells you what to fix, and each field shows its own errors.**
 
 ## 🔌 Plugins all the way down
 
-This is the big change under the hood. In v4, media, search, login and even whole screens are plugins. You can add them, swap them out or replace them, and you don't need to fork TinaCMS to do it ([#7706](https://github.com/tinacms/tinacms/pull/7706)).
+This is the big change under the hood. In v4, media, search, login and even whole screens are plugins. A plugin can have a client side, for the screens and controls editors use, and a server side, for operations, secrets and file access. You can add plugins, swap them out or replace them, and you don't need to fork TinaCMS to do it ([#7706](https://github.com/tinacms/tinacms/pull/7706)).
 
-Your config shows what that looks like:
+Your config lists the plugins you use, including your own, like a custom rating field:
 
 ```ts
 import { defineConfig, mediaManagerPlugin, tinaCloud } from '@tinacms/tinacms';
@@ -65,22 +67,22 @@ One `tinaCloud()` line gives you content, login and media. Add a `search` option
 
 The sidebar and the admin panel aren't fixed anymore. Any plugin can add its own entry to the sidebar, with a label and an icon. An entry can open a screen inside TinaCMS, open a link in a new tab, or run an action ([#7686](https://github.com/tinacms/tinacms/pull/7686)).
 
-Home is just a screen too. If your team wants its own dashboard, like publishing stats or a content calendar, swap out Home for your own screen ([#8050](https://github.com/tinacms/tinacms/pull/8050), [#7706](https://github.com/tinacms/tinacms/pull/7706)).
+Home is a screen too. If your team wants its own dashboard, like publishing stats or a content calendar, swap out Home for your own screen ([#8050](https://github.com/tinacms/tinacms/pull/8050), [#7706](https://github.com/tinacms/tinacms/pull/7706)).
 
 ```tsx
 export const dashboardPlugin = definePlugin({
-  name: 'acme:dashboard',
+  name: 'northwind:dashboard',
   provides: ['screen'],
   overrides: [{ capability: 'screen', key: 'home' }],
   client: async () => ({
     default: defineClientPlugin({
-      screens: [{ name: 'home', label: 'Home', component: AcmeDashboard }],
+      screens: [{ name: 'home', label: 'Home', component: NorthwindDashboard }],
       slots: {
         globalNav: [
           {
             label: 'Style guide',
             icon: BookIcon,
-            target: { kind: 'url', href: 'https://acme.com/style' },
+            target: { kind: 'url', href: 'https://northwind.com/style' },
           },
         ],
       },
