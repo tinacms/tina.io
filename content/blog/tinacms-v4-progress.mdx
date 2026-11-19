@@ -1,7 +1,7 @@
 ---
 seo:
   title: "TinaCMS v4: Where we're at | TinaCMS Blog"
-  description: 'Six months after we announced TinaCMS v4, here is what the new editor can do.'
+  description: '6 months after we announced TinaCMS v4, here is what the new editor can do.'
 title: "TinaCMS v4: Where we're at"
 date: '2026-11-19T00:00:00.000Z'
 last_edited: '2026-11-19T00:00:00.000Z'
@@ -10,11 +10,17 @@ prev: content/blog/tinacms-v4-is-coming.mdx
 next: ''
 ---
 
-In May we told you [what we're planning for TinaCMS v4](/blog/tinacms-v4-is-coming). We promised five things: plugins, better forms, better fields, Git workflows inside the editor, and a fresh editor UI.
+In May we told you [what we're planning for TinaCMS v4](/blog/tinacms-v4-is-coming). We promised 5 things:
 
-Six months and a lot of pull requests later, v4 is starting to feel real. Here's a look at where the herd has got to 🦙.
+* Plugins
+* A better forms engine
+* Better fields
+* Git workflows inside the editor
+* A fresh editor UI
 
-**TL;DR:** v4 isn't released yet, and v3 is still fully supported. This post is a preview of what's coming.
+6 months and a lot of pull requests later, v4 is taking shape. Here's a look at where the Team is at.
+
+**TL;DR:** v4 is still a work in progress. This post is a preview of what's coming.
 
 ## 🏠 A brand new home
 
@@ -28,15 +34,15 @@ Every button, field and tooltip now comes from one design system, so the whole e
 
 **Figure: The v4 Home screen, with the rail, Top bar and Status bar.**
 
-## 💾 Saving you can trust
+## 💾 No more losing unsaved changes
 
 Losing work is the worst. v4 keeps your unsaved edits as drafts, so a reload or a closed tab doesn't wipe them out ([#7627](https://github.com/tinacms/tinacms/pull/7627)).
 
 When a field has a problem, the Save button changes to **Resolve 1 error**. Click it to see an error summary that takes you to each field that needs a fix ([#8031](https://github.com/tinacms/tinacms/pull/8031)).
 
-Edited five documents? Use **Save all** in the Top bar to save them in one go ([#8061](https://github.com/tinacms/tinacms/pull/8061)).
+In the middle of editing a bunch of documents? Use **Save all** in the Top bar to save them in one go ([#8061](https://github.com/tinacms/tinacms/pull/8061)).
 
-The fields got a rebuild too. Each field shows its errors under it once you leave the field or try to save, and the Image field shows your picture as a tile, a cover or a gallery ([#7945](https://github.com/tinacms/tinacms/pull/7945), [#7988](https://github.com/tinacms/tinacms/pull/7988)).
+We've improved validation too: each field shows its errors under it once you leave the field or try to save ([#7945](https://github.com/tinacms/tinacms/pull/7945), [#7988](https://github.com/tinacms/tinacms/pull/7988)).
 
 <WideImage src="/img/blog/tinacms-v4-progress/resolve-errors.png" alt="A post with an empty title, the Resolve 1 error button and the Errors pane" />
 
@@ -44,7 +50,7 @@ The fields got a rebuild too. Each field shows its errors under it once you leav
 
 ## 🔌 Plugins all the way down
 
-This is the big change under the hood. In v4, media, search, login and even whole screens are plugins. A plugin can have a client side, for the screens and controls editors use, and a server side, for operations, secrets and file access. You can add plugins, swap them out or replace them, and you don't need to fork TinaCMS to do it ([#7706](https://github.com/tinacms/tinacms/pull/7706)).
+A popular request and the biggest change under the hood. A plugin is a package that adds one feature to TinaCMS, without changing TinaCMS itself. In v4, media, search, login and even whole screens are plugins. A plugin can have a client side, for the screens and controls editors use, and a server side, for operations, secrets and file access. You can add plugins, swap them out or replace them, and you don't need to fork TinaCMS to do it ([#7706](https://github.com/tinacms/tinacms/pull/7706)).
 
 This is the config for a whole v4 site. Each entry in `plugins` adds a feature:
 
@@ -61,7 +67,7 @@ export default defineConfig({
 });
 ```
 
-One `tinaCloud()` line gives you content, login and media. Add a `search` option and it gives you search too ([#8057](https://github.com/tinacms/tinacms/pull/8057)). Want your own media provider instead? Write a plugin for it.
+Each plugin provides their own capabilities, for example one `tinaCloud()` line gives you content, login and media. Add a `search` option and it gives you search too ([#8057](https://github.com/tinacms/tinacms/pull/8057)). Want your own media provider instead? Write a plugin for it.
 
 ## 🧭 Make the admin your own
 
@@ -93,9 +99,9 @@ export const dashboardPlugin = definePlugin({
 
 ## 🗺️ What's next
 
-We're still working through the rest of the editor, the migration codemod and the docs. We'll share the migration details before anything ships.
+We're still working through the rest of the editor, the migration codemod and the docs. The migration story will be smooth.
 
-v3 is going nowhere. Stay on it, and move to v4 when you're ready.
+v3 is still getting improvements and QoL fixes.
 
 If you'd like to follow along:
 
