@@ -15,6 +15,7 @@ import { getUiStrings } from 'utils/i18n/uiStrings';
 import { unclipEmoji } from 'utils/unclipEmoji';
 import { ARTICLE_TITLE, BODY_MUTED } from '@/component/styles/typography';
 import { formatDate } from '@/utils/formatDate';
+import { BlogBreadcrumbs } from './BlogBreadcrumbs';
 import type { BlogPageClientProps } from './BlogType';
 
 const BlogPageClient: React.FC<BlogPageClientProps> = ({
@@ -30,6 +31,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   const strings = getUiStrings(locale);
   const postedDate = formatDate(post.date);
   const avatar = blogAvatar(post.author, slugPath);
+  const prefix = LOCALE_ROUTE_CONFIG[locale].pathPrefix;
   const lastEditedDate = post.last_edited ? formatDate(post.last_edited) : null;
 
   const previousPage = post.prev
@@ -43,7 +45,17 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   return (
     <article>
       <div className="px-6">
-        <header className="max-w-3xl mx-auto pt-10 md:pt-12 flex flex-col-reverse items-center gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
+        <div className="max-w-3xl mx-auto pt-6">
+          <BlogBreadcrumbs
+            ariaLabel={strings.blogPost.breadcrumb}
+            parents={[
+              { label: strings.blogPost.home, href: `${prefix}/` },
+              { label: strings.blogIndex.heading, href: `${prefix}/blog` },
+            ]}
+            current={post.title}
+          />
+        </div>
+        <header className="max-w-3xl mx-auto pt-4 md:pt-6 flex flex-col-reverse items-center gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
           <div className="text-center md:text-left">
             <h1 className={ARTICLE_TITLE}>{unclipEmoji(post.title)}</h1>
             <p className={`${BODY_MUTED} mt-4`}>

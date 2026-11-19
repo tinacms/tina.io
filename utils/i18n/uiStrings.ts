@@ -6,6 +6,8 @@ export interface UiStrings {
     lastEdited: string;
     previousPost: string;
     nextPost: string;
+    home: string;
+    breadcrumb: string;
   };
   blogIndex: {
     heading: string;
@@ -25,6 +27,8 @@ const STRINGS: Record<Locale, UiStrings> = {
       lastEdited: 'Last Edited',
       previousPost: 'Previous',
       nextPost: 'Next',
+      home: 'Home',
+      breadcrumb: 'Breadcrumb',
     },
     blogIndex: {
       heading: 'Blog',
@@ -43,6 +47,8 @@ const STRINGS: Record<Locale, UiStrings> = {
       lastEdited: 'Last Edited',
       previousPost: '上一篇',
       nextPost: '下一篇',
+      home: '首页',
+      breadcrumb: '面包屑导航',
     },
     blogIndex: {
       heading: '博客',
