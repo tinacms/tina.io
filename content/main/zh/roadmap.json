@@ -24,17 +24,6 @@
       "items": [
         {
           "icon": "FaRegCheckCircle",
-          "heading": "Copilot 指令\n",
-          "content": "我们发布了用 TinaCMS 做 VibeCoding 的文档，让上手更加轻松。\n",
-          "actions": [
-            {
-              "label": "查看文档",
-              "url": "/docs/vibe-coding"
-            }
-          ]
-        },
-        {
-          "icon": "FaRegCheckCircle",
           "heading": "认证从 AWS Cognito 切换到 WorkOS\n",
           "content": "我们已将认证体系升级为使用 WorkOS，让用户访问的管理更简单、更可靠。\n",
           "actions": [
@@ -176,6 +165,17 @@
             {
               "label": "TinaDocs",
               "url": "/tinadocs"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "Copilot 指令\n",
+          "content": "我们发布了用 TinaCMS 做 VibeCoding 的文档，让上手更加轻松。\n",
+          "actions": [
+            {
+              "label": "查看文档",
+              "url": "/docs/vibe-coding"
             }
           ]
         },

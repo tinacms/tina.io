@@ -24,17 +24,6 @@
       "items": [
         {
           "icon": "FaRegCheckCircle",
-          "heading": "Copilot Instructions\n",
-          "content": "We published documentation for VibeCoding with TinaCMS to make it even easier to use.\n",
-          "actions": [
-            {
-              "label": "Documentation",
-              "url": "https://tina.io/docs/vibe-coding"
-            }
-          ]
-        },
-        {
-          "icon": "FaRegCheckCircle",
           "heading": "Swapping auth from AWS Cognito to WorkOS\n",
           "content": "We’ve moved our authentication to use WorkOS, making it simpler and more reliable to manage user access. Brook covers what is changing and who it affects here: [https://youtu.be/UdNko6iJEsQ](https://youtu.be/UdNko6iJEsQ)\n",
           "actions": [
@@ -176,6 +165,17 @@
             {
               "label": "TinaDocs",
               "url": "/tinadocs"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
+          "heading": "Copilot Instructions\n",
+          "content": "We published documentation for VibeCoding with TinaCMS to make it even easier to use.\n",
+          "actions": [
+            {
+              "label": "Documentation",
+              "url": "https://tina.io/docs/vibe-coding"
             }
           ]
         },
