@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import type { ReactNode } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
 import { BODY_MUTED, SUBTLE_LINK } from '@/component/styles/typography';
 
@@ -12,7 +11,7 @@ export function BlogBreadcrumbs({
 }: {
   ariaLabel: string;
   parents: [Crumb, ...Crumb[]];
-  current: ReactNode;
+  current: string;
 }) {
   const parent = parents[parents.length - 1];
 

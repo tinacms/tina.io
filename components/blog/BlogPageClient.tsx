@@ -31,6 +31,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   const strings = getUiStrings(locale);
   const postedDate = formatDate(post.date);
   const avatar = blogAvatar(post.author, slugPath);
+  const prefix = LOCALE_ROUTE_CONFIG[locale].pathPrefix;
   const lastEditedDate = post.last_edited ? formatDate(post.last_edited) : null;
 
   const previousPage = post.prev
@@ -48,10 +49,10 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
           <BlogBreadcrumbs
             ariaLabel={strings.blogPost.breadcrumb}
             parents={[
-              { label: strings.blogPost.home, href: '/' },
-              { label: strings.blogIndex.heading, href: '/blog' },
+              { label: strings.blogPost.home, href: `${prefix}/` },
+              { label: strings.blogIndex.heading, href: `${prefix}/blog` },
             ]}
-            current={unclipEmoji(post.title)}
+            current={post.title}
           />
         </div>
         <header className="max-w-3xl mx-auto pt-4 md:pt-6 flex flex-col-reverse items-center gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
