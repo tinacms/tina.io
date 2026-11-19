@@ -24,6 +24,17 @@
       "items": [
         {
           "icon": "FaRegCheckCircle",
+          "heading": "Copilot Instructions\n",
+          "content": "We published documentation for VibeCoding with TinaCMS to make it even easier to use.\n",
+          "actions": [
+            {
+              "label": "Documentation",
+              "url": "https://tina.io/docs/vibe-coding"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
           "heading": "Swapping auth from AWS Cognito to WorkOS\n",
           "content": "We’ve moved our authentication to use WorkOS, making it simpler and more reliable to manage user access. Brook covers what is changing and who it affects here: [https://youtu.be/UdNko6iJEsQ](https://youtu.be/UdNko6iJEsQ)\n",
           "actions": [
@@ -40,7 +51,7 @@
         {
           "icon": "FaRegCheckCircle",
           "heading": "Editorial Workflow Support for Media Manager\n",
-          "content": "We're adding Editorial Workflow support to the Media Manager, enabling media changes to go through the same branch-based workflow as content edits.\n",
+          "content": "We added Editorial Workflow support to the Media Manager, so media changes go through the same branch-based workflow as content edits.\n",
           "actions": [
             {
               "label": "GitHub Discussion",
@@ -62,12 +73,12 @@
         {
           "icon": "FaRegCheckCircle",
           "heading": "TinaCloud - Project Insights\n",
-          "content": "We’re adding new analytics to the TinaCloud portal to help teams understand how their content is evolving. These insights show who is making changes, which files are being updated, and how activity trends over time — giving teams clearer visibility into their content workflows.\n"
+          "content": "We added new analytics to the TinaCloud portal to help teams understand how their content is evolving. These insights show who is making changes, which files are being updated, and how activity trends over time — giving teams clearer visibility into their content workflows.\n"
         },
         {
           "icon": "FaRegCheckCircle",
           "heading": "TinaCMS - Telemetry (powered by PostHog)\n",
-          "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
+          "content": "We introduced optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data helps guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry is fully optional and configurable.\n",
           "actions": [
             {
               "label": "PostHog",
@@ -266,17 +277,6 @@
             {
               "label": "Editorial Workflow",
               "url": "https://tina.io/editorial-workflow/"
-            }
-          ]
-        },
-        {
-          "icon": "FaRegClock",
-          "heading": "Copilot Instructions\n",
-          "content": "We're working on providing documentation for VibeCoding with TinaCMS to make it even easier to use.\n",
-          "actions": [
-            {
-              "label": "Documentation",
-              "url": "https://tina.io/docs/vibe-coding"
             }
           ]
         },
