@@ -131,7 +131,7 @@
               "annualDescription": "每增加 1 个席位每年 $180"
             },
             {
-              "name": "商业版支持",
+              "name": "Business 支持",
               "icon": "BiSupport"
             },
             {
@@ -180,7 +180,7 @@
               "icon": "BiBadge"
             },
             {
-              "name": "企业版支持",
+              "name": "Enterprise 支持",
               "icon": "BiSupport"
             },
             {
@@ -313,7 +313,7 @@
             "rowCells": [
               "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
               "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-              "{\"columnHeader\":\"Business\",\"cellValue\":\"商业版支持\",\"isTicked\":false}",
+              "{\"columnHeader\":\"Business\",\"cellValue\":\"Business 支持\",\"isTicked\":false}",
               "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"专属客户经理\",\"isTicked\":false}"
             ]
           },
