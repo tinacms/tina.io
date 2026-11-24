@@ -12,7 +12,7 @@
   {
     "file": "src/components/ui/alert.tsx",
     "pattern": "text-foreground",
-    "reason": "shadcn's ink on the language alert's icon (zinc-950 in light, the strong ink in dark); no role keeps its light value on a warning chip, so it waits on the master"
+    "reason": "Today's light paint (D2); no role keeps this ink inside the warning chip"
   },
   {
     "file": "src/components/ui/alert.tsx",
