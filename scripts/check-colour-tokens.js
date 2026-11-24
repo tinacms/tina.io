@@ -169,7 +169,11 @@ function readTokenLayerNames() {
         }
       }
     } catch (error) {
-      console.warn(`Could not read ${CONFIG_FILE}: ${error.message}`);
+      // Without the config, palette scales and token names go unchecked and
+      // the count drops, so stop rather than pass short.
+      throw new Error(
+        `Could not load ${CONFIG_FILE} (run pnpm install first): ${error.message.split('\n')[0]}`,
+      );
     }
   }
   const specPath = path.join(ROOT, SPEC_FILE);

@@ -177,6 +177,13 @@ describe('check:colour-tokens', () => {
     );
   });
 
+  it('stops when tailwind.config.js cannot load', () => {
+    write('tailwind.config.js', "require('not-installed');\n");
+    const result = run();
+    expect(result.status).toBe(2);
+    expect(result.out).toContain('Could not load tailwind.config.js');
+  });
+
   it('prints per-folder totals without failing in count mode', () => {
     write('components/blocks/A.tsx', 'const a = "text-gray-500 #ff0000";\n');
     write('components/ui/B.tsx', 'const a = "bg-white";\n');
