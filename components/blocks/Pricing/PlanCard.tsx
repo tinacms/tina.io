@@ -196,7 +196,7 @@ export const PlanCard = ({
               className={`w-24 h-24 ${SURFACE.brandFlag} transform rotate-45`}
             ></div>
             <FaStar
-              className={`text-lg ${INK.logoOnDark} absolute -translate-x-5 translate-y-5`}
+              className={`text-lg ${INK.onBand} absolute -translate-x-5 translate-y-5`}
             />
           </div>
         )}

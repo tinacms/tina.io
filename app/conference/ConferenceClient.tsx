@@ -85,7 +85,7 @@ const icons = {
   FaRegStar: (
     <FaRegStar
       size={40}
-      className={`${INK.logoOnDark} bg-linear-to-br ${SURFACE.brandBand} p-2 mb-4 rounded-full`}
+      className={`${INK.onBand} bg-linear-to-br ${SURFACE.brandBand} p-2 mb-4 rounded-full`}
     />
   ),
   IoMdBook: (
