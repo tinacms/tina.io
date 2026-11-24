@@ -40,11 +40,11 @@
     },
     "seafoam-section": {
       "stops": [
-        "color-mix(in srgb, var(--seafoam-150) 50%, transparent)",
-        "color-mix(in srgb, var(--seafoam-100) 30%, transparent)",
-        "var(--white)"
+        "--section-seafoam-from",
+        "--section-seafoam-via",
+        "--section-seafoam-to"
       ],
-      "source": "components/layout/Section.tsx seafoam gradient, over white"
+      "source": "surface-section-seafoam (SURFACE.sectionSeafoam): components/layout/Section.tsx seafoam gradient, over white"
     },
     "segmented-track": {
       "stops": [
@@ -81,28 +81,58 @@
       "source": "on-dark --icon-button-hover (styles/tailwind.css), over the darkest-lit on-dark fill it sits on (Recipe gray-800)"
     },
     "footer-orange": {
-      "stops": ["#eb8860", "#ea6d43", "#ec4815", "#c23414", "#a91d04"],
-      "source": "public/svg/orange-bg.svg: the footer (components/layout/Footer.tsx, components/footer/footer.tsx) and the /design on-dark examples"
+      "stops": [
+        "--band-footer-1",
+        "--band-footer-2",
+        "--band-footer-3",
+        "--band-footer-4",
+        "--band-footer-5"
+      ],
+      "source": "surface-footer-band (SURFACE.footerBand): public/svg/orange-bg.svg in light, the card in dark; the footer and the /design on-dark examples"
     },
     "footer-legal-band": {
-      "stops": ["var(--orange-600)", "var(--orange-800)", "var(--orange-900)"],
-      "source": "components/layout/Footer.tsx legal band, from-orange-600 via-orange-800 to-orange-900"
+      "stops": ["--band-legal-from", "--band-legal-via", "--band-legal-to"],
+      "source": "surface-legal-band (SURFACE.legalBand): components/layout/Footer.tsx legal band"
     },
     "consent-banner": {
-      "stops": ["var(--orange-400)", "var(--orange-600)"],
-      "source": "components/ConsentBanner.tsx, from-orange-400 to-orange-600"
+      "stops": ["--band-brand-from", "--band-brand-to"],
+      "source": "surface-brand-band (SURFACE.brandBand): components/ConsentBanner.tsx and the orange badges"
     },
     "recipe-panel": {
-      "stops": ["var(--gray-800, oklch(27.8% 0.033 256.848))"],
-      "source": "components/blocks/Recipe.tsx and RecipeCodeToolBar.tsx, Tailwind bg-gray-800"
+      "stops": ["--recipe-panel"],
+      "source": "surface-recipe-panel (SURFACE.recipePanel): components/blocks/Recipe.tsx and RecipeCodeToolBar.tsx"
     },
     "features-code-tab": {
-      "stops": ["#333333", "#1a1a1a"],
-      "source": "components/blocks/Features/Features.tsx, from-[#333333] to-[#1a1a1a]"
+      "stops": ["--feature-code-panel-from", "--feature-code-panel-via"],
+      "source": "surface-feature-code-tab (SURFACE.featureCodeTab): components/blocks/Features/Features.tsx"
     },
     "story-code-tab": {
       "stops": ["var(--blue-800)", "var(--blue-900)"],
       "source": "components/blocks/Story/Story.tsx, from-blue-800 to-blue-900"
+    },
+    "feature-code-panel": {
+      "stops": [
+        "--feature-code-panel-from",
+        "--feature-code-panel-via",
+        "--feature-code-panel-to"
+      ],
+      "source": "surface-feature-code-panel (SURFACE.featureCodePanel)"
+    },
+    "success-band": {
+      "stops": ["--band-success-from", "--band-success-to"],
+      "source": "surface-success-band (SURFACE.successBand): tip and update icon discs"
+    },
+    "info-band": {
+      "stops": ["--band-info-from", "--band-info-to"],
+      "source": "surface-info-band (SURFACE.infoBand): blue icon discs"
+    },
+    "partner-premier": {
+      "stops": [
+        "--partner-premier-from",
+        "--partner-premier-via",
+        "--partner-premier-to"
+      ],
+      "source": "surface-partner-premier (SURFACE.partnerPremier)"
     }
   },
   "pairs": [
@@ -415,6 +445,91 @@
       "bg": ["page", "sky-page"],
       "kind": "text",
       "exempt": "the shimmer (D7)"
+    },
+    {
+      "context": "Component roles: bands with the on-band white (icon discs, the starred corner)",
+      "fg": "--on-band",
+      "bg": ["success-band", "info-band", "--band-flag"],
+      "kind": "edge"
+    },
+    {
+      "context": "Component roles: text on the feature code panel",
+      "fg": "--feature-code-panel-ink",
+      "bg": "feature-code-panel",
+      "kind": "text"
+    },
+    {
+      "context": "Component roles: the premier partner badge",
+      "fg": "--partner-premier-ink",
+      "bg": "partner-premier",
+      "kind": "text"
+    },
+    {
+      "context": "Component roles: fields, switches and checkboxes (interactive edges)",
+      "fg": ["--field-edge", "--checkbox-edge"],
+      "bg": ["card", "--field-fill"],
+      "kind": "edge"
+    },
+    {
+      "context": "Component roles: a switch's knob on its track, and the track when on",
+      "fg": "--switch-knob",
+      "bg": ["--switch-track", "--switch-on"],
+      "kind": "edge"
+    },
+    {
+      "context": "Component roles: the menu tab's orange ink on its fill",
+      "fg": ["--menu-tab-ink", "--menu-tab-ink-hover"],
+      "bg": ["--menu-tab-from", "--menu-tab-to"],
+      "kind": "text"
+    },
+    {
+      "context": "Component roles: the focus ring on the card and well, and ChooserCard's ring",
+      "fg": ["--focus-ring", "--chooser-ring"],
+      "bg": ["card", "well"],
+      "kind": "edge"
+    },
+    {
+      "context": "Component roles: links and blue marks on the card",
+      "fg": ["--text-link", "--text-link-hover"],
+      "bg": ["card", "well"],
+      "kind": "text"
+    },
+    {
+      "context": "Component roles: roadmap status icons on the card",
+      "fg": [
+        "--status-done",
+        "--status-progress",
+        "--status-planned",
+        "--status-default"
+      ],
+      "bg": "card",
+      "kind": "edge"
+    },
+    {
+      "context": "Component roles: decorative lines and marks (decorative)",
+      "fg": [
+        "--border-faint",
+        "--line-terminal",
+        "--blog-table-line",
+        "--ink-decor",
+        "--map-land",
+        "--line-callout-tip",
+        "--line-callout-warning"
+      ],
+      "bg": ["page", "card", "well"],
+      "kind": "edge",
+      "exempt": "decorative line or mark (D7)"
+    },
+    {
+      "context": "Component roles: blue icons on the card (non-text marks)",
+      "fg": [
+        "--ink-blue",
+        "--ink-active",
+        "--ink-external-link",
+        "--ink-external-link-hover"
+      ],
+      "bg": ["card", "well"],
+      "kind": "edge"
     }
   ]
 }

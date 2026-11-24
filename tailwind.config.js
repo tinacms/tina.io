@@ -262,8 +262,9 @@ module.exports = {
         skeleton: '200% 100%',
       },
       // Elevation shadows point at --elevation-* in app/global.css, so dark
-      // mode can turn them off (D31). xs, outline and the input rings are
-      // edges and focus states, not elevation, and stay as they are.
+      // mode can turn them off (D31). xs and outline are edges and focus
+      // states, not elevation, and stay as they are; the input rings read
+      // the field tokens (PBI-5015-05).
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
         sm: 'var(--elevation-sm)',
@@ -274,12 +275,9 @@ module.exports = {
         '2xl': 'var(--elevation-2xl)',
         panel: 'var(--elevation-panel)',
         outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
-        input:
-          'inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0px 2px 3px rgba(0, 0, 0, 0.12)',
-        'input-hover':
-          'inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.2), 0 2px 3px rgba(0, 0, 0, 0.12)',
-        'input-focus':
-          'inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.7), 0 2px 3px rgba(0, 0, 0, 0.12)',
+        input: 'var(--field-shadow)',
+        'input-hover': 'var(--field-shadow-hover)',
+        'input-focus': 'var(--field-shadow-focus)',
       },
       dropShadow: {
         sm: '0 1px 1px rgb(20 70 150 / 0.05)',
@@ -366,9 +364,9 @@ module.exports = {
           800: 'var(--orange-800)',
           900: 'var(--orange-900)',
         },
-        success: '#22C55E',
-        warning: '#F59E0B',
-        error: '#EF4444',
+        success: 'var(--green-500)',
+        warning: 'var(--amber-500)',
+        error: 'var(--red-500)',
         background: 'var(--background)',
         // Default text colour follows the body token rather than shadcn's own
         // --foreground, so unstyled text reads as body copy, not heading ink.

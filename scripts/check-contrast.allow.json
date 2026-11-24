@@ -233,5 +233,157 @@
     "bg": "table-head",
     "mode": "light",
     "reason": "light unchanged (D2, D11): the strong line is today's neutral outline hover grey (D27), an interactive edge (D7); dark must pass with D4's strong border"
+  },
+  {
+    "fg": "--button-primary-ink",
+    "bg": "button-primary",
+    "mode": "dark",
+    "stop": "--button-primary-from",
+    "reason": "agreed by design, carried into dark (D35): white label on the gradient light end"
+  },
+  {
+    "fg": "--button-secondary-ink",
+    "bg": "button-secondary",
+    "mode": "dark",
+    "stop": "--button-secondary-from",
+    "reason": "agreed by design, carried into dark (D35): white label on the gradient light end"
+  },
+  {
+    "fg": "--text-on-dark",
+    "bg": "consent-banner",
+    "mode": "dark",
+    "reason": "the consent banner and orange badges stay orange in dark (D32, D43)"
+  },
+  {
+    "fg": "--text-on-dark-label",
+    "bg": "consent-banner",
+    "mode": "dark",
+    "reason": "the consent banner and orange badges stay orange in dark (D32, D43)"
+  },
+  {
+    "fg": "--button-on-dark-outline",
+    "bg": "consent-banner",
+    "mode": "dark",
+    "reason": "the consent banner and orange badges stay orange in dark (D32, D43)"
+  },
+  {
+    "fg": "--on-band",
+    "bg": "success-band",
+    "mode": "dark",
+    "reason": "small bands stay as they are in dark (D32); a white icon below the bar is listed under D43's reason (D52)"
+  },
+  {
+    "fg": "--on-band",
+    "bg": "--band-flag",
+    "mode": "dark",
+    "reason": "small bands stay as they are in dark (D32); a white icon below the bar is listed under D43's reason (D52)"
+  },
+  {
+    "fg": "--on-band",
+    "bg": "success-band",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--on-band",
+    "bg": "--band-flag",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--field-edge",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--field-edge",
+    "bg": "--field-fill",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--checkbox-edge",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--checkbox-edge",
+    "bg": "--field-fill",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--switch-knob",
+    "bg": "--switch-track",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--menu-tab-ink",
+    "bg": "--menu-tab-from",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--menu-tab-ink",
+    "bg": "--menu-tab-to",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--menu-tab-ink-hover",
+    "bg": "--menu-tab-from",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--menu-tab-ink-hover",
+    "bg": "--menu-tab-to",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--status-done",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--status-progress",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--ink-external-link",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--ink-external-link",
+    "bg": "well",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--ink-external-link-hover",
+    "bg": "well",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--text-subtle",
+    "bg": "--surface-success",
+    "mode": "dark",
+    "reason": "proposed: 0.02 under 4.5:1 on D48's tinted well; keeps D37's chip pattern; the light side is already a D2 exception"
+  },
+  {
+    "fg": "--text-label",
+    "bg": "--surface-success",
+    "mode": "dark",
+    "reason": "proposed: 0.02 under 4.5:1 on D48's tinted well; keeps D37's chip pattern; the light side is already a D2 exception"
   }
 ]
