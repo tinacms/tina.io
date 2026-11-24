@@ -175,7 +175,7 @@ export const RenderMedia = ({ data }) => {
           }}
         >
           <CodeWrapper>
-            <div className="[&>pre]:bg-transparent! [&>pre]:border-none! rounded-xl">
+            <div className="[&>pre]:bg-transparent! [&>pre]:border-none! [&>pre]:ring-0! rounded-xl">
               <Prism
                 lang={
                   data.media[0].language ? data.media[0].language : 'javascript'
