@@ -1,0 +1,177 @@
+[
+  {
+    "file": "components/ui/Overlay.tsx",
+    "pattern": "background-color: var(--color-secondary)",
+    "reason": "Unused: renders on no tina.io page"
+  },
+  {
+    "file": "components/ui/Video.tsx",
+    "pattern": "rgba(104, 120, 125, 0.25)",
+    "reason": "Unused: renders on no tina.io page"
+  },
+  {
+    "file": "src/components/ui/alert.tsx",
+    "pattern": "text-foreground",
+    "reason": "shadcn's ink on the language alert's icon (zinc-950 in light, the strong ink in dark); no role keeps its light value on a warning chip, so it waits on the master"
+  },
+  {
+    "file": "src/components/ui/alert.tsx",
+    "pattern": "bg-background",
+    "reason": "Unused variant (default, destructive): renders on no tina.io page; the language alert passes surface"
+  },
+  {
+    "file": "src/components/ui/alert.tsx",
+    "pattern": "border-destructive/50",
+    "reason": "Unused variant (default, destructive): renders on no tina.io page; the language alert passes surface"
+  },
+  {
+    "file": "src/components/ui/alert.tsx",
+    "pattern": "text-destructive",
+    "reason": "Unused variant (default, destructive): renders on no tina.io page; the language alert passes surface"
+  },
+  {
+    "file": "src/components/ui/alert.tsx",
+    "pattern": "border-destructive",
+    "reason": "Unused variant (default, destructive): renders on no tina.io page; the language alert passes surface"
+  },
+  {
+    "file": "components/forms/IconPicker.tsx",
+    "pattern": "text-blue-500",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconPicker.tsx",
+    "pattern": "bg-white",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconPicker.tsx",
+    "pattern": "border-gray-150",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconPicker.tsx",
+    "pattern": "bg-gray-50",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconPicker.tsx",
+    "pattern": "border-gray-100",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconPicker.tsx",
+    "pattern": "placeholder-gray-200",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconPicker.tsx",
+    "pattern": "text-gray-300",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconPicker.tsx",
+    "pattern": "text-gray-200",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconPicker.tsx",
+    "pattern": "text-blue-400",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconSelector.tsx",
+    "pattern": "border-blue-500",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconSelector.tsx",
+    "pattern": "border-gray-100",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconSelector.tsx",
+    "pattern": "border-gray-200",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconSelector.tsx",
+    "pattern": "text-gray-500",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconSelector.tsx",
+    "pattern": "text-blue-400",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconSelector.tsx",
+    "pattern": "text-blue-500",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconSelector.tsx",
+    "pattern": "bg-white",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconSelector.tsx",
+    "pattern": "bg-gray-50",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/IconSelector.tsx",
+    "pattern": "bg-blue-200",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/RoadmapIconSelector.tsx",
+    "pattern": "border-blue-500",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/RoadmapIconSelector.tsx",
+    "pattern": "border-gray-100",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/RoadmapIconSelector.tsx",
+    "pattern": "border-gray-200",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/RoadmapIconSelector.tsx",
+    "pattern": "text-gray-500",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/RoadmapIconSelector.tsx",
+    "pattern": "text-blue-400",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/RoadmapIconSelector.tsx",
+    "pattern": "text-blue-500",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/RoadmapIconSelector.tsx",
+    "pattern": "bg-blue-200",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/forms/RoadmapIconSelector.tsx",
+    "pattern": "bg-white",
+    "reason": "TinaCMS editing field, drawn only inside /admin (out of scope)"
+  },
+  {
+    "file": "components/util/TailwindIndicator.tsx",
+    "pattern": "bg-gray-800",
+    "reason": "Dev-only breakpoint badge; renders nothing in production"
+  },
+  {
+    "file": "components/util/TailwindIndicator.tsx",
+    "pattern": "text-white",
+    "reason": "Dev-only breakpoint badge; renders nothing in production"
+  }
+]
