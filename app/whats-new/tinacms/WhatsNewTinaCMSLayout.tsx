@@ -5,6 +5,7 @@ import {
   CARD_TITLE,
   CODE,
   LABEL,
+  LINE,
   PAGE_TITLE,
   SUB_HEADING,
   SURFACE,
@@ -101,7 +102,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
           key={`section-${section.changesTitle}-${sectionIndex}`}
           className="mb-6"
         >
-          <h3 className={`${SUB_HEADING} mb-3 border-b border-gray-200 pb-2`}>
+          <h3 className={`${SUB_HEADING} mb-3 border-b ${LINE.subtle} pb-2`}>
             {section.changesTitle}
           </h3>
           {section.changesList && section.changesList.length > 0 ? (

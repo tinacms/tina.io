@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 import { SOCIAL_LINK } from '@/component/styles/links';
+import { INK } from '@/component/styles/typography';
 import { externalLinkProps } from '@/utils/isExternalLink';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import { ButtonGroup } from './Button';
@@ -11,28 +12,39 @@ import { ButtonGroup } from './Button';
  * of them needs no Primary. Stacks full width on phones like any button row.
  */
 
-// Brand logo colours are the networks' own, so they stay as they are.
+// Brand logo colours are the networks' own in light; all near-white in dark.
 const NETWORKS = {
   tina: {
     label: 'Discussion',
     logo: (
-      <TinaIconSvg aria-hidden="true" className="h-6 w-auto fill-[#EC4815]" />
+      <TinaIconSvg
+        aria-hidden="true"
+        className={`h-6 w-auto fill-current ${INK.socialTina}`}
+      />
     ),
   },
   discord: {
     label: 'Discord',
     logo: (
-      <FaDiscord aria-hidden="true" className="h-6 w-auto text-[#5865f2]" />
+      <FaDiscord
+        aria-hidden="true"
+        className={`h-6 w-auto ${INK.socialDiscord}`}
+      />
     ),
   },
   github: {
     label: 'GitHub',
-    logo: <FaGithub aria-hidden="true" className="h-6 w-auto text-[#24292e]" />,
+    logo: (
+      <FaGithub
+        aria-hidden="true"
+        className={`h-6 w-auto ${INK.socialGithub}`}
+      />
+    ),
   },
   twitter: {
     label: 'Twitter',
     logo: (
-      <FaTwitter aria-hidden="true" className="h-6 w-auto text-[#1DA1F2]" />
+      <FaTwitter aria-hidden="true" className={`h-6 w-auto ${INK.socialX}`} />
     ),
   },
 } as const;

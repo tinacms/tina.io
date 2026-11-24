@@ -84,7 +84,9 @@ export const EmailForm = (props: EmailFormProps) => {
   };
 
   return (
-    <div className={`grid lg:grid-cols-2 grid-cols-1 gap-1 ${SURFACE.card} max-w-7xl mx-auto`}>
+    <div
+      className={`grid lg:grid-cols-2 grid-cols-1 gap-1 ${SURFACE.card} max-w-7xl mx-auto`}
+    >
       <div className="relative lg:h-full md:h-80 h-52">
         <Image
           src={BettyWithLlama}

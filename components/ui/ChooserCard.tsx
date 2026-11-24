@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { FaChevronRight } from 'react-icons/fa';
 import {
   BODY_SMALL,
+  INK,
+  LINE,
   SUB_HEADING,
   SURFACE,
 } from '@/component/styles/typography';
@@ -44,9 +46,13 @@ export const ChooserCard = (props: ChooserCardProps) => {
   const { name, description, image, selected, stackOnMobile } = props;
 
   const className = [
-    'flex w-full h-full items-center justify-between rounded-lg border p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring',
+    // The hover fill and focus ring are role utilities under a variant, written
+    // out so Tailwind generates them: hover:surface-well, focus-visible:line-chooser-focus.
+    'flex w-full h-full items-center justify-between rounded-lg border p-4 shadow transition transform duration-200 hover:scale-105 hover:surface-well focus-visible:outline-hidden focus-visible:ring-1 focus-visible:line-chooser-focus',
     stackOnMobile ? 'flex-col md:flex-row' : 'flex-row',
-    selected ? `${SURFACE.info} border-selected` : 'border-input bg-background',
+    selected
+      ? `${SURFACE.info} ${LINE.selected}`
+      : `${SURFACE.card} ${LINE.subtle}`,
   ].join(' ');
 
   const content = (
@@ -67,7 +73,7 @@ export const ChooserCard = (props: ChooserCardProps) => {
         <span className={`block ${BODY_SMALL}`}>{description}</span>
       </span>
       <span className="shrink-0">
-        <FaChevronRight className="h-6 w-6 text-muted-foreground" />
+        <FaChevronRight className={`h-6 w-6 ${INK.subtle}`} />
       </span>
     </>
   );
