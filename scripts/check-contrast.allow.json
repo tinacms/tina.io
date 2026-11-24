@@ -373,5 +373,17 @@
     "bg": "well",
     "mode": "light",
     "reason": "light unchanged (D2, D11): today's paint, moved onto a role (PBI-5015-05); dark passes or is listed"
+  },
+  {
+    "fg": "--text-subtle",
+    "bg": "--surface-success",
+    "mode": "dark",
+    "reason": "proposed: 0.02 under 4.5:1 on D48's tinted well; keeps D37's chip pattern; the light side is already a D2 exception"
+  },
+  {
+    "fg": "--text-label",
+    "bg": "--surface-success",
+    "mode": "dark",
+    "reason": "proposed: 0.02 under 4.5:1 on D48's tinted well; keeps D37's chip pattern; the light side is already a D2 exception"
   }
 ]
