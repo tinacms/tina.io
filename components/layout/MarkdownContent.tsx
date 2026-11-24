@@ -12,7 +12,7 @@ import remarkGfm from 'remark-gfm';
 import styled from 'styled-components';
 import LinkSvg from '../../public/svg/link.svg';
 import { Prism } from '../styles/Prism';
-import { BODY } from '../styles/typography';
+import { BODY, LINE, SURFACE } from '../styles/typography';
 
 interface MarkdownContentProps {
   content: string;
@@ -58,7 +58,7 @@ function WithHeadings({ children, level }) {
 }
 
 const HeadingLink = styled.a`
-  fill: var(--color-secondary);
+  fill: currentColor;
   opacity: 0;
   display: flex;
   align-items: center;
@@ -87,9 +87,7 @@ const CodeSnippets = (props) => {
       <style>{`.code-snippets .prism-code {height: 100%; margin: 0}`}</style>
       <style>{`.code-snippets .code-wrapper { height: 100% }`}</style>
       <style>{`.code-snippets h3 { margin-bottom: 0; }`}</style>
-      <dl className="mt-10 space-y-6 divide-y divide-gray-900/10">
-        {props.children}
-      </dl>
+      <dl className="mt-10 space-y-6 divide-y">{props.children}</dl>
     </div>
   );
 };
@@ -104,7 +102,11 @@ const CodeSnippet = (props) => {
     (child) => child.tagName === 'pre',
   );
   return (
-    <Disclosure defaultOpen={props.open} as="div" className="pt-6">
+    <Disclosure
+      defaultOpen={props.open}
+      as="div"
+      className={`pt-6 ${LINE.subtle}`}
+    >
       {({ open }) => (
         <>
           <dt>
@@ -129,7 +131,9 @@ const CodeSnippet = (props) => {
             }
             <div className="flex flex-col lg:flex-row gap-4">
               <div className="flex-1">{props.children[codeIndex]}</div>
-              <div className="flex-1 bg-gray-50 bg-[#f6f6f9] border border-gray-100 rounded-md overflow-hidden">
+              <div
+                className={`flex-1 ${SURFACE.imagePanel} border ${LINE.faint} rounded-md overflow-hidden`}
+              >
                 <Image
                   src={props.url}
                   alt={props.children}
