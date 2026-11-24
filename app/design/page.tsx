@@ -54,9 +54,8 @@ import { Button, ButtonGroup } from '@/component/ui/Button';
 import { Pagination, PostPagination } from '@/component/ui/Pagination';
 import { SocialLinks, TINA_SOCIAL_LINKS } from '@/component/ui/SocialLinks';
 import { TextLink } from '@/component/ui/TextLink';
-import { ModeToggle } from './ModeToggle';
-import { OUTLINE, slug } from './outline';
-import { SectionIndex } from './SectionIndex';
+import { IndexColumn } from './IndexColumn';
+import { slug } from './outline';
 import { SegmentedToggleExample } from './SegmentedToggleExample';
 
 export const metadata: Metadata = {
@@ -274,10 +273,7 @@ export default function StyleGuidePage() {
     // hidden and the content wrapper is display: contents, so the page lays
     // out as it did before the index (D50, D51).
     <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-16 px-4 py-16 md:px-8 lg:flex lg:items-start lg:gap-12 lg:px-12">
-      <aside className="max-lg:hidden lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-64 lg:shrink-0 lg:flex-col lg:gap-6 lg:py-4 xl:top-24 xl:max-h-[calc(100vh-var(--spacing)*24)]">
-        <ModeToggle className="self-start" />
-        <SectionIndex outline={OUTLINE} className="min-h-0 overflow-y-auto" />
-      </aside>
+      <IndexColumn />
 
       <div className="max-lg:contents lg:grid lg:min-w-0 lg:flex-1 lg:gap-16">
         <header>
