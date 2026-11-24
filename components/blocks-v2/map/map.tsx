@@ -14,6 +14,7 @@ import {
   CAPTION,
   INK,
   LABEL,
+  LINE,
   LINK,
   SECTION_TITLE,
   SUB_HEADING,
@@ -234,9 +235,7 @@ const AccordionItem = ({
   return (
     <li>
       <div
-        className={
-          'group flex flex-col p-2 transition-all duration-300 rounded-md shadow-md border border-white/30 bg-gradient-to-tr from-white/10 to-white/40 hover:from-blue-500/10 hover:to-white/40'
-        }
+        className={`group flex flex-col p-2 transition-all duration-300 rounded-md shadow-md border ${LINE.glass} bg-gradient-to-tr ${SURFACE.glassStops} hover:surface-glass-hover`}
       >
         <button
           type="button"
