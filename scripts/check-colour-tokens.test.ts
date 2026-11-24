@@ -177,6 +177,175 @@ describe('check:colour-tokens', () => {
     );
   });
 
+  it('reads every allow file in the allow directory and names the source', () => {
+    write(
+      'components/Brand.tsx',
+      'const a = "#5865f2 text-gray-500 #ff0000";\n',
+    );
+    write(
+      'scripts/check-colour-tokens.allow/PBI-5015-12.json',
+      JSON.stringify([
+        { file: 'components/Brand.tsx', pattern: '#5865f2', reason: 'Brand' },
+      ]),
+    );
+    write(
+      'scripts/check-colour-tokens.allow/PBI-5015-13.json',
+      JSON.stringify([
+        {
+          file: 'components/Brand.tsx',
+          pattern: 'text-gray-500',
+          reason: 'Picture',
+        },
+      ]),
+    );
+    const partial = run();
+    expect(partial.status).toBe(1);
+    expect(partial.out).toContain(
+      'components/Brand.tsx:1  #5865f2  (scripts/check-colour-tokens.allow/PBI-5015-12.json)',
+    );
+    expect(partial.out).toContain(
+      'components/Brand.tsx:1  text-gray-500  (scripts/check-colour-tokens.allow/PBI-5015-13.json)',
+    );
+    expect(partial.out).toMatch(/^components\/Brand\.tsx:1 {2}#ff0000$/m);
+
+    write(
+      'scripts/check-colour-tokens.allow.json',
+      JSON.stringify([
+        { file: 'components/Brand.tsx', pattern: '#ff0000', reason: 'Shared' },
+      ]),
+    );
+    const clean = run();
+    expect(clean.status).toBe(0);
+    expect(clean.out).toContain(
+      '#ff0000  (scripts/check-colour-tokens.allow.json)',
+    );
+    expect(clean.out).toContain('3 allowed');
+  });
+
+  it('names the allow file that is broken', () => {
+    write('scripts/check-colour-tokens.allow/PBI-5015-14.json', '[{');
+    const broken = run();
+    expect(broken.status).toBe(2);
+    expect(broken.out).toContain(
+      'scripts/check-colour-tokens.allow/PBI-5015-14.json: not valid JSON',
+    );
+
+    write(
+      'scripts/check-colour-tokens.allow/PBI-5015-14.json',
+      JSON.stringify([{ file: 'components/A.tsx', pattern: '#fff' }]),
+    );
+    expect(run().out).toContain(
+      'scripts/check-colour-tokens.allow/PBI-5015-14.json: every entry needs file, pattern and reason',
+    );
+  });
+
+  it.each([
+    [
+      'a hex followed by _',
+      'bg-[linear-gradient(90deg,transparent,#f2fdfc_33.3%)]',
+      ['#f2fdfc'],
+    ],
+    [
+      'a named colour in a gradient',
+      'bg-[linear-gradient(90deg,white,transparent)]',
+      ['white'],
+    ],
+    [
+      'rgba() in shadow',
+      'shadow-[0_0_8px_2px_rgba(0,0,0,0.03)]',
+      ['rgba(0,0,0,0.03)'],
+    ],
+    [
+      'rgb() and hsl() in drop-shadow',
+      'hover:drop-shadow-[0_0_6px_rgb(255,255,255),0_1px_hsl(0,0%,0%)]',
+      ['rgb(255,255,255)', 'hsl(0,0%,0%)'],
+    ],
+  ])(
+    'catches %s inside an arbitrary value, planted then removed',
+    (_name, className, expected) => {
+      write('components/Planted.tsx', `const a = "${className}";\n`);
+      const failing = run();
+      expect(failing.status).toBe(1);
+      for (const text of expected) {
+        expect(failing.out).toContain(`components/Planted.tsx:1  ${text}`);
+      }
+
+      write('components/Planted.tsx', 'const a = "shadow-md";\n');
+      expect(run().status).toBe(0);
+    },
+  );
+
+  it('skips url() and non-colour utilities inside arbitrary values', () => {
+    write(
+      'components/Quiet.tsx',
+      'const a = "bg-[url(/img/white.png)] mask-[url(#abc)] w-[calc(100%-2rem)] font-[white]";\n',
+    );
+    expect(run().status).toBe(0);
+  });
+
+  it('scans src/ site-wide', () => {
+    write('src/components/ui/input.tsx', 'const a = "bg-white";\n');
+    expect(run().out).toContain('src/components/ui/input.tsx:1  bg-white');
+  });
+
+  it('reports colours in SVG pictures as svg, failing only on request', () => {
+    write(
+      'public/svg/hr.svg',
+      [
+        '<svg xmlns="http://www.w3.org/2000/svg">',
+        '  <!-- fill="#123456" -->',
+        '  <path fill="url(#abc)" stroke="white" />',
+        '  <stop stop-color="#C5F9EF" style="fill:rgba(0,0,0,0.5)" />',
+        '  <use href="#bad" />',
+        '</svg>',
+        '',
+      ].join('\n'),
+    );
+    write('public/script.js', 'const a = "#ff0000";\n');
+
+    const siteWide = run();
+    expect(siteWide.status).toBe(0);
+    expect(siteWide.out).toContain('3 svg colours not failing');
+    expect(siteWide.out).not.toContain('public/script.js');
+
+    const fence = run('--', 'public/svg');
+    expect(fence.status).toBe(0);
+    expect(fence.out).toContain('public/svg/hr.svg:3  white');
+    expect(fence.out).toContain('public/svg/hr.svg:4  #C5F9EF');
+    expect(fence.out).toContain('public/svg/hr.svg:4  rgba(0,0,0,0.5)');
+    expect(fence.out).not.toContain('#123456');
+    expect(fence.out).not.toContain('#abc');
+    expect(fence.out).not.toContain('#bad');
+
+    const strict = run('--', '--fail-on-svg');
+    expect(strict.status).toBe(1);
+    expect(strict.out).toMatch(/^public\/svg\/hr\.svg:3 {2}white$/m);
+
+    const count = run('--', '--count');
+    expect(count.status).toBe(0);
+    expect(count.out).toMatch(/public\/svg\s+0\s+1\s+0\s+0\s+0\s+0\s+3/);
+    expect(count.out).toContain('Total: 0 hits in 0 files');
+    expect(count.out).toContain('Pictures: 3 svg colours in 1 files');
+
+    fs.rmSync(path.join(root, 'public/svg/hr.svg'));
+    expect(run('--', '--fail-on-svg').status).toBe(0);
+  });
+
+  it("reports an inline SVG data URL as svg, not as the line's code", () => {
+    const markup =
+      "<svg xmlns='http://www.w3.org/2000/svg'><path fill='%23ff0000' stroke='black'/></svg>";
+    write(
+      'components/Pattern.tsx',
+      `const a = "bg-[url(data:image/svg+xml,${markup})]";\nconst b = 'data:image/svg+xml;base64,${Buffer.from('<svg fill="#00ff00"/>').toString('base64')}';\n`,
+    );
+    const result = run('--', 'components/Pattern.tsx');
+    expect(result.status).toBe(0);
+    expect(result.out).toContain('components/Pattern.tsx:1  #ff0000');
+    expect(result.out).toContain('components/Pattern.tsx:1  black');
+    expect(result.out).toContain('components/Pattern.tsx:2  #00ff00');
+    expect(run('--', 'components/Pattern.tsx', '--fail-on-svg').status).toBe(1);
+  });
+
   it('stops when tailwind.config.js cannot load', () => {
     write('tailwind.config.js', "require('not-installed');\n");
     const result = run();
