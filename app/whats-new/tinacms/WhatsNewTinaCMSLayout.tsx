@@ -87,7 +87,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
   return (
     <div
       key={item.key}
-      className="mb-6 p-10 shadow-xl rounded-lg bg-linear-to-br from-white/25 via-white/50 to-white/75"
+      className={`mb-6 p-10 shadow-xl rounded-lg ${SURFACE.frosted}`}
     >
       <div className="flex justify-between items-baseline mb-6">
         <h2 className={CARD_TITLE}>Version {item.versionNumber}</h2>

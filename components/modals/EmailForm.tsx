@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import type React from 'react';
 import { useState } from 'react';
-import { BODY, CARD_TITLE } from '@/component/styles/typography';
+import { BODY, CARD_TITLE, SURFACE } from '@/component/styles/typography';
 import { StatusMessage, type StatusType } from '@/component/ui/StatusMessage';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -84,7 +84,7 @@ export const EmailForm = (props: EmailFormProps) => {
   };
 
   return (
-    <div className="grid lg:grid-cols-2 grid-cols-1 gap-1 bg-white max-w-7xl mx-auto">
+    <div className={`grid lg:grid-cols-2 grid-cols-1 gap-1 ${SURFACE.card} max-w-7xl mx-auto`}>
       <div className="relative lg:h-full md:h-80 h-52">
         <Image
           src={BettyWithLlama}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { FIELD } from '@/component/styles/typography';
+import { FIELD, SURFACE } from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
 
 const Textarea = React.forwardRef<
@@ -10,7 +10,7 @@ const Textarea = React.forwardRef<
   return (
     <textarea
       className={cn(
-        `flex min-h-[60px] w-full rounded-[5px] border-0 bg-white px-4 py-3 ${FIELD} shadow-input transition-shadow duration-[85ms] ease-out hover:shadow-input-hover focus:shadow-input-focus outline-none ring-0 disabled:cursor-not-allowed disabled:opacity-50`,
+        `flex min-h-[60px] w-full rounded-[5px] border-0 ${SURFACE.field} px-4 py-3 ${FIELD} shadow-input transition-shadow duration-[85ms] ease-out hover:shadow-input-hover focus:shadow-input-focus outline-none ring-0 disabled:cursor-not-allowed disabled:opacity-50`,
         className,
       )}
       ref={ref}
