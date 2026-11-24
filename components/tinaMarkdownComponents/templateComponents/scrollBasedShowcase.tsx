@@ -198,9 +198,9 @@ export default function ScrollBasedShowcase(data: {
               <div
                 key={`showcase-item-${item.title}`}
                 // If active => full opacity + orange border
-                // If not => faded + gray border
+                // If not => faded
                 className={`mt-0 md:mt-8 transition-all duration-300 ease-in-out
-                  ${isFocused ? 'opacity-100' : 'opacity-15  border-gray-300'}
+                  ${isFocused ? 'opacity-100' : 'opacity-15'}
                 `}
               >
                 {item.useAsSubsection ? (
