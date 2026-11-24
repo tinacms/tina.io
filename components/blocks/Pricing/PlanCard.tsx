@@ -40,8 +40,11 @@ import {
   CAPTION,
   CARD_TITLE,
   CARD_TITLE_FEATURED,
+  INK,
   LABEL,
+  LINE,
   LINK,
+  SURFACE,
 } from '@/component/styles/typography';
 import type { PageBlocksPricingPlans } from '../../../tina/__generated__/types';
 
@@ -181,16 +184,20 @@ export const PlanCard = ({
   return (
     <span className={`animate-pop-in block h-full ${cardRows}`}>
       <div
-        className={`h-full ${comparison ? '' : 'hover:scale-[1.03]'} hover:bg-linear-to-br from-transparent via-cyan-50/50 to-cyan-100 relative px-8 py-10 rounded-xl transform transition-transform duration-300 border border-transparent overflow-hidden ${cardRows} ${
+        className={`h-full ${comparison ? '' : 'hover:scale-[1.03]'} hover:bg-linear-to-br ${SURFACE.planHover} ${SURFACE.planCard} relative px-8 py-10 rounded-xl transform transition-transform duration-300 border border-transparent overflow-hidden ${cardRows} ${
           data.isMuted
-            ? 'grayscale bg-gray-50/70 opacity-75 shadow-lg'
+            ? `grayscale ${SURFACE.planMuted} opacity-75 shadow-lg`
             : 'shadow-2xl'
         }`}
       >
         {data.isStarred && (
           <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
-            <div className="w-24 h-24 bg-orange-400 transform rotate-45"></div>
-            <FaStar className="text-lg text-white absolute -translate-x-5 translate-y-5" />
+            <div
+              className={`w-24 h-24 ${SURFACE.brandFlag} transform rotate-45`}
+            ></div>
+            <FaStar
+              className={`text-lg ${INK.logoOnDark} absolute -translate-x-5 translate-y-5`}
+            />
           </div>
         )}
         <div>
@@ -271,10 +278,12 @@ export const PlanCard = ({
           )}
 
           {!comparison && data.addOn?.isEnabled && data.addOn?.name && (
-            <label className="mt-6 flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white cursor-pointer select-none">
+            <label
+              className={`mt-6 flex items-center gap-2 px-3 py-2 rounded-lg border ${LINE.subtle} ${SURFACE.card} cursor-pointer select-none`}
+            >
               <input
                 type="checkbox"
-                className="size-4 accent-orange-500 cursor-pointer"
+                className={`size-4 ${INK.brandAccent} cursor-pointer`}
                 checked={isAddOnSelected}
                 onChange={(event) => setAddOnSelected(event.target.checked)}
               />
