@@ -1,0 +1,358 @@
+{
+  "backdrop": "var(--white)",
+  "fills": {
+    "page": {
+      "stops": ["var(--white)"],
+      "source": "body: bg-background (styles/tailwind.css), white"
+    },
+    "sky-page": {
+      "stops": [
+        "color-mix(in srgb, #53e9dd 45%, transparent)",
+        "color-mix(in srgb, #68d7e4 45%, transparent)",
+        "color-mix(in srgb, #59bff2 45%, transparent)",
+        "color-mix(in srgb, #4ba8ff 45%, transparent)"
+      ],
+      "source": "components/layout/Layout.tsx bg-blob-bg (tailwind.config.js): the cyan to blue band at its strongest, the top edge, over white"
+    },
+    "seafoam-section": {
+      "stops": [
+        "color-mix(in srgb, var(--seafoam-150) 50%, transparent)",
+        "color-mix(in srgb, var(--seafoam-100) 30%, transparent)",
+        "var(--white)"
+      ],
+      "source": "components/layout/Section.tsx seafoam gradient, over white"
+    },
+    "segmented-track": {
+      "stops": [
+        "--segmented-track-from",
+        "--segmented-track-via",
+        "--segmented-track-to"
+      ],
+      "source": "segmented-track (styles/tailwind.css), over white"
+    },
+    "heading": {
+      "stops": [
+        "--text-heading-highlight",
+        "--text-heading-start",
+        "--text-heading-end"
+      ],
+      "source": "text-heading (styles/tailwind.css): PAGE_TITLE, ARTICLE_TITLE, CARD_TITLE_FEATURED"
+    },
+    "button-primary": {
+      "stops": ["--button-primary-from", "--button-primary-to"],
+      "source": "btn-primary (styles/tailwind.css)"
+    },
+    "button-secondary": {
+      "stops": ["--button-secondary-from", "--button-secondary-to"],
+      "source": "btn-secondary and segmented-selected (styles/tailwind.css)"
+    },
+    "menu-item-hover": {
+      "stops": ["--menu-item-hover"],
+      "over": "--menu-surface",
+      "source": "menu-item hover row (styles/tailwind.css), over the menu surface"
+    },
+    "icon-button-hover-on-dark": {
+      "stops": ["color-mix(in srgb, var(--white) 12%, transparent)"],
+      "over": "var(--gray-800, oklch(27.8% 0.033 256.848))",
+      "source": "on-dark --icon-button-hover (styles/tailwind.css), over the darkest-lit on-dark fill it sits on (Recipe gray-800)"
+    },
+    "footer-orange": {
+      "stops": ["#eb8860", "#ea6d43", "#ec4815", "#c23414", "#a91d04"],
+      "source": "public/svg/orange-bg.svg: the footer (components/layout/Footer.tsx, components/footer/footer.tsx) and the /design on-dark examples"
+    },
+    "footer-legal-band": {
+      "stops": ["var(--orange-600)", "var(--orange-800)", "var(--orange-900)"],
+      "source": "components/layout/Footer.tsx legal band, from-orange-600 via-orange-800 to-orange-900"
+    },
+    "consent-banner": {
+      "stops": ["var(--orange-400)", "var(--orange-600)"],
+      "source": "components/ConsentBanner.tsx, from-orange-400 to-orange-600"
+    },
+    "recipe-panel": {
+      "stops": ["var(--gray-800, oklch(27.8% 0.033 256.848))"],
+      "source": "components/blocks/Recipe.tsx and RecipeCodeToolBar.tsx, Tailwind bg-gray-800"
+    },
+    "features-code-tab": {
+      "stops": ["#333333", "#1a1a1a"],
+      "source": "components/blocks/Features/Features.tsx, from-[#333333] to-[#1a1a1a]"
+    },
+    "story-code-tab": {
+      "stops": ["var(--blue-800)", "var(--blue-900)"],
+      "source": "components/blocks/Story/Story.tsx, from-blue-800 to-blue-900"
+    }
+  },
+  "pairs": [
+    {
+      "context": "Running text, labels and links on the page",
+      "fg": [
+        "--text-strong",
+        "--text-body",
+        "--text-subtle",
+        "--text-label",
+        "--text-link",
+        "--text-link-hover"
+      ],
+      "bg": ["page", "sky-page", "seafoam-section"],
+      "kind": "text"
+    },
+    {
+      "context": "Page and article titles (large text)",
+      "fg": "heading",
+      "bg": ["page", "sky-page", "seafoam-section"],
+      "kind": "large-text"
+    },
+    {
+      "context": "Interactive edges on the page: focus ring, Tertiary outline, neutral outline (social links, command field, post cards, current page), pagination hover, a chosen card",
+      "fg": [
+        "--focus-ring",
+        "--button-tertiary-border",
+        "--neutral-outline-border",
+        "--neutral-outline-border-hover",
+        "--pagination-hover-border",
+        "--border-selected"
+      ],
+      "bg": ["page", "sky-page", "seafoam-section"],
+      "kind": "edge"
+    },
+    {
+      "context": "Icon-only buttons: icon on the page and on its hover fill",
+      "fg": "--icon-button-ink",
+      "bg": ["page", "sky-page", "--icon-button-hover"],
+      "kind": "edge"
+    },
+    {
+      "context": "Pagination numbers on the page",
+      "fg": "--pagination-ink",
+      "bg": ["page", "sky-page", "seafoam-section"],
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-neutral",
+      "bg": "--surface-neutral",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-brand",
+      "bg": "--surface-brand",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-info",
+      "bg": "--surface-info",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-success",
+      "bg": "--surface-success",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-warning",
+      "bg": "--surface-warning",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-error",
+      "bg": "--surface-error",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-neutral-solid",
+      "bg": "--surface-neutral-solid",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-brand-solid",
+      "bg": "--surface-brand-solid",
+      "kind": "text"
+    },
+    {
+      "context": "SURFACE.successPanel keeps the page's text roles on the success fill",
+      "fg": [
+        "--text-strong",
+        "--text-body",
+        "--text-subtle",
+        "--text-label",
+        "--text-link"
+      ],
+      "bg": "--surface-success",
+      "kind": "text"
+    },
+    {
+      "context": "Surface borders on chips and panels (decorative)",
+      "fg": "--border-brand",
+      "bg": "--surface-brand",
+      "kind": "edge",
+      "exempt": "decorative chip border (D7)"
+    },
+    {
+      "context": "Surface borders on chips and panels (decorative)",
+      "fg": "--border-info",
+      "bg": "--surface-info",
+      "kind": "edge",
+      "exempt": "decorative chip border (D7)"
+    },
+    {
+      "context": "Surface borders on chips and panels (decorative)",
+      "fg": "--border-success",
+      "bg": "--surface-success",
+      "kind": "edge",
+      "exempt": "decorative chip border (D7)"
+    },
+    {
+      "context": "Surface borders on chips and panels (decorative)",
+      "fg": "--border-warning",
+      "bg": "--surface-warning",
+      "kind": "edge",
+      "exempt": "decorative chip border (D7)"
+    },
+    {
+      "context": "Surface borders on chips and panels (decorative)",
+      "fg": "--border-error",
+      "bg": "--surface-error",
+      "kind": "edge",
+      "exempt": "decorative chip border (D7)"
+    },
+    {
+      "context": "Button labels on their level",
+      "fg": "--button-primary-ink",
+      "bg": "button-primary",
+      "kind": "text"
+    },
+    {
+      "context": "Button labels on their level",
+      "fg": "--button-secondary-ink",
+      "bg": "button-secondary",
+      "kind": "text"
+    },
+    {
+      "context": "Button labels on their level",
+      "fg": "--button-tertiary-ink",
+      "bg": "--button-tertiary-fill",
+      "kind": "text"
+    },
+    {
+      "context": "Primary on a dark or orange band: orange label on white",
+      "fg": "--button-on-dark-ink",
+      "bg": "--button-on-dark-fill",
+      "kind": "text"
+    },
+    {
+      "context": "Segmented toggle: options not selected on the track",
+      "fg": "--segmented-ink",
+      "bg": "segmented-track",
+      "kind": "text"
+    },
+    {
+      "context": "Social links and the command field: ink on the neutral outline fill",
+      "fg": ["--social-link-ink", "--text-strong"],
+      "bg": "--neutral-outline-fill",
+      "kind": "text"
+    },
+    {
+      "context": "npx command field: copy icon on its orange block",
+      "fg": "--command-copy-ink",
+      "bg": "--command-copy-fill",
+      "kind": "edge"
+    },
+    {
+      "context": "npx starter menu: row text and icons, and the hover row",
+      "fg": "--text-body",
+      "bg": "--neutral-outline-fill",
+      "kind": "text"
+    },
+    {
+      "context": "npx starter menu: row text and icons, and the hover row",
+      "fg": "--command-menu-icon",
+      "bg": "--neutral-outline-fill",
+      "kind": "edge"
+    },
+    {
+      "context": "npx starter menu: row text and icons, and the hover row",
+      "fg": "--command-menu-hover-ink",
+      "bg": "--command-menu-hover",
+      "kind": "text"
+    },
+    {
+      "context": "npx starter menu: the rule under the list (decorative)",
+      "fg": "--command-menu-rule",
+      "bg": "--neutral-outline-fill",
+      "kind": "edge",
+      "exempt": "decorative divider (D7)"
+    },
+    {
+      "context": "Nav menus: row text and its hover colour, on the panel and the hover row",
+      "fg": ["--text-body", "--text-link-hover"],
+      "bg": ["--menu-surface", "menu-item-hover"],
+      "kind": "text"
+    },
+    {
+      "context": "ON_DARK bands: text, SLUB labels and legal links",
+      "fg": ["--text-on-dark", "--text-on-dark-label"],
+      "bg": [
+        "footer-orange",
+        "footer-legal-band",
+        "consent-banner",
+        "recipe-panel",
+        "features-code-tab",
+        "story-code-tab",
+        "--code-panel"
+      ],
+      "kind": "text"
+    },
+    {
+      "context": "ON_DARK bands: Tertiary outline, focus ring and icon buttons (white)",
+      "fg": "--button-on-dark-outline",
+      "bg": [
+        "footer-orange",
+        "footer-legal-band",
+        "consent-banner",
+        "recipe-panel",
+        "features-code-tab",
+        "story-code-tab",
+        "--code-panel"
+      ],
+      "kind": "edge"
+    },
+    {
+      "context": "ON_DARK icon buttons on their hover tint",
+      "fg": "--text-on-dark",
+      "bg": "icon-button-hover-on-dark",
+      "kind": "edge"
+    },
+    {
+      "context": "Code panel tabs: tabs not selected at 70%, and the selected underline",
+      "fg": "color-mix(in srgb, var(--text-on-dark) 70%, transparent)",
+      "bg": "--code-panel",
+      "kind": "text"
+    },
+    {
+      "context": "Code panel tabs: tabs not selected at 70%, and the selected underline",
+      "fg": "--tab-indicator",
+      "bg": "--code-panel",
+      "kind": "edge"
+    },
+    {
+      "context": "Code panel tabs: the line under the row (decorative)",
+      "fg": "--tab-divider",
+      "bg": "--code-panel",
+      "kind": "edge",
+      "exempt": "decorative divider (D7)"
+    },
+    {
+      "context": "Shimmer on short promo text (the homepage news banner)",
+      "fg": "color-mix(in srgb, var(--text-strong) 40%, var(--white))",
+      "bg": ["page", "sky-page"],
+      "kind": "text",
+      "exempt": "the shimmer (D7)"
+    }
+  ]
+}
