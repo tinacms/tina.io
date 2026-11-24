@@ -1,7 +1,7 @@
 'use client';
 
 import { Moon, Sun } from 'lucide-react';
-import { useLayoutEffect, useSyncExternalStore } from 'react';
+import { useEffect, useLayoutEffect, useSyncExternalStore } from 'react';
 import {
   FOCUS_RING,
   ICON_BUTTON,
@@ -17,6 +17,10 @@ import {
   subscribeToMode,
 } from './mode';
 
+/** useLayoutEffect in the browser, so the mode lands before paint; no SSR warning. */
+const useBrowserLayoutEffect =
+  typeof window === 'undefined' ? useEffect : useLayoutEffect;
+
 /** The server can't know the visitor's mode; the head script already set it. */
 const serverMode = (): Mode | null => null;
 
@@ -29,14 +33,14 @@ const serverMode = (): Mode | null => null;
 export const ModeToggle = ({ className = '' }: { className?: string }) => {
   const mode = useSyncExternalStore(subscribeToMode, currentMode, serverMode);
 
-  useLayoutEffect(() => {
+  useBrowserLayoutEffect(() => {
     if (mode) {
       applyMode(mode);
     }
   }, [mode]);
 
   // Leaving /design leaves nothing dark (D8).
-  useLayoutEffect(() => clearMode, []);
+  useBrowserLayoutEffect(() => clearMode, []);
 
   return (
     <button
