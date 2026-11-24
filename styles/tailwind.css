@@ -37,8 +37,8 @@
   }
   /* Dark: the site's neutral ramp (D48), one source. Each shadcn token points at the site's
      semantic token for the same job, so these follow the .dark block in
-     app/global.css. --ring and --primary point at the strong ink until the
-     component tokens give them their own (PBI-5015-05). */
+     app/global.css. --ring follows the focus ring and --primary the Primary
+     button. */
   .dark {
     --background: var(--surface-page);
     --foreground: var(--text-strong);
@@ -46,8 +46,8 @@
     --card-foreground: var(--text-strong);
     --popover: var(--surface-card);
     --popover-foreground: var(--text-strong);
-    --primary: var(--text-strong);
-    --primary-foreground: var(--surface-page);
+    --primary: var(--button-primary-from);
+    --primary-foreground: var(--button-primary-ink);
     --secondary: var(--surface-well);
     --secondary-foreground: var(--text-strong);
     --muted: var(--surface-well);
@@ -58,7 +58,7 @@
     --destructive-foreground: var(--text-strong);
     --border: var(--border-subtle);
     --input: var(--border-strong);
-    --ring: var(--text-strong);
+    --ring: var(--focus-ring);
     --chart-1: hsl(220 70% 50%);
     --chart-2: hsl(160 60% 45%);
     --chart-3: hsl(30 80% 55%);
@@ -418,6 +418,7 @@ pre.prism-code.language-json {
   background-image: linear-gradient(90deg, var(--cloud-banner-1), var(--cloud-banner-2) 33.3%, var(--cloud-banner-3) 100%);
   border-color: var(--cloud-banner-edge);
   @apply shadow-[0_0_8px_2px_var(--cloud-banner-shadow)];
+  backdrop-filter: var(--surface-glass-filter);
 }
 @utility surface-section-seafoam {
   @apply from-(--section-seafoam-from) via-(--section-seafoam-via) to-(--section-seafoam-to);
@@ -452,6 +453,7 @@ pre.prism-code.language-json {
 }
 @utility surface-example-card {
   @apply from-(--example-card-from) to-(--example-card-to) shadow-(--example-card-edge) hover:bg-(--example-card-hover);
+  backdrop-filter: var(--surface-glass-filter);
 }
 /* A tooltip, and its arrow drawn as a border in the tooltip's colour. */
 @utility surface-tooltip {
