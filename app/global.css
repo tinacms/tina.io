@@ -157,6 +157,48 @@
   --cyan-50: #ecf7f8;
   /* The Night Owl code theme's background. */
   --night-owl-900: #011627;
+  --slate-50: #f8fafc;
+  /* Dark mode's neutral ramp: every grey in dark is a step of it. Tailwind
+     neutral's lightness with a whisper of blue (D48: chroma about 0.004 at
+     hue 264, half that for the two lightest inks), so it never reads as
+     blue. Only the steps a token points at. */
+  --neutral-50: #f9fafc;
+  --neutral-200: #e4e5e7;
+  --neutral-400: #a1a3a6;
+  --neutral-500: #717376;
+  --neutral-700: #3e4043;
+  --neutral-800: #242629;
+  --neutral-900: #161719;
+  --neutral-950: #090a0c;
+  /* The navy at the foot of the dark page's night sky (D28). */
+  --navy-900: #182449;
+  /* The light page's sky wash: white under a cyan-to-blue band that fades
+     down the screen. Its four stops are named below so check:contrast can
+     measure text on the band; change them with the image. */
+  --sky-wash: url("data:image/svg+xml,%3Csvg preserveAspectRatio='none' viewBox='0 0 194 109' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_566_318)'%3E%3Crect width='194' height='109' fill='white' /%3E%3Cmask id='mask0_566_318' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='194' height='109'%3E%3Crect width='194' height='109' fill='url(%23paint0_linear_566_318)' /%3E%3C/mask%3E%3Cg mask='url(%23mask0_566_318)'%3E%3Crect width='194' height='109' fill='url(%23paint1_linear_566_318)' /%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_566_318' x1='97' y1='0' x2='97' y2='109' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23D9D9D9' stop-opacity='0.45' /%3E%3Cstop offset='0.229052' stop-color='%23D9D9D9' stop-opacity='0.1678' /%3E%3Cstop offset='0.677779' stop-color='%23D9D9D9' stop-opacity='0.0513' /%3E%3Cstop offset='1' stop-color='%23D9D9D9' stop-opacity='0' /%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_566_318' x1='0' y1='54.5' x2='194' y2='54.5' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2353E9DD' /%3E%3Cstop offset='0.34375' stop-color='%2368D7E4' /%3E%3Cstop offset='0.59375' stop-color='%2359BFF2' /%3E%3Cstop offset='1' stop-color='%234BA8FF' /%3E%3C/linearGradient%3E%3CclipPath id='clip0_566_318'%3E%3Crect width='194' height='109' fill='white' /%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+  --sky-wash-1: #53e9dd;
+  --sky-wash-2: #68d7e4;
+  --sky-wash-3: #59bff2;
+  --sky-wash-4: #4ba8ff;
+  /* The dark page's night sky (D28, D34): the TinaCloud email's background,
+     near-black down to the middle of the screen, fading to navy at the foot,
+     with stars. The fade is also drawn as a gradient (measured from the
+     image) so the page reads right while the image loads. */
+  --night-sky: url('/img/night-sky.png');
+  /* A 3% blue veil over the night sky, to match the tinted neutrals (D48). */
+  --night-veil: linear-gradient(rgb(40 70 140 / 0.03), rgb(40 70 140 / 0.03));
+  --night-fade: linear-gradient(to bottom, var(--neutral-950) 50%, #0f1321 65%, #141c36 83%, var(--navy-900) 100%);
+  /* Elevation, as Tailwind's shadow, shadow-sm … shadow-2xl and shadow-panel
+     paint it (tailwind.config.js points them at --elevation-*). */
+  --shadow-blue-sm: 0 1px 3px 0 rgba(20, 70, 150, 0.05);
+  --shadow-blue: 0 1px 3px 0 rgb(20 70 150 / 0.07), 0 2px 6px -1px rgb(20 70 150 / 0.07);
+  --shadow-black-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-blue-lg: 0 10px 15px -3px rgb(20 70 150 / 0.1), 0 4px 6px -4px rgb(20 70 150 / 0.1);
+  --shadow-black-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-black-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-blue-panel: 6px 4px 16px rgba(0,132,255, 0.07), 10px 8px 32px rgba(0,132,255, 0.07), 18px 16px 64px rgba(0,132,255, 0.1);
+  /* An empty shadow, for turning one off inside a shadow list. */
+  --shadow-none: 0 0 #0000;
 
   /* ──────────────────────────────────────────────────────────────────────
      LAYER 2 — SEMANTIC TOKENS
@@ -225,6 +267,51 @@
   --on-surface-neutral-solid: var(--white); /* 4.8:1 */
   --surface-brand-solid: var(--orange-600);
   --on-surface-brand-solid: var(--white); /* 4.7:1 */
+
+  /* Surface levels, named by use (D25): the page, a card on it, and a well
+     (a field, a grey chip, a table row) inside a card. A component names
+     SURFACE.page, .card, .well or .tableHead, never these. In light every
+     one is today's colour (D2); light keeps two greys for wells and table
+     heads, which share one level in dark (D26). */
+  --surface-page: var(--white);
+  --surface-page-wash: var(--sky-wash);
+  /* How the wash sits: pinned to the screen, stretched to fill it in light. */
+  --surface-page-wash-size: 100% 100%;
+  --surface-page-wash-position: top;
+  /* The wash's stops as it paints at the top of the screen, for
+     check:contrast only (the image above is what paints). */
+  --surface-page-wash-1: color-mix(in srgb, var(--sky-wash-1) 45%, transparent);
+  --surface-page-wash-2: color-mix(in srgb, var(--sky-wash-2) 45%, transparent);
+  --surface-page-wash-3: color-mix(in srgb, var(--sky-wash-3) 45%, transparent);
+  --surface-page-wash-4: color-mix(in srgb, var(--sky-wash-4) 45%, transparent);
+  --surface-card: var(--white);
+  /* A 1px ring at a card's edge: nothing in light, where cards lift with a
+     shadow; the card's outline in dark (D24). */
+  --surface-card-edge: transparent;
+  --surface-well: var(--slate-100);
+  --surface-table-head: var(--slate-50);
+  /* Glass cards on the page: a white wash that lets the sky through, as
+     Tailwind paints from-white/10 to-white/40 (glass) and from-white/25
+     via-white/50 to-white/75 (frosted) today. SURFACE.glass and .frosted. */
+  --surface-glass-from: color-mix(in srgb, var(--white) 10%, transparent);
+  --surface-glass-to: color-mix(in srgb, var(--white) 40%, transparent);
+  --surface-frosted-from: color-mix(in srgb, var(--white) 25%, transparent);
+  --surface-frosted-via: color-mix(in srgb, var(--white) 50%, transparent);
+  --surface-frosted-to: color-mix(in srgb, var(--white) 75%, transparent);
+  --surface-glass-filter: none;
+  /* Lines (D4, D15, D27): subtle for decoration (dividers, card edges, table
+     rules), strong for anything you click or type in. LINE.subtle and
+     LINE.strong name them. */
+  --border-subtle: var(--slate-200);
+  --border-strong: var(--slate-300);
+  /* Elevation behind the shadow utilities; none in dark (D31). */
+  --elevation-sm: var(--shadow-blue-sm);
+  --elevation: var(--shadow-blue);
+  --elevation-md: var(--shadow-black-md);
+  --elevation-lg: var(--shadow-blue-lg);
+  --elevation-xl: var(--shadow-black-xl);
+  --elevation-2xl: var(--shadow-black-2xl);
+  --elevation-panel: var(--shadow-blue-panel);
 
   /* Buttons: three levels, one size. A component names a level
      (BUTTON in components/styles/buttons.ts), never these tokens.
@@ -369,6 +456,128 @@
   --background-color: #e4f6f969;
   --glass-hover-gradient-start: oklch(98.5% 0 0);
   --glass-hover-gradient-end: oklch(95.6% 0.045 203.388);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   MODES — dark (D1). Redefines semantic tokens only, each pointing at a
+   primitive; never a primitive, never a component. Components don't branch
+   on mode: put the class on <html> and every role follows.
+   ────────────────────────────────────────────────────────────────────── */
+.dark {
+  /* Native scrollbars, fields and pickers turn dark too (D27), and text
+     takes the dark body ink even where .dark sits on a wrapper below <html>. */
+  color-scheme: dark;
+  color: var(--text-body);
+
+  /* Ink: the TinaCloud email ladder (D22). */
+  --text-strong: var(--neutral-50);
+  --text-body: var(--neutral-200);
+  --text-subtle: var(--neutral-400);
+  --text-label: var(--neutral-400);
+  /* The page title keeps its lit-from-above gradient, a step lighter (D23). */
+  --text-heading-highlight: var(--orange-300);
+  --text-heading-start: var(--orange-400);
+  --text-heading-end: var(--orange-500);
+
+  /* The page: the email's night sky, pinned to the screen like the light
+     sky wash (D28). The one place dark carries a hue; everything on it stays
+     neutral. Its stops for check:contrast: near-black top, navy foot. */
+  --surface-page: var(--neutral-950);
+  --surface-page-wash: var(--night-veil), var(--night-sky), var(--night-fade);
+  /* The night sky keeps its shape: it covers the screen from the foot up. */
+  --surface-page-wash-size: cover;
+  --surface-page-wash-position: center bottom;
+  --surface-page-wash-1: var(--neutral-950);
+  --surface-page-wash-2: var(--navy-900);
+  --surface-page-wash-3: var(--navy-900);
+  --surface-page-wash-4: var(--navy-900);
+  /* Cards and wells, named by use: a well is lighter than its card, as in
+     the emails (D25), and cards carry a 1px edge (D24, D29). */
+  --surface-card: var(--neutral-900);
+  --surface-card-edge: var(--neutral-800);
+  --surface-well: var(--neutral-800);
+  --surface-table-head: var(--neutral-800);
+  /* Glass cards: the card level at 45%, blurred, so the sky shows faintly
+     through (D33). */
+  --surface-glass-from: color-mix(in srgb, var(--neutral-900) 45%, transparent);
+  --surface-glass-to: color-mix(in srgb, var(--neutral-900) 45%, transparent);
+  --surface-frosted-from: color-mix(in srgb, var(--neutral-900) 45%, transparent);
+  --surface-frosted-via: color-mix(in srgb, var(--neutral-900) 45%, transparent);
+  --surface-frosted-to: color-mix(in srgb, var(--neutral-900) 45%, transparent);
+  --surface-glass-filter: blur(8px);
+  /* Grey chips share the well level (D26); their ink is the strong ink. */
+  --surface-neutral: var(--neutral-800);
+  --on-surface-neutral: var(--neutral-50);
+
+  /* Lines (D4, D48). */
+  --border-subtle: var(--neutral-700);
+  --border-strong: var(--neutral-500);
+
+  /* No shadows in dark (D31): elevation comes from the surface steps. The
+     composed shadows are redeclared too, so they resolve when .dark sits on
+     a wrapper below <html> (a /design swatch), not only on <html>. */
+  --shadow-soft-tint: transparent;
+  --shadow-soft: var(--shadow-none);
+  --button-hover-shadow: var(--shadow-soft);
+  --post-card-hover-shadow: var(--shadow-soft);
+  --elevation-sm: var(--shadow-none);
+  --elevation: var(--shadow-none);
+  --elevation-md: var(--shadow-none);
+  --elevation-lg: var(--shadow-none);
+  --elevation-xl: var(--shadow-none);
+  --elevation-2xl: var(--shadow-none);
+  --elevation-panel: var(--shadow-none);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   MODES — light scope. A light island inside a dark page (the light page
+   swatch on /design): every token .dark changes, back at its :root value,
+   so composed tokens resolve light too. Keep it in step with .dark. Inside
+   it the dark: variant still matches, so paint there through tokens only.
+   ────────────────────────────────────────────────────────────────────── */
+.light {
+  color-scheme: light;
+  color: var(--text-body);
+  --text-strong: var(--ink-900);
+  --text-body: var(--slate-700);
+  --text-subtle: var(--slate-500);
+  --text-label: var(--slate-500);
+  --text-heading-highlight: var(--orange-400);
+  --text-heading-start: var(--orange-500);
+  --text-heading-end: var(--orange-700);
+  --surface-page: var(--white);
+  --surface-page-wash: var(--sky-wash);
+  --surface-page-wash-size: 100% 100%;
+  --surface-page-wash-position: top;
+  --surface-page-wash-1: color-mix(in srgb, var(--sky-wash-1) 45%, transparent);
+  --surface-page-wash-2: color-mix(in srgb, var(--sky-wash-2) 45%, transparent);
+  --surface-page-wash-3: color-mix(in srgb, var(--sky-wash-3) 45%, transparent);
+  --surface-page-wash-4: color-mix(in srgb, var(--sky-wash-4) 45%, transparent);
+  --surface-card: var(--white);
+  --surface-card-edge: transparent;
+  --surface-well: var(--slate-100);
+  --surface-table-head: var(--slate-50);
+  --surface-glass-from: color-mix(in srgb, var(--white) 10%, transparent);
+  --surface-glass-to: color-mix(in srgb, var(--white) 40%, transparent);
+  --surface-frosted-from: color-mix(in srgb, var(--white) 25%, transparent);
+  --surface-frosted-via: color-mix(in srgb, var(--white) 50%, transparent);
+  --surface-frosted-to: color-mix(in srgb, var(--white) 75%, transparent);
+  --surface-glass-filter: none;
+  --surface-neutral: var(--slate-100);
+  --on-surface-neutral: var(--ink-900);
+  --border-subtle: var(--slate-200);
+  --border-strong: var(--slate-300);
+  --shadow-soft-tint: color-mix(in srgb, var(--blue-800) 7%, transparent);
+  --shadow-soft: 0 1px 3px 0 var(--shadow-soft-tint), 0 2px 6px -1px var(--shadow-soft-tint);
+  --button-hover-shadow: var(--shadow-soft);
+  --post-card-hover-shadow: var(--shadow-soft);
+  --elevation-sm: var(--shadow-blue-sm);
+  --elevation: var(--shadow-blue);
+  --elevation-md: var(--shadow-black-md);
+  --elevation-lg: var(--shadow-blue-lg);
+  --elevation-xl: var(--shadow-black-xl);
+  --elevation-2xl: var(--shadow-black-2xl);
+  --elevation-panel: var(--shadow-blue-panel);
 }
 
 ::-moz-selection {

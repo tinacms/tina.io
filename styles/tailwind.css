@@ -5,67 +5,64 @@
 @config '../tailwind.config.js';
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+  /* Light, and the .light scope inside a dark page. */
+  :root,
+  .light {
+    --background: hsl(0 0% 100%);
+    --foreground: hsl(240 10% 3.9%);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(240 10% 3.9%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(240 10% 3.9%);
+    --primary: hsl(240 5.9% 10%);
+    --primary-foreground: hsl(0 0% 98%);
+    --secondary: hsl(240 4.8% 95.9%);
+    --secondary-foreground: hsl(240 5.9% 10%);
+    --muted: hsl(240 4.8% 95.9%);
+    --muted-foreground: hsl(240 3.8% 46.1%);
+    --accent: hsl(240 4.8% 95.9%);
+    --accent-foreground: hsl(240 5.9% 10%);
+    --destructive: hsl(0 84.2% 60.2%);
+    --destructive-foreground: hsl(0 0% 98%);
+    --border: hsl(240 5.9% 90%);
+    --input: hsl(240 5.9% 90%);
+    --ring: hsl(240 10% 3.9%);
+    --chart-1: hsl(12 76% 61%);
+    --chart-2: hsl(173 58% 39%);
+    --chart-3: hsl(197 37% 24%);
+    --chart-4: hsl(43 74% 66%);
+    --chart-5: hsl(27 87% 67%);
     --radius: 0.5rem;
   }
+  /* Dark: the site's neutral ramp (D48), one source. Each shadcn token points at the site's
+     semantic token for the same job, so these follow the .dark block in
+     app/global.css. --ring and --primary point at the strong ink until the
+     component tokens give them their own (PBI-5015-05). */
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
+    --background: var(--surface-page);
+    --foreground: var(--text-strong);
+    --card: var(--surface-card);
+    --card-foreground: var(--text-strong);
+    --popover: var(--surface-card);
+    --popover-foreground: var(--text-strong);
+    --primary: var(--text-strong);
+    --primary-foreground: var(--surface-page);
+    --secondary: var(--surface-well);
+    --secondary-foreground: var(--text-strong);
+    --muted: var(--surface-well);
+    --muted-foreground: var(--text-subtle);
+    --accent: var(--surface-well);
+    --accent-foreground: var(--text-strong);
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: var(--text-strong);
+    --border: var(--border-subtle);
+    --input: var(--border-strong);
+    --ring: var(--text-strong);
+    --chart-1: hsl(220 70% 50%);
+    --chart-2: hsl(160 60% 45%);
+    --chart-3: hsl(30 80% 55%);
+    --chart-4: hsl(280 65% 60%);
+    --chart-5: hsl(340 75% 55%);
   }
 }
 
@@ -262,6 +259,50 @@ pre.prism-code.language-json {
   --text-subtle: var(--on-surface-brand-solid);
   --text-label: var(--on-surface-brand-solid);
   color: var(--on-surface-brand-solid);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   SURFACE LEVELS — named by use (D25): the page, a card on it, a well inside
+   a card, and a table's header row. Fill only, so the roles inside keep their
+   inks. SURFACE.page / card / well / tableHead in typography.ts name these.
+   ────────────────────────────────────────────────────────────────────────── */
+@utility surface-page {
+  background-color: var(--surface-page);
+  background-image: var(--surface-page-wash);
+  background-size: var(--surface-page-wash-size);
+  background-position: var(--surface-page-wash-position);
+  background-attachment: fixed;
+}
+/* The card's edge is a 1px ring, so it takes no space and sits beside any
+   shadow; transparent in light (D24). */
+@utility surface-card {
+  background-color: var(--surface-card);
+  @apply ring-1 ring-[var(--surface-card-edge)];
+}
+@utility surface-well {
+  background-color: var(--surface-well);
+}
+@utility surface-table-head {
+  background-color: var(--surface-table-head);
+}
+/* Glass cards: a wash over the page rather than a solid fill. Light matches
+   Tailwind's bg-linear-to-br gradients (in oklab); dark adds the blur. */
+@utility surface-glass {
+  background-image: linear-gradient(to bottom right in oklab, var(--surface-glass-from), var(--surface-glass-to));
+  backdrop-filter: var(--surface-glass-filter);
+}
+@utility surface-frosted {
+  background-image: linear-gradient(to bottom right in oklab, var(--surface-frosted-from), var(--surface-frosted-via), var(--surface-frosted-to));
+  backdrop-filter: var(--surface-glass-filter);
+}
+
+/* LINES — the subtle and strong line roles (D15). Colour only: the component
+   sets which sides and how wide. LINE in typography.ts names these. */
+@utility line-subtle {
+  border-color: var(--border-subtle);
+}
+@utility line-strong {
+  border-color: var(--border-strong);
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
