@@ -28,6 +28,7 @@ export function discoverPages(): string[] {
     '/blog',
     '/community',
     '/conference',
+    '/design',
     '/events',
     '/examples',
     '/search',
