@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2026.11.9",
+  "dateReleased": "2026-11-24T20:56:57Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "docs(auth): brand the WorkOS AuthKit sign-in and sign-up pages (#4480)",
+          "gitHubName": "designbyalex",
+          "gitHubLink": "https://github.com/designbyalex"
+        },
+        {
+          "changesDescription": "feat(dashboard): add notice screens for paused sign-ups, account setup, maintenance and disabled accounts (#4480)",
+          "gitHubName": "designbyalex",
+          "gitHubLink": "https://github.com/designbyalex"
+        },
+        {
+          "changesDescription": "login: point users on an older version to the auth changes blog",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}
