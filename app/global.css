@@ -584,10 +584,15 @@
   --example-card-edge: inset 0 0 0 1px color-mix(in srgb, var(--lavender-100) 15%, transparent), 0 0 1px 1px color-mix(in srgb, var(--lavender-100) 50%, transparent);
   --example-card-hover: var(--white);
   --tooltip: var(--white);
+  /* A glass card's edge: white at 30% in light, the card edge in dark. */
+  --line-glass: color-mix(in oklab, var(--white) 30%, transparent); /* oklab, as Tailwind mixes it */
   /* Tables. */
   --table-fade-from: var(--slate-50);
   --table-fade-via: color-mix(in srgb, var(--slate-50) 80%, transparent);
   --table-row-hover: var(--sky-50);
+  /* The scroll-edge fade while its row is hovered: the row's hover tint. */
+  --table-fade-hover-from: var(--sky-50);
+  --table-fade-hover-via: color-mix(in oklab, var(--sky-50) 80%, transparent); /* oklab, as Tailwind mixes it */
   --blog-table-stripe: color-mix(in srgb, var(--blue-500) 5%, transparent);
   --blog-table-row: color-mix(in srgb, var(--white) 5%, transparent);
   --blog-table-line: var(--orange-100);
@@ -939,6 +944,10 @@
   --table-fade-from: var(--neutral-800);
   --table-fade-via: color-mix(in srgb, var(--neutral-800) 80%, transparent);
   --table-row-hover: color-mix(in srgb, var(--white) 6%, transparent);
+  /* The fade under a hovered row matches the row over the table head (D38). */
+  --table-fade-hover-from: color-mix(in srgb, var(--white) 6%, var(--neutral-800));
+  --table-fade-hover-via: color-mix(in srgb, color-mix(in srgb, var(--white) 6%, var(--neutral-800)) 80%, transparent);
+  --line-glass: var(--neutral-800);
   --blog-table-stripe: color-mix(in srgb, var(--white) 6%, transparent);
   --blog-table-row: transparent;
   --blog-table-line: var(--neutral-700);
@@ -1188,6 +1197,9 @@
   --image-frame-edge: color-mix(in srgb, var(--black) 7%, transparent);
   --decor-glow-opacity: 0.5;
   --logo-strip-filter: none;
+  --table-fade-hover-from: var(--sky-50);
+  --table-fade-hover-via: color-mix(in oklab, var(--sky-50) 80%, transparent);
+  --line-glass: color-mix(in oklab, var(--white) 30%, transparent);
 }
 
 ::-moz-selection {
