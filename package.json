@@ -28,7 +28,8 @@
     "visual:capture": "pnpm exec playwright test tests/visual-compare/capture.spec.ts --project=chromium --reporter=list",
     "visual:report": "npx tsx tests/visual-compare/generate-report.ts",
     "visual:recapture": "npx tsx tests/visual-compare/recapture-missing.ts",
-    "check:colour-tokens": "node scripts/check-colour-tokens.js"
+    "check:colour-tokens": "node scripts/check-colour-tokens.js",
+    "check:contrast": "node scripts/check-contrast.js"
   },
   "resolutions": {
     "graphql": "^15.5.1"
