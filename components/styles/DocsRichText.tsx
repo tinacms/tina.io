@@ -125,7 +125,7 @@ const DocsRichText = css`
   }
 
   pre {
-    background-color: var(--neutral-background);
+    background-color: var(--surface-table-head);
     border: 1px solid var(--border-subtle);
     text-align: left;
     word-spacing: normal;
@@ -151,7 +151,7 @@ const DocsRichText = css`
   }
 
   tr:nth-child(even) {
-    background-color: var(--neutral-background);
+    background-color: var(--surface-table-head);
   }
 
   th,

@@ -95,7 +95,7 @@ const RichText = css`
   }
 
   tr:nth-child(even) {
-    background-color: var(--neutral-background);
+    background-color: var(--surface-table-head);
   }
 
   th,
