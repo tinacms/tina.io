@@ -39,6 +39,8 @@ import {
   TITLE_LINK,
 } from '@/component/styles/typography';
 import {
+  PAGE_BACKGROUND_ROLES,
+  PAGE_BACKGROUNDS,
   ROLE_GROUPS,
   type RoleGuide,
   roleClass,
@@ -383,6 +385,34 @@ export default function StyleGuidePage() {
                 </p>,
                 <p key="use" className={BODY_SMALL}>
                   {s.useFor}
+                </p>,
+              ],
+            }))}
+          />
+          <GuideTable
+            columns={['Background', 'Surface', 'Use for']}
+            widths={['w-5/12', 'w-1/6', 'w-5/12']}
+            rows={PAGE_BACKGROUNDS.map((b) => ({
+              key: b.label,
+              cells: [
+                // bg-scroll shows the whole page background in the swatch,
+                // not the slice of the screen it happens to sit over.
+                <div
+                  key="example"
+                  className={`${b.mode ?? ''} ${SURFACE[b.name]} grid gap-1 rounded-xl bg-scroll p-6`}
+                >
+                  <p className={CARD_TITLE}>{b.label}</p>
+                  {PAGE_BACKGROUND_ROLES.map((role) => (
+                    <p key={role} className={roleClass(role)}>
+                      {role}
+                    </p>
+                  ))}
+                </div>,
+                <p key="name" className={CODE}>
+                  SURFACE.{b.name}
+                </p>,
+                <p key="use" className={BODY_SMALL}>
+                  {b.useFor}
                 </p>,
               ],
             }))}
