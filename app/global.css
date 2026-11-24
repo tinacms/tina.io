@@ -200,6 +200,69 @@
   /* An empty shadow, for turning one off inside a shadow list. */
   --shadow-none: 0 0 #0000;
 
+  /* Colours call sites paint today with no token yet, added with the
+     component roles (PBI-5015-05). Tailwind's own steps are copied as
+     Tailwind 4 computes them (oklch), so a call site moved onto a role paints
+     exactly what it did (D2). Light only unless a .dark line points at one. */
+  --gray-50: oklch(98.5% 0.002 247.839);
+  --gray-200: oklch(92.8% 0.006 264.531);
+  --gray-300: oklch(87.2% 0.01 258.338);
+  --gray-700: oklch(37.3% 0.034 259.733);
+  --gray-800: oklch(27.8% 0.033 256.848);
+  --gray-900: oklch(21% 0.034 264.665);
+  --teal-100: oklch(95.3% 0.051 180.801);
+  --teal-400: oklch(77.7% 0.152 181.912);
+  /* Tailwind's cyan-50 (tina's own --cyan-50 is the menu's #ecf7f8). */
+  --frost-50: oklch(98.4% 0.019 200.873);
+  --cyan-100: oklch(95.6% 0.045 203.388);
+  --sky-50: oklch(97.7% 0.013 236.62);
+  --amber-200: oklch(92.4% 0.12 95.746);
+  --amber-300: oklch(87.9% 0.169 91.605);
+  --amber-400: oklch(82.8% 0.189 84.429);
+  --amber-900: oklch(41.4% 0.112 45.904);
+  /* Tailwind's yellow-300, a touch off tina's --yellow-300. */
+  --lemon-300: oklch(90.5% 0.182 98.111);
+  --black: #000000;
+  /* The config's status colours (success, warning, error). */
+  --green-500: #22c55e;
+  --amber-500: #f59e0b;
+  --red-500: #ef4444;
+  /* Two more steps of the red and yellow ramps, for the dark chips (D37). */
+  --red-300: #fca5a5;
+  --yellow-500: #eab308;
+  /* The TinaCloud email's link blue (D36), lighter than tina's blue ramp. */
+  --email-blue-300: #93c5fd;
+  --email-blue-200: #bfdbfe;
+  /* shadcn's ring ink. */
+  --zinc-950: hsl(240 10% 3.9%);
+  /* The feature code panel's charcoal fade. */
+  --charcoal-800: #333333;
+  --charcoal-900: #1a1a1a;
+  /* The cloud banner's mint fade and edge. */
+  --mint-50: #f2fdfc;
+  --mint-100: #e6faf8;
+  --mint-200: #d1faf6;
+  /* The stuck nav bar's sky glass. */
+  --mist-cyan: rgb(216 251 248);
+  --mist-blue: rgb(215 233 255);
+  /* The example card's lavender edge. */
+  --lavender-100: rgb(223 219 252);
+  /* SSW's red, for the SSW strip in the footer. */
+  --ssw-red: #cc4141;
+  /* The map's marker coral. */
+  --coral-500: #ea6d43;
+  /* Third-party logo colours (social links). */
+  --brand-discord: #5865f2;
+  --brand-github: #24292e;
+  --brand-x: #1da1f2;
+  /* Field edges and their hover and focus rings, as the shadow-input
+     utilities paint them. */
+  --shadow-input: inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0px 2px 3px rgba(0, 0, 0, 0.12);
+  --shadow-input-hover: inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.2), 0 2px 3px rgba(0, 0, 0, 0.12);
+  --shadow-input-focus: inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.7), 0 2px 3px rgba(0, 0, 0, 0.12);
+  /* The showcase image frame's shadow. */
+  --shadow-image-frame: 0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
+
   /* ──────────────────────────────────────────────────────────────────────
      LAYER 2 — SEMANTIC TOKENS
      What a colour is *for*. These are the only colours a component or a
@@ -385,6 +448,191 @@
   --tab-divider: color-mix(in srgb, var(--white) 12%, transparent);
   /* Keyboard focus on every button and control; white on dark bands. */
   --focus-ring: var(--ink-900);
+
+  /* ──────────────────────────────────────────────────────────────────────
+     COMPONENT ROLES (PBI-5015-05). One token per job a call site paints
+     today, so every component names a role (SURFACE, LINE, INK, DECOR in
+     components/styles/typography.ts) and dark mode reaches it through
+     .dark. Light values are today's paint (D2), except where D40 and D41
+     approved a merge. Gradient roles set only the stops: the call site
+     keeps its direction (bg-linear-to-*).
+     ────────────────────────────────────────────────────────────────────── */
+  /* Edges for the menu panel, the code panel and the segmented track: a
+     1px ring, nothing in light. */
+  --segmented-track-edge: transparent;
+  --code-panel-edge: transparent;
+  /* Bands: the orange footer (its picture), the legal strip under it, the
+     small orange, seafoam and blue bands and discs, and the starred corner.
+     Their inks are the on-dark white. */
+  --band-footer: url('/svg/orange-bg.svg');
+  --band-footer-fill: transparent;
+  --band-footer-edge: transparent;
+  --band-legal-from: var(--orange-600);
+  --band-legal-via: var(--orange-800);
+  --band-legal-to: var(--orange-900);
+  --band-brand-from: var(--orange-400);
+  --band-brand-to: var(--orange-600);
+  --band-success-from: var(--seafoam-500);
+  --band-success-to: var(--seafoam-700);
+  --band-info-from: var(--blue-400);
+  --band-info-to: var(--blue-600);
+  --band-flag: var(--orange-400);
+  --on-band: var(--white);
+  /* Dark code panels that aren't Night Owl: the recipe panels and the
+     feature code panel (a charcoal fade with a grey edge and pale ink). */
+  --recipe-panel: var(--gray-800);
+  --recipe-panel-edge: var(--gray-700);
+  --feature-code-panel-from: var(--charcoal-800);
+  --feature-code-panel-via: var(--charcoal-900);
+  --feature-code-panel-to: var(--black);
+  --feature-code-panel-edge: var(--gray-700);
+  --feature-code-panel-ink: var(--blue-50);
+  /* Site chrome. */
+  --nav-glass-from: color-mix(in srgb, var(--mist-cyan) 60%, transparent);
+  --nav-glass-to: color-mix(in srgb, var(--mist-blue) 60%, transparent);
+  --drawer-from: var(--blue-50);
+  --drawer-to: var(--white);
+  --menu-tab-from: var(--white);
+  --menu-tab-to: var(--slate-50); /* D41 */
+  --menu-tab-edge: color-mix(in srgb, var(--slate-100) 60%, transparent); /* D41 */
+  --menu-tab-ink: var(--orange-500);
+  --menu-tab-ink-hover: var(--orange-400);
+  --brand-mark: var(--orange-500);
+  --logo-on-dark: var(--white);
+  --social-logo-tina: var(--orange-500);
+  --social-logo-discord: var(--brand-discord);
+  --social-logo-github: var(--brand-github);
+  --social-logo-x: var(--brand-x);
+  --ink-external-link: var(--blue-200);
+  --ink-external-link-hover: var(--blue-400);
+  --ink-decor: var(--gray-300);
+  /* Scrims behind the drawer, the consent settings (black at 50%, D40) and
+     every dialog. */
+  --scrim: color-mix(in srgb, var(--gray-900) 70%, transparent);
+  --scrim-consent: color-mix(in srgb, var(--black) 50%, transparent);
+  --scrim-dialog: color-mix(in srgb, var(--black) 80%, transparent);
+  --ssw-strip-from: var(--ssw-red);
+  --ssw-strip-to: var(--black);
+  --ssw-strip-hover-to: color-mix(in srgb, var(--ssw-red) 0%, transparent);
+  --on-dark-glow: color-mix(in srgb, var(--white) 50%, transparent);
+  /* A faint line (the grey-100 edges, slate-100 after D41) and a row hover
+     (grey-50, slate-50 after D41). */
+  --border-faint: var(--slate-100);
+  --surface-row-hover: var(--slate-50);
+  /* Switches and checkboxes. */
+  --switch-track: var(--gray-200);
+  --switch-track-edge: transparent;
+  --switch-on: var(--orange-600);
+  --switch-knob: var(--white);
+  --switch-knob-edge: var(--slate-300); /* D41 */
+  --checkbox-edge: var(--slate-300); /* D41 */
+  --checkbox-checked: var(--orange-500);
+  --checkbox-focus: var(--orange-500);
+  /* Fields: a white field with the strong grey edge (D41), on dark bands a
+     white outline over a faint white fill, and the glass search trigger. */
+  --field-fill: var(--white);
+  --field-edge: var(--slate-300); /* D41 */
+  --field-focus: var(--orange-500);
+  --field-shadow: var(--shadow-input);
+  --field-shadow-hover: var(--shadow-input-hover);
+  --field-shadow-focus: var(--shadow-input-focus);
+  --field-on-dark-fill: color-mix(in srgb, var(--white) 10%, transparent);
+  --field-on-dark-edge: var(--white);
+  --field-glass-fill: color-mix(in srgb, var(--white) 50%, transparent);
+  --field-glass-edge: color-mix(in srgb, var(--gray-300) 20%, transparent);
+  --field-glass-filter: none;
+  /* The cloud banner: white into mint, a mint edge and a faint shadow. */
+  --cloud-banner-1: var(--white);
+  --cloud-banner-2: var(--mint-50);
+  --cloud-banner-3: var(--mint-100);
+  --cloud-banner-edge: var(--mint-200);
+  --cloud-banner-shadow: color-mix(in srgb, var(--black) 3%, transparent);
+  /* Seafoam washes: a CMS section, and the conference header banner. */
+  --section-seafoam-from: color-mix(in srgb, var(--seafoam-150) 50%, transparent);
+  --section-seafoam-via: color-mix(in srgb, var(--seafoam-100) 30%, transparent);
+  --section-seafoam-to: var(--white);
+  --banner-seafoam-from: var(--seafoam-100);
+  --banner-seafoam-to: var(--seafoam-200);
+  /* A QR code needs white behind it in either mode. */
+  --qr-fill: var(--white);
+  /* Glass and washes in blocks, beside SURFACE.glass and .frosted. */
+  --surface-glass-bright-from: var(--white);
+  --surface-glass-bright-via: var(--white);
+  --surface-glass-bright-to: color-mix(in srgb, var(--white) 50%, transparent);
+  --surface-glass-panel: color-mix(in srgb, var(--white) 60%, transparent);
+  --surface-glass-panel-strong: color-mix(in srgb, var(--white) 70%, transparent);
+  --surface-glass-hover-from: color-mix(in srgb, var(--blue-500) 10%, transparent);
+  --surface-wash-teal-from: color-mix(in srgb, var(--teal-100) 60%, transparent);
+  --surface-wash-teal-to: color-mix(in srgb, var(--cyan-100) 60%, transparent);
+  --example-card-from: var(--white);
+  --example-card-to: color-mix(in srgb, var(--white) 30%, transparent);
+  --example-card-edge: inset 0 0 0 1px color-mix(in srgb, var(--lavender-100) 15%, transparent), 0 0 1px 1px color-mix(in srgb, var(--lavender-100) 50%, transparent);
+  --example-card-hover: var(--white);
+  --tooltip: var(--white);
+  /* Tables. */
+  --table-fade-from: var(--slate-50);
+  --table-fade-via: color-mix(in srgb, var(--slate-50) 80%, transparent);
+  --table-row-hover: var(--sky-50);
+  --blog-table-stripe: color-mix(in srgb, var(--blue-500) 5%, transparent);
+  --blog-table-row: color-mix(in srgb, var(--white) 5%, transparent);
+  --blog-table-line: var(--orange-100);
+  --blog-table-head: color-mix(in srgb, var(--white) 50%, transparent);
+  --row-hover-brand: color-mix(in srgb, var(--orange-50) 40%, transparent);
+  /* Inks for marks that aren't text: icons, the roadmap, the map. */
+  --ink-blue: var(--blue-600);
+  --ink-active: var(--blue-800);
+  --ink-subtitle: color-mix(in srgb, var(--black) 50%, transparent);
+  --ink-brand-accent: var(--orange-500);
+  --status-done: var(--green-500);
+  --status-progress: var(--amber-500);
+  --status-planned: var(--blue-500);
+  --status-default: var(--blue-700);
+  --timeline-from: var(--blue-700);
+  --timeline-to: var(--blue-400);
+  --timeline-fade-from: var(--blue-600);
+  --timeline-fade-via: color-mix(in srgb, var(--blue-500) 30%, transparent);
+  --timeline-fade-to: color-mix(in srgb, var(--blue-400) 0%, transparent);
+  --map-land: var(--gray-300);
+  --map-marker: var(--coral-500);
+  /* The premier partner badge (amber) and its card's ring. */
+  --partner-premier-from: var(--amber-200);
+  --partner-premier-via: var(--lemon-300);
+  --partner-premier-to: var(--amber-400);
+  --partner-premier-ink: var(--amber-900);
+  --partner-premier-edge: color-mix(in srgb, var(--amber-300) 60%, transparent);
+  --partner-premier-ring: color-mix(in srgb, var(--amber-300) 70%, transparent);
+  --surface-info-faint: color-mix(in srgb, var(--blue-50) 40%, transparent);
+  /* Media: the scrim over a video thumbnail (its opacity stays at the call
+     site), the empty placeholder, a snippet's image panel, and the framed
+     showcase image. */
+  --media-scrim: var(--gray-800);
+  --media-placeholder: var(--gray-200);
+  --surface-image-panel: var(--slate-50); /* D41 */
+  --image-frame-shadow: var(--shadow-image-frame);
+  --image-frame-edge: color-mix(in srgb, var(--black) 7%, transparent);
+  /* The command field's icon disc. */
+  --command-icon-chip: var(--ink-900);
+  /* The terminal illustration: a white panel, pale bars, faint lines. */
+  --terminal: var(--white);
+  --terminal-bar: var(--slate-50); /* D41 */
+  --line-terminal: color-mix(in srgb, var(--black) 10%, transparent);
+  /* Callout edges in posts: seafoam-teal for tips, orange for warnings. */
+  --line-callout-tip: var(--teal-400);
+  --line-callout-warning: var(--orange-400);
+  /* ChooserCard's focus ring (shadcn's ring ink). */
+  --chooser-ring: var(--zinc-950);
+  /* Pictures: the sky glow behind quotes and carousels, and the customer
+     logo strip. */
+  --decor-glow-opacity: 0.5;
+  --logo-strip-filter: none;
+  /* Pricing plan cards: no fill in light (a shadow draws them), a hover
+     wash, a muted card. */
+  --plan-card: transparent;
+  --plan-card-edge: transparent;
+  --plan-hover-from: transparent;
+  --plan-hover-via: color-mix(in srgb, var(--frost-50) 50%, transparent);
+  --plan-hover-to: var(--cyan-100);
+  --plan-muted: color-mix(in srgb, var(--gray-50) 70%, transparent);
 
   /* Type families. Headings are IBM Plex Sans; everything people read is
      Inter; code and technical labels are IBM Plex Mono. They match the

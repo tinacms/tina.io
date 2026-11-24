@@ -12,3 +12,6 @@ export const TAB_LIST = 'tab-list';
 
 /** A tab: 70% until selected; the selected tab gets a solid orange underline. */
 export const TAB = 'tab';
+
+/** The /design index's current section or group: a thin orange rule and the strong ink (D46). Sides and width at the call site. */
+export const INDEX_CURRENT = 'index-current';
