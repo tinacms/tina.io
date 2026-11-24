@@ -617,7 +617,7 @@ export const docAndBlogComponents: Components<{
         <div>
           <AiOutlineWarning
             size={40}
-            className={`${ON_DARK} ${SURFACE.brandBand} bg-linear-to-br px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0`}
+            className={`${INK.onBand} ${SURFACE.brandBand} bg-linear-to-br px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0`}
           />
         </div>
         <div className={BODY}>
