@@ -27,7 +27,8 @@
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js",
     "visual:capture": "pnpm exec playwright test tests/visual-compare/capture.spec.ts --project=chromium --reporter=list",
     "visual:report": "npx tsx tests/visual-compare/generate-report.ts",
-    "visual:recapture": "npx tsx tests/visual-compare/recapture-missing.ts"
+    "visual:recapture": "npx tsx tests/visual-compare/recapture-missing.ts",
+    "check:colour-tokens": "node scripts/check-colour-tokens.js"
   },
   "resolutions": {
     "graphql": "^15.5.1"
