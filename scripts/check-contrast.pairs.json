@@ -1,18 +1,42 @@
 {
-  "backdrop": "var(--white)",
+  "backdrop": "--surface-page",
   "fills": {
     "page": {
-      "stops": ["var(--white)"],
-      "source": "body: bg-background (styles/tailwind.css), white"
+      "stops": ["--surface-page"],
+      "source": "body: bg-background (styles/tailwind.css), the page fill"
     },
     "sky-page": {
       "stops": [
-        "color-mix(in srgb, #53e9dd 45%, transparent)",
-        "color-mix(in srgb, #68d7e4 45%, transparent)",
-        "color-mix(in srgb, #59bff2 45%, transparent)",
-        "color-mix(in srgb, #4ba8ff 45%, transparent)"
+        "--surface-page-wash-1",
+        "--surface-page-wash-2",
+        "--surface-page-wash-3",
+        "--surface-page-wash-4"
       ],
-      "source": "components/layout/Layout.tsx bg-blob-bg (tailwind.config.js): the cyan to blue band at its strongest, the top edge, over white"
+      "source": "components/layout/Layout.tsx bg-blob-bg (--surface-page-wash): the cyan to blue band at its strongest, the top edge, over the page"
+    },
+    "card": {
+      "stops": ["--surface-card"],
+      "source": "surface-card (SURFACE.card): cards, tables, menus, dialogs"
+    },
+    "well": {
+      "stops": ["--surface-well"],
+      "source": "surface-well (SURFACE.well): fields, wells"
+    },
+    "table-head": {
+      "stops": ["--surface-table-head"],
+      "source": "surface-table-head (SURFACE.tableHead): table header rows"
+    },
+    "glass": {
+      "stops": ["--surface-glass-from", "--surface-glass-to"],
+      "source": "surface-glass (SURFACE.glass): glass cards, over the page"
+    },
+    "frosted": {
+      "stops": [
+        "--surface-frosted-from",
+        "--surface-frosted-via",
+        "--surface-frosted-to"
+      ],
+      "source": "surface-frosted (SURFACE.frosted): frosted cards, over the page"
     },
     "seafoam-section": {
       "stops": [
@@ -346,6 +370,44 @@
       "bg": "--code-panel",
       "kind": "edge",
       "exempt": "decorative divider (D7)"
+    },
+    {
+      "context": "Text on the card, well, table head, glass and frosted surfaces",
+      "fg": [
+        "--text-strong",
+        "--text-body",
+        "--text-subtle",
+        "--text-label",
+        "--text-link"
+      ],
+      "bg": ["card", "well", "table-head", "glass", "frosted"],
+      "kind": "text"
+    },
+    {
+      "context": "Page and article titles on a card (large text)",
+      "fg": "heading",
+      "bg": "card",
+      "kind": "large-text"
+    },
+    {
+      "context": "The strong line on the page, card, well and table head (interactive edges)",
+      "fg": "--border-strong",
+      "bg": ["page", "card", "well", "table-head"],
+      "kind": "edge"
+    },
+    {
+      "context": "The subtle line on the page, card, well and table head (decorative)",
+      "fg": "--border-subtle",
+      "bg": ["page", "card", "well", "table-head"],
+      "kind": "edge",
+      "exempt": "decorative divider (D7)"
+    },
+    {
+      "context": "Surface steps: card and well on the page, well on the card, and the card edge (decorative)",
+      "fg": ["--surface-card", "--surface-well", "--surface-card-edge"],
+      "bg": ["page", "card"],
+      "kind": "edge",
+      "exempt": "surface step and card edge, decorative (D7)"
     },
     {
       "context": "Shimmer on short promo text (the homepage news banner)",

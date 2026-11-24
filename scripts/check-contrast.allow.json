@@ -190,5 +190,48 @@
     "bg": "consent-banner",
     "mode": "light",
     "reason": "light unchanged (D2): the lightest orange stops of the footer and consent banner"
+  },
+  {
+    "fg": "--text-subtle",
+    "bg": "well",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): slate-500 on the slate-100 well, as chips and wells paint today; dark passes"
+  },
+  {
+    "fg": "--text-label",
+    "bg": "well",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): slate-500 on the slate-100 well, as chips and wells paint today; dark passes"
+  },
+  {
+    "fg": "heading",
+    "bg": "card",
+    "mode": "light",
+    "stop": "--text-heading-highlight",
+    "reason": "agreed by design: only the thin highlight at the top of each title line; the letters stay at 3.8:1 or more (app/global.css)"
+  },
+  {
+    "fg": "--border-strong",
+    "bg": "page",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): the strong line is today's neutral outline hover grey (D27), an interactive edge (D7); dark must pass with D4's strong border"
+  },
+  {
+    "fg": "--border-strong",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): the strong line is today's neutral outline hover grey (D27), an interactive edge (D7); dark must pass with D4's strong border"
+  },
+  {
+    "fg": "--border-strong",
+    "bg": "well",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): the strong line is today's neutral outline hover grey (D27), an interactive edge (D7); dark must pass with D4's strong border"
+  },
+  {
+    "fg": "--border-strong",
+    "bg": "table-head",
+    "mode": "light",
+    "reason": "light unchanged (D2, D11): the strong line is today's neutral outline hover grey (D27), an interactive edge (D7); dark must pass with D4's strong border"
   }
 ]

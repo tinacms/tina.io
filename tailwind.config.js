@@ -261,14 +261,18 @@ module.exports = {
       backgroundSize: {
         skeleton: '200% 100%',
       },
+      // Elevation shadows point at --elevation-* in app/global.css, so dark
+      // mode can turn them off (D31). xs, outline and the input rings are
+      // edges and focus states, not elevation, and stay as they are.
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
-        sm: '0 1px 3px 0 rgba(20, 70, 150, 0.05)',
-        DEFAULT:
-          '0 1px 3px 0 rgb(20 70 150 / 0.07), 0 2px 6px -1px rgb(20 70 150 / 0.07)',
-        lg: '0 10px 15px -3px rgb(20 70 150 / 0.1), 0 4px 6px -4px rgb(20 70 150 / 0.1)',
-        panel:
-          '6px 4px 16px rgba(0,132,255, 0.07), 10px 8px 32px rgba(0,132,255, 0.07), 18px 16px 64px rgba(0,132,255, 0.1)',
+        sm: 'var(--elevation-sm)',
+        DEFAULT: 'var(--elevation)',
+        md: 'var(--elevation-md)',
+        lg: 'var(--elevation-lg)',
+        xl: 'var(--elevation-xl)',
+        '2xl': 'var(--elevation-2xl)',
+        panel: 'var(--elevation-panel)',
         outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
         input:
           'inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0px 2px 3px rgba(0, 0, 0, 0.12)',
@@ -365,47 +369,47 @@ module.exports = {
         success: '#22C55E',
         warning: '#F59E0B',
         error: '#EF4444',
-        background: 'hsl(var(--background))',
+        background: 'var(--background)',
         // Default text colour follows the body token rather than shadcn's own
         // --foreground, so unstyled text reads as body copy, not heading ink.
         foreground: 'var(--text-body)',
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+          DEFAULT: 'var(--popover)',
+          foreground: 'var(--popover-foreground)',
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: 'var(--primary)',
+          foreground: 'var(--primary-foreground)',
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: 'var(--secondary)',
+          foreground: 'var(--secondary-foreground)',
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: 'var(--accent)',
+          foreground: 'var(--accent-foreground)',
         },
         destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+          DEFAULT: 'var(--destructive)',
+          foreground: 'var(--destructive-foreground)',
         },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
+        border: 'var(--border)',
+        input: 'var(--input)',
+        ring: 'var(--ring)',
         chart: {
-          1: 'hsl(var(--chart-1))',
-          2: 'hsl(var(--chart-2))',
-          3: 'hsl(var(--chart-3))',
-          4: 'hsl(var(--chart-4))',
-          5: 'hsl(var(--chart-5))',
+          1: 'var(--chart-1)',
+          2: 'var(--chart-2)',
+          3: 'var(--chart-3)',
+          4: 'var(--chart-4)',
+          5: 'var(--chart-5)',
         },
       },
       fontFamily: {
@@ -431,8 +435,7 @@ module.exports = {
       backgroundImage: {
         'skeleton-shimmer':
           'linear-gradient(90deg, rgba(17,24,39,0.06) 0%, rgba(17,24,39,0.12) 50%, rgba(17,24,39,0.06) 100%)',
-        'blob-bg':
-          "url(\"data:image/svg+xml,%3Csvg preserveAspectRatio='none' viewBox='0 0 194 109' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_566_318)'%3E%3Crect width='194' height='109' fill='white' /%3E%3Cmask id='mask0_566_318' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='194' height='109'%3E%3Crect width='194' height='109' fill='url(%23paint0_linear_566_318)' /%3E%3C/mask%3E%3Cg mask='url(%23mask0_566_318)'%3E%3Crect width='194' height='109' fill='url(%23paint1_linear_566_318)' /%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_566_318' x1='97' y1='0' x2='97' y2='109' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23D9D9D9' stop-opacity='0.45' /%3E%3Cstop offset='0.229052' stop-color='%23D9D9D9' stop-opacity='0.1678' /%3E%3Cstop offset='0.677779' stop-color='%23D9D9D9' stop-opacity='0.0513' /%3E%3Cstop offset='1' stop-color='%23D9D9D9' stop-opacity='0' /%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_566_318' x1='0' y1='54.5' x2='194' y2='54.5' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2353E9DD' /%3E%3Cstop offset='0.34375' stop-color='%2368D7E4' /%3E%3Cstop offset='0.59375' stop-color='%2359BFF2' /%3E%3Cstop offset='1' stop-color='%234BA8FF' /%3E%3C/linearGradient%3E%3CclipPath id='clip0_566_318'%3E%3Crect width='194' height='109' fill='white' /%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E\")",
+        'blob-bg': 'var(--surface-page-wash)',
       },
       borderRadius: {
         lg: 'var(--radius)',

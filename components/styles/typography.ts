@@ -164,6 +164,28 @@ export const SURFACE = {
   neutralSolid: 'surface-neutral-solid',
   /** Orange-600 with white. “Featured”, “new”. */
   brandSolid: 'surface-brand-solid',
+  /** The page: the sky wash in light, the night sky in dark. Keeps the roles' inks. */
+  page: 'surface-page',
+  /** A card on the page: white in light; neutral-900 with a 1px edge in dark. Cards, tables, menus, dialogs. */
+  card: 'surface-card',
+  /** A well inside a card: slate-100 in light, neutral-800 in dark. Fields and wells. */
+  well: 'surface-well',
+  /** A table's header row: slate-50 in light, the well level in dark. */
+  tableHead: 'surface-table-head',
+  /** A glass card on the page: white 10% to 40% in light; the card level at 45%, blurred, in dark. */
+  glass: 'surface-glass',
+  /** A frosted card on the page: white 25%, 50%, 75% in light; the same as glass in dark. */
+  frosted: 'surface-frosted',
+} as const;
+
+/**
+ * Line colours: a subtle line for decoration (dividers, table rules, card
+ * edges) and a strong line for anything you click or type in. Put one beside
+ * the border width and sides, e.g. `border-b ${LINE.subtle}`.
+ */
+export const LINE = {
+  subtle: 'line-subtle',
+  strong: 'line-strong',
 } as const;
 
 /** Decorative shimmer for short promo text, like the homepage news banner. Keeps the role and surface ink. */
