@@ -17,7 +17,9 @@ import {
   BODY_SMALL,
   CARD_TITLE,
   EYEBROW,
+  INK,
   LABEL,
+  LINE,
   LINK,
   PAGE_TITLE,
   RICH_TEXT,
@@ -35,7 +37,9 @@ const HeaderBanner = ({
   scrollToAgenda: () => void;
 }) => {
   return (
-    <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br from-seafoam-100 to-seafoam-200">
+    <div
+      className={`flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br ${SURFACE.bannerSeafoam}`}
+    >
       <h1 className={`${PAGE_TITLE} pb-4`}>{tinaData.bannerTitle}</h1>
       <h2 className={`${CARD_TITLE} max-w-4xl pb-4`}>
         {tinaData.bannerTagline}
@@ -81,19 +85,19 @@ const icons = {
   FaRegStar: (
     <FaRegStar
       size={40}
-      className="text-white bg-linear-to-br from-orange-400 to-orange-600 p-2 mb-4 rounded-full"
+      className={`${INK.logoOnDark} bg-linear-to-br ${SURFACE.brandBand} p-2 mb-4 rounded-full`}
     />
   ),
   IoMdBook: (
     <IoMdBook
       size={40}
-      className="text-white bg-linear-to-br from-blue-400 to-blue-600 p-2 mb-4 rounded-full"
+      className={`bg-linear-to-br ${SURFACE.infoBand} p-2 mb-4 rounded-full`}
     />
   ),
   GoPeople: (
     <GoPeople
       size={40}
-      className="text-white bg-linear-to-br from-seafoam-500 to-seafoam-700 p-2 mb-4 rounded-full"
+      className={`bg-linear-to-br ${SURFACE.successBand} p-2 mb-4 rounded-full`}
     />
   ),
 };
@@ -268,8 +272,14 @@ function Agenda({
         <table className="w-full border-collapse">
           <thead>
             <tr className={SURFACE.info}>
-              <th className={`${EYEBROW} border p-4 w-1/6 text-left`}>Time</th>
-              <th className={`${EYEBROW} border p-4 w-4/5 text-center`}>
+              <th
+                className={`${EYEBROW} border ${LINE.subtle} p-4 w-1/6 text-left`}
+              >
+                Time
+              </th>
+              <th
+                className={`${EYEBROW} border ${LINE.subtle} p-4 w-4/5 text-center`}
+              >
                 Talks
               </th>
             </tr>
@@ -277,7 +287,7 @@ function Agenda({
           <tbody>
             {timeSlots.map((slot) => (
               <tr key={slot.timeStart}>
-                <td className="border p-4 align-top text-left">
+                <td className={`border ${LINE.subtle} p-4 align-top text-left`}>
                   <div className={LABEL}>
                     {formatTime(slot.timeStart)} -
                     <br />
@@ -286,7 +296,7 @@ function Agenda({
                 </td>
 
                 {slot.breaks.length > 0 ? (
-                  <td className="border p-4 text-center">
+                  <td className={`border ${LINE.subtle} p-4 text-center`}>
                     {slot.breaks.map((breakSession) => (
                       <div
                         key={breakSession.speechTitle}
@@ -302,7 +312,9 @@ function Agenda({
                     ))}
                   </td>
                 ) : (
-                  <td className="border p-4 align-top text-left">
+                  <td
+                    className={`border ${LINE.subtle} p-4 align-top text-left`}
+                  >
                     {slot.talks.map((talk) => (
                       <div
                         key={talk.speechTitle}
@@ -351,7 +363,7 @@ function Agenda({
 
             {/* Break sessions */}
             {slot.breaks.length > 0 && (
-              <div className="border border-t-0 p-4">
+              <div className={`border ${LINE.subtle} border-t-0 p-4`}>
                 {slot.breaks.map((breakSession) => (
                   <div
                     key={breakSession.speechTitle}
@@ -373,12 +385,12 @@ function Agenda({
 
             {/* Talks and Workshops */}
             {slot.breaks.length === 0 && (
-              <div className="border border-t-0 p-4 space-y-6">
+              <div className={`border ${LINE.subtle} border-t-0 p-4 space-y-6`}>
                 {/* Talks */}
                 {slot.talks.map((talk) => (
                   <div
                     key={talk.speechTitle}
-                    className="pb-4 border-b last:border-b-0 last:pb-0"
+                    className={`pb-4 border-b ${LINE.subtle} last:border-b-0 last:pb-0`}
                   >
                     <div
                       className={`${SURFACE.info} ${LABEL} rounded-full border px-2 w-fit mb-2`}
