@@ -28,6 +28,7 @@ import {
   FOOTER_LINK,
   HIGHLIGHT,
   LABEL,
+  LINE,
   LINK,
   NAV_MENU_LINK,
   ON_DARK,
@@ -53,6 +54,9 @@ import { Button, ButtonGroup } from '@/component/ui/Button';
 import { Pagination, PostPagination } from '@/component/ui/Pagination';
 import { SocialLinks, TINA_SOCIAL_LINKS } from '@/component/ui/SocialLinks';
 import { TextLink } from '@/component/ui/TextLink';
+import { ModeToggle } from './ModeToggle';
+import { OUTLINE, slug } from './outline';
+import { SectionIndex } from './SectionIndex';
 import { SegmentedToggleExample } from './SegmentedToggleExample';
 
 export const metadata: Metadata = {
@@ -71,9 +75,6 @@ export const metadata: Metadata = {
  * so this page and AGENTS.md can't drift apart. Examples render through the
  * real roles; the page itself uses roles only.
  */
-
-/** Kebab-case id from a group title, so an example can link to its own table. */
-const slug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
 /**
  * A role's example, drawn through the real role. Anything clickable on the
@@ -151,7 +152,9 @@ const GuideTable = ({
   widths?: string[];
   rows: { key: string; cells: ReactNode[] }[];
 }) => (
-  <div className="overflow-hidden rounded-xl border border-neutral-border-subtle bg-white">
+  <div
+    className={`${SURFACE.card} overflow-hidden rounded-xl border ${LINE.subtle}`}
+  >
     <table
       className={`w-full text-left max-md:block ${widths ? 'md:table-fixed' : ''}`}
     >
@@ -175,7 +178,7 @@ const GuideTable = ({
         {rows.map((row) => (
           <tr
             key={row.key}
-            className="border-t border-neutral-border-subtle first:border-t-0 max-md:grid max-md:gap-3 max-md:p-5 md:first:border-t"
+            className={`border-t ${LINE.subtle} first:border-t-0 max-md:grid max-md:gap-3 max-md:p-5 md:first:border-t`}
           >
             {row.cells.map((cell, i) => (
               <td
@@ -235,7 +238,7 @@ const Section = ({
 }) => (
   <section
     id={id}
-    className="grid scroll-mt-24 gap-12 border-t border-neutral-border-subtle pt-16"
+    className={`grid scroll-mt-24 gap-12 border-t ${LINE.subtle} pt-16`}
   >
     <div>
       <h2 className={SECTION_TITLE}>{title}</h2>
@@ -267,460 +270,476 @@ const Group = ({
 
 export default function StyleGuidePage() {
   return (
-    // The site layout already provides <main>.
-    <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-16 px-4 py-16 md:px-8 lg:px-12">
-      <header>
-        <h1 className={PAGE_TITLE}>Tina.io Style Guide</h1>
-        <p className={`${BODY} mt-4 max-w-3xl`}>
-          Use this page to pick the type role, colour and button level for
-          anything on tina.io. Each example uses the same code as the live site.
-        </p>
-        <nav
-          aria-label="Style guide sections"
-          className="mt-6 flex flex-wrap gap-x-8 gap-y-2"
-        >
-          <a className={EYEBROW_LINK} href="#typography">
-            Typography
-          </a>
-          <a className={EYEBROW_LINK} href="#colour">
-            Colour
-          </a>
-          <a className={EYEBROW_LINK} href="#buttons">
-            Buttons
-          </a>
-          <a className={EYEBROW_LINK} href="#links">
-            Links and navigation
-          </a>
-        </nav>
-      </header>
+    // The site layout already provides <main>. Below lg the index column is
+    // hidden and the content wrapper is display: contents, so the page lays
+    // out as it did before the index (D50, D51).
+    <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-16 px-4 py-16 md:px-8 lg:flex lg:items-start lg:gap-12 lg:px-12">
+      <aside className="max-lg:hidden lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-64 lg:shrink-0 lg:flex-col lg:gap-6 lg:py-4 xl:top-24 xl:max-h-[calc(100vh-var(--spacing)*24)]">
+        <ModeToggle className="self-start" />
+        <SectionIndex outline={OUTLINE} className="min-h-0 overflow-y-auto" />
+      </aside>
 
-      <Section
-        id="typography"
-        title="Typography"
-        intro="Give each piece of text one role from components/styles/typography.ts, chosen by the job the text does. The size comes with the role."
-      >
-        <Group title="The rules">
-          <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
-            {TYPE_RULES.map((rule) => (
-              <li key={rule} className={BODY_SMALL}>
-                {rule}
-              </li>
-            ))}
-          </ol>
-        </Group>
-
-        {ROLE_GROUPS.map((group) => (
-          <Group
-            key={group.title}
-            id={slug(group.title)}
-            title={group.title}
-            intro={group.intro}
+      <div className="max-lg:contents lg:grid lg:min-w-0 lg:flex-1 lg:gap-16">
+        <header>
+          <h1 className={PAGE_TITLE}>Tina.io Style Guide</h1>
+          <p className={`${BODY} mt-4 max-w-3xl`}>
+            Use this page to pick the type role, colour and button level for
+            anything on tina.io. Each example uses the same code as the live
+            site.
+          </p>
+          <nav
+            aria-label="Style guide sections"
+            className="mt-6 flex flex-wrap gap-x-8 gap-y-2 lg:hidden"
           >
-            <RoleTable roles={group.roles} href={`#${slug(group.title)}`} />
+            <a className={EYEBROW_LINK} href="#typography">
+              Typography
+            </a>
+            <a className={EYEBROW_LINK} href="#colour">
+              Colour
+            </a>
+            <a className={EYEBROW_LINK} href="#buttons">
+              Buttons
+            </a>
+            <a className={EYEBROW_LINK} href="#links-and-navigation">
+              Links and navigation
+            </a>
+          </nav>
+        </header>
+
+        <Section
+          id="typography"
+          title="Typography"
+          intro="Give each piece of text one role from components/styles/typography.ts, chosen by the job the text does. The size comes with the role."
+        >
+          <Group id="typography-rules" title="The rules">
+            <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
+              {TYPE_RULES.map((rule) => (
+                <li key={rule} className={BODY_SMALL}>
+                  {rule}
+                </li>
+              ))}
+            </ol>
           </Group>
-        ))}
 
-        <Group
-          title="Agreed exceptions"
-          intro="You can hand-set type in these places. Use a role everywhere else."
-        >
-          <ul className="grid list-disc gap-1 pl-6">
-            {TYPE_EXCEPTIONS.map((e) => (
-              <li key={e} className={BODY_SMALL}>
-                {e}
-              </li>
-            ))}
-          </ul>
-        </Group>
-      </Section>
+          {ROLE_GROUPS.map((group) => (
+            <Group
+              key={group.title}
+              id={slug(group.title)}
+              title={group.title}
+              intro={group.intro}
+            >
+              <RoleTable roles={group.roles} href={`#${slug(group.title)}`} />
+            </Group>
+          ))}
 
-      <Section
-        id="colour"
-        title="Colour"
-        intro="Each role sets its own text colour, so components don't name colours. To change a text colour, change the surface under it."
-      >
-        <Group
-          title="Text colours"
-          intro="Check these when you add a role. The values live in app/global.css."
-        >
-          <GuideTable
-            columns={['Token', 'Used by', 'Use for']}
-            rows={TEXT_COLOURS.map((c) => ({
-              key: c.token,
-              cells: [
-                <p key="token" className={`${CODE} whitespace-nowrap`}>
-                  <span
-                    className={`${c.swatch} mr-2 inline-block size-3 rounded-sm align-middle`}
-                  />
-                  {c.token}
-                </p>,
-                <p key="used" className={CODE}>
-                  {c.usedBy.join(', ')}
-                </p>,
-                <p key="use" className={BODY_SMALL}>
-                  {c.useFor}
-                </p>,
-              ],
-            }))}
-          />
-        </Group>
-
-        <Group
-          title="Surfaces"
-          intro="Put a SURFACE on the chip, pill or row with the fill, and give its text a role. The role takes the paired colour."
-        >
-          <GuideTable
-            columns={['Example', 'Surface', 'Use for']}
-            rows={SURFACE_GUIDE.map((s) => ({
-              key: s.name,
-              cells: [
-                <span
-                  key="example"
-                  className={`${SURFACE[s.name]} ${roleClass(s.role)} inline-block rounded-full border px-3 py-0.5`}
-                >
-                  {s.example}
-                </span>,
-                <p key="name" className={CODE}>
-                  SURFACE.{s.name}
-                </p>,
-                <p key="use" className={BODY_SMALL}>
-                  {s.useFor}
-                </p>,
-              ],
-            }))}
-          />
-          <GuideTable
-            columns={['Background', 'Surface', 'Use for']}
-            widths={['w-5/12', 'w-1/6', 'w-5/12']}
-            rows={PAGE_BACKGROUNDS.map((b) => ({
-              key: b.label,
-              cells: [
-                // bg-scroll shows the whole page background in the swatch,
-                // not the slice of the screen it happens to sit over.
-                <div
-                  key="example"
-                  className={`${b.mode ?? ''} ${SURFACE[b.name]} grid gap-1 rounded-xl bg-scroll p-6`}
-                >
-                  <p className={CARD_TITLE}>{b.label}</p>
-                  {PAGE_BACKGROUND_ROLES.map((role) => (
-                    <p key={role} className={roleClass(role)}>
-                      {role}
-                    </p>
-                  ))}
-                </div>,
-                <p key="name" className={CODE}>
-                  SURFACE.{b.name}
-                </p>,
-                <p key="use" className={BODY_SMALL}>
-                  {b.useFor}
-                </p>,
-              ],
-            }))}
-          />
-        </Group>
-
-        <Group
-          id="on-dark"
-          title="On dark"
-          intro="Put ON_DARK on a dark or orange container and keep the normal roles inside. Text turns white; SLUB and legal links turn white at 75%."
-        >
-          <div
-            className={`${ON_DARK} flex flex-wrap items-center gap-x-10 gap-y-4 rounded-xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
+          <Group
+            id="typography-exceptions"
+            title="Agreed exceptions"
+            intro="You can hand-set type in these places. Use a role everywhere else."
           >
-            <span className={EYEBROW}>Product</span>
-            <a className={FOOTER_LINK} href="#on-dark">
-              Showcase
-            </a>
-            <span className={BODY_SMALL}>Join the herd for tips and news.</span>
-            <input
-              className={`${FIELD} h-10 rounded-sm border border-white bg-white/10 px-3`}
-              placeholder="Email"
-              aria-label="Example field on dark"
+            <ul className="grid list-disc gap-1 pl-6">
+              {TYPE_EXCEPTIONS.map((e) => (
+                <li key={e} className={BODY_SMALL}>
+                  {e}
+                </li>
+              ))}
+            </ul>
+          </Group>
+        </Section>
+
+        <Section
+          id="colour"
+          title="Colour"
+          intro="Each role sets its own text colour, so components don't name colours. To change a text colour, change the surface under it."
+        >
+          <Group
+            id="text-colours"
+            title="Text colours"
+            intro="Check these when you add a role. The values live in app/global.css."
+          >
+            <GuideTable
+              columns={['Token', 'Used by', 'Use for']}
+              rows={TEXT_COLOURS.map((c) => ({
+                key: c.token,
+                cells: [
+                  <p key="token" className={`${CODE} whitespace-nowrap`}>
+                    <span
+                      className={`${c.swatch} mr-2 inline-block size-3 rounded-sm align-middle`}
+                    />
+                    {c.token}
+                  </p>,
+                  <p key="used" className={CODE}>
+                    {c.usedBy.join(', ')}
+                  </p>,
+                  <p key="use" className={BODY_SMALL}>
+                    {c.useFor}
+                  </p>,
+                ],
+              }))}
             />
-            <a className={FOOTER_LEGAL_LINK} href="#on-dark">
-              Privacy
-            </a>
-          </div>
-        </Group>
-      </Section>
+          </Group>
 
-      <Section
-        id="buttons"
-        title="Buttons"
-        intro="Every button is one of three levels from components/styles/buttons.ts, all one size. Pick the level by the job; the look comes with it."
-      >
-        <Group title="The rules">
-          <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
-            {BUTTON_RULES.map((rule) => (
-              <li key={rule} className={BODY_SMALL}>
-                {rule}
-              </li>
-            ))}
-          </ol>
-        </Group>
+          <Group
+            id="surfaces"
+            title="Surfaces"
+            intro="Put a SURFACE on the chip, pill or row with the fill, and give its text a role. The role takes the paired colour."
+          >
+            <GuideTable
+              columns={['Example', 'Surface', 'Use for']}
+              rows={SURFACE_GUIDE.map((s) => ({
+                key: s.name,
+                cells: [
+                  <span
+                    key="example"
+                    className={`${SURFACE[s.name]} ${roleClass(s.role)} inline-block rounded-full border px-3 py-0.5`}
+                  >
+                    {s.example}
+                  </span>,
+                  <p key="name" className={CODE}>
+                    SURFACE.{s.name}
+                  </p>,
+                  <p key="use" className={BODY_SMALL}>
+                    {s.useFor}
+                  </p>,
+                ],
+              }))}
+            />
+            <GuideTable
+              columns={['Background', 'Surface', 'Use for']}
+              widths={['w-5/12', 'w-1/6', 'w-5/12']}
+              rows={PAGE_BACKGROUNDS.map((b) => ({
+                key: b.label,
+                cells: [
+                  // bg-scroll shows the whole page background in the swatch,
+                  // not the slice of the screen it happens to sit over.
+                  <div
+                    key="example"
+                    className={`${b.mode ?? ''} ${SURFACE[b.name]} grid gap-1 rounded-xl bg-scroll p-6`}
+                  >
+                    <p className={CARD_TITLE}>{b.label}</p>
+                    {PAGE_BACKGROUND_ROLES.map((role) => (
+                      <p key={role} className={roleClass(role)}>
+                        {role}
+                      </p>
+                    ))}
+                  </div>,
+                  <p key="name" className={CODE}>
+                    SURFACE.{b.name}
+                  </p>,
+                  <p key="use" className={BODY_SMALL}>
+                    {b.useFor}
+                  </p>,
+                ],
+              }))}
+            />
+          </Group>
 
-        <Group id="button-levels" title="Levels">
-          <GuideTable
-            columns={['Example', 'Level', 'Use for', 'Not for']}
-            widths={['w-1/4', 'w-1/6', 'w-1/3', 'w-1/4']}
-            rows={BUTTON_LEVEL_GUIDE.map((g) => ({
-              key: g.level,
-              cells: [
-                <Button key="example" level={g.level}>
-                  {g.example}
-                </Button>,
-                <p key="level" className={`${CODE} wrap-anywhere`}>
-                  BUTTON.{g.level}
-                </p>,
-                <p key="use" className={BODY_SMALL}>
-                  {g.useFor}
-                </p>,
-                <p key="not" className={BODY_SMALL}>
-                  {g.notFor.job} →{' '}
-                  <span className={CODE}>{g.notFor.instead}</span>
-                </p>,
-              ],
-            }))}
-          />
-        </Group>
+          <Group
+            id="on-dark"
+            title="On dark"
+            intro="Put ON_DARK on a dark or orange container and keep the normal roles inside. Text turns white; SLUB and legal links turn white at 75%."
+          >
+            <div
+              className={`${ON_DARK} flex flex-wrap items-center gap-x-10 gap-y-4 rounded-xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
+            >
+              <span className={EYEBROW}>Product</span>
+              <a className={FOOTER_LINK} href="#on-dark">
+                Showcase
+              </a>
+              <span className={BODY_SMALL}>
+                Join the herd for tips and news.
+              </span>
+              <input
+                className={`${FIELD} h-10 rounded-sm border border-white bg-white/10 px-3`}
+                placeholder="Email"
+                aria-label="Example field on dark"
+              />
+              <a className={FOOTER_LEGAL_LINK} href="#on-dark">
+                Privacy
+              </a>
+            </div>
+          </Group>
+        </Section>
 
-        <Group
-          id="button-groups"
-          title="Groups"
-          intro="A group leads with Primary and a Tertiary sits beside it. On phones the buttons stack, full width. Narrow the window to see it."
+        <Section
+          id="buttons"
+          title="Buttons"
+          intro="Every button is one of three levels from components/styles/buttons.ts, all one size. Pick the level by the job; the look comes with it."
         >
-          <ButtonGroup>
-            <Button level="primary">Learn about TinaCMS</Button>
-            <Button level="tertiary">Try the Editor</Button>
-          </ButtonGroup>
-        </Group>
+          <Group id="button-rules" title="The rules">
+            <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
+              {BUTTON_RULES.map((rule) => (
+                <li key={rule} className={BODY_SMALL}>
+                  {rule}
+                </li>
+              ))}
+            </ol>
+          </Group>
 
-        <Group
-          id="buttons-on-dark"
-          title="On dark"
-          intro="Put ON_DARK on the orange or dark container and keep the normal levels inside. Primary turns white with an orange label; Tertiary turns into a white outline."
-        >
-          <div
-            className={`${ON_DARK} rounded-xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
+          <Group id="button-levels" title="Levels">
+            <GuideTable
+              columns={['Example', 'Level', 'Use for', 'Not for']}
+              widths={['w-1/4', 'w-1/6', 'w-1/3', 'w-1/4']}
+              rows={BUTTON_LEVEL_GUIDE.map((g) => ({
+                key: g.level,
+                cells: [
+                  <Button key="example" level={g.level}>
+                    {g.example}
+                  </Button>,
+                  <p key="level" className={`${CODE} wrap-anywhere`}>
+                    BUTTON.{g.level}
+                  </p>,
+                  <p key="use" className={BODY_SMALL}>
+                    {g.useFor}
+                  </p>,
+                  <p key="not" className={BODY_SMALL}>
+                    {g.notFor.job} →{' '}
+                    <span className={CODE}>{g.notFor.instead}</span>
+                  </p>,
+                ],
+              }))}
+            />
+          </Group>
+
+          <Group
+            id="button-groups"
+            title="Groups"
+            intro="A group leads with Primary and a Tertiary sits beside it. On phones the buttons stack, full width. Narrow the window to see it."
           >
             <ButtonGroup>
-              <Button level="primary">Accept All</Button>
-              <Button level="tertiary">Reject All</Button>
+              <Button level="primary">Learn about TinaCMS</Button>
+              <Button level="tertiary">Try the Editor</Button>
             </ButtonGroup>
-          </div>
-        </Group>
+          </Group>
 
-        <Group
-          id="button-states"
-          title="States"
-          intro="Hover lifts 1px with a soft shadow, and pressing drops it back. Keyboard focus shows a 2px ink ring (tab to it). Disabled is 60% with no hover."
-        >
-          <ButtonGroup>
-            <Button level="primary">Schedule Call</Button>
-            <Button level="primary" disabled>
-              Sending…
-            </Button>
-          </ButtonGroup>
-        </Group>
-
-        <Group
-          id="icon-buttons"
-          title="Icon buttons"
-          intro="ICON_BUTTON for close, copy, carousel arrows and search: a 44px tap area, a 20px icon at a 2px stroke, slate, with a light square on hover. White on dark. Always add an aria-label."
-        >
-          <div className="flex flex-wrap items-center gap-2">
-            <button type="button" className={ICON_BUTTON} aria-label="Close">
-              <X />
-            </button>
-            <button type="button" className={ICON_BUTTON} aria-label="Search">
-              <Search />
-            </button>
-            <span
-              className={`${ON_DARK} inline-flex rounded-lg bg-[url('/svg/orange-bg.svg')] bg-cover p-1`}
+          <Group
+            id="buttons-on-dark"
+            title="On dark"
+            intro="Put ON_DARK on the orange or dark container and keep the normal levels inside. Primary turns white with an orange label; Tertiary turns into a white outline."
+          >
+            <div
+              className={`${ON_DARK} rounded-xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
             >
-              <button
-                type="button"
-                className={ICON_BUTTON}
-                aria-label="Copy code"
-              >
-                <Copy />
-              </button>
-            </span>
-          </div>
-        </Group>
-
-        <Group
-          title="Agreed exceptions"
-          intro="These keep their own styling. Every other button uses a level."
-        >
-          <ul className="grid list-disc gap-1 pl-6">
-            {BUTTON_EXCEPTIONS.map((e) => (
-              <li key={e} className={BODY_SMALL}>
-                {e}
-              </li>
-            ))}
-          </ul>
-        </Group>
-      </Section>
-
-      <Section
-        id="links"
-        title="Links and navigation"
-        intro="The pieces around buttons: text links, social links, the neutral outline, the command field, dropdown menus, pagination, segmented toggles and tabs. Each has one look, built the same way as the buttons, so there is nothing to choose."
-      >
-        <Group
-          id="text-links"
-          title="Text links"
-          intro="TextLink for a standalone “Read more →”: SLUB in the link colour, underlined, always ending in the short arrow. No other arrow or icon. Inside a card that is itself the link, use as=&quot;span&quot;. Links inside a sentence are LINK."
-        >
-          <div className="flex flex-wrap items-center gap-8">
-            <TextLink href="#text-links">Read more</TextLink>
-            <TextLink href="#text-links">See all events</TextLink>
-          </div>
-        </Group>
-
-        <Group
-          id="social-links"
-          title="Social links"
-          intro="SocialLinks: button size in the neutral outline (white, a light slate border that darkens on hover), an ink label and each network’s own logo colour. Not a button level, so a row of them needs no Primary."
-        >
-          <SocialLinks links={TINA_SOCIAL_LINKS} />
-        </Group>
-
-        <Group
-          id="pagination"
-          title="Pagination"
-          intro="Pagination for a list of pages: ink numbers and Previous / Next at button size, a light slate outline on hover, and the current page outlined. On phones only ‹ [3] › shows. At the end of a blog post, PostPagination shows ← Previous / Next → cards, the arrow on the label."
-        >
-          <Pagination
-            currentPage={3}
-            numPages={24}
-            hrefFor={() => '#pagination'}
-            labels={{
-              pagination: 'Example pages',
-              previous: 'Previous',
-              next: 'Next',
-              page: (page) => `Page ${page}`,
-            }}
-          />
-          <PostPagination
-            previous={{ title: 'TinaCMS v4 is coming', slug: '#pagination' }}
-            next={{
-              title: 'Editorial Workflow for media',
-              slug: '#pagination',
-            }}
-            labels={{ previous: 'Previous', next: 'Next' }}
-          />
-        </Group>
-
-        <Group
-          id="neutral-outline"
-          title="Neutral outline"
-          intro="NEUTRAL_OUTLINE: white with a light slate border that darkens on hover. The command field, social links, the current page number and the post cards all wear it, so they read as one family next to the orange and blue buttons."
-        >
-          <div className={`${NEUTRAL_OUTLINE} max-w-sm rounded-lg p-4`}>
-            <p className={BODY_SMALL}>Hover to see the border darken.</p>
-          </div>
-        </Group>
-
-        <Group
-          id="command-field"
-          title="Command field"
-          intro="CodeButton: the npx command in the neutral outline (COMMAND role) with a flat orange copy block. Clicking copies the command and opens the starter menu, which is exactly as wide as the field."
-        >
-          <CodeButton
-            label="npx create-tina-app@latest"
-            className="w-fit"
-            starterTemplates={[
-              {
-                title: 'Astro',
-                icon: '/Starters/astro.svg',
-                link: 'https://app.tina.io/quickstart',
-              },
-              {
-                title: 'Next.js',
-                icon: '/Starters/next.js.svg',
-                link: 'https://app.tina.io/quickstart',
-              },
-            ]}
-          />
-        </Group>
-
-        <Group
-          id="menus"
-          title="Dropdown menus"
-          intro="Nav menus are pale cyan (MENU_PANEL, MENU_ITEM); the starter menu under the command field is white (COMMAND_MENU, COMMAND_MENU_ITEM). Both open on hover or click, cross the gap under the trigger on padding, are hidden from the keyboard when closed (MENU_REVEAL), and close on Escape."
-        >
-          <div className="flex flex-wrap items-start gap-8">
-            <ul className={`${MENU_PANEL} w-56`}>
-              <li>
-                <a href="#menus" className={`${MENU_ITEM} ${NAV_MENU_LINK}`}>
-                  Docs for TinaCMS
-                </a>
-              </li>
-              <li>
-                <a href="#menus" className={`${MENU_ITEM} ${NAV_MENU_LINK}`}>
-                  Showcase
-                </a>
-              </li>
-            </ul>
-            <ul className={`${COMMAND_MENU} w-56`}>
-              <li>
-                <a
-                  href="#menus"
-                  className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
-                >
-                  Astro
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#menus"
-                  className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
-                >
-                  Next.js
-                </a>
-              </li>
-            </ul>
-          </div>
-        </Group>
-
-        <Group
-          id="segmented-toggles"
-          title="Segmented toggles"
-          intro="SegmentedToggle: one choice from two or three short options, like Monthly / Annually. A frosted track with square corners, link-blue options, and a Secondary blue thumb that slides under the selected one. Each option is a pressed button."
-        >
-          <SegmentedToggleExample />
-        </Group>
-
-        <Group
-          id="tabs"
-          title="Tabs"
-          intro="TAB_LIST and TAB on dark code panels: flat, the selected tab with a solid orange underline and the others at 70%. Use role=&quot;tablist&quot;, role=&quot;tab&quot; and aria-selected."
-        >
-          <div className={`${CODE_PANEL} rounded-md`}>
-            <div role="tablist" className={`${TAB_LIST} px-2`}>
-              <button type="button" role="tab" aria-selected className={TAB}>
-                Query
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={false}
-                className={TAB}
-              >
-                Response
-              </button>
+              <ButtonGroup>
+                <Button level="primary">Accept All</Button>
+                <Button level="tertiary">Reject All</Button>
+              </ButtonGroup>
             </div>
-            <div className="h-16" />
-          </div>
-        </Group>
-      </Section>
+          </Group>
 
-      <p className={BODY_MUTED}>
-        To change this guidance, edit components/styles/typography.guide.ts and
-        components/styles/buttons.guide.ts.
-      </p>
+          <Group
+            id="button-states"
+            title="States"
+            intro="Hover lifts 1px with a soft shadow, and pressing drops it back. Keyboard focus shows a 2px ink ring (tab to it). Disabled is 60% with no hover."
+          >
+            <ButtonGroup>
+              <Button level="primary">Schedule Call</Button>
+              <Button level="primary" disabled>
+                Sending…
+              </Button>
+            </ButtonGroup>
+          </Group>
+
+          <Group
+            id="icon-buttons"
+            title="Icon buttons"
+            intro="ICON_BUTTON for close, copy, carousel arrows and search: a 44px tap area, a 20px icon at a 2px stroke, slate, with a light square on hover. White on dark. Always add an aria-label."
+          >
+            <div className="flex flex-wrap items-center gap-2">
+              <button type="button" className={ICON_BUTTON} aria-label="Close">
+                <X />
+              </button>
+              <button type="button" className={ICON_BUTTON} aria-label="Search">
+                <Search />
+              </button>
+              <span
+                className={`${ON_DARK} inline-flex rounded-lg bg-[url('/svg/orange-bg.svg')] bg-cover p-1`}
+              >
+                <button
+                  type="button"
+                  className={ICON_BUTTON}
+                  aria-label="Copy code"
+                >
+                  <Copy />
+                </button>
+              </span>
+            </div>
+          </Group>
+
+          <Group
+            id="button-exceptions"
+            title="Agreed exceptions"
+            intro="These keep their own styling. Every other button uses a level."
+          >
+            <ul className="grid list-disc gap-1 pl-6">
+              {BUTTON_EXCEPTIONS.map((e) => (
+                <li key={e} className={BODY_SMALL}>
+                  {e}
+                </li>
+              ))}
+            </ul>
+          </Group>
+        </Section>
+
+        <Section
+          id="links-and-navigation"
+          title="Links and navigation"
+          intro="The pieces around buttons: text links, social links, the neutral outline, the command field, dropdown menus, pagination, segmented toggles and tabs. Each has one look, built the same way as the buttons, so there is nothing to choose."
+        >
+          <Group
+            id="text-links"
+            title="Text links"
+            intro="TextLink for a standalone “Read more →”: SLUB in the link colour, underlined, always ending in the short arrow. No other arrow or icon. Inside a card that is itself the link, use as=&quot;span&quot;. Links inside a sentence are LINK."
+          >
+            <div className="flex flex-wrap items-center gap-8">
+              <TextLink href="#text-links">Read more</TextLink>
+              <TextLink href="#text-links">See all events</TextLink>
+            </div>
+          </Group>
+
+          <Group
+            id="social-links"
+            title="Social links"
+            intro="SocialLinks: button size in the neutral outline (white, a light slate border that darkens on hover), an ink label and each network’s own logo colour. Not a button level, so a row of them needs no Primary."
+          >
+            <SocialLinks links={TINA_SOCIAL_LINKS} />
+          </Group>
+
+          <Group
+            id="pagination"
+            title="Pagination"
+            intro="Pagination for a list of pages: ink numbers and Previous / Next at button size, a light slate outline on hover, and the current page outlined. On phones only ‹ [3] › shows. At the end of a blog post, PostPagination shows ← Previous / Next → cards, the arrow on the label."
+          >
+            <Pagination
+              currentPage={3}
+              numPages={24}
+              hrefFor={() => '#pagination'}
+              labels={{
+                pagination: 'Example pages',
+                previous: 'Previous',
+                next: 'Next',
+                page: (page) => `Page ${page}`,
+              }}
+            />
+            <PostPagination
+              previous={{ title: 'TinaCMS v4 is coming', slug: '#pagination' }}
+              next={{
+                title: 'Editorial Workflow for media',
+                slug: '#pagination',
+              }}
+              labels={{ previous: 'Previous', next: 'Next' }}
+            />
+          </Group>
+
+          <Group
+            id="neutral-outline"
+            title="Neutral outline"
+            intro="NEUTRAL_OUTLINE: white with a light slate border that darkens on hover. The command field, social links, the current page number and the post cards all wear it, so they read as one family next to the orange and blue buttons."
+          >
+            <div className={`${NEUTRAL_OUTLINE} max-w-sm rounded-lg p-4`}>
+              <p className={BODY_SMALL}>Hover to see the border darken.</p>
+            </div>
+          </Group>
+
+          <Group
+            id="command-field"
+            title="Command field"
+            intro="CodeButton: the npx command in the neutral outline (COMMAND role) with a flat orange copy block. Clicking copies the command and opens the starter menu, which is exactly as wide as the field."
+          >
+            <CodeButton
+              label="npx create-tina-app@latest"
+              className="w-fit"
+              starterTemplates={[
+                {
+                  title: 'Astro',
+                  icon: '/Starters/astro.svg',
+                  link: 'https://app.tina.io/quickstart',
+                },
+                {
+                  title: 'Next.js',
+                  icon: '/Starters/next.js.svg',
+                  link: 'https://app.tina.io/quickstart',
+                },
+              ]}
+            />
+          </Group>
+
+          <Group
+            id="menus"
+            title="Dropdown menus"
+            intro="Nav menus are pale cyan (MENU_PANEL, MENU_ITEM); the starter menu under the command field is white (COMMAND_MENU, COMMAND_MENU_ITEM). Both open on hover or click, cross the gap under the trigger on padding, are hidden from the keyboard when closed (MENU_REVEAL), and close on Escape."
+          >
+            <div className="flex flex-wrap items-start gap-8">
+              <ul className={`${MENU_PANEL} w-56`}>
+                <li>
+                  <a href="#menus" className={`${MENU_ITEM} ${NAV_MENU_LINK}`}>
+                    Docs for TinaCMS
+                  </a>
+                </li>
+                <li>
+                  <a href="#menus" className={`${MENU_ITEM} ${NAV_MENU_LINK}`}>
+                    Showcase
+                  </a>
+                </li>
+              </ul>
+              <ul className={`${COMMAND_MENU} w-56`}>
+                <li>
+                  <a
+                    href="#menus"
+                    className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
+                  >
+                    Astro
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#menus"
+                    className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
+                  >
+                    Next.js
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </Group>
+
+          <Group
+            id="segmented-toggles"
+            title="Segmented toggles"
+            intro="SegmentedToggle: one choice from two or three short options, like Monthly / Annually. A frosted track with square corners, link-blue options, and a Secondary blue thumb that slides under the selected one. Each option is a pressed button."
+          >
+            <SegmentedToggleExample />
+          </Group>
+
+          <Group
+            id="tabs"
+            title="Tabs"
+            intro="TAB_LIST and TAB on dark code panels: flat, the selected tab with a solid orange underline and the others at 70%. Use role=&quot;tablist&quot;, role=&quot;tab&quot; and aria-selected."
+          >
+            <div className={`${CODE_PANEL} rounded-md`}>
+              <div role="tablist" className={`${TAB_LIST} px-2`}>
+                <button type="button" role="tab" aria-selected className={TAB}>
+                  Query
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={false}
+                  className={TAB}
+                >
+                  Response
+                </button>
+              </div>
+              <div className="h-16" />
+            </div>
+          </Group>
+        </Section>
+
+        <p className={BODY_MUTED}>
+          To change this guidance, edit components/styles/typography.guide.ts
+          and components/styles/buttons.guide.ts.
+        </p>
+      </div>
     </div>
   );
 }
