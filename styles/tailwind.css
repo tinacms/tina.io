@@ -5,7 +5,9 @@
 @config '../tailwind.config.js';
 
 @layer base {
-  :root {
+  /* Light, and the .light scope inside a dark page. */
+  :root,
+  .light {
     --background: hsl(0 0% 100%);
     --foreground: hsl(240 10% 3.9%);
     --card: hsl(0 0% 100%);

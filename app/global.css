@@ -529,6 +529,57 @@
   --elevation-panel: var(--shadow-none);
 }
 
+/* ──────────────────────────────────────────────────────────────────────
+   MODES — light scope. A light island inside a dark page (the light page
+   swatch on /design): every token .dark changes, back at its :root value,
+   so composed tokens resolve light too. Keep it in step with .dark. Inside
+   it the dark: variant still matches, so paint there through tokens only.
+   ────────────────────────────────────────────────────────────────────── */
+.light {
+  color-scheme: light;
+  color: var(--text-body);
+  --text-strong: var(--ink-900);
+  --text-body: var(--slate-700);
+  --text-subtle: var(--slate-500);
+  --text-label: var(--slate-500);
+  --text-heading-highlight: var(--orange-400);
+  --text-heading-start: var(--orange-500);
+  --text-heading-end: var(--orange-700);
+  --surface-page: var(--white);
+  --surface-page-wash: var(--sky-wash);
+  --surface-page-wash-size: 100% 100%;
+  --surface-page-wash-position: top;
+  --surface-page-wash-1: color-mix(in srgb, var(--sky-wash-1) 45%, transparent);
+  --surface-page-wash-2: color-mix(in srgb, var(--sky-wash-2) 45%, transparent);
+  --surface-page-wash-3: color-mix(in srgb, var(--sky-wash-3) 45%, transparent);
+  --surface-page-wash-4: color-mix(in srgb, var(--sky-wash-4) 45%, transparent);
+  --surface-card: var(--white);
+  --surface-card-edge: transparent;
+  --surface-well: var(--slate-100);
+  --surface-table-head: var(--slate-50);
+  --surface-glass-from: color-mix(in srgb, var(--white) 10%, transparent);
+  --surface-glass-to: color-mix(in srgb, var(--white) 40%, transparent);
+  --surface-frosted-from: color-mix(in srgb, var(--white) 25%, transparent);
+  --surface-frosted-via: color-mix(in srgb, var(--white) 50%, transparent);
+  --surface-frosted-to: color-mix(in srgb, var(--white) 75%, transparent);
+  --surface-glass-filter: none;
+  --surface-neutral: var(--slate-100);
+  --on-surface-neutral: var(--ink-900);
+  --border-subtle: var(--slate-200);
+  --border-strong: var(--slate-300);
+  --shadow-soft-tint: color-mix(in srgb, var(--blue-800) 7%, transparent);
+  --shadow-soft: 0 1px 3px 0 var(--shadow-soft-tint), 0 2px 6px -1px var(--shadow-soft-tint);
+  --button-hover-shadow: var(--shadow-soft);
+  --post-card-hover-shadow: var(--shadow-soft);
+  --elevation-sm: var(--shadow-blue-sm);
+  --elevation: var(--shadow-blue);
+  --elevation-md: var(--shadow-black-md);
+  --elevation-lg: var(--shadow-blue-lg);
+  --elevation-xl: var(--shadow-black-xl);
+  --elevation-2xl: var(--shadow-black-2xl);
+  --elevation-panel: var(--shadow-blue-panel);
+}
+
 ::-moz-selection {
   background: var(--color-seafoam-dark);
   color: var(--text-strong);
