@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { chromiumExecutablePath } from './tests/visual-compare/chromium-path';
 
 /**
  * Pass BASE_URL to test against a staging/production site instead of localhost:
@@ -25,6 +26,8 @@ export default defineConfig({
         browserName: 'chromium',
         launchOptions: {
           args: ['--ignore-certificate-errors'],
+          // CHROMIUM_PATH, else a cached headless Chromium when Playwright's own isn't downloaded
+          executablePath: chromiumExecutablePath(),
         },
       },
     },
