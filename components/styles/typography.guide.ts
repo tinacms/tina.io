@@ -366,6 +366,53 @@ export const TEXT_COLOURS: {
   },
 ];
 
+/**
+ * The backgrounds content sits on, named by use. /design paints each one
+ * with its SURFACE and shows the text roles on it, so every ink is checked
+ * against every background in both modes.
+ */
+export const PAGE_BACKGROUNDS: {
+  label: string;
+  name: keyof Typography['SURFACE'];
+  /** Pins the swatch to one mode, so it shows in either mode. Without it the swatch follows the page's mode. */
+  mode?: 'light' | 'dark';
+  useFor: string;
+}[] = [
+  {
+    label: 'Light page',
+    name: 'page',
+    mode: 'light',
+    useFor:
+      'The page in light mode: the sky wash, pinned to the screen. Put text straight on it, or on a card.',
+  },
+  {
+    label: 'Dark page',
+    name: 'page',
+    mode: 'dark',
+    useFor:
+      'The page in dark mode: the night sky, pinned to the screen. The one background with a hue; everything on it stays neutral.',
+  },
+  {
+    label: 'Card',
+    name: 'card',
+    useFor:
+      'Cards, tables, menus and dialogs on the page, and the footer in dark. In dark it has a 1px edge.',
+  },
+  {
+    label: 'Well',
+    name: 'well',
+    useFor:
+      'Fields and wells inside a card. In dark it’s lighter than the card, and table rows and grey chips share it.',
+  },
+];
+
+/** The roles each page background shows under its name (a CARD_TITLE), one per text colour. */
+export const PAGE_BACKGROUND_ROLES: RoleName[] = [
+  'BODY',
+  'BODY_MUTED',
+  'EYEBROW',
+];
+
 /** The SURFACE pairs: a fill and the ink that belongs on it. */
 export const SURFACE_GUIDE: {
   name: keyof Typography['SURFACE'];
