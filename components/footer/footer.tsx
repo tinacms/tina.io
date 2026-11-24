@@ -13,7 +13,9 @@ import {
   EYEBROW,
   FOOTER_LEGAL_LINK,
   FOOTER_LINK,
+  INK,
   ON_DARK,
+  SURFACE,
 } from '@/component/styles/typography';
 import { hasZhPrefix, isZhHost } from '@/utils/i18n/domains';
 import { TinaIcon } from '../logo';
@@ -23,7 +25,7 @@ import { footerLinksZh, footerNavZh } from './constants';
 import { SocialIcon } from './social-icon';
 import { SubscriptionForm } from './subscription-form';
 
-const linkStyles = `inline-block drop-shadow-sm relative transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px ${FOOTER_LINK}`;
+const linkStyles = `inline-block drop-shadow-sm relative transition duration-150 ease-out hover:-translate-y-px hover:decor-link-glow active:translate-y-px hover:-translate-x-px active:translate-x-px ${FOOTER_LINK}`;
 
 interface FooterItem {
   id?: string;
@@ -56,7 +58,7 @@ const LinkGroup = React.memo(
         className={`${linkStyles} cursor-pointer`}
         onClick={() => setOpen(!open)}
       >
-        <summary className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
+        <summary className="hover:-translate-y-px hover:decor-link-glow active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
           {item.label}
         </summary>
         <div className="p-4">
@@ -70,7 +72,7 @@ const LinkGroup = React.memo(
               }
             >
               <DynamicLink href={subItem.href || ''} passHref>
-                <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
+                <div className="hover:-translate-y-px hover:decor-link-glow active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                   {subItem.label}
                 </div>
               </DynamicLink>
@@ -101,7 +103,7 @@ const FooterLink = React.memo(
     return (
       <Link
         href={link || ''}
-        className={`transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] whitespace-nowrap ${FOOTER_LEGAL_LINK}`}
+        className={`transition ease-out duration-150 hover:decor-link-glow whitespace-nowrap ${FOOTER_LEGAL_LINK}`}
         passHref
       >
         {label}
@@ -150,9 +152,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
   return (
     <footer>
       {/* Footer Top */}
-      <div
-        className={`${ON_DARK} bg-[url('/svg/orange-bg.svg')] bg-cover bg-center`}
-      >
+      <div className={`${ON_DARK} ${SURFACE.footerBand} bg-cover bg-center`}>
         {modalButton && modalButton._template === 'modalButton' && (
           <div className="px-6 md:mx-auto max-w-7xl w-full pt-8 pb-6 lg:hidden">
             <SubscriptionForm props={modalButton} />
@@ -230,7 +230,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
               {/* <button
                 type="button"
                 onClick={() => setIsContactOpen(true)}
-                className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap cursor-pointer"
+                className="transition ease-out duration-150 hover:decor-link-glow hover:opacity-100 opacity-70 whitespace-nowrap cursor-pointer"
               >
                 Contact Us
               </button> */}
@@ -262,18 +262,10 @@ export function Footer({ footerData }: { footerData: FooterData }) {
 
       {/* SSW Banner */}
       <div
-        className={`${ON_DARK} group relative flex flex-wrap items-center justify-center gap-x-4 gap-y-2 overflow-hidden px-8 py-6 md:px-48 md:justify-between`}
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #CC4141 0%, #000000 100%)',
-        }}
+        className={`${ON_DARK} ${SURFACE.sswStrip} group relative flex flex-wrap items-center justify-center gap-x-4 gap-y-2 overflow-hidden px-8 py-6 md:px-48 md:justify-between`}
       >
         <div
-          className="absolute inset-0 z-[1] origin-left scale-x-50 transition-transform duration-1000 ease-in-out group-hover:scale-x-100"
-          style={{
-            backgroundImage:
-              'linear-gradient(to right, #CC4141 0%, rgba(204,65,65,0) 100%)',
-          }}
+          className={`${SURFACE.sswStripHover} absolute inset-0 z-[1] origin-left scale-x-50 transition-transform duration-1000 ease-in-out group-hover:scale-x-100`}
         />
         <a
           href="https://www.ssw.com.au"
@@ -284,9 +276,8 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           TinaCMS is actively developed by
           <svg
             viewBox="0 0 90 60"
-            fill="white"
             xmlns="http://www.w3.org/2000/svg"
-            className="inline-block h-[2em] w-auto"
+            className={`inline-block h-[2em] w-auto fill-current ${INK.logoOnDark}`}
             role="img"
             aria-label="SSW"
           >

@@ -6,6 +6,7 @@ import {
   FOOTER_LEGAL_LINK,
   FOOTER_LINK,
   ON_DARK,
+  SURFACE,
 } from '@/component/styles/typography';
 import { TinaIcon } from '../../components/logo';
 import { DynamicLink } from '../../components/ui';
@@ -58,14 +59,14 @@ const LinkGroup = ({
         onClick();
       }}
     >
-      <summary className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
+      <summary className="hover:-translate-y-px hover:decor-link-glow active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
         {item.label}
       </summary>
       <div className="p-4">
         {item.children.map((subItem) => (
           <div key={subItem.label}>
             <DynamicLink href={subItem.link} passHref>
-              <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
+              <div className="hover:-translate-y-px hover:decor-link-glow active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                 {subItem.label}
               </div>
             </DynamicLink>
@@ -82,7 +83,7 @@ export const LinkItem = ({ item }) => {
   return (
     <DynamicLink href={link} passHref>
       <div
-        className={`inline-block drop-shadow-sm relative transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px ${FOOTER_LINK}`}
+        className={`inline-block drop-shadow-sm relative transition duration-150 ease-out hover:-translate-y-px hover:decor-link-glow active:translate-y-px hover:-translate-x-px active:translate-x-px ${FOOTER_LINK}`}
       >
         {label}
       </div>
@@ -93,7 +94,7 @@ export const LinkItem = ({ item }) => {
 const SocialLink = ({ link, children }) => {
   return (
     <a
-      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 text-white font-ibm-plex"
+      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 font-ibm-plex"
       href={link}
       target="_blank"
     >
@@ -118,7 +119,7 @@ export const Footer = () => {
     <footer>
       {/* Top */}
       <div
-        className={`${ON_DARK} flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-6 py-8 lg:py-12 lg:px-12 -mt-px`}
+        className={`${ON_DARK} flex flex-col md:flex-row gap-6 w-full justify-between items-start ${SURFACE.footerBand} bg-cover bg-center px-6 py-8 lg:py-12 lg:px-12 -mt-px`}
       >
         <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
@@ -189,7 +190,7 @@ export const Footer = () => {
 
       {/* Bottom */}
       <div
-        className={`${ON_DARK} flex justify-end flex-col lg:flex-row w-full lg:items-center bg-linear-to-br from-orange-600 via-orange-800 to-orange-900 px-6 py-8 lg:px-18 gap-6`}
+        className={`${ON_DARK} flex justify-end flex-col lg:flex-row w-full lg:items-center bg-linear-to-br ${SURFACE.legalBand} px-6 py-8 lg:px-18 gap-6`}
       >
         <div className="flex drop-shadow-sm flex-wrap gap-6">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
@@ -220,7 +221,7 @@ const FooterLink = ({ link, label }) => {
   return (
     <Link
       href={link}
-      className={`transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] whitespace-nowrap ${FOOTER_LEGAL_LINK}`}
+      className={`transition ease-out duration-150 hover:decor-link-glow whitespace-nowrap ${FOOTER_LEGAL_LINK}`}
       passHref
     >
       {label}
