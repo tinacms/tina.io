@@ -7,6 +7,7 @@ import {
   BODY,
   BODY_SMALL,
   CARD_TITLE,
+  INK,
   LABEL,
   LINK,
   SECTION_TITLE,
@@ -26,9 +27,9 @@ const icons: Record<string, IconType> = {
 // Semantic colour per status icon — green for done, amber for in progress,
 // blue for upcoming. Falls back to brand blue for anything unexpected.
 const iconColorClasses: Record<string, string> = {
-  FaRegCheckCircle: 'text-success',
-  FaHourglassHalf: 'text-warning',
-  FaRegClock: 'text-blue-500',
+  FaRegCheckCircle: INK.statusDone,
+  FaHourglassHalf: INK.statusProgress,
+  FaRegClock: INK.statusPlanned,
 };
 
 const headlineComponents = {
@@ -40,19 +41,29 @@ const headlineComponents = {
 const Roadmap = ({ data, last = false, index }) => {
   const Icon = data.icon ? icons[data.icon] : null;
   const iconColor =
-    (data.icon && iconColorClasses[data.icon]) || 'text-blue-700';
+    (data.icon && iconColorClasses[data.icon]) || INK.statusDefault;
   return (
     <div className="px-6 flex items-stretch w-full gap-8">
       <div className="flex-0 flex flex-col items-center">
-        <div className="shrink-0 w-[2px] h-12 bg-linear-to-t from-blue-700 to-blue-400"></div>
-        <div className="shrink-0 relative w-4 h-4 rounded-full border-2 border-blue-700">
-          <div className="h-[2px] w-6 absolute top-1/2 left-full -translate-y-1/2 bg-linear-to-r from-blue-700 to-blue-400"></div>
+        <div
+          className={`shrink-0 w-[2px] h-12 bg-linear-to-t ${INK.timeline}`}
+        ></div>
+        <div
+          className={`shrink-0 relative w-4 h-4 rounded-full border-2 ${INK.timelineDot}`}
+        >
+          <div
+            className={`h-[2px] w-6 absolute top-1/2 left-full -translate-y-1/2 bg-linear-to-r ${INK.timeline}`}
+          ></div>
         </div>
         {!last && (
-          <div className="w-[2px] h-full bg-linear-to-b from-blue-700 to-blue-400"></div>
+          <div
+            className={`w-[2px] h-full bg-linear-to-b ${INK.timeline}`}
+          ></div>
         )}
         {last && (
-          <div className="w-[2px] h-2/3 bg-linear-to-b from-blue-600 via-blue-500/30 to-blue-400/0"></div>
+          <div
+            className={`w-[2px] h-2/3 bg-linear-to-b ${INK.timelineFade}`}
+          ></div>
         )}
       </div>
       <div className="flex-1 pt-10 pb-4 flex flex-col items-start gap-4">

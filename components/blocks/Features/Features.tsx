@@ -13,6 +13,7 @@ import {
   ON_DARK,
   PAGE_TITLE,
   SECTION_TITLE,
+  SURFACE,
 } from '@/component/styles/typography';
 import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import PlayIcon from '@/public/svg/play-button.svg';
@@ -120,7 +121,9 @@ export const RenderMedia = ({ data }) => {
             className="w-full h-auto rounded-lg"
             src={data.media[0].src}
           />
-          <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+          <div
+            className={`absolute inset-0 ${SURFACE.mediaScrim} opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg`}
+          ></div>
           <div className="absolute inset-0 flex items-center justify-center">
             <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />
           </div>
@@ -143,7 +146,9 @@ export const RenderMedia = ({ data }) => {
         height={1200}
       />
     ) : (
-      <div className="w-full h-full m-auto rounded-lg bg-gray-200"></div>
+      <div
+        className={`w-full h-full m-auto rounded-lg ${SURFACE.mediaPlaceholder}`}
+      ></div>
     );
   }
   if (
@@ -154,7 +159,7 @@ export const RenderMedia = ({ data }) => {
       <div className="flex flex-col justify-start items-start">
         {data.media[0].file && (
           <div
-            className={`${ON_DARK} ${CODE} inline-block rounded-t-lg overflow-hidden border-2 border-b-0 border-gray-700 bg-linear-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3`}
+            className={`${ON_DARK} ${CODE} inline-block rounded-t-lg overflow-hidden border-2 border-b-0 bg-linear-to-tl ${SURFACE.featureCodeTab} px-7 py-3`}
           >
             {data.media[0].file}
           </div>
@@ -162,7 +167,7 @@ export const RenderMedia = ({ data }) => {
         <div
           className={`file relative ${
             data.media[0].file ? 'rounded-lg rounded-tl-none' : 'rounded-lg'
-          } overflow-hidden w-full text-blue-50 border-2 border-gray-700 bg-linear-to-br from-[#333333] via-[#1a1a1a] to-black ${
+          } overflow-hidden w-full border-2 bg-linear-to-br ${SURFACE.featureCodePanel} ${
             data.isBackgroundEnabled ? 'shadow-panel' : ''
           }`}
           style={{
@@ -216,7 +221,9 @@ export const RenderMedia = ({ data }) => {
                   className="w-full h-full object-cover"
                   style={{ objectPosition: 'center' }}
                 />
-                <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+                <div
+                  className={`absolute inset-0 ${SURFACE.mediaScrim} opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg`}
+                ></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />
                 </div>
@@ -269,7 +276,9 @@ export const RenderMedia = ({ data }) => {
                   />
                   <source src={data.media[0].thumbnailVideo} type="video/mp4" />
                 </video>
-                <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+                <div
+                  className={`absolute inset-0 ${SURFACE.mediaScrim} opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg`}
+                ></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />
                 </div>

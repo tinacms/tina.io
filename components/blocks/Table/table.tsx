@@ -6,9 +6,12 @@ import { IoMdInformationCircleOutline } from 'react-icons/io';
 import {
   BODY_MUTED,
   BODY_SMALL,
+  INK,
   LABEL,
+  LINE,
   LINK,
   SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 
 const gridColumnsClasses = {
@@ -23,18 +26,20 @@ const gridColumnsClass = (columnCount: number) =>
 const TableHeader = ({ data, scrollData, isMonthly }) => {
   return (
     <div
-      className={`grid ${gridColumnsClass(data.columnItems?.length)} pt-6 px-6 bg-slate-50`}
+      className={`grid ${gridColumnsClass(data.columnItems?.length)} pt-6 px-6 ${SURFACE.tableHead}`}
     >
       {/* Sticky Header Column */}
       <div
-        className={`${SUB_HEADING} sticky top-0 left-0 z-10 bg-slate-50 pl-4 pb-2`}
+        className={`${SUB_HEADING} sticky top-0 left-0 z-10 ${SURFACE.tableHead} pl-4 pb-2`}
       >
         {data.tableHeader}
       </div>
       {/* Sticky void column */}
       <div className="sticky left-[175px] z-10">
         {scrollData && scrollData.scrollLeft > 80 && (
-          <div className="w-[30px] h-full bg-linear-to-r from-slate-50 via-slate-50/80 to-transparent"></div>
+          <div
+            className={`w-[30px] h-full bg-linear-to-r ${SURFACE.tableFade} to-transparent`}
+          ></div>
         )}
       </div>
       {/* Remaining Columns Titles */}
@@ -82,19 +87,23 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
   };
 
   return (
-    <div className="bg-slate-50 rounded-t-lg w-full">
+    <div className={`${SURFACE.tableHead} rounded-t-lg w-full`}>
       <div className="lg:mx-auto relative max-w-(--breakpoint-xl)">
         <div
           className="overflow-x-scroll lg:overflow-x-hidden shadow-2xl rounded-2xl lg:shadow-none snap-x"
           ref={scrollContainerRef}
           onScroll={handleScroll}
         >
-          <div className="min-w-[1200px] bg-slate-50 p-6 rounded-3xl">
+          <div
+            className={`min-w-[1200px] ${SURFACE.tableHead} p-6 rounded-3xl`}
+          >
             {/* Void column on the right */}
-            <div className="absolute top-0 bottom-4 right-0 w-[40px] bg-linear-to-r from-transparent  via-slate-50/80 to-slate-50 rounded-2xl pointer-events-none lg:hidden"></div>
+            <div
+              className={`absolute top-0 bottom-4 right-0 w-[40px] bg-linear-to-l ${SURFACE.tableFade} to-transparent rounded-2xl pointer-events-none lg:hidden`}
+            ></div>
 
             {/* Sticky Table Header */}
-            <div className=" bg-slate-50 pb-4">
+            <div className={`${SURFACE.tableHead} pb-4`}>
               <TableHeader
                 data={data}
                 scrollData={scrollData}
@@ -103,16 +112,16 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
             </div>
             {/* Table Rows */}
             <div
-              className="border-t border-gray-300 lg:bg-transparent"
+              className={`border-t ${LINE.strong} lg:bg-transparent`}
               key={index}
             >
               {data.rowItems?.map((row, rowIndex) => (
                 <div
                   key={`${row.rowHeader}-${rowIndex}`}
-                  className={`grid ${gridColumnsClass(data.columnItems?.length)} min-h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group`}
+                  className={`grid ${gridColumnsClass(data.columnItems?.length)} min-h-[50px] px-6 hover:surface-table-row-hover ${SURFACE.tableHead} snap-start group`}
                 >
                   <div
-                    className={`flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50 ${infoIconHoverIndex === rowIndex ? 'z-30' : ''}`}
+                    className={`flex ${SURFACE.tableHead} items-center sticky left-0 snap-start group-hover:surface-table-row-hover ${infoIconHoverIndex === rowIndex ? 'z-30' : ''}`}
                   >
                     <div className={`${LABEL} pl-2 py-2 flex items-center`}>
                       {row.rowHeaderLink ? (
@@ -133,12 +142,16 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
                           onMouseEnter={() => handleMouseEnter(rowIndex)}
                           onMouseLeave={handleMouseLeave}
                         >
-                          <IoMdInformationCircleOutline className="text-orange-500 text-xl z-20" />
+                          <IoMdInformationCircleOutline
+                            className={`${INK.brand} text-xl z-20`}
+                          />
                           {infoIconHoverIndex === rowIndex && (
                             <div
-                              className={`${BODY_SMALL} absolute top-1/2 left-full transform -translate-y-1/2 ml-2 p-2 rounded-lg shadow-lg w-max max-w-xs break-words whitespace-normal text-center bg-white`}
+                              className={`${BODY_SMALL} absolute top-1/2 left-full transform -translate-y-1/2 ml-2 p-2 rounded-lg shadow-lg w-max max-w-xs break-words whitespace-normal text-center ${SURFACE.tooltip}`}
                             >
-                              <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-white"></div>
+                              <div
+                                className={`absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 ${SURFACE.tooltipArrow}`}
+                              ></div>
                               {row.rowDescription}
                             </div>
                           )}
@@ -149,7 +162,9 @@ const TableBox = ({ data, index = 0, isMonthly = undefined }) => {
                   {/* Sticky void column */}
                   <div className="sticky left-[179px] z-10">
                     {scrollData && scrollData.scrollLeft > 80 && (
-                      <div className="w-[30px] h-full bg-linear-to-r from-slate-50 via-slate-50/80 to-transparent group-hover:from-sky-50 group-hover:via-sky-50/80"></div>
+                      <div
+                        className={`w-[30px] h-full bg-linear-to-r ${SURFACE.tableFade} to-transparent group-hover:from-sky-50 group-hover:via-sky-50/80`}
+                      ></div>
                     )}
                   </div>
 
