@@ -13,6 +13,8 @@ import {
   BODY_SMALL,
   CODE,
   EYEBROW,
+  INK,
+  LINE,
   LINK,
   PAGE_TITLE,
   SURFACE,
@@ -39,8 +41,7 @@ type RowState =
 type RowMap = Record<string, RowState>;
 
 const HEADER_CELL_CLASS = `py-4 ${EYEBROW}`;
-const CARD_CLASS =
-  'rounded-2xl border border-gray-200/80 bg-white/60 shadow-lg backdrop-blur-sm';
+const CARD_CLASS = `rounded-2xl border ${LINE.subtle} ${SURFACE.glassPanel} shadow-lg backdrop-blur-sm`;
 const PACKAGE_LINK_BASE = `${CODE} ${LINK}`;
 const PILL_CLASS = `${SURFACE.brand} ${CODE} animate-row-in inline-flex items-center rounded-md border px-2 py-0.5`;
 const PLACEHOLDER_CLASS = BODY_MUTED;
@@ -132,7 +133,7 @@ function DesktopTable({ rows }: { rows: RowMap }) {
           <col />
         </colgroup>
         <thead>
-          <tr className="border-b border-gray-200/80">
+          <tr className={`border-b ${LINE.subtle}`}>
             <HeaderCell className="pl-6 pr-4">Package</HeaderCell>
             <HeaderCell className="pr-4">Latest</HeaderCell>
             <HeaderCell className="pr-4">Published</HeaderCell>
@@ -151,9 +152,13 @@ function DesktopTable({ rows }: { rows: RowMap }) {
 
 function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
   return (
-    <tr className="group relative border-b border-gray-100 last:border-b-0 transition-colors duration-150 hover:bg-orange-50/40">
+    <tr
+      className={`group relative border-b ${LINE.faint} last:border-b-0 transition-colors duration-150 hover:surface-row-hover-brand`}
+    >
       <td className="relative py-4 pl-6 pr-4">
-        <span className="pointer-events-none absolute left-0 top-1/2 h-6 w-0.5 -translate-y-1/2 bg-orange-500 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+        <span
+          className={`pointer-events-none absolute left-0 top-1/2 h-6 w-0.5 -translate-y-1/2 bg-current ${INK.brand} opacity-0 transition-opacity duration-150 group-hover:opacity-100`}
+        />
         <PackageLink name={pkg.name} className={PACKAGE_LINK_BASE} />
       </td>
       <td className="py-4 pr-4 align-middle">
@@ -175,7 +180,7 @@ function MobileList({ rows }: { rows: RowMap }) {
       {TINA_PACKAGES.map((pkg) => (
         <li
           key={pkg.name}
-          className="rounded-xl border border-gray-200/80 bg-white/70 p-4 backdrop-blur-sm"
+          className={`rounded-xl border ${LINE.subtle} ${SURFACE.glassPanelStrong} p-4 backdrop-blur-sm`}
         >
           <div className="flex items-start justify-between gap-3">
             <PackageLink name={pkg.name} className={PACKAGE_LINK_BASE} />

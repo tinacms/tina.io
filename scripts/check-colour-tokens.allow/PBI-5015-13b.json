@@ -1,0 +1,12 @@
+[
+  {
+    "file": "components/blocks/VideoEmbed/LiteYouTube.tsx",
+    "pattern": "#f00",
+    "reason": "YouTube's play mark keeps its brand red in both modes (E6)."
+  },
+  {
+    "file": "components/blocks/VideoEmbed/LiteYouTube.tsx",
+    "pattern": "#fff",
+    "reason": "YouTube's play mark keeps its white triangle in both modes (E6)."
+  }
+]

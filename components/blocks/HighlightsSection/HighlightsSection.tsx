@@ -32,7 +32,7 @@ import {
 import { HiOutlineSparkles } from 'react-icons/hi2';
 import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
-import { BODY, CARD_TITLE } from '@/component/styles/typography';
+import { BODY, CARD_TITLE, INK, SURFACE } from '@/component/styles/typography';
 
 const icons = {
   FaClock,
@@ -68,10 +68,13 @@ const icons = {
 
 const HighlightsSection = ({ data }) => {
   const { highlightColumn, brandColorIcons } = data || {};
-  const iconColorClass = brandColorIcons ? 'text-brand-primary' : 'text-black';
+  // The CMS toggle keeps its options; each maps to a role (D18).
+  const iconColorClass = brandColorIcons ? INK.brand : INK.strong;
 
   return (
-    <div className="h-fit py-12 md:py-8 lg:py-16 bg-linear-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center w-full">
+    <div
+      className={`h-fit py-12 md:py-8 lg:py-16 bg-linear-to-r ${SURFACE.washTeal} bg-cover bg-center w-full`}
+    >
       {/* px-6 on mobile: the w-fit column otherwise sits flush against the
           viewport edge with no gutter. */}
       <div className="flex flex-col md:flex-row justify-center gap-12 lg:gap-36 md:gap-16 w-fit md:w-full mx-auto md:mx-0 px-6 md:px-0">
