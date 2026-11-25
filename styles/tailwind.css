@@ -280,6 +280,11 @@ pre.prism-code.language-json {
   background-color: var(--surface-card);
   @apply ring-1 ring-[var(--surface-card-edge)];
 }
+/* The card's fill with no ring, for an element that draws its own border
+   (a dialog, ChooserCard), so dark doesn't double the edge. */
+@utility surface-card-bordered {
+  background-color: var(--surface-card);
+}
 @utility surface-well {
   background-color: var(--surface-well);
 }
@@ -444,6 +449,12 @@ pre.prism-code.language-json {
 @utility surface-glass-panel-strong {
   background-color: var(--surface-glass-panel-strong);
 }
+/* Glass stops only (SURFACE.glass's colours), so a call site keeps its own
+   gradient direction and can layer a hover over it. */
+@utility surface-glass-stops {
+  @apply from-(--surface-glass-from) to-(--surface-glass-to);
+  backdrop-filter: var(--surface-glass-filter);
+}
 @utility surface-glass-hover {
   @apply from-(--surface-glass-hover-from);
 }
@@ -464,6 +475,9 @@ pre.prism-code.language-json {
 }
 @utility surface-table-fade {
   @apply from-(--table-fade-from) via-(--table-fade-via);
+}
+@utility surface-table-fade-hover {
+  @apply from-(--table-fade-hover-from) via-(--table-fade-hover-via);
 }
 @utility surface-table-row-hover {
   background-color: var(--table-row-hover);
@@ -521,6 +535,9 @@ pre.prism-code.language-json {
 @utility line-faint {
   border-color: var(--border-faint);
 }
+@utility line-glass {
+  border-color: var(--line-glass);
+}
 @utility line-terminal {
   border-color: var(--line-terminal);
 }
@@ -552,6 +569,9 @@ pre.prism-code.language-json {
    stroke-current. */
 @utility ink-brand {
   color: var(--brand-mark);
+}
+@utility ink-on-band {
+  color: var(--on-band);
 }
 @utility ink-logo-on-dark {
   color: var(--logo-on-dark);

@@ -54,7 +54,9 @@ export const SearchHeader = ({ query }: { query: string }) => {
             <MdFilterAlt size={16} /> FILTER
           </button> */}
           {isFilterOpen && (
-            <div className="absolute right-0 top-full bg-white shadow-xl rounded-md p-2 px-4 transition ease-out duration-150 z-10 w-40">
+            <div
+              className={`absolute right-0 top-full ${SURFACE.card} shadow-xl rounded-md p-2 px-4 transition ease-out duration-150 z-10 w-40`}
+            >
               {filterOptions.map((option) => (
                 <div
                   key={option}
@@ -79,7 +81,9 @@ export const SearchHeader = ({ query }: { query: string }) => {
             <MdSort size={16} /> SORT
           </button>
           {isSortOpen && (
-            <div className="absolute right-0 top-full bg-white shadow-xl rounded-md p-2 px-4 transition ease-out duration-150 z-10 w-40">
+            <div
+              className={`absolute right-0 top-full ${SURFACE.card} shadow-xl rounded-md p-2 px-4 transition ease-out duration-150 z-10 w-40`}
+            >
               {sortOptions.map((option) => (
                 <div
                   key={option}
