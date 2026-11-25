@@ -52,7 +52,7 @@ export const ChooserCard = (props: ChooserCardProps) => {
     stackOnMobile ? 'flex-col md:flex-row' : 'flex-row',
     selected
       ? `${SURFACE.info} ${LINE.selected}`
-      : `${SURFACE.card} ${LINE.subtle}`,
+      : `${SURFACE.cardBordered} ${LINE.subtle}`,
   ].join(' ');
 
   const content = (
