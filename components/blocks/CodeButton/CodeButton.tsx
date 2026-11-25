@@ -30,6 +30,7 @@ import {
   COMMAND,
   LINK,
   NAV_MENU_LINK,
+  SURFACE,
 } from '@/component/styles/typography';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
@@ -179,7 +180,9 @@ export const CodeButton = ({
                         className={`${COMMAND_MENU_ITEM} ${NAV_MENU_LINK}`}
                       >
                         {template.icon && (
-                          <span className="size-5 rounded-full overflow-hidden bg-strong flex items-center justify-center shrink-0">
+                          <span
+                            className={`size-5 rounded-full overflow-hidden ${SURFACE.commandIconChip} flex items-center justify-center shrink-0`}
+                          >
                             <Image
                               src={template.icon}
                               alt=""

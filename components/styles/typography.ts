@@ -347,6 +347,8 @@ export const INK = {
   strong: 'ink-strong',
   /** A mark in the subtle ink, like the heading-link icon. */
   subtle: 'ink-subtle',
+  /** A subtle mark that keeps its grey on a tinted surface (a chevron on a selected ChooserCard): slate-500 in light, the subtle ink in dark. */
+  subtleFixed: 'ink-subtle-fixed',
   /** A blue icon: blue-600 in light, the link blue in dark. */
   blue: 'ink-blue',
   /** An active blue icon: blue-800 in light, the link hover blue in dark. */

@@ -316,6 +316,8 @@ pre.prism-code.language-json {
    tokens in app/global.css so dark mode needs no class at the call site.
    SURFACE, LINE, INK and DECOR in typography.ts name these. Gradient roles
    set only the stops: the call site keeps bg-linear-to-* for direction.
+   A surface that sets an ink also sets the four text tokens to it, like the
+   chip surfaces, so a type role inside keeps the surface's ink.
    ────────────────────────────────────────────────────────────────────────── */
 
 /* Bands. Their text and icons take the on-dark white. */
@@ -332,14 +334,26 @@ pre.prism-code.language-json {
 }
 @utility surface-success-band {
   @apply from-(--band-success-from) to-(--band-success-to);
+  --text-strong: var(--on-band);
+  --text-body: var(--on-band);
+  --text-subtle: var(--on-band);
+  --text-label: var(--on-band);
   color: var(--on-band);
 }
 @utility surface-info-band {
   @apply from-(--band-info-from) to-(--band-info-to);
+  --text-strong: var(--on-band);
+  --text-body: var(--on-band);
+  --text-subtle: var(--on-band);
+  --text-label: var(--on-band);
   color: var(--on-band);
 }
 @utility surface-brand-flag {
   background-color: var(--band-flag);
+  --text-strong: var(--on-band);
+  --text-body: var(--on-band);
+  --text-subtle: var(--on-band);
+  --text-label: var(--on-band);
   color: var(--on-band);
 }
 @utility surface-recipe-panel {
@@ -367,7 +381,17 @@ pre.prism-code.language-json {
 @utility surface-menu-tab {
   @apply from-(--menu-tab-from) to-(--menu-tab-to) hover:text-(--menu-tab-ink-hover);
   border-color: var(--menu-tab-edge);
+  --text-strong: var(--menu-tab-ink);
+  --text-body: var(--menu-tab-ink);
+  --text-subtle: var(--menu-tab-ink);
+  --text-label: var(--menu-tab-ink);
   color: var(--menu-tab-ink);
+  @variant hover {
+    --text-strong: var(--menu-tab-ink-hover);
+    --text-body: var(--menu-tab-ink-hover);
+    --text-subtle: var(--menu-tab-ink-hover);
+    --text-label: var(--menu-tab-ink-hover);
+  }
 }
 @utility surface-scrim {
   background-color: var(--scrim);
@@ -496,6 +520,10 @@ pre.prism-code.language-json {
 }
 @utility surface-partner-premier {
   @apply from-(--partner-premier-from) via-(--partner-premier-via) to-(--partner-premier-to) ring-(--partner-premier-edge);
+  --text-strong: var(--partner-premier-ink);
+  --text-body: var(--partner-premier-ink);
+  --text-subtle: var(--partner-premier-ink);
+  --text-label: var(--partner-premier-ink);
   color: var(--partner-premier-ink);
 }
 @utility surface-info-faint {
@@ -600,6 +628,9 @@ pre.prism-code.language-json {
 }
 @utility ink-subtle {
   color: var(--text-subtle);
+}
+@utility ink-subtle-fixed {
+  color: var(--ink-subtle-fixed);
 }
 @utility ink-blue {
   color: var(--ink-blue);

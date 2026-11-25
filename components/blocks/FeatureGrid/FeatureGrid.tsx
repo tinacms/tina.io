@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
-import { BODY_SMALL, CARD_TITLE } from '@/component/styles/typography';
+import { BODY_SMALL, CARD_TITLE, SURFACE } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
@@ -14,8 +14,7 @@ const FeatureWrapper = ({ url, id, children }) => {
       : url;
   const isInternalLink = formattedUrl?.startsWith('/');
 
-  const className =
-    'h-full w-full group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-lg bg-linear-to-br from-white via-white to-white/50 shadow-lg';
+  const className = `h-full w-full group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-lg bg-linear-to-br ${SURFACE.glassBright} shadow-lg`;
 
   if (!formattedUrl) {
     return (
