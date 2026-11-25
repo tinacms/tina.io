@@ -280,6 +280,11 @@ pre.prism-code.language-json {
   background-color: var(--surface-card);
   @apply ring-1 ring-[var(--surface-card-edge)];
 }
+/* The card's fill with no ring, for an element that draws its own border
+   (a dialog, ChooserCard), so dark doesn't double the edge. */
+@utility surface-card-bordered {
+  background-color: var(--surface-card);
+}
 @utility surface-well {
   background-color: var(--surface-well);
 }

@@ -21,7 +21,13 @@ import {
   MENU_TRIGGER_ACTIVE,
   MENU_TRIGGER_HOVER,
 } from '@/component/styles/menu';
-import { LABEL, NAV_LINK, NAV_MENU_LINK } from '@/component/styles/typography';
+import {
+  INK,
+  LABEL,
+  NAV_LINK,
+  NAV_MENU_LINK,
+  SURFACE,
+} from '@/component/styles/typography';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { closeOnEscape } from '@/utils/closeOnEscape';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
@@ -84,7 +90,7 @@ const doubleNavItemDropDownString = 'doubleNavItemDropDown';
 const ExternalLinkIcon = () => (
   <BiLinkExternal
     aria-hidden="true"
-    className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1"
+    className={`${INK.externalLink} text-sm inline ml-1`}
   />
 );
 
@@ -281,7 +287,7 @@ function desktopNavItemMapper(
       return (
         <li
           key={`${index}-${item.href}`}
-          className={`group ${_navLinkClasses} border-blue-500`}
+          className={`group ${_navLinkClasses}`}
         >
           <Link
             href={item.href}
@@ -552,7 +558,7 @@ const MobileNavMenu = ({
           toggleMenu();
           menuTabRef.current?.focus();
         })}
-        className={`fixed top-0 right-0 h-full w-[300px] bg-linear-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
+        className={`fixed top-0 right-0 h-full w-[300px] bg-linear-to-t ${SURFACE.drawer} shadow-2xl z-50 transition ease-out duration-200 ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         } `}
       >
@@ -560,7 +566,7 @@ const MobileNavMenu = ({
           ref={menuTabRef}
           type="button"
           // Agreed exception: the menu tab keeps its own deliberate style.
-          className={`absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-ibm-plex whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer ${FOCUS_RING}`}
+          className={`absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-ibm-plex whitespace-nowrap leading-tight hover:shadow active:shadow-none border bg-linear-to-br ${SURFACE.menuTab} pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer ${FOCUS_RING}`}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           onClick={toggleMenu}
@@ -588,7 +594,7 @@ const MobileNavMenu = ({
             <div className="pb-4 pt-2">
               <Link href={'/'}>
                 <TinaIoLogoSvg
-                  className={`flex items-center h-auto fill-orange-500`}
+                  className={`flex items-center h-auto fill-current ${INK.brand}`}
                 />
               </Link>
             </div>
@@ -631,7 +637,7 @@ const MobileNavMenu = ({
       </nav>
 
       <div
-        className={`fixed top-0 left-0 w-full h-full bg-gray-900/70 z-30 ${
+        className={`fixed top-0 left-0 w-full h-full ${SURFACE.scrim} z-30 ${
           menuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
@@ -639,7 +645,9 @@ const MobileNavMenu = ({
         onClick={toggleMenu}
       ></div>
       <Link href={'/'}>
-        <TinaIoLogoSvg className={`flex items-center h-auto fill-orange-500`} />
+        <TinaIoLogoSvg
+          className={`flex items-center h-auto fill-current ${INK.brand}`}
+        />
       </Link>
       <div className="flex space-x-2 gap-2 cursor-pointer">
         {navItems
@@ -675,7 +683,9 @@ const DesktopNavMenu = ({
   return (
     <nav className="w-full max-w-7xl mx-auto flex items-center justify-between">
       <Link href={'/'}>
-        <TinaIoLogoSvg className={`flex items-center h-auto fill-orange-500`} />
+        <TinaIoLogoSvg
+          className={`flex items-center h-auto fill-current ${INK.brand}`}
+        />
       </Link>
       <ul className="flex gap-4 items-end justify-center mt-2">
         {navItems.map((item, index) => {
@@ -850,7 +860,7 @@ export function AppNavBar({ sticky = true }) {
         <div
           className={`absolute ${
             stuck && sticky
-              ? `xl:fixed shadow-sm bg-linear-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur-sm animate-slide-in top-0 p-4`
+              ? `xl:fixed shadow-sm bg-linear-to-r ${SURFACE.navGlass} backdrop-blur-sm animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
           } z-40 w-full lg:px-10 hidden xl:flex items-center justify-between`}
         >
