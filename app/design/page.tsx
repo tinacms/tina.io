@@ -1,4 +1,4 @@
-import { Copy, Search, X } from 'lucide-react';
+import { Copy, Search, Star, X } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { CodeButton } from '@/component/blocks/CodeButton/CodeButton';
@@ -27,6 +27,7 @@ import {
   FOOTER_LEGAL_LINK,
   FOOTER_LINK,
   HIGHLIGHT,
+  INK,
   LABEL,
   LINE,
   LINK,
@@ -40,6 +41,8 @@ import {
   TITLE_LINK,
 } from '@/component/styles/typography';
 import {
+  INK_GUIDE,
+  LINE_GUIDE,
   PAGE_BACKGROUND_ROLES,
   PAGE_BACKGROUNDS,
   ROLE_GROUPS,
@@ -431,12 +434,65 @@ export default function StyleGuidePage() {
           </Group>
 
           <Group
+            id="lines"
+            title="Lines"
+            intro="Put a LINE beside the border width and sides. Subtle for decoration, strong for anything you click or type in."
+          >
+            <GuideTable
+              columns={['Example', 'Line', 'Use for']}
+              widths={['w-1/6', 'w-1/4', 'w-7/12']}
+              rows={LINE_GUIDE.map((l) => ({
+                key: l.name,
+                cells: [
+                  <span
+                    key="example"
+                    className={`${LINE[l.name]} block size-10 rounded-md border-2`}
+                  />,
+                  <p key="name" className={CODE}>
+                    LINE.{l.name}
+                  </p>,
+                  <p key="use" className={BODY_SMALL}>
+                    {l.useFor}
+                  </p>,
+                ],
+              }))}
+            />
+          </Group>
+
+          <Group
+            id="inks"
+            title="Inks"
+            intro="Put an INK on an icon, logo or dot that isn't text. An SVG takes it with fill-current or stroke-current. Text uses a type role instead."
+          >
+            <GuideTable
+              columns={['Example', 'Ink', 'Use for']}
+              widths={['w-1/6', 'w-1/4', 'w-7/12']}
+              rows={INK_GUIDE.map((ink) => ({
+                key: ink.name,
+                cells: [
+                  <Star
+                    key="example"
+                    aria-hidden
+                    className={`${INK[ink.name]} size-6`}
+                  />,
+                  <p key="name" className={CODE}>
+                    INK.{ink.name}
+                  </p>,
+                  <p key="use" className={BODY_SMALL}>
+                    {ink.useFor}
+                  </p>,
+                ],
+              }))}
+            />
+          </Group>
+
+          <Group
             id="on-dark"
             title="On dark"
             intro="Put ON_DARK on a dark or orange container and keep the normal roles inside. Text turns white; SLUB and legal links turn white at 75%."
           >
             <div
-              className={`${ON_DARK} flex flex-wrap items-center gap-x-10 gap-y-4 rounded-xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
+              className={`${ON_DARK} ${SURFACE.footerBand} flex flex-wrap items-center gap-x-10 gap-y-4 rounded-xl bg-cover bg-center p-8`}
             >
               <span className={EYEBROW}>Product</span>
               <a className={FOOTER_LINK} href="#on-dark">
@@ -446,7 +502,7 @@ export default function StyleGuidePage() {
                 Join the herd for tips and news.
               </span>
               <input
-                className={`${FIELD} h-10 rounded-sm border border-white bg-white/10 px-3`}
+                className={`${FIELD} ${SURFACE.fieldOnDark} h-10 rounded-sm border px-3`}
                 placeholder="Email"
                 aria-label="Example field on dark"
               />
