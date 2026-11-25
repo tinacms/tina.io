@@ -1,0 +1,83 @@
+---
+seo:
+  title: 'Spit Happens: November 2026 News - New sign-in and safer saves'
+  description: 'November updates: TinaCloud sign-in now runs on WorkOS, rich-text components save what you type, required tags are checked and builds stop running out of files.'
+title: 'Spit Happens: November 2026 News - New sign-in and safer saves'
+date: '2026-11-27T00:00:00.000Z'
+author: 'The TinaCMS Team'
+prev: content/blog/2026-10-month-to-date.mdx
+next: ''
+---
+
+The herd has been busy again 🦙. November brought a new sign-in for TinaCloud, a run of rich-text fixes and a first look at TinaCMS v4. Here's what shipped between 1 and 26 November.
+
+## 📦 TinaCMS Updates
+
+### ✍️ Rich text that saves what you typed
+
+- **Quotes, backslashes and new lines:** Values in rich-text components that contain a quote, a backslash or a new line now save and load back unchanged. Values without those characters are saved exactly as before. ([#7958](https://github.com/tinacms/tinacms/pull/7958))
+- **Negative numbers and image lists:** A negative number no longer breaks the block, and image lists on rich-text components load back. ([#7958](https://github.com/tinacms/tinacms/pull/7958))
+- **Empty bullets:** A rich-text field with an empty bullet point saves again. ([#7951](https://github.com/tinacms/tinacms/pull/7951))
+
+**Developer note:** Number and boolean values on rich-text components must now be real numbers or booleans. If one isn't, the save fails with a message that names the field. Check the [`@tinacms/mdx` 2.4.2 release notes](https://github.com/tinacms/tinacms/releases/tag/%40tinacms/mdx%402.4.2) before upgrading.
+
+### 🏷️ Fewer snags while editing
+
+- **Required tags:** A required tags field now shows "Required" when it's empty, instead of saving with no tags. ([#7923](https://github.com/tinacms/tinacms/pull/7923))
+- **References in visual editing:** Clicking a reference in the preview focuses the reference field in the sidebar. ([#7994](https://github.com/tinacms/tinacms/pull/7994))
+- **Object lists:** Clicking a field that targets an object list no longer opens an empty field group.
+
+### 🛠️ For developers
+
+- **Builds on Cloudflare Workers:** `tinacms build` no longer fails with `EMFILE: too many open files` on hosts with a 1024 open-file limit, such as Cloudflare Workers Builds. ([#8019](https://github.com/tinacms/tinacms/pull/8019))
+- **Security update:** The CLI no longer pulls in a version of `@graphql-tools/utils` affected by [GHSA-7mx3-vvmw-hjmv](https://github.com/advisories/GHSA-7mx3-vvmw-hjmv). ([#7966](https://github.com/tinacms/tinacms/pull/7966))
+
+These changes are in `tinacms` 3.15.2, `@tinacms/cli` 4.0.5 and `@tinacms/mdx` 2.4.2.
+
+### 🔜 Merged, coming in the next release
+
+These are merged into TinaCMS but not released yet:
+
+- **SvelteKit support:** A new `@tinacms/sveltekit` package and example project bring visual editing to SvelteKit. ([#7873](https://github.com/tinacms/tinacms/pull/7873))
+- **No more branch name clashes:** When a generated branch name is taken, TinaCMS picks a new one for you. ([#8038](https://github.com/tinacms/tinacms/pull/8038))
+- **Clearer login errors:** If TinaCloud sign-in fails after the redirect, the login modal shows what went wrong instead of a busy button. ([#8080](https://github.com/tinacms/tinacms/pull/8080))
+- **Folders with spaces:** `tinacms dev` and `tinacms build` work when a parent folder of your project has a space in its name. ([#8098](https://github.com/tinacms/tinacms/pull/8098))
+
+## ☁️ TinaCloud Updates
+
+### 🔐 New sign-in, now live
+
+The move to our new authentication system is done. TinaCloud now uses WorkOS for sign-in instead of AWS Cognito.
+
+- If you signed in with a password, reset it the next time you log in.
+- If you used two-factor authentication, enrol again.
+
+Read [the authentication changes post](/blog/october-tinacloud-auth-changes) for the details.
+
+### 👤 Account and dashboard
+
+- **Delete your account:** You can delete your own TinaCloud account from the dashboard.
+- **Tidier security settings:** The MFA card now matches the rest of the Security settings.
+- **Clearer notices:** The dashboard has new screens for paused sign-ups, account setup, maintenance and disabled accounts.
+- **Help for older versions:** If you sign in from an older TinaCMS version, the login points you to the authentication changes post.
+
+## 🦙 TinaCMS v4: where we're at
+
+v4 is still in progress, but there's a lot to show. We wrote up the new Home screen, drafts that survive a reload, **Resolve N errors** and **Save all**, and the new plugin model. Read [TinaCMS v4: Where we're at](/blog/tinacms-v4-progress).
+
+## 🌐 Around tina.io
+
+- **Pricing and Payment Terms:** A new [Pricing and Payment Terms](/pricing-and-payment-terms) page, linked from the Terms of Service.
+- **Breadcrumbs on the blog:** Blog posts now show where you are on the site.
+
+## Keep up with socials
+
+Follow along for product updates, tutorials and team news:
+
+- X: [@tinacms](https://x.com/tinacms)
+- LinkedIn: [TinaCMS](https://www.linkedin.com/company/tinacms)
+- YouTube: [@TinaCMS](https://youtube.com/@TinaCMS)
+- Bluesky: [@tina.io](https://bsky.app/profile/tina.io)
+- Discord: [Come chat with us!](https://tina.io/discord)
+
+Till next time 👋🦙
