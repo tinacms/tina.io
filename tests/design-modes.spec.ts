@@ -36,6 +36,13 @@ const VIEWPORT_HEIGHT = 900;
 const NAVIGATION_TIMEOUT_MS = 90_000;
 /** A section run walks and screenshots every section on a dev server. */
 const SECTION_RUN_TIMEOUT_MS = 240_000;
+/**
+ * How long a section screenshot may take before the run goes on without it.
+ * Headless Chromium can stall painting /design at phone width (over 20,000px
+ * tall, with fixed page backgrounds), so a screenshot is evidence for people,
+ * never the check itself: the section assertions are.
+ */
+const SCREENSHOT_TIMEOUT_MS = 10_000;
 
 /** Sub-pixel rounding allowed before a box counts as past the viewport edge. */
 const EDGE_TOLERANCE_PX = 0.5;
@@ -211,20 +218,31 @@ for (const mode of MODES) {
 
       const reports = await inspectSections(page, EDGE_TOLERANCE_PX);
       expect(reports.length, 'sections on /design').toBeGreaterThan(0);
+      let screenshots = true;
 
       for (const report of reports) {
         await test.step(`#${report.id}`, async () => {
-          // The screen at the section's top, not an element or full-page
-          // screenshot: at phone width the page is over 20,000px tall and
-          // those can stall the run. The assertions below are the check.
+          // The screen at the section's top. After one stalled screenshot the
+          // run skips the rest and notes it (SCREENSHOT_TIMEOUT_MS).
           await page
             .locator(`section#${report.id}`)
             .evaluate((section) =>
               section.scrollIntoView({ block: 'start', behavior: 'instant' }),
             );
-          await page.screenshot({
-            path: testInfo.outputPath(`${report.id}-${mode}-${width}.png`),
-          });
+          if (screenshots) {
+            await page
+              .screenshot({
+                path: testInfo.outputPath(`${report.id}-${mode}-${width}.png`),
+                timeout: SCREENSHOT_TIMEOUT_MS,
+              })
+              .catch(() => {
+                screenshots = false;
+                testInfo.annotations.push({
+                  type: 'screenshots skipped',
+                  description: `from #${report.id} at ${width}px in ${mode}: headless Chromium stalled painting the page`,
+                });
+              });
+          }
 
           expect
             .soft(report.empty, `#${report.id} has no content in ${mode}`)
