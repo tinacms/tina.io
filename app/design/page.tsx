@@ -652,7 +652,7 @@ export default function StyleGuidePage() {
           <Group
             id="social-links"
             title="Social links"
-            intro="SocialLinks: button size in the neutral outline (white, a light slate border that darkens on hover), an ink label and each network’s own logo colour. Not a button level, so a row of them needs no Primary."
+            intro="SocialLinks: button size in the neutral outline (white, a light slate border that darkens on hover), an ink label and each network’s own logo colour; in dark mode every logo is near-white. Not a button level, so a row of them needs no Primary."
           >
             <SocialLinks links={TINA_SOCIAL_LINKS} />
           </Group>
@@ -686,7 +686,7 @@ export default function StyleGuidePage() {
           <Group
             id="neutral-outline"
             title="Neutral outline"
-            intro="NEUTRAL_OUTLINE: white with a light slate border that darkens on hover. The command field, social links, the current page number and the post cards all wear it, so they read as one family next to the orange and blue buttons."
+            intro="NEUTRAL_OUTLINE: white with a light slate border that darkens on hover; in dark mode the card with the strong edge, lightening on hover. The command field, social links, the current page number and the post cards all wear it, so they read as one family next to the orange and blue buttons."
           >
             <div className={`${NEUTRAL_OUTLINE} max-w-sm rounded-lg p-4`}>
               <p className={BODY_SMALL}>Hover to see the border darken.</p>
@@ -719,7 +719,7 @@ export default function StyleGuidePage() {
           <Group
             id="menus"
             title="Dropdown menus"
-            intro="Nav menus are pale cyan (MENU_PANEL, MENU_ITEM); the starter menu under the command field is white (COMMAND_MENU, COMMAND_MENU_ITEM). Both open on hover or click, cross the gap under the trigger on padding, are hidden from the keyboard when closed (MENU_REVEAL), and close on Escape."
+            intro="Nav menus are pale cyan (MENU_PANEL, MENU_ITEM); the starter menu under the command field is white (COMMAND_MENU, COMMAND_MENU_ITEM). In dark mode both are the card. Both open on hover or click, cross the gap under the trigger on padding, are hidden from the keyboard when closed (MENU_REVEAL), and close on Escape."
           >
             <div className="flex flex-wrap items-start gap-8">
               <ul className={`${MENU_PANEL} w-56`}>
@@ -758,7 +758,7 @@ export default function StyleGuidePage() {
           <Group
             id="segmented-toggles"
             title="Segmented toggles"
-            intro="SegmentedToggle: one choice from two or three short options, like Monthly / Annually. A frosted track with square corners, link-blue options, and a Secondary blue thumb that slides under the selected one. Each option is a pressed button."
+            intro="SegmentedToggle: one choice from two or three short options, like Monthly / Annually. A frosted track with square corners, link-blue options, and a Secondary blue thumb that slides under the selected one. In dark mode the track is the card with the strong edge, and the options take the body ink. Each option is a pressed button."
           >
             <SegmentedToggleExample />
           </Group>
