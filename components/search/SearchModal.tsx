@@ -186,7 +186,7 @@ export const SearchModal = ({
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent
-        className={`${SURFACE.card} w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 max-w-5xl rounded-2xl text-left p-0`}
+        className={`${SURFACE.cardBordered} w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 max-w-5xl rounded-2xl text-left p-0`}
       >
         <div className="flex flex-col h-full">
           {/* Search Input */}
