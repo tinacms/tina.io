@@ -75,7 +75,7 @@ export const Card = ({ cardItem, onHover }) => {
 
   return (
     <div
-      className="relative px-4 py-4 rounded-xl group flex flex-col lg:gap-8 lg:flex-row bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
+      className={`relative px-4 py-4 rounded-xl group flex flex-col lg:gap-8 lg:flex-row ${SURFACE.frosted} break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden`}
       onMouseEnter={() => onHover(cardItem.index)}
       onMouseLeave={() => onHover(null)}
     >

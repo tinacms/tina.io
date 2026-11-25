@@ -72,6 +72,6 @@ export const BUTTON_EXCEPTIONS = [
   'Video play overlays, social icons and logos.',
   'Clickable chips and badges (What’s New contributors and commits, the hero news badge): typography surfaces.',
   'Choice cards (Book a demo locations, language picker).',
-  'Contrast: the Primary and Secondary gradients keep white labels at 3.8:1 and 3.7:1 on their light ends, and the starter menu’s hovered row is orange-600 on light grey at 4.3:1. Agreed with design; don’t darken without checking.',
+  'Contrast: the Primary and Secondary gradients keep white labels at 3.8:1 and 3.7:1 on their light ends in both modes, and the starter menu’s hovered row is orange-600 on light grey at 4.3:1. Agreed with design; don’t darken without checking.',
   'Third-party widgets: the chatbot, YouTube player, Giscus comments and HubSpot forms.',
 ];
