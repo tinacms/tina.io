@@ -118,7 +118,7 @@ Every piece of text uses one type role. Role names live in `components/styles/ty
 - **Colour follows the surface:** on a dark or orange container, put `ON_DARK` on the container; on a chip, pill or coloured row, put a `SURFACE.*` on it. The roles inside recolour themselves. Only the page title is orange.
 - **Rich text:** wrap markdown in `RICH_TEXT` (`RichTextWrapper` and `DocsTextWrapper` already do). The styled-components stylesheets `components/styles/RichText.tsx` and `DocsRichText.tsx` hold spacing only.
 - **Fonts** come with the roles. IBM Plex Sans ships 500 and 600 only, so headings have no bold.
-- **Tokens:** components name roles, `SURFACE.*` and `ON_DARK`, never colour tokens, palette shades or hex values. Primitives → semantic tokens → roles, each layer pointing only at the one before. How to use them: *Colour*.
+- **Tokens:** components name roles, `SURFACE.*`, `LINE.*`, `INK.*`, `DECOR.*` and `ON_DARK`, never colour tokens, palette shades or hex values. Primitives → semantic tokens → roles, each layer pointing only at the one before. How to use them: *Colour*.
 - **No role fits:** add one to `styles/tailwind.css`, `typography.ts` and `typography.guide.ts`, then use it.
 
 ## Colour
@@ -157,7 +157,7 @@ Every button is one of three levels, all one size (#4964). Level names live in `
 - **Neutral outline:** white with a light slate border that darkens on hover (`NEUTRAL_OUTLINE`); the command field, social links, the current page number and post cards share it.
 - **Command field:** `CodeButton` only: `COMMAND_FIELD` and `COMMAND_COPY` (`menu.ts`) with the `COMMAND` type role for the command.
 - **CMS:** the Actions `variant` and Modal Button `color` fields hold a level (`primary`, `secondary`, `tertiary`; Actions also `textLink`). New buttons default to Primary, and `levelOf()` treats anything that isn't a level as Primary. There are no shape, size, arrow or icon fields; don't add them back.
-- **New level, piece or exception:** add the token to `app/global.css`, the spec to `styles/tailwind.css`, the name to `components/styles/*` (or a component in `components/ui`), a section on `/design`, and a line here, together.
+- **New level, piece or exception:** add the token to `app/global.css` (`:root`, `.dark` and `.light`), the spec to `styles/tailwind.css`, the name to `components/styles/*` (or a component in `components/ui`), a section on `/design`, and a line here, together.
 
 ## CI Pipeline
 
