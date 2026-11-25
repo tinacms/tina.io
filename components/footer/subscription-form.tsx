@@ -8,6 +8,7 @@ import {
   FIELD,
   ON_DARK,
   SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 import { addToMailchimp } from '@/utils/mailchimp_helper';
 import { Button } from '../ui/Button';
@@ -94,7 +95,7 @@ export const SubscriptionForm = ({ props }) => {
         <div className="flex flex-col gap-2.5 w-full">
           <div className="flex gap-2.5">
             <input
-              className={`w-full px-2 py-2 border rounded-sm border-white bg-white/10 ${FIELD}`}
+              className={`w-full px-2 py-2 border rounded-sm ${SURFACE.fieldOnDark} ${FIELD}`}
               placeholder="First name"
               name="firstName"
               type="text"
@@ -105,7 +106,7 @@ export const SubscriptionForm = ({ props }) => {
               disabled={isSubmitting}
             />
             <input
-              className={`w-full px-2 py-2 bg-white/10 border rounded-sm border-white ${FIELD}`}
+              className={`w-full px-2 py-2 border rounded-sm ${SURFACE.fieldOnDark} ${FIELD}`}
               placeholder="Last name"
               name="lastName"
               type="text"
@@ -118,7 +119,7 @@ export const SubscriptionForm = ({ props }) => {
           </div>
 
           <input
-            className={`w-full px-2 py-2 bg-white/10 border rounded-sm border-white ${FIELD}`}
+            className={`w-full px-2 py-2 border rounded-sm ${SURFACE.fieldOnDark} ${FIELD}`}
             placeholder="Email"
             name="email"
             type="email"
@@ -129,7 +130,7 @@ export const SubscriptionForm = ({ props }) => {
             disabled={isSubmitting}
           />
           <textarea
-            className={`w-full px-2 py-2 bg-white/10 border rounded-sm border-white ${FIELD}`}
+            className={`w-full px-2 py-2 border rounded-sm ${SURFACE.fieldOnDark} ${FIELD}`}
             placeholder="Notes"
             name="notes"
             autoComplete="off"
