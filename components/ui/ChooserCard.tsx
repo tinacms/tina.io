@@ -73,7 +73,7 @@ export const ChooserCard = (props: ChooserCardProps) => {
         <span className={`block ${BODY_SMALL}`}>{description}</span>
       </span>
       <span className="shrink-0">
-        <FaChevronRight className={`h-6 w-6 ${INK.subtle}`} />
+        <FaChevronRight className={`h-6 w-6 ${INK.subtleFixed}`} />
       </span>
     </>
   );
