@@ -152,7 +152,7 @@ const GuideTable = ({
   rows: { key: string; cells: ReactNode[] }[];
 }) => (
   <div
-    className={`${SURFACE.card} overflow-hidden rounded-xl border ${LINE.subtle}`}
+    className={`${SURFACE.cardBordered} overflow-hidden rounded-xl border ${LINE.subtle}`}
   >
     <table
       className={`w-full text-left max-md:block ${widths ? 'md:table-fixed' : ''}`}
