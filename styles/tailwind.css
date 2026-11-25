@@ -629,6 +629,9 @@ pre.prism-code.language-json {
 @utility ink-subtle {
   color: var(--text-subtle);
 }
+@utility ink-subtle-fixed {
+  color: var(--ink-subtle-fixed);
+}
 @utility ink-blue {
   color: var(--ink-blue);
 }
