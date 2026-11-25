@@ -5,6 +5,7 @@ import {
   BODY_SMALL,
   CARD_TITLE,
   EYEBROW,
+  INK,
   LABEL,
   SECTION_TITLE,
   SURFACE,
@@ -46,12 +47,12 @@ export function ProfessionalServices({
         {services?.map((service, index) => (
           <div
             key={service?.title || `service-${index}`}
-            className="h-full flex flex-col bg-gradient-to-br from-white/10 to-white/40 shadow-md rounded-lg p-6"
+            className={`h-full flex flex-col ${SURFACE.glass} shadow-md rounded-lg p-6`}
           >
             {service?.icon && (
               <ServiceIcon
                 name={service.icon}
-                className="text-orange-500 w-12 h-12"
+                className={`${INK.brand} w-12 h-12`}
               />
             )}
             <h3 className={`${CARD_TITLE} mt-3`}>{service?.title}</h3>

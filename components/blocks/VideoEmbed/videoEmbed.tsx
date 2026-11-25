@@ -1,7 +1,11 @@
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { BODY_MUTED, SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY_MUTED,
+  SECTION_TITLE,
+  SURFACE,
+} from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
 import { LiteYouTube } from './LiteYouTube';
@@ -20,7 +24,7 @@ export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
     return (
       <div
         className={cn(
-          'relative w-full bg-gray-200 flex items-center justify-center h-[400px]',
+          `relative w-full ${SURFACE.mediaPlaceholder} flex items-center justify-center h-[400px]`,
           className,
         )}
       >

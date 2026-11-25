@@ -2,14 +2,21 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { BODY_MUTED, QUOTE } from '@/component/styles/typography';
+import {
+  BODY_MUTED,
+  DECOR,
+  QUOTE,
+  SURFACE,
+} from '@/component/styles/typography';
 import GradGlow from '../../../public/svg/grad-glow.svg';
 import { Container } from '../Container';
 
 // biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
 export const QuoteBlock = ({ data, index }) => {
   return (
-    <section className="w-full relative z-10 py-16 lg:py-24 bg-linear-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center">
+    <section
+      className={`w-full relative z-10 py-16 lg:py-24 bg-linear-to-r ${SURFACE.washTeal} bg-cover bg-center`}
+    >
       <Container width="wide">
         <div className="flex flex-col items-center lg:justify-center gap-12 lg:gap-36 perspective lg:flex-row">
           <div className="lg:w-1/5 flex flex-col gap-6 lg:gap-8  max-w-sm">
@@ -36,7 +43,9 @@ export const QuoteBlock = ({ data, index }) => {
           </div>
         </div>
       </Container>
-      <GradGlow className="absolute w-full h-auto bottom-0 left-0 -z-1 opacity-50 pointer-events-none" />
+      <GradGlow
+        className={`absolute w-full h-auto bottom-0 left-0 -z-1 ${DECOR.skyGlow} pointer-events-none`}
+      />
     </section>
   );
 };

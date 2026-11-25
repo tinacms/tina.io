@@ -8,7 +8,7 @@ export const CardGrid = ({ props }) => {
         <a
           key={`${card.title}-${index}`}
           href={card.link}
-          className="flex flex-col justify-between p-6 border rounded-lg group bg-transparent hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out"
+          className="flex flex-col justify-between p-6 border rounded-lg group bg-transparent hover:shadow-lg hover:surface-card-bordered hover:scale-[1.01] transition-all duration-150 ease-out"
         >
           <h2 className={`${CARD_TITLE} mb-2`}>{card.title}</h2>
 
