@@ -570,7 +570,7 @@ export default function StyleGuidePage() {
             intro="Put ON_DARK on the orange or dark container and keep the normal levels inside. Primary turns white with an orange label; Tertiary turns into a white outline."
           >
             <div
-              className={`${ON_DARK} rounded-xl bg-[url('/svg/orange-bg.svg')] bg-cover bg-center p-8`}
+              className={`${ON_DARK} ${SURFACE.footerBand} rounded-xl bg-cover bg-center p-8`}
             >
               <ButtonGroup>
                 <Button level="primary">Accept All</Button>
@@ -582,7 +582,7 @@ export default function StyleGuidePage() {
           <Group
             id="button-states"
             title="States"
-            intro="Hover lifts 1px with a soft shadow, and pressing drops it back. Keyboard focus shows a 2px ink ring (tab to it). Disabled is 60% with no hover."
+            intro="Hover lifts 1px with a soft shadow, and pressing drops it back. Keyboard focus shows a 2px ink ring, near-white in dark mode (tab to it). Disabled is 60% with no hover."
           >
             <ButtonGroup>
               <Button level="primary">Schedule Call</Button>
@@ -595,7 +595,7 @@ export default function StyleGuidePage() {
           <Group
             id="icon-buttons"
             title="Icon buttons"
-            intro="ICON_BUTTON for close, copy, carousel arrows and search: a 44px tap area, a 20px icon at a 2px stroke, slate, with a light square on hover. White on dark. Always add an aria-label."
+            intro="ICON_BUTTON for close, copy, carousel arrows and search: a 44px tap area, a 20px icon at a 2px stroke, slate, with a light square on hover. In dark mode it takes the body ink and hovers to the well. White inside ON_DARK. Always add an aria-label."
           >
             <div className="flex flex-wrap items-center gap-2">
               <button type="button" className={ICON_BUTTON} aria-label="Close">
@@ -605,7 +605,7 @@ export default function StyleGuidePage() {
                 <Search />
               </button>
               <span
-                className={`${ON_DARK} inline-flex rounded-lg bg-[url('/svg/orange-bg.svg')] bg-cover p-1`}
+                className={`${ON_DARK} ${SURFACE.footerBand} inline-flex rounded-lg bg-cover p-1`}
               >
                 <button
                   type="button"
