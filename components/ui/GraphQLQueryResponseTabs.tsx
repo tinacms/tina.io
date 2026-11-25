@@ -1,11 +1,18 @@
 import { useState } from 'react';
-import { CODE_PANEL, TAB, TAB_LIST } from '@/component/styles/tabs';
+import {
+  CODE_PANEL,
+  CODE_PANEL_FILL,
+  TAB,
+  TAB_LIST,
+} from '@/component/styles/tabs';
 import { Prism } from '../styles/Prism';
 
 export const GraphQLQueryResponseTabs = ({ ...props }) => {
   const [isQuery, setIsQuery] = useState(!props.preselectResponse);
 
-  const overlay = <div className={`${CODE_PANEL} w-full grow rounded-md`} />;
+  const overlay = (
+    <div className={`${CODE_PANEL_FILL} w-full grow rounded-md`} />
+  );
   const containerStyling =
     'w-full flex col-start-1 row-start-1 overflow-x-scroll flex-col';
 
@@ -49,6 +56,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
             value={props.query?.replaceAll('#', ' ') || ''}
             lang={'graphql'}
             theme="nightOwl"
+            panel="fill"
           />
           {overlay}
         </div>
@@ -66,6 +74,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
             value={props.response?.replaceAll('#', ' ') || ''}
             lang={'json'}
             theme="nightOwl"
+            panel="fill"
           />
           {overlay}
         </div>
