@@ -1,0 +1,7 @@
+[
+  {
+    "file": "components/blocks/Events/Events.template.tsx",
+    "pattern": "text-red-600",
+    "reason": "TinaCMS field UI: the tip link renders only in /admin, inside the CMS editor, never on a site page, so it follows the editor's colours rather than the site's tokens."
+  }
+]
