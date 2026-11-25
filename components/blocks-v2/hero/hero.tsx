@@ -29,7 +29,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     <Container size="medium" className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div
         className={cn(
-          'flex @container items-center flex-col gap-8  border-red-500 py-10',
+          'flex @container items-center flex-col gap-8 py-10',
           bannerFilled && 'pt-0',
         )}
       >

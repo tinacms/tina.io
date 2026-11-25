@@ -1,5 +1,9 @@
 import Image from 'next/image';
-import { CODE_ILLUSTRATION } from '@/component/styles/typography';
+import {
+  CODE_ILLUSTRATION,
+  LINE,
+  SURFACE,
+} from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
 
 type TerminalPanelProps = {
@@ -8,7 +12,7 @@ type TerminalPanelProps = {
 
 function TerminalOutput() {
   return (
-    <div className="bg-white px-5 py-4 space-y-3">
+    <div className={`${SURFACE.terminal} px-5 py-4 space-y-3`}>
       <div>
         <p className={CODE_ILLUSTRATION}>
           <span className="text-[#9ca3af]">$</span>{' '}
@@ -72,24 +76,36 @@ export function TerminalPanel({ secondaryImage }: TerminalPanelProps) {
           />
         </div>
       )}
-      <div className="bg-white rounded-[18px] shadow-[0px_6px_24px_0px_rgba(0,0,0,0.07)] w-full max-w-[425px] overflow-hidden">
-        <div className="bg-[#f9fafb] border-b border-black/10 flex gap-4 h-[38px] items-center px-4 shrink-0">
+      <div
+        className={`${SURFACE.terminal} rounded-[18px] shadow-[0px_6px_24px_0px_rgba(0,0,0,0.07)] w-full max-w-[425px] overflow-hidden`}
+      >
+        <div
+          className={`${SURFACE.terminalBar} border-b ${LINE.terminal} flex gap-4 h-[38px] items-center px-4 shrink-0`}
+        >
           <div className="flex gap-2 items-center p-1">
-            <div className="size-3 rounded-full bg-[#ff736a] border border-black/10" />
-            <div className="size-3 rounded-full bg-[#febc2e] border border-black/10" />
-            <div className="size-3 rounded-full bg-[#19c332] border border-black/10" />
+            <div
+              className={`size-3 rounded-full bg-[#ff736a] border ${LINE.terminal}`}
+            />
+            <div
+              className={`size-3 rounded-full bg-[#febc2e] border ${LINE.terminal}`}
+            />
+            <div
+              className={`size-3 rounded-full bg-[#19c332] border ${LINE.terminal}`}
+            />
           </div>
           <span className={`${CODE_ILLUSTRATION} text-[#acb2bc]`}>
             ~/my-tina-site
           </span>
         </div>
         <TerminalOutput />
-        <div className="bg-[#f9fafb] border-t border-black/10 flex items-center justify-center gap-5 h-[38px] px-10 shrink-0">
+        <div
+          className={`${SURFACE.terminalBar} border-t ${LINE.terminal} flex items-center justify-center gap-5 h-[38px] px-10 shrink-0`}
+        >
           <div className="flex items-center gap-2">
             <div
               className={cn(
                 'size-2 rounded-full bg-[#19c332]',
-                'border border-black/10',
+                `border ${LINE.terminal}`,
               )}
             />
             <span className={`${CODE_ILLUSTRATION} text-[#19c332]`}>
@@ -116,7 +132,7 @@ export function TerminalPanel({ secondaryImage }: TerminalPanelProps) {
             <div
               className={cn(
                 'size-2 rounded-full bg-[#ec4815]',
-                'border border-black/10',
+                `border ${LINE.terminal}`,
               )}
             />
             <span className={`${CODE_ILLUSTRATION} text-orange-500`}>

@@ -12,9 +12,11 @@ import { ICON_BUTTON } from '@/component/styles/buttons';
 import {
   BODY,
   BODY_SMALL,
+  INK,
   ON_DARK,
   SECTION_TITLE,
   SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 import { TextLink } from '@/component/ui/TextLink';
 import { splitOneAndJoin } from './CompareBox.template';
@@ -90,10 +92,12 @@ const CriteriaCard = ({ criteriaItems }) => {
           style={commonHeightStyle}
         >
           <div className="group relative flex-shrink-0 flex items-center mr-1">
-            <IoMdInformationCircleOutline className="mr-1 text-orange-500 text-xl" />
+            <IoMdInformationCircleOutline
+              className={`mr-1 ${INK.brand} text-xl`}
+            />
             <div className="hidden group-hover:block absolute left-0 top-full pt-2 z-20">
               <div
-                className={`${BODY_SMALL} relative shadow-xl bg-white p-2 rounded-lg xl:w-72 w-40 break-words text-center`}
+                className={`${BODY_SMALL} relative shadow-xl ${SURFACE.tooltip} p-2 rounded-lg xl:w-72 w-40 break-words text-center`}
               >
                 {item.description}
               </div>
@@ -339,7 +343,9 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
 
   return (
     <div className="md:px-10 lg:px-10 rounded-lg w-full">
-      <div className="px-8 py-8 md:px-8 bg-linear-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
+      <div
+        className={`px-8 py-8 md:px-8 ${SURFACE.frosted} break-inside-avoid rounded-xl shadow-2xl`}
+      >
         <h2
           data-tina-field={tinaField(data, 'heading')}
           className={`${SECTION_TITLE} pl-3 flex items-center text-center justify-center px-2 mt-10 pb-8`}
@@ -405,12 +411,10 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
         <style jsx>{styles}</style>
         <style jsx global>{`
           .slick-next:before {
-            color: black !important;
             content: '→' !important;
           }
 
           .slick-prev:before {
-            color: black !important;
             content: '←' !important;
           }
 
