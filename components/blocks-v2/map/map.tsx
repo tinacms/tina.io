@@ -12,7 +12,9 @@ import { FOCUS_RING } from '@/component/styles/buttons';
 import {
   BODY_SMALL,
   CAPTION,
+  INK,
   LABEL,
+  LINE,
   LINK,
   SECTION_TITLE,
   SUB_HEADING,
@@ -233,9 +235,7 @@ const AccordionItem = ({
   return (
     <li>
       <div
-        className={
-          'group flex flex-col p-2 transition-all duration-300 rounded-md shadow-md border border-white/30 bg-gradient-to-tr from-white/10 to-white/40 hover:from-blue-500/10 hover:to-white/40'
-        }
+        className={`group flex flex-col p-2 transition-all duration-300 rounded-md shadow-md border ${LINE.glass} bg-gradient-to-tr ${SURFACE.glassStops} hover:surface-glass-hover`}
       >
         <button
           type="button"
@@ -244,7 +244,7 @@ const AccordionItem = ({
           className={`group flex cursor-pointer pl-2 justify-between w-full text-left rounded-md ${FOCUS_RING}`}
         >
           <span className={BODY_SMALL}>{office.addressLocality}</span>
-          <span className="flex items-center justify-center text-black">
+          <span className={`flex items-center justify-center ${INK.strong}`}>
             <FaChevronRight
               aria-hidden="true"
               className={`transition-transform duration-300 ${currentlySelected ? 'rotate-90' : ''}`}
@@ -348,34 +348,6 @@ export const OfficeMap = ({ data }: { data: PageBlocksMap }) => {
             aria-label="World map showing office locations"
           >
             <title>World map showing office locations</title>
-            <defs>
-              <filter
-                x="-0.05"
-                y="-0.05"
-                width="1.1"
-                height="1.1"
-                id="notSelected"
-              >
-                <feFlood floodColor="#414141" result="bg" />
-                <feMerge>
-                  <feMergeNode in="bg" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-              <filter
-                x="-0.05"
-                y="-0.05"
-                width="1.1"
-                height="1.1"
-                id="selected"
-              >
-                <feFlood floodColor="#c43f3e" result="bg" />
-                <feMerge>
-                  <feMergeNode in="bg" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
             {Object.entries(allCountries).map(([countryKey, pathData]) => {
               const isSelected = selectedCountriesSet.has(
                 countryKey as Country,
@@ -391,10 +363,10 @@ export const OfficeMap = ({ data }: { data: PageBlocksMap }) => {
                   d={pathData}
                   className={
                     isHighlighted
-                      ? 'fill-[#ea6d43]'
+                      ? INK.mapMarker
                       : isBaseSelected
-                        ? 'fill-[#ea6d43] opacity-50'
-                        : 'fill-gray-300'
+                        ? `${INK.mapMarker} opacity-50`
+                        : INK.mapLand
                   }
                 />
               );
