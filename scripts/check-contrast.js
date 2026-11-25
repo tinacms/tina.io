@@ -7,7 +7,7 @@
  *   pnpm check:contrast -- --mode=light     one mode (light | dark | both)
  *   pnpm check:contrast -- --pairs=<file> --allow=<file>
  *
- * The bar (D7): text 4.5:1, large text 3:1 (24px+, or 18.66px+ bold),
+ * The bar: text 4.5:1, large text 3:1 (24px+, or 18.66px+ bold),
  * interactive edges 3:1 (field borders, button outlines, focus rings, toggle
  * states). Decorative dividers and table lines, disabled states and the
  * shimmer are exempt: they print their ratio but never fail.

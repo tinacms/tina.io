@@ -183,13 +183,13 @@ describe('check:colour-tokens', () => {
       'const a = "#5865f2 text-gray-500 #ff0000";\n',
     );
     write(
-      'scripts/check-colour-tokens.allow/PBI-5015-12.json',
+      'scripts/check-colour-tokens.allow/site-chrome.json',
       JSON.stringify([
         { file: 'components/Brand.tsx', pattern: '#5865f2', reason: 'Brand' },
       ]),
     );
     write(
-      'scripts/check-colour-tokens.allow/PBI-5015-13.json',
+      'scripts/check-colour-tokens.allow/blocks-panels.json',
       JSON.stringify([
         {
           file: 'components/Brand.tsx',
@@ -201,10 +201,10 @@ describe('check:colour-tokens', () => {
     const partial = run();
     expect(partial.status).toBe(1);
     expect(partial.out).toContain(
-      'components/Brand.tsx:1  #5865f2  (scripts/check-colour-tokens.allow/PBI-5015-12.json)',
+      'components/Brand.tsx:1  #5865f2  (scripts/check-colour-tokens.allow/site-chrome.json)',
     );
     expect(partial.out).toContain(
-      'components/Brand.tsx:1  text-gray-500  (scripts/check-colour-tokens.allow/PBI-5015-13.json)',
+      'components/Brand.tsx:1  text-gray-500  (scripts/check-colour-tokens.allow/blocks-panels.json)',
     );
     expect(partial.out).toMatch(/^components\/Brand\.tsx:1 {2}#ff0000$/m);
 
@@ -223,19 +223,19 @@ describe('check:colour-tokens', () => {
   });
 
   it('names the allow file that is broken', () => {
-    write('scripts/check-colour-tokens.allow/PBI-5015-14.json', '[{');
+    write('scripts/check-colour-tokens.allow/blog.json', '[{');
     const broken = run();
     expect(broken.status).toBe(2);
     expect(broken.out).toContain(
-      'scripts/check-colour-tokens.allow/PBI-5015-14.json: not valid JSON',
+      'scripts/check-colour-tokens.allow/blog.json: not valid JSON',
     );
 
     write(
-      'scripts/check-colour-tokens.allow/PBI-5015-14.json',
+      'scripts/check-colour-tokens.allow/blog.json',
       JSON.stringify([{ file: 'components/A.tsx', pattern: '#fff' }]),
     );
     expect(run().out).toContain(
-      'scripts/check-colour-tokens.allow/PBI-5015-14.json: every entry needs file, pattern and reason',
+      'scripts/check-colour-tokens.allow/blog.json: every entry needs file, pattern and reason',
     );
   });
 

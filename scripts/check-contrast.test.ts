@@ -88,12 +88,12 @@ describe('check:contrast', () => {
         fg: '--faint',
         bg: '--white',
         kind: 'edge',
-        exempt: 'decorative divider (D7)',
+        exempt: 'decorative divider',
       },
     ]);
     const { status, out } = run('--mode=light');
     expect(status).toBe(0);
-    expect(out).toContain('exempt: decorative divider (D7)');
+    expect(out).toContain('exempt: decorative divider');
   });
 
   it('composites translucent colours over the background', () => {

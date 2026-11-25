@@ -1,5 +1,5 @@
 /**
- * Light and dark mode for /design only (D5, D8, D44). The mode is the `dark`
+ * Light and dark mode for /design only, where the whole page turns dark. The mode is the `dark`
  * class on <html>: a stored choice wins, otherwise the system setting, live.
  * The root layout runs MODE_SCRIPT in <head> so the first paint is right;
  * ModeToggle keeps it in step after that.

@@ -204,7 +204,7 @@ export const SURFACE = {
   menuTab: 'surface-menu-tab',
   /** The drawer's backdrop: grey-900 at 70%, both modes. */
   scrim: 'surface-scrim',
-  /** The consent settings backdrop: black at 50%, both modes (D40). */
+  /** The consent settings backdrop: black at 50%, both modes (an approved light change, as the code intended). */
   scrimConsent: 'surface-scrim-consent',
   /** A dialog's backdrop: black at 80%, both modes. */
   scrimDialog: 'surface-scrim-dialog',
@@ -334,7 +334,7 @@ export const INK = {
   onBand: 'ink-on-band',
   /** A logo on a dark band: white, both modes. The Tina logo in the footer. */
   logoOnDark: 'ink-logo-on-dark',
-  /** Social link logos: brand colours in light, all near-white in dark (D39). */
+  /** Social link logos: brand colours in light, all near-white in dark. */
   socialTina: 'ink-social-tina',
   socialDiscord: 'ink-social-discord',
   socialGithub: 'ink-social-github',
@@ -343,7 +343,7 @@ export const INK = {
   externalLink: 'ink-external-link',
   /** A decorative icon (an empty state): grey-300 in light, the subtle line grey in dark. */
   decor: 'ink-decor',
-  /** A mark in the strong ink (was pure black, D41). */
+  /** A mark in the strong ink (was pure black, merged as an approved light change). */
   strong: 'ink-strong',
   /** A mark in the subtle ink, like the heading-link icon. */
   subtle: 'ink-subtle',
@@ -386,7 +386,7 @@ export const DECOR = {
   logoStrip: 'decor-logo-strip',
 } as const;
 
-/** The page title's orange gradient as an ink, for a highlighted heading word. A step lighter in dark (D23). */
+/** The page title's orange gradient as an ink, for a highlighted heading word. A step lighter in dark. */
 export const HEADING_HIGHLIGHT = 'text-heading';
 
 /** Decorative shimmer for short promo text, like the homepage news banner. Keeps the role and surface ink. */

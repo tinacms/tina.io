@@ -74,7 +74,7 @@ const keepInView = (container: HTMLElement | null, link: Element | null) => {
 };
 
 /**
- * The /design sticky index (D6 as amended by D49, D46, D47): every section
+ * The /design sticky index: every section
  * and every group, always shown, with the current pair marked on scroll.
  * Links are plain hash jumps. Without JS it shows with no marker.
  */

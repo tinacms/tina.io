@@ -274,7 +274,7 @@ export default function StyleGuidePage() {
   return (
     // The site layout already provides <main>. Below lg the index column is
     // hidden and the content wrapper is display: contents, so the page lays
-    // out as it did before the index (D50, D51).
+    // out as it did before the index (its phone layout is deferred).
     <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-16 px-4 py-16 md:px-8 lg:flex lg:items-start lg:gap-12 lg:px-12">
       <IndexColumn />
 

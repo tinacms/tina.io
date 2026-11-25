@@ -29,7 +29,7 @@
  * Comments are skipped, so issue numbers like `#4964` don't count as hex.
  *
  * Agreed exceptions live in scripts/check-colour-tokens.allow.json and in one
- * file per slice in scripts/check-colour-tokens.allow/ (PBI-5015-13.json), so
+ * file per area in scripts/check-colour-tokens.allow/ (blog.json, pricing.json), so
  * parallel writers never edit the same file. One entry per exception:
  * { "file", "pattern", "reason" }. `pattern` is the exact text of the hit.
  * Allowed hits are listed under "allowed" with the allow file that let them

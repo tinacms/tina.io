@@ -24,7 +24,7 @@
     --accent-foreground: hsl(240 5.9% 10%);
     --destructive: hsl(0 84.2% 60.2%);
     --destructive-foreground: hsl(0 0% 98%);
-    /* D41: the near-duplicate zinc-200 merges into the subtle line. */
+    /* An approved light change: the near-duplicate zinc-200 merges into the subtle line. */
     --border: var(--border-subtle);
     --input: var(--border-subtle);
     --ring: hsl(240 10% 3.9%);
@@ -35,7 +35,7 @@
     --chart-5: hsl(27 87% 67%);
     --radius: 0.5rem;
   }
-  /* Dark: the site's neutral ramp (D48), one source. Each shadcn token points at the site's
+  /* Dark: the site's neutral ramp, one source. Each shadcn token points at the site's
      semantic token for the same job, so these follow the .dark block in
      app/global.css. --ring follows the focus ring and --primary the Primary
      button. */
@@ -263,7 +263,7 @@ pre.prism-code.language-json {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   SURFACE LEVELS — named by use (D25): the page, a card on it, a well inside
+   SURFACE LEVELS — named by use: the page, a card on it, a well inside
    a card, and a table's header row. Fill only, so the roles inside keep their
    inks. SURFACE.page / card / well / tableHead in typography.ts name these.
    ────────────────────────────────────────────────────────────────────────── */
@@ -275,7 +275,7 @@ pre.prism-code.language-json {
   background-attachment: fixed;
 }
 /* The card's edge is a 1px ring, so it takes no space and sits beside any
-   shadow; transparent in light (D24). */
+   shadow; transparent in light, a 1px outline in dark. */
 @utility surface-card {
   background-color: var(--surface-card);
   @apply ring-1 ring-[var(--surface-card-edge)];
@@ -302,7 +302,7 @@ pre.prism-code.language-json {
   backdrop-filter: var(--surface-glass-filter);
 }
 
-/* LINES — the subtle and strong line roles (D15). Colour only: the component
+/* LINES — the subtle and strong line roles. Colour only: the component
    sets which sides and how wide. LINE in typography.ts names these. */
 @utility line-subtle {
   border-color: var(--border-subtle);
@@ -312,7 +312,7 @@ pre.prism-code.language-json {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   COMPONENT ROLES (PBI-5015-05) — colour only, one per job, each reading its
+   COMPONENT ROLES — colour only, one per job, each reading its
    tokens in app/global.css so dark mode needs no class at the call site.
    SURFACE, LINE, INK and DECOR in typography.ts name these. Gradient roles
    set only the stops: the call site keeps bg-linear-to-* for direction.
@@ -692,13 +692,13 @@ pre.prism-code.language-json {
 }
 
 /* The /design index's current section and group: a rule in the tab
-   underline's orange, with the text in strong ink (D46). Sides and width
+   underline's orange, with the text in strong ink. Sides and width
    come from the call site. */
 @utility index-current {
   border-color: var(--tab-indicator);
   color: var(--text-strong);
 }
-/* The mode toggle's icons (D45): the moon shows in light and the sun in
+/* The mode toggle's icons: the moon shows in light and the sun in
    dark, from CSS alone, so the right one paints before hydration. */
 @utility mode-icon-light {
   @variant dark {

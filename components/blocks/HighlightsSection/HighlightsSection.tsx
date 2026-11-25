@@ -68,7 +68,7 @@ const icons = {
 
 const HighlightsSection = ({ data }) => {
   const { highlightColumn, brandColorIcons } = data || {};
-  // The CMS toggle keeps its options; each maps to a role (D18).
+  // The CMS toggle keeps its options; each maps to a role at today's value.
   const iconColorClass = brandColorIcons ? INK.brand : INK.strong;
 
   return (

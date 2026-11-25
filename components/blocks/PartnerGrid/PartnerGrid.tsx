@@ -60,7 +60,7 @@ const PartnerCard = ({ data }) => {
           <span
             className={`${LABEL} shrink-0 rounded-full px-3 py-1 ${
               isPremier
-                ? // Premier keeps its amber gradient in light and takes the warning chip in dark (D18).
+                ? // Premier keeps its amber gradient in light and takes the warning chip in dark.
                   `bg-linear-to-r ${SURFACE.partnerPremier} shadow-sm ring-1`
                 : `${SURFACE.info} border`
             }`}

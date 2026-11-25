@@ -245,35 +245,35 @@
       "fg": "--border-brand",
       "bg": "--surface-brand",
       "kind": "edge",
-      "exempt": "decorative chip border (D7)"
+      "exempt": "decorative chip border"
     },
     {
       "context": "Surface borders on chips and panels (decorative)",
       "fg": "--border-info",
       "bg": "--surface-info",
       "kind": "edge",
-      "exempt": "decorative chip border (D7)"
+      "exempt": "decorative chip border"
     },
     {
       "context": "Surface borders on chips and panels (decorative)",
       "fg": "--border-success",
       "bg": "--surface-success",
       "kind": "edge",
-      "exempt": "decorative chip border (D7)"
+      "exempt": "decorative chip border"
     },
     {
       "context": "Surface borders on chips and panels (decorative)",
       "fg": "--border-warning",
       "bg": "--surface-warning",
       "kind": "edge",
-      "exempt": "decorative chip border (D7)"
+      "exempt": "decorative chip border"
     },
     {
       "context": "Surface borders on chips and panels (decorative)",
       "fg": "--border-error",
       "bg": "--surface-error",
       "kind": "edge",
-      "exempt": "decorative chip border (D7)"
+      "exempt": "decorative chip border"
     },
     {
       "context": "Button labels on their level",
@@ -340,7 +340,7 @@
       "fg": "--command-menu-rule",
       "bg": "--neutral-outline-fill",
       "kind": "edge",
-      "exempt": "decorative divider (D7)"
+      "exempt": "decorative divider"
     },
     {
       "context": "Nav menus: row text and its hover colour, on the panel and the hover row",
@@ -399,7 +399,7 @@
       "fg": "--tab-divider",
       "bg": "--code-panel",
       "kind": "edge",
-      "exempt": "decorative divider (D7)"
+      "exempt": "decorative divider"
     },
     {
       "context": "Text on the card, well, table head, glass and frosted surfaces",
@@ -430,21 +430,21 @@
       "fg": "--border-subtle",
       "bg": ["page", "card", "well", "table-head"],
       "kind": "edge",
-      "exempt": "decorative divider (D7)"
+      "exempt": "decorative divider"
     },
     {
       "context": "Surface steps: card and well on the page, well on the card, and the card edge (decorative)",
       "fg": ["--surface-card", "--surface-well", "--surface-card-edge"],
       "bg": ["page", "card"],
       "kind": "edge",
-      "exempt": "surface step and card edge, decorative (D7)"
+      "exempt": "surface step and card edge, decorative"
     },
     {
       "context": "Shimmer on short promo text (the homepage news banner)",
       "fg": "color-mix(in srgb, var(--text-strong) 40%, var(--white))",
       "bg": ["page", "sky-page"],
       "kind": "text",
-      "exempt": "the shimmer (D7)"
+      "exempt": "the shimmer"
     },
     {
       "context": "Component roles: bands with the on-band white (icon discs, the starred corner)",
@@ -518,7 +518,7 @@
       ],
       "bg": ["page", "card", "well"],
       "kind": "edge",
-      "exempt": "decorative line or mark (D7)"
+      "exempt": "decorative line or mark"
     },
     {
       "context": "Component roles: blue icons on the card (non-text marks)",

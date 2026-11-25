@@ -61,7 +61,7 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <script
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: a fixed string from app/design/mode.ts that sets /design's mode before the first paint (D44)
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: a fixed string from app/design/mode.ts that sets /design's mode before the first paint
           dangerouslySetInnerHTML={{ __html: MODE_SCRIPT }}
         />
         <meta name="theme-color" content="#E6FAF8" />

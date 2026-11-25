@@ -17,7 +17,7 @@ export const Prism = (props: {
   panel?: 'edge' | 'fill';
 }) => {
   const theme = props.theme || 'github';
-  /* Night Owl blocks sit on the code panel (D39): its fill and edge follow
+  /* Night Owl blocks sit on the code panel: its fill and edge follow
      the mode, the syntax colours stay. The fill stays inline so it outranks
      the unlayered prism-themes and rich-text `pre` rules, as the
      theme's own inline fill did. */
