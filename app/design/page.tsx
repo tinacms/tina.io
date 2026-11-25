@@ -1,6 +1,5 @@
 import { Copy, Search, Star, X } from 'lucide-react';
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
 import { CodeButton } from '@/component/blocks/CodeButton/CodeButton';
 import { ICON_BUTTON, NEUTRAL_OUTLINE } from '@/component/styles/buttons';
 import {
@@ -26,19 +25,12 @@ import {
   FIELD,
   FOOTER_LEGAL_LINK,
   FOOTER_LINK,
-  HIGHLIGHT,
   INK,
-  LABEL,
   LINE,
-  LINK,
   NAV_MENU_LINK,
   ON_DARK,
   PAGE_TITLE,
-  SECTION_TITLE,
-  SHIMMER,
-  SUBTLE_LINK,
   SURFACE,
-  TITLE_LINK,
 } from '@/component/styles/typography';
 import {
   INK_GUIDE,
@@ -46,7 +38,6 @@ import {
   PAGE_BACKGROUND_ROLES,
   PAGE_BACKGROUNDS,
   ROLE_GROUPS,
-  type RoleGuide,
   roleClass,
   SURFACE_GUIDE,
   TEXT_COLOURS,
@@ -57,8 +48,12 @@ import { Button, ButtonGroup } from '@/component/ui/Button';
 import { Pagination, PostPagination } from '@/component/ui/Pagination';
 import { SocialLinks, TINA_SOCIAL_LINKS } from '@/component/ui/SocialLinks';
 import { TextLink } from '@/component/ui/TextLink';
+import { Group } from './Group';
+import { GuideTable } from './GuideTable';
 import { IndexColumn } from './IndexColumn';
 import { slug } from './outline';
+import { RoleTable } from './RoleTable';
+import { Section } from './Section';
 import { SegmentedToggleExample } from './SegmentedToggleExample';
 
 export const metadata: Metadata = {
@@ -75,201 +70,9 @@ export const metadata: Metadata = {
  * and which to use instead. Every table renders
  * components/styles/typography.guide.ts, the single source for that guidance,
  * so this page and AGENTS.md can't drift apart. Examples render through the
- * real roles; the page itself uses roles only.
+ * real roles; the page itself uses roles only. The parts it is built from
+ * (Section, Group, GuideTable, RoleTable, Example) live beside it.
  */
-
-/**
- * A role's example, drawn through the real role. Anything clickable on the
- * site is a real link here too, so it shows the pointer and its hover state.
- */
-const Example = ({ role, href }: { role: RoleGuide; href: string }) => {
-  const cls = roleClass(role.name);
-  switch (role.exampleKind) {
-    case 'link':
-      return (
-        <a className={cls} href={href}>
-          {role.example}
-        </a>
-      );
-    case 'inline-link':
-      return (
-        <p className={BODY_SMALL}>
-          Start a{' '}
-          <a className={LINK} href={href}>
-            {role.example}
-          </a>
-        </p>
-      );
-    case 'heading-link':
-      return (
-        <a className="inline-block" href={href}>
-          <span className={`${CARD_TITLE} ${TITLE_LINK}`}>{role.example}</span>
-        </a>
-      );
-    case 'subtle-link':
-      return (
-        <a className={`${BODY_SMALL} ${SUBTLE_LINK}`} href={href}>
-          {role.example}
-        </a>
-      );
-    case 'highlight':
-      return (
-        <p className={BODY_SMALL}>
-          The best <span className={HIGHLIGHT}>{role.example}</span> CMS
-        </p>
-      );
-    case 'shimmer':
-      return (
-        <a
-          className={`${SURFACE.info} ${LABEL} inline-flex rounded-full border px-3.5 py-1.5`}
-          href={href}
-        >
-          <span className={SHIMMER}>{role.example}</span>
-        </a>
-      );
-    case 'field':
-      return (
-        <input
-          className={`${cls} h-10 w-full max-w-xs rounded-md border ${LINE.subtle} px-3`}
-          placeholder={role.example}
-          aria-label="Example field"
-        />
-      );
-    default:
-      return <p className={cls}>{role.example}</p>;
-  }
-};
-
-/**
- * The one table layout on the page. A table from md up; on phones each row
- * stacks into a block, with the column name in front of each value.
- */
-const GuideTable = ({
-  columns,
-  widths,
-  rows,
-}: {
-  columns: string[];
-  /** Column widths from md up, so every table of one kind lines up. */
-  widths?: string[];
-  rows: { key: string; cells: ReactNode[] }[];
-}) => (
-  <div
-    className={`${SURFACE.cardBordered} overflow-hidden rounded-xl border ${LINE.subtle}`}
-  >
-    <table
-      className={`w-full text-left max-md:block ${widths ? 'md:table-fixed' : ''}`}
-    >
-      {widths && (
-        <colgroup>
-          {widths.map((w, i) => (
-            <col key={columns[i]} className={w} />
-          ))}
-        </colgroup>
-      )}
-      <thead className="max-md:hidden">
-        <tr className={SURFACE.neutral}>
-          {columns.map((c) => (
-            <th key={c} className={`${EYEBROW} px-5 py-3 whitespace-nowrap`}>
-              {c}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody className="max-md:block">
-        {rows.map((row) => (
-          <tr
-            key={row.key}
-            className={`border-t ${LINE.subtle} first:border-t-0 max-md:grid max-md:gap-3 max-md:p-5 md:first:border-t`}
-          >
-            {row.cells.map((cell, i) => (
-              <td
-                key={columns[i]}
-                className="min-w-0 align-middle max-md:block md:px-5 md:py-4"
-              >
-                {i > 0 && (
-                  <p className={`${EYEBROW} mb-1 md:hidden`}>{columns[i]}</p>
-                )}
-                {cell}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
-
-const RoleTable = ({ roles, href }: { roles: RoleGuide[]; href: string }) => (
-  <GuideTable
-    columns={['Example', 'Role', 'Use for', 'Not for']}
-    widths={['w-5/12', 'w-1/6', 'w-1/4', 'w-1/6']}
-    rows={roles.map((role) => ({
-      key: role.name,
-      cells: [
-        <div key="example" className="wrap-anywhere">
-          <Example role={role} href={href} />
-        </div>,
-        <p key="role" className={`${CODE} wrap-anywhere`}>
-          {role.name}
-        </p>,
-        <p key="use" className={BODY_SMALL}>
-          {role.useFor}
-        </p>,
-        role.notFor && (
-          <p key="not" className={BODY_SMALL}>
-            {role.notFor.job} →{' '}
-            <span className={CODE}>{role.notFor.instead}</span>
-          </p>
-        ),
-      ],
-    }))}
-  />
-);
-
-const Section = ({
-  id,
-  title,
-  intro,
-  children,
-}: {
-  id: string;
-  title: string;
-  intro: string;
-  children: ReactNode;
-}) => (
-  <section
-    id={id}
-    className={`grid scroll-mt-24 gap-12 border-t ${LINE.subtle} pt-16`}
-  >
-    <div>
-      <h2 className={SECTION_TITLE}>{title}</h2>
-      <p className={`${BODY} mt-3 max-w-3xl`}>{intro}</p>
-    </div>
-    {children}
-  </section>
-);
-
-const Group = ({
-  id,
-  title,
-  intro,
-  children,
-}: {
-  id?: string;
-  title: string;
-  intro?: string;
-  children: ReactNode;
-}) => (
-  <div id={id} className="grid min-w-0 scroll-mt-24 gap-4">
-    <div>
-      <h3 className={CARD_TITLE}>{title}</h3>
-      {intro && <p className={`${BODY_SMALL} mt-1 max-w-3xl`}>{intro}</p>}
-    </div>
-    {children}
-  </div>
-);
-
 export default function StyleGuidePage() {
   return (
     // The site layout already provides <main>. Below lg the index column is
