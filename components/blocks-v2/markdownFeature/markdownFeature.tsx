@@ -1,6 +1,11 @@
 import { FaCheckCircle } from 'react-icons/fa';
 import type { PageBlocksMarkdownFeature } from 'tina/__generated__/types';
-import { BODY, EYEBROW, SECTION_TITLE } from '@/component/styles/typography';
+import {
+  BODY,
+  EYEBROW,
+  INK,
+  SECTION_TITLE,
+} from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { TerminalPanel } from './TerminalPanel';
@@ -8,7 +13,7 @@ import { TerminalPanel } from './TerminalPanel';
 function FeatureTag({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-1">
-      <FaCheckCircle className="shrink-0 text-brand-primary" size={16} />
+      <FaCheckCircle className={`shrink-0 ${INK.brand}`} size={16} />
       <span className={EYEBROW}>{label}</span>
     </div>
   );
@@ -34,7 +39,7 @@ export default function MarkdownFeature(data: {
             {subtitle && (
               <>
                 <br />
-                <span className="text-black/50">{subtitle}</span>
+                <span className={INK.subtitle}>{subtitle}</span>
               </>
             )}
           </h2>

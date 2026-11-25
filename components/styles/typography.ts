@@ -168,6 +168,8 @@ export const SURFACE = {
   page: 'surface-page',
   /** A card on the page: white in light; neutral-900 with a 1px edge in dark. Cards, tables, menus, dialogs. */
   card: 'surface-card',
+  /** The card's fill with no ring, for an element that draws its own border (a dialog, ChooserCard). Pair it with a LINE.* border. */
+  cardBordered: 'surface-card-bordered',
   /** A well inside a card: slate-100 in light, neutral-800 in dark. Fields and wells. */
   well: 'surface-well',
   /** A table's header row: slate-50 in light, the well level in dark. */
