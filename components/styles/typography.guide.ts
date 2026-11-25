@@ -319,9 +319,14 @@ export const TEXT_COLOURS: {
   {
     token: '--text-heading-*',
     swatch: 'bg-heading',
-    usedBy: ['PAGE_TITLE', 'ARTICLE_TITLE', 'CARD_TITLE_FEATURED'],
+    usedBy: [
+      'PAGE_TITLE',
+      'ARTICLE_TITLE',
+      'CARD_TITLE_FEATURED',
+      'HEADING_HIGHLIGHT',
+    ],
     useFor:
-      'The orange gradient. Page titles, plus the recommended pricing plan as the one agreed exception.',
+      'The orange gradient. Page titles, plus the recommended pricing plan as the one agreed exception. HEADING_HIGHLIGHT puts it on one highlighted heading word.',
   },
   {
     token: '--text-strong',
@@ -475,5 +480,71 @@ export const SURFACE_GUIDE: {
     example: 'Featured',
     role: 'EYEBROW',
     useFor: '“Featured”, “new”.',
+  },
+];
+
+/**
+ * The LINE colours for everyday edges. Put one beside the border width and
+ * sides. Single-use lines (glass, terminal, blog tables, callouts, the
+ * premier partner ring) are listed in components/styles/typography.ts.
+ */
+export const LINE_GUIDE: {
+  name: keyof Typography['LINE'];
+  useFor: string;
+}[] = [
+  {
+    name: 'subtle',
+    useFor: 'Decoration: dividers, table rules and card edges.',
+  },
+  {
+    name: 'strong',
+    useFor:
+      'Anything you click or type in: fields, checkboxes, the neutral outline.',
+  },
+  {
+    name: 'faint',
+    useFor:
+      'A faint edge: the QR code popover, Versions rows, docs image panels.',
+  },
+  {
+    name: 'selected',
+    useFor: 'The edge of a selected choice card, like ChooserCard.',
+  },
+];
+
+/**
+ * The INK colours for marks that aren't text: icons, logos and dots. An SVG
+ * takes one with fill-current or stroke-current. Single-use inks (social
+ * logos, roadmap status, the timeline, the map, white marks on bands) are
+ * listed in components/styles/typography.ts.
+ */
+export const INK_GUIDE: {
+  name: keyof Typography['INK'];
+  useFor: string;
+}[] = [
+  {
+    name: 'brand',
+    useFor: 'The brand orange: the Tina logo in the nav and brand icons.',
+  },
+  {
+    name: 'strong',
+    useFor: 'A mark in the strong ink: feature card hexagons, the map’s icons.',
+  },
+  {
+    name: 'subtle',
+    useFor: 'A quiet mark, like the heading-link icon.',
+  },
+  {
+    name: 'blue',
+    useFor: 'A blue mark, like a blue feature card’s hexagon.',
+  },
+  {
+    name: 'active',
+    useFor:
+      'A blue mark in its open or current state: an open accordion’s icon.',
+  },
+  {
+    name: 'decor',
+    useFor: 'A decorative icon, like the empty search results icon.',
   },
 ];

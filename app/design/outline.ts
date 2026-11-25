@@ -35,6 +35,8 @@ export const OUTLINE: OutlineSection[] = [
     groups: [
       { id: 'text-colours', title: 'Text colours' },
       { id: 'surfaces', title: 'Surfaces' },
+      { id: 'lines', title: 'Lines' },
+      { id: 'inks', title: 'Inks' },
       { id: 'on-dark', title: 'On dark' },
     ],
   },
