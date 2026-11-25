@@ -12,7 +12,7 @@
   {
     "file": "src/components/ui/alert.tsx",
     "pattern": "text-foreground",
-    "reason": "Today's light paint (D2); no role keeps this ink inside the warning chip"
+    "reason": "Keeps today's light paint; no role keeps this ink inside the warning chip"
   },
   {
     "file": "src/components/ui/alert.tsx",

@@ -262,9 +262,9 @@ module.exports = {
         skeleton: '200% 100%',
       },
       // Elevation shadows point at --elevation-* in app/global.css, so dark
-      // mode can turn them off (D31). xs and outline are edges and focus
+      // mode can turn them off (shadows don't read on dark). xs and outline are edges and focus
       // states, not elevation, and stay as they are; the input rings read
-      // the field tokens (PBI-5015-05).
+      // the field tokens.
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
         sm: 'var(--elevation-sm)',

@@ -25,10 +25,10 @@ const useBrowserLayoutEffect =
 const serverMode = (): Mode | null => null;
 
 /**
- * The /design light/dark toggle (D45): one icon button named "Dark mode",
+ * The /design light/dark toggle: one icon button named "Dark mode",
  * pressed when dark. The moon and sun swap by CSS, so the right one paints
  * before hydration. It stays mounted at every width, so the page keeps
- * following the system setting where the button is hidden (D51).
+ * following the system setting where the button is hidden (below lg, for now).
  */
 export const ModeToggle = ({ className = '' }: { className?: string }) => {
   const mode = useSyncExternalStore(subscribeToMode, currentMode, serverMode);
@@ -39,7 +39,7 @@ export const ModeToggle = ({ className = '' }: { className?: string }) => {
     }
   }, [mode]);
 
-  // Leaving /design leaves nothing dark (D8).
+  // Leaving /design leaves nothing dark: only /design has a mode.
   useBrowserLayoutEffect(() => clearMode, []);
 
   return (

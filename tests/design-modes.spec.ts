@@ -19,8 +19,8 @@ import {
  * content, stay inside the viewport, and log no console errors. Each section
  * is screenshotted into test-results/.
  *
- * Then the toggle (D5, D45) and the sticky index (D6 as amended by D49, D46,
- * D47), from lg up. Below lg (D50, D51) /design keeps its header row of
+ * Then the toggle and the sticky index, from lg up. Below lg (the phone
+ * layout is deferred) /design keeps its header row of
  * section links, with no index column and no toggle, and the mode follows the
  * stored choice or the system setting.
  */
@@ -65,7 +65,7 @@ const KNOWN_CONSOLE_ERRORS: {
 ];
 
 /**
- * The toggle and index contract (PBI-5015-07, D14, D44, D45): .dark on <html>,
+ * The toggle and index contract: .dark on <html>,
  * a "Dark mode" button pressed when dark, the choice stored under
  * tina-design-mode, and the visible "Style guide sections" nav as the index.
  * Below lg that label is on the header's row of section links instead.
@@ -126,7 +126,7 @@ const openDesign = async (page: Page) => {
 
 /**
  * Puts the page in a mode by the .dark class on the mode root, for widths
- * with no toggle (below lg, D51).
+ * with no toggle (below lg, where it is deferred).
  */
 const setMode = async (page: Page, mode: Mode) => {
   await modeRoot(page).evaluate(
@@ -267,7 +267,7 @@ for (const mode of MODES) {
   }
 }
 
-// Every section and group has its own id, the slug of its own title (D13).
+// Every section and group has its own id, the slug of its own title.
 test('no DOM id repeats on /design', async ({ page }) => {
   await openDesign(page);
   const repeated = await page.evaluate(() => {
@@ -282,8 +282,8 @@ test('no DOM id repeats on /design', async ({ page }) => {
   expect(repeated, 'ids that appear more than once').toEqual([]);
 });
 
-/** Each assertion's number is its item in the PBI-5015-07 plan's contract. */
-test.describe('toggle (D5, D45)', () => {
+/** Each test is numbered by its item in the toggle and index contract. */
+test.describe('toggle', () => {
   const desktop = { width: WIDTHS.desktop, height: VIEWPORT_HEIGHT };
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize(desktop);
@@ -430,7 +430,7 @@ test.describe('toggle (D5, D45)', () => {
     }
   });
 
-  test('6. leaving /design leaves nothing dark (D8)', async ({ page }) => {
+  test('6. leaving /design leaves nothing dark', async ({ page }) => {
     await openDesign(page);
     await chooseMode(page, 'dark');
     await page.locator('a[href="/"]').filter({ visible: true }).first().click();
@@ -439,7 +439,7 @@ test.describe('toggle (D5, D45)', () => {
   });
 });
 
-test.describe('index (D6 as amended by D49, D46, D47)', () => {
+test.describe('index', () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({
       width: WIDTHS.desktop,
@@ -482,7 +482,7 @@ test.describe('index (D6 as amended by D49, D46, D47)', () => {
     expect(result.dangling, 'links without a target').toEqual([]);
   });
 
-  test('8. scrolling marks one section current, with every group always shown (D49)', async ({
+  test('8. scrolling marks one section current, with every group always shown', async ({
     page,
   }) => {
     await openDesign(page);
@@ -547,7 +547,7 @@ test.describe('index (D6 as amended by D49, D46, D47)', () => {
     await expect(indexLocator(page)).toBeInViewport();
   });
 
-  test('11. at phone width the page keeps its row of section links, with no column or toggle (D51)', async ({
+  test('11. at phone width the page keeps its row of section links, with no column or toggle', async ({
     browser,
   }) => {
     const context = await browser.newContext({

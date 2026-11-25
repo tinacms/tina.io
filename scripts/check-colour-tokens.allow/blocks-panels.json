@@ -2,241 +2,241 @@
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "text-[#9ca3af]",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "text-[#374151]",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "text-[#19c332]",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "text-[#ec4815]",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "bg-[#ec4815]",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "rgba(0,0,0,0.07)",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "bg-[#ff736a]",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "bg-[#febc2e]",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "bg-[#19c332]",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "text-[#acb2bc]",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "text-gray-400",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks-v2/markdownFeature/TerminalPanel.tsx",
     "pattern": "text-orange-500",
-    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes (D39)"
+    "reason": "Terminal illustration inks, dots and shadow: decorative exception, same in both modes"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "from-blue-800",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "via-blue-900",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "to-slate-900",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "border-blue-800",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "to-blue-900",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "to-blue-700",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "#2296fe",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "#85c5fe",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "#0574e4",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "#1d2c6c",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "color: var(--blue-250)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(var(--blue-250-rgb), 0.15)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(var(--blue-250-rgb), 0.2)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(var(--blue-250-rgb), 0.3)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "color: var(--blue-400)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(var(--blue-400-rgb), 0.15)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(var(--blue-400-rgb), 0.2)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(var(--blue-400-rgb), 0.3)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "color: var(--blue-650)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(var(--blue-650-rgb), 0.15)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(var(--blue-650-rgb), 0.2)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(var(--blue-650-rgb), 0.3)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "#d07ea5",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(208, 126, 165, 0.15)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(208, 126, 165, 0.2)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Story/Story.tsx",
     "pattern": "rgba(208, 126, 165, 0.5)",
-    "reason": "Story block: no page uses it, so its colours stay as they are (PBI-5015-05 B6)"
+    "reason": "Story block: no page uses it, so its colours stay as they are"
   },
   {
     "file": "components/blocks/Table/table.template.tsx",
     "pattern": "bg-gray-700/30",
-    "reason": "TinaCMS field UI in /admin, not the site (D19)"
+    "reason": "TinaCMS field UI in /admin, not the site, so out of scope"
   },
   {
     "file": "components/blocks/Table/table.template.tsx",
     "pattern": "border-gray-700/30",
-    "reason": "TinaCMS field UI in /admin, not the site (D19)"
+    "reason": "TinaCMS field UI in /admin, not the site, so out of scope"
   },
   {
     "file": "components/blocks/Table/table.template.tsx",
     "pattern": "border-gray-600",
-    "reason": "TinaCMS field UI in /admin, not the site (D19)"
+    "reason": "TinaCMS field UI in /admin, not the site, so out of scope"
   },
   {
     "file": "components/blocks/CompareBox/CompareBox.template.ts",
     "pattern": "#ffAAAA",
-    "reason": "Default company colours for the CMS colour picker (D18)"
+    "reason": "Default company colours for the CMS colour picker, a data-driven exception"
   },
   {
     "file": "components/blocks/CompareBox/CompareBox.template.ts",
     "pattern": "#ffffBB",
-    "reason": "Default company colours for the CMS colour picker (D18)"
+    "reason": "Default company colours for the CMS colour picker, a data-driven exception"
   },
   {
     "file": "components/blocks/CompareBox/CompareBox.template.ts",
     "pattern": "#212121",
-    "reason": "Default company colours for the CMS colour picker (D18)"
+    "reason": "Default company colours for the CMS colour picker, a data-driven exception"
   },
   {
     "file": "components/blocks/CompareBox/CompareBox.template.ts",
     "pattern": "#fff555",
-    "reason": "Default company colours for the CMS colour picker (D18)"
+    "reason": "Default company colours for the CMS colour picker, a data-driven exception"
   },
   {
     "file": "components/blocks/CompareBox/CompareBox.tsx",
     "pattern": "rgba(${r}, ${g}, ${b}, ${alpha})",
-    "reason": "Company colours are CMS data, painted as chosen (D18)"
+    "reason": "Company colours are CMS data, painted as chosen, a data-driven exception"
   },
   {
     "file": "components/blocks/CompareBox/CompareBox.tsx",
     "pattern": "#000000",
-    "reason": "Company colours are CMS data, painted as chosen (D18)"
+    "reason": "Company colours are CMS data, painted as chosen, a data-driven exception"
   },
   {
     "file": "components/blocks/CompareBox/CompareBox.tsx",
     "pattern": "#808080",
-    "reason": "Company colours are CMS data, painted as chosen (D18)"
+    "reason": "Company colours are CMS data, painted as chosen, a data-driven exception"
   }
 ]
