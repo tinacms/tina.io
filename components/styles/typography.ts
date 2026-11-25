@@ -168,6 +168,8 @@ export const SURFACE = {
   page: 'surface-page',
   /** A card on the page: white in light; neutral-900 with a 1px edge in dark. Cards, tables, menus, dialogs. */
   card: 'surface-card',
+  /** The card's fill with no ring, for an element that draws its own border (a dialog, ChooserCard). Pair it with a LINE.* border. */
+  cardBordered: 'surface-card-bordered',
   /** A well inside a card: slate-100 in light, neutral-800 in dark. Fields and wells. */
   well: 'surface-well',
   /** A table's header row: slate-50 in light, the well level in dark. */
@@ -240,6 +242,8 @@ export const SURFACE = {
   glassPanel: 'surface-glass-panel',
   /** A translucent panel: white at 70% in light; the dark glass in dark. The call site keeps its blur. */
   glassPanelStrong: 'surface-glass-panel-strong',
+  /** Glass colours only (white 10% to 40%; the dark glass in dark), so the call site keeps its own direction and can layer a hover. Gradient stops only. */
+  glassStops: 'surface-glass-stops',
   /** A glass card's hover tint: blue-500 at 10% in light; white at 6% in dark. Gradient start only. */
   glassHover: 'surface-glass-hover',
   /** A teal-to-cyan wash card: at 60% in light; the dark glass in dark. Gradient stops only. */
@@ -252,6 +256,8 @@ export const SURFACE = {
   tooltipArrow: 'surface-tooltip-arrow',
   /** The fade at a table's scroll edge: slate-50 in light, the well in dark. Gradient stops only. */
   tableFade: 'surface-table-fade',
+  /** The fade at a table's scroll edge while its row is hovered: sky-50 in light; the hovered row over the well in dark. Gradient stops only. */
+  tableFadeHover: 'surface-table-fade-hover',
   /** A table row on hover: sky-50 in light; white at 6% in dark. */
   tableRowHover: 'surface-table-row-hover',
   /** A striped blog-table row: blue-500 at 5% in light; white at 6% in dark. */
@@ -296,6 +302,8 @@ export const LINE = {
   strong: 'line-strong',
   /** A faint edge on a white popover: slate-100 in light, the subtle line in dark. */
   faint: 'line-faint',
+  /** A glass card's edge: white at 30% in light, the card edge in dark. */
+  glass: 'line-glass',
   /** The terminal illustration's hairlines: black at 10% in light, the subtle line in dark. */
   terminal: 'line-terminal',
   /** A blog table's cell lines: orange-100 in light, the subtle line in dark. */
@@ -322,6 +330,8 @@ export const LINE = {
 export const INK = {
   /** The brand orange mark: orange-500, both modes. The Tina logo in the nav, brand icons. */
   brand: 'ink-brand',
+  /** An icon on a band (the plan cards' white star): white, both modes. */
+  onBand: 'ink-on-band',
   /** A logo on a dark band: white, both modes. The Tina logo in the footer. */
   logoOnDark: 'ink-logo-on-dark',
   /** Social link logos: brand colours in light, all near-white in dark (D39). */
