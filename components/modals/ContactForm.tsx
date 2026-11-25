@@ -9,6 +9,7 @@ import {
   CARD_TITLE,
   FIELD,
   LINK,
+  SURFACE,
 } from '@/component/styles/typography';
 import { StatusMessage, type StatusType } from '@/component/ui/StatusMessage';
 import { Input } from '@/components/ui/input';
@@ -70,7 +71,7 @@ const FormSelect = ({
       disabled={disabled}
       // `bg-none` drops the chevron @tailwindcss/forms paints onto every
       // select, which would otherwise sit under the icon below.
-      className={`flex h-10 w-full appearance-none rounded-[5px] border-0 bg-white bg-none pl-4 pr-10 ${FIELD} shadow-input transition-shadow duration-[85ms] ease-out hover:shadow-input-hover focus:shadow-input-focus outline-none ring-0 disabled:cursor-not-allowed disabled:opacity-50`}
+      className={`flex h-10 w-full appearance-none rounded-[5px] border-0 ${SURFACE.field} bg-none pl-4 pr-10 ${FIELD} shadow-input transition-shadow duration-[85ms] ease-out hover:shadow-input-hover focus:shadow-input-focus outline-none ring-0 disabled:cursor-not-allowed disabled:opacity-50`}
       // FIELD shows an empty select in the placeholder grey.
       data-empty={value ? undefined : ''}
     >
@@ -461,7 +462,7 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
               }))
             }
             disabled={isProcessing}
-            className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer"
+            className={`w-4 h-4 rounded ${SURFACE.checkbox} cursor-pointer`}
           />
           <span className={BODY_SMALL}>
             Subscribe to the TinaCMS newsletter

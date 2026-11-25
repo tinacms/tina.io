@@ -541,6 +541,7 @@
   --switch-knob: var(--white);
   --switch-knob-edge: var(--slate-300); /* D41 */
   --checkbox-edge: var(--slate-300); /* D41 */
+  --checkbox-fill: var(--white);
   --checkbox-checked: var(--orange-500);
   --checkbox-focus: var(--orange-500);
   /* Fields: a white field with the strong grey edge (D41), on dark bands a
@@ -977,6 +978,7 @@
   --switch-knob: var(--neutral-50);
   --switch-knob-edge: var(--neutral-500);
   --checkbox-edge: var(--neutral-500);
+  --checkbox-fill: var(--surface-well);
   --chooser-ring: var(--neutral-50);
   /* Marks and pictures (D39, D22, D24, D31). */
   --ink-decor: var(--neutral-700);
@@ -1193,6 +1195,7 @@
   --switch-knob: var(--white);
   --switch-knob-edge: var(--slate-300);
   --checkbox-edge: var(--slate-300);
+  --checkbox-fill: var(--white);
   --chooser-ring: var(--zinc-950);
   --ink-decor: var(--gray-300);
   --ink-subtitle: color-mix(in srgb, var(--ink-900) 50%, transparent);

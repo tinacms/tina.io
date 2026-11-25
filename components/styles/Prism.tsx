@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: Highlight tokenizes deterministically; index is a stable key. */
 import { Highlight, Prism as rootPrism, themes } from 'prism-react-renderer';
-import { CODE_PANEL } from '@/component/styles/tabs';
+import { CODE_PANEL, CODE_PANEL_FILL } from '@/component/styles/tabs';
 import { CODE } from '@/component/styles/typography';
 
 (typeof global !== 'undefined' ? global : window).Prism = rootPrism;
@@ -13,6 +13,8 @@ export const Prism = (props: {
   value: string;
   lang?: string;
   theme?: keyof typeof themes;
+  /** On a Night Owl block, `fill` drops the panel's edge, for code inside a panel that draws its own. */
+  panel?: 'edge' | 'fill';
 }) => {
   const theme = props.theme || 'github';
   /* Night Owl blocks sit on the code panel (D39): its fill and edge follow
@@ -28,7 +30,7 @@ export const Prism = (props: {
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
-          className={`${className} ${CODE} ${panel ? CODE_PANEL : ''}`}
+          className={`${className} ${CODE} ${panel ? (props.panel === 'fill' ? CODE_PANEL_FILL : CODE_PANEL) : ''}`}
           style={{
             ...style,
             ...(panel && { backgroundColor: 'var(--code-panel)' }),

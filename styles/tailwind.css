@@ -427,6 +427,10 @@ pre.prism-code.language-json {
   border-color: var(--checkbox-edge);
   color: var(--checkbox-checked);
   --tw-ring-color: var(--checkbox-focus);
+  background-color: var(--checkbox-fill);
+  &:checked {
+    background-color: currentColor;
+  }
 }
 @utility surface-field {
   background-color: var(--field-fill);
@@ -1117,6 +1121,13 @@ pre.prism-code.language-json {
 /* A dark code panel (Night Owl). Text inside turns light, like ON_DARK. */
 @utility code-panel {
   @apply on-dark ring-1 ring-(--code-panel-edge);
+  background-color: var(--code-panel);
+}
+/* The code panel's fill with no ring, for the pieces inside a panel whose
+   edge another element draws (the GraphQL tabs' code and its filler), so
+   dark doesn't draw seams between them. */
+@utility code-panel-fill {
+  @apply on-dark;
   background-color: var(--code-panel);
 }
 /* Tabs on a dark code panel (GraphQL Query / Response): flat, with a solid
