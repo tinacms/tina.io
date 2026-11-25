@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { DefaultSeo } from 'next-seo';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
+import { SURFACE } from '@/component/styles/typography';
 import { Footer } from './Footer';
 
 interface LayoutProps {
@@ -17,7 +18,7 @@ export const Layout = ({ children, color, sticky = true }: LayoutProps) => {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col min-h-screen blob-bg font-sans bg-blob-bg bg-[length:100%_100%] bg-top bg-fixed">
+    <div className={`flex flex-col min-h-screen font-sans ${SURFACE.page}`}>
       <DefaultSeo
         openGraph={{
           url: `https://tina.io${pathname}`,

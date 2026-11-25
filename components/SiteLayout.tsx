@@ -1,5 +1,6 @@
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
+import { SURFACE } from '@/component/styles/typography';
 import { AppNavBar } from './AppNavBar';
 import { Footer } from './footer/footer';
 import { LanguageSupportAlert } from './LanguageSupportAlert';
@@ -17,7 +18,7 @@ export const SiteLayout = ({
   footerData,
 }: LayoutProps) => {
   return (
-    <div className="flex flex-col min-h-screen blob-bg font-sans bg-blob-bg bg-[length:100%_100%] bg-top bg-fixed">
+    <div className={`flex flex-col min-h-screen font-sans ${SURFACE.page}`}>
       <div className="pb-0 md:pb-5 lg:pb-20">
         <AppNavBar sticky={sticky} />
       </div>
