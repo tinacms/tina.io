@@ -30,7 +30,7 @@ function ConditionalLink({
         href={href}
         className={cn(
           className,
-          'hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out',
+          'hover:shadow-lg hover:surface-card hover:scale-[1.01] transition-all duration-150 ease-out',
         )}
         target={href.startsWith('http') ? '_blank' : undefined}
       >
@@ -46,7 +46,7 @@ function TripleBoxItemCard({ data }: { data: PageBlocksTripleBoxBoxes }) {
   return (
     <ConditionalLink
       href={link}
-      className="flex flex-col gap-2 bg-gradient-to-br from-white/10 to-white/40 shadow-md rounded-lg p-6 h-full"
+      className={`flex flex-col gap-2 ${SURFACE.glass} shadow-md rounded-lg p-6 h-full`}
     >
       <Image src={image} alt={title} width={40} height={40} />
       <h3 className={CARD_TITLE}>{title}</h3>

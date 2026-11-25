@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import {
   BODY,
   CARD_TITLE,
+  DECOR,
   PAGE_TITLE,
   RICH_TEXT,
   SECTION_TITLE,
@@ -40,7 +41,7 @@ export function ShowcaseBlock({ data, index }) {
           {data.actions && <Actions items={data.actions} />}
         </div>
         {(data.media?.youtubeUrl || data.media?.src) && (
-          <div className="featureImage">
+          <div className={`featureImage ${DECOR.imageFrame}`}>
             {data.media.youtubeUrl ? (
               <LiteYouTube
                 id={extractYouTubeId(data.media.youtubeUrl)}
@@ -105,9 +106,8 @@ export function ShowcaseBlock({ data, index }) {
           }
         }
         .featureImage {
-          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
-            0 2px 4px rgba(0, 37, 91, 0.03);
-          border: 1px solid rgba(0, 0, 0, 0.07);
+          border-width: 1px;
+          border-style: solid;
           margin: 0;
           overflow: hidden;
           border-radius: 0.5rem;

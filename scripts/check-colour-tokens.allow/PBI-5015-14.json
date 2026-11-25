@@ -1,0 +1,252 @@
+[
+  {
+    "file": "components/tinaMarkdownComponents/docAndBlogComponents.tsx",
+    "pattern": "bg-white/40",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/docAndBlogComponents.tsx",
+    "pattern": "text-gray-500",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/docAndBlogComponents.tsx",
+    "pattern": "from-blue-100/20",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/docAndBlogComponents.tsx",
+    "pattern": "to-blue-50/20",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/docAndBlogComponents.tsx",
+    "pattern": "bg-blue-200/10",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/docAndBlogComponents.tsx",
+    "pattern": "text-blue-200",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/docAndBlogComponents.tsx",
+    "pattern": "text-blue-500",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/docAndBlogComponents.tsx",
+    "pattern": "bg-gray-200",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/docAndBlogComponents.tsx",
+    "pattern": "border-orange-400",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/docAndBlogComponents.tsx",
+    "pattern": "text-[#3B82F6]",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/templateComponents/accordionBlock.tsx",
+    "pattern": "bg-white/40",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/templateComponents/accordionBlock.tsx",
+    "pattern": "text-gray-500",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.tsx",
+    "pattern": "border-orange-400",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.tsx",
+    "pattern": "border-gray-800",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/styles/RecipeCSS.ts",
+    "pattern": "color: white",
+    "reason": "Syntax-theme overrides for the recipe code block: syntax colours stay in both modes (E5)."
+  },
+  {
+    "file": "components/styles/RecipeCSS.ts",
+    "pattern": "#111827",
+    "reason": "Syntax-theme overrides for the recipe code block: syntax colours stay in both modes (E5)."
+  },
+  {
+    "file": "components/styles/RecipeCSS.ts",
+    "pattern": "#9FFCEF",
+    "reason": "Syntax-theme overrides for the recipe code block: syntax colours stay in both modes (E5)."
+  },
+  {
+    "file": "components/styles/RecipeCSS.ts",
+    "pattern": "rgba(71, 85, 105, 0.25)",
+    "reason": "Syntax-theme overrides for the recipe code block: syntax colours stay in both modes (E5)."
+  },
+  {
+    "file": "components/styles/RecipeCSS.ts",
+    "pattern": "#6B7280",
+    "reason": "Syntax-theme overrides for the recipe code block: syntax colours stay in both modes (E5)."
+  },
+  {
+    "file": "components/styles/RecipeCSS.ts",
+    "pattern": "background: white",
+    "reason": "Syntax-theme overrides for the recipe code block: syntax colours stay in both modes (E5)."
+  },
+  {
+    "file": "components/styles/RecipeCSS.ts",
+    "pattern": "color: black",
+    "reason": "Syntax-theme overrides for the recipe code block: syntax colours stay in both modes (E5)."
+  },
+  {
+    "file": "components/blocks/Recipe.tsx",
+    "pattern": "to-black",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/blocks/Recipe.tsx",
+    "pattern": "text-white",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/blocks/Recipe.tsx",
+    "pattern": "border-gray-700",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "components/blocks/Recipe.tsx",
+    "pattern": "bg-slate-600",
+    "reason": "Markdown template that no tina.io page renders; no role covers this colour, so it waits until a page uses it."
+  },
+  {
+    "file": "utils/og/blogInstagramImage.tsx",
+    "pattern": "#0c0c0e",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogInstagramImage.tsx",
+    "pattern": "#1b1a1f",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogInstagramImage.tsx",
+    "pattern": "#0a0a0b",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogInstagramImage.tsx",
+    "pattern": "#050505",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogInstagramImage.tsx",
+    "pattern": "#ffffff",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogInstagramImage.tsx",
+    "pattern": "#16151a",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogInstagramImage.tsx",
+    "pattern": "rgba(0,0,0,0.45)",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogInstagramImage.tsx",
+    "pattern": "#EC4815",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogInstagramImage.tsx",
+    "pattern": "#8a8a92",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogOgImage.tsx",
+    "pattern": "#0c0c0e",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogOgImage.tsx",
+    "pattern": "#1b1a1f",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogOgImage.tsx",
+    "pattern": "#0a0a0b",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogOgImage.tsx",
+    "pattern": "#050505",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogOgImage.tsx",
+    "pattern": "#ffffff",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogOgImage.tsx",
+    "pattern": "#16151a",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogOgImage.tsx",
+    "pattern": "rgba(0,0,0,0.45)",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogOgImage.tsx",
+    "pattern": "#EC4815",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/blogOgImage.tsx",
+    "pattern": "#7d7d86",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/ogShared.tsx",
+    "pattern": "#FF724B",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/ogShared.tsx",
+    "pattern": "#D13F13",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/ogShared.tsx",
+    "pattern": "#ffffff",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/ogShared.tsx",
+    "pattern": "#1b1a1f",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/ogShared.tsx",
+    "pattern": "#0a0a0b",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/og/ogShared.tsx",
+    "pattern": "#050505",
+    "reason": "Share images are drawn by Satori without the site CSS, so they cannot read tokens, and a shared image has no dark mode (E1)."
+  },
+  {
+    "file": "utils/unclipEmoji.tsx",
+    "pattern": "#000",
+    "reason": "An opaque text fill so colour emoji paint through bg-clip-text; never seen as a colour."
+  }
+]
