@@ -127,7 +127,7 @@ const Example = ({ role, href }: { role: RoleGuide; href: string }) => {
     case 'field':
       return (
         <input
-          className={`${cls} h-10 w-full max-w-xs rounded-md border border-neutral-border-subtle px-3`}
+          className={`${cls} h-10 w-full max-w-xs rounded-md border ${LINE.subtle} px-3`}
           placeholder={role.example}
           aria-label="Example field"
         />
