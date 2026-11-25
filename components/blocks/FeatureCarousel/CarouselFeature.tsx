@@ -9,8 +9,11 @@ import { FOCUS_RING } from '@/component/styles/buttons';
 import {
   BODY,
   CARD_TITLE,
+  DECOR,
   EYEBROW_LINK,
+  INK,
   SECTION_TITLE,
+  SURFACE,
 } from '@/component/styles/typography';
 import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';
@@ -47,7 +50,7 @@ const CarouselItem = ({
     <div
       className={`${
         isHovered && !isSmallOrMediumScreen
-          ? 'group block bg-linear-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl'
+          ? `group block ${SURFACE.frosted} shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl`
           : ''
       } ${commonStyles}`}
       onClick={() => onClick(index)}
@@ -63,8 +66,8 @@ const CarouselItem = ({
             <IconComponent
               className={`text-xl  ${
                 isHovered && !isSmallOrMediumScreen
-                  ? 'text-blue-800 md:text-3xl pb-1'
-                  : 'text-black md:text-2xl pb-1'
+                  ? `${INK.active} md:text-3xl pb-1`
+                  : `${INK.strong} md:text-2xl pb-1`
               }`}
             />
           )}
@@ -355,7 +358,9 @@ export default function CarouselFeatureBlock({ data, index }) {
           </div>
         </div>
       </Container>
-      <GradGlow className="absolute w-full h-auto bottom-0 left-0 -z-1 opacity-50" />
+      <GradGlow
+        className={`absolute w-full h-auto bottom-0 left-0 -z-1 ${DECOR.skyGlow}`}
+      />
     </section>
   );
 }

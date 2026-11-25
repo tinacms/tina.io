@@ -7,6 +7,7 @@ import {
   BODY_MUTED,
   BODY_SMALL,
   LABEL,
+  LINE,
   PAGE_TITLE,
   SECTION_TITLE,
   SUB_HEADING,
@@ -32,8 +33,8 @@ const PartnerCard = ({ data }) => {
 
   return (
     <div
-      className={`flex h-full flex-col gap-4 rounded-lg bg-white p-6 shadow-lg md:p-8 ${
-        isPremier ? 'ring-2 ring-amber-300/70' : ''
+      className={`flex h-full flex-col gap-4 rounded-lg ${SURFACE.card} p-6 shadow-lg md:p-8 ${
+        isPremier ? `ring-2 ${LINE.partnerPremier}` : ''
       }`}
     >
       <div className="flex items-start justify-between gap-4">
@@ -59,8 +60,8 @@ const PartnerCard = ({ data }) => {
           <span
             className={`${LABEL} shrink-0 rounded-full px-3 py-1 ${
               isPremier
-                ? // Premier keeps its brand gradient (data-driven tier colour).
-                  'bg-linear-to-r from-amber-200 via-yellow-300 to-amber-400 text-amber-900 shadow-sm ring-1 ring-amber-300/60'
+                ? // Premier keeps its amber gradient in light and takes the warning chip in dark (D18).
+                  `bg-linear-to-r ${SURFACE.partnerPremier} shadow-sm ring-1`
                 : `${SURFACE.info} border`
             }`}
             data-tina-field={tinaField(data, 'tier')}
@@ -122,7 +123,9 @@ const CONTACT_BUTTON = {
 // Always the last card: the directory only lists partners who opted in, so a
 // visitor who sees no fit still needs a path to the ones who aren't listed.
 const GetInContactCard = ({ data }) => (
-  <div className="flex h-full flex-col gap-4 rounded-lg border-2 border-dashed border-blue-200 bg-blue-50/40 p-6 md:p-8">
+  <div
+    className={`flex h-full flex-col gap-4 rounded-lg border-2 border-dashed ${SURFACE.infoFaint} p-6 md:p-8`}
+  >
     {data.contactCardTitle && (
       <h3
         className={SUB_HEADING}

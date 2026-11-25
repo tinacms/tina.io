@@ -26,7 +26,9 @@ type FeaturedPostProps = {
 
 export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
   return (
-    <div className="flex hover:scale-101 hover:shadow-lg transition-all hover:bg-white overflow-hidden flex-col gap-2 shadow-md p-3 bg-gradient-to-br from-white/10 to-white/40 hover:to-white/40 w-full z-0 rounded-lg max-md:max-w-md relative">
+    <div
+      className={`flex hover:scale-101 hover:shadow-lg transition-all hover:surface-card overflow-hidden flex-col gap-2 shadow-md p-3 ${SURFACE.glass} w-full z-0 rounded-lg max-md:max-w-md relative`}
+    >
       {featuredPost.url && (
         <Link
           href={featuredPost.url}
