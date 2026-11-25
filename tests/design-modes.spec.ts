@@ -214,9 +214,15 @@ for (const mode of MODES) {
 
       for (const report of reports) {
         await test.step(`#${report.id}`, async () => {
-          const section = page.locator(`section#${report.id}`);
-          await section.scrollIntoViewIfNeeded();
-          await section.screenshot({
+          // The screen at the section's top, not an element or full-page
+          // screenshot: at phone width the page is over 20,000px tall and
+          // those can stall the run. The assertions below are the check.
+          await page
+            .locator(`section#${report.id}`)
+            .evaluate((section) =>
+              section.scrollIntoView({ block: 'start', behavior: 'instant' }),
+            );
+          await page.screenshot({
             path: testInfo.outputPath(`${report.id}-${mode}-${width}.png`),
           });
 
@@ -485,9 +491,14 @@ test.describe('index (D6 as amended by D49, D46, D47)', () => {
       );
     }
 
+    // Brought to the top as a jump brings it (the site's scroll padding and
+    // the group's scroll margin leave it above the middle), not centred:
+    // that padding pushes a centred group below the activation line.
     const group = page.locator('main section[id] > div[id]').last();
     const groupId = await group.getAttribute('id');
-    await group.scrollIntoViewIfNeeded();
+    await group.evaluate((element) =>
+      element.scrollIntoView({ block: 'start', behavior: 'instant' }),
+    );
     await expect(index.locator(`a[href="#${groupId}"]`)).toHaveAttribute(
       'aria-current',
       'location',
