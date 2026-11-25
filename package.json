@@ -112,7 +112,7 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2",
-    "three": "^0.165.0",
+    "three": "^0.187.0",
     "tinacms": "^3.15.0",
     "webpack": "^5.99.9"
   },
