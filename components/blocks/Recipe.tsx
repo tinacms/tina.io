@@ -8,6 +8,7 @@ import {
   CARD_TITLE,
   ON_DARK,
   SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 import { customHighlightCSS } from '../styles/RecipeCSS';
 import CodeBlockWithHighlightLines from '../ui/recipeComponent/RecipeCodeBlockWithHighlight';
@@ -114,7 +115,7 @@ export const RecipeBlock = ({ data }) => {
 
       <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">
         <div
-          className={`instructions ${ON_DARK} bg-gray-800 relative lg:w-1/3 max-h-50vh shrink-0 grow rounded-tl-xl rounded-br-xl lg:rounded-br-none rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col`}
+          className={`instructions ${ON_DARK} ${SURFACE.recipePanel} relative lg:w-1/3 max-h-50vh shrink-0 grow rounded-tl-xl rounded-br-xl lg:rounded-br-none rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col`}
           ref={instructionBlockRefs}
           style={{
             height:
@@ -142,8 +143,11 @@ export const RecipeBlock = ({ data }) => {
                 ref={(el) => {
                   instructionRefs.current[idx] = el;
                 }}
-                className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800
-                ${clickedInstruction === idx ? 'bg-slate-600' : ''}`}
+                className={`instruction-item cursor-pointer p-4 border-y ${
+                  clickedInstruction === idx
+                    ? 'border-gray-700 bg-slate-600'
+                    : SURFACE.recipePanel
+                }`}
                 onClick={() =>
                   handleInstructionClick(
                     idx,
@@ -173,7 +177,7 @@ export const RecipeBlock = ({ data }) => {
 
         <div
           ref={codeblockRef}
-          className={`codeblock ${ON_DARK} bg-gray-800 lg:w-2/3 max-h-50vh overflow-auto lg:rounded-tr-xl rounded-bl-xl lg:rounded-bl-none rounded-br-xl`}
+          className={`codeblock ${ON_DARK} ${SURFACE.recipePanel} lg:w-2/3 max-h-50vh overflow-auto lg:rounded-tr-xl rounded-bl-xl lg:rounded-bl-none rounded-br-xl`}
         >
           {code ? (
             <CodeBlockWithHighlightLines

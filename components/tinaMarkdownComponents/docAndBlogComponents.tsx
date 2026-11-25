@@ -22,7 +22,9 @@ import {
   CARD_TITLE,
   CODE,
   EYEBROW,
+  INK,
   LABEL,
+  LINE,
   LINK,
   ON_DARK,
   SUB_HEADING,
@@ -41,8 +43,8 @@ const PricingComparison = dynamic(() =>
 const MermaidElement = dynamic(() => import('./mermaid'), {
   ssr: false,
   loading: () => (
-    <div className="animate-pulse bg-gray-100 rounded p-4 my-4">
-      <div className="h-32 bg-gray-200 rounded" />
+    <div className={`animate-pulse ${SURFACE.well} rounded p-4 my-4`}>
+      <div className={`h-32 ${SURFACE.mediaPlaceholder} rounded`} />
     </div>
   ),
 });
@@ -167,7 +169,7 @@ export const docAndBlogComponents: Components<{
           })}
           <div>
             {isExpanded ? (
-              <FaMinus className="text-blue-800 size-3" />
+              <FaMinus className={`${INK.active} size-3`} />
             ) : (
               <FaPlus className="text-gray-500 size-3" />
             )}
@@ -175,7 +177,7 @@ export const docAndBlogComponents: Components<{
         </div>
 
         <div
-          className={`grid gap-4 border-t border-gray-100 transition-all duration-700 ease-in-out ${
+          className={`grid gap-4 border-t ${LINE.faint} transition-all duration-700 ease-in-out ${
             isExpanded
               ? 'max-h-[2000px] opacity-100 delay-500'
               : 'max-h-0 opacity-0 overflow-hidden'
@@ -273,16 +275,13 @@ export const docAndBlogComponents: Components<{
   },
   blockquote: (props) => (
     <blockquote
-      style={{
-        backgroundColor: 'var(--color-white)',
-      }}
-      className="my-6! border-l-4 md:py-6 pt-2 pb-4 border-x-teal-400 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+      className={`${SURFACE.card} ${LINE.calloutTip} my-6! border-l-4 md:py-6 pt-2 pb-4 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden`}
     >
       <div className="flex flex-col md:flex-row md:items-center md:gap-2 items-start">
         <div className="shrink-0">
           <AiOutlineBulb
             size={40}
-            className="text-white bg-linear-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+            className={`${SURFACE.successBand} bg-linear-to-br p-2 rounded-full my-2 md:my-0 md:mx-2 mx-0`}
           />
         </div>
         <div className={BODY}>
@@ -409,7 +408,7 @@ export const docAndBlogComponents: Components<{
 
     return (
       <div
-        className={`bg-white rounded-lg shadow-lg my-6 pb-6 ${
+        className={`${SURFACE.card} rounded-lg shadow-lg my-6 pb-6 ${
           props.title ? 'pt-6' : 'pt-2'
         }`}
       >
@@ -525,7 +524,9 @@ export const docAndBlogComponents: Components<{
                   // biome-ignore lint/suspicious/noArrayIndexKey: static table parsed from markdown; rows never reorder, so positional identity is correct
                   key={`row-${rowIndex}`}
                   className={
-                    rowIndex % 2 === 0 ? 'bg-white/5' : 'bg-blue-500/5'
+                    rowIndex % 2 === 0
+                      ? SURFACE.blogTableRow
+                      : SURFACE.blogTableStripe
                   }
                 >
                   {cells.map((cell, cellIndex) => {
@@ -533,9 +534,9 @@ export const docAndBlogComponents: Components<{
                       <CellComponent
                         // biome-ignore lint/suspicious/noArrayIndexKey: static table parsed from markdown; cells never reorder, so positional identity is correct
                         key={`cell-${rowIndex}-${cellIndex}`}
-                        className={`border border-orange-100 px-4 py-2 ${
+                        className={`border ${LINE.blogTable} px-4 py-2 ${
                           rowIndex === 0
-                            ? `${EYEBROW} bg-white/50 text-left`
+                            ? `${EYEBROW} ${SURFACE.blogTableHead} text-left`
                             : BODY_SMALL
                         } ${cellIndex === 0 ? 'break-words max-w-xs' : ''}`}
                       >
@@ -602,7 +603,7 @@ export const docAndBlogComponents: Components<{
       </LinkButton>
 
       <div
-        className={`${CODE} inline-block whitespace-nowrap px-6 py-4 border border-neutral-border-subtle rounded-lg`}
+        className={`${CODE} inline-block whitespace-nowrap px-6 py-4 border ${LINE.subtle} rounded-lg`}
       >
         {cliText}
       </div>
@@ -610,16 +611,13 @@ export const docAndBlogComponents: Components<{
   ),
   WarningCallout: ({ body }) => (
     <blockquote
-      style={{
-        backgroundColor: 'var(--color-white)',
-      }}
-      className="my-4 border-l-4 md:py-6 pt-2 pb-4 border-x-orange-400 pl-4 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+      className={`${SURFACE.card} ${LINE.calloutWarning} my-4 border-l-4 md:py-6 pt-2 pb-4 pl-4 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden`}
     >
       <div className="flex flex-col md:flex-row gap-2 md:items-center items-start">
         <div>
           <AiOutlineWarning
             size={40}
-            className="text-white bg-linear-to-br from-orange-400 to-orange-600 px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+            className={`${INK.onBand} ${SURFACE.brandBand} bg-linear-to-br px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0`}
           />
         </div>
         <div className={BODY}>
@@ -637,7 +635,7 @@ export const docAndBlogComponents: Components<{
     >
       <AiOutlineNotification
         size={40}
-        className="shrink-0 text-white bg-linear-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full md:mx-2"
+        className={`${SURFACE.successBand} shrink-0 bg-linear-to-br p-2 rounded-full md:mx-2`}
       />
       <div className={BODY}>
         <TinaMarkdown content={body as any} components={docAndBlogComponents} />
@@ -702,8 +700,8 @@ export const docAndBlogComponents: Components<{
         position: 'relative',
         transform: 'translate3d(-50%,0,0)',
         borderRadius: '5px',
-        border: '1px solid rgba(0,0,0,0.1)',
       }}
+      className={`border ${LINE.subtle}`}
       src={src}
     />
   ),
@@ -859,7 +857,7 @@ function FormatHeaders({ children, level }) {
         {' '}
         {headingChildren}
         <FiLink
-          className="text-subtle opacity-0 group-hover:opacity-80 transition-opacity duration-200 absolute ml-1 group-hover:animate-wiggle"
+          className={`${INK.subtle} opacity-0 group-hover:opacity-80 transition-opacity duration-200 absolute ml-1 group-hover:animate-wiggle`}
           style={{
             display: 'inline-block',
             marginTop: '0.25rem',

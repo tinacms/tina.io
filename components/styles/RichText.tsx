@@ -55,17 +55,23 @@ const RichText = css`
     display: block;
     margin: 1.5rem auto;
     border-radius: 5px;
-    border: 1px solid rgb(237, 238, 238);
+    border: 1px solid var(--border-subtle);
     overflow: hidden;
   }
 
   blockquote {
     display: block;
-    background-color: var(--color-seafoam);
     border: 1px solid var(--color-seafoam-dark);
     border-left-width: 6px;
     border-radius: 3px;
     padding: 1em;
+  }
+
+  /* The markdown callouts (docAndBlogComponents) carry their own surface
+     class, which a fill here would outrank; :where keeps this rule below
+     the ones that clear the fill. */
+  :where(blockquote:not([class])) {
+    background-color: var(--color-seafoam);
   }
 
   hr {
@@ -81,7 +87,7 @@ const RichText = css`
 
   pre {
     border-radius: 5px;
-    border: 1px solid rgb(237, 238, 238);
+    border: 1px solid var(--border-subtle);
   }
 
   table {
@@ -89,13 +95,13 @@ const RichText = css`
   }
 
   tr:nth-child(even) {
-    background-color: var(--neutral-background);
+    background-color: var(--surface-table-head);
   }
 
   th,
   td {
     padding: 0.4rem 0.5rem;
-    border-bottom: 1px solid var(--neutral-border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
   }
 
   th {
