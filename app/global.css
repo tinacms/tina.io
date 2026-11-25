@@ -602,6 +602,9 @@
   --ink-blue: var(--blue-600);
   --ink-active: var(--blue-800);
   --ink-subtitle: color-mix(in srgb, var(--ink-900) 50%, transparent);
+  /* A subtle mark that keeps its grey on a tinted surface (the chips remap
+     the text tokens, so INK.subtle would take the chip's ink). */
+  --ink-subtle-fixed: var(--slate-500); /* D41 */
   --ink-brand-accent: var(--orange-500);
   --status-done: var(--green-500);
   --status-progress: var(--amber-500);
@@ -978,6 +981,7 @@
   /* Marks and pictures (D39, D22, D24, D31). */
   --ink-decor: var(--neutral-700);
   --ink-subtitle: var(--neutral-400);
+  --ink-subtle-fixed: var(--neutral-400);
   --map-land: var(--neutral-700);
   --image-frame-shadow: var(--shadow-none);
   --image-frame-edge: var(--neutral-800);
@@ -1200,6 +1204,7 @@
   --table-fade-hover-from: var(--sky-50);
   --table-fade-hover-via: color-mix(in oklab, var(--sky-50) 80%, transparent);
   --line-glass: color-mix(in oklab, var(--white) 30%, transparent);
+  --ink-subtle-fixed: var(--slate-500); /* D41 */
 }
 
 ::-moz-selection {
