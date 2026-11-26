@@ -9,17 +9,18 @@ export type RoleTableProps = {
   href: string;
 };
 
-/** A group of type roles: each one's example, name, use and what not to use it for. */
+/**
+ * A group of type roles as specimen and spec: each one's example on the left,
+ * its name, use and what not to use it for stacked on the right.
+ */
 export const RoleTable = ({ roles, href }: RoleTableProps) => (
   <GuideTable
+    layout="spec"
     columns={['Example', 'Role', 'Use for', 'Not for']}
-    widths={['w-5/12', 'w-1/6', 'w-1/4', 'w-1/6']}
     rows={roles.map((role) => ({
       key: role.name,
       cells: [
-        <div key="example" className="wrap-anywhere">
-          <Example role={role} href={href} />
-        </div>,
+        <Example key="example" role={role} href={href} />,
         <p key="role" className={`${CODE} wrap-anywhere`}>
           {role.name}
         </p>,

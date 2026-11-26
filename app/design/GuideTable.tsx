@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { EYEBROW, LINE, SURFACE } from '@/component/styles/typography';
+import { EYEBROW, LINE } from '@/component/styles/typography';
 
 export type GuideTableRow = { key: string; cells: ReactNode[] };
 
@@ -8,16 +8,60 @@ export type GuideTableProps = {
   /** Column widths from md up, so every table of one kind lines up. */
   widths?: string[];
   rows: GuideTableRow[];
+  /**
+   * `table`: columns under a header row. `spec`: each row is its specimen
+   * (the first column) beside the other columns, stacked with their labels,
+   * and no header row. Defaults to `spec` for a role guide (a table with a
+   * Not for column), `table` otherwise.
+   */
+  layout?: 'table' | 'spec';
 };
 
+/** The column that marks a role guide: each row picks one role over another. */
+const NOT_FOR = 'Not for';
+
 /**
- * The one table layout on the page. A table from md up; on phones each row
- * stacks into a block, with the column name in front of each value.
+ * Each row as its specimen on the left and, on the right, every other column
+ * stacked under its label. Lines divide the rows; there is no header.
  */
-export const GuideTable = ({ columns, widths, rows }: GuideTableProps) => (
-  <div
-    className={`${SURFACE.cardBordered} overflow-hidden rounded-xl border ${LINE.subtle}`}
-  >
+const SpecList = ({ columns, rows }: GuideTableProps) => (
+  <ul className="grid">
+    {rows.map((row) => {
+      const [specimen, ...spec] = row.cells;
+      return (
+        <li
+          key={row.key}
+          className={`grid gap-6 border-t ${LINE.subtle} py-8 last:border-b md:grid-cols-2 md:gap-x-12`}
+        >
+          <div className="min-w-0 self-center wrap-anywhere">{specimen}</div>
+          <dl className="grid min-w-0 content-center gap-3">
+            {spec.map(
+              (cell, i) =>
+                cell && (
+                  <div key={columns[i + 1]}>
+                    <dt className={`${EYEBROW} mb-1`}>{columns[i + 1]}</dt>
+                    <dd>{cell}</dd>
+                  </div>
+                ),
+            )}
+          </dl>
+        </li>
+      );
+    })}
+  </ul>
+);
+
+/**
+ * The one table layout on the page: open, with lines between the rows and no
+ * card or header fill. A table from md up; on phones each row stacks into a
+ * block, with the column name in front of each value.
+ */
+export const GuideTable = (props: GuideTableProps) => {
+  const { columns, widths, rows, layout } = props;
+  if ((layout ?? (columns.includes(NOT_FOR) ? 'spec' : 'table')) === 'spec') {
+    return <SpecList {...props} />;
+  }
+  return (
     <table
       className={`w-full text-left max-md:block ${widths ? 'md:table-fixed' : ''}`}
     >
@@ -29,9 +73,12 @@ export const GuideTable = ({ columns, widths, rows }: GuideTableProps) => (
         </colgroup>
       )}
       <thead className="max-md:hidden">
-        <tr className={SURFACE.neutral}>
+        <tr>
           {columns.map((c) => (
-            <th key={c} className={`${EYEBROW} px-5 py-3 whitespace-nowrap`}>
+            <th
+              key={c}
+              className={`${EYEBROW} px-5 py-3 whitespace-nowrap first:pl-0`}
+            >
               {c}
             </th>
           ))}
@@ -41,12 +88,12 @@ export const GuideTable = ({ columns, widths, rows }: GuideTableProps) => (
         {rows.map((row) => (
           <tr
             key={row.key}
-            className={`border-t ${LINE.subtle} first:border-t-0 max-md:grid max-md:gap-3 max-md:p-5 md:first:border-t`}
+            className={`border-t ${LINE.subtle} max-md:grid max-md:gap-3 max-md:py-5 md:last:border-b`}
           >
             {row.cells.map((cell, i) => (
               <td
                 key={columns[i]}
-                className="min-w-0 align-middle max-md:block md:px-5 md:py-4"
+                className="min-w-0 align-middle max-md:block md:px-5 md:py-4 md:first:pl-0"
               >
                 {i > 0 && (
                   <p className={`${EYEBROW} mb-1 md:hidden`}>{columns[i]}</p>
@@ -58,5 +105,5 @@ export const GuideTable = ({ columns, widths, rows }: GuideTableProps) => (
         ))}
       </tbody>
     </table>
-  </div>
-);
+  );
+};
