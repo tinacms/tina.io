@@ -166,6 +166,8 @@ export const SURFACE = {
   brandSolid: 'surface-brand-solid',
   /** The page: the sky wash in light, the night sky in dark. Keeps the roles' inks. */
   page: 'surface-page',
+  /** The page colour with no wash: white in light, neutral-950 in dark. The plain ground under a sky band, like /design below its map. */
+  pagePlain: 'surface-page-plain',
   /** A card on the page: white in light; neutral-900 with a 1px edge in dark. Cards, tables, menus, dialogs. */
   card: 'surface-card',
   /** The card's fill with no ring, for an element that draws its own border (a dialog, ChooserCard). Pair it with a LINE.* border. */
