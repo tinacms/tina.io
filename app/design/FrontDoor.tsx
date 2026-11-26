@@ -70,7 +70,7 @@ const PREVIEWS: Record<string, ReactNode> = {
 
 /**
  * The map of the guide under the intro: Foundations in one row, then
- * Components, each section on its own card with a live preview above its
+ * Components (one column below lg), each section on its own card with a live preview above its
  * name and its parts. The whole card links to the section (the name's link
  * stretches over it) and lifts on hover as the home page cards do; each part
  * link sits above it and goes to its group. Keyboard focus on the name rings
@@ -87,7 +87,7 @@ export const FrontDoor = ({
     {categories.map((category) => (
       <div key={category.title} className="grid gap-4">
         <p className={EYEBROW}>{category.title}</p>
-        <ul className="grid auto-cols-fr grid-flow-col gap-6">
+        <ul className="grid gap-6 lg:auto-cols-fr lg:grid-flow-col">
           {category.sections.map((section) => (
             <li
               key={section.id}
