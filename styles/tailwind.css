@@ -5,67 +5,65 @@
 @config '../tailwind.config.js';
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+  /* Light, and the .light scope inside a dark page. */
+  :root,
+  .light {
+    --background: hsl(0 0% 100%);
+    --foreground: hsl(240 10% 3.9%);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(240 10% 3.9%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(240 10% 3.9%);
+    --primary: hsl(240 5.9% 10%);
+    --primary-foreground: hsl(0 0% 98%);
+    --secondary: hsl(240 4.8% 95.9%);
+    --secondary-foreground: hsl(240 5.9% 10%);
+    --muted: hsl(240 4.8% 95.9%);
+    --muted-foreground: hsl(240 3.8% 46.1%);
+    --accent: hsl(240 4.8% 95.9%);
+    --accent-foreground: hsl(240 5.9% 10%);
+    --destructive: hsl(0 84.2% 60.2%);
+    --destructive-foreground: hsl(0 0% 98%);
+    /* An approved light change: the near-duplicate zinc-200 merges into the subtle line. */
+    --border: var(--border-subtle);
+    --input: var(--border-subtle);
+    --ring: hsl(240 10% 3.9%);
+    --chart-1: hsl(12 76% 61%);
+    --chart-2: hsl(173 58% 39%);
+    --chart-3: hsl(197 37% 24%);
+    --chart-4: hsl(43 74% 66%);
+    --chart-5: hsl(27 87% 67%);
     --radius: 0.5rem;
   }
+  /* Dark: the site's neutral ramp, one source. Each shadcn token points at the site's
+     semantic token for the same job, so these follow the .dark block in
+     app/global.css. --ring follows the focus ring and --primary the Primary
+     button. */
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
+    --background: var(--surface-page);
+    --foreground: var(--text-strong);
+    --card: var(--surface-card);
+    --card-foreground: var(--text-strong);
+    --popover: var(--surface-card);
+    --popover-foreground: var(--text-strong);
+    --primary: var(--button-primary-from);
+    --primary-foreground: var(--button-primary-ink);
+    --secondary: var(--surface-well);
+    --secondary-foreground: var(--text-strong);
+    --muted: var(--surface-well);
+    --muted-foreground: var(--text-subtle);
+    --accent: var(--surface-well);
+    --accent-foreground: var(--text-strong);
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: var(--text-strong);
+    --border: var(--border-subtle);
+    --input: var(--border-strong);
+    --ring: var(--focus-ring);
+    --chart-1: hsl(220 70% 50%);
+    --chart-2: hsl(160 60% 45%);
+    --chart-3: hsl(30 80% 55%);
+    --chart-4: hsl(280 65% 60%);
+    --chart-5: hsl(340 75% 55%);
   }
 }
 
@@ -265,6 +263,462 @@ pre.prism-code.language-json {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
+   SURFACE LEVELS — named by use: the page, a card on it, a well inside
+   a card, and a table's header row. Fill only, so the roles inside keep their
+   inks. SURFACE.page / pagePlain / card / well / tableHead in typography.ts
+   name these.
+   ────────────────────────────────────────────────────────────────────────── */
+@utility surface-page {
+  background-color: var(--surface-page);
+  background-image: var(--surface-page-wash);
+  background-size: var(--surface-page-wash-size);
+  background-position: var(--surface-page-wash-position);
+  background-attachment: fixed;
+}
+/* The page colour without the wash, for the plain ground under a sky band
+   (/design below its map). Fill only, so the roles inside keep their inks. */
+@utility surface-page-plain {
+  background-color: var(--surface-page);
+}
+/* The card's edge is a 1px ring, so it takes no space and sits beside any
+   shadow; transparent in light, a 1px outline in dark. */
+@utility surface-card {
+  background-color: var(--surface-card);
+  @apply ring-1 ring-[var(--surface-card-edge)];
+}
+/* The card's fill with no ring, for an element that draws its own border
+   (a dialog, ChooserCard), so dark doesn't double the edge. */
+@utility surface-card-bordered {
+  background-color: var(--surface-card);
+}
+@utility surface-well {
+  background-color: var(--surface-well);
+}
+@utility surface-table-head {
+  background-color: var(--surface-table-head);
+}
+/* Glass cards: a wash over the page rather than a solid fill. Light matches
+   Tailwind's bg-linear-to-br gradients (in oklab); dark adds the blur. */
+@utility surface-glass {
+  background-image: linear-gradient(to bottom right in oklab, var(--surface-glass-from), var(--surface-glass-to));
+  backdrop-filter: var(--surface-glass-filter);
+}
+@utility surface-frosted {
+  background-image: linear-gradient(to bottom right in oklab, var(--surface-frosted-from), var(--surface-frosted-via), var(--surface-frosted-to));
+  backdrop-filter: var(--surface-glass-filter);
+}
+
+/* LINES — the subtle and strong line roles. Colour only: the component
+   sets which sides and how wide. LINE in typography.ts names these. */
+@utility line-subtle {
+  border-color: var(--border-subtle);
+}
+@utility line-strong {
+  border-color: var(--border-strong);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPONENT ROLES — colour only, one per job, each reading its
+   tokens in app/global.css so dark mode needs no class at the call site.
+   SURFACE, LINE, INK and DECOR in typography.ts name these. Gradient roles
+   set only the stops: the call site keeps bg-linear-to-* for direction.
+   A surface that sets an ink also sets the four text tokens to it, like the
+   chip surfaces, so a type role inside keeps the surface's ink.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Bands. Their text and icons take the on-dark white. */
+@utility surface-footer-band {
+  background-color: var(--band-footer-fill);
+  background-image: var(--band-footer);
+  box-shadow: inset 0 1px 0 var(--band-footer-edge);
+}
+@utility surface-legal-band {
+  @apply from-(--band-legal-from) via-(--band-legal-via) to-(--band-legal-to);
+}
+@utility surface-brand-band {
+  @apply from-(--band-brand-from) to-(--band-brand-to);
+}
+@utility surface-success-band {
+  @apply from-(--band-success-from) to-(--band-success-to);
+  --text-strong: var(--on-band);
+  --text-body: var(--on-band);
+  --text-subtle: var(--on-band);
+  --text-label: var(--on-band);
+  color: var(--on-band);
+}
+@utility surface-info-band {
+  @apply from-(--band-info-from) to-(--band-info-to);
+  --text-strong: var(--on-band);
+  --text-body: var(--on-band);
+  --text-subtle: var(--on-band);
+  --text-label: var(--on-band);
+  color: var(--on-band);
+}
+@utility surface-brand-flag {
+  background-color: var(--band-flag);
+  --text-strong: var(--on-band);
+  --text-body: var(--on-band);
+  --text-subtle: var(--on-band);
+  --text-label: var(--on-band);
+  color: var(--on-band);
+}
+@utility surface-recipe-panel {
+  background-color: var(--recipe-panel);
+  border-color: var(--recipe-panel-edge);
+}
+@utility surface-feature-code-panel {
+  @apply from-(--feature-code-panel-from) via-(--feature-code-panel-via) to-(--feature-code-panel-to);
+  border-color: var(--feature-code-panel-edge);
+  color: var(--feature-code-panel-ink);
+}
+/* The panel's tab: the same fade without the black end. */
+@utility surface-feature-code-tab {
+  @apply from-(--feature-code-panel-from) to-(--feature-code-panel-via);
+  border-color: var(--feature-code-panel-edge);
+}
+
+/* Site chrome. */
+@utility surface-nav-glass {
+  @apply from-(--nav-glass-from) to-(--nav-glass-to) ring-1 ring-(--surface-card-edge);
+}
+@utility surface-drawer {
+  @apply from-(--drawer-from) to-(--drawer-to);
+}
+@utility surface-menu-tab {
+  @apply from-(--menu-tab-from) to-(--menu-tab-to) hover:text-(--menu-tab-ink-hover);
+  border-color: var(--menu-tab-edge);
+  --text-strong: var(--menu-tab-ink);
+  --text-body: var(--menu-tab-ink);
+  --text-subtle: var(--menu-tab-ink);
+  --text-label: var(--menu-tab-ink);
+  color: var(--menu-tab-ink);
+  @variant hover {
+    --text-strong: var(--menu-tab-ink-hover);
+    --text-body: var(--menu-tab-ink-hover);
+    --text-subtle: var(--menu-tab-ink-hover);
+    --text-label: var(--menu-tab-ink-hover);
+  }
+}
+@utility surface-scrim {
+  background-color: var(--scrim);
+}
+@utility surface-scrim-consent {
+  background-color: var(--scrim-consent);
+}
+@utility surface-scrim-dialog {
+  background-color: var(--scrim-dialog);
+}
+/* The SSW strip: CSS gradients in sRGB, as the inline style painted them. */
+@utility surface-ssw-strip {
+  background-image: linear-gradient(to right, var(--ssw-strip-from) 0%, var(--ssw-strip-to) 100%);
+}
+@utility surface-ssw-strip-hover {
+  background-image: linear-gradient(to right, var(--ssw-strip-from) 0%, var(--ssw-strip-hover-to) 100%);
+}
+@utility surface-row-hover {
+  background-color: var(--surface-row-hover);
+}
+@utility surface-switch {
+  background-color: var(--switch-track);
+  box-shadow: inset 0 0 0 1px var(--switch-track-edge);
+}
+@utility surface-switch-on {
+  background-color: var(--switch-on);
+}
+@utility surface-switch-knob {
+  background-color: var(--switch-knob);
+  border-color: var(--switch-knob-edge);
+}
+@utility surface-checkbox {
+  border-color: var(--checkbox-edge);
+  color: var(--checkbox-checked);
+  --tw-ring-color: var(--checkbox-focus);
+  background-color: var(--checkbox-fill);
+  &:checked {
+    background-color: currentColor;
+  }
+}
+@utility surface-field {
+  background-color: var(--field-fill);
+  border-color: var(--field-edge);
+  --tw-ring-color: var(--field-focus);
+}
+@utility surface-field-on-dark {
+  background-color: var(--field-on-dark-fill);
+  border-color: var(--field-on-dark-edge);
+}
+@utility surface-field-glass {
+  background-color: var(--field-glass-fill);
+  border-color: var(--field-glass-edge);
+  backdrop-filter: var(--field-glass-filter);
+}
+/* The cloud banner: a CSS gradient in sRGB, as its arbitrary value painted. */
+@utility surface-cloud-banner {
+  background-image: linear-gradient(90deg, var(--cloud-banner-1), var(--cloud-banner-2) 33.3%, var(--cloud-banner-3) 100%);
+  border-color: var(--cloud-banner-edge);
+  @apply shadow-[0_0_8px_2px_var(--cloud-banner-shadow)];
+  backdrop-filter: var(--surface-glass-filter);
+}
+@utility surface-section-seafoam {
+  @apply from-(--section-seafoam-from) via-(--section-seafoam-via) to-(--section-seafoam-to);
+  backdrop-filter: var(--surface-glass-filter);
+}
+@utility surface-banner-seafoam {
+  @apply from-(--banner-seafoam-from) to-(--banner-seafoam-to);
+  backdrop-filter: var(--surface-glass-filter);
+}
+@utility surface-qr {
+  background-color: var(--qr-fill);
+}
+
+/* Glass and washes in blocks. */
+@utility surface-glass-bright {
+  @apply from-(--surface-glass-bright-from) via-(--surface-glass-bright-via) to-(--surface-glass-bright-to);
+  backdrop-filter: var(--surface-glass-filter);
+}
+/* Translucent panels: the call site keeps its own blur. */
+@utility surface-glass-panel {
+  background-color: var(--surface-glass-panel);
+}
+@utility surface-glass-panel-strong {
+  background-color: var(--surface-glass-panel-strong);
+}
+/* Glass stops only (SURFACE.glass's colours), so a call site keeps its own
+   gradient direction and can layer a hover over it. */
+@utility surface-glass-stops {
+  @apply from-(--surface-glass-from) to-(--surface-glass-to);
+  backdrop-filter: var(--surface-glass-filter);
+}
+@utility surface-glass-hover {
+  @apply from-(--surface-glass-hover-from);
+}
+@utility surface-wash-teal {
+  @apply from-(--surface-wash-teal-from) to-(--surface-wash-teal-to);
+  backdrop-filter: var(--surface-glass-filter);
+}
+@utility surface-example-card {
+  @apply from-(--example-card-from) to-(--example-card-to) shadow-(--example-card-edge) hover:bg-(--example-card-hover);
+  backdrop-filter: var(--surface-glass-filter);
+}
+/* A tooltip, and its arrow drawn as a border in the tooltip's colour. */
+@utility surface-tooltip {
+  background-color: var(--tooltip);
+}
+@utility surface-tooltip-arrow {
+  border-right-color: var(--tooltip);
+}
+@utility surface-table-fade {
+  @apply from-(--table-fade-from) via-(--table-fade-via);
+}
+@utility surface-table-fade-hover {
+  @apply from-(--table-fade-hover-from) via-(--table-fade-hover-via);
+}
+@utility surface-table-row-hover {
+  background-color: var(--table-row-hover);
+}
+@utility surface-blog-table-stripe {
+  background-color: var(--blog-table-stripe);
+}
+@utility surface-blog-table-row {
+  background-color: var(--blog-table-row);
+}
+@utility surface-blog-table-head {
+  background-color: var(--blog-table-head);
+}
+@utility surface-row-hover-brand {
+  background-color: var(--row-hover-brand);
+}
+@utility surface-partner-premier {
+  @apply from-(--partner-premier-from) via-(--partner-premier-via) to-(--partner-premier-to) ring-(--partner-premier-edge);
+  --text-strong: var(--partner-premier-ink);
+  --text-body: var(--partner-premier-ink);
+  --text-subtle: var(--partner-premier-ink);
+  --text-label: var(--partner-premier-ink);
+  color: var(--partner-premier-ink);
+}
+@utility surface-info-faint {
+  background-color: var(--surface-info-faint);
+  border-color: var(--border-info);
+}
+@utility surface-media-scrim {
+  background-color: var(--media-scrim);
+}
+@utility surface-media-placeholder {
+  background-color: var(--media-placeholder);
+}
+@utility surface-image-panel {
+  background-color: var(--surface-image-panel);
+}
+@utility surface-command-icon-chip {
+  background-color: var(--command-icon-chip);
+}
+@utility surface-terminal {
+  background-color: var(--terminal);
+}
+@utility surface-terminal-bar {
+  background-color: var(--terminal-bar);
+}
+@utility surface-plan-card {
+  background-color: var(--plan-card);
+  @apply ring-1 ring-(--plan-card-edge);
+}
+@utility surface-plan-hover {
+  @apply from-(--plan-hover-from) via-(--plan-hover-via) to-(--plan-hover-to);
+}
+@utility surface-plan-muted {
+  background-color: var(--plan-muted);
+}
+
+/* More lines, beside line-subtle and line-strong. */
+@utility line-faint {
+  border-color: var(--border-faint);
+}
+@utility line-glass {
+  border-color: var(--line-glass);
+}
+@utility line-terminal {
+  border-color: var(--line-terminal);
+}
+@utility line-table-blog {
+  border-color: var(--blog-table-line);
+}
+@utility line-callout-tip {
+  border-color: var(--line-callout-tip);
+}
+@utility line-callout-warning {
+  border-color: var(--line-callout-warning);
+}
+@utility line-selected {
+  border-color: var(--border-selected);
+}
+/* A 2px bar drawn in the strong line colour. */
+@utility line-fill {
+  background-color: var(--border-strong);
+}
+@utility line-partner-premier {
+  --tw-ring-color: var(--partner-premier-ring);
+}
+@utility line-chooser-focus {
+  --tw-ring-color: var(--chooser-ring);
+}
+
+/* INKS — marks that aren't text: icons, logos, status dots, the roadmap and
+   the map. They set color, so an SVG takes them with fill-current or
+   stroke-current. */
+@utility ink-brand {
+  color: var(--brand-mark);
+}
+@utility ink-on-band {
+  color: var(--on-band);
+}
+@utility ink-logo-on-dark {
+  color: var(--logo-on-dark);
+}
+@utility ink-social-tina {
+  color: var(--social-logo-tina);
+}
+@utility ink-social-discord {
+  color: var(--social-logo-discord);
+}
+@utility ink-social-github {
+  color: var(--social-logo-github);
+}
+@utility ink-social-x {
+  color: var(--social-logo-x);
+}
+@utility ink-external-link {
+  color: var(--ink-external-link);
+  @apply group-hover:text-(--ink-external-link-hover);
+}
+@utility ink-decor {
+  color: var(--ink-decor);
+}
+@utility ink-strong {
+  color: var(--text-strong);
+}
+@utility ink-subtle {
+  color: var(--text-subtle);
+}
+@utility ink-subtle-fixed {
+  color: var(--ink-subtle-fixed);
+}
+@utility ink-blue {
+  color: var(--ink-blue);
+}
+@utility ink-active {
+  color: var(--ink-active);
+}
+@utility ink-subtitle {
+  color: var(--ink-subtitle);
+}
+@utility ink-brand-accent {
+  accent-color: var(--ink-brand-accent);
+}
+@utility ink-status-done {
+  color: var(--status-done);
+}
+@utility ink-status-progress {
+  color: var(--status-progress);
+}
+@utility ink-status-planned {
+  color: var(--status-planned);
+}
+@utility ink-status-default {
+  color: var(--status-default);
+}
+@utility ink-timeline {
+  @apply from-(--timeline-from) to-(--timeline-to);
+}
+@utility ink-timeline-dot {
+  border-color: var(--timeline-from);
+}
+@utility ink-timeline-fade {
+  @apply from-(--timeline-fade-from) via-(--timeline-fade-via) to-(--timeline-fade-to);
+}
+@utility ink-map-land {
+  fill: var(--map-land);
+}
+@utility ink-map-marker {
+  fill: var(--map-marker);
+}
+
+/* DECOR — colour treatments of pictures and edges. */
+@utility decor-link-glow {
+  @apply drop-shadow-[0_0_6px_var(--on-dark-glow)];
+}
+@utility decor-image-frame {
+  box-shadow: var(--image-frame-shadow);
+  border-color: var(--image-frame-edge);
+}
+@utility decor-sky-glow {
+  opacity: var(--decor-glow-opacity);
+}
+@utility decor-logo-strip {
+  filter: var(--logo-strip-filter);
+}
+
+/* The /design index's current section and group: a rule in the tab
+   underline's orange, with the text in strong ink. Sides and width
+   come from the call site. */
+@utility index-current {
+  border-color: var(--tab-indicator);
+  color: var(--text-strong);
+}
+/* The mode toggle's icons: the moon shows in light and the sun in
+   dark, from CSS alone, so the right one paints before hydration. */
+@utility mode-icon-light {
+  @variant dark {
+    display: none;
+  }
+}
+@utility mode-icon-dark {
+  display: none;
+  @variant dark {
+    display: inline-block;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
    ROLES — every text style on the site, defined once. Components use the
    constants in components/styles/typography.ts (PAGE_TITLE -> role-page-title)
    and rich-text stylesheets @apply the same utilities, so a spec only ever
@@ -346,7 +800,8 @@ pre.prism-code.language-json {
 /* Navigation. The nav switches to the slide-out menu below xl, where items
    are a step larger for tapping. */
 @utility role-nav-link {
-  @apply font-sans font-medium text-lg xl:text-base leading-normal tracking-normal normal-case text-link transition-colors hover:text-link-hover;
+  @apply font-sans font-medium text-lg xl:text-base leading-normal tracking-normal normal-case transition-colors hover:text-link-hover;
+  color: var(--nav-link-ink);
 }
 @utility role-nav-menu-link {
   @apply font-sans font-medium text-lg xl:text-base leading-normal tracking-normal normal-case text-body transition-colors hover:text-link-hover;
@@ -502,7 +957,7 @@ pre.prism-code.language-json {
    the button label type, link blue until selected; and a Secondary blue
    thumb that slides under the selected option. */
 @utility segmented-track {
-  @apply relative inline-grid grid-flow-col auto-cols-fr w-max rounded-lg shadow-md;
+  @apply relative inline-grid grid-flow-col auto-cols-fr w-max rounded-lg shadow-md ring-1 ring-(--segmented-track-edge);
   background-image: linear-gradient(to bottom right, var(--segmented-track-from), var(--segmented-track-via), var(--segmented-track-to));
 }
 @utility segmented-option {
@@ -606,7 +1061,7 @@ pre.prism-code.language-json {
   @apply focus-ring-inset touch-manipulation flex items-center gap-2 rounded-md px-2 py-2 transition duration-150 ease-out;
 }
 @utility menu-panel {
-  @apply menu-card;
+  @apply menu-card ring-1 ring-(--surface-card-edge);
   background-color: var(--menu-surface);
 }
 @utility menu-item {
@@ -672,6 +1127,13 @@ pre.prism-code.language-json {
 
 /* A dark code panel (Night Owl). Text inside turns light, like ON_DARK. */
 @utility code-panel {
+  @apply on-dark ring-1 ring-(--code-panel-edge);
+  background-color: var(--code-panel);
+}
+/* The code panel's fill with no ring, for the pieces inside a panel whose
+   edge another element draws (the GraphQL tabs' code and its filler), so
+   dark doesn't draw seams between them. */
+@utility code-panel-fill {
   @apply on-dark;
   background-color: var(--code-panel);
 }

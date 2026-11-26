@@ -10,6 +10,7 @@ import StyledComponentsRegistry from '../lib/registry';
 import '../styles/tailwind.css';
 import './global.css';
 import { TailwindIndicator } from '@/component/util/TailwindIndicator';
+import { MODE_SCRIPT } from './design/mode';
 
 const TinaChatBot = dynamic(() => import('../components/TinaChatBot'), {
   ssr: false,
@@ -56,8 +57,13 @@ export default async function RootLayout({
   const footerData = previewProps.props.file.data;
 
   return (
-    <html lang="en">
+    // The /design mode script adds .dark to <html> before React hydrates.
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: a fixed string from app/design/mode.ts that sets /design's mode before the first paint
+          dangerouslySetInnerHTML={{ __html: MODE_SCRIPT }}
+        />
         <meta name="theme-color" content="#E6FAF8" />
         <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
       </head>

@@ -11,6 +11,7 @@ import {
   LABEL,
   LINK,
   ON_DARK,
+  SURFACE,
 } from '@/component/styles/typography';
 import { plausibleSiteIdForHost } from '@/utils/i18n/domains';
 import { Button, ButtonGroup } from './ui/Button';
@@ -152,7 +153,7 @@ const ConsentBanner = () => {
     <>
       {isVisible && (
         <div
-          className={`${ON_DARK} fixed flex flex-col gap-4 bottom-0 w-full z-50 bg-linear-to-br from-orange-400 to-orange-600 p-6 text-center justify-center items-center`}
+          className={`${ON_DARK} fixed flex flex-col gap-4 bottom-0 w-full z-50 bg-linear-to-br ${SURFACE.brandBand} p-6 text-center justify-center items-center`}
         >
           <p className={`${BODY_SMALL} pb-2`}>
             We use cookies to improve your experience. By continuing, you accept
@@ -180,10 +181,12 @@ const ConsentBanner = () => {
 
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+          className={`fixed inset-0 z-50 flex items-center justify-center ${SURFACE.scrimConsent}`}
           onClick={handleBackdropClick}
         >
-          <div className="bg-white p-10 rounded-lg w-11/12 sm:w-96 md:w-2/3 lg:w-1/3">
+          <div
+            className={`${SURFACE.card} p-10 rounded-lg w-11/12 sm:w-96 md:w-2/3 lg:w-1/3`}
+          >
             <h2 className={`${CARD_TITLE} mb-4 text-center`}>
               Customize your Consent Preferences
             </h2>
@@ -200,7 +203,7 @@ const ConsentBanner = () => {
                         className="sr-only peer"
                       />
                       <div
-                        className={`${FOCUS_RING_PEER} relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600`}
+                        className={`${FOCUS_RING_PEER} relative w-9 h-5 ${SURFACE.switch} rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-transparent after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:surface-switch-knob after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:surface-switch-on`}
                       ></div>
                       <span className={`${LABEL} ms-3`}>Ad Storage</span>
                     </label>
@@ -217,7 +220,7 @@ const ConsentBanner = () => {
                         className="sr-only peer"
                       />
                       <div
-                        className={`${FOCUS_RING_PEER} relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600`}
+                        className={`${FOCUS_RING_PEER} relative w-9 h-5 ${SURFACE.switch} rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-transparent after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:surface-switch-knob after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:surface-switch-on`}
                       ></div>
                       <span className={`${LABEL} ms-3`}>
                         Ad Personalization
@@ -236,7 +239,7 @@ const ConsentBanner = () => {
                         className="sr-only peer"
                       />
                       <div
-                        className={`${FOCUS_RING_PEER} relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600`}
+                        className={`${FOCUS_RING_PEER} relative w-9 h-5 ${SURFACE.switch} rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-transparent after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:surface-switch-knob after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:surface-switch-on`}
                       ></div>
                       <span className={`${LABEL} ms-3`}>Analytics Storage</span>
                     </label>
@@ -253,7 +256,7 @@ const ConsentBanner = () => {
                         className="sr-only peer"
                       />
                       <div
-                        className={`${FOCUS_RING_PEER} relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600`}
+                        className={`${FOCUS_RING_PEER} relative w-9 h-5 ${SURFACE.switch} rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:translate-x-[-100%] peer-checked:after:border-transparent after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:surface-switch-knob after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:surface-switch-on`}
                       ></div>
                       <span className={`${LABEL} ms-3`}>Ad User Data</span>
                     </label>

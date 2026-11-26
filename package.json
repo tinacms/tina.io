@@ -27,7 +27,11 @@
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js",
     "visual:capture": "pnpm exec playwright test tests/visual-compare/capture.spec.ts --project=chromium --reporter=list",
     "visual:report": "npx tsx tests/visual-compare/generate-report.ts",
-    "visual:recapture": "npx tsx tests/visual-compare/recapture-missing.ts"
+    "visual:recapture": "npx tsx tests/visual-compare/recapture-missing.ts",
+    "check:colour-tokens": "node scripts/check-colour-tokens.js",
+    "check:contrast": "node scripts/check-contrast.js",
+    "check:design-modes": "pnpm exec playwright test tests/design-modes.spec.ts --project=chromium --reporter=list --retries=0",
+    "sweep": "failed=''; for step in lint type-check test check:colour-tokens check:contrast; do echo \"sweep: running $step\"; if [ \"$step\" = lint ]; then set -- exec biome check $(git ls-files '*.ts' '*.tsx' '*.js' '*.jsx'); else set -- \"$step\"; fi; if pnpm \"$@\"; then echo \"sweep: $step passed\"; else echo \"sweep: $step FAILED\"; failed=\"$failed $step\"; fi; done; if [ -n \"$failed\" ]; then echo \"sweep: failed:$failed\"; exit 1; fi; echo 'sweep: all five passed'"
   },
   "resolutions": {
     "graphql": "^15.5.1"

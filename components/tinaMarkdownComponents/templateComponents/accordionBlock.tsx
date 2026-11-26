@@ -4,7 +4,10 @@ import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import {
   BODY_MUTED,
   BODY_SMALL,
+  INK,
+  LINE,
   SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 
 interface AccordionItem {
@@ -49,7 +52,7 @@ export const AccordionBlock = ({
   if (!accordionItems || accordionItems.length === 0) {
     return (
       <div
-        className={`${BODY_MUTED} flex flex-col justify-center items-center rounded-lg bg-white/40 shadow-sm mb-5 p-4 border border-gray-200`}
+        className={`${BODY_MUTED} flex flex-col justify-center items-center rounded-lg bg-white/40 shadow-sm mb-5 p-4 border ${LINE.subtle}`}
       >
         No accordion items
       </div>
@@ -58,7 +61,7 @@ export const AccordionBlock = ({
 
   return (
     <div
-      className={`mx-auto flex flex-col justify-center items-center rounded-lg bg-white shadow-sm mb-5 my-6 border border-gray-200 ${
+      className={`mx-auto flex flex-col justify-center items-center rounded-lg ${SURFACE.card} shadow-sm mb-5 my-6 border ${LINE.subtle} ${
         fullWidth ? 'w-full' : 'w-3/4'
       }`}
     >
@@ -76,7 +79,7 @@ export const AccordionBlock = ({
               </h4>
               <div>
                 {expanded[index] ? (
-                  <FaMinus className="text-blue-800 size-3" />
+                  <FaMinus className={`${INK.active} size-3`} />
                 ) : (
                   <FaPlus className="text-gray-500 size-3" />
                 )}
@@ -106,7 +109,7 @@ export const AccordionBlock = ({
               )}
             </div>
             {index < accordionItems.length - 1 && (
-              <hr className="w-full h-0.5 border-gray-200" />
+              <hr className={`w-full h-0.5 ${LINE.subtle}`} />
             )}
           </div>
         );

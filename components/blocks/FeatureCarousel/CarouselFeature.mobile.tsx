@@ -4,6 +4,7 @@ import {
   BODY_SMALL,
   CARD_TITLE,
   SECTION_TITLE,
+  SURFACE,
 } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 
@@ -15,7 +16,7 @@ function CarouselFeatureMobileItem(data) {
   return (
     <div
       data-tina-field={tinaField(data, 'headline')}
-      className="h-full w-full flex flex-col md:p-10 p-6 group bg-linear-to-br from-white/25 via-white/50 to-white/75 shadow-md pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl"
+      className={`h-full w-full flex flex-col md:p-10 p-6 group ${SURFACE.frosted} shadow-md pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl`}
     >
       <div className="flex mb-2 text-left">
         {headline && (

@@ -2,7 +2,12 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import * as React from 'react';
 import { ICON_BUTTON } from '@/component/styles/buttons';
-import { BODY_SMALL, CARD_TITLE } from '@/component/styles/typography';
+import {
+  BODY_SMALL,
+  CARD_TITLE,
+  LINE,
+  SURFACE,
+} from '@/component/styles/typography';
 import { cn } from '@/lib/utils';
 
 const Dialog = DialogPrimitive.Root;
@@ -20,7 +25,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      'fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      `fixed inset-0 z-50 ${SURFACE.scrimDialog} data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0`,
       className,
     )}
     {...props}
@@ -37,7 +42,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed left-[50%] top-[50%] w-auto lg:w-full z-50 grid !max-w-5xl max-h-3/4 lg:max-h-50vh overflow-y-auto overflow-x-hidden !mx-auto translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg',
+        `fixed left-[50%] top-[50%] w-auto lg:w-full z-50 grid !max-w-5xl max-h-3/4 lg:max-h-50vh overflow-y-auto overflow-x-hidden !mx-auto translate-x-[-50%] translate-y-[-50%] gap-4 border ${LINE.subtle} ${SURFACE.cardBordered} p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg`,
         className,
       )}
       {...props}

@@ -13,7 +13,11 @@ import { buildBlogLinkSlug } from 'utils/i18n/buildLinkSlug';
 import { LOCALE_ROUTE_CONFIG } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
 import { unclipEmoji } from 'utils/unclipEmoji';
-import { ARTICLE_TITLE, BODY_MUTED } from '@/component/styles/typography';
+import {
+  ARTICLE_TITLE,
+  BODY_MUTED,
+  SURFACE,
+} from '@/component/styles/typography';
 import { formatDate } from '@/utils/formatDate';
 import { BlogBreadcrumbs } from './BlogBreadcrumbs';
 import type { BlogPageClientProps } from './BlogType';
@@ -118,7 +122,9 @@ function BlogAvatarImage({ avatar }: { avatar: BlogAvatar }) {
 
   return (
     <div className="relative shrink-0 w-36 h-44 md:w-48 md:h-60">
-      <div className="absolute bottom-0 inset-x-0 aspect-square rounded-full bg-linear-to-br from-orange-400 to-orange-600" />
+      <div
+        className={`absolute bottom-0 inset-x-0 aspect-square rounded-full bg-linear-to-br ${SURFACE.brandBand}`}
+      />
       <div className="absolute inset-0 overflow-hidden rounded-b-full">
         <Image
           src={src}

@@ -3,8 +3,12 @@
 import { useState } from 'react';
 import { SegmentedToggle } from '@/component/ui/SegmentedToggle';
 
-/** A live SegmentedToggle for the style guide. */
-export const SegmentedToggleExample = () => {
+/** A live SegmentedToggle for the style guide; `fill` stretches it to its container. */
+export const SegmentedToggleExample = ({
+  fill = false,
+}: {
+  fill?: boolean;
+}) => {
   const [period, setPeriod] = useState<'monthly' | 'annually'>('monthly');
   return (
     <SegmentedToggle
@@ -15,6 +19,7 @@ export const SegmentedToggleExample = () => {
       ]}
       value={period}
       onChange={setPeriod}
+      fill={fill}
     />
   );
 };

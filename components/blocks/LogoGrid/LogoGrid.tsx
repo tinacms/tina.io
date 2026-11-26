@@ -2,7 +2,7 @@ import { useWindowSize } from 'components/hooks/UseWindowSize';
 import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
-import { SECTION_TITLE } from '@/component/styles/typography';
+import { DECOR, SECTION_TITLE } from '@/component/styles/typography';
 import { Slider } from './CustomSlider';
 
 const Logo = ({ data, windowWidth = 1000 }) => {
@@ -61,7 +61,7 @@ export function LogoGridBlock({ data, index }) {
             {data.title}
           </h2>
         )}
-        <div className="w-full mask-horizontal-fade">
+        <div className={`w-full mask-horizontal-fade ${DECOR.logoStrip}`}>
           <Slider
             speed={0.5}
             slidesToShow={slidesToShow}

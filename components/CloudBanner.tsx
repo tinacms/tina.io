@@ -4,7 +4,11 @@ import Link from 'next/link';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-import { BODY_SMALL, SUBTLE_LINK } from '@/component/styles/typography';
+import {
+  BODY_SMALL,
+  SUBTLE_LINK,
+  SURFACE,
+} from '@/component/styles/typography';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import '../styles/tailwind.css';
 
@@ -26,14 +30,13 @@ export function CloudBanner() {
 
   return (
     <div
-      className="
-        relative z-10 w-full flex flex-col items-center justify-center 
+      className={`
+        relative z-10 w-full flex flex-col items-center justify-center
         py-3 px-4
-        bg-[linear-gradient(90deg,white,#f2fdfc_33.3%,#e6faf8_100%)] 
-        shadow-[0_0_8px_2px_rgba(0,0,0,0.03)] 
-        border-b border-[#d1faf6] 
+        ${SURFACE.cloudBanner}
+        border-b
         lg:flex-row lg:pl-8 lg:pr-10
-      "
+      `}
     >
       <div
         className="

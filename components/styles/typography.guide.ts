@@ -214,7 +214,8 @@ export const ROLE_GROUPS: RoleGroup[] = [
         name: 'NAV_LINK',
         example: 'TinaCMS',
         exampleKind: 'link',
-        useFor: 'Top-level nav items.',
+        useFor:
+          'Top-level nav items. Link blue on light, white on dark; both turn the link hover blue on hover.',
         notFor: { job: 'Items inside a nav menu', instead: 'NAV_MENU_LINK' },
       },
       {
@@ -319,9 +320,14 @@ export const TEXT_COLOURS: {
   {
     token: '--text-heading-*',
     swatch: 'bg-heading',
-    usedBy: ['PAGE_TITLE', 'ARTICLE_TITLE', 'CARD_TITLE_FEATURED'],
+    usedBy: [
+      'PAGE_TITLE',
+      'ARTICLE_TITLE',
+      'CARD_TITLE_FEATURED',
+      'HEADING_HIGHLIGHT',
+    ],
     useFor:
-      'The orange gradient. Page titles, plus the recommended pricing plan as the one agreed exception.',
+      'The orange gradient. Page titles, plus the recommended pricing plan as the one agreed exception. HEADING_HIGHLIGHT puts it on one highlighted heading word.',
   },
   {
     token: '--text-strong',
@@ -362,8 +368,62 @@ export const TEXT_COLOURS: {
     token: '--text-link',
     swatch: 'bg-link',
     usedBy: ['LINK', 'EYEBROW_LINK', 'NAV_LINK', 'TITLE_LINK'],
-    useFor: 'Links. TITLE_LINK only turns this colour on hover.',
+    useFor:
+      'Links. TITLE_LINK only turns this colour on hover; NAV_LINK takes it on light only, and is white on dark.',
   },
+];
+
+/**
+ * The backgrounds content sits on, named by use. /design paints each one
+ * with its SURFACE and shows the text roles on it, so every ink is checked
+ * against every background in both modes.
+ */
+export const PAGE_BACKGROUNDS: {
+  label: string;
+  name: keyof Typography['SURFACE'];
+  /** Pins the swatch to one mode, so it shows in either mode. Without it the swatch follows the page's mode. */
+  mode?: 'light' | 'dark';
+  useFor: string;
+}[] = [
+  {
+    label: 'Light page',
+    name: 'page',
+    mode: 'light',
+    useFor:
+      'The page in light mode: the sky wash, pinned to the screen. Put text straight on it, or on a card.',
+  },
+  {
+    label: 'Dark page',
+    name: 'page',
+    mode: 'dark',
+    useFor:
+      'The page in dark mode: the night sky, pinned to the screen. The one background with a hue; everything on it stays neutral.',
+  },
+  {
+    label: 'Plain page',
+    name: 'pagePlain',
+    useFor:
+      'The page colour with no wash: white in light, the dark page in dark. The ground under a sky band, like this page below its map.',
+  },
+  {
+    label: 'Card',
+    name: 'card',
+    useFor:
+      'Cards, tables, menus and dialogs on the page, and the footer in dark. In dark it has a 1px edge.',
+  },
+  {
+    label: 'Well',
+    name: 'well',
+    useFor:
+      'Fields and wells inside a card. In dark it’s lighter than the card, and table rows and grey chips share it.',
+  },
+];
+
+/** The roles each page background shows under its name (a CARD_TITLE), one per text colour. */
+export const PAGE_BACKGROUND_ROLES: RoleName[] = [
+  'BODY',
+  'BODY_MUTED',
+  'EYEBROW',
 ];
 
 /** The SURFACE pairs: a fill and the ink that belongs on it. */
@@ -428,5 +488,71 @@ export const SURFACE_GUIDE: {
     example: 'Featured',
     role: 'EYEBROW',
     useFor: '“Featured”, “new”.',
+  },
+];
+
+/**
+ * The LINE colours for everyday edges. Put one beside the border width and
+ * sides. Single-use lines (glass, terminal, blog tables, callouts, the
+ * premier partner ring) are listed in components/styles/typography.ts.
+ */
+export const LINE_GUIDE: {
+  name: keyof Typography['LINE'];
+  useFor: string;
+}[] = [
+  {
+    name: 'subtle',
+    useFor: 'Decoration: dividers, table rules and card edges.',
+  },
+  {
+    name: 'strong',
+    useFor:
+      'Anything you click or type in: fields, checkboxes, the neutral outline.',
+  },
+  {
+    name: 'faint',
+    useFor:
+      'A faint edge: the QR code popover, Versions rows, docs image panels.',
+  },
+  {
+    name: 'selected',
+    useFor: 'The edge of a selected choice card, like ChooserCard.',
+  },
+];
+
+/**
+ * The INK colours for marks that aren't text: icons, logos and dots. An SVG
+ * takes one with fill-current or stroke-current. Single-use inks (social
+ * logos, roadmap status, the timeline, the map, white marks on bands) are
+ * listed in components/styles/typography.ts.
+ */
+export const INK_GUIDE: {
+  name: keyof Typography['INK'];
+  useFor: string;
+}[] = [
+  {
+    name: 'brand',
+    useFor: 'The brand orange: the Tina logo in the nav and brand icons.',
+  },
+  {
+    name: 'strong',
+    useFor: 'A mark in the strong ink: feature card hexagons, the map’s icons.',
+  },
+  {
+    name: 'subtle',
+    useFor: 'A quiet mark, like the heading-link icon.',
+  },
+  {
+    name: 'blue',
+    useFor: 'A blue mark, like a blue feature card’s hexagon.',
+  },
+  {
+    name: 'active',
+    useFor:
+      'A blue mark in its open or current state: an open accordion’s icon.',
+  },
+  {
+    name: 'decor',
+    useFor: 'A decorative icon, like the empty search results icon.',
   },
 ];

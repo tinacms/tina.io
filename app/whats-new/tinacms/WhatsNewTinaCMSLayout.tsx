@@ -5,6 +5,7 @@ import {
   CARD_TITLE,
   CODE,
   LABEL,
+  LINE,
   PAGE_TITLE,
   SUB_HEADING,
   SURFACE,
@@ -87,7 +88,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
   return (
     <div
       key={item.key}
-      className="mb-6 p-10 shadow-xl rounded-lg bg-linear-to-br from-white/25 via-white/50 to-white/75"
+      className={`mb-6 p-10 shadow-xl rounded-lg ${SURFACE.frosted}`}
     >
       <div className="flex justify-between items-baseline mb-6">
         <h2 className={CARD_TITLE}>Version {item.versionNumber}</h2>
@@ -101,7 +102,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
           key={`section-${section.changesTitle}-${sectionIndex}`}
           className="mb-6"
         >
-          <h3 className={`${SUB_HEADING} mb-3 border-b border-gray-200 pb-2`}>
+          <h3 className={`${SUB_HEADING} mb-3 border-b ${LINE.subtle} pb-2`}>
             {section.changesTitle}
           </h3>
           {section.changesList && section.changesList.length > 0 ? (

@@ -29,6 +29,12 @@ export const FOCUS_RING = 'focus-ring';
 /** The focus ring for a switch drawn after a hidden `peer` input: shows when the input has keyboard focus. */
 export const FOCUS_RING_PEER = 'focus-ring-peer';
 
+/** The mode toggle's moon: shown in light, hidden in dark. */
+export const MODE_ICON_LIGHT = 'mode-icon-light';
+
+/** The mode toggle's sun: hidden in light, shown in dark. */
+export const MODE_ICON_DARK = 'mode-icon-dark';
+
 /** The neutral outline: white, a light slate border that darkens on hover. Not a button level. */
 export const NEUTRAL_OUTLINE = 'neutral-outline';
 

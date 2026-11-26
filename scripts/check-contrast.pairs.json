@@ -1,0 +1,535 @@
+{
+  "backdrop": "--surface-page",
+  "fills": {
+    "page": {
+      "stops": ["--surface-page"],
+      "source": "body: bg-background (styles/tailwind.css), the page fill"
+    },
+    "sky-page": {
+      "stops": [
+        "--surface-page-wash-1",
+        "--surface-page-wash-2",
+        "--surface-page-wash-3",
+        "--surface-page-wash-4"
+      ],
+      "source": "components/layout/Layout.tsx bg-blob-bg (--surface-page-wash): the cyan to blue band at its strongest, the top edge, over the page"
+    },
+    "card": {
+      "stops": ["--surface-card"],
+      "source": "surface-card (SURFACE.card): cards, tables, menus, dialogs"
+    },
+    "well": {
+      "stops": ["--surface-well"],
+      "source": "surface-well (SURFACE.well): fields, wells"
+    },
+    "table-head": {
+      "stops": ["--surface-table-head"],
+      "source": "surface-table-head (SURFACE.tableHead): table header rows"
+    },
+    "glass": {
+      "stops": ["--surface-glass-from", "--surface-glass-to"],
+      "source": "surface-glass (SURFACE.glass): glass cards, over the page"
+    },
+    "frosted": {
+      "stops": [
+        "--surface-frosted-from",
+        "--surface-frosted-via",
+        "--surface-frosted-to"
+      ],
+      "source": "surface-frosted (SURFACE.frosted): frosted cards, over the page"
+    },
+    "seafoam-section": {
+      "stops": [
+        "--section-seafoam-from",
+        "--section-seafoam-via",
+        "--section-seafoam-to"
+      ],
+      "source": "surface-section-seafoam (SURFACE.sectionSeafoam): components/layout/Section.tsx seafoam gradient, over white"
+    },
+    "segmented-track": {
+      "stops": [
+        "--segmented-track-from",
+        "--segmented-track-via",
+        "--segmented-track-to"
+      ],
+      "source": "segmented-track (styles/tailwind.css), over white"
+    },
+    "heading": {
+      "stops": [
+        "--text-heading-highlight",
+        "--text-heading-start",
+        "--text-heading-end"
+      ],
+      "source": "text-heading (styles/tailwind.css): PAGE_TITLE, ARTICLE_TITLE, CARD_TITLE_FEATURED"
+    },
+    "button-primary": {
+      "stops": ["--button-primary-from", "--button-primary-to"],
+      "source": "btn-primary (styles/tailwind.css)"
+    },
+    "button-secondary": {
+      "stops": ["--button-secondary-from", "--button-secondary-to"],
+      "source": "btn-secondary and segmented-selected (styles/tailwind.css)"
+    },
+    "menu-item-hover": {
+      "stops": ["--menu-item-hover"],
+      "over": "--menu-surface",
+      "source": "menu-item hover row (styles/tailwind.css), over the menu surface"
+    },
+    "icon-button-hover-on-dark": {
+      "stops": ["color-mix(in srgb, var(--white) 12%, transparent)"],
+      "over": "var(--gray-800, oklch(27.8% 0.033 256.848))",
+      "source": "on-dark --icon-button-hover (styles/tailwind.css), over the darkest-lit on-dark fill it sits on (Recipe gray-800)"
+    },
+    "footer-orange": {
+      "stops": [
+        "--band-footer-1",
+        "--band-footer-2",
+        "--band-footer-3",
+        "--band-footer-4",
+        "--band-footer-5"
+      ],
+      "source": "surface-footer-band (SURFACE.footerBand): public/svg/orange-bg.svg in light, the card in dark; the footer and the /design on-dark examples"
+    },
+    "footer-legal-band": {
+      "stops": ["--band-legal-from", "--band-legal-via", "--band-legal-to"],
+      "source": "surface-legal-band (SURFACE.legalBand): components/layout/Footer.tsx legal band"
+    },
+    "consent-banner": {
+      "stops": ["--band-brand-from", "--band-brand-to"],
+      "source": "surface-brand-band (SURFACE.brandBand): components/ConsentBanner.tsx and the orange badges"
+    },
+    "recipe-panel": {
+      "stops": ["--recipe-panel"],
+      "source": "surface-recipe-panel (SURFACE.recipePanel): components/blocks/Recipe.tsx and RecipeCodeToolBar.tsx"
+    },
+    "features-code-tab": {
+      "stops": ["--feature-code-panel-from", "--feature-code-panel-via"],
+      "source": "surface-feature-code-tab (SURFACE.featureCodeTab): components/blocks/Features/Features.tsx"
+    },
+    "story-code-tab": {
+      "stops": ["var(--blue-800)", "var(--blue-900)"],
+      "source": "components/blocks/Story/Story.tsx, from-blue-800 to-blue-900"
+    },
+    "feature-code-panel": {
+      "stops": [
+        "--feature-code-panel-from",
+        "--feature-code-panel-via",
+        "--feature-code-panel-to"
+      ],
+      "source": "surface-feature-code-panel (SURFACE.featureCodePanel)"
+    },
+    "success-band": {
+      "stops": ["--band-success-from", "--band-success-to"],
+      "source": "surface-success-band (SURFACE.successBand): tip and update icon discs"
+    },
+    "info-band": {
+      "stops": ["--band-info-from", "--band-info-to"],
+      "source": "surface-info-band (SURFACE.infoBand): blue icon discs"
+    },
+    "partner-premier": {
+      "stops": [
+        "--partner-premier-from",
+        "--partner-premier-via",
+        "--partner-premier-to"
+      ],
+      "source": "surface-partner-premier (SURFACE.partnerPremier)"
+    }
+  },
+  "pairs": [
+    {
+      "context": "Running text, labels and links on the page",
+      "fg": [
+        "--text-strong",
+        "--text-body",
+        "--text-subtle",
+        "--text-label",
+        "--text-link",
+        "--text-link-hover"
+      ],
+      "bg": ["page", "sky-page", "seafoam-section"],
+      "kind": "text"
+    },
+    {
+      "context": "Page and article titles (large text)",
+      "fg": "heading",
+      "bg": ["page", "sky-page", "seafoam-section"],
+      "kind": "large-text"
+    },
+    {
+      "context": "Interactive edges on the page: focus ring, Tertiary outline, neutral outline (social links, command field, post cards, current page), pagination hover, a chosen card",
+      "fg": [
+        "--focus-ring",
+        "--button-tertiary-border",
+        "--neutral-outline-border",
+        "--neutral-outline-border-hover",
+        "--pagination-hover-border",
+        "--border-selected"
+      ],
+      "bg": ["page", "sky-page", "seafoam-section"],
+      "kind": "edge"
+    },
+    {
+      "context": "Icon-only buttons: icon on the page and on its hover fill",
+      "fg": "--icon-button-ink",
+      "bg": ["page", "sky-page", "--icon-button-hover"],
+      "kind": "edge"
+    },
+    {
+      "context": "Pagination numbers on the page",
+      "fg": "--pagination-ink",
+      "bg": ["page", "sky-page", "seafoam-section"],
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-neutral",
+      "bg": "--surface-neutral",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-brand",
+      "bg": "--surface-brand",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-info",
+      "bg": "--surface-info",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-success",
+      "bg": "--surface-success",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-warning",
+      "bg": "--surface-warning",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-error",
+      "bg": "--surface-error",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-neutral-solid",
+      "bg": "--surface-neutral-solid",
+      "kind": "text"
+    },
+    {
+      "context": "Surface pairs: each SURFACE.* ink on its fill",
+      "fg": "--on-surface-brand-solid",
+      "bg": "--surface-brand-solid",
+      "kind": "text"
+    },
+    {
+      "context": "SURFACE.successPanel keeps the page's text roles on the success fill",
+      "fg": [
+        "--text-strong",
+        "--text-body",
+        "--text-subtle",
+        "--text-label",
+        "--text-link"
+      ],
+      "bg": "--surface-success",
+      "kind": "text"
+    },
+    {
+      "context": "Surface borders on chips and panels (decorative)",
+      "fg": "--border-brand",
+      "bg": "--surface-brand",
+      "kind": "edge",
+      "exempt": "decorative chip border"
+    },
+    {
+      "context": "Surface borders on chips and panels (decorative)",
+      "fg": "--border-info",
+      "bg": "--surface-info",
+      "kind": "edge",
+      "exempt": "decorative chip border"
+    },
+    {
+      "context": "Surface borders on chips and panels (decorative)",
+      "fg": "--border-success",
+      "bg": "--surface-success",
+      "kind": "edge",
+      "exempt": "decorative chip border"
+    },
+    {
+      "context": "Surface borders on chips and panels (decorative)",
+      "fg": "--border-warning",
+      "bg": "--surface-warning",
+      "kind": "edge",
+      "exempt": "decorative chip border"
+    },
+    {
+      "context": "Surface borders on chips and panels (decorative)",
+      "fg": "--border-error",
+      "bg": "--surface-error",
+      "kind": "edge",
+      "exempt": "decorative chip border"
+    },
+    {
+      "context": "Button labels on their level",
+      "fg": "--button-primary-ink",
+      "bg": "button-primary",
+      "kind": "text"
+    },
+    {
+      "context": "Button labels on their level",
+      "fg": "--button-secondary-ink",
+      "bg": "button-secondary",
+      "kind": "text"
+    },
+    {
+      "context": "Button labels on their level",
+      "fg": "--button-tertiary-ink",
+      "bg": "--button-tertiary-fill",
+      "kind": "text"
+    },
+    {
+      "context": "Primary on a dark or orange band: orange label on white",
+      "fg": "--button-on-dark-ink",
+      "bg": "--button-on-dark-fill",
+      "kind": "text"
+    },
+    {
+      "context": "Segmented toggle: options not selected on the track",
+      "fg": "--segmented-ink",
+      "bg": "segmented-track",
+      "kind": "text"
+    },
+    {
+      "context": "Social links and the command field: ink on the neutral outline fill",
+      "fg": ["--social-link-ink", "--text-strong"],
+      "bg": "--neutral-outline-fill",
+      "kind": "text"
+    },
+    {
+      "context": "npx command field: copy icon on its orange block",
+      "fg": "--command-copy-ink",
+      "bg": "--command-copy-fill",
+      "kind": "edge"
+    },
+    {
+      "context": "npx starter menu: row text and icons, and the hover row",
+      "fg": "--text-body",
+      "bg": "--neutral-outline-fill",
+      "kind": "text"
+    },
+    {
+      "context": "npx starter menu: row text and icons, and the hover row",
+      "fg": "--command-menu-icon",
+      "bg": "--neutral-outline-fill",
+      "kind": "edge"
+    },
+    {
+      "context": "npx starter menu: row text and icons, and the hover row",
+      "fg": "--command-menu-hover-ink",
+      "bg": "--command-menu-hover",
+      "kind": "text"
+    },
+    {
+      "context": "npx starter menu: the rule under the list (decorative)",
+      "fg": "--command-menu-rule",
+      "bg": "--neutral-outline-fill",
+      "kind": "edge",
+      "exempt": "decorative divider"
+    },
+    {
+      "context": "Nav menus: row text and its hover colour, on the panel and the hover row",
+      "fg": ["--text-body", "--text-link-hover"],
+      "bg": ["--menu-surface", "menu-item-hover"],
+      "kind": "text"
+    },
+    {
+      "context": "ON_DARK bands: text, SLUB labels and legal links",
+      "fg": ["--text-on-dark", "--text-on-dark-label"],
+      "bg": [
+        "footer-orange",
+        "footer-legal-band",
+        "consent-banner",
+        "recipe-panel",
+        "features-code-tab",
+        "story-code-tab",
+        "--code-panel"
+      ],
+      "kind": "text"
+    },
+    {
+      "context": "ON_DARK bands: Tertiary outline, focus ring and icon buttons (white)",
+      "fg": "--button-on-dark-outline",
+      "bg": [
+        "footer-orange",
+        "footer-legal-band",
+        "consent-banner",
+        "recipe-panel",
+        "features-code-tab",
+        "story-code-tab",
+        "--code-panel"
+      ],
+      "kind": "edge"
+    },
+    {
+      "context": "ON_DARK icon buttons on their hover tint",
+      "fg": "--text-on-dark",
+      "bg": "icon-button-hover-on-dark",
+      "kind": "edge"
+    },
+    {
+      "context": "Code panel tabs: tabs not selected at 70%, and the selected underline",
+      "fg": "color-mix(in srgb, var(--text-on-dark) 70%, transparent)",
+      "bg": "--code-panel",
+      "kind": "text"
+    },
+    {
+      "context": "Code panel tabs: tabs not selected at 70%, and the selected underline",
+      "fg": "--tab-indicator",
+      "bg": "--code-panel",
+      "kind": "edge"
+    },
+    {
+      "context": "Code panel tabs: the line under the row (decorative)",
+      "fg": "--tab-divider",
+      "bg": "--code-panel",
+      "kind": "edge",
+      "exempt": "decorative divider"
+    },
+    {
+      "context": "Text on the card, well, table head, glass and frosted surfaces",
+      "fg": [
+        "--text-strong",
+        "--text-body",
+        "--text-subtle",
+        "--text-label",
+        "--text-link"
+      ],
+      "bg": ["card", "well", "table-head", "glass", "frosted"],
+      "kind": "text"
+    },
+    {
+      "context": "Page and article titles on a card (large text)",
+      "fg": "heading",
+      "bg": "card",
+      "kind": "large-text"
+    },
+    {
+      "context": "The strong line on the page, card, well and table head (interactive edges)",
+      "fg": "--border-strong",
+      "bg": ["page", "card", "well", "table-head"],
+      "kind": "edge"
+    },
+    {
+      "context": "The subtle line on the page, card, well and table head (decorative)",
+      "fg": "--border-subtle",
+      "bg": ["page", "card", "well", "table-head"],
+      "kind": "edge",
+      "exempt": "decorative divider"
+    },
+    {
+      "context": "Surface steps: card and well on the page, well on the card, and the card edge (decorative)",
+      "fg": ["--surface-card", "--surface-well", "--surface-card-edge"],
+      "bg": ["page", "card"],
+      "kind": "edge",
+      "exempt": "surface step and card edge, decorative"
+    },
+    {
+      "context": "Shimmer on short promo text (the homepage news banner)",
+      "fg": "color-mix(in srgb, var(--text-strong) 40%, var(--white))",
+      "bg": ["page", "sky-page"],
+      "kind": "text",
+      "exempt": "the shimmer"
+    },
+    {
+      "context": "Component roles: bands with the on-band white (icon discs, the starred corner)",
+      "fg": "--on-band",
+      "bg": ["success-band", "info-band", "--band-flag"],
+      "kind": "edge"
+    },
+    {
+      "context": "Component roles: text on the feature code panel",
+      "fg": "--feature-code-panel-ink",
+      "bg": "feature-code-panel",
+      "kind": "text"
+    },
+    {
+      "context": "Component roles: the premier partner badge",
+      "fg": "--partner-premier-ink",
+      "bg": "partner-premier",
+      "kind": "text"
+    },
+    {
+      "context": "Component roles: fields, switches and checkboxes (interactive edges)",
+      "fg": ["--field-edge", "--checkbox-edge"],
+      "bg": ["card", "--field-fill"],
+      "kind": "edge"
+    },
+    {
+      "context": "Component roles: a switch's knob on its track, and the track when on",
+      "fg": "--switch-knob",
+      "bg": ["--switch-track", "--switch-on"],
+      "kind": "edge"
+    },
+    {
+      "context": "Component roles: the menu tab's orange ink on its fill",
+      "fg": ["--menu-tab-ink", "--menu-tab-ink-hover"],
+      "bg": ["--menu-tab-from", "--menu-tab-to"],
+      "kind": "text"
+    },
+    {
+      "context": "Component roles: the focus ring on the card and well, and ChooserCard's ring",
+      "fg": ["--focus-ring", "--chooser-ring"],
+      "bg": ["card", "well"],
+      "kind": "edge"
+    },
+    {
+      "context": "Component roles: links and blue marks on the card",
+      "fg": ["--text-link", "--text-link-hover"],
+      "bg": ["card", "well"],
+      "kind": "text"
+    },
+    {
+      "context": "Component roles: roadmap status icons on the card",
+      "fg": [
+        "--status-done",
+        "--status-progress",
+        "--status-planned",
+        "--status-default"
+      ],
+      "bg": "card",
+      "kind": "edge"
+    },
+    {
+      "context": "Component roles: decorative lines and marks (decorative)",
+      "fg": [
+        "--border-faint",
+        "--line-terminal",
+        "--blog-table-line",
+        "--ink-decor",
+        "--map-land",
+        "--line-callout-tip",
+        "--line-callout-warning"
+      ],
+      "bg": ["page", "card", "well"],
+      "kind": "edge",
+      "exempt": "decorative line or mark"
+    },
+    {
+      "context": "Component roles: blue icons on the card (non-text marks)",
+      "fg": [
+        "--ink-blue",
+        "--ink-active",
+        "--ink-external-link",
+        "--ink-external-link-hover"
+      ],
+      "bg": ["card", "well"],
+      "kind": "edge"
+    }
+  ]
+}

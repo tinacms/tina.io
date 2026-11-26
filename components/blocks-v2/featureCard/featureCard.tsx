@@ -4,7 +4,9 @@ import {
   BODY,
   CARD_TITLE,
   EYEBROW,
+  INK,
   SECTION_TITLE,
+  SURFACE,
 } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
@@ -67,16 +69,16 @@ function FeatureCardItem(data: {
     data.data;
 
   const hexagonColourMap = {
-    black: 'text-black',
-    blue: 'text-blue-600',
-    tinaOrange: 'text-orange-500',
+    black: INK.strong,
+    blue: INK.blue,
+    tinaOrange: INK.brand,
   };
 
-  const hexagonClass = hexagonColourMap[themeColour] || 'text-black';
+  const hexagonClass = hexagonColourMap[themeColour] || INK.strong;
 
   return (
     <div
-      className="relative flex flex-col gap-8 items-center bg-gradient-to-br from-white/10 to-white/40 shadow-lg px-8 lg:px-12 py-8 lg:py-10 rounded-md overflow-hidden"
+      className={`relative flex flex-col gap-8 items-center ${SURFACE.glass} shadow-lg px-8 lg:px-12 py-8 lg:py-10 rounded-md overflow-hidden`}
       id={sanitizeLabel(title)}
     >
       <HexagonBackground headlineClass={`hidden lg:block ${hexagonClass}`} />

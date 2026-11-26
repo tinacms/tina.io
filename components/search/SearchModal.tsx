@@ -12,7 +12,10 @@ import {
   EYEBROW,
   FIELD,
   HIGHLIGHT,
+  INK,
+  LINE,
   SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 import { TextLink } from '@/component/ui/TextLink';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
@@ -59,7 +62,7 @@ export const SearchResultsOverflowBody = ({
       {results?.blogs?.results.slice(0, 10).map((item: any) => (
         <div
           key={item.objectID}
-          className="py-3 px-4 border-b border-gray-100 group hover:bg-gray-50 transition-colors"
+          className={`py-3 px-4 border-b ${LINE.faint} group hover:surface-row-hover transition-colors`}
         >
           <Link href={`/blog/${item.slug}`} onClick={onResultClick}>
             <h2 className={`${SUB_HEADING} break-words`}>
@@ -73,7 +76,7 @@ export const SearchResultsOverflowBody = ({
       ))}
       <div>
         {numberOfResults > 0 ? (
-          <div className="px-4 pt-1 border-t border-gray-100">
+          <div className={`px-4 pt-1 border-t ${LINE.faint}`}>
             <TextLink
               href={`/search?query=${encodeURIComponent(query)}`}
               onClick={onResultClick}
@@ -121,7 +124,7 @@ export const SearchResultsOverflowTabs = ({
 
   return (
     <div className="w-full">
-      <div className="border-b border-gray-200">
+      <div className={`border-b ${LINE.subtle}`}>
         <div className="flex justify-between items-center">
           <nav className="relative flex gap-16 px-6">
             <span className={`${EYEBROW} py-4`}>BLOGS ({numberOfResults})</span>
@@ -182,14 +185,16 @@ export const SearchModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="bg-white w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 max-w-5xl rounded-2xl text-left p-0">
+      <DialogContent
+        className={`${SURFACE.cardBordered} w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 max-w-5xl rounded-2xl text-left p-0`}
+      >
         <div className="flex flex-col h-full">
           {/* Search Input */}
-          <div className="relative px-10 py-6 border-b border-gray-200">
+          <div className={`relative px-10 py-6 border-b ${LINE.subtle}`}>
             <input
               ref={inputRef}
               type="text"
-              className={`w-full py-3 px-6 rounded-full border border-gray-300 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent ${FIELD}`}
+              className={`w-full py-3 px-6 rounded-full border ${SURFACE.field} shadow-md focus:outline-none focus:ring-2 focus:border-transparent ${FIELD}`}
               placeholder="Search blog posts..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -214,7 +219,9 @@ export const SearchModal = ({
               />
             ) : (
               <div className="p-12 text-center">
-                <HiMagnifyingGlass className="mx-auto text-5xl mb-4 text-gray-300" />
+                <HiMagnifyingGlass
+                  className={`mx-auto text-5xl mb-4 ${INK.decor}`}
+                />
                 <p className={BODY_MUTED}>Start typing to search...</p>
                 <p className={`${BODY_MUTED} mt-2`}>
                   Search through blog posts
@@ -247,7 +254,7 @@ export const SearchBar = ({ className = '' }: { className?: string }) => {
       <div className={`relative ${className}`}>
         <input
           type="text"
-          className={`w-full p-2 pl-6 rounded-full border border-gray-300/20 bg-white/50 shadow-lg cursor-pointer ${FIELD}`}
+          className={`w-full p-2 pl-6 rounded-full border ${SURFACE.fieldGlass} shadow-lg cursor-pointer ${FIELD}`}
           placeholder="Search"
           onClick={openModal}
           onKeyDown={handleInputKeyDown}

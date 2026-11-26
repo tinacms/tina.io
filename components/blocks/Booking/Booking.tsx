@@ -1,6 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { ARTICLE_TITLE, BODY, EYEBROW } from '@/component/styles/typography';
+import {
+  ARTICLE_TITLE,
+  BODY,
+  EYEBROW,
+  INK,
+  LINE,
+} from '@/component/styles/typography';
 import { ChooserCard } from '@/component/ui/ChooserCard';
 
 export type BookingItem = {
@@ -69,20 +75,20 @@ const BookingBlock = ({ data }) => {
             >
               <span className="flex w-full items-center" aria-hidden="true">
                 <span
-                  className={`h-0.5 grow ${index === 0 ? 'bg-transparent' : 'bg-neutral-border'}`}
+                  className={`h-0.5 grow ${index === 0 ? 'bg-transparent' : LINE.fill}`}
                 />
                 <span
-                  className={`size-6 shrink-0 rounded-full border-2 ${index === CURRENT_STEP ? 'border-brand-primary bg-brand-primary' : 'border-neutral-border'}`}
+                  className={`size-6 shrink-0 rounded-full border-2 ${index === CURRENT_STEP ? `border-current bg-current ${INK.brand}` : LINE.strong}`}
                 />
                 <span
-                  className={`h-0.5 grow ${index === BOOKING_STEPS.length - 1 ? 'bg-transparent' : 'bg-neutral-border'}`}
+                  className={`h-0.5 grow ${index === BOOKING_STEPS.length - 1 ? 'bg-transparent' : LINE.fill}`}
                 />
               </span>
               <span className={`${EYEBROW} px-1`}>{step}</span>
             </li>
           ))}
         </ol>
-        <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
+        <div className="grid gap-3 my-16 px-10 py-12 md:surface-frosted break-inside-avoid md:shadow-md rounded-lg">
           {/* The schema has no isHeadingOne field and this block is always
           first on its page, so its title is the h1. It sits in a narrow card,
           so it takes ARTICLE_TITLE, a step below PAGE_TITLE. */}

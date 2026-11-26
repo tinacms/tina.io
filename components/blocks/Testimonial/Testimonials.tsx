@@ -7,6 +7,7 @@ import {
   BODY_SMALL,
   SECTION_TITLE,
   SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 import Marquee from '@/components/ui/marquee';
 import { cn } from '@/lib/utils';
@@ -22,8 +23,8 @@ const TestimonialCard = ({ ...data }) => {
         className={cn(
           'relative w-96 h-72 cursor-pointer overflow-hidden rounded-xl p-8 flex flex-col gap-4',
           'shadow-md',
-          'bg-gradient-to-br from-white/10 to-white/40 hover:to-white/40',
-          'cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out',
+          SURFACE.glass,
+          'cursor-pointer hover:shadow-lg hover:surface-card hover:scale-[1.01] transition-all duration-150 ease-out',
         )}
       >
         <Image src="/quotation.svg" alt="quotation" width={24} height={24} />

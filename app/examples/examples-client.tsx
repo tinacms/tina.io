@@ -6,6 +6,7 @@ import {
   BODY_SMALL,
   PAGE_TITLE,
   SUB_HEADING,
+  SURFACE,
 } from '@/component/styles/typography';
 import type { ExamplesExamples } from './examples-types';
 
@@ -35,7 +36,7 @@ function Example({ example }: { example: ExamplesExamples }) {
   return (
     <a
       target="_blank"
-      className="relative group mb-6 break-inside-avoid rounded-md bg-linear-to-b from-white to-white/30 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),0_0_1px_1px_rgba(223,219,252,0.5)] flex flex-col gap-5 cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out"
+      className={`relative group mb-6 break-inside-avoid rounded-md bg-linear-to-b ${SURFACE.exampleCard} flex flex-col gap-5 cursor-pointer hover:shadow-lg hover:scale-[1.01] transition-all duration-150 ease-out`}
       href={example.link}
     >
       <div className="absolute bottom-3 right-3 z-20">

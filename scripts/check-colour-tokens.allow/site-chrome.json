@@ -1,0 +1,7 @@
+[
+  {
+    "file": "app/layout.tsx",
+    "pattern": "#E6FAF8",
+    "reason": "The browser's theme-color meta tag can't read a CSS variable, so it keeps the light page colour as a literal (E4)."
+  }
+]

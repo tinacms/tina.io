@@ -1,0 +1,389 @@
+[
+  {
+    "fg": "heading",
+    "bg": "page",
+    "mode": "light",
+    "stop": "--text-heading-highlight",
+    "reason": "agreed by design: only the thin highlight at the top of each title line; the letters stay at 3.8:1 or more (app/global.css)"
+  },
+  {
+    "fg": "heading",
+    "bg": "seafoam-section",
+    "mode": "light",
+    "stop": "--text-heading-highlight",
+    "reason": "agreed by design: only the thin highlight at the top of each title line; the letters stay at 3.8:1 or more (app/global.css)"
+  },
+  {
+    "fg": "heading",
+    "bg": "sky-page",
+    "mode": "light",
+    "stop": "--text-heading-highlight",
+    "reason": "agreed by design: only the thin highlight at the top of each title line; the letters stay at 3.8:1 or more (app/global.css)"
+  },
+  {
+    "fg": "heading",
+    "bg": "sky-page",
+    "mode": "light",
+    "stop": "--text-heading-start",
+    "reason": "light unchanged: the sky page background at its strongest, the top edge"
+  },
+  {
+    "fg": "--button-primary-ink",
+    "bg": "button-primary",
+    "mode": "light",
+    "stop": "--button-primary-from",
+    "reason": "agreed by design: white label on the gradient light end, chosen over darker gradients (app/global.css)"
+  },
+  {
+    "fg": "--button-secondary-ink",
+    "bg": "button-secondary",
+    "mode": "light",
+    "stop": "--button-secondary-from",
+    "reason": "agreed by design: white label on the gradient light end, chosen over darker gradients (app/global.css)"
+  },
+  {
+    "fg": "--command-menu-hover-ink",
+    "bg": "--command-menu-hover",
+    "mode": "light",
+    "reason": "agreed by design: orange label on the grey hover row, 4.3:1 (app/global.css)"
+  },
+  {
+    "fg": "--text-on-dark-label",
+    "bg": "footer-orange",
+    "mode": "light",
+    "reason": "agreed by design: SLUB labels and legal links in white at 75% on dark and orange (app/global.css)"
+  },
+  {
+    "fg": "--text-on-dark-label",
+    "bg": "footer-legal-band",
+    "mode": "light",
+    "reason": "agreed by design: SLUB labels and legal links in white at 75% on dark and orange (app/global.css)"
+  },
+  {
+    "fg": "--text-on-dark-label",
+    "bg": "consent-banner",
+    "mode": "light",
+    "reason": "agreed by design: SLUB labels and legal links in white at 75% on dark and orange (app/global.css)"
+  },
+  {
+    "fg": "--text-subtle",
+    "bg": "sky-page",
+    "mode": "light",
+    "reason": "light unchanged: the sky page background at its strongest, the top edge"
+  },
+  {
+    "fg": "--text-label",
+    "bg": "sky-page",
+    "mode": "light",
+    "reason": "light unchanged: the sky page background at its strongest, the top edge"
+  },
+  {
+    "fg": "--text-link",
+    "bg": "sky-page",
+    "mode": "light",
+    "reason": "light unchanged: the sky page background at its strongest, the top edge"
+  },
+  {
+    "fg": "--border-selected",
+    "bg": "sky-page",
+    "mode": "light",
+    "reason": "light unchanged: the sky page background at its strongest, the top edge"
+  },
+  {
+    "fg": "--text-subtle",
+    "bg": "seafoam-section",
+    "mode": "light",
+    "reason": "light unchanged: the seafoam section at its strongest stop"
+  },
+  {
+    "fg": "--text-label",
+    "bg": "seafoam-section",
+    "mode": "light",
+    "reason": "light unchanged: the seafoam section at its strongest stop"
+  },
+  {
+    "fg": "--text-subtle",
+    "bg": "--surface-success",
+    "mode": "light",
+    "reason": "light unchanged: SURFACE.successPanel keeps the page subtle grey on the success fill"
+  },
+  {
+    "fg": "--text-label",
+    "bg": "--surface-success",
+    "mode": "light",
+    "reason": "light unchanged: SURFACE.successPanel keeps the page label grey on the success fill"
+  },
+  {
+    "fg": "--neutral-outline-border",
+    "bg": "page",
+    "mode": "light",
+    "reason": "light unchanged: the neutral outline is an interactive edge, held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--neutral-outline-border",
+    "bg": "sky-page",
+    "mode": "light",
+    "reason": "light unchanged: the neutral outline is an interactive edge, held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--neutral-outline-border",
+    "bg": "seafoam-section",
+    "mode": "light",
+    "reason": "light unchanged: the neutral outline is an interactive edge, held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--neutral-outline-border-hover",
+    "bg": "page",
+    "mode": "light",
+    "reason": "light unchanged: the neutral outline is an interactive edge, held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--neutral-outline-border-hover",
+    "bg": "sky-page",
+    "mode": "light",
+    "reason": "light unchanged: the neutral outline is an interactive edge, held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--neutral-outline-border-hover",
+    "bg": "seafoam-section",
+    "mode": "light",
+    "reason": "light unchanged: the neutral outline is an interactive edge, held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--pagination-hover-border",
+    "bg": "page",
+    "mode": "light",
+    "reason": "light unchanged: the neutral outline is an interactive edge, held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--pagination-hover-border",
+    "bg": "sky-page",
+    "mode": "light",
+    "reason": "light unchanged: the neutral outline is an interactive edge, held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--pagination-hover-border",
+    "bg": "seafoam-section",
+    "mode": "light",
+    "reason": "light unchanged: the neutral outline is an interactive edge, held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--text-on-dark",
+    "bg": "footer-orange",
+    "mode": "light",
+    "reason": "light unchanged: the lightest orange stops of the footer and consent banner"
+  },
+  {
+    "fg": "--text-on-dark",
+    "bg": "consent-banner",
+    "mode": "light",
+    "reason": "light unchanged: the lightest orange stops of the footer and consent banner"
+  },
+  {
+    "fg": "--button-on-dark-outline",
+    "bg": "footer-orange",
+    "mode": "light",
+    "reason": "light unchanged: the lightest orange stops of the footer and consent banner"
+  },
+  {
+    "fg": "--button-on-dark-outline",
+    "bg": "consent-banner",
+    "mode": "light",
+    "reason": "light unchanged: the lightest orange stops of the footer and consent banner"
+  },
+  {
+    "fg": "--text-subtle",
+    "bg": "well",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: slate-500 on the slate-100 well, as chips and wells paint today; dark passes"
+  },
+  {
+    "fg": "--text-label",
+    "bg": "well",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: slate-500 on the slate-100 well, as chips and wells paint today; dark passes"
+  },
+  {
+    "fg": "heading",
+    "bg": "card",
+    "mode": "light",
+    "stop": "--text-heading-highlight",
+    "reason": "agreed by design: only the thin highlight at the top of each title line; the letters stay at 3.8:1 or more (app/global.css)"
+  },
+  {
+    "fg": "--border-strong",
+    "bg": "page",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: the strong line is today's neutral outline hover grey, an interactive edge held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--border-strong",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: the strong line is today's neutral outline hover grey, an interactive edge held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--border-strong",
+    "bg": "well",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: the strong line is today's neutral outline hover grey, an interactive edge held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--border-strong",
+    "bg": "table-head",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: the strong line is today's neutral outline hover grey, an interactive edge held to 3:1; dark must pass with the strong border"
+  },
+  {
+    "fg": "--button-primary-ink",
+    "bg": "button-primary",
+    "mode": "dark",
+    "stop": "--button-primary-from",
+    "reason": "agreed by design, carried into dark, where buttons keep their light gradients: white label on the gradient light end"
+  },
+  {
+    "fg": "--button-secondary-ink",
+    "bg": "button-secondary",
+    "mode": "dark",
+    "stop": "--button-secondary-from",
+    "reason": "agreed by design, carried into dark, where buttons keep their light gradients: white label on the gradient light end"
+  },
+  {
+    "fg": "--text-on-dark",
+    "bg": "consent-banner",
+    "mode": "dark",
+    "reason": "the consent banner and orange badges stay orange in dark, so their white text below the bar is an accepted dark miss"
+  },
+  {
+    "fg": "--text-on-dark-label",
+    "bg": "consent-banner",
+    "mode": "dark",
+    "reason": "the consent banner and orange badges stay orange in dark, so their white text below the bar is an accepted dark miss"
+  },
+  {
+    "fg": "--button-on-dark-outline",
+    "bg": "consent-banner",
+    "mode": "dark",
+    "reason": "the consent banner and orange badges stay orange in dark, so their white text below the bar is an accepted dark miss"
+  },
+  {
+    "fg": "--on-band",
+    "bg": "success-band",
+    "mode": "dark",
+    "reason": "small bands stay as they are in dark; a white icon below the bar is an accepted dark miss, as on the orange badges"
+  },
+  {
+    "fg": "--on-band",
+    "bg": "--band-flag",
+    "mode": "dark",
+    "reason": "small bands stay as they are in dark; a white icon below the bar is an accepted dark miss, as on the orange badges"
+  },
+  {
+    "fg": "--on-band",
+    "bg": "success-band",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--on-band",
+    "bg": "--band-flag",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--field-edge",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--field-edge",
+    "bg": "--field-fill",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--checkbox-edge",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--checkbox-edge",
+    "bg": "--field-fill",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--switch-knob",
+    "bg": "--switch-track",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--menu-tab-ink",
+    "bg": "--menu-tab-from",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--menu-tab-ink",
+    "bg": "--menu-tab-to",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--menu-tab-ink-hover",
+    "bg": "--menu-tab-from",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--menu-tab-ink-hover",
+    "bg": "--menu-tab-to",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--status-done",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--status-progress",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--ink-external-link",
+    "bg": "card",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--ink-external-link",
+    "bg": "well",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--ink-external-link-hover",
+    "bg": "well",
+    "mode": "light",
+    "reason": "light unchanged, an exception in light only: today's paint, moved onto a role; dark passes or is listed"
+  },
+  {
+    "fg": "--text-subtle",
+    "bg": "--surface-success",
+    "mode": "dark",
+    "reason": "proposed: 0.02 under 4.5:1 on the blue-tinted dark well; keeps the tinted chip pattern; the light side is already an exception that keeps today's value"
+  },
+  {
+    "fg": "--text-label",
+    "bg": "--surface-success",
+    "mode": "dark",
+    "reason": "proposed: 0.02 under 4.5:1 on the blue-tinted dark well; keeps the tinted chip pattern; the light side is already an exception that keeps today's value"
+  }
+]

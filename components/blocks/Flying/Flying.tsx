@@ -43,13 +43,6 @@ export function FlyingBlock({ data, index }) {
           position: relative;
           z-index: 3;
           overflow: hidden;
-          background-color: var(--color-seafoam);
-          background: linear-gradient(
-            to bottom,
-            var(--color-seafoam-100),
-            var(--color-seafoam-200),
-            var(--color-seafoam-300)
-          );
         }
 
         @keyframes movingBackground {

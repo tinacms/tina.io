@@ -164,7 +164,232 @@ export const SURFACE = {
   neutralSolid: 'surface-neutral-solid',
   /** Orange-600 with white. “Featured”, “new”. */
   brandSolid: 'surface-brand-solid',
+  /** The page: the sky wash in light, the night sky in dark. Keeps the roles' inks. */
+  page: 'surface-page',
+  /** The page colour with no wash: white in light, neutral-950 in dark. The plain ground under a sky band, like /design below its map. */
+  pagePlain: 'surface-page-plain',
+  /** A card on the page: white in light; neutral-900 with a 1px edge in dark. Cards, tables, menus, dialogs. */
+  card: 'surface-card',
+  /** The card's fill with no ring, for an element that draws its own border (a dialog, ChooserCard). Pair it with a LINE.* border. */
+  cardBordered: 'surface-card-bordered',
+  /** A well inside a card: slate-100 in light, neutral-800 in dark. Fields and wells. */
+  well: 'surface-well',
+  /** A table's header row: slate-50 in light, the well level in dark. */
+  tableHead: 'surface-table-head',
+  /** A glass card on the page: white 10% to 40% in light; the card level at 45%, blurred, in dark. */
+  glass: 'surface-glass',
+  /** A frosted card on the page: white 25%, 50%, 75% in light; the same as glass in dark. */
+  frosted: 'surface-frosted',
+  /** The orange footer band (its picture) in light; the card with a 1px top edge in dark. Put ON_DARK beside it. */
+  footerBand: 'surface-footer-band',
+  /** The legal strip under the footer: orange-600 to 900 in light; the card in dark. Gradient stops only. */
+  legalBand: 'surface-legal-band',
+  /** Small orange bands and badges (consent banner): orange-400 to 600, both modes. Gradient stops only. */
+  brandBand: 'surface-brand-band',
+  /** Seafoam icon discs (tip, update): seafoam-500 to 700 with white, both modes. Gradient stops only. */
+  successBand: 'surface-success-band',
+  /** Blue icon discs: blue-400 to 600 with white, both modes. Gradient stops only. */
+  infoBand: 'surface-info-band',
+  /** The starred plan corner: flat orange-400 with white, both modes. */
+  brandFlag: 'surface-brand-flag',
+  /** Recipe code panels: grey-800 with a grey-700 edge in light; near-black with the card edge in dark. */
+  recipePanel: 'surface-recipe-panel',
+  /** The feature code panel: a charcoal fade, grey edge and pale ink in light; near-black in dark. Gradient stops only. */
+  featureCodePanel: 'surface-feature-code-panel',
+  /** The feature code panel's tab: the same fade without the black end. Gradient stops only. */
+  featureCodeTab: 'surface-feature-code-tab',
+  /** The stuck nav bar: sky glass at 60% in light; the dark glass with the card edge in dark. Gradient stops only. */
+  navGlass: 'surface-nav-glass',
+  /** The mobile drawer: blue-50 to white in light; the card in dark. Gradient stops only. */
+  drawer: 'surface-drawer',
+  /** The mobile menu tab: white to slate-50, a faint edge, orange ink; the card in dark. Gradient stops only. */
+  menuTab: 'surface-menu-tab',
+  /** The drawer's backdrop: grey-900 at 70%, both modes. */
+  scrim: 'surface-scrim',
+  /** The consent settings backdrop: black at 50%, both modes (an approved light change, as the code intended). */
+  scrimConsent: 'surface-scrim-consent',
+  /** A dialog's backdrop: black at 80%, both modes. */
+  scrimDialog: 'surface-scrim-dialog',
+  /** The SSW strip in the footer: SSW red to black, both modes. */
+  sswStrip: 'surface-ssw-strip',
+  /** The SSW strip's hover overlay: SSW red fading out. */
+  sswStripHover: 'surface-ssw-strip-hover',
+  /** A row on hover in a list or popover: slate-50 in light, the well in dark. */
+  rowHover: 'surface-row-hover',
+  /** A switch's track: grey-200 in light; the well with the strong edge in dark. */
+  switch: 'surface-switch',
+  /** A switch's track when on: orange-600, both modes. Use with peer-checked:. */
+  switchOn: 'surface-switch-on',
+  /** A switch's knob: white with the strong grey edge. Use with after:. */
+  switchKnob: 'surface-switch-knob',
+  /** A checkbox: the strong grey edge, orange when checked and for its focus ring. */
+  checkbox: 'surface-checkbox',
+  /** A text field: white with the strong grey edge in light; the well with the strong edge in dark. Its focus ring is orange. */
+  field: 'surface-field',
+  /** A field on a dark band: a white outline over white at 10%, both modes. */
+  fieldOnDark: 'surface-field-on-dark',
+  /** The glass search trigger: white at 50% in light; the dark glass in dark. */
+  fieldGlass: 'surface-field-glass',
+  /** The cloud banner: white into mint with a mint edge in light; the dark glass with the subtle line in dark. */
+  cloudBanner: 'surface-cloud-banner',
+  /** A CMS seafoam section: a seafoam wash in light; the dark glass in dark. Gradient stops only. */
+  sectionSeafoam: 'surface-section-seafoam',
+  /** The conference header banner: seafoam-100 to 200 in light; the dark glass in dark. Gradient stops only. */
+  bannerSeafoam: 'surface-banner-seafoam',
+  /** Behind a QR code: white in both modes, so it scans. */
+  qr: 'surface-qr',
+  /** A bright glass card: white to white 50% in light; the dark glass in dark. Gradient stops only. */
+  glassBright: 'surface-glass-bright',
+  /** A translucent panel: white at 60% in light; the dark glass in dark. The call site keeps its blur. */
+  glassPanel: 'surface-glass-panel',
+  /** A translucent panel: white at 70% in light; the dark glass in dark. The call site keeps its blur. */
+  glassPanelStrong: 'surface-glass-panel-strong',
+  /** Glass colours only (white 10% to 40%; the dark glass in dark), so the call site keeps its own direction and can layer a hover. Gradient stops only. */
+  glassStops: 'surface-glass-stops',
+  /** A glass card's hover tint: blue-500 at 10% in light; white at 6% in dark. Gradient start only. */
+  glassHover: 'surface-glass-hover',
+  /** A teal-to-cyan wash card: at 60% in light; the dark glass in dark. Gradient stops only. */
+  washTeal: 'surface-wash-teal',
+  /** An example card: white to white 30% with a lavender edge, white on hover; the dark glass in dark. Gradient stops only. */
+  exampleCard: 'surface-example-card',
+  /** A tooltip: white in light, the card in dark. */
+  tooltip: 'surface-tooltip',
+  /** A tooltip's arrow, drawn as a right border in the tooltip's colour. */
+  tooltipArrow: 'surface-tooltip-arrow',
+  /** The fade at a table's scroll edge: slate-50 in light, the well in dark. Gradient stops only. */
+  tableFade: 'surface-table-fade',
+  /** The fade at a table's scroll edge while its row is hovered: sky-50 in light; the hovered row over the well in dark. Gradient stops only. */
+  tableFadeHover: 'surface-table-fade-hover',
+  /** A table row on hover: sky-50 in light; white at 6% in dark. */
+  tableRowHover: 'surface-table-row-hover',
+  /** A striped blog-table row: blue-500 at 5% in light; white at 6% in dark. */
+  blogTableStripe: 'surface-blog-table-stripe',
+  /** A plain blog-table row: white at 5% in light; clear in dark. */
+  blogTableRow: 'surface-blog-table-row',
+  /** A blog table's header: white at 50% in light; the well in dark. */
+  blogTableHead: 'surface-blog-table-head',
+  /** A row on hover with a brand tint: orange-50 at 40% in light; the brand chip fill in dark. */
+  rowHoverBrand: 'surface-row-hover-brand',
+  /** The premier partner badge: an amber fade with amber-900 ink in light; the warning chip in dark. Gradient stops only. */
+  partnerPremier: 'surface-partner-premier',
+  /** A faint info box: blue-50 at 40% with the info border in light; the info chip in dark. */
+  infoFaint: 'surface-info-faint',
+  /** The scrim over a video or image: grey-800, its opacity set at the call site. */
+  mediaScrim: 'surface-media-scrim',
+  /** An empty media placeholder: grey-200 in light, the well in dark. */
+  mediaPlaceholder: 'surface-media-placeholder',
+  /** A panel behind a snippet image: slate-50 in light, the well in dark. */
+  imagePanel: 'surface-image-panel',
+  /** The command field's icon disc: ink-900 in light; the well in dark. */
+  commandIconChip: 'surface-command-icon-chip',
+  /** The terminal illustration's panel: white in light, the well in dark. */
+  terminal: 'surface-terminal',
+  /** The terminal illustration's bars: slate-50 in light, the well in dark. */
+  terminalBar: 'surface-terminal-bar',
+  /** A pricing plan card: no fill in light (its shadow draws it); the card with its edge in dark. */
+  planCard: 'surface-plan-card',
+  /** A plan card's hover wash: clear to cyan-100 in light; white at 6% in dark. Gradient stops only. */
+  planHover: 'surface-plan-hover',
+  /** A muted plan card: grey-50 at 70% in light; the card in dark. */
+  planMuted: 'surface-plan-muted',
 } as const;
+
+/**
+ * Line colours: a subtle line for decoration (dividers, table rules, card
+ * edges) and a strong line for anything you click or type in. Put one beside
+ * the border width and sides, e.g. `border-b ${LINE.subtle}`.
+ */
+export const LINE = {
+  subtle: 'line-subtle',
+  strong: 'line-strong',
+  /** A faint edge on a white popover: slate-100 in light, the subtle line in dark. */
+  faint: 'line-faint',
+  /** A glass card's edge: white at 30% in light, the card edge in dark. */
+  glass: 'line-glass',
+  /** The terminal illustration's hairlines: black at 10% in light, the subtle line in dark. */
+  terminal: 'line-terminal',
+  /** A blog table's cell lines: orange-100 in light, the subtle line in dark. */
+  blogTable: 'line-table-blog',
+  /** A tip callout's side: teal-400 in light, the success chip border in dark. */
+  calloutTip: 'line-callout-tip',
+  /** A warning callout's side: orange-400, both modes. */
+  calloutWarning: 'line-callout-warning',
+  /** A selected choice card's edge: blue-500, both modes. */
+  selected: 'line-selected',
+  /** A 2px bar in the strong line colour (a fill, not a border). */
+  fill: 'line-fill',
+  /** The premier partner card's ring colour (with ring-2). */
+  partnerPremier: 'line-partner-premier',
+  /** ChooserCard's focus ring colour (with focus-visible:ring-1): shadcn's ink in light, the focus ring in dark. */
+  chooserFocus: 'line-chooser-focus',
+} as const;
+
+/**
+ * Inks for marks that aren't text: icons, logos, status dots, the roadmap
+ * and the map. They set the colour, so an SVG takes one with fill-current or
+ * stroke-current. Text uses a type role instead.
+ */
+export const INK = {
+  /** The brand orange mark: orange-500, both modes. The Tina logo in the nav, brand icons. */
+  brand: 'ink-brand',
+  /** An icon on a band (the plan cards' white star): white, both modes. */
+  onBand: 'ink-on-band',
+  /** A logo on a dark band: white, both modes. The Tina logo in the footer. */
+  logoOnDark: 'ink-logo-on-dark',
+  /** Social link logos: brand colours in light, all near-white in dark. */
+  socialTina: 'ink-social-tina',
+  socialDiscord: 'ink-social-discord',
+  socialGithub: 'ink-social-github',
+  socialX: 'ink-social-x',
+  /** The external-link icon beside a nav item: blue-200, blue-400 on group hover; the link blues in dark. */
+  externalLink: 'ink-external-link',
+  /** A decorative icon (an empty state): grey-300 in light, the subtle line grey in dark. */
+  decor: 'ink-decor',
+  /** A mark in the strong ink (was pure black, merged as an approved light change). */
+  strong: 'ink-strong',
+  /** A mark in the subtle ink, like the heading-link icon. */
+  subtle: 'ink-subtle',
+  /** A subtle mark that keeps its grey on a tinted surface (a chevron on a selected ChooserCard): slate-500 in light, the subtle ink in dark. */
+  subtleFixed: 'ink-subtle-fixed',
+  /** A blue icon: blue-600 in light, the link blue in dark. */
+  blue: 'ink-blue',
+  /** An active blue icon: blue-800 in light, the link hover blue in dark. */
+  active: 'ink-active',
+  /** A mark at half strength: black at 50% in light, the subtle ink in dark. */
+  subtitle: 'ink-subtitle',
+  /** A checkbox's accent colour: orange-500, both modes. */
+  brandAccent: 'ink-brand-accent',
+  /** Roadmap status icons: done green, in-progress amber, planned and default blue; the chip inks in dark. */
+  statusDone: 'ink-status-done',
+  statusProgress: 'ink-status-progress',
+  statusPlanned: 'ink-status-planned',
+  statusDefault: 'ink-status-default',
+  /** The roadmap's timeline: blue-700 to blue-400 (gradient stops), its dot's edge, and the fade at its end. */
+  timeline: 'ink-timeline',
+  timelineDot: 'ink-timeline-dot',
+  timelineFade: 'ink-timeline-fade',
+  /** The world map's land (grey-300; neutral-700 in dark) and its coral markers (both modes). SVG fill. */
+  mapLand: 'ink-map-land',
+  mapMarker: 'ink-map-marker',
+} as const;
+
+/**
+ * Colour treatments of pictures and edges: glows, the logo strip and the
+ * framed showcase image.
+ */
+export const DECOR = {
+  /** A white glow on hover behind footer links. Use with hover:. */
+  linkGlow: 'decor-link-glow',
+  /** The framed showcase image: a soft navy shadow and a faint edge; no shadow and the card edge in dark. */
+  imageFrame: 'decor-image-frame',
+  /** The sky glow behind quote and carousel blocks: 50% in light, hidden in dark. */
+  skyGlow: 'decor-sky-glow',
+  /** The customer logo strip: as drawn in light, all near-white in dark. */
+  logoStrip: 'decor-logo-strip',
+} as const;
+
+/** The page title's orange gradient as an ink, for a highlighted heading word. A step lighter in dark. */
+export const HEADING_HIGHLIGHT = 'text-heading';
 
 /** Decorative shimmer for short promo text, like the homepage news banner. Keeps the role and surface ink. */
 export const SHIMMER = 'shimmer';
