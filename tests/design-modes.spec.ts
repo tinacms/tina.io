@@ -16,14 +16,14 @@ import {
  * own, else the nearest newer headless Chromium in the cache.
  *
  * Every section, in both modes, at desktop and phone width: it must render
- * content, stay inside the viewport, and log no console errors. Each section
- * is screenshotted into test-results/.
+ * content, stay inside the viewport with no sideways scroll on the page, and
+ * log no console errors. Each section is screenshotted into test-results/.
  *
  * Then the toggle, the sticky index and the map of the guide, from lg up.
  * Below lg the index column gives way to the phone navigation: an "On this
  * page" trigger opening a menu of the sections, with the toggle beside it.
  * The map stacks in one column, rules sit in one column, and the colour
- * strip shows its colours only.
+ * strip shows its colours only. Every phone control is a 44px tap target.
  */
 
 const ROUTE = '/design';
@@ -80,8 +80,9 @@ const CATEGORY_LABELS = ['Foundations', 'Components'];
 const MAP_LABEL = 'Map of the guide';
 /** The phone navigation's trigger. */
 const MENU_TRIGGER_NAME = /^on this page$/i;
-/** The trigger's height: the 44px tap target. */
+/** The trigger's height, and the smallest tap target on a phone. */
 const MENU_TRIGGER_HEIGHT_PX = 44;
+const TAP_TARGET_PX = MENU_TRIGGER_HEIGHT_PX;
 const DARK_CLASS = /\bdark\b/;
 
 const modeRoot = (page: Page): Locator =>
@@ -221,6 +222,14 @@ for (const mode of MODES) {
 
       const reports = await inspectSections(page, EDGE_TOLERANCE_PX);
       expect(reports.length, 'sections on /design').toBeGreaterThan(0);
+      const scroll = await page.evaluate(() => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        clientWidth: document.documentElement.clientWidth,
+      }));
+      expect(
+        scroll.scrollWidth,
+        `no sideways scroll at ${width}px in ${mode}`,
+      ).toBeLessThanOrEqual(scroll.clientWidth);
       let screenshots = true;
 
       for (const report of reports) {
@@ -795,5 +804,95 @@ test.describe('map', () => {
       'rules in two columns',
     ).toBe(true);
     expect(desktop.names, 'a name under each colour').toBe(desktop.swatches);
+  });
+
+  test('12b. at phone width every control is a 44px tap target: the trigger, the toggle, the menu items, the map cards and their part links', async ({
+    browser,
+  }) => {
+    const context = await browser.newContext({
+      hasTouch: true,
+      viewport: { width: WIDTHS.phone, height: VIEWPORT_HEIGHT },
+    });
+    const page = await context.newPage();
+    await openDesign(page);
+    const sizeOf = async (control: Locator) => {
+      const box = await control.boundingBox();
+      return { width: box?.width ?? 0, height: box?.height ?? 0 };
+    };
+    const trigger = page.getByRole('button', { name: MENU_TRIGGER_NAME });
+    for (const [name, control] of [
+      ['trigger', trigger],
+      ['toggle', toggleLocator(page)],
+    ] as const) {
+      const size = await sizeOf(control);
+      expect(size.width, `${name} width`).toBeGreaterThanOrEqual(TAP_TARGET_PX);
+      expect(size.height, `${name} height`).toBeGreaterThanOrEqual(
+        TAP_TARGET_PX,
+      );
+    }
+
+    await waitForHydration(trigger);
+    await trigger.tap();
+    const items = indexLocator(page).getByRole('link');
+    await expect(items.first()).toBeVisible();
+    for (const height of await items.evaluateAll((links) =>
+      links.map((link) => link.getBoundingClientRect().height),
+    )) {
+      expect(height, 'menu item height').toBeGreaterThanOrEqual(TAP_TARGET_PX);
+    }
+    await page.keyboard.press('Escape');
+
+    const map = await page
+      .getByRole('navigation', { name: MAP_LABEL })
+      .evaluate((nav) => {
+        const cards = Array.from(nav.querySelectorAll('li')).filter((card) =>
+          card.querySelector(':scope > a'),
+        );
+        return {
+          // A tap in the card's top padding, clear of the preview, the parts
+          // and the site's cookie banner along the bottom, lands on the card's
+          // own link.
+          cards: cards.map((card) => {
+            card.scrollIntoView({ block: 'center', behavior: 'instant' });
+            const box = card.getBoundingClientRect();
+            const inset = parseFloat(getComputedStyle(card).paddingTop) / 2;
+            const hit = document.elementFromPoint(
+              box.left + box.width / 2,
+              box.top + inset,
+            );
+            return {
+              href: card.querySelector(':scope > a')?.getAttribute('href'),
+              hit: hit?.closest('a')?.getAttribute('href') ?? null,
+              width: box.width,
+              height: box.height,
+            };
+          }),
+          parts: Array.from(nav.querySelectorAll('li p a')).map((link) => {
+            const box = link.getBoundingClientRect();
+            return {
+              name: link.textContent?.trim(),
+              width: box.width,
+              height: box.height,
+            };
+          }),
+        };
+      });
+    for (const card of map.cards) {
+      expect(card.hit, `a tap on the ${card.href} card`).toBe(card.href);
+      expect(
+        Math.min(card.width, card.height),
+        `${card.href} card`,
+      ).toBeGreaterThanOrEqual(TAP_TARGET_PX);
+    }
+    expect(map.parts.length, 'part links').toBeGreaterThan(0);
+    for (const part of map.parts) {
+      expect(part.width, `${part.name} width`).toBeGreaterThanOrEqual(
+        TAP_TARGET_PX,
+      );
+      expect(part.height, `${part.name} height`).toBeGreaterThanOrEqual(
+        TAP_TARGET_PX,
+      );
+    }
+    await context.close();
   });
 });

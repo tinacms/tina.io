@@ -19,9 +19,10 @@ import type { OutlineCategory } from './outline';
  * their category labels, anchored under it, with the mode toggle beside it.
  *
  * The menu stays mounted inside MENU_REVEAL, hidden from the keyboard when
- * closed. It closes on Escape (focus goes back to the trigger), on a tap or
- * focus outside it, and when an item is chosen; the item's hash jump does
- * the rest.
+ * closed, and sits above the site's sticky header. The trigger, the toggle
+ * and every item are at least 44px tall, the phone tap target. It closes on
+ * Escape (focus goes back to the trigger), on a tap or focus outside it, and
+ * when an item is chosen; the item's hash jump does the rest.
  */
 export const PhoneNav = ({
   categories,
@@ -90,7 +91,7 @@ export const PhoneNav = ({
           id={panelId}
           aria-label="Style guide sections"
           data-state={open ? 'open' : 'closed'}
-          className={`${MENU_REVEAL} ${MENU_PANEL} ${SURFACE.card} absolute top-full left-0 z-30 mt-2 w-68`}
+          className={`${MENU_REVEAL} ${MENU_PANEL} ${SURFACE.card} absolute start-0 top-full z-50 mt-2 w-68`}
         >
           <ul className="grid gap-0.5">
             {categories.map((category) => (
@@ -101,7 +102,7 @@ export const PhoneNav = ({
                     <li key={section.id}>
                       <a
                         href={`#${section.id}`}
-                        className={`${MENU_ITEM} ${NAV_MENU_LINK}`}
+                        className={`${MENU_ITEM} ${NAV_MENU_LINK} min-h-11`}
                         onClick={() => setOpen(false)}
                       >
                         {section.title}

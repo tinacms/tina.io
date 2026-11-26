@@ -73,7 +73,7 @@ const PREVIEWS: Record<string, ReactNode> = {
  * Components (one column below lg), each section on its own card with a live preview above its
  * name and its parts. The whole card links to the section (the name's link
  * stretches over it) and lifts on hover as the home page cards do; each part
- * link sits above it and goes to its group. Keyboard focus on the name rings
+ * link sits above it and goes to its group, a 44px tap target below lg. Keyboard focus on the name rings
  * the whole card.
  */
 export const FrontDoor = ({
@@ -112,7 +112,7 @@ export const FrontDoor = ({
                     {index > 0 && ' · '}
                     <a
                       href={`#${group.id}`}
-                      className={`${SUBTLE_LINK} relative z-10`}
+                      className={`${SUBTLE_LINK} relative z-10 inline-flex min-h-11 min-w-11 items-center justify-center lg:inline lg:min-h-auto lg:min-w-auto`}
                     >
                       {group.title}
                     </a>

@@ -45,7 +45,7 @@ const ColourStrip = () => (
     {TEXT_COLOURS.map((c) => (
       <div key={c.token} className="grid min-w-0 flex-1 gap-2">
         <span className={`${c.swatch} block h-16`} />
-        <span className={`${CODE} truncate max-lg:hidden`}>{c.token}</span>
+        <span className={`${CODE} hidden truncate lg:block`}>{c.token}</span>
       </div>
     ))}
   </div>
