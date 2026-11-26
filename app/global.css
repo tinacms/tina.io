@@ -441,6 +441,8 @@
   --segmented-track-via: color-mix(in srgb, var(--white) 50%, transparent);
   --segmented-track-to: color-mix(in srgb, var(--white) 75%, transparent);
   --segmented-ink: var(--text-link);
+  /* Top-level nav links (NAV_LINK): link blue. */
+  --nav-link-ink: var(--text-link);
   /* Pagination (the /blog list): ink numbers with a light slate outline on
      hover. The current page wears the neutral outline. */
   --pagination-ink: var(--ink-900);
@@ -833,6 +835,8 @@
   --segmented-track-to: var(--neutral-900);
   --segmented-track-edge: var(--neutral-500);
   --segmented-ink: var(--neutral-200);
+  /* Top-level nav links in the strong ink, blue on hover. */
+  --nav-link-ink: var(--neutral-50);
   --pagination-ink: var(--neutral-50);
   --pagination-hover-border: var(--neutral-500);
   /* Content: social links and logos all near-white; code panels
@@ -1067,6 +1071,7 @@
   --segmented-track-to: color-mix(in srgb, var(--white) 75%, transparent);
   --segmented-track-edge: transparent;
   --segmented-ink: var(--text-link);
+  --nav-link-ink: var(--text-link);
   --pagination-ink: var(--ink-900);
   --pagination-hover-border: var(--slate-300);
   --social-link-ink: var(--ink-900);

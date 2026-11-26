@@ -800,7 +800,8 @@ pre.prism-code.language-json {
 /* Navigation. The nav switches to the slide-out menu below xl, where items
    are a step larger for tapping. */
 @utility role-nav-link {
-  @apply font-sans font-medium text-lg xl:text-base leading-normal tracking-normal normal-case text-link transition-colors hover:text-link-hover;
+  @apply font-sans font-medium text-lg xl:text-base leading-normal tracking-normal normal-case transition-colors hover:text-link-hover;
+  color: var(--nav-link-ink);
 }
 @utility role-nav-menu-link {
   @apply font-sans font-medium text-lg xl:text-base leading-normal tracking-normal normal-case text-body transition-colors hover:text-link-hover;

@@ -214,7 +214,8 @@ export const ROLE_GROUPS: RoleGroup[] = [
         name: 'NAV_LINK',
         example: 'TinaCMS',
         exampleKind: 'link',
-        useFor: 'Top-level nav items.',
+        useFor:
+          'Top-level nav items. Link blue on light, white on dark; both turn the link hover blue on hover.',
         notFor: { job: 'Items inside a nav menu', instead: 'NAV_MENU_LINK' },
       },
       {
@@ -367,7 +368,8 @@ export const TEXT_COLOURS: {
     token: '--text-link',
     swatch: 'bg-link',
     usedBy: ['LINK', 'EYEBROW_LINK', 'NAV_LINK', 'TITLE_LINK'],
-    useFor: 'Links. TITLE_LINK only turns this colour on hover.',
+    useFor:
+      'Links. TITLE_LINK only turns this colour on hover; NAV_LINK takes it on light only, and is white on dark.',
   },
 ];
 
