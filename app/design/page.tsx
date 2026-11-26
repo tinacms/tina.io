@@ -48,10 +48,11 @@ import { Button, ButtonGroup } from '@/component/ui/Button';
 import { Pagination, PostPagination } from '@/component/ui/Pagination';
 import { SocialLinks, TINA_SOCIAL_LINKS } from '@/component/ui/SocialLinks';
 import { TextLink } from '@/component/ui/TextLink';
+import { FrontDoor } from './FrontDoor';
 import { Group } from './Group';
 import { GuideTable } from './GuideTable';
 import { IndexColumn } from './IndexColumn';
-import { slug } from './outline';
+import { OUTLINE, OUTLINE_CATEGORIES, sectionOf, slug } from './outline';
 import { RoleTable } from './RoleTable';
 import { Section } from './Section';
 import { SegmentedToggleExample } from './SegmentedToggleExample';
@@ -71,8 +72,16 @@ export const metadata: Metadata = {
  * components/styles/typography.guide.ts, the single source for that guidance,
  * so this page and AGENTS.md can't drift apart. Examples render through the
  * real roles; the page itself uses roles only. The parts it is built from
- * (Section, Group, GuideTable, RoleTable, Example) live beside it.
+ * (Section, Group, GuideTable, RoleTable, Example) live beside it, and every
+ * section's id, title and intro come from outline.ts.
  */
+
+const TYPOGRAPHY = sectionOf('typography');
+const COLOUR = sectionOf('colour');
+const BUTTONS = sectionOf('buttons');
+const LINKS = sectionOf('links');
+const NAVIGATION = sectionOf('navigation');
+
 export default function StyleGuidePage() {
   return (
     // The site layout already provides <main>. Below lg the index column is
@@ -93,25 +102,26 @@ export default function StyleGuidePage() {
             aria-label="Style guide sections"
             className="mt-6 flex flex-wrap gap-x-8 gap-y-2 lg:hidden"
           >
-            <a className={EYEBROW_LINK} href="#typography">
-              Typography
-            </a>
-            <a className={EYEBROW_LINK} href="#colour">
-              Colour
-            </a>
-            <a className={EYEBROW_LINK} href="#buttons">
-              Buttons
-            </a>
-            <a className={EYEBROW_LINK} href="#links-and-navigation">
-              Links and navigation
-            </a>
+            {OUTLINE.map((section) => (
+              <a
+                key={section.id}
+                className={EYEBROW_LINK}
+                href={`#${section.id}`}
+              >
+                {section.title}
+              </a>
+            ))}
           </nav>
+          <FrontDoor
+            categories={OUTLINE_CATEGORIES}
+            className="mt-12 max-lg:hidden"
+          />
         </header>
 
         <Section
-          id="typography"
-          title="Typography"
-          intro="Give each piece of text one role from components/styles/typography.ts, chosen by the job the text does. The size comes with the role."
+          id={TYPOGRAPHY.id}
+          title={TYPOGRAPHY.title}
+          intro={TYPOGRAPHY.intro}
         >
           <Group id="typography-rules" title="The rules">
             <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
@@ -149,11 +159,7 @@ export default function StyleGuidePage() {
           </Group>
         </Section>
 
-        <Section
-          id="colour"
-          title="Colour"
-          intro="Each role sets its own text colour, so components don't name colours. To change a text colour, change the surface under it."
-        >
+        <Section id={COLOUR.id} title={COLOUR.title} intro={COLOUR.intro}>
           <Group
             id="text-colours"
             title="Text colours"
@@ -316,11 +322,7 @@ export default function StyleGuidePage() {
           </Group>
         </Section>
 
-        <Section
-          id="buttons"
-          title="Buttons"
-          intro="Every button is one of three levels from components/styles/buttons.ts, all one size. Pick the level by the job; the look comes with it."
-        >
+        <Section id={BUTTONS.id} title={BUTTONS.title} intro={BUTTONS.intro}>
           <Group id="button-rules" title="The rules">
             <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
               {BUTTON_RULES.map((rule) => (
@@ -436,30 +438,43 @@ export default function StyleGuidePage() {
           </Group>
         </Section>
 
+        {/* Links and navigation were one section: its old anchor wraps Links. */}
+        <div id={LINKS.aliases?.[0]} className="scroll-mt-24">
+          <Section id={LINKS.id} title={LINKS.title} intro={LINKS.intro}>
+            <Group
+              id="text-links"
+              title="Text links"
+              intro="TextLink for a standalone “Read more →”: SLUB in the link colour, underlined, always ending in the short arrow. No other arrow or icon. Inside a card that is itself the link, use as=&quot;span&quot;. Links inside a sentence are LINK."
+            >
+              <div className="flex flex-wrap items-center gap-8">
+                <TextLink href="#text-links">Read more</TextLink>
+                <TextLink href="#text-links">See all events</TextLink>
+              </div>
+            </Group>
+            <Group
+              id="social-links"
+              title="Social links"
+              intro="SocialLinks: button size in the neutral outline (white, a light slate border that darkens on hover), an ink label and each network’s own logo colour; in dark mode every logo is near-white. Not a button level, so a row of them needs no Primary."
+            >
+              <SocialLinks links={TINA_SOCIAL_LINKS} />
+            </Group>
+            <Group
+              id="neutral-outline"
+              title="Neutral outline"
+              intro="NEUTRAL_OUTLINE: white with a light slate border that darkens on hover; in dark mode the card with the strong edge, lightening on hover. The command field, social links, the current page number and the post cards all wear it, so they read as one family next to the orange and blue buttons."
+            >
+              <div className={`${NEUTRAL_OUTLINE} max-w-sm rounded-lg p-4`}>
+                <p className={BODY_SMALL}>Hover to see the border darken.</p>
+              </div>
+            </Group>
+          </Section>
+        </div>
+
         <Section
-          id="links-and-navigation"
-          title="Links and navigation"
-          intro="The pieces around buttons: text links, social links, the neutral outline, the command field, dropdown menus, pagination, segmented toggles and tabs. Each has one look, built the same way as the buttons, so there is nothing to choose."
+          id={NAVIGATION.id}
+          title={NAVIGATION.title}
+          intro={NAVIGATION.intro}
         >
-          <Group
-            id="text-links"
-            title="Text links"
-            intro="TextLink for a standalone “Read more →”: SLUB in the link colour, underlined, always ending in the short arrow. No other arrow or icon. Inside a card that is itself the link, use as=&quot;span&quot;. Links inside a sentence are LINK."
-          >
-            <div className="flex flex-wrap items-center gap-8">
-              <TextLink href="#text-links">Read more</TextLink>
-              <TextLink href="#text-links">See all events</TextLink>
-            </div>
-          </Group>
-
-          <Group
-            id="social-links"
-            title="Social links"
-            intro="SocialLinks: button size in the neutral outline (white, a light slate border that darkens on hover), an ink label and each network’s own logo colour; in dark mode every logo is near-white. Not a button level, so a row of them needs no Primary."
-          >
-            <SocialLinks links={TINA_SOCIAL_LINKS} />
-          </Group>
-
           <Group
             id="pagination"
             title="Pagination"
@@ -477,7 +492,10 @@ export default function StyleGuidePage() {
               }}
             />
             <PostPagination
-              previous={{ title: 'TinaCMS v4 is coming', slug: '#pagination' }}
+              previous={{
+                title: 'TinaCMS v4 is coming',
+                slug: '#pagination',
+              }}
               next={{
                 title: 'Editorial Workflow for media',
                 slug: '#pagination',
@@ -485,40 +503,6 @@ export default function StyleGuidePage() {
               labels={{ previous: 'Previous', next: 'Next' }}
             />
           </Group>
-
-          <Group
-            id="neutral-outline"
-            title="Neutral outline"
-            intro="NEUTRAL_OUTLINE: white with a light slate border that darkens on hover; in dark mode the card with the strong edge, lightening on hover. The command field, social links, the current page number and the post cards all wear it, so they read as one family next to the orange and blue buttons."
-          >
-            <div className={`${NEUTRAL_OUTLINE} max-w-sm rounded-lg p-4`}>
-              <p className={BODY_SMALL}>Hover to see the border darken.</p>
-            </div>
-          </Group>
-
-          <Group
-            id="command-field"
-            title="Command field"
-            intro="CodeButton: the npx command in the neutral outline (COMMAND role) with a flat orange copy block. Clicking copies the command and opens the starter menu, which is exactly as wide as the field."
-          >
-            <CodeButton
-              label="npx create-tina-app@latest"
-              className="w-fit"
-              starterTemplates={[
-                {
-                  title: 'Astro',
-                  icon: '/Starters/astro.svg',
-                  link: 'https://app.tina.io/quickstart',
-                },
-                {
-                  title: 'Next.js',
-                  icon: '/Starters/next.js.svg',
-                  link: 'https://app.tina.io/quickstart',
-                },
-              ]}
-            />
-          </Group>
-
           <Group
             id="menus"
             title="Dropdown menus"
@@ -557,7 +541,6 @@ export default function StyleGuidePage() {
               </ul>
             </div>
           </Group>
-
           <Group
             id="segmented-toggles"
             title="Segmented toggles"
@@ -565,7 +548,6 @@ export default function StyleGuidePage() {
           >
             <SegmentedToggleExample />
           </Group>
-
           <Group
             id="tabs"
             title="Tabs"
@@ -587,6 +569,28 @@ export default function StyleGuidePage() {
               </div>
               <div className="h-16" />
             </div>
+          </Group>
+          <Group
+            id="command-field"
+            title="Command field"
+            intro="CodeButton: the npx command in the neutral outline (COMMAND role) with a flat orange copy block. Clicking copies the command and opens the starter menu, which is exactly as wide as the field."
+          >
+            <CodeButton
+              label="npx create-tina-app@latest"
+              className="w-fit"
+              starterTemplates={[
+                {
+                  title: 'Astro',
+                  icon: '/Starters/astro.svg',
+                  link: 'https://app.tina.io/quickstart',
+                },
+                {
+                  title: 'Next.js',
+                  icon: '/Starters/next.js.svg',
+                  link: 'https://app.tina.io/quickstart',
+                },
+              ]}
+            />
           </Group>
         </Section>
 

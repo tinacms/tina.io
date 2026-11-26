@@ -265,7 +265,8 @@ pre.prism-code.language-json {
 /* ──────────────────────────────────────────────────────────────────────────
    SURFACE LEVELS — named by use: the page, a card on it, a well inside
    a card, and a table's header row. Fill only, so the roles inside keep their
-   inks. SURFACE.page / card / well / tableHead in typography.ts name these.
+   inks. SURFACE.page / pagePlain / card / well / tableHead in typography.ts
+   name these.
    ────────────────────────────────────────────────────────────────────────── */
 @utility surface-page {
   background-color: var(--surface-page);
@@ -273,6 +274,11 @@ pre.prism-code.language-json {
   background-size: var(--surface-page-wash-size);
   background-position: var(--surface-page-wash-position);
   background-attachment: fixed;
+}
+/* The page colour without the wash, for the plain ground under a sky band
+   (/design below its map). Fill only, so the roles inside keep their inks. */
+@utility surface-page-plain {
+  background-color: var(--surface-page);
 }
 /* The card's edge is a 1px ring, so it takes no space and sits beside any
    shadow; transparent in light, a 1px outline in dark. */

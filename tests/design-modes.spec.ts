@@ -19,8 +19,8 @@ import {
  * content, stay inside the viewport, and log no console errors. Each section
  * is screenshotted into test-results/.
  *
- * Then the toggle and the sticky index, from lg up. Below lg (the phone
- * layout is deferred) /design keeps its header row of
+ * Then the toggle, the sticky index and the map of the guide, from lg up.
+ * Below lg (the phone layout is deferred) /design keeps its header row of
  * section links, with no index column and no toggle, and the mode follows the
  * stored choice or the system setting.
  */
@@ -74,6 +74,9 @@ const MODE_ROOT_SELECTOR = 'html';
 const TOGGLE_NAME = /^dark mode$/i;
 const STORAGE_KEY = 'tina-design-mode';
 const INDEX_LABEL = 'Style guide sections';
+/** The guide's categories, in order, as the index and the map label them. */
+const CATEGORY_LABELS = ['Foundations', 'Components'];
+const MAP_LABEL = 'Map of the guide';
 const DARK_CLASS = /\bdark\b/;
 
 const modeRoot = (page: Page): Locator =>
@@ -454,7 +457,7 @@ test.describe('index', () => {
   const currentLinks = (page: Page) =>
     indexLocator(page).locator('a[aria-current="location"]');
 
-  test('7. every section and group has one index link, and every link a target', async ({
+  test('7. the index lists the category labels and every section once, in page order', async ({
     page,
   }) => {
     await openDesign(page);
@@ -466,31 +469,24 @@ test.describe('index', () => {
       const hrefs = Array.from(
         index?.querySelectorAll('a[href^="#"]') ?? [],
       ).map((link) => link.getAttribute('href')?.slice(1) ?? '');
-      const targets = Array.from(
-        document.querySelectorAll(
-          'main section[id], main section[id] > div[id]',
-        ),
+      const sections = Array.from(
+        document.querySelectorAll('main section[id]'),
       ).map((element) => element.id);
-      return {
-        unlinked: targets.filter(
-          (id) => hrefs.filter((href) => href === id).length !== 1,
-        ),
-        dangling: hrefs.filter((href) => !document.getElementById(href)),
-      };
+      const labels = Array.from(index?.querySelectorAll('p') ?? []).map(
+        (element) => element.textContent?.trim() ?? '',
+      );
+      return { hrefs, sections, labels };
     }, INDEX_LABEL);
-    expect(result.unlinked, 'targets without exactly one link').toEqual([]);
-    expect(result.dangling, 'links without a target').toEqual([]);
+    expect(result.hrefs, 'one index link per section, in page order').toEqual(
+      result.sections,
+    );
+    expect(result.labels, 'category labels').toEqual(CATEGORY_LABELS);
   });
 
-  test('8. scrolling marks one section current, with every group always shown', async ({
-    page,
-  }) => {
+  test('8. scrolling marks one section current', async ({ page }) => {
     await openDesign(page);
     const index = indexLocator(page);
     const ids = await sectionIds(page);
-    const allGroupIds = await page
-      .locator('main section[id] > div[id]')
-      .evaluateAll((groups) => groups.map((group) => group.id));
     for (const id of ids) {
       await page.locator(`section#${id}`).scrollIntoViewIfNeeded();
       await expect(index.locator(`a[href="#${id}"]`)).toHaveAttribute(
@@ -498,43 +494,43 @@ test.describe('index', () => {
         'location',
       );
       await expect(
-        index.locator(':scope > ul > li > a[aria-current="location"]'),
+        currentLinks(page),
         `one current section at #${id}`,
       ).toHaveCount(1);
-      for (const groupId of allGroupIds) {
-        await expect(index.locator(`a[href="#${groupId}"]`)).toBeVisible();
-      }
-      await expect(index.locator('ul[hidden]'), 'no folded groups').toHaveCount(
-        0,
-      );
     }
 
     // Brought to the top as a jump brings it (the site's scroll padding and
     // the group's scroll margin leave it above the middle), not centred:
     // that padding pushes a centred group below the activation line.
     const group = page.locator('main section[id] > div[id]').last();
-    const groupId = await group.getAttribute('id');
+    const sectionId = await group.evaluate(
+      (element) => element.closest('section')?.id,
+    );
     await group.evaluate((element) =>
       element.scrollIntoView({ block: 'start', behavior: 'instant' }),
     );
-    await expect(index.locator(`a[href="#${groupId}"]`)).toHaveAttribute(
+    await expect(index.locator(`a[href="#${sectionId}"]`)).toHaveAttribute(
       'aria-current',
       'location',
     );
-    await expect(
-      index.locator(':scope > ul > li > a[aria-current="location"]'),
-      'one current section',
-    ).toHaveCount(1);
+    await expect(currentLinks(page), 'one current section').toHaveCount(1);
   });
 
-  test('9. a deep link marks its section and group current', async ({
+  test('9. a deep link to a part marks its section current', async ({
     page,
   }) => {
     await page.goto(`${ROUTE}#tabs`, { timeout: NAVIGATION_TIMEOUT_MS });
-    await expect(currentLinks(page)).toHaveText([
-      'Links and navigation',
-      'Tabs',
-    ]);
+    await expect(currentLinks(page)).toHaveText(['Navigation']);
+  });
+
+  test('9a. the old Links and navigation anchor lands on Links', async ({
+    page,
+  }) => {
+    await page.goto(`${ROUTE}#links-and-navigation`, {
+      timeout: NAVIGATION_TIMEOUT_MS,
+    });
+    await expect(page.locator('section#links')).toBeInViewport();
+    await expect(currentLinks(page)).toHaveText(['Links']);
   });
 
   test('10. the index stays in view at desktop width', async ({ page }) => {
@@ -576,5 +572,60 @@ test.describe('index', () => {
       'no index column',
     ).toHaveCount(0);
     await context.close();
+  });
+});
+
+test.describe('map', () => {
+  test('12. the map shows each category in its own row, every section with a preview, its name and its parts', async ({
+    page,
+  }) => {
+    await page.setViewportSize({
+      width: WIDTHS.desktop,
+      height: VIEWPORT_HEIGHT,
+    });
+    await openDesign(page);
+    const map = page.getByRole('navigation', { name: MAP_LABEL });
+    await expect(map).toBeVisible();
+    const result = await map.evaluate((nav) => {
+      const rows = Array.from(nav.querySelectorAll(':scope > div')).map(
+        (row) => ({
+          label: row.querySelector('p')?.textContent?.trim() ?? '',
+          tops: Array.from(row.querySelectorAll(':scope > ul > li')).map(
+            (item) => Math.round(item.getBoundingClientRect().top),
+          ),
+          sections: Array.from(
+            row.querySelectorAll(':scope > ul > li > a'),
+          ).map((link) => link.getAttribute('href')?.slice(1) ?? ''),
+          emptyPreviews: Array.from(
+            row.querySelectorAll(':scope > ul > li > div:first-child'),
+          ).filter((preview) => !preview.firstElementChild).length,
+        }),
+      );
+      const parts = Array.from(nav.querySelectorAll('li p a')).map(
+        (link) => link.getAttribute('href')?.slice(1) ?? '',
+      );
+      const groups = Array.from(
+        document.querySelectorAll('main section[id] > div[id]'),
+      ).map((group) => group.id);
+      const sections = Array.from(
+        document.querySelectorAll('main section[id]'),
+      ).map((section) => section.id);
+      return { rows, parts, groups, sections };
+    });
+    expect(
+      result.rows.map((row) => row.label),
+      'one row per category',
+    ).toEqual(CATEGORY_LABELS);
+    expect(
+      result.rows.flatMap((row) => row.sections),
+      'every section once, in page order',
+    ).toEqual(result.sections);
+    for (const row of result.rows) {
+      expect(new Set(row.tops).size, `${row.label} sits in one row`).toBe(1);
+      expect(row.emptyPreviews, `${row.label} previews`).toBe(0);
+    }
+    expect(result.parts, 'every part once, in page order').toEqual(
+      result.groups,
+    );
   });
 });

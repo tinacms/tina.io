@@ -1,17 +1,13 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { INDEX_CURRENT } from '@/component/styles/tabs';
-import {
-  BODY_SMALL,
-  NAV_MENU_LINK,
-  SUBTLE_LINK,
-} from '@/component/styles/typography';
-import type { OutlineSection } from './outline';
+import { EYEBROW, NAV_MENU_LINK } from '@/component/styles/typography';
+import type { OutlineCategory, OutlineSection } from './outline';
 
 /**
- * The activation line, as a share of the viewport height from the top. An
- * item is current once its top has crossed it. Mid-screen, so a short group
+ * The activation line, as a share of the viewport height from the top. A
+ * section is current once its top has crossed it. Mid-screen, so a section
  * centred by a jump or scrollIntoView counts as current, not its neighbour.
  */
 const ACTIVATION_LINE = 0.5;
@@ -22,41 +18,36 @@ const BOTTOM_SLACK_PX = 1;
 /** Input that means the reader is scrolling, which ends a hash jump's hold. */
 const READER_SCROLL_EVENTS = ['wheel', 'touchmove', 'keydown', 'mousedown'];
 
-type Current = { section: string; group: string | null };
-
 const topOf = (id: string) =>
   document.getElementById(id)?.getBoundingClientRect().top ??
   Number.POSITIVE_INFINITY;
 
-/** The section and group whose tops last crossed the activation line. */
-const currentFromScroll = (outline: OutlineSection[]): Current => {
+/** The section whose top last crossed the activation line. */
+const currentFromScroll = (sections: OutlineSection[]): string => {
   const line = window.innerHeight * ACTIVATION_LINE;
   const root = document.documentElement;
   const atBottom =
     window.innerHeight + window.scrollY >= root.scrollHeight - BOTTOM_SLACK_PX;
-  const crossed = outline.filter((section) => topOf(section.id) <= line);
-  const section = atBottom
-    ? outline[outline.length - 1]
-    : (crossed[crossed.length - 1] ?? outline[0]);
-  const groups = section.groups.filter((group) => topOf(group.id) <= line);
-  return { section: section.id, group: groups[groups.length - 1]?.id ?? null };
+  if (atBottom) {
+    return sections[sections.length - 1].id;
+  }
+  const crossed = sections.filter((section) => topOf(section.id) <= line);
+  return (crossed[crossed.length - 1] ?? sections[0]).id;
 };
 
-/** The section and group a hash names, or null if it names neither. */
+/** The section a hash names, by its own id, an alias or one of its groups. */
 const currentFromHash = (
-  outline: OutlineSection[],
+  sections: OutlineSection[],
   hash: string,
-): Current | null => {
+): string | null => {
   const id = decodeURIComponent(hash.replace(/^#/, ''));
-  for (const section of outline) {
-    if (section.id === id) {
-      return { section: id, group: null };
-    }
-    if (section.groups.some((group) => group.id === id)) {
-      return { section: section.id, group: id };
-    }
-  }
-  return null;
+  const section = sections.find(
+    (candidate) =>
+      candidate.id === id ||
+      candidate.aliases?.includes(id) ||
+      candidate.groups.some((group) => group.id === id),
+  );
+  return section?.id ?? null;
 };
 
 /** Scrolls the index itself, never the window, so the link stays in view. */
@@ -74,40 +65,40 @@ const keepInView = (container: HTMLElement | null, link: Element | null) => {
 };
 
 /**
- * The /design sticky index: every section
- * and every group, always shown, with the current pair marked on scroll.
- * Links are plain hash jumps. Without JS it shows with no marker.
+ * The /design sticky index: each category's label over its sections, with
+ * the current section marked on scroll. Parts are reached from the map, the
+ * sections and the page, not from here. Links are plain hash jumps. Without
+ * JS it shows with no marker.
  */
 export const SectionIndex = ({
-  outline,
+  categories,
   className = '',
 }: {
-  outline: OutlineSection[];
+  categories: OutlineCategory[];
   className?: string;
 }) => {
-  const [current, setCurrent] = useState<Current | null>(null);
-  const held = useRef<Current | null>(null);
+  const [current, setCurrent] = useState<string | null>(null);
+  const held = useRef<string | null>(null);
   const frame = useRef(0);
   const navRef = useRef<HTMLElement>(null);
+  const sections = useMemo(
+    () => categories.flatMap((category) => category.sections),
+    [categories],
+  );
 
   const update = useCallback(() => {
     cancelAnimationFrame(frame.current);
     frame.current = requestAnimationFrame(() => {
-      const next = held.current ?? currentFromScroll(outline);
-      setCurrent((before) =>
-        before?.section === next.section && before?.group === next.group
-          ? before
-          : next,
-      );
+      setCurrent(held.current ?? currentFromScroll(sections));
     });
-  }, [outline]);
+  }, [sections]);
 
   const hold = useCallback(
     (hash: string) => {
-      held.current = currentFromHash(outline, hash);
+      held.current = currentFromHash(sections, hash);
       update();
     },
-    [outline, update],
+    [sections, update],
   );
 
   useEffect(() => {
@@ -138,52 +129,34 @@ export const SectionIndex = ({
       return;
     }
     const nav = navRef.current;
-    keepInView(
-      nav,
-      nav?.querySelector(`a[href="#${current.group ?? current.section}"]`) ??
-        null,
-    );
+    keepInView(nav, nav?.querySelector(`a[href="#${current}"]`) ?? null);
   }, [current]);
-
-  const linkClass = (isCurrent: boolean) =>
-    `block border-l-2 ${isCurrent ? INDEX_CURRENT : 'border-transparent'}`;
 
   return (
     <nav ref={navRef} aria-label="Style guide sections" className={className}>
       <ul className="grid gap-4">
-        {outline.map((section) => {
-          const sectionCurrent = current?.section === section.id;
-          return (
-            <li key={section.id}>
-              <a
-                href={`#${section.id}`}
-                className={`${NAV_MENU_LINK} ${linkClass(sectionCurrent)} pl-3`}
-                aria-current={sectionCurrent ? 'location' : undefined}
-                onClick={() => hold(`#${section.id}`)}
-              >
-                {section.title}
-              </a>
-              <ul className="mt-2 ml-3 grid gap-1">
-                {section.groups.map((group) => {
-                  const groupCurrent =
-                    sectionCurrent && current?.group === group.id;
-                  return (
-                    <li key={group.id}>
-                      <a
-                        href={`#${group.id}`}
-                        className={`${BODY_SMALL} ${SUBTLE_LINK} ${linkClass(groupCurrent)} pl-3`}
-                        aria-current={groupCurrent ? 'location' : undefined}
-                        onClick={() => hold(`#${group.id}`)}
-                      >
-                        {group.title}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </li>
-          );
-        })}
+        {categories.map((category) => (
+          <li key={category.title} className="grid gap-4">
+            <p className={`${EYEBROW} pl-3`}>{category.title}</p>
+            <ul className="grid gap-4">
+              {category.sections.map((section) => {
+                const isCurrent = current === section.id;
+                return (
+                  <li key={section.id}>
+                    <a
+                      href={`#${section.id}`}
+                      className={`${NAV_MENU_LINK} block border-l-2 ${isCurrent ? INDEX_CURRENT : 'border-transparent'} pl-3`}
+                      aria-current={isCurrent ? 'location' : undefined}
+                      onClick={() => hold(`#${section.id}`)}
+                    >
+                      {section.title}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </li>
+        ))}
       </ul>
     </nav>
   );
