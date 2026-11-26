@@ -87,7 +87,7 @@ export const FrontDoor = ({
               key={section.id}
               className={`grid content-start gap-2 pt-6 pr-6 not-first:border-l not-first:pl-6 ${LINE.subtle}`}
             >
-              <div className="mb-2 flex min-h-30 items-center overflow-hidden">
+              <div className="mb-2 flex min-h-32 items-center overflow-hidden">
                 {PREVIEWS[section.id]}
               </div>
               <a

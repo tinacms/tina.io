@@ -52,7 +52,7 @@ import { FrontDoor } from './FrontDoor';
 import { Group } from './Group';
 import { GuideTable } from './GuideTable';
 import { IndexColumn } from './IndexColumn';
-import { OUTLINE, OUTLINE_CATEGORIES, sectionOf, slug } from './outline';
+import { OUTLINE, OUTLINE_CATEGORIES, roleGroupId, sectionOf } from './outline';
 import { RoleTable } from './RoleTable';
 import { Section } from './Section';
 import { SegmentedToggleExample } from './SegmentedToggleExample';
@@ -136,11 +136,14 @@ export default function StyleGuidePage() {
           {ROLE_GROUPS.map((group) => (
             <Group
               key={group.title}
-              id={slug(group.title)}
+              id={roleGroupId(group.title)}
               title={group.title}
               intro={group.intro}
             >
-              <RoleTable roles={group.roles} href={`#${slug(group.title)}`} />
+              <RoleTable
+                roles={group.roles}
+                href={`#${roleGroupId(group.title)}`}
+              />
             </Group>
           ))}
 

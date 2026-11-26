@@ -4,6 +4,12 @@ import { ROLE_GROUPS } from '@/component/styles/typography.guide';
 export const slug = (title: string) =>
   title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
+/**
+ * A Typography role group's id. Prefixed like the section's other groups,
+ * so a group such as Links can't share an id with the Links section.
+ */
+export const roleGroupId = (title: string) => `typography-${slug(title)}`;
+
 export type OutlineGroup = { id: string; title: string };
 export type OutlineSection = {
   id: string;
@@ -27,7 +33,7 @@ const TYPOGRAPHY: OutlineSection = {
   groups: [
     { id: 'typography-rules', title: 'The rules' },
     ...ROLE_GROUPS.map((group) => ({
-      id: slug(group.title),
+      id: roleGroupId(group.title),
       title: group.title,
     })),
     { id: 'typography-exceptions', title: 'Agreed exceptions' },
