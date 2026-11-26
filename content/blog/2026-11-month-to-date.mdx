@@ -9,7 +9,7 @@ prev: content/blog/2026-10-month-to-date.mdx
 next: ''
 ---
 
-The herd has been busy again 🦙. November brought a new sign-in for TinaCloud, a run of rich-text fixes and a first look at TinaCMS v4. Here's what shipped between 1 and 26 November.
+The herd has been busy again 🦙. Here's a look at November's rich-text fixes, editor improvements and the new TinaCloud sign-in, including the releases up to 26 November.
 
 ## 📦 TinaCMS Updates
 
@@ -32,16 +32,9 @@ The herd has been busy again 🦙. November brought a new sign-in for TinaCloud,
 - **Builds on Cloudflare Workers:** `tinacms build` no longer fails with `EMFILE: too many open files` on hosts with a 1024 open-file limit, such as Cloudflare Workers Builds. ([#8019](https://github.com/tinacms/tinacms/pull/8019))
 - **Security update:** The CLI no longer pulls in a version of `@graphql-tools/utils` affected by [GHSA-7mx3-vvmw-hjmv](https://github.com/advisories/GHSA-7mx3-vvmw-hjmv). ([#7966](https://github.com/tinacms/tinacms/pull/7966))
 
-These changes are in `tinacms` 3.15.2, `@tinacms/cli` 4.0.5 and `@tinacms/mdx` 2.4.2.
+### 🚀 V4 keeps taking shape
 
-### 🔜 Merged, coming in the next release
-
-These are merged into TinaCMS but not released yet:
-
-- **SvelteKit support:** A new `@tinacms/sveltekit` package and example project bring visual editing to SvelteKit. ([#7873](https://github.com/tinacms/tinacms/pull/7873))
-- **No more branch name clashes:** When a generated branch name is taken, TinaCMS picks a new one for you. ([#8038](https://github.com/tinacms/tinacms/pull/8038))
-- **Clearer login errors:** If TinaCloud sign-in fails after the redirect, the login modal shows what went wrong instead of a busy button. ([#8080](https://github.com/tinacms/tinacms/pull/8080))
-- **Folders with spaces:** `tinacms dev` and `tinacms build` work when a parent folder of your project has a space in its name. ([#8098](https://github.com/tinacms/tinacms/pull/8098))
+V4 is still in progress. This month the admin got a new **Home** screen, **Resolve N errors** when a save is blocked, **Save all** in the Top bar and a plugin model that lets you add features without forking TinaCMS. Read [TinaCMS v4: Where we're at](/blog/tinacms-v4-progress) for the full tour.
 
 ## ☁️ TinaCloud Updates
 
@@ -60,15 +53,6 @@ Read [the authentication changes post](/blog/october-tinacloud-auth-changes) for
 - **Tidier security settings:** The MFA card now matches the rest of the Security settings.
 - **Clearer notices:** The dashboard has new screens for paused sign-ups, account setup, maintenance and disabled accounts.
 - **Help for older versions:** If you sign in from an older TinaCMS version, the login points you to the authentication changes post.
-
-## 🦙 TinaCMS v4: where we're at
-
-v4 is still in progress, but there's a lot to show. We wrote up the new Home screen, drafts that survive a reload, **Resolve N errors** and **Save all**, and the new plugin model. Read [TinaCMS v4: Where we're at](/blog/tinacms-v4-progress).
-
-## 🌐 Around tina.io
-
-- **Pricing and Payment Terms:** A new [Pricing and Payment Terms](/pricing-and-payment-terms) page, linked from the Terms of Service.
-- **Breadcrumbs on the blog:** Blog posts now show where you are on the site.
 
 ## Keep up with socials
 
