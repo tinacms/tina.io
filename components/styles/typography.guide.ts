@@ -398,6 +398,12 @@ export const PAGE_BACKGROUNDS: {
       'The page in dark mode: the night sky, pinned to the screen. The one background with a hue; everything on it stays neutral.',
   },
   {
+    label: 'Plain page',
+    name: 'pagePlain',
+    useFor:
+      'The page colour with no wash: white in light, the dark page in dark. The ground under a sky band, like this page below its map.',
+  },
+  {
     label: 'Card',
     name: 'card',
     useFor:
