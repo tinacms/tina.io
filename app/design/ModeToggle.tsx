@@ -27,8 +27,9 @@ const serverMode = (): Mode | null => null;
 /**
  * The /design light/dark toggle: one icon button named "Dark mode",
  * pressed when dark. The moon and sun swap by CSS, so the right one paints
- * before hydration. It stays mounted at every width, so the page keeps
- * following the system setting where the button is hidden (below lg, for now).
+ * before hydration. The page shows one at each width (the index column's
+ * from lg, the phone navigation's below it); both stay mounted, so the page
+ * keeps following the system setting at every width.
  */
 export const ModeToggle = ({ className = '' }: { className?: string }) => {
   const mode = useSyncExternalStore(subscribeToMode, currentMode, serverMode);
