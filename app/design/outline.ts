@@ -120,3 +120,7 @@ export const sectionOf = (id: string): OutlineSection => {
   }
   return section;
 };
+
+/** The category a section opens, such as Foundations, or nothing mid-run. */
+export const categoryOpenedBy = (id: string): string | undefined =>
+  OUTLINE_CATEGORIES.find((category) => category.sections[0]?.id === id)?.title;

@@ -483,6 +483,22 @@ test.describe('index', () => {
     expect(result.labels, 'category labels').toEqual(CATEGORY_LABELS);
   });
 
+  test('7a. the page labels each category above the section it opens', async ({
+    page,
+  }) => {
+    await openDesign(page);
+    const labels = await page
+      .locator('main section[id] > :first-child > p:first-child')
+      .evaluateAll((elements) =>
+        elements
+          .filter((element) => element.nextElementSibling?.tagName === 'H2')
+          .map((element) => element.textContent?.trim() ?? ''),
+      );
+    expect(labels, 'category labels above section headings').toEqual(
+      CATEGORY_LABELS,
+    );
+  });
+
   test('8. scrolling marks one section current', async ({ page }) => {
     await openDesign(page);
     const index = indexLocator(page);

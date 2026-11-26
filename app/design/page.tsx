@@ -52,7 +52,13 @@ import { FrontDoor } from './FrontDoor';
 import { Group } from './Group';
 import { GuideTable } from './GuideTable';
 import { IndexColumn } from './IndexColumn';
-import { OUTLINE, OUTLINE_CATEGORIES, roleGroupId, sectionOf } from './outline';
+import {
+  categoryOpenedBy,
+  OUTLINE,
+  OUTLINE_CATEGORIES,
+  roleGroupId,
+  sectionOf,
+} from './outline';
 import { RoleTable } from './RoleTable';
 import { Section } from './Section';
 import { SegmentedToggleExample } from './SegmentedToggleExample';
@@ -122,6 +128,7 @@ export default function StyleGuidePage() {
           id={TYPOGRAPHY.id}
           title={TYPOGRAPHY.title}
           intro={TYPOGRAPHY.intro}
+          label={categoryOpenedBy(TYPOGRAPHY.id)}
         >
           <Group id="typography-rules" title="The rules">
             <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
@@ -325,7 +332,12 @@ export default function StyleGuidePage() {
           </Group>
         </Section>
 
-        <Section id={BUTTONS.id} title={BUTTONS.title} intro={BUTTONS.intro}>
+        <Section
+          id={BUTTONS.id}
+          title={BUTTONS.title}
+          intro={BUTTONS.intro}
+          label={categoryOpenedBy(BUTTONS.id)}
+        >
           <Group id="button-rules" title="The rules">
             <ol className="grid max-w-4xl list-decimal gap-2 pl-6">
               {BUTTON_RULES.map((rule) => (
