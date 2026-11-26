@@ -20,16 +20,17 @@ import {
  * is screenshotted into test-results/.
  *
  * Then the toggle, the sticky index and the map of the guide, from lg up.
- * Below lg (the phone layout is deferred) /design keeps its header row of
- * section links, with no index column and no toggle, and the mode follows the
- * stored choice or the system setting.
+ * Below lg the index column gives way to the phone navigation: an "On this
+ * page" trigger opening a menu of the sections, with the toggle beside it.
+ * The map stacks in one column, rules sit in one column, and the colour
+ * strip shows its colours only.
  */
 
 const ROUTE = '/design';
 const MODES = ['light', 'dark'] as const;
 type Mode = (typeof MODES)[number];
 
-const WIDTHS = { desktop: 1440, phone: 375 } as const;
+const WIDTHS = { desktop: 1440, phone: 390 } as const;
 /** The narrowest width with the index column and the toggle (lg). */
 const INDEX_MIN_WIDTH = 1024;
 const VIEWPORT_HEIGHT = 900;
@@ -68,7 +69,7 @@ const KNOWN_CONSOLE_ERRORS: {
  * The toggle and index contract: .dark on <html>,
  * a "Dark mode" button pressed when dark, the choice stored under
  * tina-design-mode, and the visible "Style guide sections" nav as the index.
- * Below lg that label is on the header's row of section links instead.
+ * Below lg that label is on the phone menu instead, shown while it is open.
  */
 const MODE_ROOT_SELECTOR = 'html';
 const TOGGLE_NAME = /^dark mode$/i;
@@ -77,21 +78,25 @@ const INDEX_LABEL = 'Style guide sections';
 /** The guide's categories, in order, as the index and the map label them. */
 const CATEGORY_LABELS = ['Foundations', 'Components'];
 const MAP_LABEL = 'Map of the guide';
+/** The phone navigation's trigger. */
+const MENU_TRIGGER_NAME = /^on this page$/i;
+/** The trigger's height: the 44px tap target. */
+const MENU_TRIGGER_HEIGHT_PX = 44;
 const DARK_CLASS = /\bdark\b/;
 
 const modeRoot = (page: Page): Locator =>
   page.locator(MODE_ROOT_SELECTOR).first();
 const toggleLocator = (page: Page): Locator =>
   page.getByRole('button', { name: TOGGLE_NAME });
-/** Only the visible nav: the index from lg up, the header row below. */
+/** Only the visible nav: the index from lg up, the open phone menu below. */
 const indexLocator = (page: Page): Locator =>
   page.getByRole('navigation', { name: INDEX_LABEL });
 const isDark = (page: Page) =>
   modeRoot(page).evaluate((root) => root.classList.contains('dark'));
 
 /**
- * Picks a mode with the toggle, from lg up. Retries the click until it takes,
- * since a click before hydration does nothing.
+ * Picks a mode with the toggle, at any width. Retries the click until it
+ * takes, since a click before hydration does nothing.
  */
 const chooseMode = async (page: Page, mode: Mode) => {
   const toggle = toggleLocator(page);
@@ -127,16 +132,15 @@ const openDesign = async (page: Page) => {
   await page.locator('main section[id]').first().waitFor();
 };
 
-/**
- * Puts the page in a mode by the .dark class on the mode root, for widths
- * with no toggle (below lg, where it is deferred).
- */
-const setMode = async (page: Page, mode: Mode) => {
-  await modeRoot(page).evaluate(
-    (root, dark) => root.classList.toggle('dark', dark),
-    mode === 'dark',
-  );
-};
+/** Resolves once React has hydrated the control, so keys and taps take. */
+const waitForHydration = (control: Locator) =>
+  expect
+    .poll(() =>
+      control.evaluate((element) =>
+        Object.keys(element).some((key) => key.startsWith('__reactProps')),
+      ),
+    )
+    .toBe(true);
 
 /** What's wrong with one section, or nothing. Runs in the page. */
 type SectionReport = {
@@ -213,11 +217,7 @@ for (const mode of MODES) {
       await page.setViewportSize({ width, height: VIEWPORT_HEIGHT });
       const consoleErrors = collectConsoleErrors(page);
       await openDesign(page);
-      if (width >= INDEX_MIN_WIDTH) {
-        await chooseMode(page, mode);
-      } else {
-        await setMode(page, mode);
-      }
+      await chooseMode(page, mode);
 
       const reports = await inspectSections(page, EDGE_TOLERANCE_PX);
       expect(reports.length, 'sections on /design').toBeGreaterThan(0);
@@ -369,7 +369,7 @@ test.describe('toggle', () => {
     await expect(modeRoot(page)).not.toHaveClass(DARK_CLASS);
   });
 
-  for (const width of [WIDTHS.desktop, INDEX_MIN_WIDTH]) {
+  for (const width of [WIDTHS.desktop, INDEX_MIN_WIDTH, WIDTHS.phone]) {
     test(`4. the toggle is named, keyboard-operable, outlined and visible at ${width}px`, async ({
       page,
     }) => {
@@ -380,13 +380,7 @@ test.describe('toggle', () => {
       await expect(toggle).toHaveAccessibleName(TOGGLE_NAME);
       await expect(toggle, `toggle at ${width}px`).toBeInViewport();
       // Key presses before hydration do nothing, so wait for React's handlers.
-      await expect
-        .poll(() =>
-          toggle.evaluate((element) =>
-            Object.keys(element).some((key) => key.startsWith('__reactProps')),
-          ),
-        )
-        .toBe(true);
+      await waitForHydration(toggle);
 
       for (let tab = 0; tab < MAX_TABS; tab++) {
         await page.keyboard.press('Tab');
@@ -559,36 +553,108 @@ test.describe('index', () => {
     await expect(indexLocator(page)).toBeInViewport();
   });
 
-  test('11. at phone width the page keeps its row of section links, with no column or toggle', async ({
-    browser,
-  }) => {
-    const context = await browser.newContext({
-      colorScheme: 'light',
-      viewport: { width: WIDTHS.phone, height: VIEWPORT_HEIGHT },
-    });
-    await context.addInitScript((key) => {
-      localStorage.setItem(key, 'dark');
-    }, STORAGE_KEY);
-    const page = await context.newPage();
-    await openDesign(page);
-    await expect(modeRoot(page), 'a stored dark still applies').toHaveClass(
-      DARK_CLASS,
-    );
-    await expect(toggleLocator(page), 'no toggle').toHaveCount(0);
+  for (const mode of MODES) {
+    test(`11. at phone width in ${mode}, On this page opens the section menu, each item lands on its section, and Escape and an outside tap close it`, async ({
+      browser,
+    }) => {
+      const context = await browser.newContext({
+        colorScheme: mode,
+        hasTouch: true,
+        viewport: { width: WIDTHS.phone, height: VIEWPORT_HEIGHT },
+      });
+      const page = await context.newPage();
+      const consoleErrors = collectConsoleErrors(page);
+      await openDesign(page);
+      expect(await isDark(page), `${mode} from the system`).toBe(
+        mode === 'dark',
+      );
+      await expect(page.locator('aside'), 'no index column').toBeHidden();
+      await expect(toggleLocator(page), 'the toggle').toBeVisible();
 
-    const row = page.locator('main header').getByRole('link');
-    const ids = await sectionIds(page);
-    await expect(row, 'one row link per section').toHaveCount(ids.length);
-    for (const id of ids) {
-      await row.and(page.locator(`a[href="#${id}"]`)).click();
-      await expect(page.locator(`section#${id}`)).toBeInViewport();
-    }
-    await expect(
-      indexLocator(page).locator('ul'),
-      'no index column',
-    ).toHaveCount(0);
-    await context.close();
-  });
+      const trigger = page.getByRole('button', { name: MENU_TRIGGER_NAME });
+      const menu = indexLocator(page);
+      await expect(trigger).toBeVisible();
+      await waitForHydration(trigger);
+      const triggerBox = await trigger.boundingBox();
+      expect(triggerBox?.height, 'trigger height').toBeCloseTo(
+        MENU_TRIGGER_HEIGHT_PX,
+        0,
+      );
+      const toggleBox = await toggleLocator(page).boundingBox();
+      expect(
+        Math.abs(
+          (toggleBox?.y ?? 0) +
+            (toggleBox?.height ?? 0) / 2 -
+            ((triggerBox?.y ?? 0) + (triggerBox?.height ?? 0) / 2),
+        ),
+        'the toggle sits beside the trigger',
+      ).toBeLessThanOrEqual(EDGE_TOLERANCE_PX);
+      await expect(menu, 'closed at first').toBeHidden();
+      await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+      // Opens anchored under the trigger, the sections under their labels.
+      await trigger.tap();
+      await expect(menu).toBeVisible();
+      await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+      const menuBox = await menu.boundingBox();
+      expect(menuBox?.y, 'menu under the trigger').toBeGreaterThanOrEqual(
+        (triggerBox?.y ?? 0) + (triggerBox?.height ?? 0),
+      );
+      expect(menuBox?.x, 'menu aligned to the trigger').toBeCloseTo(
+        triggerBox?.x ?? 0,
+        0,
+      );
+      expect(
+        (menuBox?.x ?? 0) + (menuBox?.width ?? 0),
+        'menu inside the viewport',
+      ).toBeLessThanOrEqual(WIDTHS.phone + EDGE_TOLERANCE_PX);
+      await expect(menu.locator('p')).toHaveText(CATEGORY_LABELS);
+      const ids = await sectionIds(page);
+      const items = menu.getByRole('link');
+      await expect(items, 'one item per section').toHaveCount(ids.length);
+      expect(
+        await items.evaluateAll((links) =>
+          links.map((link) => link.getAttribute('href')?.slice(1) ?? ''),
+        ),
+        'items in page order',
+      ).toEqual(ids);
+
+      // Escape closes it and hands focus back to the trigger.
+      await page.keyboard.press('Escape');
+      await expect(menu, 'closed by Escape').toBeHidden();
+      await expect(trigger).toBeFocused();
+      await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+      // A tap outside closes it.
+      await trigger.tap();
+      await expect(menu).toBeVisible();
+      await page.locator('main h1').tap();
+      await expect(menu, 'closed by an outside tap').toBeHidden();
+
+      // Each item closes the menu and lands on its section.
+      for (const id of ids) {
+        await trigger.tap();
+        await expect(menu).toBeVisible();
+        await menu.locator(`a[href="#${id}"]`).tap();
+        await expect(menu, `closed after #${id}`).toBeHidden();
+        await expect(page).toHaveURL(new RegExp(`#${id}$`));
+        const section = page.locator(`section#${id}`);
+        await expect(section).toBeInViewport();
+        await expect
+          .poll(
+            () =>
+              section.evaluate(
+                (element) => element.getBoundingClientRect().top,
+              ),
+            `#${id} at the top`,
+          )
+          .toBeLessThan(VIEWPORT_HEIGHT / 2);
+      }
+
+      expect(consoleErrors, `console errors at phone in ${mode}`).toEqual([]);
+      await context.close();
+    });
+  }
 });
 
 test.describe('map', () => {
@@ -643,5 +709,91 @@ test.describe('map', () => {
     expect(result.parts, 'every part once, in page order').toEqual(
       result.groups,
     );
+  });
+
+  test('12a. below lg the map stacks in one column with its previews, rules sit in one column and the colour strip shows its colours only', async ({
+    page,
+  }) => {
+    const layout = () =>
+      page.evaluate((mapLabel) => {
+        const nav = document.querySelector(`nav[aria-label="${mapLabel}"]`);
+        const cards = Array.from(
+          nav?.querySelectorAll(':scope > div > ul > li') ?? [],
+        ).map((card) => {
+          const box = card.getBoundingClientRect();
+          const preview = card.querySelector(':scope > div:first-child');
+          return {
+            left: Math.round(box.left),
+            top: Math.round(box.top),
+            preview: (preview?.getBoundingClientRect().height ?? 0) > 0,
+          };
+        });
+        const ruleColumns = Array.from(
+          document.querySelectorAll('[id$=-rules] > ol'),
+        ).map(
+          (list) =>
+            new Set(
+              Array.from(list.children).map((rule) =>
+                Math.round(rule.getBoundingClientRect().left),
+              ),
+            ).size,
+        );
+        const strip = document.querySelector(
+          'section#colour > :first-child > :last-child',
+        );
+        const shown = Array.from(strip?.querySelectorAll('span') ?? []).filter(
+          (span) => span.getClientRects().length > 0,
+        );
+        return {
+          cards,
+          ruleColumns,
+          swatches: shown.filter((span) => !span.textContent?.trim()).length,
+          names: shown.filter((span) => span.textContent?.trim()).length,
+        };
+      }, MAP_LABEL);
+
+    await page.setViewportSize({
+      width: WIDTHS.phone,
+      height: VIEWPORT_HEIGHT,
+    });
+    await openDesign(page);
+    await expect(
+      page.getByRole('navigation', { name: MAP_LABEL }),
+    ).toBeVisible();
+    const phone = await layout();
+    expect(phone.cards.length, 'map cards').toBeGreaterThan(0);
+    expect(
+      new Set(phone.cards.map((card) => card.left)).size,
+      'map in one column',
+    ).toBe(1);
+    expect(
+      phone.cards.every(
+        (card, index) => index === 0 || card.top > phone.cards[index - 1].top,
+      ),
+      'map cards stacked',
+    ).toBe(true);
+    expect(
+      phone.cards.every((card) => card.preview),
+      'every card keeps its preview',
+    ).toBe(true);
+    expect(phone.ruleColumns.length, 'rule lists').toBeGreaterThan(0);
+    expect(
+      phone.ruleColumns.every((columns) => columns === 1),
+      'rules in one column',
+    ).toBe(true);
+    expect(phone.swatches, 'colour chips').toBeGreaterThan(0);
+    expect(phone.names, 'no colour names under the chips').toBe(0);
+
+    // From lg the same parts keep the desktop layout.
+    await page.setViewportSize({
+      width: WIDTHS.desktop,
+      height: VIEWPORT_HEIGHT,
+    });
+    const desktop = await layout();
+    expect(
+      desktop.ruleColumns.every((columns) => columns === 2),
+      'rules in two columns',
+    ).toBe(true);
+    expect(desktop.names, 'a name under each colour').toBe(desktop.swatches);
   });
 });

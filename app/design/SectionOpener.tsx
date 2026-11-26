@@ -36,13 +36,16 @@ const TypeScale = () => (
   </div>
 );
 
-/** Every text colour as one strip of swatches, each named underneath. */
+/**
+ * Every text colour as one strip of swatches, each named underneath from lg;
+ * below it the strip shows the colours only, and the table names them.
+ */
 const ColourStrip = () => (
   <div className="flex w-full">
     {TEXT_COLOURS.map((c) => (
       <div key={c.token} className="grid min-w-0 flex-1 gap-2">
         <span className={`${c.swatch} block h-16`} />
-        <span className={`${CODE} truncate`}>{c.token}</span>
+        <span className={`${CODE} truncate max-lg:hidden`}>{c.token}</span>
       </div>
     ))}
   </div>

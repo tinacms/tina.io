@@ -18,11 +18,11 @@ export type SectionProps = {
 };
 
 /**
- * A section's rules (its group with an id ending in -rules) set in two
- * columns at full width, each rule kept whole.
+ * A section's rules (its group with an id ending in -rules) set at full
+ * width, in two columns from lg and one below it, each rule kept whole.
  */
 const RULES_IN_TWO_COLUMNS =
-  '[&>[id$=-rules]>ol]:block [&>[id$=-rules]>ol]:max-w-none [&>[id$=-rules]>ol]:columns-2 [&>[id$=-rules]>ol]:gap-x-12 [&>[id$=-rules]>ol>li]:mb-2 [&>[id$=-rules]>ol>li]:break-inside-avoid';
+  '[&>[id$=-rules]>ol]:block [&>[id$=-rules]>ol]:max-w-none lg:[&>[id$=-rules]>ol]:columns-2 [&>[id$=-rules]>ol]:gap-x-12 [&>[id$=-rules]>ol>li]:mb-2 [&>[id$=-rules]>ol>li]:break-inside-avoid';
 
 /**
  * One top-level section of the guide: a rule above, its heading and intro,

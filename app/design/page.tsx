@@ -21,7 +21,6 @@ import {
   CARD_TITLE,
   CODE,
   EYEBROW,
-  EYEBROW_LINK,
   FIELD,
   FOOTER_LEGAL_LINK,
   FOOTER_LINK,
@@ -54,11 +53,11 @@ import { GuideTable } from './GuideTable';
 import { IndexColumn } from './IndexColumn';
 import {
   categoryOpenedBy,
-  OUTLINE,
   OUTLINE_CATEGORIES,
   roleGroupId,
   sectionOf,
 } from './outline';
+import { PhoneNav } from './PhoneNav';
 import { RoleTable } from './RoleTable';
 import { Section } from './Section';
 import { SegmentedToggleExample } from './SegmentedToggleExample';
@@ -91,37 +90,24 @@ const NAVIGATION = sectionOf('navigation');
 export default function StyleGuidePage() {
   return (
     // The site layout already provides <main>. Below lg the index column is
-    // hidden and the content wrapper is display: contents, so the page lays
-    // out as it did before the index (its phone layout is deferred).
+    // hidden, the content wrapper is display: contents, and the header's
+    // phone navigation takes the index's place.
     <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-16 px-4 py-16 md:px-8 lg:flex lg:items-start lg:gap-12 lg:px-12">
       <IndexColumn />
 
       <div className="max-lg:contents lg:grid lg:min-w-0 lg:flex-1 lg:gap-16">
         <header>
+          <PhoneNav
+            categories={OUTLINE_CATEGORIES}
+            className="mb-8 lg:hidden"
+          />
           <h1 className={PAGE_TITLE}>Tina.io Style Guide</h1>
           <p className={`${BODY} mt-4 max-w-3xl`}>
             Use this page to pick the type role, colour and button level for
             anything on tina.io. Each example uses the same code as the live
             site.
           </p>
-          <nav
-            aria-label="Style guide sections"
-            className="mt-6 flex flex-wrap gap-x-8 gap-y-2 lg:hidden"
-          >
-            {OUTLINE.map((section) => (
-              <a
-                key={section.id}
-                className={EYEBROW_LINK}
-                href={`#${section.id}`}
-              >
-                {section.title}
-              </a>
-            ))}
-          </nav>
-          <FrontDoor
-            categories={OUTLINE_CATEGORIES}
-            className="mt-12 max-lg:hidden"
-          />
+          <FrontDoor categories={OUTLINE_CATEGORIES} className="mt-12" />
         </header>
 
         <Section
