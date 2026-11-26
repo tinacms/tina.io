@@ -2,7 +2,9 @@ import type { ReactNode } from 'react';
 import { BUTTON, FOCUS_RING_PEER } from '@/component/styles/buttons';
 import { BUTTON_LEVEL_GUIDE } from '@/component/styles/buttons.guide';
 import {
+  BODY,
   BODY_SMALL,
+  CAPTION,
   CARD_TITLE,
   EYEBROW,
   PAGE_TITLE,
@@ -17,8 +19,15 @@ import { TextLink } from '@/component/ui/TextLink';
 import type { OutlineCategory } from './outline';
 import { SegmentedToggleExample } from './SegmentedToggleExample';
 
-/** The type roles the Typography preview shows as Aa, largest first. */
-const PREVIEW_TYPE_ROLES = [PAGE_TITLE, SECTION_TITLE, CARD_TITLE, SUB_HEADING];
+/** The type roles the Typography preview shows as Aa, largest first: the same scale as the section's opener. */
+const PREVIEW_TYPE_ROLES = [
+  PAGE_TITLE,
+  SECTION_TITLE,
+  CARD_TITLE,
+  SUB_HEADING,
+  BODY,
+  CAPTION,
+];
 
 /**
  * Each section's preview, drawn from its own roles and components. All but
@@ -37,11 +46,11 @@ const PREVIEWS: Record<string, ReactNode> = {
     </div>
   ),
   colour: (
-    <div aria-hidden className="flex w-full">
+    <div aria-hidden className="grid w-full grid-cols-3 gap-2">
       {TEXT_COLOURS.map((colour) => (
         <span
           key={colour.token}
-          className={`${colour.swatch} block h-12 min-w-0 flex-1`}
+          className={`${colour.swatch} block h-10 rounded-md`}
         />
       ))}
     </div>
@@ -62,15 +71,15 @@ const PREVIEWS: Record<string, ReactNode> = {
     </div>
   ),
   navigation: (
-    <div className="relative z-10">
-      <SegmentedToggleExample />
+    <div className="relative z-10 w-full">
+      <SegmentedToggleExample fill />
     </div>
   ),
 };
 
 /**
  * The map of the guide under the intro: Foundations in one row, then
- * Components (one column below lg), each section on its own card with a live preview above its
+ * Components (one column below lg), each section on its own card with a live preview, in a well, above its
  * name and its parts. The whole card links to the section (the name's link
  * stretches over it) and lifts on hover as the home page cards do; each part
  * link sits above it and goes to its group, a 44px tap target below lg. Keyboard focus on the name rings
@@ -93,7 +102,9 @@ export const FrontDoor = ({
               key={section.id}
               className={`${SURFACE.card} relative grid content-start gap-2 rounded-2xl p-6 shadow-md hover:shadow-lg hover:scale-[1.01] transition-all duration-150 ease-out`}
             >
-              <div className="mb-2 flex min-h-32 items-center overflow-hidden">
+              <div
+                className={`${SURFACE.well} mb-2 flex min-h-32 items-center overflow-hidden rounded-xl p-4`}
+              >
                 {PREVIEWS[section.id]}
               </div>
               <a

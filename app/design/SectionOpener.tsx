@@ -77,7 +77,7 @@ const GRAPHICS: Record<string, () => ReactNode> = {
   links: TextLinks,
   // The combined section the page had before Links and Navigation split.
   'links-and-navigation': TextLinks,
-  navigation: SegmentedToggleExample,
+  navigation: () => <SegmentedToggleExample />,
 };
 
 export type SectionOpenerProps = {
