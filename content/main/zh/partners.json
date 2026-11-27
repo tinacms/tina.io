@@ -9,7 +9,7 @@
         "isHeadingOne": true
       },
       "headline": "与 TinaCMS 合作伙伴一起构建。",
-      "text": "寻找经过审核的服务商或自由开发者，也可以成为其中一员。",
+      "text": "与熟悉 TinaCMS 的经过审核的服务商或自由开发者合作。",
       "buttons": [
         {
           "label": "寻找合作伙伴",
@@ -19,9 +19,9 @@
         },
         {
           "label": "成为合作伙伴",
-          "color": "tertiary",
-          "modal": "BecomePartner.tsx",
-          "_template": "modalButton"
+          "variant": "tertiary",
+          "url": "#become-a-partner-section",
+          "_template": "actions"
         }
       ],
       "_template": "hero"
@@ -49,7 +49,49 @@
               "icon": "AiOutlineClockCircle"
             }
           ]
-        },
+        }
+      ],
+      "_template": "highlightsSection"
+    },
+    {
+      "title": "我们的 TinaCMS 合作伙伴",
+      "subText": "经过审核的服务商，随时可以承接你的下一个 TinaCMS 项目。欢迎直接与他们联系。",
+      "anchorId": "find-a-partner-section",
+      "contactCardTitle": "不确定谁更合适？",
+      "contactCardText": "如果你想了解其他认证合作伙伴，请联系我们，我们会把完整名单发给你。",
+      "items": [
+        {
+          "name": "SSW",
+          "logo": "/svg/logos/ssw.svg",
+          "tier": "Premier",
+          "location": "澳大利亚，悉尼",
+          "description": "提供全流程咨询服务，使用 TinaCMS、Next.js 与 Astro 交付企业级 Web 应用和以内容为核心的站点。",
+          "services": [
+            "Next.js",
+            "企业级",
+            "迁移"
+          ],
+          "website": "https://www.ssw.com.au"
+        }
+      ],
+      "_template": "partnerGrid"
+    },
+    {
+      "image": "/img/partners/tina-team.jpg",
+      "alt": "TinaCMS 团队在大会上抱着羊驼玩偶，身后是 tina.io 的展台横幅",
+      "caption": "加入羊驼群，用 TinaCMS 一起构建。",
+      "_template": "imageBand"
+    },
+    {
+      "anchorId": "become-a-partner-section",
+      "margin": "px-8 pt-8",
+      "headline": "成为 TinaCMS 合作伙伴。",
+      "text": "正在为客户构建 TinaCMS 站点？加入合作伙伴计划，就能出现在这个页面上。",
+      "_template": "hero"
+    },
+    {
+      "brandColorIcons": true,
+      "highlightColumn": [
         {
           "heading": "为什么要成为合作伙伴？",
           "highlights": [
@@ -73,36 +115,6 @@
         }
       ],
       "_template": "highlightsSection"
-    },
-    {
-      "title": "寻找合作伙伴",
-      "subText": "经过审核的服务商，随时可以承接你的下一个 TinaCMS 项目。欢迎直接与他们联系。",
-      "anchorId": "find-a-partner-section",
-      "contactCardTitle": "不确定谁更合适？",
-      "contactCardText": "如果你想了解其他认证合作伙伴，请给我们发邮件，我们会把完整名单发给你。",
-      "contactCardEmail": "info@tina.io",
-      "items": [
-        {
-          "name": "SSW",
-          "logo": "/svg/logos/ssw.svg",
-          "tier": "Premier",
-          "location": "澳大利亚，悉尼",
-          "description": "提供全流程咨询服务，使用 TinaCMS、Next.js 与 Astro 交付企业级 Web 应用和以内容为核心的站点。",
-          "services": [
-            "Next.js",
-            "企业级",
-            "迁移"
-          ],
-          "website": "https://www.ssw.com.au"
-        }
-      ],
-      "_template": "partnerGrid"
-    },
-    {
-      "image": "/img/partners/tina-team.jpg",
-      "alt": "TinaCMS 团队在大会上抱着羊驼玩偶，身后是 tina.io 的展台横幅",
-      "caption": "加入羊驼群，用 TinaCMS 一起构建。",
-      "_template": "imageBand"
     },
     {
       "title": "准备好与 Tina 合作了吗？",

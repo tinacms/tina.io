@@ -40,7 +40,7 @@
         {
           "icon": "FaRegCheckCircle",
           "heading": "媒体管理器的编辑工作流支持\n",
-          "content": "我们正在为媒体管理器加入编辑工作流支持，让媒体变更也能走与内容编辑相同的基于分支的流程。\n",
+          "content": "我们为媒体管理器加入了编辑工作流支持，让媒体变更也能走与内容编辑相同的基于分支的流程。\n",
           "actions": [
             {
               "label": "GitHub 讨论",
@@ -62,12 +62,12 @@
         {
           "icon": "FaRegCheckCircle",
           "heading": "TinaCloud —— 项目洞察\n",
-          "content": "我们正在为 TinaCloud 控制台加入新的分析能力，帮助团队了解内容是如何演进的。这些洞察会展示谁做了修改、哪些文件被更新，以及活跃度随时间的变化趋势，让团队对自己的内容工作流有更清晰的视野。\n"
+          "content": "我们为 TinaCloud 控制台加入了新的分析能力，帮助团队了解内容是如何演进的。这些洞察会展示谁做了修改、哪些文件被更新，以及活跃度随时间的变化趋势，让团队对自己的内容工作流有更清晰的视野。\n"
         },
         {
           "icon": "FaRegCheckCircle",
           "heading": "TinaCMS —— 遥测（由 PostHog 提供支持）\n",
-          "content": "我们引入了由 PostHog 提供支持的可选遥测功能，以便更好地了解用户如何使用 TinaCMS。这些数据将指导我们改进产品，同时保护用户隐私。由于 TinaCMS 是开源的，所有遥测都完全可选、可配置。\n",
+          "content": "我们引入了由 PostHog 提供支持的可选遥测功能，以便更好地了解用户如何使用 TinaCMS。这些数据用于指导我们改进产品，同时保护用户隐私。由于 TinaCMS 是开源的，所有遥测都完全可选、可配置。\n",
           "actions": [
             {
               "label": "PostHog",
@@ -170,6 +170,17 @@
         },
         {
           "icon": "FaRegCheckCircle",
+          "heading": "Copilot 指令\n",
+          "content": "我们发布了用 TinaCMS 做 VibeCoding 的文档，让上手更加轻松。\n",
+          "actions": [
+            {
+              "label": "查看文档",
+              "url": "/docs/vibe-coding"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
           "heading": "构建系统 —— 从 CommonJS 迁移到 ESM\n",
           "content": "我们正在现代化构建系统，从 CommonJS 切换到 ESM，以获得更好的性能和兼容性。\n",
           "actions": [
@@ -263,17 +274,6 @@
             {
               "label": "编辑工作流",
               "url": "/editorial-workflow/"
-            }
-          ]
-        },
-        {
-          "icon": "FaRegClock",
-          "heading": "Copilot 指令\n",
-          "content": "我们正在编写用 TinaCMS 做 VibeCoding 的文档，让上手更加轻松。\n",
-          "actions": [
-            {
-              "label": "查看文档",
-              "url": "/docs/vibe-coding"
             }
           ]
         },
