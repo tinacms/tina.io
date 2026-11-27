@@ -39,6 +39,9 @@ export function middleware(request: NextRequest) {
 
   const { pathname, search } = request.nextUrl;
 
+  // On the Chinese domain the `/zh` prefix is redundant, so collapse it to the
+  // canonical prefix-free URL. Only in production: locally there is no Chinese
+  // hostname, and `/zh/...` is the only way to open Chinese pages by hand.
   if (isChineseDomain && hasZhPrefix(pathname)) {
     if (process.env.NODE_ENV !== 'production') {
       return NextResponse.next();
@@ -48,20 +51,29 @@ export function middleware(request: NextRequest) {
   }
 
   const markdownRoute = getBlogMarkdownRoute(pathname, isChineseDomain);
-  if (markdownRoute && acceptsMarkdown(request.headers.get('accept'))) {
-    const markdownUrl = request.nextUrl.clone();
-    markdownUrl.pathname = markdownRoute;
-    markdownUrl.search = '';
-    return NextResponse.rewrite(markdownUrl);
-  }
+  const response = (() => {
+    if (markdownRoute && acceptsMarkdown(request.headers.get('accept'))) {
+      const markdownUrl = request.nextUrl.clone();
+      markdownUrl.pathname = markdownRoute;
+      markdownUrl.search = '';
+      return NextResponse.rewrite(markdownUrl);
+    }
+    return isChineseDomain
+      ? rewriteToChineseRoute(request)
+      : NextResponse.next();
+  })();
 
-  if (!isChineseDomain) {
-    return NextResponse.next();
+  // Blog posts have two representations at one URL, so caches must key on
+  // Accept or a browser could be served MDX.
+  if (markdownRoute) {
+    response.headers.append('Vary', 'Accept');
   }
+  return response;
+}
 
-  // On the Chinese domain the `/zh` prefix is redundant, so collapse it to the
-  // canonical prefix-free URL. Only in production: locally there is no Chinese
-  // hostname, and `/zh/...` is the only way to open Chinese pages by hand.
+function rewriteToChineseRoute(request: NextRequest) {
+  const { pathname, search } = request.nextUrl;
+
   // Serve the physical Chinese route without exposing the prefix. The site
   // root maps to `/zh` with no trailing slash: `/zh/` would miss the
   // `/:locale(en|zh)` rewrite in next.config.js that resolves a locale root

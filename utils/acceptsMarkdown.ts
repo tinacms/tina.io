@@ -1,25 +1,24 @@
-export function acceptsMarkdown(accept: string | null) {
-  return Boolean(
-    accept?.split(',').some((entry) => {
-      const [mediaType, ...parameters] = entry.split(';');
-      const quality = parameters
-        .map((parameter) => parameter.trim().toLowerCase())
-        .find((parameter) => parameter.startsWith('q='));
-      const qualityValue = quality ? Number.parseFloat(quality.slice(2)) : 1;
+import Negotiator from 'negotiator';
 
-      return (
-        mediaType.trim().toLowerCase() === 'text/markdown' && qualityValue > 0
-      );
-    }),
-  );
+// Pick between HTML and Markdown the same way TinaDocs does, so q-values,
+// wildcards and case are respected. A missing header or a bare wildcard gets
+// HTML, and Markdown is only chosen when the client prefers it.
+export function acceptsMarkdown(accept: string | null) {
+  const type = new Negotiator({
+    headers: { accept: accept ?? '*/*' },
+  }).mediaType(['text/html', 'text/markdown']);
+  return type === 'text/markdown';
 }
 
+// Only a single-segment slug is a blog post. Listing pages (`/blog/page/2`),
+// OG images (`/blog/og/<slug>`) and Instagram cards keep their HTML/image
+// responses whatever the client accepts.
 export function getBlogMarkdownRoute(
   pathname: string,
   isChineseDomain: boolean,
 ) {
-  const match = pathname.match(/^\/(?:(zh)\/)?blog\/(.+)$/);
-  if (!match) {
+  const match = pathname.match(/^\/(?:(zh)\/)?blog\/([^/]+)\/?$/);
+  if (!match || match[2] === 'page') {
     return null;
   }
 

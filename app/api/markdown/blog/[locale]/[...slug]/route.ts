@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import settings from '@/content/settings/config.json';
 
 export const dynamic = 'force-dynamic';
 
@@ -26,16 +26,28 @@ export async function GET(
 ) {
   const { locale, slug } = params;
   if (locale !== 'en' && locale !== 'zh') {
-    return NextResponse.json({ error: 'Unknown locale' }, { status: 404 });
+    return notFound();
   }
 
   const posts = locale === 'zh' ? chinesePosts : englishPosts;
   const key = `./${slug.join('/')}.mdx`;
   if (!posts.keys().includes(key)) {
-    return NextResponse.json({ error: 'Blog post not found' }, { status: 404 });
+    return notFound();
   }
 
-  return new NextResponse(posts(key).default, {
-    headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
+  const prefix = locale === 'zh' ? '/zh' : '';
+  return new Response(posts(key).default, {
+    headers: {
+      'Content-Type': 'text/markdown; charset=utf-8',
+      // Point search engines at the HTML page, which is the same URL.
+      Link: `<${settings.siteUrl}${prefix}/blog/${slug.join('/')}>; rel="canonical"`,
+      Vary: 'Accept',
+    },
   });
 }
+
+const notFound = () =>
+  new Response('Not found', {
+    status: 404,
+    headers: { 'Content-Type': 'text/plain; charset=utf-8', Vary: 'Accept' },
+  });
