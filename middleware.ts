@@ -64,7 +64,8 @@ export function middleware(request: NextRequest) {
   })();
 
   // Blog posts have two representations at one URL, so caches must key on
-  // Accept or a browser could be served MDX.
+  // Accept. Next.js 14 replaces this Vary with its own values (fixed in later
+  // versions), so the MDX response is also marked private.
   if (markdownRoute) {
     response.headers.append('Vary', 'Accept');
   }

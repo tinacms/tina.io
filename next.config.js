@@ -163,16 +163,7 @@ const config = {
       headers.push({ key: 'X-Robots-Tag', value: 'noindex' });
     }
 
-    // Blog posts serve HTML or source MDX at the same URL depending on Accept
-    // (see middleware.ts). Next.js 14 replaces a Vary set in middleware or a
-    // route handler with its own RSC values, so it has to be set here.
-    const varyOnAccept = [{ key: 'Vary', value: 'Accept' }];
-
-    return [
-      { source: '/:path*', headers },
-      { source: '/blog/:slug', headers: varyOnAccept },
-      { source: '/zh/blog/:slug', headers: varyOnAccept },
-    ];
+    return [{ source: '/:path*', headers }];
   },
 
   async redirects() {

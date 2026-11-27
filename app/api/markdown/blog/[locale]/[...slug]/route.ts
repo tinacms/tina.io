@@ -41,6 +41,10 @@ export async function GET(
       'Content-Type': 'text/markdown; charset=utf-8',
       // Point search engines at the HTML page, which is the same URL.
       Link: `<${settings.siteUrl}${prefix}/blog/${slug.join('/')}>; rel="canonical"`,
+      // HTML and MDX share a URL, and Next.js 14 drops Vary: Accept. Keep MDX
+      // out of shared caches so a cache that ignores Accept can't serve it to
+      // a browser. The worst case is then an agent getting cached HTML.
+      'Cache-Control': 'private, no-store',
       Vary: 'Accept',
     },
   });
