@@ -6,8 +6,8 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useState } from 'react';
-import { Button } from '../components/ui';
-import { DynamicLink } from '../components/ui/DynamicLink';
+import { BODY, PAGE_TITLE } from '@/component/styles/typography';
+import { ButtonGroup, LinkButton } from '../components/ui';
 import { DEFAULT_LOCALE, SupportedLocales } from '../middleware';
 import { EN_ORIGIN, hasZhPrefix, isZhHost } from '../utils/i18n/domains';
 import { checkPageExists } from './actions/not-found-actions';
@@ -27,11 +27,9 @@ const PageLayout = ({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-24 items-center">
       <div className="flex flex-col">
         <div className="mb-7">
-          <h1 className="font-ibm-plex text-6xl leading-tight">{title}</h1>
+          <h1 className={PAGE_TITLE}>{title}</h1>
           <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
-          <p className="text-lg lg:text-xl lg:leading-normal block -mb-1">
-            {description}
-          </p>
+          <p className={`${BODY} block -mb-1`}>{description}</p>
         </div>
         {children}
       </div>
@@ -66,17 +64,17 @@ const NotFoundContent = ({ content, locale }) => (
     title={content.notFound.title}
     description={content.notFound.description}
   >
-    <div className="flex flex-wrap gap-4">
-      <DynamicLink href={localePath('/docs', locale)} passHref>
-        <Button>{content.notFound.buttons.documentation}</Button>
-      </DynamicLink>
-      <DynamicLink href={localePath('/docs/guides', locale)} passHref>
-        <Button>{content.notFound.buttons.guides}</Button>
-      </DynamicLink>
-      <DynamicLink href={localePath('/', locale)} passHref>
-        <Button>{content.notFound.buttons.home}</Button>
-      </DynamicLink>
-    </div>
+    <ButtonGroup>
+      <LinkButton link={localePath('/', locale)}>
+        {content.notFound.buttons.home}
+      </LinkButton>
+      <LinkButton link={localePath('/docs', locale)} level="tertiary">
+        {content.notFound.buttons.documentation}
+      </LinkButton>
+      <LinkButton link={localePath('/docs/guides', locale)} level="tertiary">
+        {content.notFound.buttons.guides}
+      </LinkButton>
+    </ButtonGroup>
   </PageLayout>
 );
 
@@ -87,11 +85,11 @@ const RedirectPage = ({ redirectPath, content }) => (
     title={content.notTranslated.title}
     description={content.notTranslated.description}
   >
-    <div className="flex flex-wrap gap-4">
-      <a href={redirectPath} className="cursor-pointer">
-        <Button>{content.notTranslated.buttons.continue}</Button>
-      </a>
-    </div>
+    <ButtonGroup>
+      <LinkButton link={redirectPath} reloadDocument target="_self">
+        {content.notTranslated.buttons.continue}
+      </LinkButton>
+    </ButtonGroup>
   </PageLayout>
 );
 

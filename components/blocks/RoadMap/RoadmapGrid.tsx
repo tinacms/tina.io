@@ -1,9 +1,18 @@
+import Link from 'next/link';
 import type { IconType } from 'react-icons';
 import { FaHourglassHalf, FaRegCheckCircle, FaRegClock } from 'react-icons/fa';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
-import { Actions } from '../ActionButton/ActionsButton';
+import {
+  BODY,
+  BODY_SMALL,
+  CARD_TITLE,
+  LABEL,
+  LINK,
+  SECTION_TITLE,
+  SURFACE,
+} from '@/component/styles/typography';
+import { externalLinkProps } from '@/utils/isExternalLink';
 import { Container } from '../Container';
 
 // The status icons the roadmap supports. Kept in sync with the picker in
@@ -22,16 +31,9 @@ const iconColorClasses: Record<string, string> = {
   FaRegClock: 'text-blue-500',
 };
 
-// The headline uses a gradient `bg-clip-text` fill, which renders text (and a
-// strikethrough line) transparent. Restore a visible fill on struck text so
-// crossed-out items read clearly.
 const headlineComponents = {
   p: (props: any) => <>{props.children}</>,
-  strikethrough: (props: any) => (
-    <s className="[-webkit-text-fill-color:#144696] decoration-blue-800">
-      {props.children}
-    </s>
-  ),
+  strikethrough: (props: any) => <s>{props.children}</s>,
 };
 
 // biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
@@ -64,7 +66,7 @@ const Roadmap = ({ data, last = false, index }) => {
             )}
             <h3
               data-tina-field={tinaField(data, 'heading')}
-              className="text-2xl lg:text-3xl font-ibm-plex lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent"
+              className={CARD_TITLE}
             >
               <TinaMarkdown
                 content={data.heading}
@@ -75,7 +77,7 @@ const Roadmap = ({ data, last = false, index }) => {
         )}
         {data.content && (
           <div
-            className="lg:max-w-prose"
+            className={`lg:max-w-prose ${BODY}`}
             data-tina-field={tinaField(data, 'content')}
           >
             <TinaMarkdown content={data.content} />
@@ -84,12 +86,26 @@ const Roadmap = ({ data, last = false, index }) => {
         {data.status && (
           <span
             data-tina-field={tinaField(data, 'status')}
-            className="rounded-full w-auto grow-0 flex items-center font-ibm-plex whitespace-nowrap leading-snug text-blue-800 px-4 pt-[7px] pb-[5px] text-sm font-medium border border-blue-100 bg-linear-to-br from-white to-blue-50"
+            className={`${SURFACE.info} ${LABEL} rounded-full w-auto grow-0 flex items-center whitespace-nowrap px-4 py-1.5 border`}
           >
             {data.status}
           </span>
         )}
-        {data.actions && <Actions items={data.actions} />}
+        {data.actions?.length > 0 && (
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {data.actions.map((action, actionIndex) => (
+              <Link
+                key={`${action?.label}-${actionIndex}`}
+                href={action?.url || '#'}
+                {...externalLinkProps(action?.url)}
+                className={`${BODY_SMALL} ${LINK}`}
+                data-tina-field={tinaField(action, 'label')}
+              >
+                {action?.label}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -101,7 +117,7 @@ export function RoadmapGridBlock({ data, index }) {
       <Container width="medium">
         <h2
           data-tina-field={tinaField(data, 'headline')}
-          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight  mb-4`}
+          className={`${SECTION_TITLE} inline-block mb-4`}
         >
           {data.headline}
         </h2>
@@ -112,7 +128,7 @@ export function RoadmapGridBlock({ data, index }) {
               <Roadmap
                 data={itemData}
                 last={last}
-                key={itemData.id}
+                key={`${itemData.icon}-${index}`}
                 index={index}
               />
             );

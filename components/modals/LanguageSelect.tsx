@@ -1,8 +1,7 @@
-import Image from 'next/image';
-
 // biome-ignore lint/style/useImportType: <TODO>
 import React, { useState } from 'react';
-import { FaChevronRight } from 'react-icons/fa';
+import { CARD_TITLE } from '@/component/styles/typography';
+import { ChooserCard } from '@/component/ui/ChooserCard';
 
 interface Language {
   code: string;
@@ -49,9 +48,9 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
   };
 
   return (
-    <div className="p-6 md:py-10 mx-4">
+    <div className="py-6 sm:mx-4 sm:px-6 md:py-10">
       <div className="flex justify-center pb-8">
-        <h2 className="inline-block m-0 text-2xl md:text-3xl lg:leading-tight bg-linear-to-br from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+        <h2 className={`${CARD_TITLE} inline-block m-0`}>
           {languageTitles[currentLanguage] || languageTitles.en}
         </h2>
       </div>
@@ -62,32 +61,17 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
             className="flex justify-center w-full items-center h-full"
           >
             <div className="w-full max-w-md h-full">
-              <button
-                type="button"
+              <ChooserCard
                 onClick={() => handleLanguageSelect(language.code)}
-                className={`flex flex-row w-full h-full items-center justify-between rounded-lg border ${
-                  selectedLanguage === language.code
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-input bg-background'
-                } p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700`}
-              >
-                <Image
-                  src={language.flag}
-                  alt={`${language.name} Flag`}
-                  className="w-10 h-10 rounded-full mr-4"
-                  width={40}
-                  height={40}
-                />
-                <div className="grow text-left">
-                  <div className="font-medium text-lg">{language.name}</div>
-                  <div className="text-muted-foreground text-xs">
-                    {language.nativeName}
-                  </div>
-                </div>
-                <div className="shrink-0">
-                  <FaChevronRight className="h-6 w-6 text-muted-foreground" />
-                </div>
-              </button>
+                name={language.name}
+                description={language.nativeName}
+                image={{
+                  src: language.flag,
+                  alt: `${language.name} Flag`,
+                  kind: 'flag',
+                }}
+                selected={selectedLanguage === language.code}
+              />
             </div>
           </div>
         ))}

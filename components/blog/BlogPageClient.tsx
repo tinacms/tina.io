@@ -3,16 +3,19 @@
 
 import Giscus from '@giscus/react';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
-import { DocsPagination } from 'components/ui';
-// biome-ignore lint/style/useImportType: React is required
+import { PostPagination } from 'components/ui';
+import Image from 'next/image';
 import React from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { type BlogAvatar, blogAvatar } from 'utils/blog/blogAvatar';
 import { buildBlogLinkSlug } from 'utils/i18n/buildLinkSlug';
 import { LOCALE_ROUTE_CONFIG } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
 import { unclipEmoji } from 'utils/unclipEmoji';
+import { ARTICLE_TITLE, BODY_MUTED } from '@/component/styles/typography';
 import { formatDate } from '@/utils/formatDate';
+import { BlogBreadcrumbs } from './BlogBreadcrumbs';
 import type { BlogPageClientProps } from './BlogType';
 
 const BlogPageClient: React.FC<BlogPageClientProps> = ({
@@ -20,12 +23,15 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   variables,
   query,
   locale,
+  slugPath,
 }) => {
   const { data: blogPostData } = useTina({ query, variables, data });
 
   const post = blogPostData.post;
   const strings = getUiStrings(locale);
   const postedDate = formatDate(post.date);
+  const avatar = blogAvatar(post.author, slugPath);
+  const prefix = LOCALE_ROUTE_CONFIG[locale].pathPrefix;
   const lastEditedDate = post.last_edited ? formatDate(post.last_edited) : null;
 
   const previousPage = post.prev
@@ -38,16 +44,31 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
 
   return (
     <article>
-      <BlogPageTitle title={post.title} />
-      <div className="p-6">
-        <div className="max-w-prose mx-auto">
-          <div className="flex justify-between items-center opacity-80 m-0">
-            <span className="flex flex-row text-lg gap-1">
-              By
-              <strong>{post.author}</strong>
-            </span>
-            <time dateTime={post.date}>{postedDate}</time>
+      <div className="px-6">
+        <div className="max-w-3xl mx-auto pt-6">
+          <BlogBreadcrumbs
+            ariaLabel={strings.blogPost.breadcrumb}
+            parents={[
+              { label: strings.blogPost.home, href: `${prefix}/` },
+              { label: strings.blogIndex.heading, href: `${prefix}/blog` },
+            ]}
+            current={post.title}
+          />
+        </div>
+        <header className="max-w-3xl mx-auto pt-4 md:pt-6 flex flex-col-reverse items-center gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
+          <div className="text-center md:text-left">
+            <h1 className={ARTICLE_TITLE}>{unclipEmoji(post.title)}</h1>
+            <p className={`${BODY_MUTED} mt-4`}>
+              By {post.author}
+              <span aria-hidden="true"> · </span>
+              <time dateTime={post.date}>{postedDate}</time>
+            </p>
           </div>
+          <BlogAvatarImage key={avatar.src} avatar={avatar} />
+        </header>
+      </div>
+      <div className="p-6">
+        <div className="max-w-3xl mx-auto">
           <div className=" pt-6">
             <TinaMarkdown
               content={post.body}
@@ -56,12 +77,19 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
           </div>
 
           {lastEditedDate && (
-            <div className="mt-2 text-sm opacity-50">
+            <div className={`${BODY_MUTED} mt-2`}>
               {strings.blogPost.lastEdited}:{' '}
               <time dateTime={post.last_edited}>{lastEditedDate}</time>
             </div>
           )}
-          <DocsPagination prevPage={previousPage} nextPage={nextPage} />
+          <PostPagination
+            previous={previousPage}
+            next={nextPage}
+            labels={{
+              previous: strings.blogPost.previousPost,
+              next: strings.blogPost.nextPost,
+            }}
+          />
           <div className="mt-8">
             <Giscus
               id="discussion-box"
@@ -85,15 +113,24 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   );
 };
 
-function BlogPageTitle({ title }: { title: string }) {
-  const blogTitleStyling =
-    'leading-[1.3] max-w-3xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 ' +
-    'text-transparent bg-clip-text font-ibm-plex mx-auto text-4xl md:text-5xl';
+function BlogAvatarImage({ avatar }: { avatar: BlogAvatar }) {
+  const [src, setSrc] = React.useState(avatar.src);
 
   return (
-    <header className="relative z-10 overflow-visible text-center px-8 pt-12 pb-4">
-      <h1 className={blogTitleStyling}>{unclipEmoji(title)}</h1>
-    </header>
+    <div className="relative shrink-0 w-36 h-44 md:w-48 md:h-60">
+      <div className="absolute bottom-0 inset-x-0 aspect-square rounded-full bg-linear-to-br from-orange-400 to-orange-600" />
+      <div className="absolute inset-0 overflow-hidden rounded-b-full">
+        <Image
+          src={src}
+          alt=""
+          fill={true}
+          sizes="192px"
+          priority={true}
+          className="object-contain object-bottom"
+          onError={() => setSrc(avatar.fallbackSrc)}
+        />
+      </div>
+    </div>
   );
 }
 

@@ -1,0 +1,38 @@
+{
+  "versionNumber": "3.14.1",
+  "dateReleased": "2026-09-23T00:00:30Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Send the same TinaCloud token from every CMS request. Editorial workflow requests preferred the access token while content requests preferred the ID token, and TinaCloud reads the editor's email from the ID token, so \"Save to new branch\" failed with \"Failed to complete workflow. Please try again.\" and left an empty branch behind. Both paths now share one helper that prefers the ID token and falls back to the access token, which is what versions before 3.12.1 sent. Ordinary saves are unchanged.",
+          "pull_request_number": "7613",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7613",
+          "commit_hash": "ff3088e",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ff3088e9aae28dea93bd8b9c8cad8f8a33d3a78d",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Publish a browser-specific Tina client bundle so client components build without resolving Node.js builtins, while server builds retain the filesystem response cache.",
+          "pull_request_number": "7553",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7553",
+          "commit_hash": "288244e",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/288244efb544f4ad0712002c8609a5dc6f1d83db",
+          "gitHubName": "harley-j",
+          "gitHubLink": "https://github.com/harley-j"
+        },
+        {
+          "changesDescription": "Associate the toggle field's label with its checkbox. The input now falls back to the form field name for its `id`, so clicking the label toggles the value and screen readers announce the field name.",
+          "pull_request_number": "7478",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7478",
+          "commit_hash": "b5ad014",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b5ad014f1ec6c3009b8396315608f1a82efd31c1",
+          "gitHubName": "Roshan931",
+          "gitHubLink": "https://github.com/Roshan931"
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { BODY_MUTED, CARD_TITLE } from '@/component/styles/typography';
 import { DemoFormClient } from './BookDemoClient';
 
 export function DemoForm() {
@@ -48,12 +49,12 @@ export function DemoForm() {
     return (
       <div className="py-10 h-full !w-full flex flex-col">
         <div className="flex justify-center pb-8">
-          <h2 className="inline-block m-0 font-ibm-plex lg:text-3xl md:text-2xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+          <h2 className={`inline-block m-0 ${CARD_TITLE}`}>
             Choose your location
           </h2>
         </div>
         <div className="flex justify-center items-center py-10">
-          <p className="text-muted-foreground">Loading...</p>
+          <p className={BODY_MUTED}>Loading...</p>
         </div>
       </div>
     );

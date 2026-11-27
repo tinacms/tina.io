@@ -13,19 +13,13 @@
       "buttons": [
         {
           "label": "Find a partner",
-          "icon": true,
-          "shape": "pill",
-          "variant": "blue",
-          "size": "medium",
+          "variant": "primary",
           "url": "#find-a-partner-section",
           "_template": "actions"
         },
         {
           "label": "Become a partner",
-          "icon": false,
-          "shape": "pill",
-          "variant": "blueOutline",
-          "size": "medium",
+          "variant": "tertiary",
           "url": "#become-a-partner-section",
           "_template": "actions"
         }
@@ -128,10 +122,7 @@
       "buttons": [
         {
           "label": "Apply to become a partner",
-          "icon": true,
-          "shape": "square",
-          "color": "orange",
-          "size": "medium",
+          "color": "primary",
           "modal": "BecomePartner.tsx",
           "_template": "modalButton"
         }

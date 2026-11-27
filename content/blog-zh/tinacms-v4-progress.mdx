@@ -1,0 +1,120 @@
+---
+seo:
+  title: "TinaCMS v4: 我们的进展 | TinaCMS 博客"
+  description: '在我们宣布 TinaCMS v4 六个月后，这就是新编辑器的功能。'
+title: "TinaCMS v4: 我们的进展"
+date: '2026-11-19T00:00:00.000Z'
+last_edited: '2026-11-19T00:00:00.000Z'
+author: TinaCMS 团队
+prev: content/blog-zh/tinacms-v4-is-coming.mdx
+next: ''
+---
+
+在五月，我们告诉你[我们对 TinaCMS v4 的计划](/blog/tinacms-v4-is-coming)。我们承诺了五件事：
+
+* 插件
+* 更好的表单引擎
+* 更好的字段
+* 编辑器内的 Git 工作流
+* 全新的编辑器 UI
+
+六个月和许多 pull 请求之后，v4 正在成形。以下是团队的进展。
+
+**简而言之：** v4 仍在进行中。本文是即将到来的预览。
+
+## 🏠 全新的主页
+
+当你打开 v4 管理界面时，你会进入 **主页**。这是一个面板仪表板，显示你的集合、最近的文档和你所在的分支（[#8009](https://github.com/tinacms/tinacms/pull/8009), [#8050](https://github.com/tinacms/tinacms/pull/8050)）。
+
+左侧有一个导轨，集合就在旁边打开。顶部栏有一个分支切换器，所以你总是知道你正在编辑哪个分支。底部的状态栏告诉你 TinaCMS 正在做什么。
+
+每个按钮、字段和工具提示现在都来自一个设计系统，因此整个编辑器感觉像是一个整体（[#7990](https://github.com/tinacms/tinacms/pull/7990)）。
+
+<WideImage src="/img/blog/tinacms-v4-progress/home.png" alt="TinaCMS v4 主页屏幕，带有集合和最近文档面板" />
+
+**图：v4 主页屏幕，带有导轨、顶部栏和状态栏。**
+
+## 💾 不再丢失未保存的更改
+
+丢失工作是最糟糕的。v4 将你的未保存编辑保留为草稿，因此重新加载或关闭的标签页不会清除它们（[#7627](https://github.com/tinacms/tinacms/pull/7627)）。
+
+当一个字段有问题时，保存按钮会变为 **解决 1 个错误**。点击它可以看到错误摘要，带你到需要修复的每个字段（[#8031](https://github.com/tinacms/tinacms/pull/8031)）。
+
+正在编辑一堆文档？使用顶部栏中的 **全部保存** 一次性保存它们（[#8061](https://github.com/tinacms/tinacms/pull/8061)）。
+
+我们也改进了验证：每个字段在你离开字段或尝试保存时显示其错误（[#7945](https://github.com/tinacms/tinacms/pull/7945), [#7988](https://github.com/tinacms/tinacms/pull/7988)）。
+
+<WideImage src="/img/blog/tinacms-v4-progress/resolve-errors.png" alt="一个没有标题的帖子，解决 1 个错误按钮和错误面板" />
+
+**图：被阻止的保存告诉你需要修复什么，每个字段显示其自己的错误。**
+
+## 🔌 全面插件化
+
+一个受欢迎的请求和底层最大的变化。插件是一个为 TinaCMS 添加一个功能的包，而不改变 TinaCMS 本身。在 v4 中，媒体、搜索、登录甚至整个屏幕都是插件。插件可以有客户端，用于屏幕和控件编辑器使用，以及服务器端，用于操作、秘密和文件访问。你可以添加插件、替换它们或更换它们，而不需要分叉 TinaCMS 来实现（[#7706](https://github.com/tinacms/tinacms/pull/7706)）。
+
+这是一个完整 v4 站点的配置。`plugins` 中的每个条目都添加了一个功能：
+
+```ts
+import { defineConfig, mediaManagerPlugin, tinaCloud } from '@tinacms/tinacms';
+
+export default defineConfig({
+  plugins: [
+    tinaCloud({ clientId: process.env.TINA_PUBLIC_CLIENT_ID }),
+    mediaManagerPlugin(),
+    ratingFieldPlugin, // 你的团队编写的自定义字段
+  ],
+  schema: { collections: [postCollection] },
+});
+```
+
+每个插件提供其自己的功能，例如一行 `tinaCloud()` 为你提供内容、登录和媒体。添加一个 `search` 选项，它也为你提供搜索功能（[#8057](https://github.com/tinacms/tinacms/pull/8057)）。想要自己的媒体提供者？为它编写一个插件。
+
+## 🧭 自定义你的管理界面
+
+侧边栏和管理面板不再是固定的。任何插件都可以在侧边栏中添加自己的条目，带有标签和图标。一个条目可以在 TinaCMS 内打开一个屏幕，在新标签页中打开一个链接，或运行一个操作（[#7686](https://github.com/tinacms/tinacms/pull/7686)）。
+
+主页也是一个屏幕。如果你的团队想要自己的仪表板，比如发布统计或内容日历，可以用你自己的屏幕替换主页（[#8050](https://github.com/tinacms/tinacms/pull/8050), [#7706](https://github.com/tinacms/tinacms/pull/7706)）。
+
+```tsx
+export const dashboardPlugin = definePlugin({
+  name: 'northwind:dashboard',
+  provides: ['screen'],
+  overrides: [{ capability: 'screen', key: 'home' }],
+  client: async () => ({
+    default: defineClientPlugin({
+      screens: [{ name: 'home', label: '主页', component: NorthwindDashboard }],
+      slots: {
+        globalNav: [
+          {
+            label: '风格指南',
+            icon: BookIcon,
+            target: { kind: 'url', href: 'https://northwind.com/style' },
+          },
+        ],
+      },
+    }),
+  }),
+});
+```
+
+## 🗺️ 接下来是什么
+
+我们仍在处理编辑器的其余部分、迁移代码修改和文档。迁移过程将会很顺利。
+
+v3 仍在获得改进和生活质量修复。
+
+如果你想跟进：
+
+* 给 [TinaCMS GitHub 仓库](https://github.com/tinacms/tinacms) 点星
+* 在 [TinaCMS v4 GitHub 讨论](https://github.com/tinacms/tinacms/discussions/6782) 中分享反馈
+* 加入 [TinaCMS Discord](https://discord.com/invite/zumN63Ybpf) 的讨论
+
+<UpdateCallout
+  body={<>
+    **很快会有更多：** 我们将在几周内分享更多关于 v4 的信息，请留意。
+  </>}
+/>
+
+最好的祝愿，
+
+TinaCMS 团队 🦙

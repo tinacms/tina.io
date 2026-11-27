@@ -1,0 +1,13 @@
+{
+  "seo": {
+    "title": "TinaCMS Pricing and Payment Terms",
+    "description": "How billing, renewal, refunds, taxes and price changes work for paid TinaCMS plans."
+  },
+  "blocks": [
+    {
+      "title": "Tina.io Pricing and Payment Terms",
+      "byLine": "**Last Modified: November 11, 2026**\n\nThese Pricing and Payment Terms are referred to in section 4.1 of our [Terms of Service](/terms-of-service) and apply when you use the paid aspects of the Service.\n\n**1. Prices** Our current prices are on our [pricing page](https://tina.io/pricing). All prices are in USD.\n\n**2. Billing period** You choose monthly or annual billing at checkout.\n\n**3. Billing unit** Team and Business plans are bought per project. Enterprise covers every project in your organization.\n\n**4. Renewal and cancellation** Subscriptions renew automatically. You cancel as set out in section 4.3 of the Terms of Service.\n\n**5. Refunds** Section 4.2 of the Terms of Service applies.\n\n**6. Payment methods and taxes** Payments are processed by Stripe. Section 4.4 of the Terms of Service applies.\n\n**7. Changes** We may change prices and fees. A change takes effect in the billing cycle after we notify you, as set out in section 4.1 of the Terms of Service.",
+      "_template": "footerLinkContent"
+    }
+  ]
+}

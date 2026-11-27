@@ -1,5 +1,6 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: Highlight tokenizes deterministically; index is a stable key. */
 import { Highlight, Prism as rootPrism, themes } from 'prism-react-renderer';
+import { CODE } from '@/component/styles/typography';
 
 (typeof global !== 'undefined' ? global : window).Prism = rootPrism;
 require('prismjs/components/prism-bash');
@@ -20,11 +21,9 @@ export const Prism = (props: {
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
-          className={className}
+          className={`${className} ${CODE}`}
           style={{
             ...style,
-            fontFamily:
-              'SourceCodePro-Regular, Monaco, Menlo, "Ubuntu Mono", Consolas, "source-code-pro", monospace',
             width: '100%',
             border: 'none',
             marginBottom: 0,
@@ -48,8 +47,6 @@ export const Prism = (props: {
                       {...tokenProps}
                       style={{
                         ...tokenProps.style,
-                        fontFamily:
-                          'SourceCodePro-Regular, Monaco, Menlo, "Ubuntu Mono", Consolas, "source-code-pro", monospace',
                         paddingRight: j === line.length - 1 ? '3em' : '0px',
                       }}
                     />

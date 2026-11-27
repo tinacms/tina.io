@@ -55,9 +55,7 @@
       "buttons": [
         {
           "label": "Set Up TinaCMS with Hugo",
-          "icon": false,
-          "variant": "blue",
-          "size": "medium",
+          "variant": "primary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

@@ -1,4 +1,4 @@
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { BODY, SECTION_TITLE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import RenderButton from '@/utils/renderButtonArrayHelper';
 
@@ -35,10 +35,8 @@ export default function CallToAction(data: any) {
         </div>
 
         <div className="relative z-10 flex flex-col gap-6 items-start text-left max-w-full">
-          <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h2>
-          <p className="text-neutral-text-secondary max-w-md font-normal leading-relaxed text-lg">
-            {description}
-          </p>
+          <h2 className={`${SECTION_TITLE}`}>{title}</h2>
+          <p className={`${BODY} max-w-md`}>{description}</p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             {buttons?.map((button: any, index: number) => (
               <RenderButton

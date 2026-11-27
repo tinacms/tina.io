@@ -51,7 +51,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                 transition: 'opacity 0.2s ease-in-out',
               }}
             >
-              <div className="rounded-[1.8rem] text-4xl font-semibold flex items-center justify-center select-none h-full">
+              <div className="rounded-[1.8rem] flex items-center justify-center select-none h-full">
                 {slide}
               </div>
             </div>

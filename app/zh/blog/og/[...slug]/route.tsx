@@ -1,15 +1,16 @@
 // Dynamic blog OG image (zh) as a Route Handler. See app/blog/og/[...slug]
 // for why this is a route handler rather than the opengraph-image convention.
 
-import { generateBlogStaticParams } from 'utils/blog/generateBlogStaticParams';
+import { blogSlugSet } from 'utils/blog/blogSlugs';
 import { getBlogPost } from 'utils/blog/getBlogPost';
 import { renderBlogOgImage } from 'utils/og/blogOgImage';
 
 export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = 3600;
 
 export function generateStaticParams() {
-  return generateBlogStaticParams('zh');
+  return [];
 }
 
 export async function GET(
@@ -17,10 +18,16 @@ export async function GET(
   { params }: { params: { slug: string[] } },
 ) {
   const slugPath = params.slug.join('/');
+  if (!(await blogSlugSet('zh')).has(slugPath)) {
+    return new Response(null, { status: 404 });
+  }
   const { post } = await getBlogPost('zh', slugPath);
+  if (!post) {
+    return new Response(null, { status: 404 });
+  }
   return renderBlogOgImage({
-    title: post?.title ?? 'TinaCMS Blog',
-    author: post?.author,
+    title: post.title,
+    author: post.author,
     seed: slugPath,
   });
 }

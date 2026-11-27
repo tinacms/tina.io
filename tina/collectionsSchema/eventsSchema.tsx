@@ -3,26 +3,10 @@ import React from 'react';
 import { LocationField } from 'tina/customTinaFormFields/locationField';
 import { TextField, wrapFieldsWithMeta } from 'tinacms';
 import majorTimezones from '../../components/componentSuppliedData/EventsTimezones.json';
+import { getSchemaUtcOffsetHours } from '../../utils/schemaTimezoneOffset';
 import { seoInformation } from './sharedFields/seoInformation';
 
 type offset = { value: any; label: string };
-
-const getUtcOffsetHours = (ianaName: string): number => {
-  const formatted = new Date().toLocaleString('en-US', {
-    timeZone: ianaName,
-    timeZoneName: 'shortOffset',
-  });
-  const match = formatted.match(/GMT([+-]?\d+(?::(\d+))?)?$/);
-  if (!match) {
-    return 0;
-  }
-  if (!match[1]) {
-    return 0;
-  } // "GMT" with no offset = UTC
-  const hours = parseInt(match[1], 10);
-  const minutes = match[2] ? parseInt(match[2], 10) : 0;
-  return hours + (hours < 0 ? -minutes : minutes) / 60;
-};
 
 const dateFormat = Intl.DateTimeFormat('en-US', {
   year: 'numeric',
@@ -48,7 +32,7 @@ const addCitiesAndPrefix = (offsets: number[], _prefix = '+'): offset[] => {
   const cityTimezoneMap = new Map();
   //Get the timezones of major cities
   majorTimezones.forEach((cityOffset) => {
-    const zone = getUtcOffsetHours(cityOffset.ianaName);
+    const zone = getSchemaUtcOffsetHours(cityOffset.ianaName);
     cityTimezoneMap.set(
       zone,
       cityTimezoneMap.get(zone)
@@ -176,7 +160,7 @@ export const eventsCollection = {
           label: 'Timezone',
           type: 'number',
           description:
-            'Please select the timezone the event is being held in. GMT and UTC are analagous.',
+            'Select the UTC offset for the event date. City names show January offsets; allow for daylight saving.',
           ui: {
             parse: (value) => Number(value),
             component: 'select',

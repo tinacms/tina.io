@@ -1,5 +1,5 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
@@ -8,7 +8,15 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import css from 'styled-jsx/css';
 import { tinaField } from 'tinacms/dist/react';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { ICON_BUTTON } from '@/component/styles/buttons';
+import {
+  BODY,
+  BODY_SMALL,
+  ON_DARK,
+  SECTION_TITLE,
+  SUB_HEADING,
+} from '@/component/styles/typography';
+import { TextLink } from '@/component/ui/TextLink';
 import { splitOneAndJoin } from './CompareBox.template';
 
 function hexToRgba(hex, alpha) {
@@ -21,7 +29,6 @@ function hexToRgba(hex, alpha) {
 const commonHeightStyle = {
   height: '50px',
   marginBottom: '8px',
-  lineHeight: '16px',
 };
 
 const CompanyItem = ({ company, onClick }) => {
@@ -30,8 +37,10 @@ const CompanyItem = ({ company, onClick }) => {
   }
 
   return (
-    <div
-      className={`flex items-center space-x-4 cursor-pointer ${
+    <button
+      type="button"
+      aria-pressed={!!company.active}
+      className={`flex items-center space-x-4 cursor-pointer text-left ${
         company.active ? '' : 'opacity-25'
       }`}
       onClick={onClick}
@@ -45,18 +54,30 @@ const CompanyItem = ({ company, onClick }) => {
           height={40}
         />
       )}
-      <span
-        className={`font-ibm-plex  ${
-          company.active
-            ? 'bg-linear-to-br text-black bg-clip-text'
-            : 'text-gray-500'
-        }`}
-      >
-        <div className="lg:text-xl md:text-sm text-xs">{company.headline}</div>
-      </span>
-    </div>
+      <span className={SUB_HEADING}>{company.headline}</span>
+    </button>
   );
 };
+
+// Carousel arrows: utility icon buttons instead of react-slick's CSS glyphs.
+const SliderArrow = ({
+  direction,
+  onClick,
+}: {
+  direction: 'prev' | 'next';
+  onClick?: () => void;
+}) => (
+  <button
+    type="button"
+    aria-label={direction === 'prev' ? 'Previous' : 'Next'}
+    onClick={onClick}
+    className={`${ICON_BUTTON} absolute top-1/2 z-10 -translate-y-1/2 ${
+      direction === 'prev' ? '-left-10' : '-right-10'
+    }`}
+  >
+    {direction === 'prev' ? <ChevronLeft /> : <ChevronRight />}
+  </button>
+);
 
 const CriteriaCard = ({ criteriaItems }) => {
   return (
@@ -71,7 +92,9 @@ const CriteriaCard = ({ criteriaItems }) => {
           <div className="group relative flex-shrink-0 flex items-center mr-1">
             <IoMdInformationCircleOutline className="mr-1 text-orange-500 text-xl" />
             <div className="hidden group-hover:block absolute left-0 top-full pt-2 z-20">
-              <div className="relative shadow-xl bg-white text-sm p-2 rounded-lg xl:w-72 w-40 break-words text-center">
+              <div
+                className={`${BODY_SMALL} relative shadow-xl bg-white p-2 rounded-lg xl:w-72 w-40 break-words text-center`}
+              >
                 {item.description}
               </div>
             </div>
@@ -79,7 +102,7 @@ const CriteriaCard = ({ criteriaItems }) => {
 
           <h3
             data-tina-field={tinaField(item, 'criteria')}
-            className="min-w-0 flex-1 flex items-center sm:leading-5 md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs"
+            className={`${SUB_HEADING} min-w-0 flex-1 flex items-center`}
           >
             <span className="min-w-0">{item.criteria}</span>
           </h3>
@@ -100,7 +123,7 @@ const CompanyCard = ({ company, criteria }) => {
   return (
     <div className="rounded-lg flex flex-col items-center w-full company-card">
       <div
-        className="w-full flex justify-center items-center text-center px-2 py-4 opacity-100 rounded-t-lg"
+        className={`${ON_DARK} w-full flex justify-center items-center text-center px-2 py-4 rounded-t-lg`}
         style={{
           ...commonHeightStyle,
           background: `linear-gradient(225deg, ${hexToRgba(
@@ -122,7 +145,7 @@ const CompanyCard = ({ company, criteria }) => {
           />
         )}
 
-        <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-md text-xs font-bold text-white whitespace-nowrap">
+        <h3 className={`${SUB_HEADING} hidden sm:block whitespace-nowrap`}>
           {company.headline}
         </h3>
       </div>
@@ -163,12 +186,9 @@ const CompanyCard = ({ company, criteria }) => {
       </div>
 
       {company.testimonialLink && (
-        <Link
-          href={company?.testimonialLink}
-          className="inline-block py-4 text-center text-sm font-bold text-gray-700 hover:text-orange-600 underline"
-        >
-          How {company?.headline} stacks up with TinaCMS →
-        </Link>
+        <TextLink href={company.testimonialLink} className="py-4">
+          How {company?.headline} stacks up with TinaCMS
+        </TextLink>
       )}
     </div>
   );
@@ -270,6 +290,8 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
 
   const settings = {
     dots: false,
+    prevArrow: <SliderArrow direction="prev" />,
+    nextArrow: <SliderArrow direction="next" />,
     infinite: true,
     speed: 500,
     slidesToShow: 6,
@@ -320,14 +342,14 @@ export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
       <div className="px-8 py-8 md:px-8 bg-linear-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
         <h2
           data-tina-field={tinaField(data, 'heading')}
-          className={`${BLOCK_HEADINGS_SIZE} pl-3 font-ibm-plex flex items-center text-center justify-center lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8`}
+          className={`${SECTION_TITLE} pl-3 flex items-center text-center justify-center px-2 mt-10 pb-8`}
         >
           {data.heading}
         </h2>
 
         <p
           data-tina-field={tinaField(data, 'subheading')}
-          className="text-center text-gray-600 text-sm font-semibold md:text-base -mt-4 mb-8"
+          className={`${BODY} text-center -mt-4 mb-8`}
         >
           {data.subheading}
         </p>

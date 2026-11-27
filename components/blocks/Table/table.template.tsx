@@ -60,6 +60,12 @@ export const tableTemplate: Template = {
       fields: [
         { name: 'rowHeader', label: 'Row Header', type: 'string' },
         {
+          name: 'rowHeaderLink',
+          label: 'Row Header Link',
+          type: 'string',
+          description: 'Optional URL that turns the row header into a link',
+        },
+        {
           name: 'rowDescription',
           label: 'Row Description',
           type: 'string',
@@ -122,7 +128,7 @@ export const tableTemplate: Template = {
               return (
                 <div>
                   {valueMap.map((cell, index) => (
-                    <div className="mb-2" key={cell.id}>
+                    <div className="mb-2" key={`${cell.columnHeader}-${index}`}>
                       <div className="flex mb-1">
                         <span className="mr-3 font-bold">
                           {cell.columnHeader}:

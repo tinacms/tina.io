@@ -1,6 +1,7 @@
-import { modalButtonTemplateFields } from 'components/blocks/ModalButton/ModalButton.template';
-
-const iconOptions = ['FaCalendarDay', 'MdEmail'];
+import {
+  modalButtonDefaultItem,
+  modalButtonTemplateFields,
+} from 'components/blocks/ModalButton/ModalButton.template';
 
 export const footerCollection = {
   name: 'footer',
@@ -124,24 +125,9 @@ export const footerCollection = {
                 itemProps: (item) => {
                   return { label: `🍌 ${item?.label}` };
                 },
-                defaultItem: {
-                  variant: 'default',
-                  label: 'Secondary Action',
-                  icon: false,
-                  size: 'medium',
-                },
+                defaultItem: modalButtonDefaultItem,
               },
-              fields: [
-                ...modalButtonTemplateFields,
-                {
-                  name: 'icon2',
-                  label: 'Icon',
-                  type: 'string',
-                  options: iconOptions,
-                  description:
-                    'If you want a new icon added please ask a developer :)',
-                },
-              ],
+              fields: modalButtonTemplateFields,
             },
           ],
         },
@@ -361,24 +347,9 @@ export const footerCollection = {
                 itemProps: (item) => {
                   return { label: `🍌 ${item?.label}` };
                 },
-                defaultItem: {
-                  variant: 'default',
-                  label: 'Secondary Action',
-                  icon: false,
-                  size: 'medium',
-                },
+                defaultItem: modalButtonDefaultItem,
               },
-              fields: [
-                ...modalButtonTemplateFields,
-                {
-                  name: 'icon2',
-                  label: 'Icon',
-                  type: 'string',
-                  options: iconOptions,
-                  description:
-                    'If you want a new icon added please ask a developer :)',
-                },
-              ],
+              fields: modalButtonTemplateFields,
             },
           ],
         },
@@ -493,24 +464,9 @@ export const footerCollection = {
                 itemProps: (item) => {
                   return { label: `🍌 ${item?.label}` };
                 },
-                defaultItem: {
-                  variant: 'default',
-                  label: 'Secondary Action',
-                  icon: false,
-                  size: 'medium',
-                },
+                defaultItem: modalButtonDefaultItem,
               },
-              fields: [
-                ...modalButtonTemplateFields,
-                {
-                  name: 'icon2',
-                  label: 'Icon',
-                  type: 'string',
-                  options: iconOptions,
-                  description:
-                    'If you want a new icon added please ask a developer :)',
-                },
-              ],
+              fields: modalButtonTemplateFields,
             },
           ],
         },

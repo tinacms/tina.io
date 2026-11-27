@@ -7,7 +7,10 @@
     {
       "headline": "TinaCMS vs Sanity: Elevate Your Experience with TinaCMS",
       "text": "See why TinaCMS is the preferred choice for developers and content creators alike.",
-      "blockSettings": { "isHeadingOne": true }, "_template": "hero"
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "_template": "hero"
     },
     {
       "options": {
@@ -52,9 +55,7 @@
       "buttons": [
         {
           "label": "Get Started with TinaCMS",
-          "icon": false,
-          "variant": "blue",
-          "size": "medium",
+          "variant": "primary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

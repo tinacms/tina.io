@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.11.5",
+  "dateReleased": "2026-11-17T22:27:11Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Fix WorkOS webhooks failing in prod with HTTP 400",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}

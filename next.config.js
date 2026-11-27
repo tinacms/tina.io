@@ -74,7 +74,10 @@ const config = {
       : [];
 
     return {
-      beforeFiles: docsUpstreamRewrites,
+      beforeFiles: [
+        ...docsUpstreamRewrites,
+        { source: '/p/e', destination: 'https://plausible.io/api/event' },
+      ],
       afterFiles: [
         // Your existing site routes
         { source: '/', destination: '/home' },

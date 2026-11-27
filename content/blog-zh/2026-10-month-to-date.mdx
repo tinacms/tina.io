@@ -1,0 +1,68 @@
+---
+seo:
+  title: '意外发生：2026年10月新闻 - 颜色和更快的索引'
+  description: '10月更新：文本颜色、24小时日期选择器、更好的引用、更快的TinaCloud索引和更便捷的移动端仪表板导航。'
+title: '意外发生：2026年10月新闻 - 颜色和更快的索引'
+date: '2026-11-03T00:00:00.000Z'
+author: 'TinaCMS团队'
+prev: content/blog-zh/2026-09-updates.mdx
+next: ''
+---
+
+团队又忙碌起来了 🦙。以下是10月编辑器改进、引用修复和TinaCloud更新的概览，包括10月27日发布的改进。
+
+## 📦 TinaCMS 更新
+
+### 🎨 TinaCMS 3.15 为日常编辑体验带来了一些实用的变化
+
+- **文本颜色：** 使用新的文本颜色下拉菜单（在高亮旁边）为富文本添加颜色。开发者可以自定义调色板。查看[设置指南](https://tina.io/docs/reference/types/rich-text#text-color)以获取更多信息。([#7683](https://github.com/tinacms/tinacms/pull/7683))
+- **24小时制时间选择器：** 日期字段遵循您选择的时间格式，包括24小时制时钟。([#7798](https://github.com/tinacms/tinacms/pull/7798))
+- **可读的字段描述：** 较长的描述会换行。([#7734](https://github.com/tinacms/tinacms/pull/7734))
+
+### 🔗 紧跟步伐的引用
+
+- **自信地重命名内容：** 在重命名或删除后更新链接时，列表和富文本组件内的引用会被包含。([#7851](https://github.com/tinacms/tinacms/pull/7851))
+- **保持集合正常工作：** 排序的集合在处理已删除内容时不会中断列表的其余部分。([#7133](https://github.com/tinacms/tinacms/pull/7133))
+- **升级？** 更新到 `@tinacms/graphql` 4.0.1 后重新索引以刷新现有引用。
+
+### 🩹 更少的障碍
+
+- **更整洁的Markdown列表：** 相邻的列表保存时没有额外的分隔注释。
+- **更干净的内容文件：** 空的可选图片字段不会保存在内容中。
+- **富文本中的图片列表：** 图片列表可以在富文本模板中使用。
+- **更清晰的消息：** 错误对话框有描述性标题和帮助链接。([#7738](https://github.com/tinacms/tinacms/pull/7738))
+- **更易访问的保存状态：** 屏幕阅读器可以识别内容是否已保存。([#7791](https://github.com/tinacms/tinacms/pull/7791))
+- **更好的构建反馈：** 索引消息为开发者在故障排除时提供了更多有用的信息。([#7786](https://github.com/tinacms/tinacms/pull/7786))
+
+**开发者注意：** TinaCMS 3.15 需要 React 18 或更高版本。升级前请查看[发布说明](https://github.com/tinacms/tinacms/releases/tag/tinacms%403.15.0)。
+
+## ☁️ TinaCloud 更新
+
+### ⚡ 更快的索引
+
+- 索引过程并行处理更多工作，以减少等待存储的时间。
+- 新分支索引在后台减少了重复处理。
+- **更可靠的多仓库索引：** 当项目跨越多个仓库时，内容分支使用正确的模式。
+
+### 📱 更友好的仪表板
+
+- **更容易在手机上导航：** 下拉菜单使仪表板部分在较小屏幕上触手可及。
+- **更清晰的索引反馈：** 开发者在检查构建时获得更有用的状态消息。
+- **管理员保护措施：** 当角色更改时，项目保留管理员。
+- **隐私控制：** 仪表板在支持的地区加载跟踪前会请求同意。
+
+### 🖼️ 更好的图片缓存
+
+- 浏览器可以重用缓存的SVG、PNG和WebP资产，而不是不必要地重新下载它们。
+
+## 跟上社交动态
+
+关注产品更新、教程和团队新闻：
+
+- X: [@tinacms](https://x.com/tinacms)
+- LinkedIn: [TinaCMS](https://www.linkedin.com/company/tinacms)
+- YouTube: [@TinaCMS](https://youtube.com/@TinaCMS)
+- Bluesky: [@tina.io](https://bsky.app/profile/tina.io)
+- Discord: [来和我们聊天！](https://tina.io/discord)
+
+下次见 👋🦙

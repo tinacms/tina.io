@@ -1,13 +1,15 @@
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import {
-  BLOCK_HEADINGS_SIZE,
-  H1_HEADINGS_SIZE,
-} from '@/component/styles/typography';
+import { BODY, PAGE_TITLE, SECTION_TITLE } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
+import { SideImageHero } from './SideImageHero';
 
 export function HeroBlock({ data, index }) {
+  if (data.sideImage) {
+    return <SideImageHero data={data} />;
+  }
+
   return (
     <section
       key={index}
@@ -31,14 +33,14 @@ export const HeroFeature = ({ item, spacing, children }) => {
       <div className="flex flex-col gap-2">
         {item.headline && item.blockSettings?.isHeadingOne ? (
           <h1
-            className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center font-bold text-balance`}
+            className={`${PAGE_TITLE} text-center`}
             data-tina-field={tinaField(item, 'headline')}
           >
             {item.headline}
           </h1>
         ) : (
           <h2
-            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-black text-center font-bold text-balance`}
+            className={`${SECTION_TITLE} text-center`}
             data-tina-field={tinaField(item, 'headline')}
           >
             {item.headline}
@@ -46,7 +48,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
         )}
         {item.headline2 && (
           <h2
-            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-black text-center font-bold text-balance`}
+            className={`${SECTION_TITLE} text-center`}
             data-tina-field={tinaField(item, 'headline2')}
           >
             {item.headline2}
@@ -54,19 +56,20 @@ export const HeroFeature = ({ item, spacing, children }) => {
         )}
       </div>
       {item.text && (
-        <p
-          className={item.mobileTextSize ? 'text-lg lg:text-xl' : 'text-xl'}
-          data-tina-field={tinaField(item, 'text')}
-        >
+        <p className={BODY} data-tina-field={tinaField(item, 'text')}>
           {item.text}
         </p>
       )}
       {/* Skipped entirely when there are no buttons — the row's own pb-10 would
           otherwise leave a dead gap under a text-only hero. */}
-      {/* items-center on mobile: the column's cross axis is horizontal, so
-          items-start pinned the buttons left under a centred headline. */}
+      {/* Phones stretch each button to full width, like other button groups;
+          from sm up they centre under the headline. */}
       {item.buttons?.length > 0 && (
-        <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-center md:items-start lg:items-center gap-4 md:gap-10 pb-10">
+        // One button stays centred at tablet width; the two-column grid is
+        // only for rows of two or more.
+        <div
+          className={`flex flex-col ${item.buttons.length > 1 ? 'md:grid md:grid-cols-2 md:items-start' : ''} lg:flex lg:flex-row justify-center items-stretch sm:items-center lg:items-center gap-4 pb-10`}
+        >
           {/* Tina's button objects have no `id`, so key on the label. */}
           {item.buttons.map((button, index) => (
             <div

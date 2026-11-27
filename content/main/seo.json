@@ -55,9 +55,7 @@
       "buttons": [
         {
           "label": "Optimize Your SEO with TinaCMS",
-          "icon": false,
-          "variant": "default",
-          "size": "medium",
+          "variant": "primary",
           "url": "/docs/setup-overview/",
           "_template": "actions"
         }

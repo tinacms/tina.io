@@ -1,0 +1,81 @@
+{
+  "versionNumber": "2026.11.0",
+  "dateReleased": "2026-11-09T04:29:59Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: fall back to the newest graphql alias on the same major",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(content-api): read multi-repo schemas from the generator repo during index migration",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(identity): import users to WorkOS and reconcile them with TinaCloud",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "fix(identity): send PostHog signup events from the Cognito pre-token trigger",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "refactor(ses): rebuild emails from shared template",
+          "gitHubName": "ianhoffmanx",
+          "gitHubLink": "https://github.com/ianhoffmanx"
+        },
+        {
+          "changesDescription": "perf(infra): default Lambda X-Ray tracing to pass-through",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix(content-api): redact credentials from native git errors",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(content-api): stop GitHub rate limits dead-lettering content events",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump follow-redirects from 1.16.1 to 1.16.2[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group in /identity with 2 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump yazl and @types/yazl[bot]",
+          "gitHubName": "types",
+          "gitHubLink": "https://github.com/types"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump @neodrag/core from 3.0.0-next.11 to 3.0.0-next.12[bot]",
+          "gitHubName": "neodrag",
+          "gitHubLink": "https://github.com/neodrag"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump chalk from 5.6.2 to 6.0.1[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}

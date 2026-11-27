@@ -1,3 +1,4 @@
+import { pricingComparisonTemplate } from '../../components/tinaMarkdownComponents/pricingComparison.template';
 import { seoInformation } from './sharedFields/seoInformation';
 
 export const blogsCollection = {
@@ -83,6 +84,18 @@ export const blogsCollection = {
         type: 'mdx',
       },
       templates: [
+        pricingComparisonTemplate,
+        {
+          name: 'UpdateCallout',
+          label: 'Update Callout',
+          fields: [
+            {
+              name: 'body',
+              label: 'Body',
+              type: 'rich-text',
+            },
+          ],
+        },
         {
           name: 'WarningCallout',
           label: 'Warning Callout',

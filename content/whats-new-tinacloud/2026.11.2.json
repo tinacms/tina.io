@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.11.2",
+  "dateReleased": "2026-11-16T06:30:42Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "js/dashboard: re-enable sign-ups",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        }
+      ]
+    }
+  ]
+}

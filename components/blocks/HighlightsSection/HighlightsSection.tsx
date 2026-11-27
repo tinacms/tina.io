@@ -32,6 +32,7 @@ import {
 import { HiOutlineSparkles } from 'react-icons/hi2';
 import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
+import { BODY, CARD_TITLE } from '@/component/styles/typography';
 
 const icons = {
   FaClock,
@@ -70,23 +71,21 @@ const HighlightsSection = ({ data }) => {
   const iconColorClass = brandColorIcons ? 'text-brand-primary' : 'text-black';
 
   return (
-    <div className="h-fit lg:py-16 md:py-8 bg-linear-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center w-full">
+    <div className="h-fit py-12 md:py-8 lg:py-16 bg-linear-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center w-full">
       {/* px-6 on mobile: the w-fit column otherwise sits flush against the
           viewport edge with no gutter. */}
-      <div className="md:flex justify-center lg:gap-36 md:gap-16 w-fit md:w-full mx-auto md:mx-0 px-6 md:px-0">
+      <div className="flex flex-col md:flex-row justify-center gap-12 lg:gap-36 md:gap-16 w-fit md:w-full mx-auto md:mx-0 px-6 md:px-0">
         {Array.isArray(highlightColumn) &&
           highlightColumn.map((item) => {
             return (
               <div
-                className="text-start grid grid-cols-1 my-16 md:my-0"
+                className="text-start grid grid-cols-1"
                 key={`iconColumn-${item.heading}`}
               >
                 {/* h2, not h4 — these are top-level section headings and the
                     skip broke heading order. Size is class-driven, so nothing
                     moves visually. */}
-                <h2 className="font-ibm-plex text-2xl md:text-3xl mb-4 text-black">
-                  {item.heading}
-                </h2>
+                <h2 className={`${CARD_TITLE} mb-4`}>{item.heading}</h2>
                 {Array.isArray(item.highlights) &&
                   item.highlights.map((iconItem) => {
                     const Icon = icons[iconItem.icon];
@@ -100,9 +99,7 @@ const HighlightsSection = ({ data }) => {
                             className={`text-3xl mr-2 ${iconColorClass} inline`}
                           />
                         )}
-                        <span className="font-inter text-lg md:text-xl text-black">
-                          {iconItem.name}
-                        </span>
+                        <span className={`${BODY}`}>{iconItem.name}</span>
                       </div>
                     );
                   })}

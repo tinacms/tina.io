@@ -1,0 +1,37 @@
+{
+  "versionNumber": "3.15.1",
+  "dateReleased": "2026-11-01T22:19:29Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Fix empty, index-less active field group when clicking a tinaField targeting an object list with fields.",
+          "commit_hash": "124567b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/124567b2e75e0f00b8d040d096532d8c6176f08f",
+          "gitHubName": "Tyagiquamar",
+          "gitHubLink": "https://github.com/Tyagiquamar"
+        },
+        {
+          "changesDescription": "Validate `required` on string list fields that use `ui.component: 'tags'`. The tags field plugin had no `validate` function, so a required tags field showed no \"Required\" error and the document saved with no tags. The field now reports \"Required\" when it holds no tags.",
+          "pull_request_number": "7923",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7923",
+          "commit_hash": "a3d56c0",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a3d56c0272f967b3f7d5bef2143ca12a1b9b17ed",
+          "gitHubName": "RaphaelFakhri",
+          "gitHubLink": "https://github.com/RaphaelFakhri"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/mdx@2.4.2",
+          "commit_hash": "80502f8",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/80502f8"
+        }
+      ]
+    }
+  ]
+}

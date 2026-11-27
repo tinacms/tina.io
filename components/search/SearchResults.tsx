@@ -1,8 +1,16 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
+import {
+  BODY_MUTED,
+  BODY_SMALL,
+  EYEBROW,
+  LABEL,
+  PAGE_TITLE,
+  SUB_HEADING,
+  SURFACE,
+} from '@/component/styles/typography';
 import { highlightText } from './SearchModal';
-
 export const SearchHeader = ({ query }: { query: string }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -26,11 +34,11 @@ export const SearchHeader = ({ query }: { query: string }) => {
   return (
     <div className="flex justify-between relative pt-4">
       <div className="flex items-center gap-3">
-        <h1 className="font-ibm-plex text-3xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
-          Results for "{displayQuery}"
-        </h1>
+        <h1 className={PAGE_TITLE}>Results for "{displayQuery}"</h1>
         {isExactSearch && (
-          <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
+          <span
+            className={`${SURFACE.info} ${LABEL} px-2 py-1 rounded-full border`}
+          >
             Exact Match
           </span>
         )}
@@ -50,7 +58,7 @@ export const SearchHeader = ({ query }: { query: string }) => {
               {filterOptions.map((option) => (
                 <div
                   key={option}
-                  className="py-2 text-left cursor-pointer font-normal"
+                  className={`${LABEL} py-2 text-left cursor-pointer`}
                   onClick={() => {
                     setIsFilterOpen(false);
                   }}
@@ -117,26 +125,24 @@ export const SearchTabs = ({ query }: { query: string }) => {
       <div className="max-w-(--breakpoint-xl) mx-auto pb-2">
         <div className="flex justify-between items-center">
           <nav className="relative flex gap-16 px-4">
-            <span className="font-inter text-lg text-blue-800">
+            <span className={EYEBROW}>
               BLOGS ({algoliaSearchResults?.blogs?.count})
             </span>
           </nav>
 
           {/* Search Results Count */}
-          <div className="ml-auto text-end text-lg font-inter text-blue-800">
+          <div className={`${LABEL} ml-auto text-end`}>
             {numberOfResults} Results
           </div>
         </div>
         {isLoading && (
-          <div className="pt-10 text-2xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-ibm-plex">
+          <div className={`${BODY_SMALL} pt-10`}>
             Mustering all the Llamas...
           </div>
         )}
         <SearchBody results={algoliaSearchResults} />
         {numberOfResults === 0 && isLoading === false && (
-          <div className="font-inter font-semibold text-gray-500 text-xl">
-            No Results Found...
-          </div>
+          <div className={BODY_SMALL}>No Results Found...</div>
         )}
       </div>
     </div>
@@ -149,10 +155,10 @@ export const SearchBody = ({ results }: { results: any }) => {
       {results?.blogs?.results.map((item: any) => (
         <div key={item.objectID} className="py-4 px-4 border-b group">
           <Link href={`/blog/${item.slug}`}>
-            <h2 className="text-xl font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
+            <h2 className={`${SUB_HEADING} break-words`}>
               {highlightText(item._highlightResult.title.value)}
             </h2>
-            <p className="text-gray-600 group-hover:text-gray-800 text-sm font-normal line-clamp-3 break-words">
+            <p className={`${BODY_MUTED} line-clamp-3 break-words`}>
               {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>

@@ -13,19 +13,13 @@
       "buttons": [
         {
           "label": "寻找合作伙伴",
-          "icon": true,
-          "shape": "pill",
-          "variant": "blue",
-          "size": "medium",
+          "variant": "primary",
           "url": "#find-a-partner-section",
           "_template": "actions"
         },
         {
           "label": "成为合作伙伴",
-          "icon": false,
-          "shape": "pill",
-          "color": "blueOutline",
-          "size": "medium",
+          "color": "tertiary",
           "modal": "BecomePartner.tsx",
           "_template": "modalButton"
         }
@@ -116,10 +110,7 @@
       "buttons": [
         {
           "label": "申请成为合作伙伴",
-          "icon": true,
-          "shape": "square",
-          "color": "orange",
-          "size": "medium",
+          "color": "primary",
           "modal": "BecomePartner.tsx",
           "_template": "modalButton"
         }

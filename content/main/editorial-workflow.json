@@ -16,9 +16,7 @@
       "buttons": [
         {
           "label": "Schedule a Demo",
-          "icon": true,
-          "color": "blue",
-          "size": "medium",
+          "color": "primary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }
@@ -75,13 +73,11 @@
     },
     {
       "headline": "Get a demo",
-      "text": "Tina's Editorial Workflow is only available on the Business and Enterprise plans. Contact us for a demo. ",
+      "text": "Tina's Editorial Workflow is available on the Team, Business and Enterprise plans. Contact us for a demo. ",
       "buttons": [
         {
           "label": "Get a Demo",
-          "icon": true,
-          "color": "blue",
-          "size": "medium",
+          "color": "primary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }

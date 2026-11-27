@@ -162,19 +162,13 @@
           "buttons": [
             {
               "label": "Learn about TinaCMS",
-              "icon": true,
-              "shape": "square",
-              "variant": "orange",
-              "size": "medium",
+              "variant": "primary",
               "url": "/tinacms",
               "_template": "actions"
             },
             {
               "label": "Try the Editor",
-              "icon": false,
-              "shape": "square",
-              "variant": "ghostOutline",
-              "size": "medium",
+              "variant": "tertiary",
               "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             }
@@ -190,19 +184,13 @@
           "buttons": [
             {
               "label": "Learn about TinaDocs",
-              "icon": true,
-              "shape": "square",
-              "variant": "black",
-              "size": "medium",
+              "variant": "primary",
               "url": "/tinadocs",
               "_template": "actions"
             },
             {
               "label": "Try the Editor",
-              "icon": false,
-              "shape": "square",
-              "variant": "ghostOutline",
-              "size": "medium",
+              "variant": "tertiary",
               "url": "https://docsdemo.tina.io/admin/index.html#/~/docs",
               "_template": "actions"
             }
@@ -451,10 +439,7 @@
       "buttons": [
         {
           "label": "Schedule Call",
-          "icon": false,
-          "shape": "square",
-          "color": "orange",
-          "size": "medium",
+          "color": "primary",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }

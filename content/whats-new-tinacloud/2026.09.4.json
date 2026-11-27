@@ -1,0 +1,136 @@
+{
+  "versionNumber": "2026.09.4",
+  "dateReleased": "2026-09-24T03:26:04Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "fix(dashboard): keep Update Payment Method reachable when no card resolves",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(admin): find customer projects from the staff admin panel",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "feat(admin): add project and organisation pages to the staff panel",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "feat(admin): let staff grant a project extra contributor seats",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "feat(admin): show staff change history in the panel",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "feat(content-api): alarm when editorial workflow saves keep failing for one project",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore(deps): take the September patch-and-minor group except react-icons",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat: freeze new account deletion requests before WorkOS migration",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        },
+        {
+          "changesDescription": "feat: Heal unprovisioned WorkOS user on retry",
+          "gitHubName": "harley-j",
+          "gitHubLink": "https://github.com/harley-j"
+        },
+        {
+          "changesDescription": "test: add deployed TinaCMS client compatibility coverage",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "feat(dashboard): orange primary buttons, llama welcome hero, responsive Create Project chooser",
+          "gitHubName": "designbyalex",
+          "gitHubLink": "https://github.com/designbyalex"
+        },
+        {
+          "changesDescription": "📝 Remove \"may\" from the deploy popup warning",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat: add bulk-send email logic",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "fix(billing): resolve a project's live subscription when it holds more than one row",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat(ses-email-templates): tell announcement recipients what happens to their sign-in",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat: show announcements on the TinaCloud login screen",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(deps): bump the stale axios copies onto patched releases",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore(identity): log authorizer and gateway errors in the Identity API access log",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat: alarm when the latest @tinacms/graphql has no alias in the deployed content API",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump the patch-and-minor group across 1 directory with 3 updates[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump aws-actions/configure-aws-credentials from 6.2.4 to 6.3.0 in the patch-and-minor group across 1 directory[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump vite from 5.4.21 to 6.4.3 in /e2e/tinacms-compat[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps): bump sonner from 1.7.4 to 2.0.8[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump vite from 6.4.3 to 8.3.0 in /e2e/tinacms-compat[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}
