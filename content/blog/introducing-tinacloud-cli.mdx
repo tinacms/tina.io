@@ -1,0 +1,87 @@
+---
+seo:
+  title: Introducing the TinaCloud CLI | TinaCMS Blog
+  description: Create and manage TinaCloud projects from your terminal with the new TinaCloud CLI.
+title: Introducing the TinaCloud CLI
+date: '2026-11-27T00:00:00.000Z'
+author: TinaCMS Team
+---
+
+You can now create and manage TinaCloud projects from your terminal. The
+TinaCloud CLI brings common project and organization tasks to the command line,
+whether you're working directly or asking an AI coding agent to help.
+
+Until now, creating a TinaCloud project meant switching to the dashboard. With
+the CLI, you can create a project, check its status and update its
+configuration as part of your development workflow.
+
+## Get started
+
+Download the latest release for your operating system from the [GitHub releases
+page](https://github.com/tinacms/tinacloud-cli/releases), extract it and add
+the binary to your `PATH`. The [installation
+guide](https://tina.io/docs/tinacloud/tinacloud-cli) also covers other
+installation options.
+
+Once installed, sign in and check your session:
+
+```bash
+tinacloud auth login
+tinacloud auth status
+```
+
+The login command opens TinaCloud in your browser. If the browser doesn't open
+automatically, use the URL printed in your terminal.
+
+## Manage your projects from the terminal
+
+The CLI can list your organizations and projects, create projects from GitHub
+repositories, and show project status. You can also add or remove site URLs
+and, if you have editorial workflow enabled, protected branches.
+
+For example, list your organizations and the projects in one of them:
+
+```bash
+tinacloud org list
+tinacloud project list --org-id <organization-id>
+```
+
+If you're working in an existing local TinaCMS project, run `tinacloud
+configure` from the project directory. The CLI will try to find the matching
+TinaCloud project and, after you confirm it, save its organization and project
+IDs in `tina/tinacloud.json`. Subsequent commands can use those IDs without
+asking you to pass them each time; you can still provide different IDs
+explicitly.
+
+```bash
+tinacloud configure
+tinacloud project status
+```
+
+## Use the CLI with your AI coding agent
+
+The CLI also gives AI coding agents a way to help with TinaCloud setup. In the
+release video, Brook asks an agent to create a TinaCloud project for a local
+TinaCMS project. The agent checks authentication, finds the organization and
+creates the project. It also configures the local project so future commands
+can use the saved IDs.
+
+You could try a prompt like:
+
+> Create a TinaCloud project for this local TinaCMS project using the TinaCloud
+> CLI. Check that I'm signed in, ask me which organization to use, and confirm
+> the project details before creating it.
+
+The CLI opens up other possibilities for automation too, such as finding
+projects that need staging URLs and updating their configuration.
+
+## Try it out
+
+Download the [TinaCloud CLI](https://github.com/tinacms/tinacloud-cli/releases)
+and explore the [documentation](https://tina.io/docs/tinacloud/tinacloud-cli)
+for installation instructions, commands and examples. Run `tinacloud --help` to
+explore the commands from your terminal.
+
+Have a use case or a feature request? Share it with us on
+[Discord](https://discord.com/invite/zumN63Ybpf) or in [GitHub
+Discussions](https://github.com/tinacms/tinacms/discussions).
