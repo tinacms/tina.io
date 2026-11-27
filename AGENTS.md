@@ -65,7 +65,7 @@ pnpm create-rss     # Regenerate RSS feeds
 - `utils/` — Utility functions
 - `indices/` — Algolia search index generation
 - `rss/` — RSS feed generation
-- `data-api/` — GraphQL API layer
+- `data-api/` — Reads blog files from `content/` for the search indexer (`indices/createIndices.ts`)
 
 ### TypeScript Path Aliases
 

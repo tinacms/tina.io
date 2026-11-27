@@ -19,8 +19,6 @@ Static web application built with...
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
-for Node versions, check [this](https://tina.io/docs/setup-overview/) docs page.
-
 - and of course... [TinaCMS](https://github.com/tinacms/tinacms)! 🦙
 
 Hosting and deployment...
@@ -31,7 +29,7 @@ Hosting and deployment...
 
 ## 🛠️ Dependency Installation + Setup
 
-We're using [pnpm](https://pnpm.io/) as the package manager for node.
+The repo uses Node 24 (pinned in `.nvmrc` and the `engines` field of `package.json`) and [pnpm](https://pnpm.io/) 9.6.0 (pinned in the `packageManager` field of `package.json`).
 
 ```bash
 cp .env.example .env
@@ -78,8 +76,8 @@ The Tina.io site aims to adhere to the design library created by the awesome des
 
 ### 🔍 Search Functionality Overview
 
-- A **custom indexing system** processes MDX documentation files using `createIndices.ts`.
-- Integrated with **[Algolia Search](https://www.algolia.com/)** for fast, typo-tolerant full-text search.
-- Search indices are **automatically updated** via a GitHub Actions workflow named `create-indices.yml` whenever documentation changes are merged into the `main` branch.
+- `indices/createIndices.ts` indexes the blog posts in `content/blog`, which `data-api/fetchBlogs.ts` reads from disk.
+- The posts go into an **[Algolia](https://www.algolia.com/)** index that backs the blog search modal and the `/search` page.
+- The `create-indices.yml` GitHub Actions workflow rebuilds the index on every push to the `main` branch.
 
-This setup ensures that search remains accurate, up-to-date, and efficient across the documentation.
+The documentation is not indexed here. It lives in the [tinacms/docs](https://github.com/tinacms/docs) repo.
